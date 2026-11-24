@@ -78,7 +78,7 @@ export type ChatMessagesSlots<T extends UIMessage[] = UIMessage[]> = {
   viewport?(props: { b24ui: ChatMessages['b24ui'], onClick: () => void }): VNode[]
 } & {
   [K in keyof ChatMessageSlots]?: NonNullable<ChatMessageSlots[K]> extends (props: infer P) => VNode[]
-    ? (props: P & { message: MessageBase<T> }) => VNode[]
+    ? (props: P & { message: MessageBase<T>, streaming: boolean }) => VNode[]
     : never
 }
 
@@ -123,6 +123,13 @@ function showIndicator() {
 
   const lastMessage = props.messages?.[props.messages.length - 1]
   return lastMessage?.role === 'assistant' && !lastMessage.parts?.length
+}
+
+// Only the last message streams, and nothing does once the chat is stopped
+function isMessageStreaming(message: UIMessage) {
+  if (props.status !== 'submitted' && props.status !== 'streaming') return false
+
+  return message.id === props.messages?.[props.messages.length - 1]?.id
 }
 
 const { t } = useLocale()
@@ -229,11 +236,11 @@ function checkScrollPosition() {
 
   showAutoScroll.value = (scrollHeight - scrollPosition) >= threshold
 
-  // Detect user scrolling up
-  if (parent.value.scrollTop < lastScrollTop.value) {
-    userScrolledUp.value = true
-  } else if ((scrollHeight - scrollPosition) < threshold) {
+  // Only resume following at the very bottom, otherwise streaming pulls the user back down
+  if ((scrollHeight - scrollPosition) <= 1) {
     userScrolledUp.value = false
+  } else if (parent.value.scrollTop < lastScrollTop.value) {
+    userScrolledUp.value = true
   }
 
   lastScrollTop.value = parent.value.scrollTop
@@ -360,7 +367,7 @@ defineExpose({
           :compact="props.compact"
         >
           <template v-for="(_, name) in getProxySlots()" #[name]="slotData">
-            <slot :name="name" v-bind="{ ...(slotData as any), message }" />
+            <slot :name="name" v-bind="{ ...(slotData as any), message, streaming: isMessageStreaming(message) }" />
           </template>
         </B24ChatMessage>
       </template>

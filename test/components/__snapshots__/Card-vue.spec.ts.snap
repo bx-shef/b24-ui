@@ -8,6 +8,17 @@ exports[`Card > renders with as correctly 1`] = `
 </section>"
 `;
 
+exports[`Card > renders with as object correctly 1`] = `
+"<section data-slot="root" class="overflow-hidden rounded-(--ui-border-radius-md) bg-(--ui-color-design-outline-bg) border-(--ui-color-design-outline-stroke) border-(length:--ui-design-outline-stroke-weight) text-(--ui-color-design-outline-content)">
+  <div data-slot="header" class="border-b border-(--ui-color-design-outline-content-divider) p-xl sm:px-lg2 sm:py-md">
+    <h3 data-slot="title" class="font-[family-name:var(--ui-font-family-primary)] font-(--ui-font-weight-semi-bold) mb-0 text-pretty text-(length:--ui-font-size-2xl)/[normal] text-(--ui-color-design-outline-content)">Title</h3>
+    <!--v-if-->
+  </div>
+  <!--v-if-->
+  <!--v-if-->
+</section>"
+`;
+
 exports[`Card > renders with b24ui correctly 1`] = `
 "<div data-slot="root" class="overflow-hidden rounded-(--ui-border-radius-md) bg-(--ui-color-design-outline-bg) border-(--ui-color-design-outline-stroke) border-(length:--ui-design-outline-stroke-weight) text-(--ui-color-design-outline-content)">
   <!--v-if-->

@@ -415,7 +415,7 @@ function onSubmit() {
     :messages="messages"
     :status="status"
   >
-    <template #content="{ message }">
+    <template #content="{ message, streaming }">
       <template
         v-for="(part, index) in message.parts"
         :key="`${message.id}-${part.type}-${index}`"
@@ -423,7 +423,7 @@ function onSubmit() {
         <B24ChatReasoning
           v-if="isReasoningUIPart(part)"
           :text="part.text"
-          :streaming="isPartStreaming(part)"
+          :streaming="isPartStreaming(part, streaming)"
         >
           <MDC
             :value="part.text"
@@ -435,7 +435,7 @@ function onSubmit() {
         <B24ChatTool
           v-else-if="isToolUIPart(part)"
           :text="getToolName(part)"
-          :streaming="isToolStreaming(part)"
+          :streaming="isToolStreaming(part, streaming)"
         />
 
         <template v-else-if="isTextUIPart(part)">
@@ -455,6 +455,7 @@ function onSubmit() {
 
   <B24ChatPrompt
     v-model="input"
+    :status="status"
     :error="error"
     @submit="onSubmit"
   >

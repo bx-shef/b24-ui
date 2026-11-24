@@ -69,11 +69,11 @@ props:
 ::
 
 ::tip
-Set the `auto-open` prop to `false` to keep the component closed when streaming starts, and `auto-close-delay` to `0` to keep it open when streaming ends.
+Set the `auto-open` prop to `false` to keep the component closed when streaming starts, and `auto-close-delay` to `0` to keep it open when streaming ends. If the user toggles it while streaming, it stays as they left it.
 ::
 
 ::tip
-Use the `isPartStreaming` utility from `@bitrix24/b24ui-nuxt/utils/ai` to determine if a reasoning part is currently being streamed.
+Use the `isPartStreaming` utility from `@bitrix24/b24ui-nuxt/utils/ai` to determine if a reasoning part is currently being streamed. Pass it the `streaming` slot prop of [ChatMessages](/docs/components/chat-messages/#slots) so it stops when the chat is stopped.
 ::
 
 ### Shimmer
