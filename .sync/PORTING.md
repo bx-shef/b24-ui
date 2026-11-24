@@ -516,7 +516,7 @@ material. Reproduce its *intent* in b24ui by editing files under `src/` only.
   independently. The guard sweeps `src/theme/*-menu.ts` rather than trusting a
   list, because the literal review found was in a menu nobody had listed.
 - **`Modal` / `Slideover` / `Drawer` wrap `emits` with `useBlurOnOpen`.** A
-  b24ui-only divergence at the `useForwardProps(reactivePick(props, …), emits)`
+  b24ui-only divergence at the `useForwardProps(props, [keys…], useBlurOnOpen(…))`
   call site in all three, working around unovue/reka-ui#1280: reka-ui applies
   `aria-hidden` to siblings that still contain the focused trigger, and the
   browser refuses it with a console warning. A port of any upstream commit
