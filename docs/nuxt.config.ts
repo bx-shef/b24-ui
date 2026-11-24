@@ -298,7 +298,8 @@ export default defineNuxtConfig({
     build: {
       markdown: {
         remarkPlugins: {
-          'remark-heading-id': { instance: remarkHeadingId }
+          // Ключ — путь к модулю: @nuxtjs/mdc импортирует плагины по ключу
+          [resolve('./utils/remark-heading-id.ts')]: { instance: remarkHeadingId }
         },
         highlight: {
           langs: ['bash', 'ts', 'typescript', 'diff', 'vue', 'json', 'yml', 'css', 'mdc', 'blade', 'edge']
