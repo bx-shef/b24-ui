@@ -455,6 +455,7 @@ function onSubmit() {
 
   <B24ChatPrompt
     v-model="input"
+    :status="status"
     :error="error"
     @submit="onSubmit"
   >

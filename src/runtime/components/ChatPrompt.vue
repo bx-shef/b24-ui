@@ -1,5 +1,6 @@
 <script lang="ts">
 import type { VNode } from 'vue'
+import type { ChatStatus } from 'ai'
 import type { AppConfig } from '@nuxt/schema'
 import theme from '#build/b24ui/chat-prompt'
 import type { TextareaProps, TextareaSlots } from './Textarea.vue'
@@ -28,6 +29,10 @@ export interface ChatPromptProps extends Pick<TextareaProps, 'rows' | 'autofocus
    * @defaultValue true
    */
   submitOnEnter?: boolean
+  /**
+   * The status of the chat. Submitting is ignored while it is `submitted` or `streaming`.
+   */
+  status?: ChatStatus
   error?: Error
   class?: any
   b24ui?: ChatPrompt['slots'] & TextareaProps['b24ui']
@@ -94,7 +99,7 @@ const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.chatPrompt
 const textareaRef = useTemplateRef('textareaRef')
 
 function submit(e?: Event) {
-  if (model.value.trim() === '') {
+  if (model.value.trim() === '' || props.status === 'submitted' || props.status === 'streaming') {
     return
   }
 

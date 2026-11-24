@@ -61,6 +61,7 @@ items:
 The ChatPrompt handles the following events:
 
 - The form is submitted when the user presses :kbd{value="enter"} or when the user clicks on the submit button. Set the `submit-on-enter` prop to `false` to submit with :kbd{value="ctrl"} + :kbd{value="enter"} (or :kbd{value="cmd"} + :kbd{value="enter"} on macOS) instead, allowing :kbd{value="enter"} to insert a newline.
+- The form is not submitted while the `status` prop is `submitted` or `streaming`, so pressing :kbd{value="enter"} during a response doesn't send a second message.
 - The textarea is blurred when :kbd{value="escape"} is pressed and emits a `close` event.
 ::
 
@@ -112,7 +113,7 @@ async function onSubmit() {
       <B24Container>
         <h1>How can I help you today?</h1>
   
-        <B24ChatPrompt v-model="input" @submit="onSubmit">
+        <B24ChatPrompt v-model="input" :status="status" @submit="onSubmit">
           <B24ChatPromptSubmit :status="status" />
         </B24ChatPrompt>
       </B24Container>
