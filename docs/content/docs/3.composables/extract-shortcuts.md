@@ -1,6 +1,6 @@
 ---
 title: extractShortcuts
-description: 'A keyboard shortcut extractor for menu items.'
+description: 'Утилита для извлечения горячих клавиш из пунктов меню.'
 links:
   - label: GitHub
     iconName: GitHubIcon
@@ -10,9 +10,9 @@ links:
     to: https://ui.nuxt.com/docs/composables/extract-shortcuts
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the auto-imported `extractShortcuts` utility to define keyboard shortcuts from menu items. It extracts shortcuts from components like [DropdownMenu](/docs/components/dropdown-menu/), [ContextMenu](/docs/components/context-menu/) or [CommandPalette](/docs/components/command-palette/) where items have `kbds` defined.
+Автоимпортируемая утилита `extractShortcuts` задаёт горячие клавиши по пунктам меню. Она извлекает сочетания из компонентов вроде [DropdownMenu](/docs/components/dropdown-menu/), [ContextMenu](/docs/components/context-menu/) или [CommandPalette](/docs/components/command-palette/), у пунктов которых задано `kbds`.
 
 ```vue
 <script setup lang="ts">
@@ -35,61 +35,61 @@ defineShortcuts(extractShortcuts(items))
 ```
 
 ::tip{to="/docs/composables/define-shortcuts/"}
-Learn more about keyboard shortcuts in the **defineShortcuts** composable documentation.
+Подробнее о горячих клавишах — в документации композабла **defineShortcuts**.
 ::
 
 ## API
 
 `extractShortcuts(items: any[] | any[][], separator?: '_' | '-'): ShortcutsConfig`{lang="ts-type"}
 
-Extracts keyboard shortcuts from an array of menu items and returns a configuration object compatible with `defineShortcuts`.
+Извлекает горячие клавиши из массива пунктов меню и возвращает конфигурацию, совместимую с `defineShortcuts`.
 
-#### Parameters
+#### Параметры {#parameters}
 
 ::field-group
 
   ::field{name="items" type="any[] | any[][]" required}
-  An array of menu items (or nested arrays) containing shortcut definitions. Each item can have the following properties:
+  Массив пунктов меню (или вложенных массивов) с описанием сочетаний. У каждого пункта могут быть такие свойства:
 
     ::collapsible
   
       ::field-group
   
         ::field{name="kbds" type="string[]"}
-        An array of keyboard keys that form the shortcut (e.g. `['meta', 'S']`).
+        Массив клавиш, из которых состоит сочетание (например, `['meta', 'S']`).
         ::
   
         ::field{name="onSelect" type="() => void"}
-        A callback function to execute when the shortcut is triggered.
+        Функция, которая вызывается при срабатывании сочетания.
         ::
   
         ::field{name="onClick" type="() => void"}
-        An alternative callback function (used if `onSelect` is not defined).
+        Запасная функция (используется, если `onSelect` не задан).
         ::
   
         ::field{name="children" type="any[]"}
-        Nested menu items to recursively extract shortcuts from.
+        Вложенные пункты меню, из которых сочетания извлекаются рекурсивно.
         ::
   
         ::field{name="items" type="any[]"}
-        Alternative property for nested menu items.
+        Альтернативное свойство для вложенных пунктов меню.
         ::
       ::
     ::
   ::
 
   ::field{name="separator" type="'_' | '-'"}
-  The separator used to join keyboard keys. Use `'_'` for key combinations (e.g. `meta_k`) or `'-'` for key sequences (e.g. `g-d`). Defaults to `'_'`.
+  Разделитель клавиш. `'_'` — для комбинаций (например, `meta_k`), `'-'` — для последовательностей (например, `g-d`). По умолчанию `'_'`.
   ::
 ::
 
-**Returns:** A `ShortcutsConfig` object that can be passed directly to `defineShortcuts`.
+**Возвращает:** объект `ShortcutsConfig`, который можно сразу передать в `defineShortcuts`.
 
-## Examples
+## Примеры {#examples}
 
-### With nested items
+### Вложенные пункты {#with-nested-items}
 
-The utility recursively traverses `children` and `items` properties to extract shortcuts from nested menu structures.
+Утилита рекурсивно обходит свойства `children` и `items` и извлекает сочетания из вложенных меню.
 
 ```vue
 <script setup lang="ts">
@@ -140,9 +140,9 @@ defineShortcuts(extractShortcuts(items))
 </template>
 ```
 
-### With key sequences
+### Последовательности клавиш {#with-key-sequences}
 
-Use the `separator` parameter to create key sequences instead of key combinations.
+Параметр `separator` создаёт последовательности клавиш вместо комбинаций.
 
 ```vue
 <script setup lang="ts">
@@ -160,7 +160,7 @@ const items = [{
   }
 }]
 
-// Using '-' creates key sequences: 'g-d', 'g-s'
+// Разделитель '-' создаёт последовательности: 'g-d', 'g-s'
 defineShortcuts(extractShortcuts(items, '-'))
 </script>
 ```

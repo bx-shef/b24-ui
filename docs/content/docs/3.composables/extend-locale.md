@@ -1,6 +1,6 @@
 ---
 title: extendLocale
-description: 'A utility to extend an existing locale with custom translation overrides.'
+description: 'Утилита для расширения существующей локали собственными переводами.'
 links:
   - label: GitHub
     iconName: GitHubIcon
@@ -10,9 +10,9 @@ links:
     to: https://ui.nuxt.com/docs/composables/extend-locale
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the auto-imported `extendLocale` utility to customize an existing locale by overriding specific properties or messages.
+Автоимпортируемая утилита `extendLocale` настраивает существующую локаль: переопределяет отдельные свойства или сообщения.
 
 ```vue
 <script setup lang="ts">
@@ -35,65 +35,65 @@ const locale = extendLocale(en, {
 </template>
 ```
 
-This is useful when you want to:
-- Create a regional variant of a language (e.g. `en-AU` from `en`)
-- Override specific translations without redefining the entire locale
-- Customize component labels for your application
+Это пригодится, если нужно:
+- создать региональный вариант языка (например, `en-AU` на основе `en`);
+- переопределить отдельные переводы, не описывая локаль целиком;
+- настроить подписи компонентов под своё приложение.
 
 ::tip{to="/docs/getting-started/integrations/i18n/"}
-Learn more about internationalization in the **i18n integration** documentation.
+Подробнее об интернационализации — в документации по **интеграции i18n**.
 ::
 
 ## API
 
 `extendLocale<M>(locale: Locale<M>, options: Partial<DefineLocaleOptions<DeepPartial<M>>>): Locale<M>`{lang="ts-type"}
 
-Extends an existing locale with the provided options, deeply merging the messages.
+Расширяет существующую локаль переданными параметрами, объединяя сообщения рекурсивно.
 
-#### Parameters
+#### Параметры {#parameters}
 
 ::field-group
 
   ::field{name="locale" type="Locale<M>" required}
-  The base locale to extend. Import from `@bitrix24/b24ui-nuxt/locale`.
+  Базовая локаль, которую расширяем. Импортируется из `@bitrix24/b24ui-nuxt/locale`.
   ::
 
   ::field{name="options" type="Partial<DefineLocaleOptions<DeepPartial<M>>>" required}
-  The properties to override:
+  Свойства, которые нужно переопределить:
 
     ::collapsible
   
       ::field-group
   
         ::field{name="name" type="string"}
-        Override the display name of the locale.
+        Переопределяет отображаемое название локали.
         ::
   
         ::field{name="code" type="string" required}
-        The code of the locale from [Bitrix24](https://apidocs.bitrix24.com/api-reference/sale/status-lang/sale-status-lang-get-list-langs.html).
+        Код локали из [Bitrix24](https://apidocs.bitrix24.com/api-reference/sale/status-lang/sale-status-lang-get-list-langs.html).
         ::
   
         ::field{name="locale" type="string"}
-        Override the ISO code of the locale (e.g. `'en-GB'`, `'fr-CA'`).
+        Переопределяет ISO-код локали (например, `'en-GB'`, `'fr-CA'`).
         ::
   
         ::field{name="dir" type="'ltr' | 'rtl'"}
-        Override the text direction of the locale.
+        Переопределяет направление текста локали.
         ::
   
         ::field{name="messages" type="DeepPartial<M>"}
-        Partial messages object to merge with the base locale. Only specify the messages you want to override.
+        Частичный объект с переводами, который объединяется с базовой локалью. Укажите только те сообщения, которые нужно переопределить.
         ::
       ::
     ::
   ::
 ::
 
-**Returns:** A new `Locale<M>` object with the merged properties.
+**Возвращает:** новый объект `Locale<M>` с объединёнными свойствами.
 
-## Example
+## Пример {#example}
 
-Here's an example extending the English locale for an Australian variant:
+Пример расширения английской локали до австралийского варианта:
 
 ```vue
 <script setup lang="ts">
@@ -125,5 +125,5 @@ const locale = extendLocale(en, {
 ```
 
 ::note
-The `extendLocale` utility uses deep merging, so you only need to specify the messages you want to override. All other messages will be inherited from the base locale.
+`extendLocale` объединяет сообщения рекурсивно, поэтому достаточно указать только переопределяемые. Остальные наследуются от базовой локали.
 ::

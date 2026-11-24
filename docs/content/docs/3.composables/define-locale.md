@@ -1,6 +1,6 @@
 ---
 title: defineLocale
-description: 'A utility to create a custom locale configuration for your application.'
+description: 'Утилита для создания собственной конфигурации локали приложения.'
 links:
   - label: GitHub
     iconName: GitHubIcon
@@ -10,9 +10,9 @@ links:
     to: https://ui.nuxt.com/docs/composables/define-locale
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the auto-imported `defineLocale` utility to create a custom locale with your own translations.
+Автоимпортируемая утилита `defineLocale` создаёт собственную локаль с вашими переводами.
 
 ```vue
 <script setup lang="ts">
@@ -24,7 +24,7 @@ const locale = defineLocale<Messages>({
   locale: 'en',
   dir: 'ltr',
   messages: {
-    // implement pairs
+    // пары «ключ — перевод»
   }
 })
 </script>
@@ -37,55 +37,55 @@ const locale = defineLocale<Messages>({
 ```
 
 ::tip{to="/docs/getting-started/integrations/i18n/"}
-Learn more about internationalization in the **i18n integration** documentation.
+Подробнее об интернационализации — в документации по **интеграции i18n**.
 ::
 
 ## API
 
 `defineLocale<M>(options: DefineLocaleOptions<M>): Locale<M>`{lang="ts-type"}
 
-Creates a new locale object with the provided options.
+Создаёт новый объект локали по переданным параметрам.
 
-#### Parameters
+#### Параметры {#parameters}
 
 ::field-group
 
   ::field{name="options" type="DefineLocaleOptions<M>" required}
-  The locale configuration object with the following properties:
+  Объект конфигурации локали со следующими свойствами:
 
     ::collapsible
   
       ::field-group
   
         ::field{name="name" type="string" required}
-        The display name of the locale (e.g. `'English'`, `'Français'`).
+        Отображаемое название локали (например, `'English'`, `'Français'`).
         ::
   
         ::field{name="code" type="string" required}
-        The code of the locale from [Bitrix24](https://apidocs.bitrix24.com/api-reference/sale/status-lang/sale-status-lang-get-list-langs.html).
+        Код локали из [Bitrix24](https://apidocs.bitrix24.com/api-reference/sale/status-lang/sale-status-lang-get-list-langs.html).
         ::
   
         ::field{name="locale" type="string" required}
-        The ISO code of the locale (e.g. `'en'`, `'fr'`, `'de-AT'`).
+        ISO-код локали (например, `'en'`, `'fr'`, `'de-AT'`).
         ::
   
         ::field{name="dir" type="'ltr' | 'rtl'"}
-        The text direction of the locale. Defaults to `'ltr'`.
+        Направление текста локали. По умолчанию `'ltr'`.
         ::
   
         ::field{name="messages" type="M" required}
-        The translation messages object. Use the `Messages` type from `@bitrix24/b24ui-nuxt` for type safety.
+        Объект с переводами. Для типобезопасности используйте тип `Messages` из `@bitrix24/b24ui-nuxt`.
         ::
       ::
     ::
   ::
 ::
 
-**Returns:** A `Locale<M>` object that can be passed to the `locale` prop of the [App](/docs/components/app/) component.
+**Возвращает:** объект `Locale<M>`, который можно передать в пропс `locale` компонента [App](/docs/components/app/).
 
-## Example
+## Пример {#example}
 
-Here's a complete example of creating a custom locale:
+Полный пример создания собственной локали:
 
 ```vue
 <script setup lang="ts">
@@ -110,7 +110,7 @@ const locale = defineLocale<Messages>({
       noMatch: 'Sin resultados',
       placeholder: 'Escribe un comando o busca…'
     }
-    // ... other component messages
+    // ... сообщения остальных компонентов
   }
 })
 </script>
@@ -123,5 +123,5 @@ const locale = defineLocale<Messages>({
 ```
 
 ::note
-You can look at the [built-in locales](https://github.com/bitrix24/b24ui/tree/main/src/runtime/locale) for reference on how to structure the messages object.
+Как устроен объект с переводами, видно на примере [встроенных локалей](https://github.com/bitrix24/b24ui/tree/main/src/runtime/locale).
 ::

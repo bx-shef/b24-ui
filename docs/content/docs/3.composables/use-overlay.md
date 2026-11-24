@@ -1,11 +1,11 @@
 ---
 title: useOverlay
-description: 'A composable to programmatically control overlays in App.'
+description: 'Композабл для программного управления оверлеями в App.'
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/composables/useOverlay.ts
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/modal
   - label: Nuxt UI
@@ -13,9 +13,9 @@ links:
     to: https://ui.nuxt.com/docs/composables/use-overlay
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the auto-imported `useOverlay` composable to programmatically control [Modal](/docs/components/modal/), [Slideover](/docs/components/slideover/) and [Drawer](/docs/components/drawer/) components.
+Автоимпортируемый композабл `useOverlay` программно управляет компонентами [Modal](/docs/components/modal/), [Slideover](/docs/components/slideover/) и [Drawer](/docs/components/drawer/).
 
 ::component-example
 ---
@@ -23,48 +23,48 @@ name: 'use-overlay-example'
 ---
 ::
 
-- The `useOverlay` composable is created using `createSharedComposable`, ensuring that the same overlay state is shared across your entire application.
+- `useOverlay` создан через `createSharedComposable`, поэтому состояние оверлеев общее для всего приложения.
 
 ::note
-Await `overlay.open()` to get a value back from the overlay. This only works if the **overlay component emits a `close` event**. See the example below for details.
+Чтобы получить значение из оверлея, дождитесь `overlay.open()`. Это работает, только если **компонент оверлея вызывает событие `close`**. Подробности — в примере ниже.
 ::
 
 ## API
 
 `useOverlay()`{lang="ts-type"}
 
-The `useOverlay` composable provides methods to manage overlays globally. Each created overlay returns an instance with its own methods.
+Композабл `useOverlay` даёт методы для глобального управления оверлеями. Каждый созданный оверлей возвращает экземпляр со своими методами.
 
 ### create()
 
 `create(component: T, options?: OverlayOptions<ComponentProps<T>>): OverlayInstance<T>`{lang="ts-type"}
 
-Create an overlay, and return a factory instance.
+Создаёт оверлей и возвращает его экземпляр-фабрику.
 
-#### Parameters
+#### Параметры {#parameters}
 
 ::field-group
 
   ::field{name="component" type="T" required}
-  The overlay component to render.
+  Компонент оверлея, который нужно отрисовать.
   ::
 
   ::field{name="options" type="OverlayOptions"}
-  Configuration options for the overlay.
+  Настройки оверлея.
 
     ::collapsible
 
       ::field-group
         ::field{name="defaultOpen" type="boolean"}
-        Open the overlay immediately after being created. Defaults to `false`.
+        Открыть оверлей сразу после создания. По умолчанию `false`.
         ::
     
         ::field{name="props" type="ComponentProps"}
-        An optional object of props to pass to the rendered component.
+        Необязательный объект пропсов для отрисованного компонента.
         ::
     
         ::field{name="destroyOnClose" type="boolean"}
-        Removes the overlay from memory when closed. Defaults to `false`.
+        Удаляет оверлей из памяти при закрытии. По умолчанию `false`.
         ::
       ::
     ::
@@ -75,17 +75,17 @@ Create an overlay, and return a factory instance.
 
 `open(id: symbol, props?: ComponentProps<T>): OpenedOverlay<T>`{lang="ts-type"}
 
-Open an overlay by its `id`.
+Открывает оверлей по его `id`.
 
-#### Parameters
+#### Параметры {#parameters-1}
 
 ::field-group
   ::field{name="id" type="symbol" required}
-  The identifier of the overlay.
+  Идентификатор оверлея.
   ::
 
   ::field{name="props" type="ComponentProps<T>"}
-  An optional object of props to pass to the rendered component.
+  Необязательный объект пропсов для отрисованного компонента.
   ::
 ::
 
@@ -93,17 +93,17 @@ Open an overlay by its `id`.
 
 `close(id: symbol, value?: any): void`{lang="ts-type"}
 
-Close an overlay by its `id`.
+Закрывает оверлей по его `id`.
 
-#### Parameters
+#### Параметры {#parameters-2}
 
 ::field-group
   ::field{name="id" type="symbol" required}
-  The identifier of the overlay.
+  Идентификатор оверлея.
   ::
 
   ::field{name="value" type="any"}
-  A value to resolve the overlay promise with.
+  Значение, с которым выполняется промис оверлея.
   ::
 ::
 
@@ -111,24 +111,24 @@ Close an overlay by its `id`.
 
 `closeAll(): void`{lang="ts-type"}
 
-Close all open overlays.
+Закрывает все открытые оверлеи.
 
 
 ### patch()
 
 `patch(id: symbol, props: Partial<ComponentProps<T>>): void`{lang="ts-type"}
 
-Update an overlay by its `id`.
+Обновляет оверлей по его `id`.
 
-#### Parameters
+#### Параметры {#parameters-3}
 
 ::field-group
   ::field{name="id" type="symbol" required}
-  The identifier of the overlay.
+  Идентификатор оверлея.
   ::
 
   ::field{name="props" type="Partial<ComponentProps<T>>" required}
-  An object of props to update on the rendered component.
+  Объект с пропсами, которые нужно обновить у отрисованного компонента.
   ::
 ::
 
@@ -136,13 +136,13 @@ Update an overlay by its `id`.
 
 `unmount(id: symbol): void`{lang="ts-type"}
 
-Remove an overlay from the DOM by its `id`.
+Удаляет оверлей из DOM по его `id`.
 
-#### Parameters
+#### Параметры {#parameters-4}
 
 ::field-group
   ::field{name="id" type="symbol" required}
-  The identifier of the overlay.
+  Идентификатор оверлея.
   ::
 ::
 
@@ -150,13 +150,13 @@ Remove an overlay from the DOM by its `id`.
 
 `isOpen(id: symbol): boolean`{lang="ts-type"}
 
-Check if an overlay is open using its `id`.
+Проверяет по `id`, открыт ли оверлей.
 
-#### Parameters
+#### Параметры {#parameters-5}
 
 ::field-group
   ::field{name="id" type="symbol" required}
-  The identifier of the overlay.
+  Идентификатор оверлея.
   ::
 ::
 
@@ -164,23 +164,23 @@ Check if an overlay is open using its `id`.
 
 `overlays: Overlay[]`{lang="ts-type"}
 
-In-memory list of all overlays that were created.
+Список всех созданных оверлеев, хранящийся в памяти.
 
-## Instance API
+## API экземпляра {#instance-api}
 
-These are the methods available on the instance returned by `create()`.
+Методы экземпляра, который возвращает `create()`.
 
 ### open()
 
 `open(props?: ComponentProps<T>): OpenedOverlay<T>`{lang="ts-type"}
 
-Open the overlay. Returns an `OpenedOverlay`, a Promise that resolves with the value emitted by the `close` event. The same promise is also exposed as `result`, so `const { result } = modal.open()` works too.
+Открывает оверлей. Возвращает `OpenedOverlay` — промис, который выполняется со значением из события `close`. Тот же промис доступен как `result`, поэтому работает и `const { result } = modal.open()`.
 
-#### Parameters
+#### Параметры {#parameters-6}
 
 ::field-group
   ::field{name="props" type="ComponentProps<T>"}
-  An optional object of props to pass to the rendered component.
+  Необязательный объект пропсов для отрисованного компонента.
   ::
 ::
 
@@ -204,13 +204,13 @@ function openModal() {
 
 `close(value?: any): void`{lang="ts-type"}
 
-Close the overlay.
+Закрывает оверлей.
 
-#### Parameters
+#### Параметры {#parameters-7}
 
 ::field-group
   ::field{name="value" type="any"}
-  A value to resolve the overlay promise with.
+  Значение, с которым выполняется промис оверлея.
   ::
 ::
 
@@ -218,13 +218,13 @@ Close the overlay.
 
 `patch(props: Partial<ComponentProps<T>>): void`{lang="ts-type"}
 
-Update the props of the overlay.
+Обновляет пропсы оверлея.
 
-#### Parameters
+#### Параметры {#parameters-8}
 
 ::field-group
   ::field{name="props" type="Partial<ComponentProps<T>>" required}
-  An object of props to update on the rendered component.
+  Объект с пропсами, которые нужно обновить у отрисованного компонента.
   ::
 ::
 
@@ -248,11 +248,11 @@ function updateModalTitle() {
 </script>
 ```
 
-## Examples
+## Примеры {#examples}
 
-### With multiple overlays
+### Несколько оверлеев {#with-multiple-overlays}
 
-This example demonstrates how to manage multiple overlays and pass data between them:
+Пример показывает, как управлять несколькими оверлеями и передавать данные между ними:
 
 ```vue
 <script setup lang="ts">
@@ -284,11 +284,11 @@ const openModalB = async () => {
 </template>
 ```
 
-### Confirm dialog
+### Диалог подтверждения {#confirm-dialog}
 
-This example demonstrates how to create a reusable confirm dialog pattern using a custom `useConfirmDialog` composable that wraps `useOverlay`. This approach enables opinionated dialogs tailored to specific business requirements and design preferences.
+Пример показывает, как сделать переиспользуемый диалог подтверждения с помощью собственного композабла `useConfirmDialog`, обёртки над `useOverlay`. Так можно получить диалоги под конкретные бизнес-требования и дизайн.
 
-1. Create a `ConfirmDialog` component that emits a boolean value when closed:
+1. Создайте компонент `ConfirmDialog`, который при закрытии передаёт булево значение:
 
 ```vue [components/ConfirmDialog.vue]
 <script lang="ts" setup>
@@ -319,7 +319,7 @@ const emits = defineEmits<{
 </template>
 ```
 
-2. Create a `useConfirmDialog` composable that returns a Promise:
+2. Создайте композабл `useConfirmDialog`, возвращающий промис:
 
 ```ts [composables/useConfirmDialog.ts]
 import { ConfirmDialog } from '#components'
@@ -343,7 +343,7 @@ export const useConfirmDialog = () => {
 }
 ```
 
-3. Use the composable in your components:
+3. Используйте композабл в компонентах:
 
 ```vue
 <script setup lang="ts">
@@ -366,13 +366,13 @@ const handleDelete = async () => {
 </template>
 ```
 
-## Caveats
+## Особенности {#caveats}
 
 ### Provide / Inject
 
-When opening overlays programmatically (e.g. modals, slideovers, etc), the overlay component can only access injected values from the component containing `B24App` (typically `app.vue` or layout components). This is because overlays are mounted outside of the page context by the `B24App` component.
+При программном открытии оверлеев (модальных окон, боковых панелей и т. п.) компонент оверлея получает через inject только значения компонента, в котором находится `B24App` (обычно `app.vue` или компоненты раскладки). Дело в том, что `B24App` монтирует оверлеи вне контекста страницы.
 
-As such, using `provide()` in pages or parent components isn't supported directly. To pass provided values to overlays, the recommended approach is to use props instead:
+Поэтому `provide()` на страницах или в родительских компонентах напрямую не поддерживается. Чтобы передать такие значения в оверлей, лучше использовать пропсы:
 
 ```vue
 <script setup lang="ts">
