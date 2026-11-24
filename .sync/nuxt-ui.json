@@ -1,7 +1,7 @@
 {
   "upstream": "nuxt/ui",
   "branch": "v4",
-  "cursor": "0fd012b7da8e110e66479e1adf07c051f93b3a5e",
+  "cursor": "47c5dfca4a45d760e3b5fb145d4174d5f5750f00",
   "_cursor_note": "cursor = last upstream commit ported into b24ui. The sync is manual by decision: one commit at a time, oldest-first, each with a `.sync/log/<sha>.md` journal and an entry in `processed`. There is no dispatcher, no porter workflow and no kill-switch — `.sync/PORTING.md` is the whole procedure. `processed` is maintained per port (backfilled #68-#72 on 2026-06-09).",
   "processed": {
     "2799fa6f2b25ce3eb15e050f3ef7c57d0d9a2fdb": {
@@ -3647,6 +3647,12 @@
       "b24ui_sha": "5b48ec601282d99146863338b3ba8ebf3c0ecd43",
       "decision": "n/a",
       "summary": "chore(github): удаление неиспользуемой переменной NUXT_GITHUB_TOKEN — n/a, в workflow форка её нет"
+    },
+    "47c5dfca4a45d760e3b5fb145d4174d5f5750f00": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "perf(Link): пропсы NuxtLink/RouterLink без reactiveOmit — computed(omit(...)) во всех трёх вариантах Link; isAction остаётся в списке исключений"
     }
   }
 }

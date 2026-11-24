@@ -126,9 +126,8 @@ import { isEqual } from 'ohash/utils'
 import { useForwardProps, Slot } from 'reka-ui'
 import { defu } from 'defu'
 import { hasProtocol } from 'ufo'
-import { reactiveOmit } from '@vueuse/core'
 import { useRoute, useAppConfig, useNuxtApp, onNuxtReady } from '#imports'
-import { mergeClasses } from '../utils'
+import { mergeClasses, omit } from '../utils'
 import { tv } from '../utils/tv'
 import { isPartiallyEqual } from '../utils/link'
 import { requestIdleCallback, cancelIdleCallback, observeIntersection } from '../utils/prefetch'
@@ -154,7 +153,7 @@ const nuxtApp = useNuxtApp()
 // missing from it is forwarded, and a prop `NuxtLink` does not declare becomes
 // an attribute it cannot place, because `RouterLink` renders a fragment —
 // `isAction` did exactly that, 2825 times across the suite, silently (#87).
-const nuxtLinkProps = useForwardProps(reactiveOmit(props, 'as', 'type', 'disabled', 'active', 'exact', 'exactQuery', 'exactHash', 'activeClass', 'inactiveClass', 'to', 'href', 'raw', 'custom', 'locale', 'class', 'isAction'))
+const nuxtLinkProps = useForwardProps(computed(() => omit(props, ['as', 'type', 'disabled', 'active', 'exact', 'exactQuery', 'exactHash', 'activeClass', 'inactiveClass', 'to', 'href', 'raw', 'custom', 'locale', 'class', 'isAction'])))
 
 const b24ui = computed(() => tv({
   extend: theme,

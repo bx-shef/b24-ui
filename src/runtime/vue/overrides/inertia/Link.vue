@@ -73,12 +73,11 @@ export interface LinkSlots {
 import { computed } from 'vue'
 import { defu } from 'defu'
 import { useForwardProps, Slot } from 'reka-ui'
-import { reactiveOmit } from '@vueuse/core'
 import { usePage } from '@inertiajs/vue3'
 import { hasProtocol } from 'ufo'
 import { useAppConfig } from '#imports'
 import { tv } from '../../../utils/tv'
-import { mergeClasses } from '../../../utils'
+import { mergeClasses, omit } from '../../../utils'
 import B24LinkBase from './LinkBase.vue'
 
 defineOptions({ inheritAttrs: false })
@@ -101,7 +100,7 @@ const appConfig = useAppConfig() as Link['AppConfig']
 // landed in the DOM as `isaction="false"` — 112 times across the committed
 // `-vue` snapshots. The Nuxt copy of this component had the same gap, where it
 // only produced a console warning; here it shipped (#87).
-const routerLinkProps = useForwardProps(reactiveOmit(props, 'as', 'type', 'disabled', 'active', 'exact', 'activeClass', 'inactiveClass', 'to', 'href', 'raw', 'custom', 'class', 'target', 'rel', 'noRel', 'isAction'))
+const routerLinkProps = useForwardProps(computed(() => omit(props, ['as', 'type', 'disabled', 'active', 'exact', 'activeClass', 'inactiveClass', 'to', 'href', 'raw', 'custom', 'class', 'target', 'rel', 'noRel', 'isAction'])))
 
 const b24ui = computed(() => tv({
   extend: theme,
