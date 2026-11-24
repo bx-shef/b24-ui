@@ -223,6 +223,7 @@ material. Reproduce its *intent* in b24ui by editing files under `src/` only.
   a new template must declare it. Guarded by `describe('regeneration on file
   changes')` in `test/utils/templates.spec.ts`, which runs the predicate Nuxt
   really calls against the templates really registered.
+  Only the Nuxt adapter regenerates on file changes; the Vue adapter (`src/plugins/templates.ts`) detects components once and never did. `dependsOn` needs Nuxt 4.6+ — on older Nuxt the dev update silently stops (no `nuxt` peer range, same as upstream).
 - **`ChatMessages.updateLastMessageHeight()` measures with
   `getBoundingClientRect()`, not `useElementBounding()`.** The function runs from
   the `status` watcher and a window `resize` handler, both outside any effect
