@@ -1,6 +1,6 @@
 ---
 title: Input
-description: An input box designed for text entry.
+description: 'Поле для ввода текста.'
 category: form
 keywords:
   - text field
@@ -8,7 +8,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Input.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/input
   - label: Nuxt UI
@@ -16,9 +16,9 @@ links:
     to: https://ui.nuxt.com/docs/components/input
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `v-model` directive to control the value of the Input.
+Директива `v-model` управляет значением Input.
 
 ::component-code
 ---
@@ -32,11 +32,11 @@ props:
 ---
 ::
 
-### Type
+### Тип {#type}
 
-Use the `type` prop to change the input type. Defaults to `text`.
+Пропс `type` меняет тип поля ввода. По умолчанию `text`.
 
-Some types have been implemented in their own components such as [Checkbox](/docs/components/checkbox/), [Radio](/docs/components/radio-group/), [InputNumber](/docs/components/input-number/) etc. and others have been styled like `file` for example.
+Некоторые типы реализованы отдельными компонентами, например [Checkbox](/docs/components/checkbox/), [Radio](/docs/components/radio-group/), [InputNumber](/docs/components/input-number/) и другие, а часть оформлена стилями, как `file`.
 
 ::component-code
 ---
@@ -54,24 +54,24 @@ props:
 ::
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types" target="_blank"}
-You can check all the available types on the MDN Web Docs.
+Все доступные типы описаны на MDN Web Docs.
 ::
 
-### Placeholder
+### Плейсхолдер {#placeholder}
 
-Use the `placeholder` prop to set a placeholder text.
+Пропс `placeholder` задаёт текст плейсхолдера.
 
 ::component-code
 ---
 prettier: true
 props:
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the ring color when the Input is focused.
+Пропс `color` меняет цвет кольца, когда Input в фокусе.
 
 ::component-code
 ---
@@ -81,17 +81,17 @@ ignore:
 props:
   color: air-primary-warning
   highlight: true
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
 ---
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state. It's used internally when a validation error occurs.
+Пропс `highlight` здесь показывает состояние фокуса. Внутри компонента он включается при ошибке валидации.
 ::
 
-### Tag
+### Тег {#tag}
 
-Use the `tag` property to display a [Badge](/docs/components/badge/) on top of the Input.
+Свойство `tag` показывает [Badge](/docs/components/badge/) поверх Input.
 
 ::component-code
 ---
@@ -99,18 +99,18 @@ prettier: true
 ignore:
   - placeholder
 props:
-  tag: note
+  tag: заметка
   color: air-primary-warning
   highlight: true
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
 ---
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state. It's used internally when a validation error occurs.
+Пропс `highlight` здесь показывает состояние фокуса. Внутри компонента он включается при ошибке валидации.
 ::
 
-Use the `tagColor` property to set the color for Badge.
+Свойство `tagColor` задаёт цвет Badge.
 
 ::component-code
 ---
@@ -133,20 +133,20 @@ items:
     - air-selection
 props:
   tagColor: air-secondary-alert
-  tag: note
+  tag: заметка
   color: air-primary-warning
   highlight: true
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
 ---
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state. It's used internally when a validation error occurs.
+Пропс `highlight` здесь показывает состояние фокуса. Внутри компонента он включается при ошибке валидации.
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the Input.
+Пропс `size` меняет размер Input.
 
 ::component-code
 ---
@@ -155,13 +155,13 @@ ignore:
   - placeholder
 props:
   size: xl
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to show an [Icon](https://bitrix24.github.io/b24icons/icons/) inside the Input.
+Пропс `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/) внутри Input.
 
 ::component-code
 ---
@@ -174,13 +174,13 @@ cast:
 props:
   icon: 'RocketIcon'
   size: md
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
 ---
 ::
 
-### Trailing Icon
+### Иконка справа {#trailing-icon}
 
-Use the `trailing-icon` prop to set icon for trailing position.
+Пропс `trailing-icon` задаёт иконку справа.
 
 ::component-code
 ---
@@ -192,14 +192,14 @@ cast:
   trailingIcon: 'RocketIcon'
 props:
   trailingIcon: 'RocketIcon'
-  placeholder: 'Enter your email'
+  placeholder: 'Введите email'
   size: md
 ---
 ::
 
-### Avatar
+### Аватар {#avatar}
 
-Use the `avatar` prop to show an [Avatar](/docs/components/avatar/) inside the Input.
+Пропс `avatar` показывает [Avatar](/docs/components/avatar/) внутри Input.
 
 ::component-code
 ---
@@ -213,13 +213,13 @@ props:
     src: '/b24ui/avatar/employee.png'
     loading: lazy
   size: md
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
 ---
 ::
 
-### Loading
+### Загрузка {#loading}
 
-Use the `loading` prop to show a loading icon on the Input.
+Пропс `loading` показывает иконку загрузки в Input.
 
 ::component-code
 ---
@@ -228,13 +228,13 @@ ignore:
   - placeholder
 props:
   loading: true
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
 ---
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the Input.
+Пропс `disabled` отключает Input.
 
 ::component-code
 ---
@@ -243,13 +243,13 @@ ignore:
   - placeholder
 props:
   disabled: true
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
 ---
 ::
 
-### No padding
+### Без отступов {#no-padding}
 
-Use the `noPadding` prop to removes padding from the Input.
+Пропс `noPadding` убирает отступы у Input.
 
 ::component-code
 ---
@@ -259,17 +259,17 @@ ignore:
 props:
   noPadding: true
   highlight: true
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
 ---
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-### No border
+### Без границы {#no-border}
 
-Use the `noBorder` prop to removes all borders (rings) from the Input.
+Пропс `noBorder` убирает у Input все границы (кольца).
 
 ::component-code
 ---
@@ -279,17 +279,17 @@ ignore:
 props:
   noBorder: true
   highlight: true
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
 ---
 ::
 
 ::note
-The `highlight` prop is used here to indicate that there is no focus state.
+Пропс `highlight` здесь показывает, что состояния фокуса нет.
 ::
 
-### Underline
+### Подчёркивание {#underline}
 
-Use the `underline` prop to removes all borders (rings) except the bottom one from the Input.
+Пропс `underline` убирает у Input все границы (кольца), кроме нижней.
 
 ::component-code
 ---
@@ -299,17 +299,17 @@ ignore:
 props:
   underline: true
   highlight: true
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
 ---
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-### Rounded
+### Скругление {#rounded}
 
-Use the `rounded` prop to round the Input.
+Пропс `rounded` скругляет Input.
 
 ::component-code
 ---
@@ -319,19 +319,19 @@ ignore:
 props:
   rounded: true
   highlight: true
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
 ---
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With clear button
+### С кнопкой очистки {#with-clear-button}
 
-You can put a [Button](/docs/components/button/) inside the `#trailing` slot to clear the Input.
+В слот `#trailing` можно поместить [Button](/docs/components/button/), который очищает Input.
 
 ::component-example
 ---
@@ -339,9 +339,9 @@ name: 'input-clear-button-example'
 ---
 ::
 
-### With copy button
+### С кнопкой копирования {#with-copy-button}
 
-You can put a [Button](/docs/components/button/) inside the `#trailing` slot to copy the value to the clipboard.
+В слот `#trailing` можно поместить [Button](/docs/components/button/), который копирует значение в буфер обмена.
 
 ::component-example
 ---
@@ -349,9 +349,9 @@ name: 'input-copy-button-example'
 ---
 ::
 
-### With password toggle
+### С переключателем пароля {#with-password-toggle}
 
-You can put a [Button](/docs/components/button/) inside the `#trailing` slot to toggle the password visibility.
+В слот `#trailing` можно поместить [Button](/docs/components/button/), который переключает видимость пароля.
 
 ::component-example
 ---
@@ -359,9 +359,9 @@ name: 'input-password-toggle-example'
 ---
 ::
 
-### With password strength indicator
+### С индикатором надёжности пароля {#with-password-strength-indicator}
 
-You can use the [Progress](/docs/components/progress/) component to display the password strength indicator.
+Компонент [Progress](/docs/components/progress/) показывает индикатор надёжности пароля.
 
 ::component-example
 ---
@@ -370,9 +370,9 @@ name: 'input-password-strength-indicator-example'
 ---
 ::
 
-### With character limit
+### С ограничением длины {#with-character-limit}
 
-You can use the `#trailing` slot to add a character limit to the Input.
+Слот `#trailing` позволяет показать ограничение числа символов Input.
 
 ::component-example
 ---
@@ -380,9 +380,9 @@ name: 'input-character-limit-example'
 ---
 ::
 
-### With keyboard shortcut
+### С сочетанием клавиш {#with-keyboard-shortcut}
 
-You can use the [Kbd](/docs/components/kbd/) component inside the `#trailing` slot to add a keyboard shortcut to the Input.
+Компонент [Kbd](/docs/components/kbd/) в слоте `#trailing` показывает сочетание клавиш Input.
 
 ::component-example
 ---
@@ -391,12 +391,12 @@ name: 'input-kbd-example'
 ::
 
 ::note{to="/docs/composables/define-shortcuts/"}
-This example uses the `defineShortcuts` composable to focus the Input when the :kbd{value="/"} key is pressed.
+В этом примере композабл `defineShortcuts` переводит фокус на Input при нажатии клавиши :kbd{value="/"}.
 ::
 
-### With mask
+### С маской {#with-mask}
 
-There's no built-in support for masks, but you can use libraries like [maska](https://github.com/beholdr/maska) to mask the Input.
+Масок во встроенном виде нет, но для маски Input можно использовать библиотеки вроде [maska](https://github.com/beholdr/maska).
 
 ::component-example
 ---
@@ -404,9 +404,9 @@ name: 'input-mask-example'
 ---
 ::
 
-### With floating label
+### С плавающей подписью {#with-floating-label}
 
-You can use the `#default` slot to add a floating label to the Input.
+Слот `#default` позволяет добавить Input плавающую подпись.
 
 ::component-example
 ---
@@ -414,9 +414,9 @@ name: 'input-floating-label-example'
 ---
 ::
 
-### Within a FormField
+### Внутри FormField {#within-a-formfield}
 
-You can use the Input within a [FormField](/docs/components/form-field/) component to display a label, help text, required indicator, etc.
+Input можно использовать внутри компонента [FormField](/docs/components/form-field/), чтобы показывать подпись, справочный текст, признак обязательности и так далее.
 
 ::component-example
 ---
@@ -425,12 +425,12 @@ name: 'input-form-field-example'
 ::
 
 ::tip{to="/docs/components/form/"}
-It also provides validation and error handling when used within a **Form** component.
+Внутри компонента **Form** он также обеспечивает валидацию и обработку ошибок.
 ::
 
-### Within a FieldGroup
+### Внутри FieldGroup {#within-a-fieldgroup}
 
-You can use the Input within a [FieldGroup](/docs/components/field-group/) component to group multiple elements together.
+Input можно использовать внутри компонента [FieldGroup](/docs/components/field-group/), чтобы сгруппировать несколько элементов.
 
 ::component-example
 ---
@@ -438,9 +438,9 @@ name: 'input-field-group-example'
 ---
 ::
 
-### As a phone number input
+### Как поле номера телефона {#as-a-phone-number-input}
 
-You can use the Input within a [FieldGroup](/docs/components/field-group/) component alongside a [SelectMenu](/docs/components/select-menu/) to create a phone number input with country code selection.
+Input внутри [FieldGroup](/docs/components/field-group/) вместе с [SelectMenu](/docs/components/select-menu/) образует поле номера телефона с выбором кода страны.
 
 ::component-example
 ---
@@ -451,30 +451,30 @@ name: 'input-phone-number-example'
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attributes" target="_blank"}
-This component also supports all native `<input>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<input>`.
 ::
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-### Expose
+### Доступ через ref {#expose}
 
-When accessing the component via a template ref, you can use the following:
+При обращении к компоненту через ref в шаблоне доступно:
 
-| Name | Type |
+| Имя | Тип |
 | ---- | ---- |
 | `inputRef`{lang="ts-type"} | `Ref<HTMLInputElement \| null>`{lang="ts-type"} |
 
-## Theme
+## Тема {#theme}
 
 :component-theme

@@ -1,6 +1,6 @@
 ---
 title: FileUpload
-description: 'A file upload input component.'
+description: 'Компонент загрузки файлов.'
 category: form
 keywords:
   - dropzone
@@ -10,7 +10,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/FileUpload.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/file-upload
   - label: Nuxt UI
@@ -18,18 +18,18 @@ links:
     to: https://ui.nuxt.com/docs/components/file-upload
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `v-model` directive to control the value of the FileUpload.
+Директива `v-model` управляет значением FileUpload.
 
-The model accepts native [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) objects or custom [`FileUploadItem`](#with-custom-file-items) objects with the following properties:
+Модель принимает нативные объекты [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) или собственные объекты [`FileUploadItem`](#with-custom-file-items) со свойствами:
 
 - `name: string`{lang="ts-type"}
 - `size?: number`{lang="ts-type"}
 - `type?: string`{lang="ts-type"}
 - `avatar?: AvatarProps`{lang="ts-type"}
 
-The item type defaults to `File` and is inferred from your model when using custom items. You can extend `FileUploadItem` with custom properties for your application.
+Тип элемента по умолчанию `File`; при собственных элементах он выводится из модели. `FileUploadItem` можно расширить своими свойствами.
 
 ::component-code
 ---
@@ -45,9 +45,9 @@ props:
 ---
 ::
 
-### Multiple
+### Несколько файлов {#multiple}
 
-Use the `multiple` prop to allow multiple files to be selected.
+Пропс `multiple` разрешает выбрать несколько файлов.
 
 ::component-code
 ---
@@ -60,9 +60,9 @@ props:
 ---
 ::
 
-### Dropzone
+### Зона перетаскивания {#dropzone}
 
-Use the `dropzone` prop to enable/disable the droppable area. Defaults to `true`.
+Пропс `dropzone` включает и отключает область для перетаскивания. По умолчанию `true`.
 
 ::component-code
 ---
@@ -75,12 +75,12 @@ props:
 ---
 ::
 
-### Interactive
+### Интерактивность {#interactive}
 
-Use the `interactive` prop to enable/disable the clickable area. Defaults to `true`.
+Пропс `interactive` включает и отключает область, по которой можно щёлкнуть. По умолчанию `true`.
 
 ::tip{to="#with-files-bottom-slot"}
-This can be useful when adding a `Button` component in the `#actions` slot.
+Пригодится, если в слот `#actions` добавлен компонент `Button`.
 ::
 
 ::component-code
@@ -93,9 +93,9 @@ props:
 ---
 ::
 
-### Accept
+### Допустимые типы {#accept}
 
-Use the `accept` prop to specify the allowed file types for the input. Provide a comma-separated list of [MIME types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types) or file extensions (e.g. `image/png,application/pdf,.jpg`). Defaults to `*` (all file types).
+Пропс `accept` задаёт допустимые типы файлов. Передайте список [MIME-типов](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/MIME_types) или расширений через запятую (например, `image/png,application/pdf,.jpg`). По умолчанию `*` (любые файлы).
 
 ::component-code
 ---
@@ -108,9 +108,9 @@ props:
 ---
 ::
 
-### Label
+### Подпись {#label}
 
-Use the `label` prop to set the label of the FileUpload.
+Пропс `label` задаёт подпись FileUpload.
 
 ::component-code
 ---
@@ -118,14 +118,14 @@ prettier: true
 ignore:
   - class
 props:
-  label: 'Drop your image here'
+  label: 'Перетащите изображение сюда'
   class: 'w-96 min-h-48'
 ---
 ::
 
-### Description
+### Описание {#description}
 
-Use the `description` prop to set the description of the FileUpload.
+Пропс `description` задаёт описание FileUpload.
 
 ::component-code
 ---
@@ -134,15 +134,15 @@ ignore:
   - label
   - class
 props:
-  label: 'Drop your image here'
-  description: 'SVG, PNG, JPG or GIF (max. 2MB)'
+  label: 'Перетащите изображение сюда'
+  description: 'SVG, PNG, JPG или GIF (не больше 2 МБ)'
   class: 'w-96 min-h-48'
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to set the [Icon](https://bitrix24.github.io/b24icons/icons/) of the FileUpload.
+Пропс `icon` задаёт [иконку](https://bitrix24.github.io/b24icons/icons/) FileUpload.
 
 ::component-code
 ---
@@ -156,15 +156,15 @@ cast:
   icon: 'RocketIcon'
 props:
   icon: 'RocketIcon'
-  label: 'Drop your image here'
-  description: 'SVG, PNG, JPG or GIF (max. 2MB)'
+  label: 'Перетащите изображение сюда'
+  description: 'SVG, PNG, JPG или GIF (не больше 2 МБ)'
   class: 'w-96 min-h-48'
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of the FileUpload.
+Пропс `color` меняет цвет FileUpload.
 
 ::component-code
 ---
@@ -176,19 +176,19 @@ ignore:
 props:
   color: 'air-primary-alert'
   highlight: true
-  label: 'Drop your image here'
-  description: 'SVG, PNG, JPG or GIF (max. 2MB)'
+  label: 'Перетащите изображение сюда'
+  description: 'SVG, PNG, JPG или GIF (не больше 2 МБ)'
   class: 'w-96 min-h-48'
 ---
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state. It's used internally when a validation error occurs.
+Пропс `highlight` здесь показывает состояние фокуса. Внутри компонента он включается при ошибке валидации.
 ::
 
-### Variant
+### Вариант {#variant}
 
-Use the `variant` prop to change the variant of the FileUpload.
+Пропс `variant` меняет вариант FileUpload.
 
 ::component-code
 ---
@@ -199,9 +199,9 @@ props:
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the FileUpload.
+Пропс `size` меняет размер FileUpload.
 
 ::component-code
 ---
@@ -213,17 +213,17 @@ ignore:
 props:
   size: lg
   variant: area
-  label: 'Drop your image here'
-  description: 'SVG, PNG, JPG or GIF (max. 2MB)'
+  label: 'Перетащите изображение сюда'
+  description: 'SVG, PNG, JPG или GIF (не больше 2 МБ)'
 ---
 ::
 
-### Layout
+### Раскладка {#layout}
 
-Use the `layout` prop to change how the files are displayed in the FileUpload. Defaults to `grid`.
+Пропс `layout` меняет способ отображения файлов в FileUpload. По умолчанию `grid`.
 
 ::warning
-This prop only works when `variant` is `area`.
+Пропс работает только при `variant` равном `area`.
 ::
 
 ::component-code
@@ -238,20 +238,20 @@ ignore:
 props:
   layout: list
   multiple: true
-  label: 'Drop your images here'
-  description: 'SVG, PNG, JPG or GIF (max. 2MB)'
+  label: 'Перетащите изображения сюда'
+  description: 'SVG, PNG, JPG или GIF (не больше 2 МБ)'
   class: 'w-96'
   b24ui:
     base: 'min-h-48'
 ---
 ::
 
-### Position
+### Положение {#position}
 
-Use the `position` prop to change the position of the files in the FileUpload. Defaults to `outside`.
+Пропс `position` меняет положение файлов в FileUpload. По умолчанию `outside`.
 
 ::warning
-This prop only works when `variant` is `area` and when `layout` is `list`.
+Пропс работает только при `variant` равном `area` и `layout` равном `list`.
 ::
 
 ::component-code
@@ -268,19 +268,19 @@ props:
   position: inside
   layout: list
   multiple: true
-  label: 'Drop your images here'
-  description: 'SVG, PNG, JPG or GIF (max. 2MB)'
+  label: 'Перетащите изображения сюда'
+  description: 'SVG, PNG, JPG или GIF (не больше 2 МБ)'
   class: 'w-96'
   b24ui:
     base: 'min-h-48'
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With custom file items :badge{label="2.15+" class="align-text-top"}
+### С собственными элементами-файлами :badge{label="2.15+" class="align-text-top"} {#with-custom-file-items}
 
-Use an object with a `name`, optional file metadata and an [Avatar](/docs/components/avatar/) to display an existing file. Native files selected by the user are added to the same model. Models and file slots include `File` alongside your custom item type, so narrow the item before accessing custom properties.
+Чтобы показать уже существующий файл, передайте объект с `name`, необязательными метаданными файла и [Avatar](/docs/components/avatar/). Нативные файлы, выбранные пользователем, попадают в ту же модель. В моделях и слотах файлов рядом с вашим типом есть `File`, поэтому перед обращением к собственным свойствам сузьте тип элемента.
 
 ::component-example
 ---
@@ -290,9 +290,9 @@ collapse: true
 ---
 ::
 
-### With upload status :badge{label="2.15+" class="align-text-top"}
+### Со статусом загрузки :badge{label="2.15+" class="align-text-top"} {#with-upload-status}
 
-Extend `FileUploadItem` with custom fields and use the file slots to display upload progress or other asynchronous states. This example converts selected files into custom items, simulates upload progress, and displays their image previews when complete.
+Расширьте `FileUploadItem` своими полями и показывайте в слотах файлов прогресс загрузки и другие асинхронные состояния. В примере выбранные файлы превращаются в собственные элементы, имитируется прогресс загрузки, а по завершении показываются превью изображений.
 
 ::component-example
 ---
@@ -302,9 +302,9 @@ name: 'file-upload-status-example'
 ---
 ::
 
-### With Form validation
+### С валидацией формы {#with-form-validation}
 
-You can use the FileUpload within a [Form](/docs/components/form/) and [FormField](/docs/components/form-field/) components to handle validation and error handling.
+FileUpload можно использовать вместе с компонентами [Form](/docs/components/form/) и [FormField](/docs/components/form-field/), чтобы обрабатывать валидацию и ошибки.
 
 ::component-example
 ---
@@ -314,9 +314,9 @@ name: 'file-upload-form-validation-example'
 ---
 ::
 
-### With rejected files :badge{label="2.15+" class="align-text-top"}
+### С отклонёнными файлами :badge{label="2.15+" class="align-text-top"} {#with-rejected-files}
 
-Dropped files that do not match the `accept` prop are ignored. Listen to the `reject` event to display an error message.
+Файлы, не подходящие под `accept`, при перетаскивании игнорируются. Чтобы показать сообщение об ошибке, подпишитесь на событие `reject`.
 
 ::component-example
 ---
@@ -326,20 +326,20 @@ name: 'file-upload-reject-example'
 ---
 ::
 
-### With default slot
+### Со слотом по умолчанию {#with-default-slot}
 
-You can use the default slot to make your own FileUpload component.
+Слот по умолчанию позволяет собрать собственный компонент загрузки.
 
 ::note
-If you need the file picking without the component around it, the `useFileUpload` composable is what FileUpload itself is built on: `const { open, isDragging, inputRef, dropzoneRef } = useFileUpload({ accept: 'image/*', multiple: true, onUpdate: files => {} })`{lang="ts"}. Call `open()`{lang="ts"} to raise the file dialog, bind `dropzoneRef` to the element that accepts drops, and read `isDragging` for the hover state. The markup is yours — the composable renders nothing.
+Если нужен только выбор файлов без обёртки, воспользуйтесь композаблом `useFileUpload`: на нём построен сам FileUpload. `const { open, isDragging, inputRef, dropzoneRef } = useFileUpload({ accept: 'image/*', multiple: true, onUpdate: files => {} })`{lang="ts"}. `open()`{lang="ts"} открывает диалог выбора файлов, `dropzoneRef` привязывается к элементу, принимающему перетаскивание, а `isDragging` показывает состояние наведения. Разметка остаётся за вами: композабл ничего не отрисовывает.
 ::
 
 ::warning
-`inputRef` is only needed if you also want a real `<input type="file">` in the DOM, for native form submission or validation. It expects a **component**, not an element: it is read as `inputRef.value.$el`{lang="ts"}, and FileUpload binds it to a `VisuallyHidden as="input"`. Bound to a plain `<input>`{lang="html"} it silently does nothing — `$el` is undefined, so dropped files are never synced onto the input. Leave it unbound if you do not need one.
+`inputRef` нужен, только если в DOM требуется настоящий `<input type="file">` — для нативной отправки формы или валидации. Он ожидает **компонент**, а не элемент: значение читается как `inputRef.value.$el`{lang="ts"}, и FileUpload привязывает его к `VisuallyHidden as="input"`. Если привязать его к обычному `<input>`{lang="html"}, ничего не произойдёт: `$el` не определён, и перетащенные файлы не попадут в поле. Если поле не нужно, оставьте `inputRef` непривязанным.
 ::
 
 ::warning
-`accept` reaches the dialog verbatim, but the drop zone only gets the MIME half of it — a drag exposes a type, not a filename. An `accept` written purely as extensions (`'.pdf,.docx'`{lang="ts"}) therefore leaves the drop zone accepting anything, so validate by name in `onUpdate` when extensions are the contract.
+`accept` попадает в диалог выбора как есть, а зона перетаскивания получает только MIME-часть: при перетаскивании известен тип, но не имя файла. Поэтому если `accept` состоит только из расширений (`'.pdf,.docx'`{lang="ts"}), зона перетаскивания примет любые файлы. Когда важны именно расширения, проверяйте имя в `onUpdate`.
 ::
 
 ::component-example
@@ -350,9 +350,9 @@ name: 'file-upload-default-slot-example'
 ---
 ::
 
-### With files-bottom slot
+### Со слотом files-bottom {#with-files-bottom-slot}
 
-You can use the `files-bottom` slot to add a [Button](/docs/components/button/) under the files list to remove all files for example.
+Слот `files-bottom` позволяет добавить [Button](/docs/components/button/) под списком файлов, например, чтобы удалить все файлы.
 
 ::component-example
 ---
@@ -363,12 +363,12 @@ name: 'file-upload-files-bottom-slot-example'
 ::
 
 ::note{to="#interactive"}
-The `interactive` prop is set to `false` in this example to prevent the default clickable area.
+В этом примере пропс `interactive` равен `false`, чтобы отключить область, по которой можно щёлкнуть.
 ::
 
-### With files-top slot
+### Со слотом files-top {#with-files-top-slot}
 
-You can use the `files-top` slot to add a [Button](/docs/components/button/) above the files list to add new files for example.
+Слот `files-top` позволяет добавить [Button](/docs/components/button/) над списком файлов, например, чтобы добавить новые файлы.
 
 ::component-example
 ---
@@ -380,31 +380,31 @@ name: 'file-upload-files-top-slot-example'
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attributes" target="_blank"}
-This component also supports all native `<input>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<input>`.
 ::
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-### Expose
+### Доступ через ref {#expose}
 
-When accessing the component via a template ref, you can use the following:
+При обращении к компоненту через ref в шаблоне доступно:
 
-| Name | Type |
+| Имя | Тип |
 | ---- | ---- |
 | `inputRef`{lang="ts-type"}    | `Ref<HTMLInputElement \| null>`{lang="ts-type"} |
 | `dropzoneRef`{lang="ts-type"} | `Ref<HTMLDivElement \| null>`{lang="ts-type"}   |
 
-## Theme
+## Тема {#theme}
 
 :component-theme

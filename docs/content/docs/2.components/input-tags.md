@@ -1,6 +1,6 @@
 ---
 title: InputTags
-description: A tags input component with interactive tag elements.
+description: 'Поле ввода тегов с интерактивными элементами-тегами.'
 category: form
 keywords:
   - chips input
@@ -9,7 +9,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/InputTags.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/input-tags
   - label: Nuxt UI
@@ -21,9 +21,9 @@ links:
     to: https://reka-ui.com/docs/components/tags-input
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `v-model` directive to control the value of the InputTags.
+Директива `v-model` управляет значением InputTags.
 
 ::component-code
 ---
@@ -37,7 +37,7 @@ props:
 ---
 ::
 
-Use the `default-value` prop to set the initial value when you do not need to control its state.
+Пропс `default-value` задаёт начальное значение, когда управлять состоянием не нужно.
 
 ::component-code
 ---
@@ -49,20 +49,20 @@ props:
 ---
 ::
 
-### Placeholder
+### Плейсхолдер {#placeholder}
 
-Use the `placeholder` prop to set a placeholder text.
+Пропс `placeholder` задаёт текст плейсхолдера.
 
 ::component-code
 ---
 props:
-  placeholder: 'Enter tags...'
+  placeholder: 'Введите теги...'
 ---
 ::
 
-### Max Length
+### Максимальная длина {#max-length}
 
-Use the `max-length` prop to set the maximum number of characters allowed in a tag.
+Пропс `max-length` задаёт максимальное число символов в теге.
 
 ::component-code
 ---
@@ -71,9 +71,9 @@ props:
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the ring color when the InputTags is focused.
+Пропс `color` меняет цвет кольца, когда InputTags в фокусе.
 
 ::component-code
 ---
@@ -90,12 +90,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state. It's used internally when a validation error occurs.
+Пропс `highlight` здесь показывает состояние фокуса. Внутри компонента он включается при ошибке валидации.
 ::
 
-### Tag
+### Тег {#tag}
 
-Use the `tag` property to display a [Badge](/docs/components/badge/) on top of the InputTags.
+Свойство `tag` показывает [Badge](/docs/components/badge/) поверх InputTags.
 
 ::component-code
 ---
@@ -106,13 +106,13 @@ external:
   - modelValue
 props:
   modelValue: ['Bitrix24']
-  tag: note
+  tag: заметка
   color: 'air-primary'
   highlight: true
 ---
 ::
 
-Use the `tagColor` property to set the color for Badge.
+Свойство `tagColor` задаёт цвет Badge.
 
 ::component-code
 ---
@@ -137,16 +137,16 @@ items:
     - air-selection
 props:
   modelValue: ['Bitrix24']
-  tag: note
+  tag: заметка
   tagColor: air-secondary-alert
   color: 'air-primary'
   highlight: true
 ---
 ::
 
-### Sizes
+### Размеры {#sizes}
 
-Use the `size` prop to adjust the size of the InputTags.
+Пропс `size` меняет размер InputTags.
 
 ::component-code
 ---
@@ -161,9 +161,9 @@ props:
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to show an [Icon](https://bitrix24.github.io/b24icons/icons/) inside the InputTags.
+Пропс `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/) внутри InputTags.
 
 ::component-code
 ---
@@ -182,9 +182,9 @@ props:
 ---
 ::
 
-### Trailing Icon
+### Иконка справа {#trailing-icon}
 
-Use the `trailing-icon` prop to set icon for trailing position.
+Пропс `trailing-icon` задаёт иконку справа.
 
 ::component-code
 ---
@@ -203,9 +203,9 @@ props:
 ---
 ::
 
-### Avatar
+### Аватар {#avatar}
 
-Use the `avatar` prop to show an [Avatar](/docs/components/avatar/) inside the InputTags.
+Пропс `avatar` показывает [Avatar](/docs/components/avatar/) внутри InputTags.
 
 ::component-code
 ---
@@ -225,9 +225,9 @@ props:
 ---
 ::
 
-### Delete Icon
+### Иконка удаления {#delete-icon}
 
-Use the `delete-icon` prop to customize the delete [Icon](https://bitrix24.github.io/b24icons/icons/) in the tags.
+Пропс `delete-icon` меняет [иконку](https://bitrix24.github.io/b24icons/icons/) удаления в тегах.
 
 ::component-code
 ---
@@ -245,9 +245,9 @@ props:
 ---
 ::
 
-### Loading
+### Загрузка {#loading}
 
-Use the `loading` prop to show a loading icon on the InputTags.
+Пропс `loading` показывает иконку загрузки в InputTags.
 
 ::component-code
 ---
@@ -262,9 +262,9 @@ props:
 ---
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the InputTags.
+Пропс `disabled` отключает InputTags.
 
 ::component-code
 ---
@@ -279,9 +279,9 @@ props:
 ---
 ::
 
-### No border
+### Без границы {#no-border}
 
-Use the `noBorder` prop to removes all borders (rings) from the InputTags.
+Пропс `noBorder` убирает у InputTags все границы (кольца).
 
 ::component-code
 ---
@@ -298,12 +298,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to indicate that there is no focus state.
+Пропс `highlight` здесь показывает, что состояния фокуса нет.
 ::
 
-### Underline
+### Подчёркивание {#underline}
 
-Use the `underline` prop to removes all borders (rings) except the bottom one from the InputTags.
+Пропс `underline` убирает у InputTags все границы (кольца), кроме нижней.
 
 ::component-code
 ---
@@ -320,12 +320,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-### Rounded
+### Скругление {#rounded}
 
-Use the `rounded` prop to round the InputTags.
+Пропс `rounded` скругляет InputTags.
 
 ::component-code
 ---
@@ -342,14 +342,14 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Within a FormField
+### Внутри FormField {#within-a-formfield}
 
-You can use the InputTags within a [FormField](/docs/components/form-field/) component to display a label, help text, required indicator, etc.
+InputTags можно использовать внутри компонента [FormField](/docs/components/form-field/), чтобы показывать подпись, справочный текст, признак обязательности и так далее.
 
 ::component-example
 ---
@@ -359,30 +359,30 @@ name: 'input-tags-form-field-example'
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attributes" target="_blank"}
-This component also supports all native `<input>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<input>`.
 ::
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-### Expose
+### Доступ через ref {#expose}
 
-When accessing the component via a template ref, you can use the following:
+При обращении к компоненту через ref в шаблоне доступно:
 
-| Name | Type |
+| Имя | Тип |
 | ---- | ---- |
 | `inputRef`{lang="ts-type"} | `Ref<HTMLInputElement \| null>`{lang="ts-type"} |
 
-## Theme
+## Тема {#theme}
 
 :component-theme

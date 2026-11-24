@@ -1,6 +1,6 @@
 ---
 title: Listbox
-description: A selectable list component with search, virtualization, and rich item rendering capabilities.
+description: 'Выбираемый список с поиском, виртуализацией и богатым отображением элементов.'
 category: form
 keywords:
   - option list
@@ -19,9 +19,9 @@ links:
     to: https://ui.nuxt.com/docs/components/listbox
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `v-model` directive to control the value of the Listbox or the `default-value` prop to set the initial value when you do not need to control its state.
+Директива `v-model` управляет значением Listbox, а пропс `default-value` задаёт начальное значение, когда управлять состоянием не нужно.
 
 ::component-code
 ---
@@ -65,9 +65,9 @@ props:
 ---
 ::
 
-### Items
+### Элементы {#items}
 
-Use the `items` prop as an array of objects with the following properties:
+Пропс `items` — массив объектов со свойствами:
 
 - `label?: string`{lang="ts-type"}
 - [`description?: string`{lang="ts-type"}](#with-description-in-items)
@@ -109,7 +109,7 @@ props:
 ---
 ::
 
-You can also pass an array of arrays to the `items` prop to display separated groups of items.
+В пропс `items` можно передать и массив массивов, чтобы показать группы элементов, разделённые между собой.
 
 ::component-code
 ---
@@ -138,9 +138,9 @@ props:
 ---
 ::
 
-### Multiple
+### Множественный выбор {#multiple}
 
-Use the `multiple` prop to allow selecting multiple items. When enabled, the `v-model` will be an array.
+Пропс `multiple` разрешает выбрать несколько элементов. Тогда `v-model` становится массивом.
 
 ::component-code
 ---
@@ -169,9 +169,9 @@ props:
 ---
 ::
 
-### Value Key
+### Ключ значения {#value-key}
 
-You can choose to bind a single property of the object rather than the whole object by using the `value-key` prop. Defaults to `undefined`.
+Пропс `value-key` позволяет привязать одно свойство объекта вместо всего объекта. По умолчанию `undefined`.
 
 ::component-code
 ---
@@ -202,9 +202,9 @@ props:
 ---
 ::
 
-### Filter
+### Фильтр {#filter}
 
-Use the `filter` prop to display a filter input or pass an object to customize the [Input](/docs/components/input/) component. Defaults to `false`.
+Пропс `filter` показывает поле фильтра или принимает объект для настройки компонента [Input](/docs/components/input/). По умолчанию `false`.
 
 ::component-code
 ---
@@ -219,7 +219,7 @@ externalTypes:
   - ListboxItem[]
 props:
   filter:
-    placeholder: 'Filter...'
+    placeholder: 'Фильтр...'
   items:
     - label: 'France'
       value: 'FR'
@@ -237,9 +237,9 @@ props:
 ---
 ::
 
-### Selected Icon
+### Иконка выбранного элемента {#selected-icon}
 
-Use the `selected-icon` prop to customize the icon when an item is selected.
+Пропс `selected-icon` меняет иконку выбранного элемента.
 
 ::component-code
 ---
@@ -274,9 +274,9 @@ props:
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the Listbox.
+Пропс `size` меняет размер Listbox.
 
 ::component-code
 ---
@@ -304,9 +304,9 @@ props:
 ---
 ::
 
-### Loading
+### Загрузка {#loading}
 
-Use the `loading` prop to display a loading indicator. Use the `loading-icon` prop to customize the icon.
+Пропс `loading` показывает индикатор загрузки, а пропс `loading-icon` меняет его иконку.
 
 ::component-code
 ---
@@ -330,9 +330,9 @@ props:
 ---
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to prevent any user interaction with the Listbox.
+Пропс `disabled` блокирует любое взаимодействие пользователя с Listbox.
 
 ::component-code
 ---
@@ -360,11 +360,11 @@ props:
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With items type
+### С типом элемента {#with-items-type}
 
-You can use the `type` property with `separator` to display a separator between items or `label` to display a label.
+Свойство `type` со значением `separator` показывает разделитель между элементами, а со значением `label` — подпись.
 
 ::component-code
 ---
@@ -398,12 +398,12 @@ props:
 ::
 
 ::note
-When using `label` items as group headings, pass an array of arrays so a label gets filtered out together with its group when searching.
+Если `label` используется как заголовок группы, передайте массив массивов: тогда при поиске подпись исчезает вместе со своей группой.
 ::
 
-### With icon in items
+### С иконкой в элементах {#with-icon-in-items}
 
-You can use the `icon` property to display an [Icon](https://bitrix24.github.io/b24icons/icons/) inside the items.
+Свойство `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/) внутри элементов.
 
 ::component-example
 ---
@@ -412,9 +412,9 @@ name: 'listbox-items-icon-example'
 ---
 ::
 
-### With avatar in items
+### С аватаром в элементах {#with-avatar-in-items}
 
-You can use the `avatar` property to display an [Avatar](/docs/components/avatar/) inside the items.
+Свойство `avatar` показывает [Avatar](/docs/components/avatar/) внутри элементов.
 
 ::component-example
 ---
@@ -423,9 +423,9 @@ name: 'listbox-items-avatar-example'
 ---
 ::
 
-### With chip in items
+### С чипом в элементах {#with-chip-in-items}
 
-You can use the `chip` property to display a [Chip](/docs/components/chip/) inside the items.
+Свойство `chip` показывает [Chip](/docs/components/chip/) внутри элементов.
 
 ::component-example
 ---
@@ -434,9 +434,9 @@ name: 'listbox-items-chip-example'
 ---
 ::
 
-### With description in items
+### С описанием в элементах {#with-description-in-items}
 
-You can use the `description` property to display additional text below the label.
+Свойство `description` показывает дополнительный текст под подписью.
 
 ::component-code
 ---
@@ -467,9 +467,9 @@ props:
 ---
 ::
 
-### Control selected item(s)
+### Управление выбранными элементами {#control-selected-items}
 
-You can control the selected item by using the `default-value` prop or the `v-model` directive.
+Выбранным элементом управляют пропс `default-value` или директива `v-model`.
 
 ::component-example
 ---
@@ -478,9 +478,9 @@ name: 'listbox-model-value-example'
 ---
 ::
 
-### Control search term
+### Управление поисковым запросом {#control-search-term}
 
-Use the `v-model:search-term` directive to control the search term.
+Директива `v-model:search-term` управляет поисковым запросом.
 
 ::component-example
 ---
@@ -488,9 +488,9 @@ name: 'listbox-search-term-example'
 ---
 ::
 
-### With ignore filter
+### С отключённым фильтром {#with-ignore-filter}
 
-Set the `ignore-filter` prop to `true` to disable the internal search and use your own search logic.
+Пропс `ignore-filter` со значением `true` отключает внутренний поиск, и вы можете использовать собственную логику поиска.
 
 ::component-example
 ---
@@ -500,12 +500,12 @@ name: 'listbox-ignore-filter-example'
 ::
 
 ::note
-This example uses [`refDebounced`](https://vueuse.org/shared/refDebounced/#refdebounced) to debounce the API calls.
+В примере запросы к API откладываются через [`refDebounced`](https://vueuse.org/shared/refDebounced/#refdebounced).
 ::
 
-### With filter fields
+### С полями фильтрации {#with-filter-fields}
 
-Use the `filter-fields` prop with an array of fields to filter on. Defaults to `[labelKey]`.
+Пропс `filter-fields` принимает массив полей, по которым выполняется фильтрация. По умолчанию `[labelKey]`.
 
 ::component-example
 ---
@@ -514,9 +514,9 @@ name: 'listbox-filter-fields-example'
 ---
 ::
 
-### With virtualization
+### С виртуализацией {#with-virtualization}
 
-Use the `virtualize` prop to enable virtualization for large lists as a boolean or an object with options like `{ estimateSize: 32, overscan: 12 }`.
+Пропс `virtualize` включает виртуализацию для больших списков: булево значение или объект с параметрами вроде `{ estimateSize: 32, overscan: 12 }`.
 
 ::component-example
 ---
@@ -525,9 +525,9 @@ collapse: true
 ---
 ::
 
-### As a transfer list
+### Как список переноса {#as-a-transfer-list}
 
-You can compose two Listbox components with [Button](/docs/components/button/) controls to build a transfer list pattern.
+Два компонента Listbox с кнопками [Button](/docs/components/button/) позволяют собрать шаблон списка переноса.
 
 ::component-example
 ---
@@ -538,18 +538,18 @@ collapse: true
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

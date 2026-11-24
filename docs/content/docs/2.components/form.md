@@ -1,6 +1,6 @@
 ---
 title: Form
-description: A form component designed for validation and handling submissions.
+description: 'Компонент формы для валидации и обработки отправки.'
 category: form
 keywords:
   - validation
@@ -10,7 +10,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Form.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/form
   - label: Nuxt UI
@@ -18,21 +18,21 @@ links:
     to: https://ui.nuxt.com/docs/components/form
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the Form component to validate form data using any validation library supporting [Standard Schema](https://github.com/standard-schema/standard-schema) such as [Valibot](https://github.com/fabian-hiller/valibot), [Zod](https://github.com/colinhacks/zod), [Regle](https://github.com/victorgarciaesgi/regle), [Yup](https://github.com/jquense/yup), [Joi](https://github.com/hapijs/joi) or [Superstruct](https://github.com/ianstormtaylor/superstruct) or your own validation logic.
+Компонент Form проверяет данные формы любой библиотекой валидации, поддерживающей [Standard Schema](https://github.com/standard-schema/standard-schema), например [Valibot](https://github.com/fabian-hiller/valibot), [Zod](https://github.com/colinhacks/zod), [Regle](https://github.com/victorgarciaesgi/regle), [Yup](https://github.com/jquense/yup), [Joi](https://github.com/hapijs/joi) или [Superstruct](https://github.com/ianstormtaylor/superstruct), либо вашей собственной логикой.
 
-It works with the [FormField](/docs/components/form-field/) component to display error messages around form elements automatically.
+Вместе с компонентом [FormField](/docs/components/form-field/) он автоматически показывает сообщения об ошибках рядом с элементами формы.
 
-### Schema validation
+### Валидация по схеме {#schema-validation}
 
-It requires two props:
+Нужны два пропса:
 
-- `state` - a reactive object holding the form's state.
-- `schema` - any [Standard Schema](https://github.com/standard-schema/standard-schema) or [Superstruct](https://github.com/ianstormtaylor/superstruct).
+- `state` — реактивный объект с состоянием формы.
+- `schema` — любая схема [Standard Schema](https://github.com/standard-schema/standard-schema) или [Superstruct](https://github.com/ianstormtaylor/superstruct).
 
 ::warning
-**No validation library is included** by default, ensure you **install the one you need**.
+**Библиотека валидации по умолчанию не входит в поставку**, **установите нужную вам**.
 ::
 
 ::tabs{class="gap-0"}
@@ -85,17 +85,17 @@ It requires two props:
   ::
 ::
 
-### Custom validation
+### Собственная валидация {#custom-validation}
 
-Use the `validate` prop to apply your own validation logic.
+Пропс `validate` подключает вашу логику валидации.
 
-The validation function must return a list of errors with the following attributes:
+Функция валидации должна вернуть список ошибок с атрибутами:
 
-- `message` - the error message to display.
-- `name` - the `name` of the `FormField` to send the error to.
+- `message` — сообщение об ошибке.
+- `name` — `name` поля `FormField`, которому адресована ошибка.
 
 ::tip
-It can be used alongside the `schema` prop to handle complex use cases.
+Её можно использовать вместе с пропсом `schema` в сложных случаях.
 ::
 
 ::component-example
@@ -106,14 +106,14 @@ props:
 ---
 ::
 
-### Error reporting
+### Отображение ошибок {#error-reporting}
 
-Errors are matched to the corresponding [FormField](/docs/components/form-field/) using its `name` prop. An error on the `email` field is shown by `<FormField name="email">`{lang="vue"}.
+Ошибки сопоставляются с нужным [FormField](/docs/components/form-field/) по его пропсу `name`. Ошибка поля `email` показывается в `<FormField name="email">`{lang="vue"}.
 
-Nested fields are matched using dot notation. A schema like `{ user: z.object({ email: z.string() }) }`{lang="ts"} will be applied to `<FormField name="user.email">`{lang="vue"}.
+Вложенные поля сопоставляются через точку. Схема вида `{ user: z.object({ email: z.string() }) }`{lang="ts"} применится к `<FormField name="user.email">`{lang="vue"}.
 
 ::warning
-Errors on array items include the index in their name (e.g. `tags.0`, `tags.1`) and won't match `<FormField name="tags">`{lang="vue"} by `name` alone. Use the `error-pattern` prop with a regular expression like `/^tags\..+/`{lang="ts"} to capture them. This is especially useful for components like [InputTags](/docs/components/input-tags/).
+Имя ошибки у элемента массива включает индекс (например, `tags.0`, `tags.1`), поэтому только по `name` она не совпадёт с `<FormField name="tags">`{lang="vue"}. Чтобы их перехватить, передайте в пропс `error-pattern` регулярное выражение вроде `/^tags\..+/`{lang="ts"}. Это особенно полезно для компонентов вроде [InputTags](/docs/components/input-tags/).
 ::
 
 ::component-example
@@ -124,18 +124,18 @@ props:
 ---
 ::
 
-### Input events
+### События ввода {#input-events}
 
-The Form component automatically triggers validation when an input emits an `input`, `change`, or `blur` event.
+Form автоматически запускает валидацию, когда элемент ввода генерирует событие `input`, `change` или `blur`.
 
-- Validation on `input` occurs **as you type**.
-- Validation on `change` occurs when you **commit to a value**.
-- Validation on `blur` happens when an input **loses focus**.
+- Валидация по `input` происходит **по мере ввода**.
+- Валидация по `change` происходит, когда вы **фиксируете значение**.
+- Валидация по `blur` происходит, когда элемент **теряет фокус**.
 
-You can control when validation happens this using the `validate-on` prop.
+Когда выполнять валидацию, определяет пропс `validate-on`.
 
 ::tip
-The form always validates on submit.
+При отправке форма проверяется всегда.
 ::
 
 ::component-example{label="Default"}
@@ -158,13 +158,13 @@ options:
 ::
 
 ::tip
-You can use the `useFormField` composable to implement this inside your own components.
+Чтобы реализовать то же внутри собственных компонентов, используйте композабл `useFormField`.
 ::
 
 ::warning
-The `change` event these inputs emit is a **synthetic** `Event`, and its `target` is `null`{lang="ts-type"} — it carries no value. `@change="e => e.target.value"`{lang="ts"} throws.
+Событие `change` у этих элементов — **синтетическое** `Event`, его `target` равен `null`{lang="ts-type"}: значения оно не несёт. `@change="e => e.target.value"`{lang="ts"} выбросит ошибку.
 
-It exists so you can react to a commit; it is not how the value travels, and it is not how the Form learns about it either — validation is driven by a separate internal call. Read the value from `@update:model-value`{lang="ts"} instead, or from `v-model`:
+Оно нужно, чтобы реагировать на фиксацию значения; значение через него не передаётся, и Form узнаёт о нём не так: валидацию запускает отдельный внутренний вызов. Читайте значение из `@update:model-value`{lang="ts"} или из `v-model`:
 
 ```vue
 <template>
@@ -172,18 +172,18 @@ It exists so you can react to a commit; it is not how the value travels, and it 
 </template>
 ```
 
-This applies to every input that emits `change` without a native event behind it — `Select`, `SelectMenu`, `InputMenu`, `InputDate`, `InputTime`, `InputTags`, `InputNumber`, `InputRating`, `PinInput`, `Listbox`, `Range`, `Checkbox`, `CheckboxGroup`, `RadioGroup`, `Switch` and `FileUpload`. `Input` and `Textarea` forward the browser's own `change` event, so their `target` is the real element.
+Это относится ко всем элементам, которые генерируют `change` без нативного события: `Select`, `SelectMenu`, `InputMenu`, `InputDate`, `InputTime`, `InputTags`, `InputNumber`, `InputRating`, `PinInput`, `Listbox`, `Range`, `Checkbox`, `CheckboxGroup`, `RadioGroup`, `Switch` и `FileUpload`. `Input` и `Textarea` пробрасывают собственное событие `change` браузера, поэтому их `target` — настоящий элемент.
 ::
 
-### Error event
+### Событие error {#error-event}
 
-You can listen to the `@error` event to handle errors. This event is triggered when the form is submitted and contains an array of `FormError` objects with the following fields:
+На событие `@error` можно подписаться, чтобы обрабатывать ошибки. Оно срабатывает при отправке формы и содержит массив объектов `FormError` с полями:
 
-- `id` - the input's `id`.
-- `name` - the `name` of the `FormField`
-- `message` - the error message to display.
+- `id` — `id` элемента ввода.
+- `name` — `name` поля `FormField`.
+- `message` — сообщение об ошибке.
 
-Here's an example that focuses the first input element with an error after the form is submitted:
+Пример: после отправки формы фокус переходит на первый элемент с ошибкой:
 
 ::component-example
 ---
@@ -194,12 +194,12 @@ props:
 ---
 ::
 
-### HTML5 validation
+### HTML5-валидация {#html5-validation}
 
-When calling `form.submit()` programmatically, the Form component automatically triggers native HTML5 validation before submission.
+При программном вызове `form.submit()` Form перед отправкой автоматически запускает нативную HTML5-валидацию.
 
 ::note
-This is particularly useful when the submit button is outside the form element, such as in a modal footer.
+Это особенно полезно, когда кнопка отправки находится вне элемента формы, например в футере модального окна.
 ::
 
 ::component-example
@@ -211,13 +211,13 @@ props:
 ::
 
 
-### Nesting forms
+### Вложенные формы {#nesting-forms}
 
-Use the `nested` prop to nest multiple Form components and link their validation functions. In this case, validating the parent form will automatically validate all the other forms inside it.
+Пропс `nested` позволяет вкладывать несколько компонентов Form друг в друга и связывать их функции валидации. Тогда валидация родительской формы автоматически проверяет и все вложенные.
 
-Nested forms directly inherit their parent's state, so you don't need to define a separate state for them. You can use the `name` prop to target a nested attribute within the parent's state.
+Вложенные формы напрямую наследуют состояние родителя, отдельное состояние для них задавать не нужно. Пропс `name` указывает на вложенный атрибут в состоянии родителя.
 
-It can be used to dynamically add fields based on user's input:
+Так можно динамически добавлять поля по вводу пользователя:
 
 ::component-example
 ---
@@ -226,7 +226,7 @@ name: 'form-example-nested'
 ---
 ::
 
-Or to validate list inputs:
+Или проверять списки полей:
 
 ::component-example
 ---
@@ -235,15 +235,15 @@ name: 'form-example-nested-list'
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Record edit section
+### Раздел редактирования записи {#record-edit-section}
 
-A common record-edit pattern (UF placement, slider context): a titled section with vertical-label fields, a two-column row for amount + currency, a nested "Client" sub-section, and a series of additional fields. Built entirely from `B24Form`, `B24FormField`, `B24Input`, `B24Select`, `B24InputNumber`, `B24InputDate`, `B24Popover` and `B24Calendar` — no custom components.
+Типичный шаблон редактирования записи (UF placement, контекст слайдера): раздел с заголовком и полями с вертикальными подписями, двухколоночная строка «сумма + валюта», вложенный подраздел «Клиент» и набор дополнительных полей. Целиком собран из `B24Form`, `B24FormField`, `B24Input`, `B24Select`, `B24InputNumber`, `B24InputDate`, `B24Popover` и `B24Calendar`, без собственных компонентов.
 
-The full field set: Stage (`B24Select`), Amount and currency (`B24InputNumber` + `B24Select` in a two-column row), a "Client" group (Company + Contact `B24Input`s and an "Add participant" link), then Salutation (`B24Select`), Last name and First name (`B24Input`), Service type (`B24Select`) and Scheduled date (`B24InputDate` with a dropdown `B24Calendar` in a `B24Popover`).
+Полный набор полей: стадия (`B24Select`), сумма и валюта (`B24InputNumber` + `B24Select` в двухколоночной строке), группа «Клиент» (компания и контакт в `B24Input` и ссылка «Добавить участника»), затем обращение (`B24Select`), фамилия и имя (`B24Input`), тип услуги (`B24Select`) и запланированная дата (`B24InputDate` с выпадающим `B24Calendar` в `B24Popover`).
 
-The "Client" sub-section is just a `<div>` with a label above and a bordered container (`rounded-md border ... p-3 sm:p-4 space-y-4`) wrapping nested `B24FormField`s — `role="group"` + `aria-labelledby` associate the label with the group. The two-column "Amount and currency" row uses `grid-cols-1 sm:grid-cols-[1fr_auto]` so the currency drops below the amount on narrow viewports. `B24InputDate` binds an `@internationalized/date` value (not a native `Date`), so the schema types that field loosely.
+Подраздел «Клиент» — это обычный `<div>` с подписью сверху и контейнером с рамкой (`rounded-md border ... p-3 sm:p-4 space-y-4`), в который вложены `B24FormField`; `role="group"` и `aria-labelledby` связывают подпись с группой. Двухколоночная строка «Сумма и валюта» использует `grid-cols-1 sm:grid-cols-[1fr_auto]`, поэтому на узком экране валюта переносится под сумму. `B24InputDate` работает со значением `@internationalized/date` (не с нативным `Date`), поэтому в схеме это поле типизируется свободно.
 
 ::component-example
 ---
@@ -254,34 +254,34 @@ name: 'form-example-edit-section'
 
 ::prompt
 ---
-description: Build a record-edit form section (slider / UF placement edit panel).
+description: Собрать раздел формы редактирования записи (панель редактирования в слайдере или UF placement).
 actions:
   - copy
   - cursor
   - windsurf
 class: 'w-full my-0'
 ---
-Lean on the `b24-ui-nuxt` skill (see `references/guidelines/forms.md` → "Record-edit form pattern") to build a record-edit form section — the titled edit panel used in Bitrix24 sliders and UF placements. Assemble it only from stock primitives (`B24Form`, `B24FormField`, `B24Input`, `B24Select`, `B24InputNumber`, `B24InputDate`, `B24Popover`, `B24Calendar`) under a single `:schema`; no custom components.
+Опирайтесь на навык `b24-ui-nuxt` (см. `references/guidelines/forms.md` → «Record-edit form pattern») и соберите раздел формы редактирования записи: панель редактирования с заголовком, какие используются в слайдерах Битрикс24 и UF placement. Собирайте только из штатных компонентов (`B24Form`, `B24FormField`, `B24Input`, `B24Select`, `B24InputNumber`, `B24InputDate`, `B24Popover`, `B24Calendar`) под одной `:schema`, без собственных компонентов.
 
-Before writing any code, ask me for the missing context — don't assume:
-- Which record is being edited (deal, lead, order, ticket, contact…)? That decides the section title, the field set and the validation rules.
-- Which fields belong in the section, in what order, and which are required? Group related ones (e.g. a "Client" sub-section) and flag any two-column rows (such as amount + currency).
-- For each field, which control fits: enum → `B24Select` (list the options), free text → `B24Input`, number → `B24InputNumber`, date → `B24InputDate` with a dropdown `B24Calendar`.
-- The header affordance: a title plus a single icon-only action on the right — confirm the icon and its `aria-label`.
-- Locale, the default values used by the reset action, and what submit should do (toast, API call, close the slider).
+Прежде чем писать код, спросите недостающие сведения, не угадывайте:
+- Какая запись редактируется (сделка, лид, заказ, обращение, контакт…)? От этого зависят заголовок раздела, набор полей и правила валидации.
+- Какие поля входят в раздел, в каком порядке и какие обязательны? Сгруппируйте связанные (например, подраздел «Клиент») и отметьте двухколоночные строки (вроде «сумма + валюта»).
+- Какой элемент подходит каждому полю: перечисление → `B24Select` (перечислите варианты), свободный текст → `B24Input`, число → `B24InputNumber`, дата → `B24InputDate` с выпадающим `B24Calendar`.
+- Шапка: заголовок и одно действие-иконка справа — уточните иконку и её `aria-label`.
+- Локаль, значения по умолчанию для действия сброса и что должна делать отправка (уведомление, вызов API, закрытие слайдера).
 
-Once those answers are in:
-- Build the labelled sub-section as a `<div role="group" :aria-labelledby="...">` whose id comes from `useId()` (b24ui has no fieldset primitive).
-- For a full-width `B24Select`, set both `class` (the trigger) and `:b24ui="{ root: 'w-full' }"` (the wrapper); `B24Input` / `B24InputNumber` need only `class="w-full"`.
-- Type the date field loosely in the schema (`z.any().optional()`) — `B24InputDate` binds an `@internationalized/date` value, not a native `Date` — and pair the input with a `B24Calendar` in its `#trailing` `B24Popover`, both sharing the same `v-model`.
-- Use `color="air-tertiary-no-accent"` for icon/link-style buttons (the header action and "Add participant") — there is no `variant` prop on `B24Button`.
+Когда ответы получены:
+- Подраздел с подписью соберите как `<div role="group" :aria-labelledby="...">`, id берите из `useId()` (в b24ui нет примитива fieldset).
+- Чтобы `B24Select` занял всю ширину, задайте и `class` (триггер), и `:b24ui="{ root: 'w-full' }"` (обёртка); для `B24Input` и `B24InputNumber` достаточно `class="w-full"`.
+- Поле даты в схеме типизируйте свободно (`z.any().optional()`): `B24InputDate` работает со значением `@internationalized/date`, а не с нативным `Date`. К полю добавьте `B24Calendar` в `B24Popover` слота `#trailing`; оба используют один `v-model`.
+- Для кнопок-иконок и кнопок-ссылок (действие в шапке и «Добавить участника») используйте `color="air-tertiary-no-accent"`: у `B24Button` нет пропса `variant`.
 
-Keep all copy in the requested locale.
+Весь текст оформляйте на запрошенном языке.
 ::
 
-### Task form layout
+### Раскладка формы задачи {#task-form-layout}
 
-Real-world example: a Bitrix24-style task form assembled from standard components only — `Input` for the title, `Editor` (with a minimal toolbar row) for the description, `Card`, `Avatar`, and `InputDate` for the responsible-persons block, and a wrap row of `Button` actions. Single-column layout throughout — no custom CSS beyond component props.
+Практический пример: форма задачи в стиле Битрикс24 из одних стандартных компонентов — `Input` для названия, `Editor` (с минимальной строкой панели) для описания, `Card`, `Avatar` и `InputDate` для блока ответственных и перенос строки с кнопками `Button`. Везде одна колонка, без собственного CSS сверх пропсов компонентов.
 
 ::component-example
 ---
@@ -293,45 +293,45 @@ class: '!p-0'
 
 ::prompt
 ---
-description: Build a Bitrix24-style task form using standard b24ui components.
+description: Собрать форму задачи в стиле Битрикс24 из стандартных компонентов b24ui.
 actions:
   - copy
   - cursor
   - windsurf
 class: 'w-full my-0'
 ---
-Build a Bitrix24-style task form layout using only standard `b24ui` components (single column, no custom CSS beyond component props).
+Соберите форму задачи в стиле Битрикс24 только из стандартных компонентов `b24ui` (одна колонка, без собственного CSS сверх пропсов компонентов).
 
-- **Title**: `B24Input` `size="xl"` `no-border`, bold via `:b24ui="{ base: 'font-(--ui-font-weight-semi-bold)' }"`
-- **Editor card**: `B24Card` with `b24ui.body='p-0'` containing `B24Editor` (`content-type="markdown"`, `min-h-48 px-4 py-3`). Inside the editor's default slot, render a toolbar row (`flex items-center gap-1 px-2 py-1.5 border-b`): attachment `B24Button` on the left, `B24EditorToolbar` with `mention`/`bulletList`/`orderedList` in the middle, expand `B24Button` (`GoToLIcon`) pushed to `ml-auto`
-- **Responsible persons card**: `B24Card` `b24ui.body='p-0'`, body is a `divide-y` div with three `px-5 py-3` rows — Creator (`B24Avatar` + name), Assignee (`B24Avatar` + name), Deadline (`B24InputDate` `size="sm"` `no-border` with `B24Popover`+`B24Calendar` in the `#trailing` slot, both sharing the same `shallowRef<CalendarDate | undefined>`)
-- **Watchers card**: `#header` with label and `+` `B24Button`; body shows `B24Avatar` icons
-- **Action buttons**: `flex flex-wrap gap-2` row of 17 `B24Button` `size="sm"` — each item has an `active` flag; active → `color="air-secondary-accent-2"`, inactive → `color="air-secondary-no-accent"`. Buttons: Results, Files, Checklists, Project, Co-executors, Observers, Flow, Tags, Reminders, CRM elements, Parent task, Subtasks, Linked tasks, Gantt, Timeline planning, Time tracking, Custom fields
-- **Footer**: `flex gap-2 justify-end` with Save (`air-primary`) and Cancel (`air-tertiary`)
-- State: `title` and `description` as `ref`; `deadline` as `shallowRef<CalendarDate | undefined>` (from `@internationalized/date` — `B24InputDate` does not accept native `Date`); `toolbarItems` as a plain `const` (no reactive deps); action list typed as `{ label: string, icon: IconComponent, active?: boolean }[]`
+- **Название**: `B24Input` `size="xl"` `no-border`, жирный шрифт через `:b24ui="{ base: 'font-(--ui-font-weight-semi-bold)' }"`
+- **Карточка с редактором**: `B24Card` с `b24ui.body='p-0'`, внутри `B24Editor` (`content-type="markdown"`, `min-h-48 px-4 py-3`). В слоте по умолчанию редактора отрисуйте строку панели (`flex items-center gap-1 px-2 py-1.5 border-b`): слева кнопка вложений `B24Button`, посередине `B24EditorToolbar` с `mention`/`bulletList`/`orderedList`, справа с `ml-auto` кнопка разворачивания `B24Button` (`GoToLIcon`)
+- **Карточка ответственных**: `B24Card` `b24ui.body='p-0'`, тело — `div` с `divide-y` и тремя строками `px-5 py-3`: постановщик (`B24Avatar` + имя), исполнитель (`B24Avatar` + имя), крайний срок (`B24InputDate` `size="sm"` `no-border` с `B24Popover` + `B24Calendar` в слоте `#trailing`, оба используют один `shallowRef<CalendarDate | undefined>`)
+- **Карточка наблюдателей**: `#header` с подписью и кнопкой `+` `B24Button`; в теле иконки `B24Avatar`
+- **Кнопки действий**: ряд `flex flex-wrap gap-2` из 17 `B24Button` `size="sm"`; у каждого элемента флаг `active`: активный → `color="air-secondary-accent-2"`, неактивный → `color="air-secondary-no-accent"`. Кнопки: Results, Files, Checklists, Project, Co-executors, Observers, Flow, Tags, Reminders, CRM elements, Parent task, Subtasks, Linked tasks, Gantt, Timeline planning, Time tracking, Custom fields
+- **Футер**: `flex gap-2 justify-end` с кнопками «Сохранить» (`air-primary`) и «Отмена» (`air-tertiary`)
+- Состояние: `title` и `description` как `ref`; `deadline` как `shallowRef<CalendarDate | undefined>` (из `@internationalized/date`: `B24InputDate` не принимает нативный `Date`); `toolbarItems` — обычная `const` (без реактивных зависимостей); список действий типизирован как `{ label: string, icon: IconComponent, active?: boolean }[]`
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attributes" target="_blank"}
-This component also supports all native `<form>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<form>`.
 ::
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-### Expose
+### Доступ через ref {#expose}
 
-You can access the typed component instance using [`useTemplateRef`](https://vuejs.org/api/composition-api-helpers.html#usetemplateref).
+Типизированный экземпляр компонента доступен через [`useTemplateRef`](https://vuejs.org/api/composition-api-helpers.html#usetemplateref).
 
 ```vue
 <script setup lang="ts">
@@ -343,22 +343,22 @@ const form = useTemplateRef('form')
 </template>
 ```
 
-This will give you access to the following:
+Так вы получите доступ к следующему:
 
-| Name | Type |
+| Имя | Тип |
 | ---- | ---- |
-| `submit()`{lang="ts-type"} | `Promise<void>`{lang="ts-type"} <br> <div class="text-(--ui-color-design-tinted-na-content) mt-1"><p>Triggers form submission with HTML5 validation.</p></div> |
-| `validate(opts: { name?: keyof T \| (keyof T)[], silent?: boolean, nested?: boolean, transform?: boolean })`{lang="ts-type"} | `Promise<T>`{lang="ts-type"} <br> <div class="text-(--ui-color-design-tinted-na-content) mt-1"><p>Triggers form validation. Will raise any errors unless `opts.silent` is set to true.</p></div> |
-| `clear(path?: keyof T \| RegExp)`{lang="ts-type"} | `void` <br> <div class="text-(--ui-color-design-tinted-na-content) mt-1"><p>Clears form errors associated with a specific path. If no path is provided, clears all form errors.</p></div> |
-| `getErrors(path?: keyof T \| RegExp)`{lang="ts-type"} | `FormErrorWithId[]`{lang="ts-type"} <br> <div class="text-(--ui-color-design-tinted-na-content) mt-1"><p>Retrieves form errors associated with a specific path. If no path is provided, returns all form errors.</p></div> |
-| `setErrors(errors: FormError[], name?: keyof T \| RegExp)`{lang="ts-type"} | `void` <br> <div class="text-(--ui-color-design-tinted-na-content) mt-1"><p>Sets form errors for a given path. If no path is provided, overrides all errors.</p></div> |
-| `errors`{lang="ts-type"} | `Ref<FormErrorWithId[]>`{lang="ts-type"} <br> <div class="text-(--ui-color-design-tinted-na-content) mt-1"><p>A reference to the array containing validation errors. Use this to access or manipulate the error information.</p></div> |
+| `submit()`{lang="ts-type"} | `Promise<void>`{lang="ts-type"} <br> <div class="text-(--ui-color-design-tinted-na-content) mt-1"><p>Запускает отправку формы с HTML5-валидацией.</p></div> |
+| `validate(opts: { name?: keyof T \| (keyof T)[], silent?: boolean, nested?: boolean, transform?: boolean })`{lang="ts-type"} | `Promise<T>`{lang="ts-type"} <br> <div class="text-(--ui-color-design-tinted-na-content) mt-1"><p>Запускает валидацию формы. Показывает ошибки, если не передан `opts.silent` со значением true.</p></div> |
+| `clear(path?: keyof T \| RegExp)`{lang="ts-type"} | `void` <br> <div class="text-(--ui-color-design-tinted-na-content) mt-1"><p>Очищает ошибки формы по указанному пути. Без пути очищает все ошибки.</p></div> |
+| `getErrors(path?: keyof T \| RegExp)`{lang="ts-type"} | `FormErrorWithId[]`{lang="ts-type"} <br> <div class="text-(--ui-color-design-tinted-na-content) mt-1"><p>Возвращает ошибки формы по указанному пути. Без пути возвращает все ошибки.</p></div> |
+| `setErrors(errors: FormError[], name?: keyof T \| RegExp)`{lang="ts-type"} | `void` <br> <div class="text-(--ui-color-design-tinted-na-content) mt-1"><p>Задаёт ошибки формы для указанного пути. Без пути заменяет все ошибки.</p></div> |
+| `errors`{lang="ts-type"} | `Ref<FormErrorWithId[]>`{lang="ts-type"} <br> <div class="text-(--ui-color-design-tinted-na-content) mt-1"><p>Ссылка на массив с ошибками валидации. Через неё можно читать и изменять сведения об ошибках.</p></div> |
 | `disabled`{lang="ts-type"} | `Ref<boolean>`{lang="ts-type"} |
-| `dirty`{lang="ts-type"} | `Ref<boolean>`{lang="ts-type"} `true` if at least one form field has been updated by the user. |
-| `dirtyFields`{lang="ts-type"} | `ReadonlySet<DeepReadonly<keyof T>>`{lang="ts-type"} Tracks fields that have been modified by the user. |
-| `touchedFields`{lang="ts-type"} | `ReadonlySet<DeepReadonly<keyof T>>`{lang="ts-type"} Tracks fields that the user interacted with. |
-| `blurredFields`{lang="ts-type"} | `ReadonlySet<DeepReadonly<keyof T>>`{lang="ts-type"} Tracks fields blurred by the user. |
+| `dirty`{lang="ts-type"} | `Ref<boolean>`{lang="ts-type"} `true`, если пользователь изменил хотя бы одно поле формы. |
+| `dirtyFields`{lang="ts-type"} | `ReadonlySet<DeepReadonly<keyof T>>`{lang="ts-type"} Отслеживает поля, изменённые пользователем. |
+| `touchedFields`{lang="ts-type"} | `ReadonlySet<DeepReadonly<keyof T>>`{lang="ts-type"} Отслеживает поля, с которыми взаимодействовал пользователь. |
+| `blurredFields`{lang="ts-type"} | `ReadonlySet<DeepReadonly<keyof T>>`{lang="ts-type"} Отслеживает поля, потерявшие фокус. |
 
-## Theme
+## Тема {#theme}
 
 :component-theme

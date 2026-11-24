@@ -1,6 +1,6 @@
 ---
 title: Link
-description: A wrapper around NuxtLink with extra props.
+description: 'Обёртка над NuxtLink с дополнительными пропсами.'
 category: navigation
 keywords:
   - anchor
@@ -10,7 +10,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Link.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/link
   - label: Nuxt UI
@@ -18,24 +18,24 @@ links:
     to: https://ui.nuxt.com/docs/components/link
 ---
 
-## Usage
+## Использование {#usage}
 
-The Link component is a wrapper around [`<NuxtLink>`](https://nuxt.com/docs/api/components/nuxt-link) using the [`custom`](https://router.vuejs.org/api/interfaces/RouterLinkProps.html#Properties-custom) prop. It provides a few extra props:
+Компонент Link — обёртка над [`<NuxtLink>`](https://nuxt.com/docs/api/components/nuxt-link), в которой используется пропс [`custom`](https://router.vuejs.org/api/interfaces/RouterLinkProps.html#Properties-custom). Он добавляет несколько пропсов:
 
-- `inactive-class` prop to set a class when the link is inactive, `active-class` is used when active.
-- `exact` prop to style with `active-class` when the link is active and the route is exactly the same as the current route.
-- `exact-query` and `exact-hash` props to style with `active-class` when the link is active and the query or hash is exactly the same as the current query or hash.
-  - use `exact-query="partial"` to style with `active-class` when the link is active and the query partially match the current query.
+- Пропс `inactive-class` задаёт класс для неактивной ссылки, а `active-class` применяется к активной.
+- Пропс `exact` применяет `active-class`, когда ссылка активна и маршрут в точности совпадает с текущим.
+- Пропсы `exact-query` и `exact-hash` применяют `active-class`, когда ссылка активна и query или hash в точности совпадают с текущими.
+  - `exact-query="partial"` применяет `active-class`, когда ссылка активна и query совпадает с текущим частично.
 
-The incentive behind this is to provide the same API as NuxtLink back in Nuxt 2 / Vue 2. You can read more about it in the Vue Router [migration from Vue 2](https://router.vuejs.org/guide/migration/#removal-of-the-exact-prop-in-router-link) guide.
+Цель — предоставить тот же API, что был у NuxtLink в Nuxt 2 / Vue 2. Подробнее об этом — в руководстве Vue Router [по миграции с Vue 2](https://router.vuejs.org/guide/migration/#removal-of-the-exact-prop-in-router-link).
 
 ::note
-It is used by the [`Breadcrumb`](/docs/components/breadcrumb/), [`Button`](/docs/components/button/), [`ContextMenu`](/docs/components/context-menu/), [`DropdownMenu`](/docs/components/dropdown-menu/) and [`NavigationMenu`](/docs/components/navigation-menu/) components.
+Его используют компоненты [`Breadcrumb`](/docs/components/breadcrumb/), [`Button`](/docs/components/button/), [`ContextMenu`](/docs/components/context-menu/), [`DropdownMenu`](/docs/components/dropdown-menu/) и [`NavigationMenu`](/docs/components/navigation-menu/).
 ::
 
-### Tag
+### Тег {#tag}
 
-The `Link` components renders an `<a>` tag when a `to` prop is provided, otherwise it renders a `<button>` tag. You can use the `as` prop to change fallback tag.
+Компонент `Link` отрисовывает тег `<a>`, если передан пропс `to`, иначе — тег `<button>`. Пропс `as` меняет запасной тег.
 
 ::component-code
 ---
@@ -43,32 +43,32 @@ props:
   to: ''
   as: 'button'
 slots:
-  default: Link
+  default: Ссылка
 ---
 ::
 
 ::note
-You can inspect the rendered HTML by changing the `to` prop.
+Изменяя пропс `to`, можно посмотреть на отрисованный HTML.
 ::
 
-### Style
+### Стиль {#style}
 
-By default, the link has default active and inactive styles, check out the [#theme](#theme) section.
+По умолчанию у ссылки есть стили активного и неактивного состояний, см. раздел [#theme](#theme).
 
 ::component-code
 ---
 props:
   to: /docs/components/link/
 slots:
-  default: Link
+  default: Ссылка
 ---
 ::
 
 ::note
-Try changing the `to` prop to see the active and inactive states.
+Измените пропс `to`, чтобы увидеть активное и неактивное состояния.
 ::
 
-You can override this behavior by using the `raw` prop and provide your own styles using `class`, `active-class` and `inactive-class`.
+Это поведение можно переопределить пропсом `raw` и задать свои стили через `class`, `active-class` и `inactive-class`.
 
 ::component-code
 ---
@@ -80,13 +80,13 @@ props:
   activeClass: 'font-(--ui-font-weight-bold) text-(--ui-color-copilot-accent-primary)'
   inactiveClass: 'text-(--ui-color-accent-main-alert)'
 slots:
-  default: Link
+  default: Ссылка
 ---
 
-Link
+Ссылка
 ::
 
-You can use the `is-action` prop to indicate a pseudo-link.
+Пропс `is-action` помечает псевдоссылку.
 
 ::component-code
 ---
@@ -94,14 +94,14 @@ props:
   isAction: true
   to: /docs/components/link/
 slots:
-  default: Link
+  default: Ссылка
 ---
 
-Link
+Ссылка
 ::
 
 ::callout
-If you're using the [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) extension for VSCode and wish to get autocompletion for the `active-class` and `inactive-class` props, you can add the following settings to your `.vscode/settings.json`:
+Если в VSCode используется расширение [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss) и нужно автодополнение для пропсов `active-class` и `inactive-class`, добавьте в `.vscode/settings.json` такие настройки:
 
 ```json [.vscode/settings.json]
 {
@@ -113,28 +113,28 @@ If you're using the [Tailwind CSS IntelliSense](https://marketplace.visualstudio
 ```
 ::
 
-### Locale
+### Локаль {#locale}
 
-The Link component automatically integrates with [`@nuxtjs/i18n`](https://i18n.nuxtjs.org/) when installed. Internal links are automatically localized using the `$localePath` helper without requiring manual wrapping.
+Компонент Link автоматически интегрируется с [`@nuxtjs/i18n`](https://i18n.nuxtjs.org/), если он установлен. Внутренние ссылки локализуются хелпером `$localePath` без ручной обёртки.
 
 ```vue
 <template>
-  <!-- Automatically becomes /en/about or /fr/about based on current locale -->
+  <!-- Автоматически станет /en/about или /fr/about в зависимости от текущей локали -->
   <B24Link to="/about">About</B24Link>
 </template>
 ```
 
 ::tip
-You can still manually use `localePath()` or `localeRoute()` if needed.
+При необходимости `localePath()` или `localeRoute()` можно по-прежнему вызывать вручную.
 ::
 
 ::note{to="/docs/getting-started/integrations/i18n/nuxt/#dynamic-locale"}
-Learn more about Internationalization in Bitrix24 UI.
+Подробнее об интернационализации в Bitrix24 UI.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 ::component-props
 ---
@@ -144,13 +144,13 @@ ignore:
 ::
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attributes" target="_blank"}
-This component also supports all native `<a>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<a>`.
 ::
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

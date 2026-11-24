@@ -1,6 +1,6 @@
 ---
 title: FormField
-description: A container for form elements with built-in validation and error management.
+description: 'Контейнер для элементов формы со встроенной валидацией и управлением ошибками.'
 category: form
 keywords:
   - field wrapper
@@ -9,7 +9,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/FormField.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/form-field
   - label: Nuxt UI
@@ -17,13 +17,13 @@ links:
     to: https://ui.nuxt.com/docs/components/form-field
 ---
 
-## Usage
+## Использование {#usage}
 
-Wrap any form component with a FormField. Used in a [Form](/docs/components/form/), it provides validation and error handling.
+Оберните любой компонент формы в FormField. Внутри [Form](/docs/components/form/) он обеспечивает валидацию и обработку ошибок.
 
-### Label
+### Подпись {#label}
 
-Use the `label` prop to set the label for the form control.
+Пропс `label` задаёт подпись элемента формы.
 
 ::component-code
 ---
@@ -33,21 +33,21 @@ props:
 slots:
   default: |
 
-    <B24Input placeholder="Enter your email" />
+    <B24Input placeholder="Введите email" />
 ---
 
-:b24-input{placeholder="Enter your email"}
+:b24-input{placeholder="Введите email"}
 ::
 
 ::note
-The label `for` attribute and the form control are associated with a unique `id` if not provided.
+Атрибут `for` у подписи и элемент формы связываются через уникальный `id`, если он не задан.
 ::
 
 ::tip{to="#label-slot"}
-For a label that is more than text, use the `#label` slot.
+Если подпись — не просто текст, используйте слот `#label`.
 ::
 
-When using the `required` prop, an asterisk is added next to the label.
+Если указан пропс `required`, рядом с подписью появляется звёздочка.
 
 ::component-code
 ---
@@ -60,24 +60,18 @@ props:
 slots:
   default: |
 
-    <B24Input placeholder="Enter your email" />
+    <B24Input placeholder="Введите email" />
 ---
 
-:b24-input{placeholder="Enter your email"}
+:b24-input{placeholder="Введите email"}
 ::
 
-### Label slot
+### Слот label {#label-slot}
 
-Use the `#label` slot when the label needs more than a string — a badge, a
-counter, a short piece of state. The slot replaces the label's *content*, not
-the `<label>` element around it, so whatever association the field already had
-is unchanged.
+Слот `#label` пригодится, когда подписи мало одной строки: нужны бейдж, счётчик, короткое состояние. Слот заменяет *содержимое* подписи, а не сам элемент `<label>` вокруг неё, поэтому связь поля с подписью не меняется.
 
 ::warning
-Anything you put here becomes part of the control's accessible name: a badge
-reading `Work` makes a screen reader announce *"Email Work"*. Mark decorative
-content `aria-hidden="true"`, as below. Avoid interactive content — a link or
-button inside a `<label>` both activates itself and toggles the control.
+Всё, что вы разместите в слоте, становится частью доступного имени элемента: бейдж `Work` заставит скринридер произнести *«Email Work»*. Декоративному содержимому ставьте `aria-hidden="true"`, как в примере ниже. Избегайте интерактивных элементов: ссылка или кнопка внутри `<label>` и срабатывает сама, и переключает элемент формы.
 ::
 
 ::component-code
@@ -89,23 +83,21 @@ slots:
   label: |
 
     Email
-    <B24Badge label="Work" size="xs" aria-hidden="true" />
+    <B24Badge label="Работа" size="xs" aria-hidden="true" />
 
   default: |
 
-    <B24Input placeholder="Enter your email" />
+    <B24Input placeholder="Введите email" />
 ---
 
 #label
-Email :b24-badge{label="Work" size="xs" aria-hidden="true"}
+Email :b24-badge{label="Работа" size="xs" aria-hidden="true"}
 
 #default
-:b24-input{placeholder="Enter your email"}
+:b24-input{placeholder="Введите email"}
 ::
 
-The slot receives the `label` prop, so a wrapper can decorate the string
-instead of replacing it — useful when the text itself comes from a schema or a
-translation:
+Слот получает пропс `label`, поэтому обёртка может дополнить строку, а не заменять её. Это удобно, когда текст приходит из схемы или перевода:
 
 ```vue
 <B24FormField label="Email" name="email">
@@ -118,22 +110,15 @@ translation:
 </B24FormField>
 ```
 
-`hint`, `description`, `help` and `error` take a slot the same way, and each
-receives the prop it replaces — so setting the prop alongside the slot keeps
-the text in one place. [What is announced is what was
-drawn](#what-is-announced-is-what-was-drawn) covers what each block contributes
-to the control's accessible description. The `required` asterisk is drawn on
-the `<label>` element, so it survives a custom `#label` slot.
+Слоты `hint`, `description`, `help` и `error` работают так же, и каждый получает пропс, который заменяет, поэтому пропс рядом со слотом сохраняет текст в одном месте. В разделе [Что озвучивается — то, что отрисовано](#what-is-announced-is-what-was-drawn) описано, что каждый блок вносит в доступное описание элемента. Звёздочка `required` рисуется на элементе `<label>`, поэтому остаётся и при собственном слоте `#label`.
 
 ::caution
-`#error` goes further than the others: the error block renders whenever an
-`#error` slot exists, with or without an actual error, and takes `help` with
-it. [Error and help slots](#error-and-help-slots) has the working pattern.
+`#error` идёт дальше остальных: блок ошибки отрисовывается всегда, когда есть слот `#error`, независимо от наличия самой ошибки, и вытесняет `help`. Рабочий подход описан в разделе [Слоты error и help](#error-and-help-slots).
 ::
 
-### Description
+### Описание {#description}
 
-Use the `description` prop to provide additional information below the label.
+Пропс `description` добавляет дополнительную информацию под подписью.
 
 ::component-code
 ---
@@ -142,27 +127,21 @@ ignore:
   - label
 props:
   label: Email
-  description: We'll never share your email with anyone else.
+  description: Мы никому не передадим ваш email.
 slots:
   default: |
 
-    <B24Input placeholder="Enter your email" class="w-full" />
+    <B24Input placeholder="Введите email" class="w-full" />
 ---
 
-:b24-input{placeholder="Enter your email" class="w-full"}
+:b24-input{placeholder="Введите email" class="w-full"}
 ::
 
-### Description slot
+### Слот description {#description-slot}
 
-Use the `#description` slot when the description needs markup — a link to the
-policy the field refers to, a piece of emphasis, an inline code sample. It
-replaces the content of the same `<p>` the prop fills.
+Слот `#description` нужен, когда в описании требуется разметка: ссылка на политику, выделение, фрагмент кода. Он заменяет содержимое того же `<p>`, которое заполняет пропс.
 
-The slot on its own is enough to be announced — `aria-describedby` names the
-blocks that were actually drawn, whichever of the two drew them. Setting the
-prop as well is still worth it: the slot receives it, so decorating the value
-costs one interpolation instead of restating it. See [What is announced is what
-was drawn](#what-is-announced-is-what-was-drawn).
+Одного слота достаточно, чтобы описание озвучивалось: `aria-describedby` ссылается на реально отрисованные блоки, какой бы способ их ни создал. Но пропс всё равно стоит указать: слот получает его, и оформить значение — это одна интерполяция, а не повторение текста. См. [Что озвучивается — то, что отрисовано](#what-is-announced-is-what-was-drawn).
 
 ::component-code
 ---
@@ -170,30 +149,27 @@ prettier: true
 props:
   name: email
   label: Email
-  description: We'll never share it.
+  description: Мы никому его не передадим.
 slots:
   description: |
 
-    We'll never share it. <a href="/docs/components/form/" class="underline">How we use your data</a>
+    Мы никому его не передадим. <a href="/docs/components/form/" class="underline">Как мы используем данные</a>
 
   default: |
 
-    <B24Input placeholder="Enter your email" class="w-full" />
+    <B24Input placeholder="Введите email" class="w-full" />
 ---
 
 #description
-We'll never share it. [How we use your data](/docs/components/form/)
+Мы никому его не передадим. [Как мы используем данные](/docs/components/form/)
 
 #default
-:b24-input{placeholder="Enter your email" class="w-full"}
+:b24-input{placeholder="Введите email" class="w-full"}
 ::
 
-A link is safe here in a way it is not in `#label`: the description sits
-outside the `<label>` element, so clicking it does not toggle the control.
+Ссылка здесь безопасна, в отличие от `#label`: описание находится вне элемента `<label>`, поэтому щелчок по нему не переключает элемент формы.
 
-The slot receives the `description` prop, so the wrapper decorates the string
-rather than restating it — which matters when the text comes from a schema or
-a translation, and is what keeps the prop and the visible text in step:
+Слот получает пропс `description`, поэтому обёртка оформляет строку, а не повторяет её. Это важно, когда текст приходит из схемы или перевода, и это же держит пропс и видимый текст в согласии:
 
 ```vue
 <B24FormField label="Email" name="email" description="We'll never share it.">
@@ -208,9 +184,9 @@ a translation, and is what keeps the prop and the visible text in step:
 </B24FormField>
 ```
 
-### Hint
+### Подсказка {#hint}
 
-Use the `hint` prop to display a hint message next to the label.
+Пропс `hint` выводит подсказку рядом с подписью.
 
 ::component-code
 ---
@@ -219,24 +195,21 @@ ignore:
   - label
 props:
   label: Email
-  hint: Optional
+  hint: Необязательно
 slots:
   default: |
 
-    <B24Input placeholder="Enter your email" />
+    <B24Input placeholder="Введите email" />
 ---
 
-:b24-input{placeholder="Enter your email"}
+:b24-input{placeholder="Введите email"}
 ::
 
-### Hint slot
+### Слот hint {#hint-slot}
 
-Use the `#hint` slot when the hint carries state rather than a word — a
-character count, a badge, an icon. It renders inside the label row, next to
-the label itself.
+Слот `#hint` нужен, когда подсказка несёт состояние, а не слово: счётчик символов, бейдж, иконку. Он отрисовывается в строке подписи, рядом с самой подписью.
 
-Pass `hint` as well as the slot, for the same reason as `#description`: the
-announcement follows the prop, not the slot.
+Как и для `#description`, передавайте и `hint`, и слот: озвучивание следует за пропсом, а не за слотом.
 
 ::component-code
 ---
@@ -252,35 +225,27 @@ slots:
 
   default: |
 
-    <B24Input placeholder="Tell us about yourself" class="w-full" />
+    <B24Input placeholder="Расскажите о себе" class="w-full" />
 ---
 
 #hint
 :b24-badge{label="0 / 140" size="xs" color="air-secondary-accent-1"}
 
 #default
-:b24-input{placeholder="Tell us about yourself" class="w-full"}
+:b24-input{placeholder="Расскажите о себе" class="w-full"}
 ::
 
 ::note
-The hint is a sibling of the `<label>`, not part of it, so its content does not
-join the control's accessible name — unlike `#label`. It is announced through
-`aria-describedby` instead.
+Подсказка находится рядом с `<label>`, а не внутри него, поэтому её содержимое не входит в доступное имя элемента, в отличие от `#label`. Озвучивается она через `aria-describedby`.
 ::
 
 ::caution
-**A hint needs a label.** The hint renders inside the label row, and that row
-is only drawn when `label` or `#label` is present — so a `hint` on a label-less
-field renders nothing at all, and nothing is announced either. Silent, but at
-least consistent: until
-[#497](https://github.com/bitrix24/b24ui/issues/497) the control also
-advertised `aria-describedby="…-hint"`, pointing at an element that was never
-drawn.
+**Подсказке нужна подпись.** Подсказка отрисовывается в строке подписи, а эта строка есть, только когда задан `label` или `#label`. Поэтому `hint` у поля без подписи не отображается и не озвучивается. Это тихо, но последовательно: до [#497](https://github.com/bitrix24/b24ui/issues/497) элемент ещё и объявлял `aria-describedby="…-hint"`, указывая на элемент, которого никогда не было.
 ::
 
-### Help
+### Справка {#help}
 
-Use the `help` prop to display a help message below the form control. When used together with the `error` prop, the `error` prop takes precedence.
+Пропс `help` выводит справочное сообщение под элементом формы. Вместе с пропсом `error` приоритет у `error`.
 
 ::component-code
 ---
@@ -289,21 +254,21 @@ ignore:
   - label
 props:
   label: Email
-  help: Please enter a valid email address.
+  help: Введите корректный адрес электронной почты.
 slots:
   default: |
 
-    <B24Input placeholder="Enter your email" class="w-full" />
+    <B24Input placeholder="Введите email" class="w-full" />
 ---
 
-:b24-input{placeholder="Enter your email" class="w-full"}
+:b24-input{placeholder="Введите email" class="w-full"}
 ::
 
-### Error
+### Ошибка {#error}
 
-Use the `error` prop to display an error message below the form control. When used together with the `help` prop, the `error` prop takes precedence.
+Пропс `error` выводит сообщение об ошибке под элементом формы. Вместе с пропсом `help` приоритет у `error`.
 
-When used inside a [Form](/docs/components/form/), this is automatically set when a validation error occurs.
+Внутри [Form](/docs/components/form/) он устанавливается автоматически при ошибке валидации.
 
 ::component-code
 ---
@@ -312,62 +277,47 @@ ignore:
   - label
 props:
   label: Email
-  error: Please enter a valid email address.
+  error: Введите корректный адрес электронной почты.
 slots:
   default: |
 
-    <b24Input placeholder="Enter your email" class="w-full" />
+    <b24Input placeholder="Введите email" class="w-full" />
 ---
 
-:b24-input{placeholder="Enter your email" class="w-full"}
+:b24-input{placeholder="Введите email" class="w-full"}
 ::
 
-### What is announced is what was drawn
+### Что озвучивается — то, что отрисовано {#what-is-announced-is-what-was-drawn}
 
-Every one of the five blocks renders from `props.x || !!slots.x` — the prop or
-the slot will do. `aria-describedby` follows the same rule: it names the blocks
-that ended up in the document, and only those.
+Каждый из пяти блоков отрисовывается по условию `props.x || !!slots.x`: достаточно пропса или слота. `aria-describedby` подчиняется тому же правилу: он ссылается на блоки, которые оказались в документе, и только на них.
 
-| what you pass | block on screen | named in `aria-describedby` |
+| что вы передаёте | блок на экране | указан в `aria-describedby` |
 |---|---|---|
-| `description` prop | yes | yes |
-| `#description` slot, no prop | yes | yes |
-| `hint` prop, no `label` | no | no |
-| `error` and `help` together | error only | error only |
+| пропс `description` | да | да |
+| слот `#description` без пропса | да | да |
+| пропс `hint` без `label` | нет | нет |
+| `error` и `help` вместе | только error | только error |
 
-Two conditions are worth knowing, because both hide a block you asked for:
-`hint` lives in the label row and needs a `label` or `#label` to exist at all,
-and `help` is the `v-else-if` of the error branch, so a rendered error takes
-its place. In both cases nothing is drawn and nothing is announced.
+Стоит знать два условия, потому что оба скрывают запрошенный блок: `hint` находится в строке подписи и существует только при наличии `label` или `#label`, а `help` — это `v-else-if` ветки ошибки, поэтому отрисованная ошибка занимает его место. В обоих случаях ничего не отрисовывается и ничего не озвучивается.
 
 ::note
-This is a deliberate divergence from `nuxt/ui`, which builds the attribute from
-the props alone — so a slot with no prop went unannounced, and a prop whose
-block never drew left the attribute naming an id that was not in the document.
-Fixed here in [#497](https://github.com/bitrix24/b24ui/issues/497) and recorded
-as an invariant in `.sync/PORTING.md` §2, so a later port does not revert it.
+Это намеренное отличие от `nuxt/ui`, где атрибут строится только по пропсам: слот без пропса не озвучивался, а пропс, блок которого не отрисовался, оставлял атрибут с id, которого нет в документе. Исправлено здесь в [#497](https://github.com/bitrix24/b24ui/issues/497) и записано как инвариант в `.sync/PORTING.md` §2, чтобы последующий перенос не откатил это.
 ::
 
-### Error and help slots
+### Слоты error и help {#error-and-help-slots}
 
-`#error` is where the rule above bites hardest, because the error block has a
-second condition on it:
+`#error` — место, где правило выше проявляется сильнее всего, потому что у блока ошибки есть второе условие:
 
 ```
 v-if="props.error !== false && ((typeof error === 'string' && error) || !!slots.error)"
 v-else-if="props.help || !!slots.help"
 ```
 
-An `#error` slot alone satisfies that `v-if` **whether or not there is an
-error**. So the block renders permanently, `help` — the `v-else-if` of the same
-branch — never renders at all, and the control still reads
-`aria-invalid="false"`: that attribute reports the field's error state, and
-there is none. The block is described, since it was drawn, but nothing tells
-assistive technology the field is invalid:
+Один слот `#error` удовлетворяет этому `v-if` **независимо от того, есть ли ошибка**. Поэтому блок отрисовывается постоянно, `help` — `v-else-if` той же ветки — не отрисовывается вовсе, а элемент по-прежнему сообщает `aria-invalid="false"`: этот атрибут отражает состояние ошибки поля, а её нет. Блок описан, раз он отрисован, но вспомогательным технологиям никто не сообщает, что поле некорректно:
 
 ```vue
-<!-- Don't: the message is always visible, `help` never is, and a screen
-     reader is told the field is valid. -->
+<!-- Так нельзя: сообщение видно всегда, а `help` — никогда, и скринридер
+     получает информацию, что поле корректно. -->
 <B24FormField label="Email" name="email" help="We'll only use it to sign you in.">
   <template #error>
     <WarningIcon class="size-4" /> Please enter a valid email address.
@@ -377,8 +327,7 @@ assistive technology the field is invalid:
 </B24FormField>
 ```
 
-Bind `error` to the message — or to `false` when there is none — and use the
-slot for markup only. Then the branch behaves exactly as it does with the prop:
+Привяжите `error` к сообщению (или к `false`, когда сообщения нет), а слот используйте только для разметки. Тогда ветка работает так же, как с пропсом:
 
 ```vue
 <script setup lang="ts">
@@ -412,37 +361,30 @@ const message = computed<string | false>(() =>
 </template>
 ```
 
-| `message` | error block | help block | `aria-invalid` | `aria-describedby` |
+| `message` | блок ошибки | блок справки | `aria-invalid` | `aria-describedby` |
 |---|---|---|---|---|
-| `false` | — | shown | `false` | `…-help` |
-| `'Please enter…'` | your markup | — | `true` | `…-error` |
+| `false` | — | показан | `false` | `…-help` |
+| `'Введите корректный адрес…'` | ваша разметка | — | `true` | `…-error` |
 
-`help` and `error` are mutually exclusive on screen and in the attribute
-alike — whichever block drew is the one named.
+`help` и `error` взаимоисключающи и на экране, и в атрибуте: названным оказывается тот блок, который отрисован.
 
 ::note
-Inside a [Form](/docs/components/form/) you do not set `error` at all — the
-Form sets it from the schema, and it is a string or `undefined`. `undefined` is
-not `false`, so an `#error` slot still renders permanently there. Use `#error`
-only on fields whose `error` you control, or use the prop and style the block
-through `b24ui.error`.
+Внутри [Form](/docs/components/form/) `error` задавать не нужно: Form устанавливает его по схеме, и это строка или `undefined`. `undefined` — не `false`, поэтому слот `#error` и там отрисовывается постоянно. Используйте `#error` только у полей, где `error` под вашим контролем, либо используйте пропс и стилизуйте блок через `b24ui.error`.
 ::
 
-`#help` follows the general rule: pass `help` alongside it, or the help text
-appears with nothing describing it. It disappears whenever an error is
-showing, by design.
+`#help` подчиняется общему правилу: передавайте `help` вместе с ним, иначе справочный текст появится без описания. Когда показывается ошибка, он исчезает, так задумано.
 
-### Error pattern
+### Шаблон ошибки {#error-pattern}
 
-Use the `error-pattern` prop to match form errors with a regular expression. This is especially relevant for components with array values such as [InputTags](/docs/components/input-tags/), where errors include array indices in their name (e.g. `tags.0`).
+Пропс `error-pattern` сопоставляет ошибки формы с регулярным выражением. Это особенно важно для компонентов со значением-массивом, например [InputTags](/docs/components/input-tags/): имя ошибки в них содержит индексы массива (например, `tags.0`).
 
 ::tip{to="/docs/components/form/#error-reporting"}
-See an example of using `error-pattern` within a Form.
+Пример использования `error-pattern` внутри Form.
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the FormField, the `size` is proxied to the form control.
+Пропс `size` меняет размер FormField и передаётся элементу формы.
 
 ::component-code
 ---
@@ -454,22 +396,22 @@ ignore:
   - help
 props:
   label: Email
-  description: We'll never share your email with anyone else.
-  hint: Optional
-  help: Please enter a valid email address.
+  description: Мы никому не передадим ваш email.
+  hint: Необязательно
+  help: Введите корректный адрес электронной почты.
   size: lg
 slots:
   default: |
 
-    <B24Input placeholder="Enter your email" class="w-full" />
+    <B24Input placeholder="Введите email" class="w-full" />
 ---
 
-:b24-input{placeholder="Enter your email" class="w-full"}
+:b24-input{placeholder="Введите email" class="w-full"}
 ::
 
-### Orientation
+### Ориентация {#orientation}
 
-Use the `orientation` prop to change the layout of the FormField. Defaults to `vertical`.
+Пропс `orientation` меняет раскладку FormField. По умолчанию `vertical`.
 
 ::component-code
 ---
@@ -480,31 +422,31 @@ ignore:
 props:
   orientation: horizontal
   label: Email
-  help: Please enter a valid email address.
+  help: Введите корректный адрес электронной почты.
   class: w-72
 slots:
   default: |
 
-    <B24Input placeholder="Enter your email" class="w-full" />
+    <B24Input placeholder="Введите email" class="w-full" />
 ---
 
-:b24-input{placeholder="Enter your email" class="w-full"}
+:b24-input{placeholder="Введите email" class="w-full"}
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme
-### Slots
+### Слоты {#slots-1}
 
 <ComponentSlots component="FormField" />
 
