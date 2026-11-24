@@ -113,9 +113,11 @@ onMounted(async () => {
       }
 
       // Render regular item
+      const icon = safeIcon(item.icon)
+
       return [
-        safeIcon(item.icon)
-          ? h(safeIcon(item.icon)!, { class: styles.value.itemLeadingIcon() })
+        icon
+          ? h(icon, { class: styles.value.itemLeadingIcon() })
           : null,
         h('span', { class: styles.value.itemWrapper() }, [
           h('span', { class: styles.value.itemLabel() }, item.label),

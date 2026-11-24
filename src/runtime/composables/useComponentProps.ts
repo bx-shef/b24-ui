@@ -3,7 +3,7 @@ import { computed, getCurrentInstance } from 'vue'
 import defu from 'defu'
 import { createContext } from 'reka-ui'
 import { useAppConfig } from '#imports'
-import { get, isUnsafeAs, isUnsafeComponent } from '../utils'
+import { get, isUnsafeAs, isUnsafeIcon } from '../utils'
 
 export type ThemeContext = {
   defaults: ComputedRef<Record<string, Record<string, any> | undefined>>
@@ -74,11 +74,11 @@ const ICON_PROP = /icon$/i
 
 /**
  * Whether `value` must never be handed out for `prop`: an `as` that Vue would compile or render
- * as markup, or an icon (`icon`, `trailingIcon`, `selectedIcon`, …) that is an unsafe component object.
+ * as markup, or an icon (`icon`, `trailingIcon`, `selectedIcon`, …) that `isUnsafeIcon` rejects (a string, an unsafe component object).
  */
 function isUnsafeValue(prop: string, value: unknown): boolean {
   if (prop === 'as') return isUnsafeAs(value)
-  return ICON_PROP.test(prop) && isUnsafeComponent(value)
+  return ICON_PROP.test(prop) && isUnsafeIcon(value)
 }
 
 /**

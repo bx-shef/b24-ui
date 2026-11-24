@@ -127,7 +127,7 @@ const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.breadcrumb
                 >
                   <Component
                     :is="safeIcon(item.icon)"
-                    v-if="item.icon"
+                    v-if="safeIcon(item.icon)"
                     data-slot="linkLeadingIcon"
                     :class="b24ui.linkLeadingIcon({ class: [props.b24ui?.linkLeadingIcon, item.b24ui?.linkLeadingIcon], active: item.active ?? (index === props.items!.length - 1) })"
                   />

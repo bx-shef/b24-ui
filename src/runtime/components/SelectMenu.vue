@@ -744,7 +744,7 @@ defineExpose({
           <slot name="item-trailing" :item="(item as NestedItem<T>)" :index="index" :b24ui="b24ui">
             <Component
               :is="safeIcon(item.icon)"
-              v-if="isSelectItem(item) && item.icon"
+              v-if="isSelectItem(item) && safeIcon(item.icon)"
               data-slot="itemLeadingIcon"
               :class="b24ui.itemLeadingIcon({ class: [props.b24ui?.itemLeadingIcon, item.b24ui?.itemLeadingIcon], colorItem: item?.color })"
             />

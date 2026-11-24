@@ -168,7 +168,7 @@ const groups = computed<ContextMenuItem[][]>(() =>
           />
           <Component
             :is="safeIcon(item.icon)"
-            v-else-if="item.icon"
+            v-else-if="safeIcon(item.icon)"
             data-slot="itemLeadingIcon"
             :class="b24ui.itemLeadingIcon({ class: [b24uiOverride?.itemLeadingIcon, item.b24ui?.itemLeadingIcon], color: item?.color, active })"
           />

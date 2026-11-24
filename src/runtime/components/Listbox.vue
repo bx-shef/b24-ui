@@ -334,7 +334,7 @@ const filteredItems = computed(() => filteredGroups.value.flatMap(group => group
         <slot name="item-leading" :item="(item as NestedItem<T>)" :index="index" :b24ui="b24ui">
           <Component
             :is="safeIcon(item.icon)"
-            v-if="item.icon"
+            v-if="safeIcon(item.icon)"
             data-slot="itemLeadingIcon"
             :class="b24ui.itemLeadingIcon({ class: props.b24ui?.itemLeadingIcon })"
           />

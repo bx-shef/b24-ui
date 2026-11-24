@@ -88,22 +88,26 @@ onMounted(async () => {
         })
         .run()
     },
-    renderItem: (item, styles) => [
+    renderItem: (item, styles) => {
+      const icon = safeIcon(item.icon)
+
+      return [
       /**
        * @memo Icon - first, Avatar - second
        */
-      safeIcon(item.icon)
-        ? h(safeIcon(item.icon)!, { class: styles.value.itemLeadingIcon() })
-        : item.avatar
-          ? h(B24Avatar, { ...item.avatar, size: styles.value.itemLeadingAvatarSize(), class: styles.value.itemLeadingAvatar() })
-          : null,
-      h('span', { class: styles.value.itemWrapper() }, [
-        h('span', { class: styles.value.itemLabel() }, item.label),
-        item.description
-          ? h('span', { class: styles.value.itemDescription() }, item.description)
-          : null
-      ])
-    ]
+        icon
+          ? h(icon, { class: styles.value.itemLeadingIcon() })
+          : item.avatar
+            ? h(B24Avatar, { ...item.avatar, size: styles.value.itemLeadingAvatarSize(), class: styles.value.itemLeadingAvatar() })
+            : null,
+        h('span', { class: styles.value.itemWrapper() }, [
+          h('span', { class: styles.value.itemLabel() }, item.label),
+          item.description
+            ? h('span', { class: styles.value.itemDescription() }, item.description)
+            : null
+        ])
+      ]
+    }
   })
 
   props.editor.registerPlugin(menu.plugin)

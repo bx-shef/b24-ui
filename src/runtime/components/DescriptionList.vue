@@ -172,7 +172,7 @@ const normalizedItems = computed(() => {
             <slot name="leading" :item="item" :index="index" :b24ui="b24ui">
               <Component
                 :is="safeIcon(item.icon)"
-                v-if="item.icon"
+                v-if="safeIcon(item.icon)"
                 data-slot="icon"
                 :class="b24ui.icon({
                   class: [

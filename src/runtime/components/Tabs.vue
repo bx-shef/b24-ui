@@ -166,7 +166,7 @@ defineExpose({
         <slot name="leading" :item="item" :index="index" :b24ui="b24ui">
           <Component
             :is="safeIcon(item.icon)"
-            v-if="item.icon"
+            v-if="safeIcon(item.icon)"
             data-slot="leadingIcon"
             :class="b24ui.leadingIcon({ class: [props.b24ui?.leadingIcon, item.b24ui?.leadingIcon] })"
           />
