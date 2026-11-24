@@ -11,6 +11,9 @@ import { ClientOnly } from '#components'
 import SignIcon from '@bitrix24/b24icons-vue/main/SignIcon'
 import Cross30Icon from '@bitrix24/b24icons-vue/actions/Cross30Icon'
 
+// Reka UI keeps the close timer running after unmount, a 5s one fires once the test environment is gone
+const duration = 2 ** 31 - 1
+
 const ToastWrapper = defineComponent({
   components: {
     B24Toaster: Toaster,
@@ -18,7 +21,8 @@ const ToastWrapper = defineComponent({
     ClientOnly
   },
   inheritAttrs: false,
-  template: `<B24Toaster :portal="false">
+  setup: () => ({ duration }),
+  template: `<B24Toaster :portal="false" :duration="duration">
   <ClientOnly>
     <B24Toast v-bind="$attrs">
       <template v-for="(_, name) in $slots" #[name]="slotData">
@@ -74,9 +78,9 @@ describe('Toast', () => {
       components: { B24Toaster: Toaster },
       setup() {
         toast = useToast()
-        return {}
+        return { duration }
       },
-      template: `<B24Toaster :portal="false" />`
+      template: `<B24Toaster :portal="false" :duration="duration" />`
     })
 
     const wrapper = await mountSuspended(Harness)
@@ -102,9 +106,9 @@ describe('Toast', () => {
       components: { B24Toaster: Toaster },
       setup() {
         toast = useToast()
-        return {}
+        return { duration }
       },
-      template: `<B24Toaster :portal="false" :expand="false" />`
+      template: `<B24Toaster :portal="false" :expand="false" :duration="duration" />`
     })
 
     const wrapper = await mountSuspended(Harness)
@@ -122,13 +126,13 @@ describe('Toast', () => {
   })
 
   it('labels the toasts with the label prop', async () => {
-    const wrapper = await mountSuspended(Toaster, { props: { portal: false, label: 'Alert' } })
+    const wrapper = await mountSuspended(Toaster, { props: { portal: false, duration, label: 'Alert' } })
 
     expect(wrapper.findComponent({ name: 'ToastProvider' }).props('label')).toBe('Alert')
   })
 
   it('does not pass attributes down to the provider', async () => {
-    const wrapper = await mountSuspended(Toaster, { props: { portal: false }, attrs: { limit: 1 } })
+    const wrapper = await mountSuspended(Toaster, { props: { portal: false, duration }, attrs: { limit: 1 } })
 
     expect(wrapper.findComponent(ToastProvider).props('limit')).toBeUndefined()
   })
