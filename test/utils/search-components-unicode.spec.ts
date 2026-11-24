@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { describe, it, expect } from 'vitest'
-import { scoreComponent, tokenize } from '../../docs/server/utils/searchComponents'
+import { MAX_QUERY_LENGTH, scoreComponent, tokenize } from '../../docs/server/utils/searchComponents'
 
 /**
  * Russian queries for the MCP component search. `tokenize()` used to split on
@@ -116,5 +116,29 @@ describe('Russian keywords in the docs', () => {
     const source = read(file)
     expect(source).toMatch(new RegExp(`^ {2}- ${keyword}$`, 'm'))
     expect(source).toMatch(/^keywords:\n(?: {2}- .+\n)* {2}- [a-z]/m)
+  })
+})
+
+describe('search query limits', () => {
+  const component = { name: 'modal', title: 'Ёлка', description: 'Модальное окно', keywords: ['диалог'] }
+
+  it('does not throw on a single huge token', () => {
+    expect(() => scoreComponent(component, 'а'.repeat(100000))).not.toThrow()
+    expect(() => scoreComponent(component, 'a'.repeat(100000) + '!')).not.toThrow()
+  })
+
+  it('stays fast on a query of thousands of words', () => {
+    const query = Array.from({ length: 20000 }, (_, i) => `слово${i}`).join(' ')
+    const started = performance.now()
+    scoreComponent(component, query)
+    expect(performance.now() - started).toBeLessThan(500)
+  })
+
+  it('ignores text past MAX_QUERY_LENGTH', () => {
+    expect(scoreComponent(component, 'x'.repeat(MAX_QUERY_LENGTH) + ' диалог')).toBe(0)
+  })
+
+  it('folds a decomposed ё like a composed one', () => {
+    expect(scoreComponent(component, 'ёлка'.normalize('NFD'))).toBe(scoreComponent(component, 'ёлка'))
   })
 })

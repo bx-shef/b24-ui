@@ -1,3 +1,12 @@
+/**
+ * Longest query and most tokens scored. The query comes from an external MCP
+ * client; every token compiles three RegExps per component, and V8 refuses to
+ * compile a single token of ~50k characters, so both are capped. The tool
+ * schema rejects longer queries; the cap here keeps direct callers bounded too.
+ */
+export const MAX_QUERY_LENGTH = 200
+export const MAX_QUERY_TOKENS = 16
+
 export interface SearchableComponent {
   name?: string
   title?: string
@@ -13,6 +22,7 @@ export interface SearchableComponent {
  */
 function normalizeQuery(query: string): string {
   return query
+    .normalize('NFC')
     .toLowerCase()
     .replace(/ё/g, 'е')
     .normalize('NFD')
@@ -47,7 +57,7 @@ function matchesWord(text: string, token: string): boolean {
  * unrelated words.
  */
 export function scoreComponent(component: SearchableComponent, query: string): number {
-  const search = normalizeQuery(query)
+  const search = normalizeQuery(query.slice(0, MAX_QUERY_LENGTH))
   if (!search) {
     return 0
   }
@@ -57,7 +67,7 @@ export function scoreComponent(component: SearchableComponent, query: string): n
   const title = normalizeQuery(component.title ?? '')
   const keywords = (component.keywords ?? []).map(keyword => normalizeQuery(keyword))
   const description = normalizeQuery(component.description ?? '')
-  const searchTokens = tokenize(search)
+  const searchTokens = tokenize(search).slice(0, MAX_QUERY_TOKENS)
 
   let score = 0
 
