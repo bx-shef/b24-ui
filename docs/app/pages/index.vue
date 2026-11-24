@@ -37,7 +37,7 @@ useSeoMeta({
 <template>
   <main v-if="page">
     <B24Container class="px-[22px] lg:px-8 py-10 sm:py-16 lg:py-24 relative flex flex-col items-start sm:items-center justify-center gap-[20px]">
-      <h1 class="relative text-label sm:text-center text-5xl sm:text-8xl font-bold mb-0">
+      <h1 class="vsk-gradient-text relative sm:text-center text-5xl sm:text-8xl font-bold mb-0">
         @bitrix24/b24ui <br> Bitrix24 UI-Kit
       </h1>
 
@@ -46,7 +46,7 @@ useSeoMeta({
       </div>
 
       <B24Separator class="my-4" type="dashed" accent="accent" />
-      <div class="mt-2 flex flex-wrap items-start sm:items-center gap-4">
+      <div class="vsk-hero-actions mt-2 flex flex-wrap items-start sm:items-center gap-4">
         <B24Button
           v-for="link of page.hero.links"
           :key="link.label"

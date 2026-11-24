@@ -5,6 +5,7 @@ import type { ToasterProps } from '@bitrix24/b24ui-nuxt'
 const route = useRoute()
 const appConfig = useAppConfig()
 const { style, link } = useTheme()
+const base = useRuntimeConfig().app.baseURL.replace(/\/$/, '')
 
 const { data: navigation } = await useFetch<ContentNavigationItem[]>('/api/navigation.json')
 
@@ -12,7 +13,12 @@ useHead({
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' }
   ],
-  link,
+  link: [
+    ...link.value,
+    { rel: 'icon', type: 'image/svg+xml', href: `${base}/favicon.svg` },
+    { rel: 'icon', type: 'image/png', sizes: '32x32', href: `${base}/favicon-32.png` },
+    { rel: 'apple-touch-icon', href: `${base}/apple-touch-icon.png` }
+  ],
   style
 })
 

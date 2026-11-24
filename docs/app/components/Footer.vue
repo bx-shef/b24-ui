@@ -3,19 +3,21 @@ import RocketIcon from '@bitrix24/b24icons-vue/outline/RocketIcon'
 import Bitrix24Icon from '@bitrix24/b24icons-vue/common-service/Bitrix24Icon'
 import TelegramIcon from '@bitrix24/b24icons-vue/outline/TelegramIcon'
 
-const route = useRoute()
 const config = useRuntimeConfig()
 const { b24DocsLink, tgLink } = useHeader()
 </script>
 
 <template>
-  <B24Separator :icon="route.path === '/' ? undefined : Bitrix24Icon" class="h-px" />
+  <hr class="vsk-iris-line">
 
   <B24Footer>
     <template #left>
-      <ProseP small accent="less">
-        Copyright © 2024-present Bitrix24
-      </ProseP>
+      <div class="flex items-center gap-2">
+        <Cornflower class="size-5" />
+        <ProseP small accent="less">
+          Copyright © 2024-present Bitrix24
+        </ProseP>
+      </div>
     </template>
 
     <template #right>
@@ -43,7 +45,7 @@ const { b24DocsLink, tgLink } = useHeader()
       />
     </template>
 
-    <NuxtLink :to="config.public.gitUrl" target="_blank" class="text-legend text-(length:--ui-font-size-sm) hover:underline">
+    <NuxtLink :to="config.public.gitUrl" target="_blank" class="vsk-link text-legend text-(length:--ui-font-size-sm)">
       Published under MIT License.
     </NuxtLink>
   </B24Footer>
