@@ -154,8 +154,8 @@ name: 'chat-prompt-queue-example'
 ---
 ::
 
-::tip{to="/docs/components/chat/#queued-messages"}
-Отправка сообщений из очереди остаётся за вами, рецепт с AI SDK — на обзорной странице **Chat**.
+::tip{to="#with-queued-messages"}
+Отправка сообщений из очереди остаётся за вами, рецепт с AI SDK — в примере **С очередью сообщений**.
 ::
 
 ## Примеры {#examples}
@@ -212,6 +212,69 @@ class: '!p-0'
 border: false
 name: 'chat-prompt-speech-recognition-example'
 ---
+::
+
+### С очередью сообщений {#with-queued-messages} :badge{label="Soon" class="align-text-top"}
+
+AI SDK не ставит сообщения в очередь: вызов `sendMessage` во время ответа запускает второй запрос рядом с текущим. С пропсом `status` `B24ChatPrompt` игнорирует отправку, пока чат в статусе `submitted` или `streaming`. Чтобы сохранить такие сообщения, привяжите `v-model:queue`: промпт покажет очередь панелью над собой, где пользователь может отправить сообщение сразу, изменить или удалить его, а следующее вы отправляете, когда чат снова станет `ready`.
+
+```vue
+<script setup lang="ts">
+import { ref, watch } from 'vue'
+import type { ChatPromptQueueItem } from '@bitrix24/b24ui-nuxt'
+import { useChat } from '@ai-sdk/vue'
+
+const input = ref('')
+const queue = ref<ChatPromptQueueItem[]>([])
+
+const { status, error, sendMessage, regenerate, stop } = useChat()
+
+function onSubmit() {
+  sendMessage({ text: input.value })
+  input.value = ''
+}
+
+function sendNext() {
+  const item = queue.value.shift()
+  if (item) {
+    sendMessage({ text: item.text })
+  }
+}
+
+watch(status, (value) => {
+  if (value === 'ready') {
+    sendNext()
+  }
+})
+
+// Сообщение, выбранное для немедленной отправки, стоит в начале очереди
+function onSend() {
+  if (status.value === 'submitted' || status.value === 'streaming') {
+    stop()
+  } else {
+    sendNext()
+  }
+}
+</script>
+
+<template>
+  <B24ChatPrompt
+    v-model="input"
+    v-model:queue="queue"
+    :status="status"
+    :error="error"
+    @submit="onSubmit"
+    @send="onSend"
+  >
+    <B24ChatPromptSubmit :status="status" @stop="stop()" @reload="regenerate()" />
+  </B24ChatPrompt>
+</template>
+```
+
+После `error` промпт отключается, а очередь ждёт, пока пользователь не перезапустит неудавшийся ответ. Остановка ответа сразу отправляет следующее сообщение из очереди.
+
+::note
+При подтверждении инструментов ответ, который ждёт решения пользователя, тоже имеет статус `ready`. Пропускайте `sendNext`, пока у последнего сообщения есть часть в состоянии `approval-requested`: новое сообщение оставит подтверждение без ответа.
 ::
 
 ## API

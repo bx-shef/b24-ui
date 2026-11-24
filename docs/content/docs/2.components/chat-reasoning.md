@@ -171,6 +171,46 @@ props:
 Установка, настройка сервера и примеры использования — на обзорной странице **Chat**.
 ::
 
+### С моделями с рассуждением {#with-reasoning-models}
+
+Чтобы получать [рассуждения](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot#reasoning) потоком, задайте `providerOptions` для своего провайдера ([Anthropic](https://ai-sdk.dev/providers/ai-sdk-providers/anthropic#reasoning), [Google](https://ai-sdk.dev/providers/ai-sdk-providers/google#thinking), [OpenAI](https://ai-sdk.dev/providers/ai-sdk-providers/openai#reasoning)):
+
+```ts [server/api/chat.post.ts]
+import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
+
+export default defineEventHandler(async (event) => {
+  const { messages } = await readBody(event)
+
+  const result = streamText({
+    model: 'anthropic/claude-sonnet-5.5',
+    maxOutputTokens: 10000,
+    instructions: 'You are a helpful assistant.',
+    messages: await convertToModelMessages(messages),
+    providerOptions: {
+      anthropic: {
+        thinking: {
+          type: 'adaptive'
+        },
+        effort: 'low'
+      },
+      google: {
+        thinkingConfig: {
+          includeThoughts: true,
+          thinkingLevel: 'low'
+        }
+      },
+      openai: {
+        reasoningEffort: 'low',
+        reasoningSummary: 'detailed'
+      }
+    }
+  })
+
+  const stream = toUIMessageStream({ stream: result.stream })
+  return createUIMessageStreamResponse({ stream })
+})
+```
+
 ## API
 
 ### Пропсы {#props}

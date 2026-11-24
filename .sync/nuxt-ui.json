@@ -1,7 +1,7 @@
 {
   "upstream": "nuxt/ui",
   "branch": "v4",
-  "cursor": "3ad5f5f91332ad91386a4611544a9c63739b8db5",
+  "cursor": "b465d092465ab03c7d3242e9afd0df593e735012",
   "_cursor_note": "cursor = last upstream commit ported into b24ui. The sync is manual by decision: one commit at a time, oldest-first, each with a `.sync/log/<sha>.md` journal and an entry in `processed`. There is no dispatcher, no porter workflow and no kill-switch — `.sync/PORTING.md` is the whole procedure. `processed` is maintained per port (backfilled #68-#72 on 2026-06-09).",
   "processed": {
     "2799fa6f2b25ce3eb15e050f3ef7c57d0d9a2fdb": {
@@ -3377,6 +3377,12 @@
       "b24ui_sha": "pending-merge",
       "decision": "port",
       "summary": "feat(ChatPrompt): очередь сообщений v-model:queue, роли иконок edit и trash"
+    },
+    "b465d092465ab03c7d3242e9afd0df593e735012": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "docs: примеры очереди, моделей с рассуждением, веб-поиска и MCP — на страницы компонентов (без блога и руководств шаблонов)"
     }
   }
 }

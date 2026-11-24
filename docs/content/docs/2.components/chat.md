@@ -468,65 +468,8 @@ function onSubmit() {
 Слот `#part` вызывается для каждой части сообщения с `part`, её `index` и `message`. Часть, которую слот не отрисовал (как текст пользователя выше), выводится по умолчанию. Чтобы отрисовать сообщение целиком самостоятельно, используйте слот `#content`.
 ::
 
-### Queued messages :badge{label="Soon" class="align-text-top"}
+### Сообщения в очереди {#queued-messages} :badge{label="Soon" class="align-text-top"}
 
-The AI SDK doesn't queue messages: calling `sendMessage` during a response starts a second request next to the current one. With `status`, `B24ChatPrompt` ignores submits while the chat is `submitted` or `streaming`. Bind `v-model:queue` to keep them instead: the prompt lists the queued messages in a panel above it, where the user can send one now, edit it or remove it, and you send the next one once the chat is `ready` again.
-
-```vue
-<script setup lang="ts">
-import { ref, watch } from 'vue'
-import type { ChatPromptQueueItem } from '@bitrix24/b24ui-nuxt'
-import { useChat } from '@ai-sdk/vue'
-
-const input = ref('')
-const queue = ref<ChatPromptQueueItem[]>([])
-
-const { status, error, sendMessage, regenerate, stop } = useChat()
-
-function onSubmit() {
-  sendMessage({ text: input.value })
-  input.value = ''
-}
-
-function sendNext() {
-  const item = queue.value.shift()
-  if (item) {
-    sendMessage({ text: item.text })
-  }
-}
-
-watch(status, (value) => {
-  if (value === 'ready') {
-    sendNext()
-  }
-})
-
-// The message picked to be sent now is at the front of the queue
-function onSend() {
-  if (status.value === 'submitted' || status.value === 'streaming') {
-    stop()
-  } else {
-    sendNext()
-  }
-}
-</script>
-
-<template>
-  <B24ChatPrompt
-    v-model="input"
-    v-model:queue="queue"
-    :status="status"
-    :error="error"
-    @submit="onSubmit"
-    @send="onSend"
-  >
-    <B24ChatPromptSubmit :status="status" @stop="stop()" @reload="regenerate()" />
-  </B24ChatPrompt>
-</template>
-```
-
-After an `error`, the prompt is disabled and the queue waits until the user reloads the failed response. Stopping the response sends the next queued message right away.
-
-::note
-With tool approval, a response waiting for the user's answer is `ready` too. Skip `sendNext` while the last message has a part in the `approval-requested` state, a new message would leave the approval unanswered.
+::tip{to="/docs/components/chat-prompt/#with-queued-messages"}
+Привяжите `v-model:queue` к ChatPrompt, чтобы сохранять сообщения, отправленные во время ответа; рецепт с AI SDK — в примере **С очередью сообщений**.
 ::
