@@ -61,7 +61,7 @@ const { isBitrixMobile, screen } = useDevice()
 
 ## Примеры {#example}
 
-### Базовое использование: платформа и мобильный экран {#basic-usage--platform-and-mobile-screen}
+### Базовое использование: платформа и мобильный экран {#basic-usage-platform-and-mobile-screen}
 
 ::component-example
 ---
