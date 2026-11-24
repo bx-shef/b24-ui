@@ -36,7 +36,7 @@ catalog:
   '@internationalized/number': ^3.6.9
   '@nuxt/content': ^3.16.2
   '@nuxt/eslint-config': ^1.17.0
-  '@nuxt/image': ^2.0.0
+  '@nuxt/image': ^2.2.0
   '@nuxt/kit': ^4.6.2
   '@nuxt/module-builder': ^1.0.3
   '@nuxt/schema': ^4.6.2
@@ -174,11 +174,6 @@ overrides:
   # process. Keep this in step with whatever `vite` above resolves to —
   # vite 8.1.x wants ~1.1.5, vite 8.2.x wants ~1.2.1, vite 8.3.x wants ~1.2.11.
   rolldown: ~1.2.11
-  # `@nuxt/image` 2.1.0 depends on `ipx` 4.0.0-beta.1, which pulls a second sharp
-  # alongside 0.34.5 and kills the docs prerender as soon as it hits `/_ipx`.
-  # Pinned until ipx 4 is stable. `docs` only declares `^2.0.0`, so without this
-  # the next lockfile regeneration floats to 2.1.0 on its own.
-  '@nuxt/image': 2.0.0
   # tailwind-variants 3.3.x is a full internal rewrite: invoking a tv() result is
   # 18 to 103x slower than 3.2.2 (see test/bench/tv.bench.ts) and the exported
   # type constraints changed in a breaking way. This module calls `tv()` on every
