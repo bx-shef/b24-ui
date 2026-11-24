@@ -29,7 +29,7 @@ catalog:
   '@bitrix24/b24icons-nuxt': ^2.0.7
   '@bitrix24/b24icons-vue': ^2.0.7
   '@bitrix24/b24ui-nuxt': 'workspace:*'
-  '@comark/vue': ^0.9.0
+  '@comark/vue': ^0.9.1
   '@conventional-commits/parser': 0.4.1
   '@floating-ui/dom': ^1.8.0
   '@internationalized/date': ^3.12.4
@@ -43,7 +43,7 @@ catalog:
   '@nuxt/schema': ^4.6.4
   '@nuxt/test-utils': ^4.3.4
   '@nuxtjs/mcp-toolkit': ^0.24.3
-  '@nuxtjs/mdc': ^0.23.2
+  '@nuxtjs/mdc': ^0.23.3
   '@octokit/rest': ^22.0.1
   '@regle/core': ^1.29.5
   '@regle/rules': ^1.29.5

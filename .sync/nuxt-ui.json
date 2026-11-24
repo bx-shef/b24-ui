@@ -1,7 +1,7 @@
 {
   "upstream": "nuxt/ui",
   "branch": "v4",
-  "cursor": "45835ee8a32c8ba024ca3ad7f2482b5f7992c3d7",
+  "cursor": "5bf25eb380427235ebd7b6d65dacff411f226a06",
   "_cursor_note": "cursor = last upstream commit ported into b24ui. The sync is manual by decision: one commit at a time, oldest-first, each with a `.sync/log/<sha>.md` journal and an entry in `processed`. There is no dispatcher, no porter workflow and no kill-switch — `.sync/PORTING.md` is the whole procedure. `processed` is maintained per port (backfilled #68-#72 on 2026-06-09).",
   "processed": {
     "2799fa6f2b25ce3eb15e050f3ef7c57d0d9a2fdb": {
@@ -3623,6 +3623,18 @@
       "b24ui_sha": "pending-merge",
       "decision": "port",
       "summary": "feat(useToast): метод promise — уведомление загрузки, обновляемое по результату промиса; иконка loading из словаря (уже анимирована, без animate-spin), b24ui вместо ui, docs по-русски"
+    },
+    "d59a7c7b5b61416496991404f3da2f4f52e98b33": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "chore(deps): @comark/vue ^0.9.1 в каталоге pnpm-workspace.yaml (в lock уже 0.9.2, меняется нижняя граница); minimumReleaseAgeExclude у форка нет"
+    },
+    "5bf25eb380427235ebd7b6d65dacff411f226a06": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "chore(deps): @nuxtjs/mdc ^0.23.3 в каталоге (в lock уже 0.23.4)"
     }
   }
 }
