@@ -270,7 +270,7 @@ import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
 import { useLocale } from '../composables/useLocale'
-import { omit, get } from '../utils'
+import { omit, get, safeIcon } from '../utils'
 import { highlight } from '../utils/search'
 import { pickLinkProps } from '../utils/link'
 import { getEstimateSize } from '../utils/virtualizer'
@@ -585,8 +585,8 @@ function onSelect(e: Event, item: T) {
                 :class="b24ui.itemLeadingIcon({ class: [props.b24ui?.itemLeadingIcon, item.b24ui?.itemLeadingIcon], loading: true })"
               />
               <Component
-                :is="item.icon"
-                v-else-if="item.icon"
+                :is="safeIcon(item.icon)"
+                v-else-if="safeIcon(item.icon)"
                 data-slot="itemLeadingIcon"
                 :class="b24ui.itemLeadingIcon({ class: [props.b24ui?.itemLeadingIcon, item.b24ui?.itemLeadingIcon], active: active || item.active })"
               />
@@ -698,8 +698,8 @@ function onSelect(e: Event, item: T) {
                 </span>
 
                 <Component
-                  :is="group.highlightedIcon"
-                  v-else-if="group?.highlightedIcon"
+                  :is="safeIcon(group?.highlightedIcon)"
+                  v-else-if="safeIcon(group?.highlightedIcon)"
                   data-slot="itemTrailingHighlightedIcon"
                   :class="b24ui.itemTrailingHighlightedIcon({ class: [props.b24ui?.itemTrailingHighlightedIcon, item.b24ui?.itemTrailingHighlightedIcon] })"
                 />

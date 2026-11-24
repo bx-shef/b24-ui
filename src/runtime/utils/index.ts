@@ -467,6 +467,48 @@ export function isUnsafeAs(value: unknown): boolean {
 }
 
 /**
+ * Whether a value is unsafe to render as an icon. b24ui icons are components: a function, or an
+ * object with a real `render`, `ssrRender` or `setup` function. A string is dropped too, since
+ * `<Component :is="'img src=x onerror=…'">` resolves to a raw tag on SSR, and so is an object
+ * `isUnsafeComponent` rejects (`template`, `__v_raw`, a forged VNode, …) or one without a
+ * function to render with (`{ render: 'x' }` throws and takes the subtree down on SSR).
+ * Booleans (`externalIcon: false`), functions and nullish values pass.
+ */
+export function isUnsafeIcon(value: unknown): boolean {
+  if (typeof value === 'string') return true
+  if (!value || typeof value !== 'object') return false
+
+  const component = value as Record<string, any>
+  const renders = typeof component.render === 'function' || typeof component.ssrRender === 'function' || typeof component.setup === 'function'
+
+  return !renders || isUnsafeComponent(value)
+}
+
+/**
+ * Whether an object handed to `<Component :is>` as content (a Toast `title` / `description`)
+ * would compile a `template`, unwrap a `__v_raw`, extend such a component or have nothing to render with. A real VNode
+ * (`h()`, `createVNode()`) is a plain object too and cannot be told from a forged one, so
+ * anything carrying `__v_isVNode` is left alone: a VNode is code the application built, and
+ * must not be fed from untrusted JSON.
+ */
+export function isUnsafeContent(value: unknown): boolean {
+  if (!value || typeof value !== 'object') return false
+  if ((value as Record<string, unknown>).__v_isVNode) return false
+
+  return isUnsafeIcon(value)
+}
+
+/**
+ * Returns an icon value as is, or `undefined` when `isUnsafeIcon` rejects it, e.g. an
+ * `item.icon` coming from untrusted markdown or JSON. b24ui has no `Icon` component to guard,
+ * so icon data read from items goes through here before it is rendered with
+ * `<Component :is>` or `h()`. Compute it once and use the result in `v-if` and `:is` alike.
+ */
+export function safeIcon<T>(value: T): T | undefined {
+  return isUnsafeIcon(value) ? undefined : value
+}
+
+/**
  * Drops attributes holding a value `isUnsafeComponent` rejects (or an `as` that `isUnsafeAs`
  * rejects), for components forwarding `$attrs` to a Reka part that renders its `as`.
  */

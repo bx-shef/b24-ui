@@ -187,7 +187,7 @@ import { useFieldGroup, FieldGroupReset } from '../composables/useFieldGroup'
 import { useComponentIcons } from '../composables/useComponentIcons'
 import { useFormField } from '../composables/useFormField'
 import { usePortal } from '../composables/usePortal'
-import { get, getDisplayValue, isArrayOfArray, looseToNumber, omitUnsafeAttrs } from '../utils'
+import { get, getDisplayValue, isArrayOfArray, looseToNumber, omitUnsafeAttrs, safeIcon } from '../utils'
 import { tv } from '../utils/tv'
 import icons from '../dictionary/icons'
 import B24Badge from './Badge.vue'
@@ -520,8 +520,8 @@ defineExpose({
 
                         <slot name="item-trailing" :item="(item as NestedItem<T>)" :index="index" :b24ui="b24ui">
                           <Component
-                            :is="item.icon"
-                            v-if="isSelectItem(item) && item.icon"
+                            :is="safeIcon(item.icon)"
+                            v-if="isSelectItem(item) && safeIcon(item.icon)"
                             data-slot="itemLeadingIcon"
                             :class="b24ui.itemLeadingIcon({ class: [props.b24ui?.itemLeadingIcon, item.b24ui?.itemLeadingIcon], colorItem: item?.color })"
                           />

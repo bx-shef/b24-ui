@@ -3,7 +3,7 @@ import { computed, getCurrentInstance } from 'vue'
 import defu from 'defu'
 import { createContext } from 'reka-ui'
 import { useAppConfig } from '#imports'
-import { get, isUnsafeAs } from '../utils'
+import { get, isUnsafeAs, isUnsafeIcon } from '../utils'
 
 export type ThemeContext = {
   defaults: ComputedRef<Record<string, Record<string, any> | undefined>>
@@ -68,6 +68,17 @@ function propIsDefined(vnode: VNode | null | undefined, prop: string): boolean {
   const [camel, kebab] = propNames(prop)
   return vnode.props[camel] !== undefined
     || vnode.props[kebab] !== undefined
+}
+
+const ICON_PROP = /icon$/i
+
+/**
+ * Whether `value` must never be handed out for `prop`: an `as` that Vue would compile or render
+ * as markup, or an icon (`icon`, `trailingIcon`, `selectedIcon`, …) that `isUnsafeIcon` rejects (a string, an unsafe component object).
+ */
+function isUnsafeValue(prop: string, value: unknown): boolean {
+  if (prop === 'as') return isUnsafeAs(value)
+  return ICON_PROP.test(prop) && isUnsafeIcon(value)
 }
 
 /**
@@ -137,17 +148,19 @@ export function useComponentProps<T extends object>(name: string, props: T): T {
         return [themeClass, raw]
       }
 
-      // Never hand out an `as` component Vue would compile from a `template` string,
-      // so `:as` bound in untrusted markdown can't run code on render. It is treated
-      // as unset and falls back to the defaults below. (Upstream guards icons in `UIcon`; b24ui has no such component, see the port log.)
-      const unsafe = prop === 'as' && isUnsafeAs(raw)
+      // Never hand out an `as` component Vue would compile from a `template` string, nor an icon
+      // that is an unsafe component object (`template`, `__v_raw`, forged VNode), so `:as` / `:icon`
+      // bound in untrusted markdown can't run code on render. Such a value is treated as unset and
+      // falls back to the defaults below. (Upstream guards icons in `UIcon`; b24ui has no such
+      // component, so the guard lives here and in `safeIcon` for icons read from items.)
+      const unsafe = isUnsafeValue(prop, raw)
 
       if (!unsafe && vm && propIsDefined(vm.vnode, prop)) return withoutUnsafeAs(raw)
 
       // `<UTheme :props>` and `app.config` defaults can carry untrusted data too
       // (a shared theme link), so the same check applies to them.
       const themeValue = themeEntry?.[prop]
-      if (themeValue !== undefined && !(prop === 'as' && isUnsafeAs(themeValue))) return withoutUnsafeAs(themeValue)
+      if (themeValue !== undefined && !isUnsafeValue(prop, themeValue)) return withoutUnsafeAs(themeValue)
 
       // A global `app.config.b24ui.<name>.defaultVariants` value takes priority over
       // the component's `withDefaults` fallback. This keeps `defaultVariants`
@@ -156,7 +169,7 @@ export function useComponentProps<T extends object>(name: string, props: T): T {
       // always renders a value).
       const appConfigEntry = isNested ? get(appConfig.b24ui ?? {}, name) : appConfig.b24ui?.[name]
       const appConfigValue = appConfigEntry?.defaultVariants?.[prop]
-      if (appConfigValue !== undefined && !(prop === 'as' && isUnsafeAs(appConfigValue))) return withoutUnsafeAs(appConfigValue)
+      if (appConfigValue !== undefined && !isUnsafeValue(prop, appConfigValue)) return withoutUnsafeAs(appConfigValue)
 
       // Only fall back to `raw` when `withDefaults` set an explicit default for
       // this prop. Otherwise Vue's runtime would auto-cast unset Boolean props

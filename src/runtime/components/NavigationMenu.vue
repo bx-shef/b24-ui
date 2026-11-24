@@ -250,7 +250,7 @@ import { createReusableTemplate } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
-import { get, isArrayOfArray } from '../utils'
+import { get, isArrayOfArray, safeIcon } from '../utils'
 import { tv } from '../utils/tv'
 import { pickLinkProps } from '../utils/link'
 import icons from '../dictionary/icons'
@@ -421,21 +421,21 @@ function onLinkClick(e: Event) {
         >
           <template v-if="props.orientation === 'vertical' && item.type !== 'label'">
             <B24Chip
-              v-if="item.icon && item.chip"
+              v-if="safeIcon(item.icon) && item.chip"
               :size="((item.b24ui?.linkLeadingChipSize || props.b24ui?.linkLeadingChipSize || b24ui.linkLeadingChipSize()) as ChipProps['size'])"
               inset
               v-bind="typeof item.chip === 'object' ? item.chip : {}"
               data-slot="linkLeadingChip"
             >
               <Component
-                :is="item.icon"
+                :is="safeIcon(item.icon)"
                 data-slot="linkLeadingIcon"
                 :class="b24ui.linkLeadingIcon({ class: [props.b24ui?.linkLeadingIcon, item.b24ui?.linkLeadingIcon], active, disabled: !!item.disabled })"
               />
             </B24Chip>
             <Component
-              :is="item.icon"
-              v-else-if="item.icon"
+              :is="safeIcon(item.icon)"
+              v-else-if="safeIcon(item.icon)"
               data-slot="linkLeadingIcon"
               :class="b24ui.linkLeadingIcon({ class: [props.b24ui?.linkLeadingIcon, item.b24ui?.linkLeadingIcon], active, disabled: !!item.disabled })"
             />
@@ -483,7 +483,7 @@ function onLinkClick(e: Event) {
 
       <component
         :is="props.orientation === 'vertical' && item.children?.length && !props.collapsed && trailingTrigger ? AccordionTrigger : 'span'"
-        v-if="/* (item.badge || item.badge === 0) || */(props.orientation === 'horizontal' && (item.children?.length || !!slots[(item.slot ? `${item.slot}-content` : 'item-content') as keyof NavigationMenuSlots<T>])) || (props.orientation === 'vertical' && item.children?.length) || item.trailingIcon || !!slots[(item.slot ? `${item.slot}-trailing` : 'item-trailing') as keyof NavigationMenuSlots<T>]"
+        v-if="/* (item.badge || item.badge === 0) || */(props.orientation === 'horizontal' && (item.children?.length || !!slots[(item.slot ? `${item.slot}-content` : 'item-content') as keyof NavigationMenuSlots<T>])) || (props.orientation === 'vertical' && item.children?.length) || safeIcon(item.trailingIcon) || !!slots[(item.slot ? `${item.slot}-trailing` : 'item-trailing') as keyof NavigationMenuSlots<T>]"
         :as="props.orientation === 'vertical' && item.children?.length && !props.collapsed && trailingTrigger ? 'span' : undefined"
         data-slot="linkTrailing"
         :class="b24ui.linkTrailing({ class: [props.b24ui?.linkTrailing, item.b24ui?.linkTrailing] })"
@@ -497,14 +497,14 @@ function onLinkClick(e: Event) {
           :b24ui="b24ui"
         >
           <Component
-            :is="item.trailingIcon || props.trailingIcon || icons.chevronDown"
+            :is="safeIcon(item.trailingIcon) || props.trailingIcon || icons.chevronDown"
             v-if="(props.orientation === 'horizontal' && (item.children?.length || !!slots[(item.slot ? `${item.slot}-content` : 'item-content') as keyof NavigationMenuSlots<T>])) || (props.orientation === 'vertical' && item.children?.length)"
             data-slot="linkTrailingIcon"
             :class="b24ui.linkTrailingIcon({ class: [props.b24ui?.linkTrailingIcon, item.b24ui?.linkTrailingIcon], active })"
           />
           <Component
-            :is="item.trailingIcon"
-            v-else-if="item.trailingIcon"
+            :is="safeIcon(item.trailingIcon)"
+            v-else-if="safeIcon(item.trailingIcon)"
             data-slot="linkTrailingIcon"
             :class="b24ui.linkTrailingIcon({ class: [props.b24ui?.linkTrailingIcon, item.b24ui?.linkTrailingIcon], active })"
           />
@@ -593,21 +593,21 @@ function onLinkClick(e: Event) {
                             :class="b24ui.childLink({ class: [props.b24ui?.childLink, item.b24ui?.childLink, childItem.class], active: childActive })"
                           >
                             <B24Chip
-                              v-if="childItem.icon && childItem.chip"
+                              v-if="safeIcon(childItem.icon) && childItem.chip"
                               :size="((childItem.b24ui?.linkLeadingChipSize || props.b24ui?.linkLeadingChipSize || b24ui.linkLeadingChipSize()) as ChipProps['size'])"
                               inset
                               v-bind="typeof childItem.chip === 'object' ? childItem.chip : {}"
                               data-slot="linkLeadingChip"
                             >
                               <Component
-                                :is="childItem.icon"
+                                :is="safeIcon(childItem.icon)"
                                 data-slot="childLinkIcon"
                                 :class="b24ui.childLinkIcon({ class: [props.b24ui?.childLinkIcon, item.b24ui?.childLinkIcon], active: childActive })"
                               />
                             </B24Chip>
                             <Component
-                              :is="childItem.icon"
-                              v-else-if="childItem.icon"
+                              :is="safeIcon(childItem.icon)"
+                              v-else-if="safeIcon(childItem.icon)"
                               data-slot="childLinkIcon"
                               :class="b24ui.childLinkIcon({ class: [props.b24ui?.childLinkIcon, item.b24ui?.childLinkIcon], active: childActive })"
                             />
@@ -707,21 +707,21 @@ function onLinkClick(e: Event) {
                       :class="b24ui.childLink({ class: [props.b24ui?.childLink, childItem.childLink, childItem.class], active: childActive })"
                     >
                       <B24Chip
-                        v-if="childItem.icon && childItem.chip"
+                        v-if="safeIcon(childItem.icon) && childItem.chip"
                         :size="((childItem.b24ui?.linkLeadingChipSize || props.b24ui?.linkLeadingChipSize || b24ui.linkLeadingChipSize()) as ChipProps['size'])"
                         inset
                         v-bind="typeof childItem.chip === 'object' ? childItem.chip : {}"
                         data-slot="linkLeadingChip"
                       >
                         <Component
-                          :is="childItem.icon"
+                          :is="safeIcon(childItem.icon)"
                           data-slot="childLinkIcon"
                           :class="b24ui.childLinkIcon({ class: [props.b24ui?.childLinkIcon, item.b24ui?.childLinkIcon], active: childActive })"
                         />
                       </B24Chip>
                       <Component
-                        :is="childItem.icon"
-                        v-else-if="childItem.icon"
+                        :is="safeIcon(childItem.icon)"
+                        v-else-if="safeIcon(childItem.icon)"
                         data-slot="childLinkIcon"
                         :class="b24ui.childLinkIcon({ class: [props.b24ui?.childLinkIcon, item.b24ui?.childLinkIcon], active: childActive })"
                       />

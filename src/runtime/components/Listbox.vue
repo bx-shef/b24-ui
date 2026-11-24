@@ -170,7 +170,7 @@ import { useComponentProps } from '../composables/useComponentProps'
 import { useFilter } from '../composables/useFilter'
 import { useFormField } from '../composables/useFormField'
 import { useLocale } from '../composables/useLocale'
-import { get, isArrayOfArray, looseToNumber, omit, pick } from '../utils'
+import { get, isArrayOfArray, looseToNumber, omit, pick, safeIcon } from '../utils'
 import { getEstimateSize } from '../utils/virtualizer'
 import { tv } from '../utils/tv'
 import icons from '../dictionary/icons'
@@ -333,8 +333,8 @@ const filteredItems = computed(() => filteredGroups.value.flatMap(group => group
       <slot name="item" :item="(item as NestedItem<T>)" :index="index" :b24ui="b24ui">
         <slot name="item-leading" :item="(item as NestedItem<T>)" :index="index" :b24ui="b24ui">
           <Component
-            :is="item.icon"
-            v-if="item.icon"
+            :is="safeIcon(item.icon)"
+            v-if="safeIcon(item.icon)"
             data-slot="itemLeadingIcon"
             :class="b24ui.itemLeadingIcon({ class: props.b24ui?.itemLeadingIcon })"
           />

@@ -95,6 +95,7 @@ import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
 import { useLocale } from '../composables/useLocale'
+import { isUnsafeContent } from '../utils'
 import { tv } from '../utils/tv'
 import icons from '../dictionary/icons'
 import B24Avatar from './Avatar.vue'
@@ -163,8 +164,8 @@ defineExpose({
       <ToastTitle v-if="props.title || !!slots.title" data-slot="title" :class="b24ui.title({ class: props.b24ui?.title })">
         <slot name="title">
           <component :is="props.title()" v-if="typeof props.title === 'function'" />
-          <component :is="props.title" v-else-if="typeof props.title === 'object'" />
-          <template v-else>
+          <component :is="props.title" v-else-if="typeof props.title === 'object' && !isUnsafeContent(props.title)" />
+          <template v-else-if="typeof props.title !== 'object'">
             {{ props.title }}
           </template>
         </slot>
@@ -172,8 +173,8 @@ defineExpose({
       <ToastDescription v-if="props.description || !!slots.description" data-slot="description" :class="b24ui.description({ class: props.b24ui?.description })">
         <slot name="description">
           <component :is="props.description()" v-if="typeof props.description === 'function'" />
-          <component :is="props.description" v-else-if="typeof props.description === 'object'" />
-          <template v-else>
+          <component :is="props.description" v-else-if="typeof props.description === 'object' && !isUnsafeContent(props.description)" />
+          <template v-else-if="typeof props.description !== 'object'">
             {{ props.description }}
           </template>
         </slot>

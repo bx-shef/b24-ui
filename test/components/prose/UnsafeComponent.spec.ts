@@ -29,6 +29,15 @@ describe('unsafe components from markdown', () => {
     ['Select `as` fallthrough', Select, { props: { items: ['a'] }, attrs: { as: payload() } }],
     ['SelectMenu `as` fallthrough', SelectMenu, { props: { items: ['a'] }, attrs: { as: payload() } }],
     ['Field forged VNode `as`', Field, { props: { as: vnode() } }],
+    ['CodeGroup forged VNode `as` fallthrough', CodeGroup, { attrs: { as: vnode() } }],
+    ['ChatTool forged VNode `as` fallthrough', ChatTool, { props: { text: 'Tool' }, attrs: { as: vnode() } }],
+    ['Select forged VNode `as` fallthrough', Select, { props: { items: ['a'] }, attrs: { as: vnode() } }],
+    ['CodeGroup `__v_raw` `as` fallthrough', CodeGroup, { attrs: { as: { __v_raw: payload() } } }],
+    ['ChatTool `__v_raw` `as` fallthrough', ChatTool, { props: { text: 'Tool' }, attrs: { as: { __v_raw: payload() } } }],
+    ['Select `__v_raw` `as` fallthrough', Select, { props: { items: ['a'] }, attrs: { as: { __v_raw: payload() } } }],
+    ['Field `extends` `as`', Field, { props: { as: { extends: payload() } } }],
+    ['Select `mixins` `as` fallthrough', Select, { props: { items: ['a'] }, attrs: { as: { mixins: [payload()] } } }],
+    ['ChatTool `extends` `as` fallthrough', ChatTool, { props: { text: 'Tool' }, attrs: { as: { extends: payload() } } }],
     ['Popover `content.as`', Popover, { props: { open: true, portal: false, content: { as: payload() } }, slots: { content: () => 'Content' } }]
   ])('does not render a template from %s', async (_, component: any, options) => {
     const wrapper = await mountSuspended(component, options)

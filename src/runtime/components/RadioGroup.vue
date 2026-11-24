@@ -103,7 +103,7 @@ import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
 import { useFormField } from '../composables/useFormField'
-import { get } from '../utils'
+import { get, safeIcon } from '../utils'
 import { tv } from '../utils/tv'
 
 const _props = withDefaults(defineProps<RadioGroupProps<T, VK>>(), {
@@ -238,11 +238,11 @@ function onUpdate(value: any) {
         </div>
 
         <div
-          v-if="labelIcon(item) || (item.label || !!slots.label) || (item.description || !!slots.description)"
+          v-if="safeIcon(labelIcon(item)) || (item.label || !!slots.label) || (item.description || !!slots.description)"
           data-slot="wrapper"
           :class="b24ui.wrapper({ class: [props.b24ui?.wrapper, item.b24ui?.wrapper] })"
         >
-          <Component :is="labelIcon(item)" v-if="labelIcon(item)" data-slot="icon" :class="b24ui.icon({ class: [props.b24ui?.icon, item.b24ui?.icon] })" />
+          <Component :is="safeIcon(labelIcon(item))" v-if="safeIcon(labelIcon(item))" data-slot="icon" :class="b24ui.icon({ class: [props.b24ui?.icon, item.b24ui?.icon] })" />
           <component
             :is="props.variant === 'list' ? Label : 'span'"
             v-if="item.label || !!slots.label"

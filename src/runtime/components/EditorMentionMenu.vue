@@ -33,6 +33,7 @@ export interface EditorMentionMenuProps<T extends EditorMentionMenuItem = Editor
 </script>
 
 <script setup lang="ts" generic="T extends EditorMentionMenuItem">
+import { safeIcon } from '../utils'
 import { computed, h, onMounted, onBeforeUnmount, nextTick, toRef } from 'vue'
 import { useAppConfig } from '#imports'
 import { useEditorMenu } from '../composables/useEditorMenu'
@@ -87,22 +88,26 @@ onMounted(async () => {
         })
         .run()
     },
-    renderItem: (item, styles) => [
+    renderItem: (item, styles) => {
+      const icon = safeIcon(item.icon)
+
+      return [
       /**
        * @memo Icon - first, Avatar - second
        */
-      item.icon
-        ? h(item.icon, { class: styles.value.itemLeadingIcon() })
-        : item.avatar
-          ? h(B24Avatar, { ...item.avatar, size: styles.value.itemLeadingAvatarSize(), class: styles.value.itemLeadingAvatar() })
-          : null,
-      h('span', { class: styles.value.itemWrapper() }, [
-        h('span', { class: styles.value.itemLabel() }, item.label),
-        item.description
-          ? h('span', { class: styles.value.itemDescription() }, item.description)
-          : null
-      ])
-    ]
+        icon
+          ? h(icon, { class: styles.value.itemLeadingIcon() })
+          : item.avatar
+            ? h(B24Avatar, { ...item.avatar, size: styles.value.itemLeadingAvatarSize(), class: styles.value.itemLeadingAvatar() })
+            : null,
+        h('span', { class: styles.value.itemWrapper() }, [
+          h('span', { class: styles.value.itemLabel() }, item.label),
+          item.description
+            ? h('span', { class: styles.value.itemDescription() }, item.description)
+            : null
+        ])
+      ]
+    }
   })
 
   props.editor.registerPlugin(menu.plugin)
