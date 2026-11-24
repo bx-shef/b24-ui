@@ -63,6 +63,8 @@ const pages = [
   '/docs/components/separator/',
   '/docs/components/sidebar/',
   '/docs/components/skeleton/',
+  '/docs/components/toggle/',
+  '/docs/components/toggle-group/',
   // endregion ////
   // region Form ////
   '/docs/components/form/',

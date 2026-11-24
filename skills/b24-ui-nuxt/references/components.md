@@ -33,6 +33,8 @@
 | `B24Progress` | Индикатор выполнения | [progress.md](https://bitrix24.github.io/b24ui/raw/docs/components/progress.md) |
 | `B24ProgressGroup` | Индикатор выполнения из цветных сегментов с легендой | [progress-group.md](https://bitrix24.github.io/b24ui/raw/docs/components/progress-group.md) |
 | `B24Toast` | Уведомление (показывается через `useToast`) | [toast.md](https://bitrix24.github.io/b24ui/raw/docs/components/toast.md) |
+| `B24Toggle` | Кнопка с двумя состояниями — нажата и отжата | [toggle.md](https://bitrix24.github.io/b24ui/raw/docs/components/toggle.md) |
+| `B24ToggleGroup` | Набор кнопок с одним или несколькими нажатыми | [toggle-group.md](https://bitrix24.github.io/b24ui/raw/docs/components/toggle-group.md) |
 | `B24Calendar` | Календарь дат (одна дата, диапазон, несколько) | [calendar.md](https://bitrix24.github.io/b24ui/raw/docs/components/calendar.md) |
 | `B24Collapsible` | Анимированное разворачивание и сворачивание | [collapsible.md](https://bitrix24.github.io/b24ui/raw/docs/components/collapsible.md) |
 | `B24FieldGroup` | Горизонтальная группа полей формы | [field-group.md](https://bitrix24.github.io/b24ui/raw/docs/components/field-group.md) |
