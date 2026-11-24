@@ -198,7 +198,7 @@ catalogs:
       specifier: ^1.0.3
       version: 1.0.3
     '@nuxt/schema':
-      specifier: ^4.6.3
+      specifier: ^4.6.4
       version: 4.6.4
     '@nuxt/test-utils':
       specifier: ^4.3.4
@@ -420,7 +420,7 @@ catalogs:
       specifier: ^2.10.0
       version: 2.13.0
     nuxt:
-      specifier: ^4.6.3
+      specifier: ^4.6.4
       version: 4.6.4
     nuxt-component-meta:
       specifier: ^0.19.0
@@ -536,7 +536,7 @@ catalogs:
       version: 3.12.4
 
 overrides:
-  '@nuxt/kit': ^4.6.3
+  '@nuxt/kit': ^4.6.4
   '@bitrix24/b24ui-nuxt': workspace:*
   vite: ^8.3.2
   rolldown: ~1.2.11
@@ -596,7 +596,7 @@ importers:
         specifier: ^3
         version: 3.17.0(@nuxt/schema@4.6.4)(@oxc-project/types@0.152.0)(@valibot/to-json-schema@1.7.1(valibot@1.5.0(typescript@6.0.3)))(better-sqlite3@12.11.1)(confbox@0.3.1)(dotenv@17.4.2)(esbuild@0.28.2)(giget@3.3.1)(magic-string@1.4.5)(magicast@0.5.5)(mlly@1.8.2)(oxc-parser@0.154.0)(rolldown@1.2.12)(rollup@4.60.2)(supports-color@10.2.2)(valibot@1.5.0(typescript@6.0.3))(vite@8.3.3(@types/node@25.6.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.46.1)(yaml@2.9.0))
       '@nuxt/kit':
-        specifier: ^4.6.3
+        specifier: ^4.6.4
         version: 4.6.4(@nuxt/schema@4.6.4)(confbox@0.3.1)(dotenv@17.4.2)(giget@3.3.1)(jiti@2.7.0)(magic-string@1.4.5)(mlly@1.8.2)(oxc-parser@0.154.0)(rolldown@1.2.12)(unplugin@3.7.0(esbuild@0.28.2)(rolldown@1.2.12)(rollup@4.60.2)(vite@8.3.3(@types/node@25.6.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.46.1)(yaml@2.9.0)))
       '@nuxt/schema':
         specifier: 'catalog:'
@@ -2364,7 +2364,7 @@ packages:
     engines: {node: '>=18.12.0'}
     hasBin: true
     peerDependencies:
-      '@nuxt/kit': ^4.6.3
+      '@nuxt/kit': ^4.6.4
 
   '@nuxt/test-utils@4.4.0':
     resolution: {integrity: sha512-ptXsLEdlh676GVNDwFiFjAbttuTRUq3MBlJFGYqQQK4+IKS2Qo9dhxjqkckxFIuIoy5VjquZVARq+q+yKQR/6w==}
@@ -8413,7 +8413,7 @@ packages:
     resolution: {integrity: sha512-EzrSqWIBulEqCuP7idADXH+tVKYrbwKlR5+r/lOWik0o+Ksny1kitmtryHGNSv7puzzORlcIwT/x2JStiszlHA==}
     engines: {node: '>=20.19.0'}
     peerDependencies:
-      '@nuxt/kit': ^4.6.3
+      '@nuxt/kit': ^4.6.4
       '@vueuse/core': '*'
     peerDependenciesMeta:
       '@nuxt/kit':
@@ -8429,7 +8429,7 @@ packages:
     resolution: {integrity: sha512-YiUkSxuRjab18XFOrX5VsIxXzccrfmHVGsGeJgSgklb829DQmCy9E4vvDUE4tuvZZdxyFJZX0Oc4TPnnxiiMyg==}
     engines: {node: '>=20.19.0'}
     peerDependencies:
-      '@nuxt/kit': ^4.6.3
+      '@nuxt/kit': ^4.6.4
       vue: ^3.0.0
     peerDependenciesMeta:
       '@nuxt/kit':

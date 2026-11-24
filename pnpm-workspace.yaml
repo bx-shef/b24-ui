@@ -37,9 +37,9 @@ catalog:
   '@nuxt/content': ^3.16.2
   '@nuxt/eslint-config': ^1.17.0
   '@nuxt/image': ^2.2.1
-  '@nuxt/kit': ^4.6.3
+  '@nuxt/kit': ^4.6.4
   '@nuxt/module-builder': ^1.0.3
-  '@nuxt/schema': ^4.6.3
+  '@nuxt/schema': ^4.6.4
   '@nuxt/test-utils': ^4.3.4
   '@nuxtjs/mcp-toolkit': ^0.24.3
   '@nuxtjs/mdc': ^0.23.2
@@ -114,7 +114,7 @@ catalog:
   minimark: ^0.2.0
   mlly: ^1.8.2
   motion-v: ^2.10.0
-  nuxt: ^4.6.3
+  nuxt: ^4.6.4
   nuxt-component-meta: ^0.19.0
   nuxt-llms: ^0.3.1
   nuxt-schema-org: ^6.2.1
@@ -169,7 +169,7 @@ catalogs:
     '@internationalized/date': ^3.9.0
 
 overrides:
-  '@nuxt/kit': ^4.6.3
+  '@nuxt/kit': ^4.6.4
   '@bitrix24/b24ui-nuxt': workspace:*
   # nuxt 4.5.x requires vite ^8, but several peers (unplugin, unhead, vite-plugin-*)
   # still resolve vite 7 — two vite copies mean two rolldown native ABIs in one
