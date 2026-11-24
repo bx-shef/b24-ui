@@ -13,7 +13,7 @@ export interface PageFeatureProps {
    * The element or component this component should render as.
    * @defaultValue 'div'
    */
-  as?: any
+  as?: any | { root?: any, title?: any }
   /**
    * The icon displayed next to the title when `orientation` is `horizontal` and above the title when `orientation` is `vertical`.
    * @IconComponent
@@ -47,7 +47,7 @@ import { Primitive } from 'reka-ui'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { usePrefix } from '../composables/usePrefix'
-import { getSlotChildrenText } from '../utils'
+import { getSlotChildrenText, resolveAs } from '../utils'
 import { tv } from '../utils/tv'
 import B24Link from './Link.vue'
 
@@ -64,6 +64,9 @@ const appConfig = useAppConfig() as PageFeature['AppConfig']
 const prefix = usePrefix()
 
 // eslint-disable-next-line vue/no-dupe-keys
+const as = computed(() => resolveAs(props.as, { root: 'div', title: 'div' }))
+
+// eslint-disable-next-line vue/no-dupe-keys
 const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.pageFeature || {}) })({
   orientation: props.orientation,
   title: !!props.title || !!slots.title,
@@ -78,7 +81,7 @@ const ariaLabel = computed(() => {
 
 <template>
   <Primitive
-    :as="props.as"
+    :as="as.root"
     v-bind="!props.to ? $attrs : {}"
     :data-orientation="props.orientation"
     data-slot="root"
@@ -108,11 +111,11 @@ const ariaLabel = computed(() => {
       </B24Link>
 
       <slot>
-        <div v-if="props.title || !!slots.title" data-slot="title" :class="b24ui.title({ class: props.b24ui?.title })">
+        <Primitive v-if="props.title || !!slots.title" :as="as.title" data-slot="title" :class="b24ui.title({ class: props.b24ui?.title })">
           <slot name="title">
             {{ props.title }}
           </slot>
-        </div>
+        </Primitive>
 
         <div v-if="props.description || !!slots.description" data-slot="description" :class="b24ui.description({ class: props.b24ui?.description })">
           <slot name="description">

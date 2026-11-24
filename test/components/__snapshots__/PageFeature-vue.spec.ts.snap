@@ -11,6 +11,17 @@ exports[`PageFeature > renders with as correctly 1`] = `
 </section>"
 `;
 
+exports[`PageFeature > renders with as object correctly 1`] = `
+"<section data-orientation="horizontal" data-slot="root" class="relative rounded-sm flex items-start gap-2.5">
+  <!--v-if-->
+  <div data-slot="wrapper" class="">
+    <!--v-if-->
+    <h3 data-slot="title" class="text-(length:--ui-font-size-md) text-pretty font-(--ui-font-weight-semi-bold) text-legend">Title</h3>
+    <!--v-if-->
+  </div>
+</section>"
+`;
+
 exports[`PageFeature > renders with b24ui correctly 1`] = `
 "<div data-orientation="horizontal" data-slot="root" class="relative rounded-sm flex items-start gap-2.5">
   <div data-slot="leading" class="inline-flex items-center justify-center p-0.5"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" data-slot="icon" class="size-5 shrink-0 text-(--ui-color-accent-main-primary)">

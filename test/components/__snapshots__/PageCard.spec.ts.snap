@@ -9,6 +9,23 @@ exports[`PageCard > renders with as correctly 1`] = `
 </section>"
 `;
 
+exports[`PageCard > renders with as object correctly 1`] = `
+"<section data-orientation="vertical" data-slot="root" class="relative flex rounded-lg bg-(--ui-color-design-outline-bg) border-(--ui-color-design-outline-stroke) border-(length:--ui-design-outline-stroke-weight) text-(--ui-color-design-outline-content)">
+  <div data-slot="container" class="relative flex flex-col flex-1 lg:grid lg:grid-cols-1 gap-x-8 gap-y-4 p-4 sm:p-6">
+    <div data-slot="wrapper" class="flex flex-col flex-1 items-start">
+      <!--v-if-->
+      <!--v-if-->
+      <div data-slot="body" class="flex-1">
+        <h3 data-slot="title" class="text-(length:--ui-font-size-2xl)/[normal] text-pretty font-(--ui-font-weight-semi-bold) text-(--ui-color-design-outline-content)">Title</h3>
+        <!--v-if-->
+      </div>
+      <!--v-if-->
+    </div>
+  </div>
+  <!--v-if-->
+</section>"
+`;
+
 exports[`PageCard > renders with b24ui correctly 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative flex rounded-lg bg-(--ui-color-design-outline-bg) border-(--ui-color-design-outline-stroke) border-(length:--ui-design-outline-stroke-weight) text-(--ui-color-design-outline-content)">
   <div data-slot="container" class="relative flex flex-col flex-1 lg:grid lg:grid-cols-1 gap-x-8 gap-y-4 p-4 sm:p-6">
