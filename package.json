@@ -145,7 +145,7 @@
     "test": "vitest",
     "test:vue": "vitest --project vue",
     "test:nuxt": "vitest --project nuxt",
-    "bench": "vitest bench --project vue",
+    "bench": "vitest bench --project 'vue (bench)'",
     "test:workflows": "test/workflows/run.sh",
     "test:module": "vitest run --config vitest.module.config.ts",
     "test:update": "vitest run -u",

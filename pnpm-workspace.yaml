@@ -78,7 +78,7 @@ catalog:
   '@types/sortablejs': ^1.15.9
   '@unhead/vue': ^3.4.3
   '@vitejs/plugin-vue': ^6.0.10
-  '@vitest/coverage-v8': 4.1.11
+  '@vitest/coverage-v8': 5.1.1
   '@vue/repl': ^4.7.2
   '@vue/test-utils': ^2.5.1
   '@vueuse/core': ^14.4.0
@@ -142,7 +142,7 @@ catalog:
   valibot: ^1.5.0
   vaul-vue: 0.4.1
   vite: ^8.3.4
-  vitest: ^4.1.12
+  vitest: ^5.0.5
   vitest-axe: ^0.1.0
   vitest-environment-nuxt: ^2.0.0
   vue: ^3.5.44

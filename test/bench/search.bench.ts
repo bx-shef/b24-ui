@@ -1,4 +1,4 @@
-import { bench, describe } from 'vitest'
+import { test } from 'vitest'
 import { highlight } from '../../src/runtime/utils/search'
 
 // `highlight()` runs on every keystroke — three times per result (label, suffix,
@@ -63,40 +63,40 @@ const manyRegions = (() => {
   return { label: value, matches: [{ key: 'label', value, indices }] }
 })()
 
-describe('highlight', () => {
-  bench('ascii', () => {
+test('highlight', async ({ bench }) => {
+  await bench('ascii', () => {
     highlight(ascii, MATCH, 'label')
-  })
+  }).run()
 
-  bench('cyrillic', () => {
+  await bench('cyrillic', () => {
     highlight(cyrillic, MATCH, 'label')
-  })
+  }).run()
 
-  bench('cjk', () => {
+  await bench('cjk', () => {
     highlight(cjk, MATCH, 'label')
-  })
+  }).run()
 
-  bench('emoji', () => {
+  await bench('emoji', () => {
     highlight(emoji, MATCH, 'label')
-  })
+  }).run()
 
-  bench('flags', () => {
+  await bench('flags', () => {
     highlight(flags, MATCH, 'label')
-  })
+  }).run()
 
-  bench('under the segmentation ceiling', () => {
+  await bench('under the segmentation ceiling', () => {
     highlight(underCeiling, MATCH, 'label')
-  })
+  }).run()
 
-  bench('over the segmentation ceiling', () => {
+  await bench('over the segmentation ceiling', () => {
     highlight(overCeiling, MATCH, 'label')
-  })
+  }).run()
 
-  bench('under the ceiling, escaped six-fold', () => {
+  await bench('under the ceiling, escaped six-fold', () => {
     highlight(underCeilingEscaped, MATCH, 'label')
-  })
+  }).run()
 
-  bench('many match regions', () => {
+  await bench('many match regions', () => {
     highlight(manyRegions, MATCH, 'label')
-  })
+  }).run()
 })

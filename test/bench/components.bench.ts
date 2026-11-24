@@ -1,4 +1,4 @@
-import { bench, describe } from 'vitest'
+import { test } from 'vitest'
 import { disableAutoUnmount } from '@vue/test-utils'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
 
@@ -24,30 +24,25 @@ const Toolbar = {
   template: `<div><B24Button v-for="i in 25" :key="i" :label="'B' + i" /></div>`
 }
 
-describe('Button mount', () => {
-  bench('toolbar of 25', async () => {
+test('Button mount', async ({ bench }) => {
+  await bench('toolbar of 25', async () => {
     const wrapper = await mountSuspended(Toolbar)
     wrapper.unmount()
-  })
+  }).run()
 })
 
 // Toggling a variant prop re-runs the component's `b24ui` computed and re-renders
 // its subtree. Each iteration performs a full on/off cycle so the work measured
 // is deterministic and always ends back in the initial `false` state.
-describe('Button re-render (variant prop change)', () => {
-  let wrapper: Awaited<ReturnType<typeof mountSuspended>>
+test('Button re-render (variant prop change)', async ({ bench }) => {
+  const wrapper = await mountSuspended(Button, { props: { label: 'Button' } })
 
-  bench('toggle loading', async () => {
+  await bench('toggle loading', async () => {
     await wrapper.setProps({ loading: true })
     await wrapper.setProps({ loading: false })
-  }, {
-    async setup() {
-      wrapper = await mountSuspended(Button, { props: { label: 'Button' } })
-    },
-    teardown() {
-      wrapper?.unmount()
-    }
-  })
+  }).run()
+
+  wrapper.unmount()
 })
 
 type Row = { id: number, name: string, email: string, amount: number, status: string }
@@ -75,26 +70,21 @@ const columns: TableColumn<Row>[] = [
 const tableProps = (data: Row[]) => ({ data, columns: columns as unknown as TableColumn<unknown, unknown>[] })
 
 // The per-cell `b24ui.td()` path at scale (200 rows x 5 columns = 1000 cells).
-describe('Table mount (200 x 5)', () => {
+test('Table mount (200 x 5)', async ({ bench }) => {
   const data = makeData(200)
 
-  bench('mount', async () => {
+  await bench('mount', async () => {
     const wrapper = await mountSuspended(Table, { props: tableProps(data) })
     wrapper.unmount()
-  })
+  }).run()
 })
 
-describe('Table re-render (new data identity)', () => {
-  let wrapper: Awaited<ReturnType<typeof mountSuspended>>
+test('Table re-render (new data identity)', async ({ bench }) => {
+  const wrapper = await mountSuspended(Table, { props: tableProps(makeData(200)) })
 
-  bench('set data', async () => {
+  await bench('set data', async () => {
     await wrapper.setProps({ data: makeData(200) })
-  }, {
-    async setup() {
-      wrapper = await mountSuspended(Table, { props: tableProps(makeData(200)) })
-    },
-    teardown() {
-      wrapper?.unmount()
-    }
-  })
+  }).run()
+
+  wrapper.unmount()
 })
