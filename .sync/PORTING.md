@@ -210,14 +210,19 @@ material. Reproduce its *intent* in b24ui by editing files under `src/` only.
   the variant, keep the slot bases empty, and keep the utilities. The `Card`
   snapshots are the tell: fourteen entries, seven in each of
   `test/components/__snapshots__/Card.spec.ts.snap` and its `-vue` counterpart.
-- **Generated CSS template is `b24ui.css`, never upstream's `ui.css`.** The
-  `experimental.componentDetection` dev watcher filters `updateTemplates` on that
-  name, and a filter matching nothing is a successful call — the feature just
-  quietly stops working, which is how the mismatch survived (#80). Registration
-  and filter both read `CSS_TEMPLATE_FILENAME` / `isCssTemplate` from one place
-  now; port the intent, never the literal. Guarded by
-  `test/utils/templates.spec.ts`, which runs the predicate the watcher really
-  passes against the templates really registered.
+- **Generated CSS template is `b24ui.css`, never upstream's `ui.css`.** Since
+  nuxt/ui@6f1cdd8 the `experimental.componentDetection` refresh is not a
+  `builder:watch` hook filtering `updateTemplates` on a name any more: the CSS
+  template declares `dependsOn` and Nuxt asks it whether a changed file
+  concerns it (a layer's source file, per `COMPONENT_DETECTION_WATCH_RE`), and
+  every template built from the module options alone declares `dependsOn: []`
+  so a saved file does not recompile it. The name is written once, as
+  `CSS_TEMPLATE_FILENAME`; the old filter (`isCssTemplate`,
+  `watchForComponentDetection`) is gone, and with it the way the mismatch of #80
+  could recur. A template that omits `dependsOn` is recompiled on every change —
+  a new template must declare it. Guarded by `describe('regeneration on file
+  changes')` in `test/utils/templates.spec.ts`, which runs the predicate Nuxt
+  really calls against the templates really registered.
 - **`ChatMessages.updateLastMessageHeight()` measures with
   `getBoundingClientRect()`, not `useElementBounding()`.** The function runs from
   the `status` watcher and a window `resize` handler, both outside any effect

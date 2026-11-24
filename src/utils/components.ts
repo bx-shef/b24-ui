@@ -10,8 +10,8 @@ import { resolvePathSync } from 'mlly'
  * Source extensions component detection scans.
  *
  * Shared because two places have to agree on it and neither can tell when they
- * stop: this glob, and the `builder:watch` filter that re-runs detection during
- * `nuxt dev` (`COMPONENT_DETECTION_WATCH_RE` in `../templates`). Upstream keeps
+ * stop: this glob, and the `dependsOn` of the CSS template that re-runs detection
+ * during `nuxt dev` (`COMPONENT_DETECTION_WATCH_RE` in `../templates`). Upstream keeps
  * a literal in each and had to edit both when `.mts`/`.mjs`/`.cjs` were added;
  * an extension in one and not the other means a file that changes the answer
  * never triggers a refresh, which produces no error and no signal.
