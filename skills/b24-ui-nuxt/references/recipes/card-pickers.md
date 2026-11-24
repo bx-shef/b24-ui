@@ -1,21 +1,21 @@
-# Card pickers and item galleries
+# Выбор из карточек и галереи элементов
 
-Patterns for the "show a set of options or destinations as a grid of icon + title + description cards" UX. The user picks one (or several) by clicking a card. Use this whenever a plain `B24RadioGroup` / `B24CheckboxGroup` would feel too dense for the choice — when each option needs explanation, an icon, or a category headline.
+Приёмы для сценария «показать набор вариантов или разделов сеткой карточек с иконкой, заголовком и описанием». Пользователь выбирает один вариант (или несколько) нажатием на карточку. Применяйте, когда обычные `B24RadioGroup` / `B24CheckboxGroup` слишком скупы для такого выбора — когда каждому варианту нужны пояснение, иконка или заголовок категории.
 
-The component for these patterns is **`B24PageCardGroup`**.
+Для этого служит компонент **`B24PageCardGroup`**.
 
-## When to reach for this pattern
+## Когда применять
 
-- **Picking a setting from a set of variants** — "which form template?", "which dashboard layout?", "which AI model?". One option is selected at a time, and the user needs to read what each option does before picking.
-- **Multi-select feature toggles** — "which capabilities should the form collect?", "which integrations should this scenario use?". Several options can be on at once.
-- **Section navigation** — a landing-page-style index of destinations: BP actions, documentation chapters, tool categories. Clicking a card navigates instead of selecting.
-- **Wizard step "what do you want to build?"** — first step of a multi-step flow where the user declares intent and the rest of the wizard adapts.
+- **Выбор настройки из набора вариантов** — «какой шаблон формы?», «какая раскладка дашборда?», «какая AI-модель?». Выбран один вариант, и пользователю нужно прочитать, что делает каждый, прежде чем выбрать.
+- **Переключатели возможностей с множественным выбором** — «какие данные должна собирать форма?», «какие интеграции использует сценарий?». Включены могут быть сразу несколько.
+- **Навигация по разделам** — список разделов в духе лендинга: действия БП, главы документации, категории инструментов. Нажатие на карточку переходит, а не выбирает.
+- **Шаг мастера «что вы хотите создать?»** — первый шаг многошагового процесса, где пользователь называет цель, а остальные шаги подстраиваются.
 
-If the choice is binary, or the labels alone make the option self-explanatory, use `B24RadioGroup` / `B24CheckboxGroup` / `B24Switch` instead. `B24PageCardGroup` shines when each option deserves a sentence.
+Если выбор бинарный или варианты понятны по одним подписям, берите `B24RadioGroup` / `B24CheckboxGroup` / `B24Switch`. `B24PageCardGroup` хорош, когда каждому варианту нужно своё предложение.
 
-For richer cards with a preview image and an inline "Learn more" link (one option per row, not a grid), use `B24RadioGroup` / `B24CheckboxGroup` with `variant="card"` and a custom `#label` slot — see [settings](./settings.md).
+Для более насыщенных карточек с картинкой предпросмотра и ссылкой «Подробнее» (один вариант в строке, а не сетка) используйте `B24RadioGroup` / `B24CheckboxGroup` с `variant="card"` и своим слотом `#label` — см. [настройки](./settings.md).
 
-## Single-select settings picker
+## Выбор одной настройки
 
 ```vue
 <script setup lang="ts">
@@ -43,7 +43,7 @@ const items = [
 </template>
 ```
 
-## Multi-select capability toggles
+## Включение нескольких возможностей
 
 ```vue
 <script setup lang="ts">
@@ -72,15 +72,15 @@ const items = [
 </template>
 ```
 
-The `category` field on each item splits the grid into sections with a heading above each. Set `category-key=""` to disable grouping when the items are already homogeneous.
+Поле `category` у элемента делит сетку на разделы с заголовком над каждым. Если элементы однородны, отключите группировку: `category-key=""`.
 
-## Card gallery as navigation
+## Галерея карточек как навигация
 
-When a card click should navigate instead of select, drop `v-model` and listen on `change` (or use the `value` field as a route key) — but the cleaner pattern is to render plain `B24PageCard` instances inside a custom grid, since "selection state" is meaningless for navigation. Reach for `B24PageCardGroup` only when there is a real selected value to bind.
+Если нажатие на карточку должно переходить, а не выбирать, уберите `v-model` и слушайте `change` (или используйте поле `value` как ключ маршрута). Но чище отрисовать обычные `B24PageCard` в собственной сетке: «состояние выбора» для навигации бессмысленно. `B24PageCardGroup` нужен, только когда есть настоящее выбранное значение для привязки.
 
-## Pairing with a form
+## Использование в форме
 
-`B24PageCardGroup` honours `useFormField`, so it integrates with `B24Form` / `B24FormField` like any other input. Wrap it for label + error display:
+`B24PageCardGroup` учитывает `useFormField`, поэтому встраивается в `B24Form` / `B24FormField` как любое другое поле. Оберните его, чтобы показать подпись и ошибку:
 
 ```vue
 <B24FormField label="Default view" name="layout" required>
@@ -88,14 +88,14 @@ When a card click should navigate instead of select, drop `v-model` and listen o
 </B24FormField>
 ```
 
-The wrapping `<B24FormField>` keeps precedence over `<B24Theme :props>` defaults — see `useComponentProps` notes in [conventions](../guidelines/conventions.md).
+Оборачивающий `<B24FormField>` приоритетнее значений по умолчанию из `<B24Theme :props>` — см. заметки о `useComponentProps` в [соглашениях](../guidelines/conventions.md).
 
-## Sizing, color, and hover shadow
+## Размер, цвет и тень при наведении
 
-- `size` (`sm` | `md` | `lg`) scales the inner avatar, inner gap, and title/description font size. Default `md`.
-- `color` is the umbrella accent that drives both the highlighted card border and the corner badge — keep them in sync by setting `color` instead of `highlight-color` / `badge-color` separately.
-- Each item picks one leading visual: top-level `icon` field (plain icon, no circle) or `avatar` field (full `B24Avatar` — color, src, chip). `icon` wins when both are set, so move the icon into `avatar.icon` when you want the colored circle. Brand defaults group-wide with the `avatar` prop or per option via the item's `avatar` field — both accept the full Avatar API.
-- The card lifts with a subtle shadow on hover, unless the item or the whole group is `disabled`.
+- `size` (`sm` | `md` | `lg`) масштабирует аватар внутри, внутренний отступ и размер шрифта заголовка и описания. По умолчанию `md`.
+- `color` — общий акцент, который задаёт и рамку выделенной карточки, и бейдж в углу; чтобы они совпадали, задавайте `color`, а не `highlight-color` и `badge-color` по отдельности.
+- У каждого элемента одно ведущее изображение: поле `icon` верхнего уровня (простая иконка, без круга) или поле `avatar` (полноценный `B24Avatar` — цвет, src, чип). Если заданы оба, побеждает `icon`, поэтому для цветного круга перенесите иконку в `avatar.icon`. Общие значения для группы — пропс `avatar`, для отдельного варианта — поле `avatar` элемента; оба принимают весь API Avatar.
+- При наведении карточка слегка приподнимается тенью, если сам элемент или вся группа не `disabled`.
 
 ```vue
 <B24PageCardGroup
@@ -112,26 +112,26 @@ The wrapping `<B24FormField>` keeps precedence over `<B24Theme :props>` defaults
 import TableIcon from '@bitrix24/b24icons-vue/main/TableIcon'
 import ListIcon from '@bitrix24/b24icons-vue/main/ListIcon'
 
-// Avatar mode (colored circle around the icon) — keep the icon inside `avatar.icon`
+// Режим аватара (цветной круг вокруг иконки) — иконка внутри `avatar.icon`
 const items = [
   { value: 'table', avatar: { color: 'air-primary-success', icon: TableIcon }, label: 'Table', description: '...' },
   { value: 'list',  avatar: { color: 'air-primary-warning', icon: ListIcon },  label: 'List',  description: '...' }
 ]
 
-// Plain-icon mode (no circle) — top-level `icon` wins, `avatar` (if any) is ignored
+// Режим простой иконки (без круга) — побеждает `icon` верхнего уровня, `avatar` (если есть) игнорируется
 const compact = [
   { value: 'table', icon: TableIcon, label: 'Table', description: '...' },
   { value: 'list',  icon: ListIcon,  label: 'List',  description: '...' }
 ]
 ```
 
-## Custom slots
+## Собственные слоты
 
-`B24PageCardGroup` exposes overrides for the cases where the defaults are too rigid:
+`B24PageCardGroup` позволяет переопределить части, когда значения по умолчанию слишком жёсткие:
 
-- `#leading="{ item, selected }"` — escape hatch for the leading visual. The default already renders a `B24Avatar`; reach for the slot only when the built-in avatar config (`avatar` prop / item `avatar` field) isn't enough.
-- `#badge="{ item, selected }"` — replace the corner check badge (e.g. show the price tag of the selected plan).
-- `#categoryLabel="{ category, items }"` — custom heading per section (counters, secondary text).
-- `#legend` — heading above the entire group.
+- `#leading="{ item, selected }"` — запасной выход для ведущего изображения. По умолчанию уже рисуется `B24Avatar`; слот нужен, только если встроенной настройки аватара (пропс `avatar` / поле `avatar` элемента) не хватает.
+- `#badge="{ item, selected }"` — заменяет бейдж-галочку в углу (например, показывает цену выбранного тарифа).
+- `#categoryLabel="{ category, items }"` — свой заголовок раздела (счётчики, второстепенный текст).
+- `#legend` — заголовок над всей группой.
 
-Theme slot overrides (`:b24ui="{ card: '...', cardWrapper: '...', avatar: '...' }"`) apply on top of the size/columns variants and are deep-merged automatically — see the proxy notes in [conventions](../guidelines/conventions.md).
+Переопределения слотов темы (`:b24ui="{ card: '...', cardWrapper: '...', avatar: '...' }"`) накладываются поверх вариантов размера и колонок и автоматически сливаются в глубину — см. заметки о прокси в [соглашениях](../guidelines/conventions.md).

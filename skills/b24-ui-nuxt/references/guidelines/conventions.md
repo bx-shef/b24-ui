@@ -1,10 +1,10 @@
-# Conventions
+# Соглашения
 
-Coding patterns specific to Bitrix24 UI.
+Приёмы кода, специфичные для Bitrix24 UI.
 
-## Content module integration
+## Подключение модуля Content
 
-When using `@nuxt/content`, it **must** come after `@bitrix24/b24ui-nuxt` in the `modules` array — otherwise prose components won't be available:
+Если используется `@nuxt/content`, он **должен** стоять после `@bitrix24/b24ui-nuxt` в массиве `modules`, иначе prose-компоненты будут недоступны:
 
 ```ts
 // nuxt.config.ts
@@ -13,7 +13,7 @@ export default defineNuxtConfig({
 })
 ```
 
-Add `@source` in your CSS so Tailwind generates classes used in markdown/MDC:
+Добавьте `@source` в CSS, чтобы Tailwind генерировал классы, используемые в markdown/MDC:
 
 ```css
 /* app/assets/css/main.css */
@@ -23,9 +23,9 @@ Add `@source` in your CSS so Tailwind generates classes used in markdown/MDC:
 @source "../../../content/**/*";
 ```
 
-## IDE setup
+## Настройка IDE
 
-Recommended `.vscode/settings.json` for Tailwind IntelliSense autocomplete with Bitrix24 UI:
+Рекомендуемый `.vscode/settings.json` для автодополнения Tailwind IntelliSense с Bitrix24 UI:
 
 ```json
 {
@@ -36,23 +36,23 @@ Recommended `.vscode/settings.json` for Tailwind IntelliSense autocomplete with 
 }
 ```
 
-## B24App wrapper
+## Обёртка B24App
 
-Always wrap your app in `B24App` — it provides:
-- Toast container (`useToast`)
-- Tooltip provider
-- Programmatic overlay context (`useOverlay`)
-- i18n locale support
+Всегда оборачивайте приложение в `B24App` — он даёт:
+- контейнер уведомлений (`useToast`);
+- провайдер подсказок;
+- контекст программных оверлеев (`useOverlay`);
+- поддержку локали.
 
 ```vue
 <B24App :locale="fr">
-  <NuxtPage /> <!-- or <RouterView /> for Vue -->
+  <NuxtPage /> <!-- или <RouterView /> для Vue -->
 </B24App>
 ```
 
-## Icons
+## Иконки
 
-Bitrix24 UI uses [@bitrix24/b24icons](https://bitrix24.github.io/b24icons/). See the [icons guideline](icons.md) for finding the right icon.
+Bitrix24 UI использует [@bitrix24/b24icons](https://bitrix24.github.io/b24icons/). Как найти нужную иконку — в [руководстве по иконкам](icons.md).
 
 ```vue
 <script setup>
@@ -64,27 +64,27 @@ Bitrix24 UI uses [@bitrix24/b24icons](https://bitrix24.github.io/b24icons/). See
 </template>
 ```
 
-## Slot patterns
+## Шаблоны слотов
 
-Most components follow consistent slot naming:
+Большинство компонентов называют слоты единообразно:
 
-| Slot | Used by | Purpose |
+| Слот | Где используется | Назначение |
 |---|---|---|
-| `#header` | Card, Modal, Slideover, DashboardPanel | Top section |
-| `#body` | Modal, Slideover, Header, DashboardPanel | Scrollable content area; on Header it is the mobile menu |
-| `#footer` | Card, Modal, Slideover, DashboardPanel | Bottom section |
-| `#left` | Page, DashboardNavbar, Header, Footer | Left sidebar or content |
-| `#right` | Page, DashboardNavbar, Header, Footer | Right sidebar or content |
-| `#leading` | Input, Button, Alert | Before main content (icon area) |
-| `#trailing` | Input, Button | After main content (icon area) |
-| `#content` | Modal, Slideover, Popover, Tooltip | Full content override |
-| `#default` | Most components | Main content area |
+| `#header` | Card, Modal, Slideover, DashboardPanel | Верхняя секция |
+| `#body` | Modal, Slideover, Header, DashboardPanel | Прокручиваемая область содержимого; у Header — мобильное меню |
+| `#footer` | Card, Modal, Slideover, DashboardPanel | Нижняя секция |
+| `#left` | Page, DashboardNavbar, Header, Footer | Левая колонка или содержимое |
+| `#right` | Page, DashboardNavbar, Header, Footer | Правая колонка или содержимое |
+| `#leading` | Input, Button, Alert | Перед основным содержимым (область иконки) |
+| `#trailing` | Input, Button | После основного содержимого (область иконки) |
+| `#content` | Modal, Slideover, Popover, Tooltip | Полная замена содержимого |
+| `#default` | Большинство компонентов | Основная область содержимого |
 
-## Items arrays
+## Массивы items
 
-Many components accept an `items` prop. Two patterns:
+Многие компоненты принимают пропс `items`. Возможны два вида:
 
-**Flat array** — plain list:
+**Плоский массив** — простой список:
 
 ```ts
 import PersonIcon from '@bitrix24/b24icons-vue/main/PersonIcon'
@@ -96,7 +96,7 @@ const items = [
 ]
 ```
 
-**Nested array** — groups with automatic separators between them:
+**Вложенный массив** — группы, между которыми автоматически рисуются разделители:
 
 ```ts
 import PersonIcon from '@bitrix24/b24icons-vue/main/PersonIcon'
@@ -113,11 +113,11 @@ const items = [
 ]
 ```
 
-Components supporting nested arrays: `B24DropdownMenu`, `B24ContextMenu`, `B24NavigationMenu`. `B24CommandPalette` groups the same content differently — it has no top-level `items` prop at all, only `groups`, each with its own flat `items`.
+Вложенные массивы поддерживают `B24DropdownMenu`, `B24ContextMenu`, `B24NavigationMenu`. `B24CommandPalette` группирует то же самое иначе: у него вообще нет пропса `items` верхнего уровня, только `groups`, и у каждой группы свой плоский `items`.
 
-Nesting applies to the **top-level** `items` only. A submenu's `children` is always a flat array — `B24NavigationMenu` flattens a nested one and draws no separator, warning in development.
+Вложенность допустима только в `items` **верхнего уровня**. `children` подменю — всегда плоский массив: `B24NavigationMenu` разворачивает вложенный, разделитель не рисует, а в режиме разработки выводит предупреждение.
 
-## Composables
+## Композаблы
 
 ### useToast
 
@@ -140,7 +140,7 @@ toast.clear()
 ```
 
 ### useDevice
-Detect platform (Bitrix24 mobile/desktop app or web) and screen size
+Определяет платформу (мобильное или десктопное приложение Bitrix24, веб) и размер экрана
 
 ```vue
 <script setup lang="ts">
@@ -149,10 +149,10 @@ const { isBitrixMobile, screen } = useDevice()
 
 <template>
   <div>
-    <p v-if="isBitrixMobile">You are using the Bitrix24 mobile app on a small screen.</p>
-    <p v-else-if="screen.isMobile">Regular web browser on a small screen.</p>
-    <p v-else-if="!isBitrixMobile && (!screen.isMobile)">Regular web browser on a desktop.</p>
-    <p v-else>Other combination.</p>
+    <p v-if="isBitrixMobile">Вы в мобильном приложении Bitrix24 на маленьком экране.</p>
+    <p v-else-if="screen.isMobile">Обычный браузер на маленьком экране.</p>
+    <p v-else-if="!isBitrixMobile && (!screen.isMobile)">Обычный браузер на десктопе.</p>
+    <p v-else>Другое сочетание.</p>
   </div>
 </template>
 ```
@@ -166,13 +166,13 @@ confetti.fire()
 
 ### useOverlay
 
-Programmatic modals, slideovers, drawers — no template `v-model` needed. See [overlays recipe](../recipes/overlays.md) for full patterns.
+Программные модальные окна, боковые панели, drawer — `v-model` в шаблоне не нужен. Подробные приёмы — в [рецепте про оверлеи](../recipes/overlays.md).
 
 ```ts
 const overlay = useOverlay()
 const modal = overlay.create(MyComponent)
 const instance = modal.open({ title: 'Confirm?' })
-if (await instance.result) { /* confirmed */ }
+if (await instance.result) { /* подтверждено */ }
 ```
 
 ### defineShortcuts
@@ -183,17 +183,17 @@ defineShortcuts({
   escape: () => close(),
   meta_enter: {
     handler: () => submit(),
-    // `usingInput` is the only per-shortcut option: `true` allows the shortcut
-    // while any input is focused, a string limits it to the input with that
+    // `usingInput` — единственная настройка сочетания: `true` разрешает его,
+    // пока в фокусе любое поле ввода, строка ограничивает полем с таким
     // `name`.
     usingInput: true
   }
 })
 ```
 
-Keys: `meta` (Cmd/Ctrl), `ctrl`, `alt`, `shift`. Separator: `_`.
+Клавиши: `meta` (Cmd/Ctrl), `ctrl`, `alt`, `shift`. Разделитель: `_`.
 
-To gate a shortcut on state, pass a reactive config and set the key to `false` — `ShortcutsConfig` accepts `false | null | undefined` per key, so there is no need to rebuild the object:
+Чтобы включать сочетание по условию, передайте реактивную конфигурацию и поставьте ключу `false`: `ShortcutsConfig` принимает для каждого ключа `false | null | undefined`, пересобирать объект не нужно:
 
 ```ts
 defineShortcuts(computed(() => ({
@@ -203,7 +203,7 @@ defineShortcuts(computed(() => ({
 
 ### extractShortcuts
 
-Wire up keyboard shortcuts from menu items:
+Подключает горячие клавиши из элементов меню:
 
 ```ts
 const items = [
@@ -214,11 +214,11 @@ const items = [
 defineShortcuts(extractShortcuts(items))
 ```
 
-### Internationalization (i18n)
+### Интернационализация (i18n)
 
-Bitrix24 UI ships 20 locales. Set the locale on `B24App` — all components inherit it.
+Bitrix24 UI поставляется с 20 локалями. Локаль задаётся на `B24App` — все компоненты её наследуют.
 
-#### Static locale
+#### Статическая локаль
 
 ```vue
 <script setup lang="ts">
@@ -232,9 +232,9 @@ import { fr } from '@bitrix24/b24ui-nuxt/locale'
 </template>
 ```
 
-#### Extend a built-in locale
+#### Расширение встроенной локали
 
-`extendLocale` is auto-imported. Override specific messages or the `code` (affects date/time formatting in Calendar, InputDate, InputTime):
+`extendLocale` импортируется автоматически. Можно переопределить отдельные сообщения или `code` (влияет на формат даты и времени в Calendar, InputDate, InputTime):
 
 ```ts
 import { en } from '@bitrix24/b24ui-nuxt/locale'
@@ -247,7 +247,7 @@ const locale = extendLocale(en, {
 })
 ```
 
-#### Custom locale from scratch
+#### Собственная локаль с нуля
 
 ```ts
 import type { Messages } from '@bitrix24/b24ui-nuxt'
@@ -257,12 +257,12 @@ const locale = defineLocale<Messages>({
   code: 'en',
   dir: 'ltr',
   messages: {
-    // all component message keys
+    // все ключи сообщений компонентов
   }
 })
 ```
 
-#### Dynamic locale with @nuxtjs/i18n
+#### Динамическая локаль с @nuxtjs/i18n
 
 ```ts
 // nuxt.config.ts
@@ -294,18 +294,18 @@ useHead(() => ({
 </template>
 ```
 
-With `@nuxtjs/i18n` installed, `B24App` follows the current i18n locale and only bundles the Bitrix24 UI locales matching `i18n.locales` — matched on each entry's `language` (or `code`) against the locale's language tag, so give `language` when the `code` is not a tag. Don't use `import * as locales from '@bitrix24/b24ui-nuxt/locale'`: it bundles every locale. Each locale's `dir` (`'ltr'` or `'rtl'`) sets directionality on all components; use `useLocaleHead` to propagate `lang` and `dir` to the `<html>` element.
+Если установлен `@nuxtjs/i18n`, `B24App` следует текущей локали i18n и включает в сборку только локали Bitrix24 UI, совпадающие с `i18n.locales`: сопоставляются `language` (или `code`) каждой записи и языковой тег локали, поэтому задавайте `language`, если `code` не является тегом. Не используйте `import * as locales from '@bitrix24/b24ui-nuxt/locale'`: он добавит в сборку все локали. `dir` каждой локали (`'ltr'` или `'rtl'`) задаёт направление текста во всех компонентах; чтобы передать `lang` и `dir` в элемент `<html>`, используйте `useLocaleHead`.
 
-## Color mode
+## Цветовая схема
 
-Bitrix24 UI registers `useColorMode` from `@vueuse/core` automatically. Built-in components for switching:
-- `B24ColorModeButton` — single button toggle (light/dark)
-- `B24ColorModeSwitch` — toggle switch
-- `B24ColorModeSelect` — dropdown with system/light/dark options
-- `B24ColorModeAvatar` — displays different avatar per mode
-- `B24ColorModeImage` — displays different image per mode
+Bitrix24 UI автоматически подключает `useColorMode` из `@vueuse/core`. Для переключения есть готовые компоненты:
+- `B24ColorModeButton` — кнопка-переключатель (светлая/тёмная)
+- `B24ColorModeSwitch` — переключатель-свитч
+- `B24ColorModeSelect` — выпадающий список: системная, светлая, тёмная
+- `B24ColorModeAvatar` — показывает свой аватар для каждой схемы
+- `B24ColorModeImage` — показывает своё изображение для каждой схемы
 
-For custom color mode UI, use `useColorMode` with `ClientOnly` to avoid hydration mismatch:
+Для собственного переключателя схемы используйте `useColorMode` вместе с `ClientOnly`, чтобы избежать расхождения при гидратации:
 
 ```vue
 <script setup lang="ts">
@@ -329,11 +329,11 @@ const isDark = computed({
 </template>
 ```
 
-## Official templates
+## Официальные шаблоны
 
-Bootstrap a project from a template instead of starting from scratch:
+Начните проект с шаблона, а не с нуля:
 
-**Dashboard**
+**Дашборд**
 ```bash
 git clone https://github.com/bitrix24/templates-dashboard.git <project-name>
 cd <project-name>
@@ -341,7 +341,7 @@ pnpm install
 pnpm run dev
 ```
 
-**Starter**
+**Стартер**
 ```bash
 git clone https://github.com/bitrix24/starter-b24ui.git <project-name>
 cd <project-name>
@@ -349,9 +349,9 @@ pnpm install
 pnpm run dev
 ```
 
-## Responsive patterns
+## Адаптивность
 
-- Dashboard sidebar hides on mobile, shows a slideover/drawer via `B24DashboardSidebar` `mode` prop
-- `B24Header` body slot is the mobile menu content (shown when hamburger is tapped)
-- Most components handle responsiveness automatically — avoid manual breakpoint classes unless needed
-- Use `B24PageAside` for sidebars that should hide below `lg` breakpoint
+- Боковое меню дашборда на мобильных скрывается и показывается как slideover или drawer — за это отвечает пропс `mode` у `B24DashboardSidebar`.
+- Слот `body` у `B24Header` — содержимое мобильного меню (открывается по нажатию на «гамбургер»).
+- Большинство компонентов адаптируются сами — без нужды не добавляйте классы контрольных точек вручную.
+- `B24PageAside` — для боковых колонок, которые должны скрываться ниже контрольной точки `lg`.

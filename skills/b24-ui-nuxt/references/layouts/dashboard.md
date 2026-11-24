@@ -1,33 +1,33 @@
-# Dashboard Layout
+# Раскладка дашборда
 
-Build app interfaces with resizable sidebars, multi-panel layouts, and toolbars.
+Интерфейсы приложений с изменяемыми по размеру боковыми меню, многопанельными раскладками и панелями инструментов.
 
-## When to use
+## Когда использовать
 
-- Application for Bitrix24
-- Admin panels, back-office UIs
-- Email clients, project management tools
-- Any app with a persistent sidebar and content panels
-- Combine with chat or editor layouts for specialized dashboards
+- Приложение для Bitrix24
+- Панели администратора, служебные интерфейсы
+- Почтовые клиенты, инструменты управления проектами
+- Любое приложение с постоянным боковым меню и панелями содержимого
+- Сочетается с раскладками чата или редактора для специализированных дашбордов
 
-## Component tree
+## Дерево компонентов
 
 ```
 B24App
 └── NuxtLayout (dashboard)
     └── B24DashboardGroup
         ├── B24DashboardSidebar
-        │   ├── #header (logo, search button)
-        │   ├── #default (navigation) — receives { collapsed } slot prop
-        │   └── #footer (user menu)
+        │   ├── #header (логотип, кнопка поиска)
+        │   ├── #default (навигация) — получает пропс слота { collapsed }
+        │   └── #footer (меню пользователя)
         └── NuxtPage
             └── B24DashboardPanel
                 ├── #header → B24DashboardNavbar + B24DashboardToolbar
-                ├── #body (scrollable content)
-                └── #footer (optional)
+                ├── #body (прокручиваемое содержимое)
+                └── #footer (необязательно)
 ```
 
-## Layout
+## Раскладка
 
 ```vue [layouts/dashboard.vue]
 <script setup lang="ts">
@@ -88,7 +88,7 @@ const items = computed<NavigationMenuItem[]>(() => [{
 </template>
 ```
 
-## Page
+## Страница
 
 ```vue [pages/dashboard/index.vue]
 <script setup lang="ts">
@@ -111,58 +111,58 @@ definePageMeta({ layout: 'dashboard' })
     </template>
 
     <template #body>
-      <!-- Page content -->
+      <!-- Содержимое страницы -->
     </template>
   </B24DashboardPanel>
 </template>
 ```
 
-### Common mistakes
+### Частые ошибки
 
-- Forgetting `definePageMeta({ layout: 'dashboard' })` — the page won't use the dashboard layout without it.
-- Putting content directly in `B24DashboardPanel` without using `#body` slot — content won't scroll properly.
-- Not handling the `collapsed` slot prop — sidebar content should adapt when collapsed (hide labels, center icons).
+- Забыли `definePageMeta({ layout: 'dashboard' })` — без него страница не использует раскладку дашборда.
+- Содержимое лежит прямо в `B24DashboardPanel`, без слота `#body` — оно не будет нормально прокручиваться.
+- Не обработан пропс слота `collapsed` — содержимое бокового меню должно подстраиваться под свёрнутое состояние (скрывать подписи, центрировать иконки).
 
-## Key components
+## Ключевые компоненты
 
 ### DashboardGroup
 
-Root wrapper. Manages sidebar state and persistence.
+Корневая обёртка. Управляет состоянием бокового меню и его сохранением.
 
-| Prop | Default | Purpose |
+| Пропс | По умолчанию | Назначение |
 |---|---|---|
-| `storage` | `'cookie'` | `'cookie'` or `'local'` |
-| `storage-key` | `'dashboard'` | Storage key name |
-| `persistent` | `true` | Set to `false` to stop saving sizes |
-| `unit` | `'px'` | Size unit: `'px'`, `'rem'` or `'%'` |
+| `storage` | `'cookie'` | `'cookie'` или `'local'` |
+| `storage-key` | `'dashboard'` | Имя ключа хранилища |
+| `persistent` | `true` | `false` отключает сохранение размеров |
+| `unit` | `'px'` | Единица размера: `'px'`, `'rem'` или `'%'` |
 
 ### DashboardSidebar
 
-Resizable, collapsible sidebar. Must be inside `DashboardGroup`.
+Боковое меню с изменяемым размером и сворачиванием. Должно находиться внутри `DashboardGroup`.
 
 | Prop | Default | Purpose |
 |---|---|---|
-| `resizable` | `false` | Drag to resize |
-| `collapsible` | `false` | Collapse when dragged to edge |
-| `side` | `'left'` | `'left'` or `'right'` |
-| `mode` | `'slideover'` | Mobile: `'modal'`, `'slideover'`, `'drawer'` |
+| `resizable` | `false` | Размер меняется перетаскиванием |
+| `collapsible` | `false` | Сворачивается, если дотянуть до края |
+| `side` | `'left'` | `'left'` или `'right'` |
+| `mode` | `'slideover'` | На мобильных: `'modal'`, `'slideover'`, `'drawer'` |
 
-All slots receive `{ collapsed, collapse }` — `collapsed` is the boolean state, `collapse(value)` toggles it programmatically. Use `v-model:collapsed` and `v-model:open` (mobile) for state control.
+Все слоты получают `{ collapsed, collapse }`: `collapsed` — булево состояние, `collapse(value)` переключает его программно. Для управления состоянием используйте `v-model:collapsed` и `v-model:open` (на мобильных).
 
 ### DashboardPanel
 
-Content panel with `#header`, `#body` (scrollable), `#footer`, and `#default` (raw, no scroll) slots.
+Панель содержимого со слотами `#header`, `#body` (прокручивается), `#footer` и `#default` (без обработки, без прокрутки).
 
 ### DashboardNavbar / DashboardToolbar
 
-Navbar: `#leading`, `#left`, `#default`, `#right` slots + `title` prop. Use `B24DashboardSidebarCollapse` in `#leading` to collapse the sidebar on desktop. The navbar already renders a mobile toggle, customized with its `toggle` prop.
-Toolbar: same slots, sits below navbar for filters/actions.
+Navbar: слоты `#leading`, `#left`, `#default`, `#right` и пропс `title`. Чтобы сворачивать боковое меню на десктопе, поместите `B24DashboardSidebarCollapse` в `#leading`. Мобильный переключатель navbar уже отрисовывает сам, настраивается пропсом `toggle`.
+Toolbar: те же слоты, располагается под navbar для фильтров и действий.
 
-### B24NavigationMenu in sidebar
+### B24NavigationMenu в боковом меню
 
-Always pass `:collapsed="collapsed"` to `B24NavigationMenu` inside a collapsible sidebar — it auto-hides labels and centers icons. Use `NavigationMenuItem[][]` (array of arrays) for separate groups (main nav + footer links).
+Внутри сворачиваемого бокового меню всегда передавайте `:collapsed="collapsed"` в `B24NavigationMenu` — он сам скрывает подписи и центрирует иконки. Для отдельных групп (основная навигация и ссылки в подвале) используйте `NavigationMenuItem[][]` (массив массивов).
 
-## Multi-panel (list-detail)
+## Несколько панелей (список и подробности)
 
 ```vue [pages/dashboard/inbox.vue]
 <script setup lang="ts">
@@ -175,7 +175,7 @@ Always pass `:collapsed="collapsed"` to `B24NavigationMenu` inside a collapsible
       <B24DashboardNavbar title="Inbox" />
     </template>
     <template #body>
-      <!-- Email list -->
+      <!-- Список писем -->
     </template>
   </B24DashboardPanel>
 
@@ -184,13 +184,13 @@ Always pass `:collapsed="collapsed"` to `B24NavigationMenu` inside a collapsible
       <B24DashboardNavbar title="Message" />
     </template>
     <template #body>
-      <!-- Email content -->
+      <!-- Содержимое письма -->
     </template>
   </B24DashboardPanel>
 </template>
 ```
 
-## With toolbar
+## С панелью инструментов
 
 ```vue
 <script setup lang="ts">
@@ -214,7 +214,7 @@ import SearchIcon from '@bitrix24/b24icons-vue/outline/SearchIcon'
 </template>
 ```
 
-## With search
+## С поиском
 
 ```vue [layouts/dashboard.vue]
 <template>
@@ -233,18 +233,18 @@ import SearchIcon from '@bitrix24/b24icons-vue/outline/SearchIcon'
 </template>
 ```
 
-## Right sidebar
+## Правое боковое меню
 
 ```vue
 <B24DashboardGroup>
   <B24DashboardSidebar collapsible resizable>
-    <!-- Left sidebar -->
+    <!-- Левое боковое меню -->
   </B24DashboardSidebar>
 
   <slot />
 
   <B24DashboardSidebar side="right" resizable>
-    <!-- Right sidebar -->
+    <!-- Правое боковое меню -->
   </B24DashboardSidebar>
 </B24DashboardGroup>
 ```

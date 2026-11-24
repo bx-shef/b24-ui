@@ -1,15 +1,15 @@
-# Landing Page Layout
+# Раскладка лендинга
 
-Build public-facing pages — landing, blog, changelog, pricing — using the Header + Main + Footer shell with Page components.
+Публичные страницы — лендинг, блог, список изменений, тарифы — на оболочке Header + Main + Footer с компонентами Page.
 
-## When to use
+## Когда использовать
 
-- Marketing sites, product pages, company sites
-- Blog and content pages
-- Pricing, changelog, portfolio pages
-- Any public-facing page that isn't a dashboard or documentation
+- Маркетинговые сайты, страницы продуктов, сайты компаний
+- Блог и страницы с контентом
+- Тарифы, история изменений, портфолио
+- Любая публичная страница, которая не дашборд и не документация
 
-## App shell
+## Оболочка приложения
 
 ```vue [app.vue]
 <script setup lang="ts">
@@ -64,11 +64,11 @@ const items = computed<NavigationMenuItem[]>(() => [{
 </template>
 ```
 
-### Common mistakes
+### Частые ошибки
 
-- Forgetting the `#body` slot on `B24Header` — this is the mobile menu content. Without it, mobile users have no navigation.
+- Забыли слот `#body` у `B24Header` — это содержимое мобильного меню. Без него у мобильных пользователей нет навигации.
 
-## Landing page
+## Страница лендинга
 
 ```vue [pages/index.vue]
 <script setup lang="ts">
@@ -94,18 +94,18 @@ const features = [
 </template>
 ```
 
-`icon` is a **component reference**, never a string — Iconify-style names like `i-lucide-palette` are an upstream idiom and resolve to nothing here. See [icons](../guidelines/icons.md).
+`icon` — это **ссылка на компонент**, а не строка: имена в стиле Iconify вроде `i-lucide-palette` — идиома оригинальной библиотеки и здесь ни во что не разрешаются. См. [иконки](../guidelines/icons.md).
 
-## Key components
+## Ключевые компоненты
 
-- `B24PageSection` — content section with headline, title, description, and `features` grid. Use `id` for anchor links.
-- `B24PageGrid` / `B24PageCard` — card grid for features, testimonials, etc.
-- `B24PageFeature` — individual feature item.
-- `B24FooterColumns` — multi-column footer with link groups (used inside `B24Footer`).
+- `B24PageSection` — раздел с надзаголовком, заголовком, описанием и сеткой `features`. Для якорных ссылок задайте `id`.
+- `B24PageGrid` / `B24PageCard` — сетка карточек для преимуществ, отзывов и т. п.
+- `B24PageFeature` — отдельное преимущество.
+- `B24FooterColumns` — многоколоночный подвал с группами ссылок (используется внутри `B24Footer`).
 
-## Variations
+## Вариации
 
-### Alternating feature sections
+### Чередующиеся разделы с преимуществами
 
 ```vue
 <B24PageSection title="Feature A" orientation="horizontal">
