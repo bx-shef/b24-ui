@@ -4,6 +4,9 @@ description: 'Поле для ввода текста.'
 category: form
 keywords:
   - text field
+  - поле ввода
+  - текстовое поле
+  - инпут
 links:
   - label: GitHub
     iconName: GitHubIcon

@@ -6,6 +6,9 @@ keywords:
   - notification
   - snackbar
   - flash message
+  - уведомление
+  - всплывающее уведомление
+  - тост
 links:
   - label: GitHub
     iconName: GitHubIcon

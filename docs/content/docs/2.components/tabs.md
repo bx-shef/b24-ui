@@ -6,6 +6,9 @@ keywords:
   - tabbed
   - panels
   - sections
+  - вкладки
+  - табы
+  - панели
 links:
   - label: GitHub
     iconName: GitHubIcon

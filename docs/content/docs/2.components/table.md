@@ -6,6 +6,9 @@ keywords:
   - data table
   - datagrid
   - data grid
+  - таблица
+  - таблица данных
+  - грид
 links:
   - label: GitHub
     iconName: GitHubIcon

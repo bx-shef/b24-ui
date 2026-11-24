@@ -7,6 +7,9 @@ keywords:
   - popup
   - confirm
   - alert dialog
+  - модальное окно
+  - диалог
+  - всплывающее окно
 links:
   - label: GitHub
     iconName: GitHubIcon
