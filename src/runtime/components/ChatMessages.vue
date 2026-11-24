@@ -229,11 +229,11 @@ function checkScrollPosition() {
 
   showAutoScroll.value = (scrollHeight - scrollPosition) >= threshold
 
-  // Detect user scrolling up
-  if (parent.value.scrollTop < lastScrollTop.value) {
-    userScrolledUp.value = true
-  } else if ((scrollHeight - scrollPosition) < threshold) {
+  // Only resume following at the very bottom, otherwise streaming pulls the user back down
+  if ((scrollHeight - scrollPosition) <= 1) {
     userScrolledUp.value = false
+  } else if (parent.value.scrollTop < lastScrollTop.value) {
+    userScrolledUp.value = true
   }
 
   lastScrollTop.value = parent.value.scrollTop
