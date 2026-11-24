@@ -361,6 +361,7 @@ slots:
 ::code-group
 
 ```ts [Anthropic]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 import { anthropic } from '@ai-sdk/anthropic'
 
@@ -382,6 +383,7 @@ export default defineEventHandler(async (event) => {
 ```
 
 ```ts [Google]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 import { google } from '@ai-sdk/google'
 
@@ -403,6 +405,7 @@ export default defineEventHandler(async (event) => {
 ```
 
 ```ts [OpenAI]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 import { openai } from '@ai-sdk/openai'
 
@@ -410,7 +413,7 @@ export default defineEventHandler(async (event) => {
   const { messages } = await readBody(event)
 
   const result = streamText({
-    model: 'openai/gpt-5-nano',
+    model: 'openai/gpt-5.6-luna',
     instructions: 'You are a helpful assistant.',
     messages: await convertToModelMessages(messages),
     tools: {
@@ -454,6 +457,7 @@ bun add @ai-sdk/mcp
 Затем передайте инструменты MCP в `streamText` в серверном обработчике:
 
 ```ts [server/api/chat.post.ts]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, isStepCount, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 import { createMCPClient } from '@ai-sdk/mcp'
 

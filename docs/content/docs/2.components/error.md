@@ -36,8 +36,8 @@ hide:
 prettier: true
 props:
   error:
-    statusCode: 404
-    statusMessage: 'Страница не найдена'
+    status: 404
+    statusText: 'Страница не найдена'
     message: 'Страницы, которую вы ищете, не существует.'
   class: '!min-h-96'
 ---
@@ -61,14 +61,14 @@ ignore:
 cast:
   icon: 'RocketIcon'
 ignore:
-  - error.statusCode
-  - error.statusMessage
+  - error.status
+  - error.statusText
   - error.message
 props:
   icon: 'RocketIcon'
   error:
-    statusCode: 404
-    statusMessage: 'Страница не найдена'
+    status: 404
+    statusText: 'Страница не найдена'
     message: 'Страницы, которую вы ищете, не существует.'
   class: '!min-h-96'
 ---
@@ -85,15 +85,15 @@ hide:
   - class
 ignore:
   - avatar.src
-  - error.statusCode
-  - error.statusMessage
+  - error.status
+  - error.statusText
   - error.message
 props:
   avatar:
     src: 'https://github.com/bitrix24.png'
   error:
-    statusCode: 404
-    statusMessage: 'Страница не найдена'
+    status: 404
+    statusText: 'Страница не найдена'
     message: 'Страницы, которую вы ищете, не существует.'
   class: '!min-h-96'
 ---
@@ -110,8 +110,8 @@ hide:
   - class
 ignore:
   - avatar.src
-  - error.statusCode
-  - error.statusMessage
+  - error.status
+  - error.statusText
   - error.message
 items:
   color:
@@ -137,8 +137,8 @@ props:
   avatar:
     src: 'https://github.com/bitrix24.png'
   error:
-    statusCode: 404
-    statusMessage: 'Страница не найдена'
+    status: 404
+    statusText: 'Страница не найдена'
     message: 'Страницы, которую вы ищете, не существует.'
   class: '!min-h-96'
 ---
@@ -152,13 +152,13 @@ hide:
   - class
 prettier: true
 ignore:
-  - error.statusCode
-  - error.statusMessage
+  - error.status
+  - error.statusText
   - error.message
 props:
   error:
-    statusCode: 404
-    statusMessage: 'Страница не найдена'
+    status: 404
+    statusText: 'Страница не найдена'
     message: 'Страницы, которую вы ищете, не существует.'
   class: '!min-h-96'
 slots:
@@ -182,8 +182,8 @@ prettier: true
 hide:
   - class
 ignore:
-  - error.statusCode
-  - error.statusMessage
+  - error.status
+  - error.statusText
   - error.message
   - clear.color
   - clear.size
@@ -198,8 +198,8 @@ props:
     icon: 'RocketIcon'
     class: 'rounded-full'
   error:
-    statusCode: 404
-    statusMessage: 'Страница не найдена'
+    status: 404
+    statusText: 'Страница не найдена'
     message: 'Страницы, которую вы ищете, не существует.'
   class: '!min-h-96'
 ---
@@ -215,14 +215,14 @@ prettier: true
 hide:
   - class
 ignore:
-  - error.statusCode
-  - error.statusMessage
+  - error.status
+  - error.statusText
   - error.message
 props:
   redirect: '/docs/getting-started/'
   error:
-    statusCode: 404
-    statusMessage: 'Страница не найдена'
+    status: 404
+    statusText: 'Страница не найдена'
     message: 'Страницы, которую вы ищете, не существует.'
   class: '!min-h-96'
 ---
@@ -267,7 +267,7 @@ const route = useRoute()
 
 const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
 if (!page.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+  throw createError({ status: 404, statusText: 'Page not found', fatal: true })
 }
 </script>
 ```
