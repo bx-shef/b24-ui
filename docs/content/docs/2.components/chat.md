@@ -60,6 +60,7 @@ bun add ai @ai-sdk/vue
 Создайте серверный API-эндпоинт, который обрабатывает запросы чата через [`streamText`](https://ai-sdk.dev/docs/reference/ai-sdk-core/stream-text). Доступ к моделям AI через единую точку входа даёт [Vercel AI Gateway](https://vercel.com/ai-gateway):
 
 ```ts [server/api/chat.post.ts]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 
 export default defineEventHandler(async (event) => {
@@ -82,6 +83,7 @@ export default defineEventHandler(async (event) => {
 Чтобы включить [рассуждения](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot#reasoning), настройте `providerOptions` для своего провайдера ([Anthropic](https://ai-sdk.dev/providers/ai-sdk-providers/anthropic#reasoning), [Google](https://ai-sdk.dev/providers/ai-sdk-providers/google-generative-ai#thinking), [OpenAI](https://ai-sdk.dev/providers/ai-sdk-providers/openai#reasoning)):
 
 ```ts [server/api/chat.post.ts]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 
 export default defineEventHandler(async (event) => {
@@ -124,6 +126,7 @@ export default defineEventHandler(async (event) => {
 ::code-group
 
 ```ts [Anthropic]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 import { anthropic } from '@ai-sdk/anthropic'
 
@@ -145,6 +148,7 @@ export default defineEventHandler(async (event) => {
 ```
 
 ```ts [Google]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 import { google } from '@ai-sdk/google'
 
@@ -166,6 +170,7 @@ export default defineEventHandler(async (event) => {
 ```
 
 ```ts [OpenAI]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 import { openai } from '@ai-sdk/openai'
 
@@ -173,7 +178,7 @@ export default defineEventHandler(async (event) => {
   const { messages } = await readBody(event)
 
   const result = streamText({
-    model: 'openai/gpt-5-nano',
+    model: 'openai/gpt-5.6-luna',
     instructions: 'You are a helpful assistant.',
     messages: await convertToModelMessages(messages),
     tools: {
@@ -213,6 +218,7 @@ yarn add @ai-sdk/mcp
 Затем настройте серверный эндпоинт на использование инструментов MCP:
 
 ```ts [server/api/chat.post.ts]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, isStepCount, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 import { createMCPClient } from '@ai-sdk/mcp'
 
@@ -280,6 +286,7 @@ bun add ai @ai-sdk/deepseek @ai-sdk/vue
 Создайте серверный API-эндпоинт:
 
 ```ts [server/api/chat.post.ts]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 import { createDeepSeek } from '@ai-sdk/deepseek'
 
@@ -305,6 +312,7 @@ export default defineEventHandler(async (event) => {
 **Рассуждения**
 
 ```ts [server/api/chat.post.ts]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 import { createDeepSeek } from '@ai-sdk/deepseek'
 
@@ -336,6 +344,7 @@ export default defineEventHandler(async (event) => {
 **Вызов инструментов (MCP)**
 
 ```ts [server/api/chat.post.ts]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, isStepCount, smoothStream, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 import { createMCPClient } from '@ai-sdk/mcp'
 import { createDeepSeek } from '@ai-sdk/deepseek'

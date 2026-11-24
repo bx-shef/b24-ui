@@ -1,7 +1,7 @@
 {
   "upstream": "nuxt/ui",
   "branch": "v4",
-  "cursor": "be37b7f17c4a6cc2a39106b0afcc4fa90feaf91f",
+  "cursor": "366e948458689236e5b2fa98cb2e292f6e5327b3",
   "_cursor_note": "cursor = last upstream commit ported into b24ui. The sync is manual by decision: one commit at a time, oldest-first, each with a `.sync/log/<sha>.md` journal and an entry in `processed`. There is no dispatcher, no porter workflow and no kill-switch — `.sync/PORTING.md` is the whole procedure. `processed` is maintained per port (backfilled #68-#72 on 2026-06-09).",
   "processed": {
     "2799fa6f2b25ce3eb15e050f3ef7c57d0d9a2fdb": {
@@ -3361,64 +3361,118 @@
       "summary": "chore(deps): pin tailwind-variants to 3.2.2 for consumers"
     },
     "8a34bc164872118fcaaa181645aaa1a4cc2753ab": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 21,
+      "b24ui_sha": "aae3a48434dda55f790bbef6931ccd6bf0223642",
       "decision": "port",
       "summary": "feat(ChatAttachment): новый компонент ChatAttachment, v-model:files в ChatPrompt, toFileUIParts, ключи локалей"
     },
     "731a20b296fbc80c2e54a2b5749ccb4d02202af8": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 21,
+      "b24ui_sha": "aae3a48434dda55f790bbef6931ccd6bf0223642",
       "decision": "no-op",
       "summary": "docs(playground): компоненты в самодельных плитках — в форке нет docs/app/components/playground"
     },
     "3ad5f5f91332ad91386a4611544a9c63739b8db5": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 21,
+      "b24ui_sha": "aae3a48434dda55f790bbef6931ccd6bf0223642",
       "decision": "port",
       "summary": "feat(ChatPrompt): очередь сообщений v-model:queue, роли иконок edit и trash"
     },
     "b465d092465ab03c7d3242e9afd0df593e735012": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 21,
+      "b24ui_sha": "aae3a48434dda55f790bbef6931ccd6bf0223642",
       "decision": "port",
       "summary": "docs: примеры очереди, моделей с рассуждением, веб-поиска и MCP — на страницы компонентов (без блога и руководств шаблонов)"
     },
     "779d9dc1aa80b2669e1e06a51cefac866251931b": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 21,
+      "b24ui_sha": "aae3a48434dda55f790bbef6931ccd6bf0223642",
       "decision": "port",
       "summary": "chore(deps): nuxt, @nuxt/kit и @nuxt/schema до ^4.6.3"
     },
     "3401ca859a264c0187a878b1ce89f97f352fe9f3": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 21,
+      "b24ui_sha": "aae3a48434dda55f790bbef6931ccd6bf0223642",
       "decision": "no-op",
       "summary": "docs(templates): правка руководства docs/content/templates/chat.md — в форке такого файла нет"
     },
     "63737025651fc3b2b064276237d4ee1123ae5d77": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 21,
+      "b24ui_sha": "aae3a48434dda55f790bbef6931ccd6bf0223642",
       "decision": "port",
       "summary": "fix(Checkbox/Switch): наведение на подпись открывает Tooltip и Popover (getFormControlAttrs)"
     },
     "259a65e2fe54af46dd60cbfbe1a55eeac7735280": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 21,
+      "b24ui_sha": "aae3a48434dda55f790bbef6931ccd6bf0223642",
       "decision": "port",
       "summary": "test(Toast): таймер закрытия не срабатывает после завершения теста"
     },
     "2f163cfb52525e9f312b82fe7c6819ac81cc87d3": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 21,
+      "b24ui_sha": "aae3a48434dda55f790bbef6931ccd6bf0223642",
       "decision": "no-op",
       "summary": "docs(templates): руководство к шаблону Dashboard — в форке нет страниц руководств"
     },
     "be37b7f17c4a6cc2a39106b0afcc4fa90feaf91f": {
+      "pr": 21,
+      "b24ui_sha": "aae3a48434dda55f790bbef6931ccd6bf0223642",
+      "decision": "port",
+      "summary": "fix(module): useImage в шаблоне изображения импортируется, а не реэкспортируется из #imports"
+    },
+    "2be441f15ded837159a872483ddf3eb40d0ddb39": {
       "pr": "pending-merge",
       "b24ui_sha": "pending-merge",
       "decision": "port",
-      "summary": "fix(module): useImage в шаблоне изображения импортируется, а не реэкспортируется из #imports"
+      "summary": "chore(skills): getRowId и watch-options в рецепте таблиц"
+    },
+    "c6cc98df63909817c6e21108c9f00cf972912255": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "docs: status/statusText в Error и createError, импорт nuxt/server в серверных примерах чата, актуальная модель OpenAI"
+    },
+    "6f1cdd805a548f9df5a597ec1cb948849d846c02": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "perf(module): шаблоны Nuxt пересобираются по dependsOn вместо сторожа builder:watch"
+    },
+    "55109f84fa38ea3f4efa72c49c48566cdaf93250": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "docs(templates): расширение автодополнения редактора в playgrounds (autoTrigger, onTrigger→false, dismiss); гайд редактора и шаблон — n/a"
+    },
+    "1f81af134c84bdfdeee9781fd74a914d5c70ae41": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "perf(tv): общий результат вызова tv для одинаковых простых вариантов, ключ не строится для неперечисляемых свойств"
+    },
+    "5ebbe6d02da6d1c69e10742211da7c814bd8897f": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "no-op",
+      "summary": "perf(PageCard): в B24PageCard нет spotlight и отслеживания мыши — нечего переносить"
+    },
+    "bab1c62950cdacb9c7af41b74cde1574da1b0cfe": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "no-op",
+      "summary": "perf(module): палитра tailwindcss/colors в b24ui не используется — плагин colors не генерирует оттенков"
+    },
+    "02e0a3be5f0500cad90951051d9a6140946245f0": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "n/a",
+      "summary": "docs(showcase): виртуальный showcase сайта апстрима (virtualrh.fr) — сайт-only"
+    },
+    "366e948458689236e5b2fa98cb2e292f6e5327b3": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "n/a",
+      "summary": "docs(templates): гайды шаблонов в llms.txt и ссылка на гайд редактора — у форка нет раздела гайдов и шаблонов; code-tree-intersection не используется"
     }
   }
 }

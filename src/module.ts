@@ -222,6 +222,7 @@ export default defineNuxtModule<ModuleOptions>({
     if (hasNuxtModule('@nuxtjs/i18n')) {
       addPluginTemplate({
         filename: 'b24ui-i18n.mjs',
+        dependsOn: [],
         getContents: () => {
           // Resolved by `@nuxtjs/i18n`, including layers
           const { locales } = (nuxt.options.runtimeConfig.public.i18n || {}) as { locales?: I18nLocale[] }
