@@ -28,7 +28,7 @@ export default defineLocale<Messages>({
     },
     carousel: {
       dots: 'Выберите слайд для отображения',
-      goto: 'Перейти к {slide}',
+      goto: 'Перейти к слайду {slide}',
       next: 'Далее',
       prev: 'Назад'
     },
