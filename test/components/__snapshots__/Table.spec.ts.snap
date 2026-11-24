@@ -829,23 +829,23 @@ exports[`Table > renders with column pinning and footer correctly 1`] = `
     <tfoot data-slot="tfoot" class="relative [&amp;>[data-slot=separator]]:z-2" data-aria-hidden="true" aria-hidden="true">
       <tr data-slot="separator" class="absolute z-1 start-0 w-full h-px bg-(--ui-color-design-tinted-na-stroke)"></tr>
       <tr data-slot="tr" class="data-[selected=true]:bg-(--ui-color-bg-content-tertiary) light:data-[selected=true]:bg-[#f4fcde]">
-        <th data-pinned="left" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) sticky bg-(--ui-color-bg-content-primary) z-1" style="left: 0px;">
+        <th data-pinned="left" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) sticky bg-(--ui-color-bg-content-primary) z-1" style="left: 0px;">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) text-right">Total: €2,990.00</th>
-        <th data-pinned="right" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) sticky bg-(--ui-color-bg-content-primary) z-1" style="right: 0px;">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) text-right">Total: €2,990.00</th>
+        <th data-pinned="right" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) sticky bg-(--ui-color-bg-content-primary) z-1" style="right: 0px;">
           <!---->
         </th>
       </tr>
@@ -1196,23 +1196,23 @@ exports[`Table > renders with columns correctly 1`] = `
     <tfoot data-slot="tfoot" class="relative [&amp;>[data-slot=separator]]:z-2" data-aria-hidden="true" aria-hidden="true">
       <tr data-slot="separator" class="absolute z-1 start-0 w-full h-px bg-(--ui-color-design-tinted-na-stroke)"></tr>
       <tr data-slot="tr" class="data-[selected=true]:bg-(--ui-color-bg-content-tertiary) light:data-[selected=true]:bg-[#f4fcde]">
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) text-right">Total: €2,990.00</th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) text-right">Total: €2,990.00</th>
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
       </tr>
@@ -1345,23 +1345,23 @@ exports[`Table > renders with empty slot correctly 1`] = `
     <tfoot data-slot="tfoot" class="relative [&amp;>[data-slot=separator]]:z-2">
       <tr data-slot="separator" class="absolute z-1 start-0 w-full h-px bg-(--ui-color-design-tinted-na-stroke)"></tr>
       <tr data-slot="tr" class="data-[selected=true]:bg-(--ui-color-bg-content-tertiary) light:data-[selected=true]:bg-[#f4fcde]">
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) text-right">Total: €0.00</th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) text-right">Total: €0.00</th>
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
       </tr>
@@ -2210,23 +2210,23 @@ exports[`Table > renders with loading slot correctly 1`] = `
     <tfoot data-slot="tfoot" class="relative [&amp;>[data-slot=separator]]:z-2">
       <tr data-slot="separator" class="absolute z-1 start-0 w-full h-px bg-(--ui-color-design-tinted-na-stroke)"></tr>
       <tr data-slot="tr" class="data-[selected=true]:bg-(--ui-color-bg-content-tertiary) light:data-[selected=true]:bg-[#f4fcde]">
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) text-right">Total: €0.00</th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) text-right">Total: €0.00</th>
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
       </tr>
@@ -2577,23 +2577,23 @@ exports[`Table > renders with meta field on columns correctly 1`] = `
     <tfoot data-slot="tfoot" class="relative [&amp;>[data-slot=separator]]:z-2" data-aria-hidden="true" aria-hidden="true">
       <tr data-slot="separator" class="absolute z-1 start-0 w-full h-px bg-(--ui-color-design-tinted-na-stroke)"></tr>
       <tr data-slot="tr" class="data-[selected=true]:bg-(--ui-color-bg-content-tertiary) light:data-[selected=true]:bg-[#f4fcde]">
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) custom-heading-class" style="background-color: black;">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) custom-heading-class" style="background-color: black;">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) custom-heading-class" style="background-color: black;">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) custom-heading-class" style="background-color: black;">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) custom-heading-class" style="background-color: black;">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) custom-heading-class" style="background-color: black;">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) custom-heading-class" style="background-color: black;">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) custom-heading-class" style="background-color: black;">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) custom-heading-class" style="background-color: black;">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) custom-heading-class" style="background-color: black;">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) custom-heading-class" style="background-color: black;">Total: €2,990.00</th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) custom-heading-class" style="background-color: black;">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) custom-heading-class" style="background-color: black;">Total: €2,990.00</th>
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) custom-heading-class" style="background-color: black;">
           <!---->
         </th>
       </tr>
@@ -3066,23 +3066,23 @@ exports[`Table > renders with sorting asc correctly 1`] = `
     <tfoot data-slot="tfoot" class="relative [&amp;>[data-slot=separator]]:z-2" data-aria-hidden="true" aria-hidden="true">
       <tr data-slot="separator" class="absolute z-1 start-0 w-full h-px bg-(--ui-color-design-tinted-na-stroke)"></tr>
       <tr data-slot="tr" class="data-[selected=true]:bg-(--ui-color-bg-content-tertiary) light:data-[selected=true]:bg-[#f4fcde]">
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) text-right">Total: €2,990.00</th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) text-right">Total: €2,990.00</th>
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
       </tr>
@@ -3433,23 +3433,23 @@ exports[`Table > renders with sorting desc correctly 1`] = `
     <tfoot data-slot="tfoot" class="relative [&amp;>[data-slot=separator]]:z-2" data-aria-hidden="true" aria-hidden="true">
       <tr data-slot="separator" class="absolute z-1 start-0 w-full h-px bg-(--ui-color-design-tinted-na-stroke)"></tr>
       <tr data-slot="tr" class="data-[selected=true]:bg-(--ui-color-bg-content-tertiary) light:data-[selected=true]:bg-[#f4fcde]">
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) text-right">Total: €2,990.00</th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) text-right">Total: €2,990.00</th>
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
       </tr>
@@ -3563,23 +3563,23 @@ exports[`Table > renders with virtualize and sticky correctly 1`] = `
     <tfoot data-slot="tfoot" class="[&amp;>[data-slot=separator]]:z-2 sticky bottom-0 inset-x-0 bg-(--ui-color-bg-content-primary) z-2 backdrop-blur-sm">
       <tr data-slot="separator" class="absolute z-1 start-0 w-full h-px bg-(--ui-color-design-tinted-na-stroke)"></tr>
       <tr data-slot="tr" class="data-[selected=true]:bg-(--ui-color-bg-content-tertiary) light:data-[selected=true]:bg-[#f4fcde] relative before:absolute before:z-1 before:w-full before:border-b before:border-b-(--ui-color-divider-default)">
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) text-right">Total: €2,990.00</th>
-        <th data-pinned="false" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default) text-right">Total: €2,990.00</th>
+        <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-2 text-(length:--ui-font-size-md)/(--ui-font-line-height-md) text-label whitespace-nowrap text-start font-(--ui-font-weight-normal) [&amp;:has([role=checkbox])]:pe-0 align-middle border-b border-(--ui-color-divider-default)">
           <!---->
         </th>
       </tr>
