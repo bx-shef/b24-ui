@@ -53,7 +53,7 @@ export function isToolApprovalPending(part: { state: string }): boolean {
 }
 
 /**
- * Converts files, like the ones from `UChatPrompt` `v-model:files`, to file parts for `sendMessage`.
+ * Converts files, like the ones from `B24ChatPrompt` `v-model:files`, to file parts for `sendMessage`.
  *
  * The files are inlined as data URLs. Upload them first and pass their URLs instead when they are large.
  */
