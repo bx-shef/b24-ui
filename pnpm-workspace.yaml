@@ -200,7 +200,8 @@ overrides:
   nuxtseo-shared: 5.2.6
   # ajv declares `fast-uri: ^3.0.1` and this lockfile sat on 3.1.0, which carries
   # five advisories (path traversal and host confusion via percent-encoded or
-  # backslash authority delimiters); 3.1.5 is the fixed release in that line, so
+  # backslash authority delimiters); 3.1.5 fixed those, and 3.1.9 the next nine
+  # (SSRF, host and scheme confusion, authority injection — `pnpm audit`), so
   # this is a lockfile move rather than a forced upgrade.
   # What it fixes is *this* repository's tree — where the publishing token lives.
   # Consumers were never pinned to 3.1.0: no lockfile is published, so their
@@ -210,7 +211,58 @@ overrides:
   # and playgrounds/) — but they were not the ones exposed by the stale entry.
   # Scoped to the 3.x range so a future dependency on fast-uri 4 is not forced
   # backwards.
-  'fast-uri@^3.0.0': ^3.1.5
+  'fast-uri@^3.0.0': ^3.1.9
+  '@babel/core@<=7.29.0': ^7.29.6
+  # @modelcontextprotocol/sdk accepts `^1.19.9 || ^2.0.5`; 2.1.3 fixes GHSA-rmxm-3fg6-px4f.
+  '@hono/node-server': ^2.1.3
+  basic-ftp@<=6.2.3: ^6.2.4
+  body-parser@>=2.0.0 <2.4.0: ^2.4.0
+  brace-expansion@>=2.0.0 <2.1.7: ^2.1.7
+  esbuild@>=0.27.3 <0.28.1: ^0.28.1
+  # GHSA-3g3m-2fjr-6pw4 is fixed only in 14.0.2: glob 10 and 13 (nitropack,
+  # @vercel/nft, archiver) move to 14 — build, docs:build and tests pass on it.
+  glob@>=9.0.0 <=14.0.1: ^14.0.2
+  hono@<4.13.16: ^4.13.16
+  ip-address@<=10.7.3: ^10.7.4
+  js-yaml@>=4.0.0 <4.3.2: ^4.3.2
+  js-yaml@>=5.0.0 <5.4.1: ^5.4.1
+  node-forge@<=1.4.2: ^1.4.3
+  postcss-selector-parser@>=7.0.0 <7.1.6: ^7.1.6
+  proxy-addr@>=1.1.0 <2.0.8: ^2.0.8
+  qs@<6.16.1: ^6.16.1
+  serialize-javascript@<7.1.3: ^7.1.3
+  shell-quote@>=1.8.4 <1.11.0: ^1.11.0
+  socket.io-parser@>=4.0.0 <4.2.7: ^4.2.7
+  svgo@>=4.0.0 <4.1.0: ^4.1.0
+  tar@<=7.5.20: ^7.5.21
+  ws@>=8.0.0 <8.21.0: ^8.21.0
+  # GHSA-mrhx-c7xc-m3w5 has no 3.x fix, so the whole tree moves to zod 4. The
+  # library's peer range stays `^3.24.0 || ^4`: consumers on zod 3 are not
+  # exercised by this repository's CI any more — an accepted gap, not a break.
+  zod@<4.6.6: ^4.6.6
+
+# Advisories with no fix in a line this tree can take. Each was checked against
+# how the package is reached here; re-check whenever the parent updates — a
+# stale entry hides a real fix. `pnpm audit` in ci.yml fails on anything else.
+auditConfig:
+  ignoreGhsas:
+    # extract-zip <=2.0.1, no patched release. Reached only through puppeteer
+    # (docs > capture-website), which unpacks the Chrome download from Google's
+    # CDN at docs build time; no archive from users is ever extracted — as long
+    # as PUPPETEER_DOWNLOAD_BASE_URL is never pointed at an untrusted host.
+    - GHSA-jmr9-qjv8-65gv
+    - GHSA-7pqw-9j4j-h8q3
+    # happy-dom 20.x: import-alias code execution, SSRF and cookie scope when
+    # parsing untrusted HTML (fixed in 21.0.4, nothing in 20.x). Test
+    # environment only (vitest), on fixtures from this repository. 21.x breaks
+    # 1783 tests (proxy `__v_skip` trap) — move with @nuxt/test-utils.
+    - GHSA-834v-8h66-3h79
+    - GHSA-c8p4-j97h-3vg8
+    - GHSA-5fpq-26gf-qwcr
+    # minimatch 7–10: ReDoS on crafted brace patterns, fixed only in 11, which
+    # breaks eslint-plugin-import-x (`makeRe` export). Lint tooling only, on this
+    # repository's own globs.
+    - GHSA-g3hv-75wg-m249
 
 allowBuilds:
   # `docs` no longer needs this one — it runs @nuxt/content on the `native`
