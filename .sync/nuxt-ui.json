@@ -3889,62 +3889,62 @@
       "summary": "fix(components): aria-expanded у DashboardSidebarToggle, DashboardSidebarCollapse и кнопки Header; три кнопки (и DashboardSearchButton) переведены на локальный useForwardProps, тесты Theme :props"
     },
     "39a2b9c89d0cf75ba95e3da2b1b5677e47a96fdc": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 40,
+      "b24ui_sha": "e4189882151a936d80afa1d5faf80746e72a5f24",
       "decision": "port",
       "summary": "fix(ChatPrompt): очередь под контуром фокуса — слот queue получает -z-1 вместо z-10; корню добавлен isolate (у апстрима он есть, у форка не было), чтобы очередь не ушла под фон страницы; снимки ChatPrompt"
     },
     "a2682bb72d47b0c2508b1e1a4de2f91f8047f6e8": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 40,
+      "b24ui_sha": "e4189882151a936d80afa1d5faf80746e72a5f24",
       "decision": "n/a",
       "summary": "fix(eslint): загрузка конфига на Windows и дефисы в именах палитр — n/a: у форка нет ESLint-интеграции модуля (ни src/eslint.ts, ни src/utils/eslint.ts, ни хука eslint:config:addons в module.ts), нет и тестов test/nuxt"
     },
     "853356f769ba06b89b0c5d305e135732c11311fa": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 40,
+      "b24ui_sha": "e4189882151a936d80afa1d5faf80746e72a5f24",
       "decision": "n/a",
       "summary": "fix(eslint): классы кастомных палитр — n/a: у форка нет ESLint-плагина модуля (src/eslint.ts) и страниц документации интеграции eslint"
     },
     "1e391c82360346cc72956c3109cabafda8984c1a": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 40,
+      "b24ui_sha": "e4189882151a936d80afa1d5faf80746e72a5f24",
       "decision": "port",
       "summary": "fix(module): локали @nuxtjs/i18n со script-субтегом — resolveLocaleKey пробует каждый тег и без скрипта (zh-Hant-TW → zh-TW → tc); тесты в locales.spec.ts"
     },
     "422d015e288bdae82a62c6aeeb7a722ad3070a83": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 40,
+      "b24ui_sha": "e4189882151a936d80afa1d5faf80746e72a5f24",
       "decision": "port",
       "summary": "fix(EditorToolbar): aria-pressed у кнопок форматирования (mark, heading, textAlign, списки, blockquote, codeBlock, link; 'mixed' для частично ссылочного выделения); тест на настоящем Editor, снимки"
     },
     "1ce815ebf64a78251f8bc08c838dd84eaca03b97": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 40,
+      "b24ui_sha": "e4189882151a936d80afa1d5faf80746e72a5f24",
       "decision": "port",
       "summary": "fix(useEditorMenu): имя у listbox и групп меню редактора — aria-label (editorEmojiMenu/MentionMenu/SuggestionMenu.label, сообщения добавлены во все 20 наших локалей и тип Messages), aria-labelledby у групп с label, разделитель aria-hidden; в теме editor-suggestion-menu добавлен слот separator; новый тест EditorSuggestionMenu"
     },
     "ffda67ea935a9220bd19fab827ad3179cccda7aa": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 40,
+      "b24ui_sha": "e4189882151a936d80afa1d5faf80746e72a5f24",
       "decision": "port",
       "summary": "chore(deps): обновление зависимостей без мажорных — каталог pnpm-workspace.yaml (21 запись, где форк на прежнем диапазоне апстрима; overrides.vite не тронут), packageManager pnpm@12.21.0 (+ CONTRIBUTING.md), lock; tailwind-merge 3.7.1 меняет снимки ChatAttachment, ChatPrompt, Modal, NavigationMenu"
     },
     "bf93b9c269c681329e3917cbd34f02ec729734b2": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 40,
+      "b24ui_sha": "e4189882151a936d80afa1d5faf80746e72a5f24",
       "decision": "n/a",
       "summary": "chore(release): v4.13.1 — n/a: поднимает version в package.json апстрима до 4.13.1; версию форка ведёт release-please"
     },
     "2b3635758c9c078d71060d4436f967727047fe05": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 40,
+      "b24ui_sha": "e4189882151a936d80afa1d5faf80746e72a5f24",
       "decision": "n/a",
       "summary": "fix(Carousel): точки на сервере — n/a: компонента Carousel у форка нет (в списке «только у апстрима» PORTING.md §1)"
     },
     "64207da7971c6c998408c9562f12dcd73c383086": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 40,
+      "b24ui_sha": "e4189882151a936d80afa1d5faf80746e72a5f24",
       "decision": "port",
       "summary": "test: предзагрузка содержимого Popover, Tooltip и HoverCard в setup тестов (test/utils/overlays.ts, beforeAll в test/utils/setup.ts и test/nuxt/setup.ts), мок @vueuse/core в useScrollShadow.spec сохраняет оригинал"
     }
