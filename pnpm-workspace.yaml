@@ -27,28 +27,28 @@ catalogMode: strict
 # ^4.3.3) — both converged upward here.
 catalog:
   '@ai-sdk/deepseek': ^3.0.88
-  '@ai-sdk/vue': ^4.0.165
+  '@ai-sdk/vue': ^4.0.179
   '@bitrix24/b24icons-nuxt': ^2.0.7
   '@bitrix24/b24icons-vue': ^2.0.7
   '@bitrix24/b24ui-nuxt': 'workspace:*'
-  '@comark/vue': ^0.9.1
+  '@comark/vue': ^0.9.2
   '@conventional-commits/parser': 0.4.1
   '@floating-ui/dom': ^1.8.0
   '@internationalized/date': ^3.12.4
   '@internationalized/number': ^3.6.9
-  '@nuxt/content': ^3.16.2
+  '@nuxt/content': ^3.17.0
   '@nuxt/eslint-config': ^1.17.0
   '@nuxt/cli': ^4.0.3
   '@nuxt/image': ^2.2.1
   '@nuxt/kit': ^4.6.4
-  '@nuxt/module-builder': ^1.0.3
+  '@nuxt/module-builder': ^1.0.4
   '@nuxt/schema': ^4.6.4
-  '@nuxt/test-utils': ^4.3.4
+  '@nuxt/test-utils': ^4.4.0
   '@nuxtjs/mcp-toolkit': ^0.24.3
-  '@nuxtjs/mdc': ^0.23.3
+  '@nuxtjs/mdc': ^0.23.4
   '@octokit/rest': ^22.0.1
-  '@regle/core': ^1.29.5
-  '@regle/rules': ^1.29.5
+  '@regle/core': ^1.30.0
+  '@regle/rules': ^1.30.0
   '@shikijs/types': ^4.6.0
   '@standard-schema/spec': ^1.1.0
   '@tailwindcss/postcss': ^4.3.5
@@ -80,14 +80,14 @@ catalog:
   '@types/node': ^25.3.0
   '@types/sortablejs': ^1.15.9
   '@unhead/vue': ^3.4.3
-  '@vitejs/plugin-vue': ^6.0.10
+  '@vitejs/plugin-vue': ^6.0.11
   '@vitest/coverage-v8': 5.1.1
   '@vue/repl': ^4.7.2
-  '@vue/test-utils': ^2.5.1
+  '@vue/test-utils': ^2.6.0
   '@vueuse/core': ^14.4.0
   '@vueuse/integrations': ^14.4.0
   '@vueuse/shared': ^14.4.0
-  ai: ^7.0.165
+  ai: ^7.0.179
   canvas-confetti: ^1.9.4
   capture-website: ^5.1.0
   citty: ^0.2.2
@@ -102,8 +102,8 @@ catalog:
   embla-carousel-fade: ^8.6.0
   embla-carousel-vue: ^8.6.0
   embla-carousel-wheel-gestures: ^8.1.0
-  eslint: ^10.14.0
-  eslint-plugin-better-tailwindcss: ^4.10.0
+  eslint: ^10.15.0
+  eslint-plugin-better-tailwindcss: ^4.11.0
   fflate: ^0.8.3
   fuse.js: ^7.5.0
   happy-dom: 20.12.0
@@ -116,22 +116,22 @@ catalog:
   maska: ^3.2.2
   minimark: ^0.2.0
   mlly: ^1.8.2
-  motion-v: ^2.11.1
+  motion-v: ^2.13.0
   nuxt: ^4.6.4
   nuxt-component-meta: ^0.19.0
-  nuxt-llms: ^0.3.1
+  nuxt-llms: ^0.3.2
   nuxt-schema-org: ^6.2.1
   ohash: ^2.0.12
   pathe: ^2.0.3
   playwright-core: 1.56.1
-  prettier: ^3.9.10
+  prettier: ^3.10.1
   reka-ui: 2.11.0
   scule: ^1.3.0
   shiki: ^4.6.0
   shiki-transformer-color-highlight: ^1.1.0
   sortablejs: ^1.15.7
   superstruct: ^2.0.2
-  tailwind-merge: ^3.7.0
+  tailwind-merge: ^3.7.1
   # tailwind-variants 3.3.x is a full internal rewrite: invoking a tv() result is
   # 18 to 103x slower than 3.2.2 (see test/bench/tv.bench.ts) and the exported
   # type constraints changed in a breaking way. This module calls `tv()` on every
@@ -150,14 +150,14 @@ catalog:
   unplugin-vue-components: ^32.1.0
   valibot: ^1.5.0
   vaul-vue: 0.4.1
-  vite: ^8.3.6
-  vitest: ^5.1.0
+  vite: ^8.3.8
+  vitest: ^5.1.1
   vitest-axe: ^0.1.0
   vitest-environment-nuxt: ^2.0.0
-  vue: ^3.5.45
+  vue: ^3.5.46
   vue-component-meta: ^3.3.14
   vue-component-type-helpers: ^3.3.14
-  vue-router: ^5.4.0
+  vue-router: ^5.5.1
   vue-tsc: ^3.3.11
   yaml: ^2.9.0
   yup: ^1.7.1

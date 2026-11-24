@@ -1,0 +1,7 @@
+# ffda67ea — chore(deps): обновление зависимостей без мажорных
+
+**Решение:** port (пропорционально: только там, где форк стоял на прежнем диапазоне апстрима).
+
+Каталог `pnpm-workspace.yaml`: `@ai-sdk/vue`, `@comark/vue`, `@nuxt/content`, `@nuxt/module-builder`, `@nuxt/test-utils`, `@nuxtjs/mdc`, `@regle/core`, `@regle/rules`, `@vitejs/plugin-vue`, `@vue/test-utils`, `ai`, `eslint`, `eslint-plugin-better-tailwindcss`, `motion-v`, `nuxt-llms`, `prettier`, `tailwind-merge`, `vite` (каталог; у форка был ^8.3.2), `vitest`, `vue`, `vue-router`. Записей, которых у форка нет (`@ai-sdk/anthropic`, `@ai-sdk/gateway`, `@iconify-json/*`, `@nuxt/icon`, `@takumi-rs/core`, `nuxt-agent-discovery`), не касались. `overrides.vite` (^8.3.2) оставлен: это отдельная запись с комментарием про одну копию vite, апстрим её не менял. Манифесты workspace/playground ссылаются на `catalog:`, правок не требуют. `packageManager` pnpm@12.18.0 → 12.21.0 и строка в `CONTRIBUTING.md`. `pnpm install` и проверка `--frozen-lockfile` пройдены, `@ai-sdk/provider` в lock один (4.0.39). `@ai-sdk/deepseek` не менялся.
+
+`renovate.json` в форке нет; `test/nuxt/.nuxtrc` уже на 4.4.0. Снимки: tailwind-merge 3.7.1 перестал стирать часть классов (например `leading-normal` при `text-(length:…)`), поэтому обновлены снимки ChatAttachment, ChatPrompt, Modal, NavigationMenu — только прямое следствие версии, не правка компонентов. Исключения dep-parity (`happy-dom`, `nuxt-schema-org`) без изменений.

@@ -110,7 +110,7 @@ exports[`Modal > renders with body slot correctly 1`] = `
         </div>
       </button>
     </div>
-    <div data-slot="body" class="px-4 sm:px-6 flex-1 text-(--ui-color-base-2) text-(length:--ui-font-size-md) overflow-y-auto scrollbar-thin">Body slot</div>
+    <div data-slot="body" class="px-4 sm:px-6 flex-1 leading-normal text-(--ui-color-base-2) text-(length:--ui-font-size-md) overflow-y-auto scrollbar-thin">Body slot</div>
   </div>
   <!--v-if-->
 </div>
