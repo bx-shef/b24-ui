@@ -45,8 +45,11 @@ vi.stubGlobal('setResponseHeader', (event: any, name: string, value: unknown) =>
 
 import { resolveChatConfig } from '../../docs/server/utils/chatConfig'
 
-const { default: handler } = await import('../../docs/server/api/ai.post')
-const { default: statusHandler } = await import('../../docs/server/api/ai/status.get')
+// Маршруты грузятся по пути из переменной: иначе корневой vue-tsc втянул бы их в свою программу,
+// а автоимпортов Nitro (defineEventHandler, createError, …) там нет — их проверяет `nuxt typecheck docs`.
+const loadRoute = (path: string) => import(/* @vite-ignore */ path)
+const { default: handler } = await loadRoute('../../docs/server/api/ai.post')
+const { default: statusHandler } = await loadRoute('../../docs/server/api/ai/status.get')
 
 let counter = 0
 function makeEvent(body: string | AsyncIterable<Buffer>, headers: Record<string, string> = {}) {
