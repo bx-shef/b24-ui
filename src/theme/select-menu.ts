@@ -10,7 +10,7 @@ export default () => {
   return defuFn({
     slots: {
       input: 'border-b border-(--ui-color-divider-vibrant-default)',
-      focusScope: 'flex flex-col min-h-0 flex-1',
+      focusScope: 'flex flex-col min-h-0 flex-1 focus:outline-none',
       viewport: [
         'relative',
         'scroll-py-1',
