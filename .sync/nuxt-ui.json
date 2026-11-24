@@ -1,7 +1,7 @@
 {
   "upstream": "nuxt/ui",
   "branch": "v4",
-  "cursor": "27207f52b43e3b0f632b4a0ddd61ace67671cdeb",
+  "cursor": "0f58f482b839023ee8f61cc58451c6e371b2a177",
   "_cursor_note": "cursor = last upstream commit ported into b24ui. The sync is manual by decision: one commit at a time, oldest-first, each with a `.sync/log/<sha>.md` journal and an entry in `processed`. There is no dispatcher, no porter workflow and no kill-switch — `.sync/PORTING.md` is the whole procedure. `processed` is maintained per port (backfilled #68-#72 on 2026-06-09).",
   "processed": {
     "2799fa6f2b25ce3eb15e050f3ef7c57d0d9a2fdb": {
@@ -3803,6 +3803,24 @@
       "b24ui_sha": "pending-merge",
       "decision": "port",
       "summary": "feat(Select/SelectMenu/InputMenu): слоты leading/default/trailing получают item (выбранный элемент), новые findItem/getSelectedItem/GetSelectedItem, примеры и документация на русском, плейграунды"
+    },
+    "393e8c49fbd93c15e818403062f258060ef069d4": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "n/a",
+      "summary": "chore(github): заголовки релиза uppt sections — n/a: только release.yml апстрима, у форка релиз через release-please"
+    },
+    "3a602508d644eafe42a1ec9a0182555bfcc901b9": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "n/a",
+      "summary": "chore(release): v4.13.0 — n/a: поднимает version в package.json апстрима до 4.13.0; версию форка ведёт release-please"
+    },
+    "0f58f482b839023ee8f61cc58451c6e371b2a177": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "n/a",
+      "summary": "docs: update badges — n/a: меняют метки «Soon» на «4.13+»/«New» по номеру релиза апстрима; в нашей документации «Soon» остаётся верным до собственного релиза"
     }
   }
 }
