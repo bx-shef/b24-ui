@@ -1,12 +1,12 @@
 ---
 title: PageGrid
-description: 'A responsive grid system for creating flexible content layouts.'
+description: 'Адаптивная сетка для гибкой раскладки содержимого.'
 category: page
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/PageGrid.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/
   - label: Nuxt UI
@@ -14,9 +14,9 @@ links:
     to: https://ui.nuxt.com/docs/components/page-grid
 ---
 
-## Usage
+## Использование {#usage}
 
-The PageGrid component provides a responsive grid layout for displaying [PageCard](/docs/components/page-card/) components or any other elements, automatically adjusting from 1 to 3 columns based on screen size.
+Компонент PageGrid — адаптивная сетка для компонентов [PageCard](/docs/components/page-card/) и любых других элементов; число колонок автоматически меняется от 1 до 3 в зависимости от размера экрана.
 
 ::component-example
 ---
@@ -25,7 +25,7 @@ class: 'p-8'
 ---
 ::
 
-You can also use it to display a list of cards in a bento style layout by using `col-span-*` and `row-span-*` utility classes.
+Утилитные классы `col-span-*` и `row-span-*` позволяют также показать список карточек в раскладке в стиле bento.
 
 ::component-example
 ---
@@ -37,14 +37,14 @@ class: 'p-8'
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

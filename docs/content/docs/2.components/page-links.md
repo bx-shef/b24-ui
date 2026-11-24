@@ -1,12 +1,12 @@
 ---
 title: PageLinks
-description: 'A list of links to display on the page.'
+description: 'Список ссылок для показа на странице.'
 category: page
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/PageLinks.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/page-links
   - label: Nuxt UI
@@ -14,18 +14,18 @@ links:
     to: https://ui.nuxt.com/docs/components/page-links
 ---
 
-## Usage
+## Использование {#usage}
 
-### Links
+### Ссылки {#links}
 
-Use the `links` prop as an array of objects with the following properties:
+Пропс `links` — массив объектов со свойствами:
 
 - `label: string`{lang="ts-type"}
 - `icon?: IconComponent`{lang="ts-type"}
 - `class?: any`{lang="ts-type"}
 - `b24ui?: { item?: ClassNameValue, link?: ClassNameValue, linkLabel?: ClassNameValue, linkLabelExternalIcon?: ClassNameValue, linkLeadingIcon?: ClassNameValue }`{lang="ts-type"}
 
-You can pass any property from the [Link](/docs/components/link/#props) component such as `to`, `target`, etc.
+Можно передать любое свойство компонента [Link](/docs/components/link/#props), например `to`, `target` и другие.
 
 ::component-code
 ---
@@ -38,18 +38,18 @@ externalTypes:
   - PageLink[]
 props:
   links:
-    - label: 'Edit this page'
+    - label: 'Редактировать страницу'
       to: https://github.com/bitrix24/b24ui/blob/main/docs/content/docs/2.components/page-links.md
-    - label: 'Star on GitHub'
+    - label: 'Поставить звезду на GitHub'
       to: https://github.com/bitrix24/b24ui
-    - label: 'Releases'
+    - label: 'Релизы'
       to: https://github.com/bitrix24/b24ui/releases
 ---
 ::
 
-### Title
+### Заголовок {#title}
 
-Use the `title` prop to display a title above the links.
+Пропс `title` показывает заголовок над ссылками.
 
 ::component-code
 ---
@@ -61,26 +61,26 @@ external:
 externalTypes:
   - PageLink[]
 props:
-  title: 'Community'
+  title: 'Сообщество'
   links:
-    - label: 'Edit this page'
+    - label: 'Редактировать страницу'
       to: https://github.com/bitrix24/b24ui/blob/main/docs/content/docs/2.components/page-links.md
-    - label: 'Star on GitHub'
+    - label: 'Поставить звезду на GitHub'
       to: https://github.com/bitrix24/b24ui
-    - label: 'Releases'
+    - label: 'Релизы'
       to: https://github.com/bitrix24/b24ui/releases
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
 ::note
-While these examples use [Nuxt Content](https://content.nuxt.com), the components can be integrated with any content management system.
+В примерах используется [Nuxt Content](https://content.nuxt.com), но компоненты можно подключить к любой системе управления контентом.
 ::
 
-### Within a page
+### На странице {#within-a-page}
 
-Use the PageLinks component in the `bottom` slot of the ContentToc component to display a list of links below the table of contents.
+Используйте PageLinks в слоте `bottom` компонента ContentToc, чтобы показать список ссылок под оглавлением.
 
 ```vue [pages/\[...slug\\].vue]{50-54}
 <script setup lang="ts">
@@ -145,14 +145,14 @@ const links = computed<PageLink[]>(() => [{
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

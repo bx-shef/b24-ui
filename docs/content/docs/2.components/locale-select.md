@@ -1,6 +1,6 @@
 ---
 title: LocaleSelect
-description: 'A Select to switch between locales.'
+description: 'Select для переключения между локалями.'
 category: i18n
 links:
   - label: GitHub
@@ -14,30 +14,30 @@ links:
     to: https://ui.nuxt.com/docs/components/locale-select
 ---
 
-## Usage
+## Использование {#usage}
 
-The LocaleSelect component extends the [SelectMenu](/docs/components/select-menu/) component, so you can pass any property such as `color`, `size`, etc.
+Компонент LocaleSelect расширяет [SelectMenu](/docs/components/select-menu/), поэтому ему можно передать любое свойство, например `color`, `size` и другие.
 
 ::framework-only
 #nuxt
 ::note{to="/docs/getting-started/integrations/i18n/nuxt/"}
-This component is meant to be used with the **i18n** system. Learn more about it in the guide.
+Компонент предназначен для работы с системой **i18n**. Подробнее — в руководстве.
 ::
 
 #vue
 ::note{to="/docs/getting-started/integrations/i18n/vue/"}
-This component is meant to be used with the **i18n** system. Learn more about it in the guide.
+Компонент предназначен для работы с системой **i18n**. Подробнее — в руководстве.
 ::
 
 ::
 
 ::warning
-The flags are displayed using Unicode characters. This may result in a different display, e.g. Microsoft Edge under Windows displays the ISO 3166-1 alpha-2 code instead, as no flag icons are shipped with the OS fonts.
+Флаги отображаются символами Unicode, поэтому вид может отличаться: например, Microsoft Edge в Windows показывает вместо флага код ISO 3166-1 alpha-2, так как в шрифтах ОС нет значков флагов.
 ::
 
-### Locales
+### Локали {#locales}
 
-Use the `locales` prop with an array of locales from `@bitrix24/b24ui-nuxt/locale`.
+Пропс `locales` принимает массив локалей из `@bitrix24/b24ui-nuxt/locale`.
 
 ::component-example
 ---
@@ -45,7 +45,7 @@ name: 'locale-select-example'
 ---
 ::
 
-You can pass only the locales you need in your application:
+Можно передать только те локали, которые нужны вашему приложению:
 
 ```vue
 <script setup lang="ts">
@@ -59,12 +59,12 @@ const locale = ref('en')
 </template>
 ```
 
-### Dynamic locale
+### Динамическая локаль {#dynamic-locale}
 
 ::framework-only
 #nuxt
 ::div
-You can use it with Nuxt i18n:
+Использование с Nuxt i18n:
 
 ```vue
 <script setup lang="ts">
@@ -86,7 +86,7 @@ const { locale, setLocale } = useI18n()
 
 #vue
 ::div
-You can use it with Vue i18n:
+Использование с Vue i18n:
 
 ```vue
 <script setup lang="ts">
@@ -111,6 +111,6 @@ const { locale, setLocale } = useI18n()
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props

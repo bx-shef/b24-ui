@@ -1,6 +1,6 @@
 ---
 title: InputNumber
-description: Provide numerical input with a flexible range setting.
+description: 'Числовое поле ввода с гибкой настройкой диапазона.'
 category: form
 keywords:
   - number field
@@ -10,7 +10,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/InputNumber.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/input-number
   - label: Nuxt UI
@@ -22,9 +22,9 @@ links:
     to: https://reka-ui.com/docs/components/number-field
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `v-model` directive to control the value of the InputNumber.
+Директива `v-model` управляет значением InputNumber.
 
 ::component-code
 ---
@@ -37,7 +37,7 @@ props:
 ---
 ::
 
-Use the `default-value` prop to set the initial value when you do not need to control its state.
+Пропс `default-value` задаёт начальное значение, когда управлять состоянием не нужно.
 
 ::component-code
 ---
@@ -49,12 +49,12 @@ props:
 ::
 
 ::note
-This component relies on the [`@internationalized/number`](https://react-spectrum.adobe.com/internationalized/number/index.html) package which provides utilities for formatting and parsing numbers across locales and numbering systems.
+Компонент использует пакет [`@internationalized/number`](https://react-spectrum.adobe.com/internationalized/number/index.html), который предоставляет утилиты форматирования и разбора чисел для разных локалей и систем счисления.
 ::
 
-### Min / Max
+### Минимум и максимум {#min-max}
 
-Use the `min` and `max` props to set the minimum and maximum values of the InputNumber.
+Пропсы `min` и `max` задают минимальное и максимальное значение InputNumber.
 
 ::component-code
 ---
@@ -69,9 +69,9 @@ props:
 ---
 ::
 
-### Step
+### Шаг {#step}
 
-Use the `step` prop to set the step value of the InputNumber.
+Пропс `step` задаёт шаг изменения значения InputNumber.
 
 ::component-code
 ---
@@ -85,21 +85,21 @@ props:
 ---
 ::
 
-### Starting Value :badge{label="2.15+" class="align-text-top"}
+### Начальное значение :badge{label="2.15+" class="align-text-top"} {#starting-value}
 
-Use the `starting-value` prop to set the value of the first increment or decrement when the InputNumber is empty. It is clamped to `min` / `max` but not snapped to `step`. Defaults to `min`, or `0` when `min` is not set.
+Пропс `starting-value` задаёт значение первого увеличения или уменьшения, когда InputNumber пуст. Оно ограничивается `min` и `max`, но не выравнивается по `step`. По умолчанию равно `min`, а если `min` не задан — `0`.
 
 ::component-code
 ---
 props:
   startingValue: 18
-  placeholder: 'Age'
+  placeholder: 'Возраст'
 ---
 ::
 
-### Allow Invalid :badge{label="2.15+" class="align-text-top"}
+### Недопустимые значения :badge{label="2.15+" class="align-text-top"} {#allow-invalid}
 
-Use the `allow-invalid` prop to keep a typed value that is out of the `min` / `max` range or off the `step` grid. Stepping towards the range still brings the value back in range and on the `step` grid.
+Пропс `allow-invalid` сохраняет введённое значение, даже если оно вне диапазона `min` / `max` или не попадает в сетку `step`. Изменение значения в сторону диапазона по-прежнему возвращает его в диапазон и на сетку `step`.
 
 ::component-code
 ---
@@ -116,12 +116,12 @@ props:
 ::
 
 ::note
-The InputNumber doesn't flag the value as invalid, validating it is up to you.
+InputNumber не помечает такое значение как недопустимое: проверять его нужно самостоятельно.
 ::
 
-### Orientation
+### Ориентация {#orientation}
 
-Use the `orientation` prop to change the orientation of the InputNumber.
+Пропс `orientation` меняет ориентацию InputNumber.
 
 ::component-code
 ---
@@ -135,20 +135,20 @@ props:
 ---
 ::
 
-### Placeholder
+### Плейсхолдер {#placeholder}
 
-Use the `placeholder` prop to set a placeholder text.
+Пропс `placeholder` задаёт текст плейсхолдера.
 
 ::component-code
 ---
 props:
-  placeholder: 'Enter a number'
+  placeholder: 'Введите число'
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the ring color when the InputNumber is focused.
+Пропс `color` меняет цвет кольца, когда InputNumber в фокусе.
 
 ::component-code
 ---
@@ -164,12 +164,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state. It's used internally when a validation error occurs.
+Пропс `highlight` здесь показывает состояние фокуса. Внутри компонента он включается при ошибке валидации.
 ::
 
-### Tag
+### Тег {#tag}
 
-Use the `tag` property to display a [Badge](/docs/components/badge/) on top of the InputNumber.
+Свойство `tag` показывает [Badge](/docs/components/badge/) поверх InputNumber.
 
 ::component-code
 ---
@@ -180,13 +180,13 @@ external:
   - modelValue
 props:
   modelValue: 5
-  tag: note
+  tag: заметка
   color: 'air-primary'
   highlight: true
 ---
 ::
 
-Use the `tagColor` property to set the color for Badge.
+Свойство `tagColor` задаёт цвет Badge.
 
 ::component-code
 ---
@@ -211,7 +211,7 @@ items:
     - air-selection
 props:
   modelValue: 5
-  tag: note
+  tag: заметка
   tagColor: air-secondary-alert
   color: 'air-primary'
   highlight: true
@@ -219,12 +219,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state. It's used internally when a validation error occurs.
+Пропс `highlight` здесь показывает состояние фокуса. Внутри компонента он включается при ошибке валидации.
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the InputNumber.
+Пропс `size` меняет размер InputNumber.
 
 ::component-code
 ---
@@ -238,9 +238,9 @@ props:
 ---
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the InputNumber.
+Пропс `disabled` отключает InputNumber.
 
 ::component-code
 ---
@@ -254,9 +254,9 @@ props:
 ---
 ::
 
-### Increment / Decrement
+### Увеличение и уменьшение {#increment-decrement}
 
-Use the `increment` and `decrement` props to customize the increment and decrement buttons with any [Button](/docs/components/button/) props.
+Пропсы `increment` и `decrement` настраивают кнопки увеличения и уменьшения любыми пропсами [Button](/docs/components/button/).
 
 ::component-code
 ---
@@ -280,9 +280,9 @@ props:
 ---
 ::
 
-### Increment / Decrement Icons
+### Иконки увеличения и уменьшения {#increment-decrement-icons}
 
-Use the `increment-icon` and `decrement-icon` props to customize the buttons [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропсы `increment-icon` и `decrement-icon` меняют [иконки](https://bitrix24.github.io/b24icons/icons/) кнопок.
 
 ::component-code
 ---
@@ -303,9 +303,9 @@ props:
 ---
 ::
 
-### No border
+### Без границы {#no-border}
 
-Use the `noBorder` prop to removes all borders (rings) from the InputNumber.
+Пропс `noBorder` убирает у InputNumber все границы (кольца).
 
 ::component-code
 ---
@@ -321,12 +321,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to indicate that there is no focus state.
+Пропс `highlight` здесь показывает, что состояния фокуса нет.
 ::
 
-### Underline
+### Подчёркивание {#underline}
 
-Use the `underline` prop to removes all borders (rings) except the bottom one from the InputNumber.
+Пропс `underline` убирает у InputNumber все границы (кольца), кроме нижней.
 
 ::component-code
 ---
@@ -342,12 +342,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-### Rounded
+### Скругление {#rounded}
 
-Use the `rounded` prop to round the InputMenu.
+Пропс `rounded` скругляет InputNumber.
 
 ::component-code
 ---
@@ -363,14 +363,14 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With decimal format
+### С десятичным форматом {#with-decimal-format}
 
-Use the `format-options` prop to customize the format of the value.
+Пропс `format-options` настраивает формат значения.
 
 ::component-example
 ---
@@ -378,9 +378,9 @@ name: 'input-number-decimal-example'
 ---
 ::
 
-### With percentage format
+### С процентным форматом {#with-percentage-format}
 
-Use the `format-options` prop with `style: 'percent'` to customize the format of the value.
+Пропс `format-options` со значением `style: 'percent'` настраивает формат значения как процентный.
 
 ::component-example
 ---
@@ -388,9 +388,9 @@ name: 'input-number-percentage-example'
 ---
 ::
 
-### With currency format
+### С денежным форматом {#with-currency-format}
 
-Use the `format-options` prop with `style: 'currency'` to customize the format of the value.
+Пропс `format-options` со значением `style: 'currency'` настраивает формат значения как денежный.
 
 ::component-example
 ---
@@ -398,9 +398,9 @@ name: 'input-number-currency-example'
 ---
 ::
 
-### Without buttons
+### Без кнопок {#without-buttons}
 
-You can use the `increment` and `decrement` props to control visibility of the buttons.
+Пропсы `increment` и `decrement` управляют видимостью кнопок.
 
 ::component-example
 ---
@@ -408,9 +408,9 @@ name: 'input-number-without-buttons-example'
 ---
 ::
 
-### Within a FormField
+### Внутри FormField {#within-a-formfield}
 
-You can use the InputNumber within a [FormField](/docs/components/form-field/) component to display a label, help text, required indicator, etc.
+InputNumber можно использовать внутри компонента [FormField](/docs/components/form-field/), чтобы показывать подпись, справочный текст, признак обязательности и так далее.
 
 ::component-example
 ---
@@ -418,9 +418,9 @@ name: 'input-number-form-field-example'
 ---
 ::
 
-### With slots
+### Со слотами {#with-slots}
 
-Use the `#increment` and `#decrement` slots to customize the buttons.
+Слоты `#increment` и `#decrement` позволяют настроить кнопки.
 
 ::component-example
 ---
@@ -430,30 +430,30 @@ name: 'input-number-slots-example'
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attributes" target="_blank"}
-This component also supports all native `<input>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<input>`.
 ::
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-### Expose
+### Доступ через ref {#expose}
 
-When accessing the component via a template ref, you can use the following:
+При обращении к компоненту через ref в шаблоне доступно:
 
-| Name | Type |
+| Имя | Тип |
 | ---- | ---- |
 | `inputRef`{lang="ts-type"} | `Ref<HTMLInputElement \| null>`{lang="ts-type"} |
 
-## Theme
+## Тема {#theme}
 
 :component-theme

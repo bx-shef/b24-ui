@@ -122,6 +122,22 @@
 | empty state | пустое состояние |
 | preset (DateTimePicker) | готовое значение |
 | throttle | троттлинг |
+| footer | подвал |
+| header (Header) | шапка |
+| hint (FormField) | подсказка (текст рядом с подписью); `help` — справка |
+| tag (InputTags, `tag`) | тег |
+| sticky | липкий |
+| floating label | плавающая подпись |
+| autocomplete | автодополнение |
+| virtualization | виртуализация |
+| transfer list | список переноса |
+| viewport (NavigationMenu) | область просмотра |
+| unmount | выгрузка (содержимого) |
+| highlight (рамка, акцент) | выделение |
+| dismissible | закрытие по действию вне окна |
+| fullscreen | во весь экран |
+| bento (раскладка) | bento (не переводим) |
+| promo / marketing modal | промо-окно / маркетинговое окно |
 
 Термина нет в таблице — выбери понятный русский вариант, добавь строку сюда в том же PR.
 

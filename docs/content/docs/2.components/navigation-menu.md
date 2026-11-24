@@ -1,6 +1,6 @@
 ---
 title: NavigationMenu
-description: A link list that can be arranged in horizontal or vertical orientation.
+description: 'Список ссылок с горизонтальной или вертикальной ориентацией.'
 category: navigation
 keywords:
   - navbar
@@ -10,7 +10,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/NavigationMenu.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/navigation-menu
   - label: Nuxt UI
@@ -22,9 +22,9 @@ links:
     to: https://reka-ui.com/docs/components/navigation-menu
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the NavigationMenu component to display a list of links horizontally or vertically.
+Компонент NavigationMenu показывает список ссылок по горизонтали или по вертикали.
 
 ::component-code
 ---
@@ -39,46 +39,46 @@ externalTypes:
   - NavigationMenuItem[]
 props:
   items:
-    - label: Sales management
+    - label: Управление продажами
       type: trigger
       children:
-        - label: Lead management
-        - label: Deal management
-        - label: 'Pipelines'
-        - label: 'Access permissions'
-    - label: Collaboration
+        - label: Управление лидами
+        - label: Управление сделками
+        - label: 'Воронки'
+        - label: 'Права доступа'
+    - label: Совместная работа
       type: trigger
       children:
-        - label: Online workspace
+        - label: Онлайн-офис
           to: https://www.bitrix24.com/tools/communications/online-workspace.php
-        - label: CoPilot in Chat
+        - label: CoPilot в чате
           to: https://www.bitrix24.com/tools/copilot-ai-powered-tools-for-business.php#copilot-in-chat
         - label: useToast
           to: /docs/composables/use-toast
-    - label: HR & Automation
+    - label: HR и автоматизация
       type: trigger
       badge: +5
       active: true
       children:
-        - label: Employee management
+        - label: Управление сотрудниками
           to: https://www.bitrix24.com/tools/hr_automation/employee-management.php
-        - label: Culture & engagement
+        - label: Культура и вовлечённость
           to: https://www.bitrix24.com/tools/hr_automation/culture-and-engagement.php
-        - label: Automation
+        - label: Автоматизация
           to: https://www.bitrix24.com/tools/hr_automation/automation.php
           target: _blank
     - label: GitHub
       to: https://github.com/bitrix24/b24ui
       target: _blank
-    - label: Help
+    - label: Справка
       disabled: true
   class: 'w-full justify-center'
 ---
 ::
 
-### Items
+### Элементы {#items}
 
-Use the `items` prop as an array of objects with the following properties:
+Пропс `items` — массив объектов со свойствами:
 
 - `label?: string`{lang="ts-type"}
 - `icon?: IconComponent`{lang="ts-type"}
@@ -101,7 +101,7 @@ Use the `items` prop as an array of objects with the following properties:
 - `class?: any`{lang="ts-type"}
 - `b24ui?: { linkLeadingAvatarSize?: ClassNameValue, linkLeadingAvatar?: ClassNameValue, linkLeadingIcon?: ClassNameValue, linkLeadingChipSize?: ClassNameValue, linkLabel?: ClassNameValue, linkLabelExternalIcon?: ClassNameValue, linkTrailing?: ClassNameValue, linkLeadingHint?: ClassNameValue, linkLeadingBadgeSize?: ClassNameValue, linkLeadingBadge?: ClassNameValue, linkTrailingIcon?: ClassNameValue, label?: ClassNameValue, link?: ClassNameValue, content?: ClassNameValue, childList?: ClassNameValue, childLabel?: ClassNameValue, childItem?: ClassNameValue, childLink?: ClassNameValue, childLinkIcon?: ClassNameValue, childLinkHint?: ClassNameValue, childLinkBadgeSize?: ClassNameValue, childLinkBadge?: ClassNameValue, childLinkWrapper?: ClassNameValue, childLinkLabel?: ClassNameValue, childLinkLabelExternalIcon?: ClassNameValue, popoverWrapper?: ClassNameValue }`{lang="ts-type"}
 
-You can pass any property from the [Link](/docs/components/link/#props) component such as `to`, `target`, etc.
+Можно передать любое свойство компонента [Link](/docs/components/link/#props), например `to`, `target` и другие.
 
 ::component-code
 ---
@@ -115,75 +115,75 @@ externalTypes:
   - NavigationMenuItem[]
 props:
   items:
-    - label: Sales management
+    - label: Управление продажами
       type: trigger
       hint: note
       children:
-        - label: Lead management
-        - label: Deal management
-        - label: Pipelines
+        - label: Управление лидами
+        - label: Управление сделками
+        - label: Воронки
           hint: note
-        - label: Access permissions
-    - label: Collaboration
+        - label: Права доступа
+    - label: Совместная работа
       type: trigger
       children:
-        - label: Online workspace
+        - label: Онлайн-офис
           to: https://www.bitrix24.com/tools/communications/online-workspace.php
-        - label: CoPilot in Chat
+        - label: CoPilot в чате
           to: https://www.bitrix24.com/tools/copilot-ai-powered-tools-for-business.php#copilot-in-chat
         - label: useToast
           to: /docs/composables/use-toast
-    - label: HR & Automation
+    - label: HR и автоматизация
       type: trigger
       badge: +5
       active: true
       children:
-        - label: Employee management
+        - label: Управление сотрудниками
           to: https://www.bitrix24.com/tools/hr_automation/employee-management.php
-        - label: Culture & engagement
+        - label: Культура и вовлечённость
           to: https://www.bitrix24.com/tools/hr_automation/culture-and-engagement.php
-        - label: Automation
+        - label: Автоматизация
           to: https://www.bitrix24.com/tools/hr_automation/automation.php
           target: _blank
     - label: GitHub
       to: https://github.com/bitrix24/b24ui
       target: _blank
-    - label: Help
+    - label: Справка
       disabled: true
   class: 'w-full justify-center'
 ---
 ::
 
 ::note
-You can also pass an array of arrays to the `items` prop to display groups of items.
+В пропс `items` можно передать и массив массивов, чтобы показать группы элементов.
 ::
 
 ::tip
-Use a flat `children` array of objects to define submenus:
+Подменю задаются плоским массивом объектов `children`:
 
 - `label: string`
 - `icon?: IconComponent`
 - `onSelect?(e: Event): void`
 - `class?: any`
 
-Grouping stops at the top level. Unlike `items`, `children` takes a **flat** array only — a nested one is flattened and rendered without a separator, and logs a warning in development.
+Группировка заканчивается на верхнем уровне. В отличие от `items`, `children` принимает только **плоский** массив: вложенный массив разворачивается и отрисовывается без разделителя, а в режиме разработки в консоль пишется предупреждение.
 
 ::
 
-### Orientation
+### Ориентация {#orientation}
 
-Use the `orientation` prop to change the orientation of the NavigationMenu.
+Пропс `orientation` меняет ориентацию NavigationMenu.
 
 ::note
-When orientation is `vertical`, an [Accordion](/docs/components/accordion/) component is used to display each group. You can control the open state of each item using the `open` and `defaultOpen` properties and change the behavior using the [`collapsible`](/docs/components/accordion/#collapsible) and [`type`](/docs/components/accordion/#multiple) props.
+При вертикальной ориентации каждая группа отображается компонентом [Accordion](/docs/components/accordion/). Состоянием открытия каждого элемента управляют свойства `open` и `defaultOpen`, а поведением — пропсы [`collapsible`](/docs/components/accordion/#collapsible) и [`type`](/docs/components/accordion/#multiple).
 ::
 
 ::note
-When orientation is `vertical` and the menu is not `collapsed`, children are rendered recursively as items, so `b24ui.link` styles them. `b24ui.childLink` only applies to the `content` displayed in `horizontal` orientation and to the [popover](#with-popover-in-items) when `collapsed`.
+При вертикальной ориентации и несвёрнутом меню (`collapsed` не задан) дочерние элементы отрисовываются рекурсивно как обычные элементы, поэтому их стилизует `b24ui.link`. `b24ui.childLink` применяется только к `content` в `horizontal`-ориентации и к [popover](#with-popover-in-items) при `collapsed`.
 ::
 
 ::warning
-The last top-level menu item needs to have `viewportRtl` set to ensure the drop-down menu is positioned correctly.
+У последнего элемента меню верхнего уровня нужно задать `viewportRtl`, чтобы выпадающее меню позиционировалось правильно.
 ::
 
 ::component-code
@@ -199,34 +199,34 @@ externalTypes:
 props:
   orientation: 'vertical'
   items:
-    - - label: Links
+    - - label: Ссылки
         type: 'label'
-      - label: Sales management
+      - label: Управление продажами
         type: trigger
         hint: note
         defaultOpen: true 
         children:
-          - label: Lead management
-          - label: Deal management
-          - label: Pipelines
+          - label: Управление лидами
+          - label: Управление сделками
+          - label: Воронки
             hint: note
-          - label: Access permissions
+          - label: Права доступа
     - - label: GitHub
         to: https://github.com/bitrix24/b24ui
         target: _blank
-      - label: Help
+      - label: Справка
         disabled: true
-      - label: HR & Automation
+      - label: HR и автоматизация
         type: trigger
         viewportRtl: true 
         badge: +5
         active: true
         children:
-          - label: Employee management
+          - label: Управление сотрудниками
             to: https://www.bitrix24.com/tools/hr_automation/employee-management.php
-          - label: Culture & engagement
+          - label: Культура и вовлечённость
             to: https://www.bitrix24.com/tools/hr_automation/culture-and-engagement.php
-          - label: Automation
+          - label: Автоматизация
             to: https://www.bitrix24.com/tools/hr_automation/automation.php
             target: _blank
   class: 'data-[orientation=vertical]:w-[430px]'
@@ -234,15 +234,15 @@ props:
 ::
 
 ::note
-Groups will be spaced when orientation is `horizontal` and separated when orientation is `vertical`.
+Группы разделяются отступами при горизонтальной ориентации и разделителями при вертикальной.
 ::
 
-### Collapsed
+### Свёрнутое меню {#collapsed}
 
-In `vertical` orientation, use the `collapsed` prop to collapse the NavigationMenu, this can be useful in a sidebar for example.
+При `vertical`-ориентации пропс `collapsed` сворачивает NavigationMenu. Это удобно, например, в боковом меню.
 
 ::note
-You can use the [`tooltip`](#with-tooltip-in-items) and [`popover`](#with-popover-in-items) props to display more information on the collapsed items.
+Пропсы [`tooltip`](#with-tooltip-in-items) и [`popover`](#with-popover-in-items) показывают дополнительную информацию о свёрнутых элементах.
 ::
 
 ::component-example
@@ -252,12 +252,12 @@ name: 'navigation-menu-collapsed-example'
 ---
 ::
 
-### Trailing Icon
+### Иконка справа {#trailing-icon}
 
-Use the `trailing-icon` prop to customize the trailing [Icon](https://bitrix24.github.io/b24icons/icons/) of each item. This icon is only displayed when an item has children.
+Пропс `trailing-icon` меняет [иконку](https://bitrix24.github.io/b24icons/icons/) справа у каждого элемента. Иконка показывается, только если у элемента есть дочерние.
 
 ::tip
-You can also set an icon for a specific item by using the `trailingIcon` property in the item object.
+Иконку отдельного элемента можно задать и свойством `trailingIcon` в объекте элемента.
 ::
 
 ::component-code
@@ -276,44 +276,44 @@ externalTypes:
 props:
   trailingIcon: 'RocketIcon'
   items:
-    - label: Sales management
+    - label: Управление продажами
       type: trigger
       children:
-        - label: Lead management
-        - label: Deal management
-        - label: 'Pipelines'
-        - label: 'Access permissions'
-    - label: Collaboration
+        - label: Управление лидами
+        - label: Управление сделками
+        - label: 'Воронки'
+        - label: 'Права доступа'
+    - label: Совместная работа
       type: trigger
       children:
-        - label: Online workspace
+        - label: Онлайн-офис
           to: https://www.bitrix24.com/tools/communications/online-workspace.php
-        - label: CoPilot in Chat
+        - label: CoPilot в чате
           to: https://www.bitrix24.com/tools/copilot-ai-powered-tools-for-business.php#copilot-in-chat
         - label: useToast
           to: /docs/composables/use-toast
-    - label: HR & Automation
+    - label: HR и автоматизация
       type: trigger
       badge: +5
       active: true
       children:
-        - label: Employee management
+        - label: Управление сотрудниками
           to: https://www.bitrix24.com/tools/hr_automation/employee-management.php
-        - label: Culture & engagement
+        - label: Культура и вовлечённость
           to: https://www.bitrix24.com/tools/hr_automation/culture-and-engagement.php
-        - label: Automation
+        - label: Автоматизация
           to: https://www.bitrix24.com/tools/hr_automation/automation.php
           target: _blank
   class: 'w-full justify-center'
 ---
 ::
 
-### Viewport :badge{label="2.15+" class="align-text-top"}
+### Область просмотра :badge{label="2.15+" class="align-text-top"} {#viewport}
 
-Use the `viewport` prop to control how the NavigationMenu viewport is rendered, like its `align` for example.
+Пропс `viewport` управляет отрисовкой области просмотра NavigationMenu, например её `align`.
 
 ::warning
-This prop only works when `orientation` is `horizontal`.
+Пропс работает только при `orientation` равном `horizontal`.
 ::
 
 ::component-code
@@ -336,41 +336,41 @@ props:
   viewport:
     align: start
   items:
-    - label: Sales management
+    - label: Управление продажами
       type: trigger
       children:
-        - label: Lead management
-        - label: Deal management
-        - label: 'Pipelines'
-        - label: 'Access permissions'
-    - label: Collaboration
+        - label: Управление лидами
+        - label: Управление сделками
+        - label: 'Воронки'
+        - label: 'Права доступа'
+    - label: Совместная работа
       type: trigger
       children:
-        - label: Online workspace
+        - label: Онлайн-офис
           to: https://www.bitrix24.com/tools/communications/online-workspace.php
-        - label: CoPilot in Chat
+        - label: CoPilot в чате
           to: https://www.bitrix24.com/tools/copilot-ai-powered-tools-for-business.php#copilot-in-chat
         - label: useToast
           to: /docs/composables/use-toast
-    - label: HR & Automation
+    - label: HR и автоматизация
       type: trigger
       badge: +5
       active: true
       children:
-        - label: Employee management
+        - label: Управление сотрудниками
           to: https://www.bitrix24.com/tools/hr_automation/employee-management.php
-        - label: Culture & engagement
+        - label: Культура и вовлечённость
           to: https://www.bitrix24.com/tools/hr_automation/culture-and-engagement.php
-        - label: Automation
+        - label: Автоматизация
           to: https://www.bitrix24.com/tools/hr_automation/automation.php
           target: _blank
   class: 'w-full justify-center'
 ---
 ::
 
-### Unmount
+### Выгрузка содержимого {#unmount}
 
-Use the `unmount-on-hide` prop to control the content unmounting behavior. Defaults to `true`.
+Пропс `unmount-on-hide` управляет выгрузкой содержимого. По умолчанию `true`.
 
 ::component-code
 ---
@@ -386,32 +386,32 @@ externalTypes:
 props:
   unmountOnHide: false
   items:
-    - label: Sales management
+    - label: Управление продажами
       type: trigger
       children:
-        - label: Lead management
-        - label: Deal management
-        - label: 'Pipelines'
-        - label: 'Access permissions'
-    - label: Collaboration
+        - label: Управление лидами
+        - label: Управление сделками
+        - label: 'Воронки'
+        - label: 'Права доступа'
+    - label: Совместная работа
       type: trigger
       children:
-        - label: Online workspace
+        - label: Онлайн-офис
           to: https://www.bitrix24.com/tools/communications/online-workspace.php
-        - label: CoPilot in Chat
+        - label: CoPilot в чате
           to: https://www.bitrix24.com/tools/copilot-ai-powered-tools-for-business.php#copilot-in-chat
         - label: useToast
           to: /docs/composables/use-toast
-    - label: HR & Automation
+    - label: HR и автоматизация
       type: trigger
       badge: +5
       active: true
       children:
-        - label: Employee management
+        - label: Управление сотрудниками
           to: https://www.bitrix24.com/tools/hr_automation/employee-management.php
-        - label: Culture & engagement
+        - label: Культура и вовлечённость
           to: https://www.bitrix24.com/tools/hr_automation/culture-and-engagement.php
-        - label: Automation
+        - label: Автоматизация
           to: https://www.bitrix24.com/tools/hr_automation/automation.php
           target: _blank
   class: 'w-full justify-center'
@@ -419,14 +419,14 @@ props:
 ::
 
 ::note
-You can inspect the DOM to see each item's content being rendered.
+В DOM видно, что содержимое каждого элемента отрисовано.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Control active item
+### Управление активным элементом {#control-active-item}
 
-You can control the active item(s) by using the `default-value` prop or the `v-model` directive with the `value` of the item. If no `value` is provided, it defaults to `item-${index}` for top-level items or `item-${level}-${index}` for nested items.
+Активным элементом (элементами) управляют пропс `default-value` или директива `v-model` со значением `value` элемента. Если `value` не задан, по умолчанию используется `item-${index}` для элементов верхнего уровня и `item-${level}-${index}` для вложенных.
 
 ::component-example
 ---
@@ -436,22 +436,22 @@ name: 'navigation-menu-model-value-example'
 ::
 
 ::tip
-Use the `value-key` prop to change the key used to match items when a `v-model` or `default-value` is provided.
+Пропс `value-key` меняет ключ, по которому сопоставляются элементы при `v-model` или `default-value`.
 ::
 
 ::note
-In this example, leveraging [`defineShortcuts`](/docs/composables/define-shortcuts/), you can switch the active item by pressing :kbd{value="1"}, :kbd{value="2"}, or :kbd{value="3"}.
+В этом примере с помощью [`defineShortcuts`](/docs/composables/define-shortcuts/) активный элемент переключается нажатием :kbd{value="1"}, :kbd{value="2"} или :kbd{value="3"}.
 ::
 
-### With tooltip in items
+### С подсказкой в элементах {#with-tooltip-in-items}
 
-When orientation is `vertical` and the menu is `collapsed`, you can set the `tooltip` prop to `true` to display a [Tooltip](/docs/components/tooltip/) around items with their label, but you can also use the `tooltip` property on each item to override the default tooltip. In `horizontal` orientation, you can use the `tooltip` property on each item to display a [Tooltip](/docs/components/tooltip/) around items.
+При `vertical`-ориентации и свёрнутом меню (`collapsed`) пропс `tooltip` со значением `true` показывает [Tooltip](/docs/components/tooltip/) с подписью элемента. Свойство `tooltip` у отдельного элемента переопределяет подсказку по умолчанию. При `horizontal`-ориентации Tooltip для элементов задаётся свойством `tooltip` у элемента.
 
 ::note
-The `tooltip` property on an item will always display a tooltip regardless of the global `tooltip` prop.
+Свойство `tooltip` у элемента всегда показывает подсказку независимо от общего пропса `tooltip`.
 ::
 
-You can pass any property from the [Tooltip](/docs/components/tooltip/) component globally or on each item.
+Любое свойство компонента [Tooltip](/docs/components/tooltip/) можно передать глобально или для каждого элемента.
 
 ::component-example
 ---
@@ -460,15 +460,15 @@ name: 'navigation-menu-collapsed-tooltip-example'
 ---
 ::
 
-### With popover in items
+### С popover в элементах {#with-popover-in-items}
 
-When orientation is `vertical` and the menu is `collapsed`, you can set the `popover` prop to `true` to display a [Popover](/docs/components/popover/) around items with their children but you can also use the `popover` property on each item to override the default popover.
+При `vertical`-ориентации и свёрнутом меню (`collapsed`) пропс `popover` со значением `true` показывает [Popover](/docs/components/popover/) с дочерними элементами. Свойство `popover` у отдельного элемента переопределяет popover по умолчанию.
 
 ::note
-The `popover` property on an item will always display a popover regardless of the global `popover` prop.
+Свойство `popover` у элемента всегда показывает popover независимо от общего пропса `popover`.
 ::
 
-You can pass any property from the [Popover](/docs/components/popover/) component globally or on each item.
+Любое свойство компонента [Popover](/docs/components/popover/) можно передать глобально или для каждого элемента.
 
 ::component-example
 ---
@@ -478,12 +478,12 @@ name: 'navigation-menu-collapsed-popover-example'
 ::
 
 ::tip{to="#with-content-slot"}
-You can use the `#content` slot to customize the content of the popover in the `vertical` orientation.
+Слот `#content` настраивает содержимое popover при `vertical`-ориентации.
 ::
 
-### With chip in items
+### С чипом в элементах {#with-chip-in-items}
 
-Use the `chip` property to display a [Chip](/docs/components/chip/) around the icon of the items, you can pass any of its props.
+Свойство `chip` показывает [Chip](/docs/components/chip/) вокруг иконки элемента; можно передать любые его пропсы.
 
 ::component-example
 ---
@@ -492,9 +492,9 @@ name: 'navigation-menu-chip-items-example'
 ---
 ::
 
-### With bottom tab bar
+### С нижней панелью вкладок {#with-bottom-tab-bar}
 
-Use the `b24ui` prop to transform the NavigationMenu into a mobile-style bottom tab bar with icons and small labels.
+Пропс `b24ui` превращает NavigationMenu в мобильную нижнюю панель вкладок с иконками и мелкими подписями.
 
 ::component-example
 ---
@@ -503,9 +503,9 @@ name: 'navigation-menu-bottom-tab-bar-example'
 ---
 ::
 
-### With collapsed labels
+### Со свёрнутыми подписями {#with-collapsed-labels}
 
-Use the `b24ui` prop to display a label underneath each icon when collapsed.
+Пропс `b24ui` показывает под каждой иконкой подпись в свёрнутом состоянии.
 
 ::component-example
 ---
@@ -514,11 +514,11 @@ name: 'navigation-menu-collapsed-label-example'
 ---
 ::
 
-### With custom slot
+### С собственным слотом {#with-custom-slot}
 
-Use the `slot` property to customize a specific item.
+Свойство `slot` настраивает отдельный элемент.
 
-You will have access to the following slots:
+Вам будут доступны слоты:
 
 - `#{{ item.slot }}`{lang="ts-type"}
 - `#{{ item.slot }}-leading`{lang="ts-type"}
@@ -534,12 +534,12 @@ name: 'navigation-menu-custom-slot-example'
 ::
 
 ::tip{to="#slots"}
-You can also use the `#item`, `#item-leading`, `#item-label`, `#item-trailing` and `#item-content` slots to customize all items.
+Слоты `#item`, `#item-leading`, `#item-label`, `#item-trailing` и `#item-content` настраивают все элементы сразу.
 ::
 
-### With trailing slot
+### Со слотом trailing {#with-trailing-slot}
 
-Use the `#item-trailing` slot or the `slot` property (`#{{ item.slot }}-trailing`) to add a [DropdownMenu](/docs/components/dropdown-menu/) that appears on hover, similar to Notion or Linear.
+Слот `#item-trailing` или свойство `slot` (`#{{ item.slot }}-trailing`) добавляет [DropdownMenu](/docs/components/dropdown-menu/), который появляется при наведении, как в Notion или Linear.
 
 ::component-example
 ---
@@ -548,9 +548,9 @@ name: 'navigation-menu-trailing-slot-example'
 ---
 ::
 
-### With content slot
+### Со слотом content {#with-content-slot}
 
-Use the `#item-content` slot or the `slot` property (`#{{ item.slot }}-content`) to customize the content of a specific item.
+Слот `#item-content` или свойство `slot` (`#{{ item.slot }}-content`) настраивает содержимое отдельного элемента.
 
 ::component-example
 ---
@@ -560,23 +560,23 @@ name: 'navigation-menu-content-slot-example'
 ::
 
 ::note
-In this example, we add the `sm:w-(--reka-navigation-menu-viewport-width)` class on the `viewport` to have a dynamic width. This requires to set a width on the content's first child.
+В этом примере класс `sm:w-(--reka-navigation-menu-viewport-width)` добавлен к `viewport`, чтобы ширина была динамической. Для этого у первого дочернего элемента содержимого должна быть задана ширина.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

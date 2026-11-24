@@ -1,6 +1,6 @@
 ---
 title: Main
-description: 'A main content element that expands to fill the full viewport height.'
+description: 'Основной элемент содержимого, который растягивается на всю высоту окна просмотра.'
 category: layout
 links:
   - label: GitHub
@@ -11,19 +11,19 @@ links:
     to: https://ui.nuxt.com/docs/components/main
 ---
 
-## Usage
+## Использование {#usage}
 
-The Main component renders a `<main>` element that works together with the [Header](/docs/components/header/) component to create a full-height layout that extends to the viewport's available height.
+Компонент Main отрисовывает элемент `<main>`, который вместе с компонентом [Header](/docs/components/header/) образует раскладку на всю доступную высоту окна просмотра.
 
 ::tip{to="/docs/getting-started/theme/css-variables/#header"}
-The Main component uses the `--b24ui-header-height` CSS variable to position itself correctly below the `Header`.
+Компонент Main использует CSS-переменную `--b24ui-header-height`, чтобы расположиться точно под `Header`.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Within `app.vue`
+### В `app.vue` {#within-appvue}
 
-Use the Main component in your `app.vue` or in a layout:
+Используйте Main в `app.vue` или в раскладке:
 
 ```vue [app.vue]{5-9}
 <template>
@@ -43,14 +43,14 @@ Use the Main component in your `app.vue` or in a layout:
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

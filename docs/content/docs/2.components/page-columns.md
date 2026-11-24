@@ -1,6 +1,6 @@
 ---
 title: PageColumns
-description: 'A responsive multi-column layout system for organizing content side-by-side.'
+description: 'Адаптивная многоколоночная раскладка для размещения содержимого рядом.'
 category: page
 links:
   - label: GitHub
@@ -11,9 +11,9 @@ links:
     to: https://ui.nuxt.com/docs/components/page-columns
 ---
 
-## Usage
+## Использование {#usage}
 
-The PageColumns component displays content in a responsive multi-column layout. It works well with [PageCard](/docs/components/page-card/) components or any other elements, adapting from single column on mobile to multiple columns on larger screens.
+Компонент PageColumns показывает содержимое в адаптивной многоколоночной раскладке. Он хорошо работает с компонентами [PageCard](/docs/components/page-card/) и любыми другими элементами: на мобильных это одна колонка, на больших экранах — несколько.
 
 ::component-example
 ---
@@ -25,14 +25,14 @@ class: 'p-8'
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme
