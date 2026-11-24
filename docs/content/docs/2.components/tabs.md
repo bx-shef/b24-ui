@@ -143,7 +143,7 @@ external:
 externalTypes:
   - TabsItem[]
 props:
-  size: md
+  size: xl
   content: false
   items:
     - label: Аккаунт
