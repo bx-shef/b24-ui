@@ -14,7 +14,7 @@ export default {
     input: '',
     close: '',
     back: 'p-0 -ms-1.5 me-1',
-    content: 'relative overflow-hidden flex flex-col',
+    content: 'relative overflow-hidden flex flex-col focus:outline-none',
     footer: 'p-1',
     viewport: [
       'relative',

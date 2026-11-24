@@ -28,7 +28,7 @@ export default defineLocale<Messages>({
     },
     carousel: {
       dots: 'Выберите слайд для отображения',
-      goto: 'Перейти к {slide}',
+      goto: 'Перейти к слайду {slide}',
       next: 'Далее',
       prev: 'Назад'
     },
@@ -153,11 +153,13 @@ export default defineLocale<Messages>({
     prose: {
       codeCollapse: {
         closeText: 'Скрыть',
+        label: '{text} {name}',
         name: 'код',
         openText: 'Показать'
       },
       collapsible: {
         closeText: 'Скрыть',
+        label: '{text} {name}',
         name: 'свойства',
         openText: 'Показать'
       },

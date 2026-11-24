@@ -154,12 +154,14 @@ export default defineLocale<Messages>({
     prose: {
       codeCollapse: {
         closeText: 'إخفاء',
-        name: 'رمز',
+        label: '{text} {name}',
+        name: 'الرمز',
         openText: 'إظهار'
       },
       collapsible: {
         closeText: 'إخفاء',
-        name: 'خصائص',
+        label: '{text} {name}',
+        name: 'الخصائص',
         openText: 'إظهار'
       },
       pre: {

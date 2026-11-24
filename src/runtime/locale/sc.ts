@@ -21,9 +21,9 @@ export default defineLocale<Messages>({
       label: '事件日期',
       monthPicker: '月份选择器',
       nextMonth: '下个月',
-      nextYear: '明年',
+      nextYear: '下一年',
       prevMonth: '上个月',
-      prevYear: '去年',
+      prevYear: '上一年',
       yearPicker: '年份选择器'
     },
     carousel: {
@@ -153,11 +153,13 @@ export default defineLocale<Messages>({
     prose: {
       codeCollapse: {
         closeText: '隐藏',
+        label: '{text}{name}',
         name: '代码',
         openText: '显示'
       },
       collapsible: {
         closeText: '隐藏',
+        label: '{text}{name}',
         name: '属性',
         openText: '显示'
       },

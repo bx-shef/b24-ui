@@ -170,6 +170,10 @@ export function compare<T>(value?: T, currentValue?: T, comparator?: string | ((
     return false
   }
 
+  if (value === null || currentValue === null) {
+    return value === currentValue
+  }
+
   if (typeof value === 'string') {
     return value === currentValue
   }
@@ -230,6 +234,71 @@ export function isEmpty(value: unknown): boolean {
 }
 
 /**
+ * The item of `items` that matches `value`, compared like `compare()` does:
+ * by `valueKey` when items are objects, by `by` when given.
+ *
+ * @param items The list to search.
+ * @param value The value to look for.
+ * @param options Where to find an item's value.
+ * @param options.valueKey Field holding an item's value. Omit when items are
+ *   primitives.
+ * @param options.by Passed to `compare` as its comparator.
+ */
+export function findItem<T extends Array<any>, V>(
+  items: T,
+  value: V | undefined | null,
+  options: {
+    valueKey?: GetItemKeys<T>
+    by?: string | ((a: any, b: any) => boolean)
+  } = {}
+): T[number] | undefined {
+  const { valueKey, by } = options
+
+  return items.find((item) => {
+    const itemValue = (typeof item === 'object' && item !== null && valueKey)
+      ? get(item, valueKey as string)
+      : item
+    return compare(itemValue, value, by)
+  })
+}
+
+/**
+ * The selected item (or items with `multiple`) for a model value, which is what
+ * the trigger slots of `Select`, `SelectMenu` and `InputMenu` receive as `item`.
+ *
+ * Without `valueKey` the model value is the item itself, so it is kept when
+ * `items` no longer holds it (async items); with `valueKey` an unmatched value
+ * yields `undefined`.
+ *
+ * @param items The list to search.
+ * @param value The current selection.
+ * @param options Where to find an item's value.
+ * @param options.valueKey Field holding an item's value.
+ * @param options.by Passed to `compare` as its comparator.
+ * @param options.multiple Treat `value` as an array and return the matching items.
+ */
+export function getSelectedItem<T extends Array<any>>(
+  items: T,
+  value: unknown,
+  options: {
+    valueKey?: GetItemKeys<T>
+    by?: string | ((a: any, b: any) => boolean)
+    multiple?: boolean
+  } = {}
+): T[number] | T[number][] | undefined {
+  const { multiple, ...findOptions } = options
+
+  // Without `valueKey` the model value is the item itself, so keep it when `items` no longer contains it (e.g. async items).
+  const resolve = (v: unknown) => findItem(items, v, findOptions) ?? ((findOptions.valueKey || v == null) ? undefined : v)
+
+  if (multiple) {
+    return Array.isArray(value) ? value.map(resolve).filter(item => item !== undefined) : []
+  }
+
+  return resolve(value)
+}
+
+/**
  * The label to show for a selected value.
  *
  * Looks the value up in `items` and reads `labelKey` off what it finds. A
@@ -256,12 +325,7 @@ export function getDisplayValue<T extends Array<any>, V>(
 ): string | undefined {
   const { valueKey, labelKey, by } = options
 
-  const foundItem = items.find((item) => {
-    const itemValue = (typeof item === 'object' && item !== null && valueKey)
-      ? get(item, valueKey as string)
-      : item
-    return compare(itemValue, value, by)
-  })
+  const foundItem = findItem(items, value, { valueKey, by })
 
   if (isEmpty(value) && foundItem) {
     return labelKey ? get(foundItem as Record<string, any>, labelKey as string) : undefined

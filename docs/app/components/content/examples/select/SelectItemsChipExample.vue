@@ -26,18 +26,14 @@ const items = ref([
 ] satisfies SelectItem[])
 
 const value = ref(items.value[0]?.value)
-
-function getChip(value: string) {
-  return items.value.find(item => item.value === value)?.chip
-}
 </script>
 
 <template>
   <B24Select v-model="value" :items="items" value-key="value" class="w-48">
-    <template #leading="{ modelValue, b24ui }">
+    <template #leading="{ item, b24ui }">
       <B24Chip
-        v-if="modelValue"
-        v-bind="getChip(modelValue)"
+        v-if="item"
+        v-bind="item.chip"
         inset
         standalone
         :size="(b24ui.itemLeadingChipSize() as ChipProps['size'])"

@@ -1,7 +1,7 @@
 {
   "upstream": "nuxt/ui",
   "branch": "v4",
-  "cursor": "f7edb560d04bc059ffdefc926c2bbbb2de406cc2",
+  "cursor": "f15f5a9bd6a4caec9e618852b608a4d9223b1c30",
   "_cursor_note": "cursor = last upstream commit ported into b24ui. The sync is manual by decision: one commit at a time, oldest-first, each with a `.sync/log/<sha>.md` journal and an entry in `processed`. There is no dispatcher, no porter workflow and no kill-switch — `.sync/PORTING.md` is the whole procedure. `processed` is maintained per port (backfilled #68-#72 on 2026-06-09).",
   "processed": {
     "2799fa6f2b25ce3eb15e050f3ef7c57d0d9a2fdb": {
@@ -3649,94 +3649,244 @@
       "summary": "chore(github): удаление неиспользуемой переменной NUXT_GITHUB_TOKEN — n/a, в workflow форка её нет"
     },
     "47c5dfca4a45d760e3b5fb145d4174d5f5750f00": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 36,
+      "b24ui_sha": "4b34d766d62c869fa22ecd44d92327fc5932d402",
       "decision": "port",
       "summary": "perf(Link): пропсы NuxtLink/RouterLink без reactiveOmit — computed(omit(...)) во всех трёх вариантах Link; isAction остаётся в списке исключений"
     },
     "ed6150578543980025d18128f7fdd0e3807e5093": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 36,
+      "b24ui_sha": "4b34d766d62c869fa22ecd44d92327fc5932d402",
       "decision": "port",
       "summary": "docs(tabs): пример размера показывает не размер по умолчанию (xl вместо md)"
     },
     "bc46328e804038fd72330d62366ac708074a556f": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 36,
+      "b24ui_sha": "4b34d766d62c869fa22ecd44d92327fc5932d402",
       "decision": "port",
       "summary": "docs(calendar): пример с событиями читает день недели в UTC (getUTCDay); правка Theme Studio — n/a, его у форка нет"
     },
     "7401826c768e398bab4c3ab143f2dc1c582ee275": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 36,
+      "b24ui_sha": "4b34d766d62c869fa22ecd44d92327fc5932d402",
       "decision": "port",
       "summary": "fix(InputMenu): выбранная подпись не попадает в searchTerm — onInputUpdate получает open и modelValue и пропускает сброс input к подписи при закрытом меню"
     },
     "43bbda9b37b9b4514478343b92db6ece5a8a582e": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 36,
+      "b24ui_sha": "4b34d766d62c869fa22ecd44d92327fc5932d402",
       "decision": "port",
       "summary": "fix(Listbox): событие change при снятии выбора в неконтролируемом режиме — onUpdate пропускает только неизменённое контролируемое значение"
     },
     "a0939c8ad8f19823fcfe1b6597a54ba4bf9f2488": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 36,
+      "b24ui_sha": "4b34d766d62c869fa22ecd44d92327fc5932d402",
       "decision": "port",
       "summary": "fix(SelectMenu): сброс поискового запроса при выборе текущего элемента — сброс перенесён из onUpdate в onSelect (и onClear); тесты перенесены"
     },
     "ac3e93729a319f6cd143a75ee10beee331a23f0f": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 36,
+      "b24ui_sha": "4b34d766d62c869fa22ecd44d92327fc5932d402",
       "decision": "n/a",
       "summary": "docs(showcase): сайты на nuxt/ui (citrusmail, faivelo) — витрина форка содержит только проекты на Bitrix24 UI"
     },
     "3879d262ebf5409465fb6a3e1d27b8fb532d4ed7": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 36,
+      "b24ui_sha": "4b34d766d62c869fa22ecd44d92327fc5932d402",
       "decision": "n/a",
       "summary": "docs(showcase): сайт capacities на nuxt/ui — витрина форка только про проекты на Bitrix24 UI"
     },
     "3cfc612d4035ed4c27fdb798997be70f8e7a909b": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 36,
+      "b24ui_sha": "4b34d766d62c869fa22ecd44d92327fc5932d402",
       "decision": "no-op",
       "summary": "fix(ContentToc): индикатор подсветки (top вместо translate) — у форка ContentToc без highlight/indicator, в теме нет слотов indicator"
     },
     "5122d2d153e2eb969743b04f6192ac6faedd9dbf": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 36,
+      "b24ui_sha": "4b34d766d62c869fa22ecd44d92327fc5932d402",
       "decision": "n/a",
       "summary": "chore(github): воркфлоу issue-opened/reproduire/stale вместо tia — репозиторий апстрима, у форка свои workflows и нет .github/tia.yml"
     },
     "d96f2d595c013885202591ea7c69e01f1ae12a61": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 36,
+      "b24ui_sha": "4b34d766d62c869fa22ecd44d92327fc5932d402",
       "decision": "port",
       "summary": "fix(Calendar): неконтролируемый выбор сохраняется при смене вида — uncontrolledValue как defaultValue пикера"
     },
     "1ee53fe5ac0483b189aba7e47da8a4971d24cad2": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 36,
+      "b24ui_sha": "4b34d766d62c869fa22ecd44d92327fc5932d402",
       "decision": "port",
       "summary": "fix(Calendar): фокус остаётся внутри календаря при смене вида — keepFocus после cycleView и onSelect"
     },
     "aa54cd89ae4ffd89949af774936af4c1df91ee5d": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 36,
+      "b24ui_sha": "4b34d766d62c869fa22ecd44d92327fc5932d402",
       "decision": "port",
       "summary": "fix(components): шаблонные компоненты и опасные as не рендерятся — isUnsafeComponent/isUnsafeAs/omitUnsafeAttrs в utils, useComponentProps, LinkBase (+inertia), Select, SelectMenu, ChatTool, ChatReasoning, prose Field/FieldGroup/CodeGroup; ЧАСТИЧНО: иконки не закрыты — у форка нет компонента Icon, где апстрим ставит защиту; шаблон из пропса icon исполняется — issue #35"
     },
     "499b5b333a53a6dac22e89e412db905a9ab986e3": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 36,
+      "b24ui_sha": "4b34d766d62c869fa22ecd44d92327fc5932d402",
       "decision": "port",
       "summary": "fix(components): isUnsafeComponent отклоняет объекты с собственным ключом __v_raw (Vue разворачивает его в dev после проверки)"
     },
     "f7edb560d04bc059ffdefc926c2bbbb2de406cc2": {
+      "pr": 36,
+      "b24ui_sha": "4b34d766d62c869fa22ecd44d92327fc5932d402",
+      "decision": "n/a",
+      "summary": "fix(locale): уточнён узбекский перевод — локали uz у форка нет (набор локалей курируется, новые не берём)"
+    },
+    "728c9ed8e6b351dd4f35a80bffb1b972f33128aa": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(CommandPalette): слот content без контура фокуса (focus:outline-none) — тема command-palette.ts, снимки CommandPalette/DashboardSearch/ContentSearch"
+    },
+    "8db2b2de4eed65265c4d8fbf0ece888639bdc6b5": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(locale): исправления переводов — применены к нашим локалям de (theme «Design» ×2), sc (nextYear/prevYear), vn (toggle); остальные правки апстрима у нас уже верны или в чужих локалях"
+    },
+    "2ea105525fe0e838951819901aaec1f63920eee1": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(locale): сообщение prose.codeCollapse.label / prose.collapsible.label — порядок слов подписи CodeCollapse и Collapsible задаёт локаль; label добавлен во все 20 наших локалей, тесты CodeCollapse/Collapsible"
+    },
+    "48d76af54c743db1dce936dfd3b6b104007ed596": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(locale): подписи слайдов карусели — перенесена правка ru (goto «к слайду»); компонента Carousel у форка нет, сообщения carousel.* нигде не используются, остальные локали различаются со строками апстрима и не тронуты"
+    },
+    "983923696cc52b5eabead431a05e222cd18b176c": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(Table): проп data принимает readonly-массивы (readonly T[]), внутренняя копия [...props.data]; тест readonly data"
+    },
+    "9111197cb7f94d20df8e3d5dcdc57fdba0072cdd": {
       "pr": "pending-merge",
       "b24ui_sha": "pending-merge",
       "decision": "n/a",
-      "summary": "fix(locale): уточнён узбекский перевод — локали uz у форка нет (набор локалей курируется, новые не берём)"
+      "summary": "perf(PageCard): общий трекер указателя useSpotlight — n/a: у PageCard форка нет spotlight/spotlightColor (@memo not use spotlight), useMouseInElement в src не используется"
+    },
+    "75210dc244e135b24ed7c590af97d41a85c0855c": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "n/a",
+      "summary": "chore(github): релиз через uppt и npm trusted publishing — n/a: у форка релиз через release-please.yml и npm-publish.yml, release-it и scripts/release.sh нет; prepack апстрима не переносим"
+    },
+    "e1a8059fd2a121e128821c3cb6f143f3fb56910c": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "n/a",
+      "summary": "chore(github): changelog релиза с тегов ветки — n/a: workflow release.yml у форка нет; версия package.json апстрима не наша"
+    },
+    "550471d1a2c1178c9cc9593d8ff684cae7d64674": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "skip",
+      "summary": "feat(locale): сербская локаль (кириллица и латиница) — skip по §2: новые локали не берём; сопутствующая поддержка тегов со скриптом (sr-Latn) в LocaleSelect/normalizeLocale нужна только для неё"
+    },
+    "073be5e6a323c706a97039a749c7bebc27ebe029": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(utils): compare() сопоставляет null только с null (guard перед сравнением строк/comparator/get); тесты добавлены в test/utils/index.spec.ts, так как у форка нет блока compare"
+    },
+    "27207f52b43e3b0f632b4a0ddd61ace67671cdeb": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "feat(Select/SelectMenu/InputMenu): слоты leading/default/trailing получают item (выбранный элемент), новые findItem/getSelectedItem/GetSelectedItem, примеры и документация на русском, плейграунды"
+    },
+    "393e8c49fbd93c15e818403062f258060ef069d4": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "n/a",
+      "summary": "chore(github): заголовки релиза uppt sections — n/a: только release.yml апстрима, у форка релиз через release-please"
+    },
+    "3a602508d644eafe42a1ec9a0182555bfcc901b9": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "n/a",
+      "summary": "chore(release): v4.13.0 — n/a: поднимает version в package.json апстрима до 4.13.0; версию форка ведёт release-please"
+    },
+    "0f58f482b839023ee8f61cc58451c6e371b2a177": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "n/a",
+      "summary": "docs: update badges — n/a: меняют метки «Soon» на «4.13+»/«New» по номеру релиза апстрима; в нашей документации «Soon» остаётся верным до собственного релиза"
+    },
+    "10b7c91ef4f60af805a4a454b662725954e55132": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "n/a",
+      "summary": "docs(team): правка страницы team апстрима — n/a: страницы team в docs форка нет"
+    },
+    "4bbff73c82862500094437cf6d25883385e8b7dc": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(ChatPromptSubmit): внутри ChatPrompt с очередью кнопка ставит сообщение в очередь, а не останавливает ответ (provide/inject chatPromptQueueingInjectionKey); ChatPromptSubmit переведён на локальный useForwardProps, тест Theme :props"
+    },
+    "8cd431c1bc7e991f563f2ff381826955d25dabda": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "n/a",
+      "summary": "docs(home): отступы hero на низких экранах — n/a: компонента docs/app/components/page/PageHero.vue у форка нет (сайт-only правка апстрима)"
+    },
+    "c281170f61a200c9136bcd67aa2b50cf1195df1a": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(ChatMessages): запас высоты под последнее сообщение считается с учётом scroll-margin-top сообщения вместо paddingTop контейнера; тест"
+    },
+    "3fc0a18dd20c29dd8778af933c05ab39b4f44d88": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(useToast): promise() при завершении сбрасывает поля, заданные состоянием loading (description, close, actions…), кроме id и open; три теста"
+    },
+    "ba12c52062131af60635142f1fc72f815265d85a": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "n/a",
+      "summary": "fix(Carousel): область нажатия точек 24px — n/a: компонента Carousel у форка нет"
+    },
+    "300496e4faae21c085d5fe4c6ed0699ac398fd80": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(CommandPalette): дочерние виды элемента (children) фильтруются, даже когда задан ignoreFilter (navigate() передаёт ignoreFilter: false); тест"
+    },
+    "207751b43294dbebc528dafc53539b3375bdf91d": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(ChatPrompt/FileUpload): useDropZone обрабатывает только перетаскивание с файлами (checkValidity), текст можно перетащить в textarea; тесты ChatPrompt"
+    },
+    "361cb192d23d10ebac8f8b17479efbd3c14aabf7": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(ChatMessages): кнопка автопрокрутки с footer вынесена из потока (createReusableTemplate, viewport внутри footer, bottom-full mb-4), убран --bottom-offset; снимки и тест позиции"
+    },
+    "244748eac1ab58ff70f77126a159a220d19516dc": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(useScrollShadow): тени обновляются при изменении размера элемента (useResizeObserver + measure()); тест"
+    },
+    "f15f5a9bd6a4caec9e618852b608a4d9223b1c30": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(components): aria-expanded у DashboardSidebarToggle, DashboardSidebarCollapse и кнопки Header; три кнопки (и DashboardSearchButton) переведены на локальный useForwardProps, тесты Theme :props"
     }
   }
 }

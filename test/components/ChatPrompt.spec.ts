@@ -1,9 +1,10 @@
 import { describe, it, expect, vi } from 'vitest'
-import { defineComponent, h, ref } from 'vue'
+import { defineComponent, h, nextTick, ref } from 'vue'
 import { axe } from 'vitest-axe'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
 import { renderEach } from '../component-render'
 import ChatPrompt from '../../src/runtime/components/ChatPrompt.vue'
+import ChatPromptSubmit from '../../src/runtime/components/ChatPromptSubmit.vue'
 import theme from '#build/b24ui/chat-prompt'
 
 describe('ChatPrompt', () => {
@@ -34,6 +35,12 @@ describe('ChatPrompt', () => {
     return event
   }
 
+  function drag(type: string, dataTransfer: DataTransfer) {
+    const event = new Event(type, { bubbles: true, cancelable: true }) as DragEvent
+    Object.defineProperty(event, 'dataTransfer', { value: dataTransfer })
+    return event
+  }
+
   it('queues a submit while streaming with `v-model:queue`', async () => {
     const files = [new File(['a'], 'notes.txt')]
     const wrapper = await mountSuspended(ChatPrompt, {
@@ -46,6 +53,48 @@ describe('ChatPrompt', () => {
     expect(wrapper.emitted('update:queue')?.[0]).toEqual([[{ text: 'Next question', files }]])
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual([''])
     expect(wrapper.emitted('update:files')?.[0]).toEqual([[]])
+  })
+
+  it('queues from `UChatPromptSubmit` while streaming when the prompt has text', async () => {
+    const onStop = vi.fn()
+    const wrapper = await mountSuspended(ChatPrompt, {
+      props: { modelValue: '', queue: [], status: 'streaming' },
+      slots: { default: () => h(ChatPromptSubmit, { status: 'streaming', onStop }) },
+      attachTo: document.body
+    })
+    const button = () => wrapper.findAll('button').at(-1)!
+
+    expect(button().attributes('aria-label')).toBe('Stop generating')
+
+    await wrapper.setProps({ modelValue: 'Next question' })
+    expect(button().attributes('aria-label')).toBe('Send')
+    expect(button().attributes('type')).toBe('submit')
+
+    await button().trigger('click')
+    expect(onStop).not.toHaveBeenCalled()
+    expect(wrapper.emitted('update:queue')?.[0]).toEqual([[{ text: 'Next question' }]])
+
+    await wrapper.setProps({ modelValue: '' })
+    expect(button().attributes('aria-label')).toBe('Stop generating')
+    wrapper.unmount()
+  })
+
+  it('sends from `UChatPromptSubmit` while submitted when the prompt only has files', async () => {
+    const wrapper = await mountSuspended(ChatPrompt, {
+      props: { modelValue: '', files: [new File(['a'], 'notes.txt')], queue: [], status: 'submitted' },
+      slots: { default: () => h(ChatPromptSubmit, { status: 'submitted' }) }
+    })
+
+    expect(wrapper.find('button[aria-label="Send"]').exists()).toBe(true)
+  })
+
+  it('keeps `UChatPromptSubmit` on stop while streaming without `v-model:queue`', async () => {
+    const wrapper = await mountSuspended(ChatPrompt, {
+      props: { modelValue: 'Next question', status: 'streaming' },
+      slots: { default: () => h(ChatPromptSubmit, { status: 'streaming' }) }
+    })
+
+    expect(wrapper.find('button[aria-label]').attributes('aria-label')).toBe('Stop generating')
   })
 
   describe('queued messages', () => {
@@ -201,6 +250,56 @@ describe('ChatPrompt', () => {
     wrapper.find('textarea').element.dispatchEvent(paste([file]))
 
     expect(wrapper.emitted('update:files')?.[0]).toEqual([[file]])
+  })
+
+  it('adds the files of a drop', async () => {
+    const wrapper = await mountSuspended(ChatPrompt, {
+      props: { files: [] }
+    })
+
+    const file = new File(['a'], 'notes.txt', { type: 'text/plain' })
+    const dataTransfer = new DataTransfer()
+    dataTransfer.items.add(file)
+    const textarea = wrapper.find('textarea').element
+
+    const enter = drag('dragenter', dataTransfer)
+    textarea.dispatchEvent(enter)
+    await nextTick()
+
+    expect(enter.defaultPrevented).toBe(true)
+    expect(wrapper.attributes('data-dragging')).toBe('true')
+
+    const drop = drag('drop', dataTransfer)
+    textarea.dispatchEvent(drop)
+    await nextTick()
+
+    expect(drop.defaultPrevented).toBe(true)
+    expect(wrapper.attributes('data-dragging')).toBe('false')
+    expect(wrapper.emitted('update:files')?.[0]).toEqual([[file]])
+  })
+
+  it('leaves a text drag to the browser', async () => {
+    const wrapper = await mountSuspended(ChatPrompt, {
+      props: { files: [] }
+    })
+
+    const dataTransfer = new DataTransfer()
+    dataTransfer.setData('text/plain', 'Some text')
+    const textarea = wrapper.find('textarea').element
+
+    const enter = drag('dragenter', dataTransfer)
+    textarea.dispatchEvent(enter)
+    await nextTick()
+
+    expect(wrapper.attributes('data-dragging')).toBe('false')
+
+    const over = drag('dragover', dataTransfer)
+    const drop = drag('drop', dataTransfer)
+    textarea.dispatchEvent(over)
+    textarea.dispatchEvent(drop)
+
+    expect([enter, over, drop].map(event => event.defaultPrevented)).toEqual([false, false, false])
+    expect(wrapper.emitted('update:files')).toBeUndefined()
   })
 
   it('removes a file from its attachment', async () => {
