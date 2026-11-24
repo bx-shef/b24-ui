@@ -1,6 +1,6 @@
 ---
 title: Chat
-description: 'Разработка чат-интерфейсов на основе ИИ: потоковые ответы, рассуждения и вызов инструментов.'
+description: 'Разработка чат-интерфейсов на основе AI: потоковые ответы, рассуждения и вызов инструментов.'
 category: chat
 index: true
 links:
@@ -13,7 +13,7 @@ links:
     to: https://ui.nuxt.com/docs/components/chat
 ---
 
-Bitrix24 UI даёт набор компонентов для чат-интерфейсов на основе ИИ. Они работают с [Vercel AI SDK](https://ai-sdk.dev/): потоковые ответы, рассуждения, вызов инструментов и не только.
+Bitrix24 UI даёт набор компонентов для чат-интерфейсов на основе AI. Они работают с [Vercel AI SDK](https://ai-sdk.dev/): потоковые ответы, рассуждения, вызов инструментов и не только.
 
 ## Компоненты {#components}
 
@@ -23,8 +23,8 @@ Bitrix24 UI даёт набор компонентов для чат-интер�
 | [ChatMessage](/docs/components/chat-message/) | Отдельное сообщение с аватаром, действиями и слотами. |
 | [ChatPrompt](/docs/components/chat-prompt/) | Улучшенное многострочное поле для отправки запросов. |
 | [ChatPromptSubmit](/docs/components/chat-prompt-submit/) | Кнопка отправки, которая сама учитывает статус. |
-| [ChatReasoning](/docs/components/chat-reasoning/) | Сворачиваемый блок с рассуждениями ИИ. |
-| [ChatTool](/docs/components/chat-tool/) | Сворачиваемый блок со статусом вызова инструмента ИИ. |
+| [ChatReasoning](/docs/components/chat-reasoning/) | Сворачиваемый блок с рассуждениями AI. |
+| [ChatTool](/docs/components/chat-tool/) | Сворачиваемый блок со статусом вызова инструмента AI. |
 | [ChatShimmer](/docs/components/chat-shimmer/) | Мерцание текста для состояний потока. |
 | [ChatPalette](/docs/components/chat-palette/) | Обёртка-раскладка для чата в модальных окнах и шторках. |
 
@@ -56,7 +56,7 @@ bun add ai @ai-sdk/vue
 
 ## Настройка сервера {#server-setup}
 
-Создайте серверный API-эндпоинт, который обрабатывает запросы чата через [`streamText`](https://ai-sdk.dev/docs/reference/ai-sdk-core/stream-text). Доступ к моделям ИИ через единую точку входа даёт [Vercel AI Gateway](https://vercel.com/ai-gateway):
+Создайте серверный API-эндпоинт, который обрабатывает запросы чата через [`streamText`](https://ai-sdk.dev/docs/reference/ai-sdk-core/stream-text). Доступ к моделям AI через единую точку входа даёт [Vercel AI Gateway](https://vercel.com/ai-gateway):
 
 ```ts [server/api/chat.post.ts]
 import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
@@ -189,7 +189,7 @@ export default defineEventHandler(async (event) => {
 
 ### Вызов инструментов через MCP {#tool-calling-with-mcp}
 
-Расширьте возможности чат-бота вызовом инструментов через [Model Context Protocol (MCP)](https://ai-sdk.dev/docs/ai-sdk-core/mcp-tools) из `@ai-sdk/mcp`. MCP позволяет ИИ выполнять динамические действия, например искать по документации или запускать собственные задачи, чтобы отвечать точнее и по делу.
+Расширьте возможности чат-бота вызовом инструментов через [Model Context Protocol (MCP)](https://ai-sdk.dev/docs/ai-sdk-core/mcp-tools) из `@ai-sdk/mcp`. MCP позволяет AI выполнять динамические действия, например искать по документации или запускать собственные задачи, чтобы отвечать точнее и по делу.
 
 Для начала установите пакет MCP:
 
@@ -252,7 +252,7 @@ export default defineEventHandler(async (event) => {
 
 ::tip
 
-Доступ к модели ИИ через единую точку входа можно получить и через [провайдер DeepSeek](https://ai-sdk.dev/providers/ai-sdk-providers/deepseek):
+Доступ к модели AI через единую точку входа можно получить и через [провайдер DeepSeek](https://ai-sdk.dev/providers/ai-sdk-providers/deepseek):
 
 Установите нужные зависимости:
 

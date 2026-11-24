@@ -28,7 +28,7 @@ links:
 ```
 
 ::callout{color="air-secondary"}
-Компонент создан специально для чат-ботов с ИИ и умеет:
+Компонент создан специально для чат-ботов с AI и умеет:
 
 - прокручивать вниз при загрузке ([`shouldScrollToBottom`](#should-scroll-to-bottom));
 - непрерывно прокручивать вниз по мере поступления сообщений ([`shouldAutoScroll`](#should-auto-scroll));

@@ -1,6 +1,6 @@
 ---
 title: ChatPrompt
-description: 'Улучшенный Textarea для отправки запросов в чатах с ИИ.'
+description: 'Улучшенный Textarea для отправки запросов в чатах с AI.'
 category: chat
 links:
   - label: Textarea
