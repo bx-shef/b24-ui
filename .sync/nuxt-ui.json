@@ -1,7 +1,7 @@
 {
   "upstream": "nuxt/ui",
   "branch": "v4",
-  "cursor": "ba12c52062131af60635142f1fc72f815265d85a",
+  "cursor": "300496e4faae21c085d5fe4c6ed0699ac398fd80",
   "_cursor_note": "cursor = last upstream commit ported into b24ui. The sync is manual by decision: one commit at a time, oldest-first, each with a `.sync/log/<sha>.md` journal and an entry in `processed`. There is no dispatcher, no porter workflow and no kill-switch — `.sync/PORTING.md` is the whole procedure. `processed` is maintained per port (backfilled #68-#72 on 2026-06-09).",
   "processed": {
     "2799fa6f2b25ce3eb15e050f3ef7c57d0d9a2fdb": {
@@ -3857,6 +3857,12 @@
       "b24ui_sha": "pending-merge",
       "decision": "n/a",
       "summary": "fix(Carousel): область нажатия точек 24px — n/a: компонента Carousel у форка нет"
+    },
+    "300496e4faae21c085d5fe4c6ed0699ac398fd80": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(CommandPalette): дочерние виды элемента (children) фильтруются, даже когда задан ignoreFilter (navigate() передаёт ignoreFilter: false); тест"
     }
   }
 }
