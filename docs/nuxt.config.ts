@@ -25,6 +25,7 @@ const pages = [
   '/docs/getting-started/integrations/i18n/nuxt/',
   '/docs/getting-started/integrations/i18n/vue/',
   '/docs/getting-started/integrations/content/',
+  '/docs/getting-started/integrations/image/',
   '/docs/getting-started/integrations/ssr/',
   '/docs/getting-started/ai/llms-txt/',
   '/docs/getting-started/ai/skills/',
