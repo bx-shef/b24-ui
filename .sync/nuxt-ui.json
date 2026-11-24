@@ -3475,92 +3475,92 @@
       "summary": "docs(templates): гайды шаблонов в llms.txt и ссылка на гайд редактора — у форка нет раздела гайдов и шаблонов; code-tree-intersection не используется"
     },
     "200b0bfb7a5666c870742f3f43c83cf09234aed9": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 28,
+      "b24ui_sha": "3dfc1611323437298fa0c2b3c3848d6a6d5fb886",
       "decision": "skip",
       "summary": "feat(module): @nuxt/ui/eslint — правила завязаны на палитру Nuxt UI, перенос с адаптацией под токены b24ui отдельной задачей #25"
     },
     "5ca1d18544a5f7cc92515ff381a153e3876a069e": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 28,
+      "b24ui_sha": "3dfc1611323437298fa0c2b3c3848d6a6d5fb886",
       "decision": "port",
       "summary": "chore(deps): обновление зависимостей без мажорных — каталог pnpm-workspace.yaml, packageManager pnpm@12.16.1, override unplugin ^3.7.0"
     },
     "ca0545fdd29651a2aee779463f2ece42d14996f3": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 28,
+      "b24ui_sha": "3dfc1611323437298fa0c2b3c3848d6a6d5fb886",
       "decision": "port",
       "summary": "chore(deps): tiptap ^3.32.2 — каталог pnpm-workspace.yaml"
     },
     "e5577af158dc2843f05cbb3b2cb9e0db8a0a48ef": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 28,
+      "b24ui_sha": "3dfc1611323437298fa0c2b3c3848d6a6d5fb886",
       "decision": "port",
       "summary": "fix(module): локали @nuxtjs/i18n загружаются лениво — динамический import на локаль, en в составе плагина"
     },
     "37dde7b6cdddae1c32af2690dbd30f6682cc5ae8": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 28,
+      "b24ui_sha": "3dfc1611323437298fa0c2b3c3848d6a6d5fb886",
       "decision": "port",
       "summary": "feat(Switch): ползунок растягивается при нажатии — group/switch и group-active в теме"
     },
     "bcc09c0e81fa51bfd6f964e27ea5e6ae279d05d5": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 28,
+      "b24ui_sha": "3dfc1611323437298fa0c2b3c3848d6a6d5fb886",
       "decision": "port",
       "summary": "fix(ContextMenu/DropdownMenu): слот item получает active"
     },
     "392122e81a599da9c6a310d4aa1941ef8fce023e": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 28,
+      "b24ui_sha": "3dfc1611323437298fa0c2b3c3848d6a6d5fb886",
       "decision": "port",
       "summary": "chore(deps): фреймворк Nuxt ^4.6.4 — каталог pnpm-workspace.yaml"
     },
     "4963b0d83b795b84bc87096ffb03bfc09c505b43": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 28,
+      "b24ui_sha": "3dfc1611323437298fa0c2b3c3848d6a6d5fb886",
       "decision": "port",
       "summary": "fix(ContentSearchButton): валидная HTML-разметка слота trailing — span вместо div внутри button"
     },
     "4ac4c59ce4713104550738764c1d413c31f4a1d9": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 28,
+      "b24ui_sha": "3dfc1611323437298fa0c2b3c3848d6a6d5fb886",
       "decision": "port",
       "summary": "fix(ProseTh): scope=\"col\" у ячеек заголовка"
     },
     "045befda7c3b6eba4eedc92088af76637f2ee261": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 28,
+      "b24ui_sha": "3dfc1611323437298fa0c2b3c3848d6a6d5fb886",
       "decision": "port",
       "summary": "fix(Table): scope у ячеек заголовка подвала"
     },
     "f837b98d1b937fde06e636ad63c96964f81b7714": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 28,
+      "b24ui_sha": "3dfc1611323437298fa0c2b3c3848d6a6d5fb886",
       "decision": "port",
       "summary": "chore(deps): @nuxt/cli дедуплицирован через override ^4.0.3"
     },
     "cb0a51f12a9b4fe44fb232df9a25cff478235cef": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 28,
+      "b24ui_sha": "3dfc1611323437298fa0c2b3c3848d6a6d5fb886",
       "decision": "port",
       "summary": "docs(app): числовой tagPriority заменён на 'critical' в useTheme и плагине data; страницы темы и плагина theme у форка нет"
     },
     "ec2b6f3dad908707a123f21dd07de36d7b35bea8": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 28,
+      "b24ui_sha": "3dfc1611323437298fa0c2b3c3848d6a6d5fb886",
       "decision": "port",
       "summary": "docs(app): tagPriority в стилях темы типизирован литералом (as const)"
     },
     "848ebef47132d0f5f2a7f0b20c4a4cb6c09f8dae": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 28,
+      "b24ui_sha": "3dfc1611323437298fa0c2b3c3848d6a6d5fb886",
       "decision": "port",
       "summary": "fix(Table): пустое состояние скрыто во время загрузки — строка загрузки не зависит от слота loading"
     },
     "d463596280b8baf5abb9287aa812bdb7955bcf5b": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 28,
+      "b24ui_sha": "3dfc1611323437298fa0c2b3c3848d6a6d5fb886",
       "decision": "port",
       "summary": "fix(Table): aria-busy на table во время загрузки"
     }
