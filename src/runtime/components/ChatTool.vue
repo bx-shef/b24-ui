@@ -46,6 +46,17 @@ export interface ChatToolProps extends Pick<CollapsibleRootProps, 'defaultOpen' 
    */
   loadingIcon?: IconComponent
   /**
+   * Whether the tool call failed.
+   * @defaultValue false
+   */
+  error?: boolean
+  /**
+   * The icon displayed when the tool call failed.
+   * @defaultValue icons.caution
+   * @IconifyIcon
+   */
+  errorIcon?: IconComponent
+  /**
    * Whether the tool content is currently streaming.
    * @defaultValue false
    */
@@ -105,6 +116,7 @@ import SpinnerIcon from '@bitrix24/b24icons-vue/specialized/SpinnerIcon'
 const _props = withDefaults(defineProps<ChatToolProps>(), {
   open: undefined,
   loading: false,
+  error: false,
   streaming: false,
   variant: 'inline',
   chevron: 'trailing',
@@ -122,6 +134,7 @@ const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.chatTool |
   variant: props.variant,
   chevron: props.chevron,
   loading: Boolean(props.loading),
+  error: Boolean(props.error) && !props.loading,
   useWait: Boolean(props.useWait),
   useClock: Boolean(props.useClock)
 }))
@@ -153,7 +166,12 @@ const resolvedLoadingIcon = computed(() => {
 
   return SpinnerIcon
 })
-const resolvedIcon = computed(() => props.loading ? resolvedLoadingIcon.value : props.icon)
+const resolvedIcon = computed(() => {
+  if (props.loading) return resolvedLoadingIcon.value
+  if (props.error) return props.errorIcon || icons.caution
+
+  return props.icon
+})
 const chevronIconName = computed(() => props.chevronIcon || icons.chevronDown)
 </script>
 

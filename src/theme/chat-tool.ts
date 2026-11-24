@@ -60,6 +60,15 @@ export default {
       // @memo: we use icons with animation.
       true: {}
     },
+    error: {
+      true: {
+        trigger: [
+          'text-(--ui-color-accent-main-alert)',
+          'hover:text-(--ui-color-accent-main-alert)',
+          'disabled:hover:text-(--ui-color-accent-main-alert)'
+        ].join(' ')
+      }
+    },
     alone: {
       false: {
         leadingIcon: [

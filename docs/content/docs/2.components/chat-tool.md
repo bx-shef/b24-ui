@@ -179,6 +179,45 @@ props:
 ---
 ::
 
+### Error
+
+Use the `error` prop to show that the tool call failed, for example when the part state is `output-error`.
+
+::component-code
+---
+hide:
+  - class
+ignore:
+  - text
+props:
+  error: true
+  text: 'Failed to search components'
+  class: 'w-60'
+---
+::
+
+### Error Icon
+
+Use the `error-icon` prop to customize the error [Icon](https://bitrix24.github.io/b24icons/icons/).
+
+::component-code
+---
+hide:
+  - class
+  - errorIcon
+ignore:
+  - text
+  - errorIcon
+cast:
+  errorIcon: 'RocketIcon'
+props:
+  error: true
+  errorIcon: 'RocketIcon'
+  text: 'Failed to search components'
+  class: 'w-60'
+---
+::
+
 ### Chevron
 
 Use the `chevron` prop to change the position of the chevron icon.
