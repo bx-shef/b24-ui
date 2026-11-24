@@ -1,7 +1,7 @@
 {
   "upstream": "nuxt/ui",
   "branch": "v4",
-  "cursor": "5bf25eb380427235ebd7b6d65dacff411f226a06",
+  "cursor": "0fd012b7da8e110e66479e1adf07c051f93b3a5e",
   "_cursor_note": "cursor = last upstream commit ported into b24ui. The sync is manual by decision: one commit at a time, oldest-first, each with a `.sync/log/<sha>.md` journal and an entry in `processed`. There is no dispatcher, no porter workflow and no kill-switch — `.sync/PORTING.md` is the whole procedure. `processed` is maintained per port (backfilled #68-#72 on 2026-06-09).",
   "processed": {
     "2799fa6f2b25ce3eb15e050f3ef7c57d0d9a2fdb": {
@@ -3635,6 +3635,18 @@
       "b24ui_sha": "pending-merge",
       "decision": "port",
       "summary": "chore(deps): @nuxtjs/mdc ^0.23.3 в каталоге (в lock уже 0.23.4)"
+    },
+    "28a332e9f6a60a061445a6b47396d55bf209599c": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "n/a",
+      "summary": "docs(theme): очистка общих переопределений из ссылки — n/a, у форка нет конструктора темы docs (docs/app/utils/theme, useTheme закомментирован)"
+    },
+    "0fd012b7da8e110e66479e1adf07c051f93b3a5e": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "n/a",
+      "summary": "chore(github): удаление неиспользуемой переменной NUXT_GITHUB_TOKEN — n/a, в workflow форка её нет"
     }
   }
 }
