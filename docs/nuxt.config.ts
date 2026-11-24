@@ -1,6 +1,7 @@
 import { createResolver } from '@nuxt/kit'
 import pkg from '../package.json' with { type: 'json' }
 import { withoutTrailingSlash } from 'ufo'
+import remarkHeadingId from './utils/remark-heading-id'
 
 const { resolve } = createResolver(import.meta.url)
 
@@ -296,6 +297,9 @@ export default defineNuxtConfig({
   content: {
     build: {
       markdown: {
+        remarkPlugins: {
+          'remark-heading-id': { instance: remarkHeadingId }
+        },
         highlight: {
           langs: ['bash', 'ts', 'typescript', 'diff', 'vue', 'json', 'yml', 'css', 'mdc', 'blade', 'edge']
         }
