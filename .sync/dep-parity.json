@@ -107,7 +107,7 @@
     },
     "docs/package.json": {
       "dependencies": {
-        "@ai-sdk/vue": "^4.0.153",
+        "@ai-sdk/vue": "^4.0.159",
         "@comark/vue": "^0.8.1",
         "@nuxt/content": "^3.16.2",
         "@nuxt/image": "^2.2.1",
@@ -120,7 +120,7 @@
         "@tiptap/extension-emoji": "^3.32.2",
         "@tiptap/extension-text-align": "^3.32.2",
         "@vueuse/integrations": "^14.4.0",
-        "ai": "^7.0.153",
+        "ai": "^7.0.159",
         "capture-website": "^5.1.0",
         "fflate": "^0.8.3",
         "joi": "^18.3.1",
