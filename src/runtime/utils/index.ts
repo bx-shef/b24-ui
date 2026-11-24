@@ -234,19 +234,14 @@ export function isEmpty(value: unknown): boolean {
 }
 
 /**
- * The label to show for a selected value.
- *
- * Looks the value up in `items` and reads `labelKey` off what it finds. A
- * value with no matching item is displayed as-is, so a free-typed entry in an
- * `InputMenu` still reads back — that fallback is the reason this is not a
- * one-line `find`.
+ * The item of `items` that matches `value`, compared like `compare()` does:
+ * by `valueKey` when items are objects, by `by` when given.
  *
  * @param items The list to search.
- * @param value The current selection.
- * @param options Where to find an item's value and label.
+ * @param value The value to look for.
+ * @param options Where to find an item's value.
  * @param options.valueKey Field holding an item's value. Omit when items are
  *   primitives.
- * @param options.labelKey Field holding an item's label.
  * @param options.by Passed to `compare` as its comparator.
  */
 export function findItem<T extends Array<any>, V>(
@@ -267,6 +262,21 @@ export function findItem<T extends Array<any>, V>(
   })
 }
 
+/**
+ * The selected item (or items with `multiple`) for a model value, which is what
+ * the trigger slots of `Select`, `SelectMenu` and `InputMenu` receive as `item`.
+ *
+ * Without `valueKey` the model value is the item itself, so it is kept when
+ * `items` no longer holds it (async items); with `valueKey` an unmatched value
+ * yields `undefined`.
+ *
+ * @param items The list to search.
+ * @param value The current selection.
+ * @param options Where to find an item's value.
+ * @param options.valueKey Field holding an item's value.
+ * @param options.by Passed to `compare` as its comparator.
+ * @param options.multiple Treat `value` as an array and return the matching items.
+ */
 export function getSelectedItem<T extends Array<any>>(
   items: T,
   value: unknown,
@@ -288,6 +298,22 @@ export function getSelectedItem<T extends Array<any>>(
   return resolve(value)
 }
 
+/**
+ * The label to show for a selected value.
+ *
+ * Looks the value up in `items` and reads `labelKey` off what it finds. A
+ * value with no matching item is displayed as-is, so a free-typed entry in an
+ * `InputMenu` still reads back — that fallback is the reason this is not a
+ * one-line `find`.
+ *
+ * @param items The list to search.
+ * @param value The current selection.
+ * @param options Where to find an item's value and label.
+ * @param options.valueKey Field holding an item's value. Omit when items are
+ *   primitives.
+ * @param options.labelKey Field holding an item's label.
+ * @param options.by Passed to `compare` as its comparator.
+ */
 export function getDisplayValue<T extends Array<any>, V>(
   items: T,
   value: V | undefined | null,
