@@ -36,7 +36,7 @@ describe('unsafe icons from markdown', () => {
     })
 
     it('is not rendered from `selectedIcon`', async () => {
-      expectClean((await mountSuspended(Select, { props: { items: ['a'], modelValue: 'a', open: true, portal: false, selectedIcon: make() as any } })).html())
+      expectClean((await mountSuspended(Select, { props: { items: ['a'], modelValue: 'a', open: true, portal: false, selectedIcon: make() as any } as any })).html())
     })
 
     it('is not rendered from `items[].icon` of Select', async () => {
@@ -58,7 +58,7 @@ describe('unsafe icons from markdown', () => {
     })
 
     it('is not rendered from `<UTheme :props>`', async () => {
-      const App = defineComponent({ render: () => h(Theme, { props: { button: { icon: make() } } }, { default: () => h(Button, { label: 'x' }) }) })
+      const App = defineComponent({ render: () => h(Theme, { props: { button: { icon: make() } } } as any, { default: () => h(Button, { label: 'x' }) }) })
       expectClean((await mountSuspended(App)).html())
     })
 
