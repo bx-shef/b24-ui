@@ -206,7 +206,22 @@ describe('nuxt.config runtimeConfig', () => {
 
     // aiChat смотрит на env-переменную ключа, но значение — булево; сам ключ и приватные имена в public не попадают
     expect(words.filter(word => privateKeys.includes(word))).toEqual([])
-    expect(source.text).toMatch(/aiChat: Boolean\(/)
+    const aiChat = objectProperty(publicBlock, 'aiChat')!.initializer
+    expect(ts.isCallExpression(aiChat) && ts.isIdentifier(aiChat.expression) && aiChat.expression.text === 'Boolean').toBe(true)
+
+    // Ни одно другое значение public не читает переменные DeepSeek — ключ под чужим именем тоже не уйдёт в клиент
+    const leaks: string[] = []
+    for (const property of publicBlock.properties) {
+      if (ts.isPropertyAssignment(property) && (property.name as ts.Identifier).text === 'aiChat') continue
+      const seen: string[] = []
+      const grab = (node: ts.Node) => {
+        if (ts.isIdentifier(node) || ts.isStringLiteralLike(node)) seen.push(node.text)
+        ts.forEachChild(node, grab)
+      }
+      grab(ts.isShorthandPropertyAssignment(property) ? property.name : (property as ts.PropertyAssignment).initializer)
+      leaks.push(...seen.filter(word => /deepseek/i.test(word)))
+    }
+    expect(leaks).toEqual([])
   })
 
   it('ships no key value', () => {
