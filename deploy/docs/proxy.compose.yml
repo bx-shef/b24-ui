@@ -34,6 +34,9 @@ services:
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
       - ./proxy-errorlog.conf:/etc/nginx/conf.d/shef-errorlog.conf:ro
+      # Зона лимита /mcp/ — смонтирована, а не скопирована: пересоздание прокси её не теряет,
+      # иначе vhost.d/<домен>_location сослался бы на несуществующую зону и nginx не стартовал
+      - ./proxy-limits.conf:/etc/nginx/conf.d/b24ui-limits.conf:ro
     networks:
       - proxy-net
 

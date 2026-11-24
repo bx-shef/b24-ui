@@ -72,6 +72,11 @@ set_env() {
 	' .env > .env.new && mv .env.new .env
 	chmod 600 .env
 }
+# Домен проверяем до записи в .env: перевод строки или запятая в значении испортили бы .env и VIRTUAL_HOST
+domain_re='^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$'
+if [ -n "${DOMAIN:-}" ] && ! [[ "$DOMAIN" =~ $domain_re ]]; then
+	fail "DOMAIN='$DOMAIN' не похож на имя домена (нужно вида docs.example.com, без https:// и пути)"
+fi
 set_env DOMAIN "${DOMAIN:-}"
 set_env LETSENCRYPT_EMAIL "${EMAIL:-}"
 
@@ -139,12 +144,20 @@ fi
 
 # Лимит запросов к MCP: зона — в conf.d (http), включение — в vhost.d/<домен>_location. Не прошло nginx -t — откат.
 docker cp proxy/proxy-limits.conf "$proxy:/etc/nginx/conf.d/b24ui-limits.conf" >/dev/null
-docker cp proxy/mcp-location.conf "$proxy:/etc/nginx/vhost.d/${DOMAIN}_location" >/dev/null
-if docker exec "$proxy" nginx -t >/dev/null 2>&1; then
+loc="/etc/nginx/vhost.d/${DOMAIN}_location"
+# Свой файл vhost.d узнаём по метке; чужой (уже был у этого домена) не перезаписываем
+if docker exec "$proxy" test -f "$loc" && ! docker exec "$proxy" grep -q 'b24ui_mcp' "$loc"; then
+	note "в прокси уже есть $loc не от этого сайта — лимит /mcp/ не ставлю; добавьте строки из proxy/mcp-location.conf в него вручную"
+	loc=""
+fi
+[ -z "$loc" ] || docker cp proxy/mcp-location.conf "$proxy:$loc" >/dev/null
+if [ -z "$loc" ]; then
+	:
+elif docker exec "$proxy" nginx -t >/dev/null 2>&1; then
 	docker exec "$proxy" nginx -s reload >/dev/null 2>&1 || true
 	ok "лимит запросов к /mcp/ включён в прокси (30 в минуту с адреса)"
 else
-	docker exec "$proxy" rm -f /etc/nginx/conf.d/b24ui-limits.conf "/etc/nginx/vhost.d/${DOMAIN}_location" >/dev/null 2>&1 || true
+	docker exec "$proxy" rm -f /etc/nginx/conf.d/b24ui-limits.conf "$loc" >/dev/null 2>&1 || true
 	note "лимит /mcp/ не включён: nginx -t в прокси не прошёл, файлы убраны — настройте limit_req вручную (proxy/proxy-limits.conf, proxy/mcp-location.conf)"
 fi
 
