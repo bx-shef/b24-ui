@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`ChatPrompt > renders with as correctly 1`] = `
-"<section data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
+"<section data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg isolate mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
@@ -15,7 +15,7 @@ exports[`ChatPrompt > renders with as correctly 1`] = `
 `;
 
 exports[`ChatPrompt > renders with attachment correctly 1`] = `
-"<form method="post" data-dragging="false" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
+"<form method="post" data-dragging="false" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg isolate mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
   <!--v-if-->
   <!--v-if-->
   <div data-slot="files" class="flex flex-wrap items-center gap-2 mt-0.5">
@@ -47,7 +47,7 @@ exports[`ChatPrompt > renders with attachment correctly 1`] = `
 `;
 
 exports[`ChatPrompt > renders with b24ui correctly 1`] = `
-"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
+"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg isolate mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
@@ -61,7 +61,7 @@ exports[`ChatPrompt > renders with b24ui correctly 1`] = `
 `;
 
 exports[`ChatPrompt > renders with body slot correctly 1`] = `
-"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
+"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg isolate mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->Body slot<div data-slot="footer" class="flex items-center justify-end gap-2"></div>
@@ -69,7 +69,7 @@ exports[`ChatPrompt > renders with body slot correctly 1`] = `
 `;
 
 exports[`ChatPrompt > renders with class correctly 1`] = `
-"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] w-full rounded-lg mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content) p-5">
+"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] w-full rounded-lg isolate mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content) p-5">
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
@@ -83,7 +83,7 @@ exports[`ChatPrompt > renders with class correctly 1`] = `
 `;
 
 exports[`ChatPrompt > renders with error correctly 1`] = `
-"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
+"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg isolate mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
@@ -97,7 +97,7 @@ exports[`ChatPrompt > renders with error correctly 1`] = `
 `;
 
 exports[`ChatPrompt > renders with files correctly 1`] = `
-"<form method="post" data-dragging="false" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
+"<form method="post" data-dragging="false" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg isolate mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
   <!--v-if-->
   <!--v-if-->
   <div data-slot="files" class="flex flex-wrap items-center gap-2 mt-0.5">
@@ -129,7 +129,7 @@ exports[`ChatPrompt > renders with files correctly 1`] = `
 `;
 
 exports[`ChatPrompt > renders with files slot correctly 1`] = `
-"<form method="post" data-dragging="false" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
+"<form method="post" data-dragging="false" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg isolate mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
   <!--v-if-->
   <!--v-if-->
   <div data-slot="files" class="flex flex-wrap items-center gap-2 mt-0.5">Files slot</div>
@@ -143,7 +143,7 @@ exports[`ChatPrompt > renders with files slot correctly 1`] = `
 `;
 
 exports[`ChatPrompt > renders with footer slot correctly 1`] = `
-"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
+"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg isolate mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
@@ -157,7 +157,7 @@ exports[`ChatPrompt > renders with footer slot correctly 1`] = `
 `;
 
 exports[`ChatPrompt > renders with header slot correctly 1`] = `
-"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
+"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg isolate mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
   <div data-slot="header" class="flex items-center gap-2">Header slot</div>
   <!--v-if-->
   <!--v-if-->
@@ -171,7 +171,7 @@ exports[`ChatPrompt > renders with header slot correctly 1`] = `
 `;
 
 exports[`ChatPrompt > renders with placeholder correctly 1`] = `
-"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
+"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg isolate mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
@@ -185,9 +185,9 @@ exports[`ChatPrompt > renders with placeholder correctly 1`] = `
 `;
 
 exports[`ChatPrompt > renders with queue correctly 1`] = `
-"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
+"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg isolate mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
   <!--v-if-->
-  <div data-slot="queue" class="absolute inset-x-2.5 z-10 flex flex-col px-1 overflow-hidden rounded-t-(--ui-border-radius-md) border border-b-0 border-(--ui-color-divider-default) bg-(--ui-color-bg-content-secondary)/50 backdrop-blur-sm bottom-[calc(100%+1px)]"><button type="button" aria-expanded="true" aria-controls="v-0-0" data-slot="queueTrigger" class="flex items-center gap-1.5 w-full p-1.5 text-(length:--ui-font-size-xs) font-(--ui-font-weight-medium) text-description hover:text-(--ui-color-design-plain-content) rounded-(--ui-border-radius-sm) focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-(--ui-color-design-outline-focused-stroke)"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" data-slot="icon" class="shrink-0 size-4 data-[state=open]:rotate-180 transition-transform duration-200 ease-out motion-reduce:transition-none">
+  <div data-slot="queue" class="absolute inset-x-2.5 -z-1 flex flex-col px-1 overflow-hidden rounded-t-(--ui-border-radius-md) border border-b-0 border-(--ui-color-divider-default) bg-(--ui-color-bg-content-secondary)/50 backdrop-blur-sm bottom-[calc(100%+1px)]"><button type="button" aria-expanded="true" aria-controls="v-0-0" data-slot="queueTrigger" class="flex items-center gap-1.5 w-full p-1.5 text-(length:--ui-font-size-xs) font-(--ui-font-weight-medium) text-description hover:text-(--ui-color-design-plain-content) rounded-(--ui-border-radius-sm) focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-(--ui-color-design-outline-focused-stroke)"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" data-slot="icon" class="shrink-0 size-4 data-[state=open]:rotate-180 transition-transform duration-200 ease-out motion-reduce:transition-none">
         <path fill="currentColor" fill-rule="evenodd" d="M5.505 9.505a.7.7 0 0 1 .99 0L12 15.01l5.505-5.505a.7.7 0 0 1 .99.99l-6 6a.7.7 0 0 1-.99 0l-6-6a.7.7 0 0 1 0-.99" clip-rule="evenodd"></path>
       </svg><span>Queued messages</span><span data-slot="queueCount" class="tabular-nums text-(--ui-color-design-plain-na-content-secondary)">2</span></button>
     <ul id="v-0-0" data-slot="queueList" class="flex flex-col max-h-60 overflow-y-auto pb-1">
@@ -276,9 +276,9 @@ exports[`ChatPrompt > renders with queue correctly 1`] = `
 `;
 
 exports[`ChatPrompt > renders with queue slot correctly 1`] = `
-"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
+"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg isolate mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
   <!--v-if-->
-  <div data-slot="queue" class="absolute inset-x-2.5 z-10 flex flex-col px-1 overflow-hidden rounded-t-(--ui-border-radius-md) border border-b-0 border-(--ui-color-divider-default) bg-(--ui-color-bg-content-secondary)/50 backdrop-blur-sm bottom-[calc(100%+1px)]">Queue slot</div>
+  <div data-slot="queue" class="absolute inset-x-2.5 -z-1 flex flex-col px-1 overflow-hidden rounded-t-(--ui-border-radius-md) border border-b-0 border-(--ui-color-divider-default) bg-(--ui-color-bg-content-secondary)/50 backdrop-blur-sm bottom-[calc(100%+1px)]">Queue slot</div>
   <!--v-if-->
   <div data-slot="root" class="isolate relative inline-flex py-[4px] items-start">
     <!--v-if--><textarea rows="1" placeholder="Enter your message here…" data-slot="body" class="px-3 w-full border-0 focus:outline-none disabled:cursor-not-allowed disabled:pointer-events-auto disabled:select-none disabled:opacity-30 disabled:resize-none appearance-none transition-colors duration-300 ease-linear text-(--ui-color-base-1) placeholder:text-(--ui-color-design-plain-na-content-secondary) hover:text-(--ui-color-base-1) focus:text-(--ui-color-base-1) active:text-(--ui-color-base-1) font-[family-name:var(--ui-font-family-primary)] font-(--ui-font-weight-regular) text-(length:--ui-font-size-lg)/(--ui-font-line-height-2xs) align-middle group-not-only:not-first:after:content-[''] group-not-only:not-first:after:absolute group-not-only:not-first:after:top-[7px] group-not-only:not-first:after:bottom-[6px] group-not-only:not-first:after:left-0 group-not-only:not-first:after:w-px group-not-only:not-first:after:bg-current/30 resize-none style-filled rounded-(--ui-border-radius-sm) ring-0 focus-visible:ring-0 style-transparent-bg pt-[1px] pb-[0px]" value=""></textarea>
@@ -290,7 +290,7 @@ exports[`ChatPrompt > renders with queue slot correctly 1`] = `
 `;
 
 exports[`ChatPrompt > renders with variant filled correctly 1`] = `
-"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg mt-(--chat-prompt-queue-height) bg-(--ui-color-design-filled-na-bg) ring-(--ui-color-design-filled-na-stroke) ring-(length:--ui-design-filled-na-stroke-weight) text-(--ui-color-design-filled-na-content)">
+"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg isolate mt-(--chat-prompt-queue-height) bg-(--ui-color-design-filled-na-bg) ring-(--ui-color-design-filled-na-stroke) ring-(length:--ui-design-filled-na-stroke-weight) text-(--ui-color-design-filled-na-content)">
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
@@ -304,7 +304,7 @@ exports[`ChatPrompt > renders with variant filled correctly 1`] = `
 `;
 
 exports[`ChatPrompt > renders with variant outline correctly 1`] = `
-"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
+"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg isolate mt-(--chat-prompt-queue-height) bg-(--ui-color-design-outline-bg) ring-(--ui-color-design-outline-stroke) ring-1 text-(--ui-color-design-outline-content)">
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
@@ -318,7 +318,7 @@ exports[`ChatPrompt > renders with variant outline correctly 1`] = `
 `;
 
 exports[`ChatPrompt > renders with variant plain correctly 1`] = `
-"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg mt-(--chat-prompt-queue-height) bg-(--ui-color-design-plain-bg) ring-(--ui-color-design-plain-stroke) ring-(length:--ui-design-plain-stroke-weight) text-(--ui-color-design-plain-content)">
+"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg isolate mt-(--chat-prompt-queue-height) bg-(--ui-color-design-plain-bg) ring-(--ui-color-design-plain-stroke) ring-(length:--ui-design-plain-stroke-weight) text-(--ui-color-design-plain-content)">
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
@@ -332,7 +332,7 @@ exports[`ChatPrompt > renders with variant plain correctly 1`] = `
 `;
 
 exports[`ChatPrompt > renders with variant tinted correctly 1`] = `
-"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg mt-(--chat-prompt-queue-height) bg-(--ui-color-design-tinted-na-bg) ring-(--ui-color-design-tinted-na-stroke) ring-(length:--ui-design-tinted-na-stroke-weight) text-(--ui-color-design-tinted-na-content)">
+"<form method="post" data-slot="root" class="relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg isolate mt-(--chat-prompt-queue-height) bg-(--ui-color-design-tinted-na-bg) ring-(--ui-color-design-tinted-na-stroke) ring-(length:--ui-design-tinted-na-stroke-weight) text-(--ui-color-design-tinted-na-content)">
   <!--v-if-->
   <!--v-if-->
   <!--v-if-->
