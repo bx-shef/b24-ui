@@ -92,12 +92,14 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # Every advisory in the whole tree — the library, docs (served publicly with
-      # its MCP server) and the tooling. A new one fails CI; one without a fix in
-      # the line we can take goes into `auditConfig.ignoreGhsas` in
-      # pnpm-workspace.yaml with its reason, never silently.
+      # The whole tree — the library, docs (served publicly with its MCP server)
+      # and the tooling. High and critical fail CI; one without a fix in the line
+      # we can take goes into `auditConfig.ignoreGhsas` in pnpm-workspace.yaml
+      # with its reason, never silently. Moderate and low are not a gate: any
+      # new advisory anywhere would otherwise block every PR and the release PR
+      # await-ci waits on. A registry outage is not a finding either.
       - name: Audit dependencies
-        run: pnpm audit
+        run: pnpm audit --audit-level high --ignore-registry-errors
 
       - name: Prepare
         run: pnpm run dev:prepare

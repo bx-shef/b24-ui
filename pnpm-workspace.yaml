@@ -213,7 +213,8 @@ overrides:
   # backwards.
   'fast-uri@^3.0.0': ^3.1.9
   '@babel/core@<=7.29.0': ^7.29.6
-  '@hono/node-server@<1.19.18': ^1.19.18
+  # @modelcontextprotocol/sdk accepts `^1.19.9 || ^2.0.5`; 2.1.3 fixes GHSA-rmxm-3fg6-px4f.
+  '@hono/node-server': ^2.1.3
   basic-ftp@<=6.2.3: ^6.2.4
   body-parser@>=2.0.0 <2.4.0: ^2.4.0
   brace-expansion@>=2.0.0 <2.1.7: ^2.1.7
@@ -247,19 +248,17 @@ auditConfig:
   ignoreGhsas:
     # extract-zip <=2.0.1, no patched release. Reached only through puppeteer
     # (docs > capture-website), which unpacks the Chrome download from Google's
-    # CDN at docs build time; no archive from users is ever extracted.
+    # CDN at docs build time; no archive from users is ever extracted — as long
+    # as PUPPETEER_DOWNLOAD_BASE_URL is never pointed at an untrusted host.
     - GHSA-jmr9-qjv8-65gv
     - GHSA-7pqw-9j4j-h8q3
-    # happy-dom 20.x: SSRF and cookie scope when parsing untrusted HTML. Test
+    # happy-dom 20.x: import-alias code execution, SSRF and cookie scope when
+    # parsing untrusted HTML (fixed in 21.0.4, nothing in 20.x). Test
     # environment only (vitest), on fixtures from this repository. 21.x breaks
     # 1783 tests (proxy `__v_skip` trap) — move with @nuxt/test-utils.
     - GHSA-834v-8h66-3h79
     - GHSA-c8p4-j97h-3vg8
     - GHSA-5fpq-26gf-qwcr
-    # @hono/node-server 1.x: `serveStatic` decodes the path twice; fixed only in
-    # 2.x, which @modelcontextprotocol/sdk does not accept. The docs MCP server
-    # (@nuxtjs/mcp-toolkit) serves through Nitro/h3 and never calls serveStatic.
-    - GHSA-rmxm-3fg6-px4f
     # minimatch 7–10: ReDoS on crafted brace patterns, fixed only in 11, which
     # breaks eslint-plugin-import-x (`makeRe` export). Lint tooling only, on this
     # repository's own globs.
