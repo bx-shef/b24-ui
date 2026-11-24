@@ -24,7 +24,7 @@ async function open() {
       id: 'slideover-success'
     })
 
-    // Update the count
+    // Обновляем счётчик
     slideover.patch({
       count: count.value
     })
@@ -40,5 +40,5 @@ async function open() {
 </script>
 
 <template>
-  <B24Button label="Open" @click="open" />
+  <B24Button label="Открыть" @click="open" />
 </template>

@@ -5,14 +5,14 @@ const toast = useToast()
 
 function showToast() {
   toast.add({
-    title: 'New message',
-    description: 'You have a new message from Benjamin.',
+    title: 'Новое сообщение',
+    description: 'У вас новое сообщение от Бенджамина.',
     actions: [{
       icon: ReplyIcon,
-      label: 'Reply',
+      label: 'Ответить',
       color: 'air-secondary-accent-2',
       onClick: () => {
-        toast.add({ title: 'Reply sent', color: 'air-primary-success' })
+        toast.add({ title: 'Ответ отправлен', color: 'air-primary-success' })
       }
     }]
   })
@@ -20,5 +20,5 @@ function showToast() {
 </script>
 
 <template>
-  <B24Button label="Show toast" @click="showToast" />
+  <B24Button label="Показать уведомление" @click="showToast" />
 </template>

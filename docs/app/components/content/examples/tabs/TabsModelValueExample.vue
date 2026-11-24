@@ -5,18 +5,18 @@ import Shield2ContourIcon from '@bitrix24/b24icons-vue/main/Shield2ContourIcon'
 
 const items: TabsItem[] = [
   {
-    label: 'Account',
+    label: 'Аккаунт',
     icon: UserIcon
   },
   {
-    label: 'Password',
+    label: 'Пароль',
     icon: Shield2ContourIcon
   }
 ]
 
 const active = ref('0')
 
-// Note: This is for demonstration purposes only. Don't do this at home.
+// Примечание: только для демонстрации, в реальном проекте так делать не стоит.
 onMounted(() => {
   setInterval(() => {
     active.value = String((Number(active.value) + 1) % items.length)

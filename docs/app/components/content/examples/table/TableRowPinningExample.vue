@@ -95,7 +95,7 @@ const columns: TableColumn<Payment>[] = [{
     'icon': row.getIsPinned() ? FavoriteSolidIcon : FavoriteIcon,
     'color': row.getIsPinned() ? 'air-tertiary-accent' : 'air-tertiary-no-accent',
     'variant': 'ghost',
-    'aria-label': row.getIsPinned() ? 'Unpin row' : 'Pin row to top',
+    'aria-label': row.getIsPinned() ? 'Открепить строку' : 'Закрепить строку сверху',
     'onClick': () => {
       if (row.getIsPinned()) {
         row.pin(false)
@@ -106,7 +106,7 @@ const columns: TableColumn<Payment>[] = [{
   })
 }, {
   accessorKey: 'date',
-  header: 'Date',
+  header: 'Дата',
   cell: ({ row }) => {
     return new Date(row.getValue('date')).toLocaleString('en-US', {
       day: 'numeric',
@@ -119,7 +119,7 @@ const columns: TableColumn<Payment>[] = [{
   }
 }, {
   accessorKey: 'status',
-  header: 'Status',
+  header: 'Статус',
   cell: ({ row }) => {
     const color = ({
       paid: 'air-primary-success' as const,
@@ -134,7 +134,7 @@ const columns: TableColumn<Payment>[] = [{
   header: 'Email'
 }, {
   accessorKey: 'amount',
-  header: 'Amount',
+  header: 'Сумма',
   meta: {
     class: {
       th: 'text-end',

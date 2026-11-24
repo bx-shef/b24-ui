@@ -61,7 +61,7 @@ const columns: TableColumn<Payment>[] = [
   },
   {
     accessorKey: 'date',
-    header: 'Date',
+    header: 'Дата',
     cell: ({ row }) => {
       return new Date(row.getValue('date')).toLocaleString('en-US', {
         day: 'numeric',
@@ -75,7 +75,7 @@ const columns: TableColumn<Payment>[] = [
   },
   {
     accessorKey: 'status',
-    header: 'Status',
+    header: 'Статус',
     meta: {
       class: {
         th: 'text-center',
@@ -106,7 +106,7 @@ const columns: TableColumn<Payment>[] = [
   },
   {
     accessorKey: 'amount',
-    header: 'Amount',
+    header: 'Сумма',
     meta: {
       class: {
         th: 'text-end font-(--ui-font-weight-bold) text-(--ui-color-accent-main-primary)',

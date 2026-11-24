@@ -6,23 +6,23 @@ import Shield2DefendedIcon from '@bitrix24/b24icons-vue/main/Shield2DefendedIcon
 
 const items = ref([
   {
-    label: 'CRM settings',
+    label: 'Настройки CRM',
     value: 'settings',
     color: 'air-primary',
     icon: SettingsIcon
   },
   {
-    label: 'My company details',
+    label: 'Реквизиты моей компании',
     value: 'my_company_details',
     color: 'air-primary-success',
     icon: MyPlanIcon
   },
   {
-    label: 'In Progress',
+    label: 'В работе',
     value: 'in_progress'
   },
   {
-    label: 'Access permissions',
+    label: 'Права доступа',
     value: 'access_permissions',
     color: 'air-primary-alert',
     icon: Shield2DefendedIcon

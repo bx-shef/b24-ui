@@ -10,8 +10,8 @@ const toast = useToast()
 
 function showToast() {
   toast.add({
-    title: 'Uh oh! Something went wrong.',
-    description: 'There was a problem with your request.',
+    title: 'Ой! Что-то пошло не так.',
+    description: 'Возникла проблема с вашим запросом.',
     icon: CopilotAiIcon,
     color: props.color
   })
@@ -19,5 +19,5 @@ function showToast() {
 </script>
 
 <template>
-  <B24Button label="Show toast" @click="showToast" />
+  <B24Button label="Показать уведомление" @click="showToast" />
 </template>

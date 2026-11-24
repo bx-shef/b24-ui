@@ -5,18 +5,18 @@ import DeliveryIcon from '@bitrix24/b24icons-vue/outline/DeliveryIcon'
 
 const items: StepperItem[] = [
   {
-    title: 'Address',
-    description: 'Add your address here',
+    title: 'Адрес',
+    description: 'Укажите свой адрес',
     icon: LocationIcon,
     slot: 'address'
   }, {
-    title: 'Shipping',
-    description: 'Set your preferred shipping method',
+    title: 'Доставка',
+    description: 'Выберите предпочтительный способ доставки',
     icon: DeliveryIcon,
     slot: 'shipping'
   }, {
-    title: 'Checkout',
-    description: 'Confirm your order',
+    title: 'Оформление заказа',
+    description: 'Подтвердите заказ',
     slot: 'checkout'
   }
 ]
@@ -26,19 +26,19 @@ const items: StepperItem[] = [
   <B24Stepper :items="items" class="w-full">
     <template #address>
       <Placeholder class="h-[200px]">
-        Address
+        Адрес
       </Placeholder>
     </template>
 
     <template #shipping>
       <Placeholder class="h-[200px]">
-        Shipping
+        Доставка
       </Placeholder>
     </template>
 
     <template #checkout>
       <Placeholder class="h-[200px]">
-        Checkout
+        Оформление заказа
       </Placeholder>
     </template>
   </B24Stepper>

@@ -22,7 +22,7 @@ const colorMode = useColorMode()
 
 const teams = ref([
   {
-    label: 'Assistant Name',
+    label: 'Имя ассистента',
     avatar: {
       src: '/b24ui/avatar/assistant.png',
       alt: 'assistant',
@@ -38,7 +38,7 @@ const teams = ref([
     }
   },
   {
-    label: 'Employee Name',
+    label: 'Имя сотрудника',
     avatar: {
       src: '/b24ui/avatar/employee.png',
       alt: 'employee',
@@ -65,7 +65,7 @@ const teamsItems = computed<DropdownMenuItem[][]>(() => {
       }
     })),
     [
-      { label: 'Create team', icon: CirclePlusIcon }
+      { label: 'Создать команду', icon: CirclePlusIcon }
     ]
   ]
 })
@@ -73,34 +73,34 @@ const teamsItems = computed<DropdownMenuItem[][]>(() => {
 function getItems(state: 'collapsed' | 'expanded') {
   return [
     {
-      label: 'Inbox',
+      label: 'Входящие',
       icon: MailIcon,
       badge: '4'
     },
     {
-      label: 'Issues',
+      label: 'Задачи',
       icon: CollabIcon
     },
     {
-      label: 'Actions',
+      label: 'Действия',
       icon: PulseCircleIcon
     },
     {
-      label: 'Settings',
+      label: 'Настройки',
       icon: SettingsIcon,
       defaultOpen: true,
       children: state === 'expanded'
         ? [
             {
-              label: 'General',
+              label: 'Общие',
               icon: HomeIcon
             },
             {
-              label: 'Team',
+              label: 'Команда',
               icon: ThreePersonsIcon
             },
             {
-              label: 'Billing',
+              label: 'Оплата',
               icon: PaymentIcon
             }
           ]
@@ -121,26 +121,26 @@ const userItems = computed<DropdownMenuItem[][]>(() => (
   [
     [
       {
-        label: 'Profile',
+        label: 'Профиль',
         icon: UserIcon
       },
       {
-        label: 'Billing',
+        label: 'Оплата',
         icon: PaymentIcon
       },
       {
-        label: 'Settings',
+        label: 'Настройки',
         icon: SettingsIcon,
         to: '/templates/'
       }
     ],
     [
       {
-        label: 'Appearance',
+        label: 'Внешний вид',
         icon: ContrastIcon,
         children: [
           {
-            label: 'Light',
+            label: 'Светлая',
             icon: SunIcon,
             type: 'checkbox',
             checked: colorMode.value === 'light',
@@ -154,7 +154,7 @@ const userItems = computed<DropdownMenuItem[][]>(() => (
             }
           },
           {
-            label: 'Dark',
+            label: 'Тёмная',
             icon: MoonIcon,
             type: 'checkbox',
             checked: colorMode.value === 'dark',
@@ -178,7 +178,7 @@ const userItems = computed<DropdownMenuItem[][]>(() => (
         target: '_blank'
       },
       {
-        label: 'Log out',
+        label: 'Выйти',
         icon: LogOutIcon
       }
     ]
@@ -247,7 +247,7 @@ defineShortcuts(extractShortcuts(teamsItems.value))
       <div class="h-(--b24ui-header-height) shrink-0 flex items-center px-4 border-b border-default">
         <B24Button
           :icon="CloseChatIcon"
-          aria-label="Toggle sidebar"
+          aria-label="Переключить боковое меню"
           size="md"
           color="air-tertiary"
           @click="open = !open"

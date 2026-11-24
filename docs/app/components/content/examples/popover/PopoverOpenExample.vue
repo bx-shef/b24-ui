@@ -8,7 +8,7 @@ defineShortcuts({
 
 <template>
   <B24Popover v-model:open="open">
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
     <template #content>
       <Placeholder class="size-48 m-4 inline-flex" />

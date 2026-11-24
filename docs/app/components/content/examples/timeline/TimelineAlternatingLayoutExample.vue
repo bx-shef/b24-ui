@@ -6,23 +6,23 @@ import MoreMIcon from '@bitrix24/b24icons-vue/outline/MoreMIcon'
 import InfoIcon from '@bitrix24/b24icons-vue/button/InfoIcon'
 
 const items: TimelineItem[] = [{
-  date: 'Mar 15, 2025',
-  title: 'Project Kickoff',
+  date: '15 марта 2025',
+  title: 'Старт проекта',
   icon: RocketIcon,
   value: 'kickoff'
 }, {
-  date: 'Mar 22, 2025',
-  title: 'Design Phase',
+  date: '22 марта 2025',
+  title: 'Этап проектирования',
   icon: SignIcon,
   value: 'design'
 }, {
-  date: 'Mar 29, 2025',
-  title: 'Development Sprint',
+  date: '29 марта 2025',
+  title: 'Спринт разработки',
   icon: MoreMIcon,
   value: 'development'
 }, {
-  date: 'Apr 5, 2025',
-  title: 'Testing & Deployment',
+  date: '5 апреля 2025',
+  title: 'Тестирование и развёртывание',
   icon: InfoIcon,
   value: 'deployment'
 }]

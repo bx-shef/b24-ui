@@ -24,7 +24,7 @@ function onOpen() {
     :loading="status === 'pending'"
     label-key="name"
     :search-input="{ icon: CrmSearchIcon }"
-    placeholder="Select country"
+    placeholder="Выберите страну"
     class="w-48"
     @update:open="onOpen"
   >

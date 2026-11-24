@@ -8,8 +8,8 @@
   >
     <div class="flex flex-col items-start gap-4 border border-muted p-4 rounded-lg">
       <div class="flex items-center gap-2">
-        <B24Button label="Outer theme" />
-        <B24Button label="Outer theme" color="air-secondary-accent-1" />
+        <B24Button label="Внешняя тема" />
+        <B24Button label="Внешняя тема" color="air-secondary-accent-1" />
       </div>
 
       <B24Theme
@@ -21,8 +21,8 @@
       >
         <div class="border border-muted p-4 rounded-lg">
           <div class="flex items-center gap-2">
-            <B24Button label="Inner theme" />
-            <B24Button label="Inner theme" color="air-secondary-accent-1" />
+            <B24Button label="Внутренняя тема" />
+            <B24Button label="Внутренняя тема" color="air-secondary-accent-1" />
           </div>
         </div>
       </B24Theme>

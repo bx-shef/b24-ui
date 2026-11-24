@@ -62,13 +62,13 @@ const columns: TableColumn<Payment>[] = [{
     'modelValue': table.getIsSomePageRowsSelected() ? 'indeterminate' : table.getIsAllPageRowsSelected(),
     'onUpdate:modelValue': (value: boolean | 'indeterminate') => table.toggleAllPageRowsSelected(!!value),
     'size': 'sm',
-    'aria-label': 'Select all'
+    'aria-label': 'Выбрать все'
   }),
   cell: ({ row }) => h(B24Checkbox, {
     'modelValue': row.getIsSelected(),
     'onUpdate:modelValue': (value: boolean | 'indeterminate') => row.toggleSelected(!!value),
     'size': 'sm',
-    'aria-label': 'Select row'
+    'aria-label': 'Выбрать строку'
   })
 }, {
   accessorKey: 'id',
@@ -76,7 +76,7 @@ const columns: TableColumn<Payment>[] = [{
   cell: ({ row }) => `#${row.getValue('id')}`
 }, {
   accessorKey: 'date',
-  header: 'Date',
+  header: 'Дата',
   cell: ({ row }) => {
     return new Date(row.getValue('date')).toLocaleString('en-US', {
       day: 'numeric',
@@ -89,7 +89,7 @@ const columns: TableColumn<Payment>[] = [{
   }
 }, {
   accessorKey: 'status',
-  header: 'Status',
+  header: 'Статус',
   cell: ({ row }) => {
     const color = ({
       paid: 'air-primary-success' as const,
@@ -104,7 +104,7 @@ const columns: TableColumn<Payment>[] = [{
   header: 'Email'
 }, {
   accessorKey: 'amount',
-  header: 'Amount',
+  header: 'Сумма',
   meta: {
     class: {
       th: 'text-end',
@@ -125,29 +125,29 @@ const items = ref<ContextMenuItem[]>([])
 function getRowItems(row: TableRow<Payment>) {
   return [{
     type: 'label' as const,
-    label: 'Actions'
+    label: 'Действия'
   }, {
-    label: 'Copy payment ID',
+    label: 'Копировать ID платежа',
     onSelect() {
       copy(row.original.id)
 
       toast.add({
-        title: 'Payment ID copied to clipboard!',
+        title: 'ID платежа скопирован в буфер обмена!',
         color: 'air-primary-success',
         icon: CircleCheckIcon
       })
     }
   }, {
-    label: row.getIsExpanded() ? 'Collapse' : 'Expand',
+    label: row.getIsExpanded() ? 'Свернуть' : 'Развернуть',
     onSelect() {
       row.toggleExpanded()
     }
   }, {
     type: 'separator' as const
   }, {
-    label: 'View customer'
+    label: 'Просмотреть клиента'
   }, {
-    label: 'View payment details'
+    label: 'Просмотреть детали платежа'
   }]
 }
 

@@ -3,21 +3,21 @@ import type { SelectItem, ChipProps } from '@bitrix24/b24ui-nuxt'
 
 const items = ref([
   {
-    label: 'bug',
+    label: 'Ошибка',
     value: 'bug',
     chip: {
       color: 'air-primary-alert'
     }
   },
   {
-    label: 'feature',
+    label: 'Функция',
     value: 'feature',
     chip: {
       color: 'air-primary-success'
     }
   },
   {
-    label: 'enhancement',
+    label: 'Улучшение',
     value: 'enhancement',
     chip: {
       color: 'air-primary-copilot'

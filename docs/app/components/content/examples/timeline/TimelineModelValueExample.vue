@@ -6,34 +6,34 @@ import MoreMIcon from '@bitrix24/b24icons-vue/outline/MoreMIcon'
 import InfoIcon from '@bitrix24/b24icons-vue/button/InfoIcon'
 
 const items: TimelineItem[] = [{
-  date: 'Mar 15, 2025',
-  title: 'Project Kickoff',
-  description: 'Kicked off the project with team alignment. Set up project milestones and allocated resources.',
+  date: '15 марта 2025',
+  title: 'Старт проекта',
+  description: 'Запустили проект и согласовали работу команды. Определили вехи проекта и распределили ресурсы.',
   icon: RocketIcon,
   value: 'kickoff'
 }, {
-  date: 'Mar 22, 2025',
-  title: 'Design Phase',
-  description: 'User research and design workshops. Created wireframes and prototypes for user testing.',
+  date: '22 марта 2025',
+  title: 'Этап проектирования',
+  description: 'Исследование пользователей и дизайн-воркшопы. Созданы вайрфреймы и прототипы для тестирования.',
   icon: SignIcon,
   value: 'design'
 }, {
-  date: 'Mar 29, 2025',
-  title: 'Development Sprint',
-  description: 'Frontend and backend development. Implemented core features and integrated with APIs.',
+  date: '29 марта 2025',
+  title: 'Спринт разработки',
+  description: 'Разработка фронтенда и бэкенда. Реализованы основные функции и интеграции с API.',
   icon: MoreMIcon,
   value: 'development'
 }, {
-  date: 'Apr 5, 2025',
-  title: 'Testing & Deployment',
-  description: 'QA testing and performance optimization. Deployed the application to production.',
+  date: '5 апреля 2025',
+  title: 'Тестирование и развёртывание',
+  description: 'Тестирование и оптимизация производительности. Приложение выложено в продакшн.',
   icon: InfoIcon,
   value: 'deployment'
 }]
 
 const active = ref(0)
 
-// Note: This is for demonstration purposes only. Don't do this at home.
+// Примечание: только для демонстрации, в реальном проекте так делать не стоит.
 onMounted(() => {
   setInterval(() => {
     active.value = (active.value + 1) % items.length

@@ -56,7 +56,7 @@ const columns: TableColumn<Payment>[] = [{
   cell: ({ row }) => `#${row.getValue('id')}`
 }, {
   accessorKey: 'date',
-  header: 'Date',
+  header: 'Дата',
   cell: ({ row }) => {
     return new Date(row.getValue('date')).toLocaleString('en-US', {
       day: 'numeric',
@@ -69,7 +69,7 @@ const columns: TableColumn<Payment>[] = [{
   }
 }, {
   accessorKey: 'status',
-  header: 'Status',
+  header: 'Статус',
   cell: ({ row }) => {
     const color = ({
       paid: 'air-primary-success' as const,
@@ -84,7 +84,7 @@ const columns: TableColumn<Payment>[] = [{
   header: 'Email'
 }, {
   accessorKey: 'amount',
-  header: 'Amount',
+  header: 'Сумма',
   meta: {
     class: {
       th: 'text-end',
@@ -117,7 +117,7 @@ const globalFilter = ref('45')
       <B24Input
         v-model="globalFilter"
         class="max-w-[300px]"
-        placeholder="Filter..."
+        placeholder="Фильтр..."
       />
     </template>
 

@@ -9,17 +9,17 @@ const open = ref(true)
 
 const items: NavigationMenuItem[] = [
   {
-    label: 'Home',
+    label: 'Главная',
     icon: HomeIcon,
     active: true
   },
   {
-    label: 'Inbox',
+    label: 'Входящие',
     icon: MailIcon,
     badge: '4'
   },
   {
-    label: 'Contacts',
+    label: 'Контакты',
     icon: ContactIcon
   }
 ]
@@ -44,7 +44,7 @@ const items: NavigationMenuItem[] = [
         <B24Button
           :icon="OpenChatIcon"
           color="air-tertiary"
-          aria-label="Toggle sidebar"
+          aria-label="Переключить боковое меню"
           @click="open = !open"
         />
       </div>

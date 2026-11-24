@@ -18,11 +18,11 @@ const items: SplitterItem[] = [
       class="rounded-(--ui-border-radius-md) border border-(--ui-color-divider-default) overflow-hidden"
     >
       <template #left>
-        Left
+        Слева
       </template>
 
       <template #right>
-        Right
+        Справа
       </template>
     </B24Splitter>
   </div>

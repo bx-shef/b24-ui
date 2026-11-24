@@ -6,7 +6,7 @@ import HelpIcon from '@bitrix24/b24icons-vue/main/HelpIcon'
   <B24Tooltip
     :delay-duration="100"
     :content="{ side: 'right' }"
-    text="When the performer completes the task, it will come to you for review. You can accept the work (and then the task will be closed) or return the task for revision."
+    text="Когда исполнитель завершит задачу, она придёт к вам на проверку. Вы можете принять работу (и задача будет закрыта) или вернуть задачу на доработку."
   >
     <HelpIcon class="size-5 cursor-help" />
   </B24Tooltip>

@@ -43,7 +43,7 @@ const stopDictation = async () => {
       v-model="input"
       :rows="2"
       autoresize
-      placeholder="Try use speech recognition..."
+      placeholder="Попробуйте голосовой ввод..."
       no-padding
       no-border
       class="flex-1 resize-none px-2.5"

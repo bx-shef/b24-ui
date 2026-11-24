@@ -14,7 +14,7 @@ function fireAtPlace(): void {
 
 <template>
   <div class="isolate relative p-4 min-h-40 w-full h-full flex flex-col flex-nowrap justify-center items-center gap-4">
-    <B24Button label="custom canvas" color="air-primary-success" @click.stop="fireAtPlace" />
+    <B24Button label="свой canvas" color="air-primary-success" @click.stop="fireAtPlace" />
 
     <div class="relative mt-sm2 mb-4 w-full">
       <canvas

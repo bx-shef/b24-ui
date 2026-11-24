@@ -6,7 +6,7 @@ const toast = useToast()
 function showToast() {
   toast.add({
     id: 'copy',
-    title: 'Copied to clipboard',
+    title: 'Скопировано в буфер обмена',
     icon: CircleCrossIcon,
     duration: 0
   })
@@ -14,5 +14,5 @@ function showToast() {
 </script>
 
 <template>
-  <B24Button label="Show toast" @click="showToast" />
+  <B24Button label="Показать уведомление" @click="showToast" />
 </template>

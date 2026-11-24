@@ -1,5 +1,5 @@
 <template>
   <B24Button>
-    My Button
+    Моя кнопка
   </B24Button>
 </template>
