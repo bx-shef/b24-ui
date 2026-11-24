@@ -19,7 +19,10 @@ links:
 
 ## Usage
 
-The Avatar uses the `<NuxtImg>` component when [`@nuxt/image`](https://github.com/nuxt/image) is installed, falling back to `img` otherwise.
+::framework-only
+#nuxt
+The Avatar uses the `<NuxtImg>` component when [`@nuxt/image`](/docs/getting-started/integrations/image) is installed, falling back to `img` otherwise.
+::
 
 ::component-code
 ---
@@ -39,8 +42,11 @@ props:
 You can pass any property from the HTML `<img>` element such as `alt`, `loading`, etc.
 ::
 
-::tip
+::framework-only
+#nuxt
+:::tip
 To opt-out of `@nuxt/image`, use the `as` prop: `:as="{ img: 'img' }"`.
+:::
 ::
 
 

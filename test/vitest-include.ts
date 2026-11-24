@@ -74,11 +74,18 @@ export const vueInclude = [
  *  - `components/nuxt/**` — specs for Nuxt-specific behaviour (`LinkLocale`
  *    reaches for `useNuxtApp` from `#imports`).
  *
- * `components/prose/**` is deliberately NOT here: `Prose*` is registered for
- * the Vue build too (behind the `prose`/`mdc` option), so those specs belong
- * in both projects.
+ *  - `components/color-mode/ColorModeImage.spec.ts` and
+ *    `components/prose/Img.spec.ts` — they mock `useRuntimeConfig` with
+ *    `mockNuxtImport` and drive the `@nuxt/image` runtime, which only a Nuxt
+ *    app has (the Vue build gets `useImage` as `undefined`).
+ *
+ * The rest of `components/prose/**` is deliberately NOT here: `Prose*` is
+ * registered for the Vue build too (behind the `prose`/`mdc` option), so those
+ * specs belong in both projects.
  */
 export const vueExclude = [
   'components/content/**',
-  'components/nuxt/**'
+  'components/nuxt/**',
+  'components/color-mode/ColorModeImage.spec.ts',
+  'components/prose/Img.spec.ts'
 ]

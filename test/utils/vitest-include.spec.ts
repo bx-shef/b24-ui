@@ -49,10 +49,10 @@ describe('vitest include patterns', () => {
     const nuxt = new Set(await glob(nuxtInclude, { cwd: testDir, ignore: ['**/node_modules/**'] }))
     const vue = new Set(await glob(vueInclude, { cwd: testDir, ignore: ['**/node_modules/**', ...vueExclude] }))
 
-    // `plugins/` is nuxt-only by design and the `vueExclude` directories are
+    // `plugins/` is nuxt-only by design and the `vueExclude` entries are
     // Nuxt-only surfaces; everything else must be in both. Anything that drops
     // out for a reason not written down in `vitest-include.ts` fails here.
-    const declaredNuxtOnly = /^(?:plugins\/|components\/content\/|components\/nuxt\/)/
+    const declaredNuxtOnly = /^(?:plugins\/|components\/content\/|components\/nuxt\/|components\/color-mode\/ColorModeImage\.spec\.ts$|components\/prose\/Img\.spec\.ts$)/
     const nuxtOnly = [...nuxt].filter(spec => !vue.has(spec) && !declaredNuxtOnly.test(spec)).sort()
 
     // Checked in both directions on purpose. Only asserting one of them repeats

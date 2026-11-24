@@ -221,6 +221,7 @@
   "devDependencies": {
     "@conventional-commits/parser": "catalog:",
     "@nuxt/eslint-config": "catalog:",
+    "@nuxt/image": "catalog:",
     "@nuxt/module-builder": "catalog:",
     "@nuxt/test-utils": "catalog:",
     "@tanstack/charts": "catalog:",

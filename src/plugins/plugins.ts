@@ -21,7 +21,7 @@ export default function PluginsPlugin(options: Bitrix24UIOptions) {
     plugins.push(resolvePathSync('./vue/plugins/color-mode', { extensions: ['.ts', '.mjs', '.js'], url: runtimeUrl }))
   }
 
-  const proseComponents = (options.prose || options.mdc)
+  const proseComponents = (options.prose !== false && (options.prose || options.mdc))
     ? globSync(['**/*.vue'], { cwd: join(runtimeDir, 'components/prose'), absolute: true })
     : []
 

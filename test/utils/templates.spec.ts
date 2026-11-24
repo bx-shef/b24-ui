@@ -36,6 +36,15 @@ describe('getTemplates', () => {
 
     expect(cssTemplate?.write).toBe(true)
   })
+
+  it('skips prose themes with `prose: false`', () => {
+    const hasProse = (overrides: Partial<ModuleOptions>) => {
+      return getTemplates({ ...overrides } as ModuleOptions).some(template => template.filename === 'b24ui/prose/index.ts')
+    }
+
+    expect(hasProse({ content: true })).toBe(true)
+    expect(hasProse({ content: true, prose: false })).toBe(false)
+  })
 })
 
 describe('watchForComponentDetection', () => {
