@@ -5,8 +5,8 @@ import { CalendarDate } from '@internationalized/date'
 const modelValue = shallowRef(new CalendarDate(2012, 4, 12))
 
 function getColorByDate(date: Date) {
-  const isWeekend = date.getDay() % 6 == 0
-  const isDayMeeting = date.getDay() % 3 == 0
+  const isWeekend = date.getUTCDay() % 6 == 0
+  const isDayMeeting = date.getUTCDay() % 3 == 0
 
   if (isWeekend) {
     return undefined

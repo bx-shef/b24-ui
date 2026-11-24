@@ -1,7 +1,7 @@
 <script lang="ts">
 import type { CalendarRootProps, CalendarRootEmits, RangeCalendarRootProps, RangeCalendarRootEmits, MonthPickerRootProps, YearPickerRootProps, DateRange, CalendarCellTriggerProps } from 'reka-ui'
 import { getWeekNumber } from 'reka-ui/date'
-import type { Component, ComputedRef, VNode } from 'vue'
+import type { Component, ComponentPublicInstance, ComputedRef, VNode } from 'vue'
 import type { DateValue } from '@internationalized/date'
 import { getLocalTimeZone, today } from '@internationalized/date'
 import type { AppConfig } from '@nuxt/schema'
@@ -140,7 +140,7 @@ export interface CalendarSlots {
 </script>
 
 <script setup lang="ts" generic="R extends boolean, M extends boolean">
-import { computed, ref, shallowRef, watch } from 'vue'
+import { computed, nextTick, ref, shallowRef, useTemplateRef, watch } from 'vue'
 import { useForwardProps } from '../composables/useForwardProps'
 import { CalendarRoot, CalendarHeader, CalendarHeading, CalendarGrid, CalendarCell, CalendarHeadCell, CalendarNext, CalendarPrev, CalendarGridHead, CalendarGridBody, CalendarGridRow, CalendarCellTrigger, RangeCalendarRoot, RangeCalendarHeader, RangeCalendarHeading, RangeCalendarGrid, RangeCalendarCell, RangeCalendarHeadCell, RangeCalendarNext, RangeCalendarPrev, RangeCalendarGridHead, RangeCalendarGridBody, RangeCalendarGridRow, RangeCalendarCellTrigger, MonthPickerRoot, MonthPickerHeader, MonthPickerHeading, MonthPickerGrid, MonthPickerCell, MonthPickerNext, MonthPickerPrev, MonthPickerGridBody, MonthPickerGridRow, MonthPickerCellTrigger, MonthRangePickerRoot, MonthRangePickerHeader, MonthRangePickerHeading, MonthRangePickerGrid, MonthRangePickerCell, MonthRangePickerNext, MonthRangePickerPrev, MonthRangePickerGridBody, MonthRangePickerGridRow, MonthRangePickerCellTrigger, YearPickerRoot, YearPickerHeader, YearPickerHeading, YearPickerGrid, YearPickerCell, YearPickerNext, YearPickerPrev, YearPickerGridBody, YearPickerGridRow, YearPickerCellTrigger, YearRangePickerRoot, YearRangePickerHeader, YearRangePickerHeading, YearRangePickerGrid, YearRangePickerCell, YearRangePickerNext, YearRangePickerPrev, YearRangePickerGridBody, YearRangePickerGridRow, YearRangePickerCellTrigger } from 'reka-ui'
 import { reactiveOmit } from '@vueuse/core'
@@ -201,6 +201,19 @@ function cycleView() {
   const max = VIEWS.indexOf(maxView)
   const next = VIEWS.indexOf(view.value) >= max ? minView.value : VIEWS[VIEWS.indexOf(view.value) + 1]!
   view.value = next
+  keepFocus('[data-slot="heading"] button')
+}
+
+const rootRef = useTemplateRef<ComponentPublicInstance>('rootRef')
+
+// Each view is a different picker, so the focused element is gone after a switch
+async function keepFocus(selector: string) {
+  if (!rootRef.value?.$el.contains(document.activeElement)) return
+  await nextTick()
+  // Focus falls back to the body when the old picker goes, anywhere else means something else took it
+  const active = document.activeElement
+  if (active && active !== document.body && !rootRef.value?.$el.contains(active)) return
+  rootRef.value?.$el.querySelector(selector)?.focus()
 }
 
 function resolveDateValue(value: DateValue | DateValue[] | DateRange | null | undefined): DateValue | undefined {
@@ -234,8 +247,15 @@ function setPlaceholder(date: DateValue) {
   emits('update:placeholder', date)
 }
 
+// The picker keeps an uncontrolled value internally and is replaced on each view change.
+const uncontrolledValue = shallowRef(props.modelValue ?? props.defaultValue)
+watch(() => props.modelValue, (value) => {
+  uncontrolledValue.value = value
+})
+
 function onSelect(value: DateValue | DateRange) {
   if (isMinView.value) {
+    uncontrolledValue.value = value as CalendarDefaultValue<R, M>
     emits('update:modelValue', value as CalendarModelValue<R, M>)
     return
   }
@@ -245,6 +265,7 @@ function onSelect(value: DateValue | DateRange) {
     setPlaceholder(resolved)
   }
   setView(VIEWS[VIEWS.indexOf(view.value) - 1]!)
+  keepFocus('[data-focused]')
 }
 
 function paginateYear(date: DateValue, sign: -1 | 1) {
@@ -325,11 +346,12 @@ const btnSize = computed(() => {
 
 <template>
   <Picker.Root
+    ref="rootRef"
     v-slot="{ weekDays, grid, date }"
     v-bind="rootProps"
     :calendar-label="calendarLabel"
     :model-value="(isMinView ? (props.modelValue as DateValue | DateValue[] | DateRange) : undefined)"
-    :default-value="(isMinView ? (props.defaultValue as DateValue | DateValue[] | DateRange) : undefined)"
+    :default-value="(isMinView ? (uncontrolledValue as DateValue | DateValue[] | DateRange) : undefined)"
     :placeholder="placeholder"
     data-slot="root"
     :class="b24ui.root({ class: [props.b24ui?.root, props.class] })"

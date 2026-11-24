@@ -266,6 +266,39 @@ describe('InputMenu', () => {
       const wrapper = mount(InputMenu, { props: { items: ['Option 1', 'Option 2'] }, attrs: { autocomplete: 'email' } })
       expect(wrapper.find('input').attributes('autocomplete')).toBe('email')
     })
+
+    test('searchTerm ignores the label when parent updates modelValue', async () => {
+      const wrapper = mount(InputMenu, { props: { items: ['Option 1', 'Option 2'], modelValue: 'Option 1' } })
+      await flushPromises()
+
+      await wrapper.setProps({ modelValue: 'Option 2' })
+      await flushPromises()
+
+      expect(wrapper.emitted('update:searchTerm')?.flat() ?? []).not.toContain('Option 2')
+    })
+
+    test('searchTerm ignores the label after selecting without v-model', async () => {
+      const wrapper = mount(InputMenu, { props: { items: ['Option 1', 'Option 2'], defaultValue: 'Option 1', resetSearchTermOnBlur: false, defaultOpen: true, portal: false }, attachTo: document.body })
+      await flushPromises()
+
+      await wrapper.findAll('[role="option"]')[1]!.trigger('click')
+      await flushPromises()
+
+      expect(wrapper.emitted('update:searchTerm')?.flat() ?? []).not.toContain('Option 2')
+
+      wrapper.unmount()
+    })
+
+    test('searchTerm follows typing the selected label in a menu that starts open', async () => {
+      const wrapper = mount(InputMenu, { props: { items: ['Option 1', 'Option 2'], modelValue: 'Option 2', defaultOpen: true, portal: false } })
+      await flushPromises()
+
+      const input = wrapper.find('input')
+      await input.setValue('Option ')
+      await input.setValue('Option 2')
+
+      expect(wrapper.emitted('update:searchTerm')?.at(-1)).toEqual(['Option 2'])
+    })
   })
 
   describe('clear', () => {

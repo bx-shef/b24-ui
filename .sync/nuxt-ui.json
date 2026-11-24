@@ -1,7 +1,7 @@
 {
   "upstream": "nuxt/ui",
   "branch": "v4",
-  "cursor": "0fd012b7da8e110e66479e1adf07c051f93b3a5e",
+  "cursor": "f7edb560d04bc059ffdefc926c2bbbb2de406cc2",
   "_cursor_note": "cursor = last upstream commit ported into b24ui. The sync is manual by decision: one commit at a time, oldest-first, each with a `.sync/log/<sha>.md` journal and an entry in `processed`. There is no dispatcher, no porter workflow and no kill-switch — `.sync/PORTING.md` is the whole procedure. `processed` is maintained per port (backfilled #68-#72 on 2026-06-09).",
   "processed": {
     "2799fa6f2b25ce3eb15e050f3ef7c57d0d9a2fdb": {
@@ -3601,52 +3601,142 @@
       "summary": "docs(theme): предпросмотр опций темы по наведению — у форка нет Theme Studio (docs/app/components/theme-studio, useThemePreview)"
     },
     "e161570f6e31f7c4c090357b8023c04825b86997": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 31,
+      "b24ui_sha": "5b48ec601282d99146863338b3ba8ebf3c0ecd43",
       "decision": "port",
       "summary": "feat(Toggle/ToggleGroup): новые компоненты на базе Button и Reka UI Toggle/ToggleGroup; вместо variant/activeVariant — color/activeColor (air-*), attached собран в теме без FieldGroup"
     },
     "fde02b6ec9b56f1444ab0aaf51f7ee495a97e381": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 31,
+      "b24ui_sha": "5b48ec601282d99146863338b3ba8ebf3c0ecd43",
       "decision": "port",
       "summary": "fix(ProseCallout): иконка в одной строке с первым абзацем — четыре селектора по data-slot в теме (data-slot у иконок уже есть)"
     },
     "65bba7241348ba86728a12af2ed1fa777c294be6": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 31,
+      "b24ui_sha": "5b48ec601282d99146863338b3ba8ebf3c0ecd43",
       "decision": "port",
       "summary": "docs(typography): примеры Callout показывают разметку markdown в теле"
     },
     "45835ee8a32c8ba024ca3ad7f2482b5f7992c3d7": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 31,
+      "b24ui_sha": "5b48ec601282d99146863338b3ba8ebf3c0ecd43",
       "decision": "port",
       "summary": "feat(useToast): метод promise — уведомление загрузки, обновляемое по результату промиса; иконка loading из словаря (уже анимирована, без animate-spin), b24ui вместо ui, docs по-русски"
     },
     "d59a7c7b5b61416496991404f3da2f4f52e98b33": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 31,
+      "b24ui_sha": "5b48ec601282d99146863338b3ba8ebf3c0ecd43",
       "decision": "port",
       "summary": "chore(deps): @comark/vue ^0.9.1 в каталоге pnpm-workspace.yaml (в lock уже 0.9.2, меняется нижняя граница); minimumReleaseAgeExclude у форка нет"
     },
     "5bf25eb380427235ebd7b6d65dacff411f226a06": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 31,
+      "b24ui_sha": "5b48ec601282d99146863338b3ba8ebf3c0ecd43",
       "decision": "port",
       "summary": "chore(deps): @nuxtjs/mdc ^0.23.3 в каталоге (в lock уже 0.23.4)"
     },
     "28a332e9f6a60a061445a6b47396d55bf209599c": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 31,
+      "b24ui_sha": "5b48ec601282d99146863338b3ba8ebf3c0ecd43",
       "decision": "n/a",
       "summary": "docs(theme): очистка общих переопределений из ссылки — n/a, у форка нет конструктора темы docs (docs/app/utils/theme, useTheme закомментирован)"
     },
     "0fd012b7da8e110e66479e1adf07c051f93b3a5e": {
+      "pr": 31,
+      "b24ui_sha": "5b48ec601282d99146863338b3ba8ebf3c0ecd43",
+      "decision": "n/a",
+      "summary": "chore(github): удаление неиспользуемой переменной NUXT_GITHUB_TOKEN — n/a, в workflow форка её нет"
+    },
+    "47c5dfca4a45d760e3b5fb145d4174d5f5750f00": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "perf(Link): пропсы NuxtLink/RouterLink без reactiveOmit — computed(omit(...)) во всех трёх вариантах Link; isAction остаётся в списке исключений"
+    },
+    "ed6150578543980025d18128f7fdd0e3807e5093": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "docs(tabs): пример размера показывает не размер по умолчанию (xl вместо md)"
+    },
+    "bc46328e804038fd72330d62366ac708074a556f": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "docs(calendar): пример с событиями читает день недели в UTC (getUTCDay); правка Theme Studio — n/a, его у форка нет"
+    },
+    "7401826c768e398bab4c3ab143f2dc1c582ee275": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(InputMenu): выбранная подпись не попадает в searchTerm — onInputUpdate получает open и modelValue и пропускает сброс input к подписи при закрытом меню"
+    },
+    "43bbda9b37b9b4514478343b92db6ece5a8a582e": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(Listbox): событие change при снятии выбора в неконтролируемом режиме — onUpdate пропускает только неизменённое контролируемое значение"
+    },
+    "a0939c8ad8f19823fcfe1b6597a54ba4bf9f2488": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(SelectMenu): сброс поискового запроса при выборе текущего элемента — сброс перенесён из onUpdate в onSelect (и onClear); тесты перенесены"
+    },
+    "ac3e93729a319f6cd143a75ee10beee331a23f0f": {
       "pr": "pending-merge",
       "b24ui_sha": "pending-merge",
       "decision": "n/a",
-      "summary": "chore(github): удаление неиспользуемой переменной NUXT_GITHUB_TOKEN — n/a, в workflow форка её нет"
+      "summary": "docs(showcase): сайты на nuxt/ui (citrusmail, faivelo) — витрина форка содержит только проекты на Bitrix24 UI"
+    },
+    "3879d262ebf5409465fb6a3e1d27b8fb532d4ed7": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "n/a",
+      "summary": "docs(showcase): сайт capacities на nuxt/ui — витрина форка только про проекты на Bitrix24 UI"
+    },
+    "3cfc612d4035ed4c27fdb798997be70f8e7a909b": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "no-op",
+      "summary": "fix(ContentToc): индикатор подсветки (top вместо translate) — у форка ContentToc без highlight/indicator, в теме нет слотов indicator"
+    },
+    "5122d2d153e2eb969743b04f6192ac6faedd9dbf": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "n/a",
+      "summary": "chore(github): воркфлоу issue-opened/reproduire/stale вместо tia — репозиторий апстрима, у форка свои workflows и нет .github/tia.yml"
+    },
+    "d96f2d595c013885202591ea7c69e01f1ae12a61": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(Calendar): неконтролируемый выбор сохраняется при смене вида — uncontrolledValue как defaultValue пикера"
+    },
+    "1ee53fe5ac0483b189aba7e47da8a4971d24cad2": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(Calendar): фокус остаётся внутри календаря при смене вида — keepFocus после cycleView и onSelect"
+    },
+    "aa54cd89ae4ffd89949af774936af4c1df91ee5d": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(components): шаблонные компоненты и опасные as не рендерятся — isUnsafeComponent/isUnsafeAs/omitUnsafeAttrs в utils, useComponentProps, LinkBase (+inertia), Select, SelectMenu, ChatTool, ChatReasoning, prose Field/FieldGroup/CodeGroup; ЧАСТИЧНО: иконки не закрыты — у форка нет компонента Icon, где апстрим ставит защиту; шаблон из пропса icon исполняется — issue #35"
+    },
+    "499b5b333a53a6dac22e89e412db905a9ab986e3": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(components): isUnsafeComponent отклоняет объекты с собственным ключом __v_raw (Vue разворачивает его в dev после проверки)"
+    },
+    "f7edb560d04bc059ffdefc926c2bbbb2de406cc2": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "n/a",
+      "summary": "fix(locale): уточнён узбекский перевод — локали uz у форка нет (набор локалей курируется, новые не берём)"
     }
   }
 }

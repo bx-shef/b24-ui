@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import { defineComponent, h } from 'vue'
-import { resolveAs } from '../../src/runtime/utils'
+import { defineComponent, h, reactive } from 'vue'
+import { isUnsafeComponent, resolveAs } from '../../src/runtime/utils'
 
 const defaults = { root: 'div', title: 'h2' }
 
@@ -33,8 +33,26 @@ describe('resolveAs', () => {
     expect(resolveAs(component, defaults).root).toBe(component)
   })
 
+  it('drops components compiled from a template string', () => {
+    expect(resolveAs({ template: '<b />' }, defaults)).toEqual(defaults)
+    expect(resolveAs({ extends: { template: '<b />' } }, defaults)).toEqual(defaults)
+    expect(resolveAs({ root: { template: '<b />' }, title: 'h3' }, defaults)).toEqual({ root: 'div', title: 'h3' })
+  })
+
   it('applies a functional component to root', () => {
     const component = () => h('div')
     expect(resolveAs(component, defaults).root).toBe(component)
+  })
+})
+
+describe('isUnsafeComponent', () => {
+  // Vue unwraps a `__v_raw` key in development, after the check
+  it('rejects a template wrapped in `__v_raw`', () => {
+    expect(isUnsafeComponent({ __v_raw: { template: '<b />' } })).toBe(true)
+  })
+
+  it('accepts a reactive component', () => {
+    expect(isUnsafeComponent(reactive({ render: () => h('div') }))).toBe(false)
+    expect(isUnsafeComponent(reactive({ root: 'section', title: 'h3' }))).toBe(false)
   })
 })
