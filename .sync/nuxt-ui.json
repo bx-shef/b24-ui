@@ -3121,68 +3121,68 @@
       "summary": "fix(LocaleSelect): show Tajikistan flag for the Tajik locale — fork has no Tajik locale and does not adopt new ones"
     },
     "43fffb2c3b44783d6cc3fdfb725b4b71a66d24e7": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 3,
+      "b24ui_sha": "07781adc73034345eebb4e02ab18077ea5ec5a40",
       "decision": "port",
       "summary": "fix(defineShortcuts): match key sequences case insensitively"
     },
     "c87205618e50ec657b82d2ac1c3251a2f0d2d5b3": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 3,
+      "b24ui_sha": "07781adc73034345eebb4e02ab18077ea5ec5a40",
       "decision": "port",
       "summary": "fix(ChatReasoning): don't auto-close after the user toggles it"
     },
     "072cc0f20525edaa1a29e3f49028bcf9a5237165": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 3,
+      "b24ui_sha": "07781adc73034345eebb4e02ab18077ea5ec5a40",
       "decision": "port",
       "summary": "fix(ChatMessages): keep the user's scroll position while streaming; bounding-rect half already in b24ui (#81)"
     },
     "ca23b3791902bd63b0224110761fe111c953530c": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 3,
+      "b24ui_sha": "07781adc73034345eebb4e02ab18077ea5ec5a40",
       "decision": "port",
       "summary": "fix(ChatMessages): stop reasoning and tool parts when the chat is stopped"
     },
     "3456d03f7244faaaecd38e1a76932d7a5d00fe64": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 3,
+      "b24ui_sha": "07781adc73034345eebb4e02ab18077ea5ec5a40",
       "decision": "port",
       "summary": "docs: disable server sourcemaps in dev"
     },
     "ba9fd6c387bd5f5449b67e4e98354322063d6008": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 3,
+      "b24ui_sha": "07781adc73034345eebb4e02ab18077ea5ec5a40",
       "decision": "port",
       "summary": "fix(ChatPrompt): ignore submits while the chat is streaming"
     },
     "57088d7c0d07cd3f8b5bec64a2d525435523ea30": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 3,
+      "b24ui_sha": "07781adc73034345eebb4e02ab18077ea5ec5a40",
       "decision": "port",
       "summary": "fix(components): add missing as title support — Card, PageCard, PageFeature; AuthForm and PricingPlan are upstream-only"
     },
     "4deee2ebdf88e008bc07e1de74d0a4eb57acf6f6": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 3,
+      "b24ui_sha": "07781adc73034345eebb4e02ab18077ea5ec5a40",
       "decision": "n/a",
       "summary": "docs(blog): pass status to UChatPrompt in the AI chat guide — no blog in b24ui"
     },
     "1485fd23d750e434987d1eb0b7010f475ae7a6f6": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 3,
+      "b24ui_sha": "07781adc73034345eebb4e02ab18077ea5ec5a40",
       "decision": "port",
       "summary": "docs(use-tour): add spotlight example"
     },
     "ded5f5c8c64b74aad016601c169c2483583779f3": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 3,
+      "b24ui_sha": "07781adc73034345eebb4e02ab18077ea5ec5a40",
       "decision": "no-op",
       "summary": "fix(Select/SelectMenu): keep rounded corners in FieldGroup inside a form — b24ui wraps both in a root element, the hidden native input never becomes the group's last child"
     },
     "671713e2eca58a7109c573c2458bb64c58dc2ff3": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 3,
+      "b24ui_sha": "07781adc73034345eebb4e02ab18077ea5ec5a40",
       "decision": "port",
       "summary": "feat(CommandPalette): add ignoreFilter prop"
     },
