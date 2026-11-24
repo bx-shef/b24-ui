@@ -2,6 +2,7 @@
 
 exports[`ChatMessages > renders with assistant correctly 1`] = `
 "<div role="log" data-slot="root" class="w-full flex flex-col gap-1 flex-1 px-2.5 [&amp;>article]:last-of-type:min-h-(--last-message-height)" style="--last-message-height: 0px;">
+  <!---->
   <article data-role="user" data-slot="root" class="group/message relative w-full scroll-mt-4 sm:scroll-mt-6">
     <!--v-if-->
     <div data-slot="container" class="relative flex items-start justify-end ms-auto max-w-[75%] gap-3 pb-8">
@@ -24,12 +25,12 @@ exports[`ChatMessages > renders with assistant correctly 1`] = `
   </article>
   <!--v-if-->
   <!---->
-  <!--v-if-->
 </div>"
 `;
 
 exports[`ChatMessages > renders with b24ui correctly 1`] = `
 "<div role="log" data-slot="root" class="w-full flex flex-col gap-1 flex-1 px-2.5 [&amp;>article]:last-of-type:min-h-(--last-message-height)" style="--last-message-height: 0px;">
+  <!---->
   <article data-role="user" data-slot="root" class="group/message relative w-full scroll-mt-4 sm:scroll-mt-6">
     <!--v-if-->
     <div data-slot="container" class="relative flex items-start justify-end ms-auto max-w-[75%] gap-3 pb-8">
@@ -52,12 +53,12 @@ exports[`ChatMessages > renders with b24ui correctly 1`] = `
   </article>
   <!--v-if-->
   <!---->
-  <!--v-if-->
 </div>"
 `;
 
 exports[`ChatMessages > renders with class correctly 1`] = `
 "<div role="log" data-slot="root" class="w-full flex flex-col gap-1 flex-1 px-2.5 [&amp;>article]:last-of-type:min-h-(--last-message-height) max-w-3xl" style="--last-message-height: 0px;">
+  <!---->
   <article data-role="user" data-slot="root" class="group/message relative w-full scroll-mt-4 sm:scroll-mt-6">
     <!--v-if-->
     <div data-slot="container" class="relative flex items-start justify-end ms-auto max-w-[75%] gap-3 pb-8">
@@ -80,12 +81,12 @@ exports[`ChatMessages > renders with class correctly 1`] = `
   </article>
   <!--v-if-->
   <!---->
-  <!--v-if-->
 </div>"
 `;
 
 exports[`ChatMessages > renders with compact correctly 1`] = `
 "<div role="log" data-slot="root" class="w-full flex flex-col gap-1 flex-1 px-2.5 [&amp;>article]:last-of-type:min-h-(--last-message-height)" style="--last-message-height: 0px;">
+  <!---->
   <article data-role="user" data-slot="root" class="group/message relative w-full scroll-mt-3">
     <!--v-if-->
     <div data-slot="container" class="relative flex items-start justify-end ms-auto max-w-[75%] gap-1.5 pb-3">
@@ -108,12 +109,12 @@ exports[`ChatMessages > renders with compact correctly 1`] = `
   </article>
   <!--v-if-->
   <!---->
-  <!--v-if-->
 </div>"
 `;
 
 exports[`ChatMessages > renders with content slot correctly 1`] = `
 "<div role="log" data-slot="root" class="w-full flex flex-col gap-1 flex-1 px-2.5 [&amp;>article]:last-of-type:min-h-(--last-message-height)" style="--last-message-height: 0px;">
+  <!---->
   <article data-role="user" data-slot="root" class="group/message relative w-full scroll-mt-4 sm:scroll-mt-6">
     <!--v-if-->
     <div data-slot="container" class="relative flex items-start justify-end ms-auto max-w-[75%] gap-3 pb-8">
@@ -136,20 +137,20 @@ exports[`ChatMessages > renders with content slot correctly 1`] = `
   </article>
   <!--v-if-->
   <!---->
-  <!--v-if-->
 </div>"
 `;
 
 exports[`ChatMessages > renders with default slot correctly 1`] = `
-"<div role="log" data-slot="root" class="w-full flex flex-col gap-1 flex-1 px-2.5 [&amp;>article]:last-of-type:min-h-(--last-message-height)" style="--last-message-height: 0px;">Default slot
+"<div role="log" data-slot="root" class="w-full flex flex-col gap-1 flex-1 px-2.5 [&amp;>article]:last-of-type:min-h-(--last-message-height)" style="--last-message-height: 0px;">
+  <!---->Default slot
   <!--v-if-->
   <!---->
-  <!--v-if-->
 </div>"
 `;
 
 exports[`ChatMessages > renders with files slot correctly 1`] = `
 "<div role="log" data-slot="root" class="w-full flex flex-col gap-1 flex-1 px-2.5 [&amp;>article]:last-of-type:min-h-(--last-message-height)" style="--last-message-height: 0px;">
+  <!---->
   <article data-role="user" data-slot="root" class="group/message relative w-full scroll-mt-4 sm:scroll-mt-6">
     <div data-slot="header" class="flex mb-1.5 justify-end">
       <div data-slot="files" class="flex flex-wrap items-center gap-1.5">Files slot</div>
@@ -164,12 +165,12 @@ exports[`ChatMessages > renders with files slot correctly 1`] = `
   </article>
   <!--v-if-->
   <!---->
-  <!--v-if-->
 </div>"
 `;
 
 exports[`ChatMessages > renders with footer slot correctly 1`] = `
-"<div role="log" data-slot="root" class="w-full flex flex-col gap-1 flex-1 px-2.5 [&amp;>article]:last-of-type:min-h-(--last-message-height)" style="--last-message-height: 0px; --bottom-offset: 0px;">
+"<div role="log" data-slot="root" class="w-full flex flex-col gap-1 flex-1 px-2.5 [&amp;>article]:last-of-type:min-h-(--last-message-height)" style="--last-message-height: 0px;">
+  <!---->
   <article data-role="user" data-slot="root" class="group/message relative w-full scroll-mt-4 sm:scroll-mt-6">
     <!--v-if-->
     <div data-slot="container" class="relative flex items-start justify-end ms-auto max-w-[75%] gap-3 pb-8">
@@ -191,13 +192,16 @@ exports[`ChatMessages > renders with footer slot correctly 1`] = `
     </div>
   </article>
   <!--v-if-->
-  <!---->
-  <div aria-live="off" data-slot="footer" class="sticky bottom-0 z-10 mt-auto">Footer slot</div>
+  <div aria-live="off" data-slot="footer" class="sticky bottom-0 z-10 mt-auto">
+    <!-- Anchored to the footer, out of the flow so it doesn't add a gap while it shows -->
+    <!---->Footer slot
+  </div>
 </div>"
 `;
 
 exports[`ChatMessages > renders with indicator slot correctly 1`] = `
 "<div role="log" aria-busy="true" data-status="submitted" data-slot="root" class="w-full flex flex-col gap-1 flex-1 px-2.5 [&amp;>article]:last-of-type:min-h-(--last-message-height)" style="--last-message-height: 0px;">
+  <!---->
   <article data-role="user" data-slot="root" class="group/message relative w-full scroll-mt-4 sm:scroll-mt-6">
     <!--v-if-->
     <div data-slot="container" class="relative flex items-start justify-end ms-auto max-w-[75%] gap-3 pb-8">
@@ -229,12 +233,12 @@ exports[`ChatMessages > renders with indicator slot correctly 1`] = `
     </div>
   </article>
   <!---->
-  <!--v-if-->
 </div>"
 `;
 
 exports[`ChatMessages > renders with messages correctly 1`] = `
 "<div role="log" data-slot="root" class="w-full flex flex-col gap-1 flex-1 px-2.5 [&amp;>article]:last-of-type:min-h-(--last-message-height)" style="--last-message-height: 0px;">
+  <!---->
   <article data-role="user" data-slot="root" class="group/message relative w-full scroll-mt-4 sm:scroll-mt-6">
     <!--v-if-->
     <div data-slot="container" class="relative flex items-start justify-end ms-auto max-w-[75%] gap-3 pb-8">
@@ -257,12 +261,12 @@ exports[`ChatMessages > renders with messages correctly 1`] = `
   </article>
   <!--v-if-->
   <!---->
-  <!--v-if-->
 </div>"
 `;
 
 exports[`ChatMessages > renders with status error correctly 1`] = `
 "<div role="log" data-status="error" data-slot="root" class="w-full flex flex-col gap-1 flex-1 px-2.5 [&amp;>article]:last-of-type:min-h-(--last-message-height)" style="--last-message-height: 0px;">
+  <!---->
   <article data-role="user" data-slot="root" class="group/message relative w-full scroll-mt-4 sm:scroll-mt-6">
     <!--v-if-->
     <div data-slot="container" class="relative flex items-start justify-end ms-auto max-w-[75%] gap-3 pb-8">
@@ -285,12 +289,12 @@ exports[`ChatMessages > renders with status error correctly 1`] = `
   </article>
   <!--v-if-->
   <!---->
-  <!--v-if-->
 </div>"
 `;
 
 exports[`ChatMessages > renders with status ready correctly 1`] = `
 "<div role="log" data-status="ready" data-slot="root" class="w-full flex flex-col gap-1 flex-1 px-2.5 [&amp;>article]:last-of-type:min-h-(--last-message-height)" style="--last-message-height: 0px;">
+  <!---->
   <article data-role="user" data-slot="root" class="group/message relative w-full scroll-mt-4 sm:scroll-mt-6">
     <!--v-if-->
     <div data-slot="container" class="relative flex items-start justify-end ms-auto max-w-[75%] gap-3 pb-8">
@@ -313,12 +317,12 @@ exports[`ChatMessages > renders with status ready correctly 1`] = `
   </article>
   <!--v-if-->
   <!---->
-  <!--v-if-->
 </div>"
 `;
 
 exports[`ChatMessages > renders with status streaming correctly 1`] = `
 "<div role="log" aria-busy="true" data-status="streaming" data-slot="root" class="w-full flex flex-col gap-1 flex-1 px-2.5 [&amp;>article]:last-of-type:min-h-(--last-message-height)" style="--last-message-height: 0px;">
+  <!---->
   <article data-role="user" data-slot="root" class="group/message relative w-full scroll-mt-4 sm:scroll-mt-6">
     <!--v-if-->
     <div data-slot="container" class="relative flex items-start justify-end ms-auto max-w-[75%] gap-3 pb-8">
@@ -341,12 +345,12 @@ exports[`ChatMessages > renders with status streaming correctly 1`] = `
   </article>
   <!--v-if-->
   <!---->
-  <!--v-if-->
 </div>"
 `;
 
 exports[`ChatMessages > renders with status submitted correctly 1`] = `
 "<div role="log" aria-busy="true" data-status="submitted" data-slot="root" class="w-full flex flex-col gap-1 flex-1 px-2.5 [&amp;>article]:last-of-type:min-h-(--last-message-height)" style="--last-message-height: 0px;">
+  <!---->
   <article data-role="user" data-slot="root" class="group/message relative w-full scroll-mt-4 sm:scroll-mt-6">
     <!--v-if-->
     <div data-slot="container" class="relative flex items-start justify-end ms-auto max-w-[75%] gap-3 pb-8">
@@ -380,12 +384,12 @@ exports[`ChatMessages > renders with status submitted correctly 1`] = `
     </div>
   </article>
   <!---->
-  <!--v-if-->
 </div>"
 `;
 
 exports[`ChatMessages > renders with user correctly 1`] = `
 "<div role="log" data-slot="root" class="w-full flex flex-col gap-1 flex-1 px-2.5 [&amp;>article]:last-of-type:min-h-(--last-message-height)" style="--last-message-height: 0px;">
+  <!---->
   <article data-role="user" data-slot="root" class="group/message relative w-full scroll-mt-4 sm:scroll-mt-6">
     <!--v-if-->
     <div data-slot="container" class="relative flex items-start justify-end ms-auto max-w-[75%] gap-3 pb-8">
@@ -408,6 +412,5 @@ exports[`ChatMessages > renders with user correctly 1`] = `
   </article>
   <!--v-if-->
   <!---->
-  <!--v-if-->
 </div>"
 `;

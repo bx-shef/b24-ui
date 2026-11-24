@@ -98,7 +98,7 @@ export type ChatMessagesSlots<T extends UIMessage[] = UIMessage[]> = {
 import { ref, computed, watch, nextTick, toRef, readonly, onMounted, onBeforeUnmount } from 'vue'
 import { Presence } from 'reka-ui'
 import { defu } from 'defu'
-import { useElementSize, useEventListener, useMutationObserver, watchThrottled } from '@vueuse/core'
+import { createReusableTemplate, useElementSize, useEventListener, useMutationObserver, watchThrottled } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useLocale } from '../composables/useLocale'
@@ -154,6 +154,8 @@ const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.chatMessag
   footer: !!slots.footer
 }))
 
+const [DefineViewportTemplate, ReuseViewportTemplate] = createReusableTemplate()
+
 const el = ref<HTMLElement | null>(null)
 const parent = ref<HTMLElement | null>(null)
 const messagesRefs = ref(new Map<string, HTMLElement>())
@@ -163,7 +165,6 @@ const isAtBottom = ref(true)
 const lastMessageHeight = ref(0)
 const footerRef = ref<HTMLElement | null>(null)
 const { height: footerHeight } = useElementSize(footerRef, undefined, { box: 'border-box' })
-const bottomOffset = computed(() => (props.spacingOffset || 0) + footerHeight.value)
 const lastMessageSubmitted = ref(false)
 const lastScrollTop = ref(0)
 const userScrolledUp = ref(false)
@@ -417,8 +418,27 @@ defineExpose({
     :data-status="props.status"
     data-slot="root"
     :class="b24ui.root({ class: [props.b24ui?.root, props.class] })"
-    :style="{ '--last-message-height': `${lastMessageHeight}px`, '--bottom-offset': slots.footer ? `${bottomOffset}px` : undefined }"
+    :style="{ '--last-message-height': `${lastMessageHeight}px` }"
   >
+    <DefineViewportTemplate>
+      <Presence :present="showAutoScroll">
+        <div :data-state="showAutoScroll ? 'open' : 'closed'" data-slot="viewport" :class="b24ui.viewport({ class: props.b24ui?.viewport })">
+          <slot name="viewport" :b24ui="b24ui" :on-click="onAutoScrollClick">
+            <B24Button
+              v-if="props.autoScroll"
+              :icon="props.autoScrollIcon || icons.arrowDown"
+              color="air-secondary-no-accent"
+              :aria-label="t('chatMessages.autoScroll')"
+              v-bind="(typeof props.autoScroll === 'object' ? props.autoScroll : {})"
+              data-slot="autoScroll"
+              :class="b24ui.autoScroll({ class: props.b24ui?.autoScroll })"
+              @click="onAutoScrollClick"
+            />
+          </slot>
+        </div>
+      </Presence>
+    </DefineViewportTemplate>
+
     <slot :register-message-ref="registerMessageRef">
       <template v-for="message in props.messages" :key="message.id">
         <B24ChatMessage
@@ -452,24 +472,12 @@ defineExpose({
       </template>
     </B24ChatMessage>
 
-    <Presence :present="showAutoScroll">
-      <div :data-state="showAutoScroll ? 'open' : 'closed'" data-slot="viewport" :class="b24ui.viewport({ class: props.b24ui?.viewport })">
-        <slot name="viewport" :b24ui="b24ui" :on-click="onAutoScrollClick">
-          <B24Button
-            v-if="props.autoScroll"
-            :icon="props.autoScrollIcon || icons.arrowDown"
-            color="air-secondary-no-accent"
-            :aria-label="t('chatMessages.autoScroll')"
-            v-bind="(typeof props.autoScroll === 'object' ? props.autoScroll : {})"
-            data-slot="autoScroll"
-            :class="b24ui.autoScroll({ class: props.b24ui?.autoScroll })"
-            @click="onAutoScrollClick"
-          />
-        </slot>
-      </div>
-    </Presence>
+    <ReuseViewportTemplate v-if="!slots.footer" />
 
-    <div v-if="!!slots.footer" ref="footerRef" aria-live="off" data-slot="footer" :class="b24ui.footer({ class: props.b24ui?.footer })">
+    <div v-else ref="footerRef" aria-live="off" data-slot="footer" :class="b24ui.footer({ class: props.b24ui?.footer })">
+      <!-- Anchored to the footer, out of the flow so it doesn't add a gap while it shows -->
+      <ReuseViewportTemplate />
+
       <slot name="footer" />
     </div>
   </div>
