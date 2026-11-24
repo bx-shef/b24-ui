@@ -23,8 +23,10 @@ props:
 hide:
   - class
 slots:
-  default: This is a `callout` with full **markdown** support.
+  default: Это `callout` с полной поддержкой **markdown**.
 ---
+
+Это `callout` с полной поддержкой **markdown**.
 ::
 
 ### Иконка {#icon}
@@ -43,8 +45,10 @@ props:
 hide:
   - class
 slots:
-  default: This is a `callout` with an icon.
+  default: Это `callout` с иконкой.
 ---
+
+Это `callout` с иконкой.
 ::
 
 ### Цвет {#color}
@@ -65,8 +69,10 @@ props:
 hide:
   - class
 slots:
-  default: This is a `callout` with a custom color.
+  default: Это `callout` с другим цветом.
 ---
+
+Это `callout` с другим цветом.
 ::
 
 ### Ссылка {#link}
@@ -89,8 +95,10 @@ props:
   color: air-primary
   class: 'w-full my-0'
 slots:
-  default: Learn how to install `@bitrix24/b24ui-nux` in your project.
+  default: Узнайте, как установить `@bitrix24/b24ui-nuxt` в проект.
 ---
+
+Узнайте, как установить `@bitrix24/b24ui-nuxt` в проект.
 ::
 
 ## Сокращения {#shortcuts}

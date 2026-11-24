@@ -2315,6 +2315,34 @@
     ]
   },
   {
+    "file": "components/__snapshots__/Toggle-vue.spec.ts.snap",
+    "names": [
+      "Toggle > renders with defaultValue correctly 1",
+      "Toggle > renders with modelValue correctly 1"
+    ]
+  },
+  {
+    "file": "components/__snapshots__/Toggle.spec.ts.snap",
+    "names": [
+      "Toggle > renders with defaultValue correctly 1",
+      "Toggle > renders with modelValue correctly 1"
+    ]
+  },
+  {
+    "file": "components/__snapshots__/ToggleGroup-vue.spec.ts.snap",
+    "names": [
+      "ToggleGroup > renders with defaultValue correctly 1",
+      "ToggleGroup > renders with modelValue correctly 1"
+    ]
+  },
+  {
+    "file": "components/__snapshots__/ToggleGroup.spec.ts.snap",
+    "names": [
+      "ToggleGroup > renders with defaultValue correctly 1",
+      "ToggleGroup > renders with modelValue correctly 1"
+    ]
+  },
+  {
     "file": "components/__snapshots__/Tooltip-vue.spec.ts.snap",
     "names": [
       "Tooltip > renders with arrow correctly 1",
