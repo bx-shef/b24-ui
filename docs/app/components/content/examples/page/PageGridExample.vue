@@ -5,20 +5,20 @@ import TaskIcon from '@bitrix24/b24icons-vue/outline/TaskIcon'
 
 const cards = ref([
   {
-    title: 'Online workspace for the whole team',
-    description: 'Through its wide variety of communication and collaboration tools, Bitrix24 enables teams to work efficiently and smoothly wherever they are – at home, in the office, or on the go.',
+    title: 'Онлайн-пространство для всей команды',
+    description: 'Благодаря широкому набору инструментов для общения и совместной работы Bitrix24 помогает командам работать эффективно и слаженно где угодно — дома, в офисе или в дороге.',
     icon: CopilotIcon,
     to: 'https://www.bitrix24.com/tools/communications/'
   },
   {
-    title: 'Free CRM software for your business',
-    description: 'Sell more. Sell better. Sell faster with Bitrix24 a single platform to cover all your needs.',
+    title: 'Бесплатная CRM для вашего бизнеса',
+    description: 'Продавайте больше, лучше и быстрее с Bitrix24 — единой платформой для всех ваших задач.',
     icon: CrmLettersIcon,
     to: 'https://www.bitrix24.com/tools/crm/'
   },
   {
-    title: 'Free task management software for your business',
-    description: 'Set tasks, manage deadlines, collect reports, track KPIs, and run projects from wherever you are.',
+    title: 'Бесплатная система управления задачами для вашего бизнеса',
+    description: 'Ставьте задачи, управляйте сроками, собирайте отчёты, отслеживайте KPI и ведите проекты откуда угодно.',
     icon: TaskIcon,
     to: 'https://www.bitrix24.com/tools/tasks_and_projects/'
   }

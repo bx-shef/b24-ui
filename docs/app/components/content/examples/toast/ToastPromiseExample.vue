@@ -10,16 +10,16 @@ function upload() {
 
 function showToast() {
   toast.promise(upload(), {
-    loading: { title: 'Uploading file...', description: 'Your file is being uploaded.' },
+    loading: { title: 'Загрузка файла...', description: 'Файл загружается.' },
     success: name => ({
-      title: 'File uploaded!',
-      description: `${name} has been successfully uploaded.`,
+      title: 'Файл загружен!',
+      description: `Файл ${name} успешно загружен.`,
       icon: CheckLIcon,
       color: 'air-primary-success'
     }),
     error: {
-      title: 'Upload failed',
-      description: 'Something went wrong, please try again.',
+      title: 'Не удалось загрузить',
+      description: 'Что-то пошло не так, попробуйте ещё раз.',
       icon: CrossMIcon,
       color: 'air-primary-alert'
     }
@@ -28,5 +28,5 @@ function showToast() {
 </script>
 
 <template>
-  <B24Button label="Show toast" @click="showToast" />
+  <B24Button label="Показать уведомление" @click="showToast" />
 </template>

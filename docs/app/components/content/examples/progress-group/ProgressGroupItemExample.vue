@@ -2,10 +2,10 @@
 import type { ProgressGroupItem } from '@bitrix24/b24ui-nuxt'
 
 const items: ProgressGroupItem[] = [
-  { label: 'System', value: 24, color: 'air-secondary' },
-  { label: 'Apps', value: 8, color: 'air-primary-alert' },
-  { label: 'Documents', value: 12, color: 'air-primary-warning' },
-  { label: 'Multimedia', value: 42, color: 'air-primary-success' }
+  { label: 'Системная', value: 24, color: 'air-secondary' },
+  { label: 'Приложения', value: 8, color: 'air-primary-alert' },
+  { label: 'Документы', value: 12, color: 'air-primary-warning' },
+  { label: 'Мультимедиа', value: 42, color: 'air-primary-success' }
 ]
 </script>
 

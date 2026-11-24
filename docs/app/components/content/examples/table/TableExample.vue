@@ -176,13 +176,13 @@ const columns: TableColumn<Payment>[] = [
       'modelValue': table.getIsSomePageRowsSelected() ? 'indeterminate' : table.getIsAllPageRowsSelected(),
       'onUpdate:modelValue': (value: boolean | 'indeterminate') => table.toggleAllPageRowsSelected(!!value),
       'size': 'sm',
-      'aria-label': 'Select all'
+      'aria-label': 'Выбрать все'
     }),
     cell: ({ row }) => h(B24Checkbox, {
       'modelValue': row.getIsSelected(),
       'onUpdate:modelValue': (value: boolean | 'indeterminate') => row.toggleSelected(!!value),
       'size': 'sm',
-      'aria-label': 'Select row'
+      'aria-label': 'Выбрать строку'
     }),
     enableSorting: false,
     enableHiding: false
@@ -204,29 +204,29 @@ const columns: TableColumn<Payment>[] = [
     cell: ({ row }) => {
       const items = [{
         type: 'label',
-        label: 'Actions'
+        label: 'Действия'
       }, {
-        label: 'Copy payment ID',
+        label: 'Копировать ID платежа',
         onSelect() {
           copy(row.original.id)
 
           toast.add({
-            title: 'Payment ID copied to clipboard!',
+            title: 'ID платежа скопирован в буфер обмена!',
             color: 'air-primary-success',
             icon: CircleCheckIcon
           })
         }
       }, {
-        label: row.getIsExpanded() ? 'Collapse' : 'Expand',
+        label: row.getIsExpanded() ? 'Свернуть' : 'Развернуть',
         onSelect() {
           row.toggleExpanded()
         }
       }, {
         type: 'separator'
       }, {
-        label: 'View customer'
+        label: 'Просмотреть клиента'
       }, {
-        label: 'View payment details'
+        label: 'Просмотреть детали платежа'
       }]
 
       return h(B24DropdownMenu, {
@@ -237,12 +237,12 @@ const columns: TableColumn<Payment>[] = [
         },
         'arrow': true,
         items,
-        'aria-label': 'Actions dropdown'
+        'aria-label': 'Меню действий'
       }, () => h(B24Button, {
         'icon': MenuIcon,
         'color': 'air-tertiary-no-accent',
         'size': 'sm',
-        'aria-label': 'Actions dropdown'
+        'aria-label': 'Меню действий'
       }))
     }
   },
@@ -253,7 +253,7 @@ const columns: TableColumn<Payment>[] = [
   },
   {
     accessorKey: 'date',
-    header: 'Date',
+    header: 'Дата',
     cell: ({ row }) => {
       return new Date(row.getValue('date')).toLocaleString('en-US', {
         day: 'numeric',
@@ -267,7 +267,7 @@ const columns: TableColumn<Payment>[] = [
   },
   {
     accessorKey: 'status',
-    header: 'Status',
+    header: 'Статус',
     cell: ({ row }) => {
       const color = ({
         paid: 'air-primary-success' as const,
@@ -304,7 +304,7 @@ const columns: TableColumn<Payment>[] = [
   },
   {
     accessorKey: 'amount',
-    header: 'Amount',
+    header: 'Сумма',
     meta: {
       class: {
         th: 'text-end',
@@ -350,11 +350,11 @@ async function sleepAction(timeout: number = 1000): Promise<void> {
         <B24Input
           :model-value="(table?.tableApi?.getColumn('email')?.getFilterValue() as string)"
           class="max-w-sm min-w-[12ch]"
-          placeholder="Filter emails..."
+          placeholder="Фильтр писем..."
           @update:model-value="table?.tableApi?.getColumn('email')?.setFilterValue($event)"
         />
 
-        <B24Button color="air-primary-copilot" label="Randomize" @click="randomize" />
+        <B24Button color="air-primary-copilot" label="Перемешать" @click="randomize" />
 
         <B24DropdownMenu
           :items="table?.tableApi?.getAllColumns().filter(column => column.getCanHide()).map(column => ({
@@ -371,11 +371,11 @@ async function sleepAction(timeout: number = 1000): Promise<void> {
           :content="{ align: 'end' }"
         >
           <B24Button
-            label="Columns"
+            label="Столбцы"
             color="air-secondary-accent-1"
             use-dropdown
             class="ms-auto"
-            aria-label="Columns select dropdown"
+            aria-label="Выпадающий список выбора столбцов"
           />
         </B24DropdownMenu>
       </div>

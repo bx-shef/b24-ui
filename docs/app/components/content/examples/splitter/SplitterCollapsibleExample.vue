@@ -16,8 +16,8 @@ const items: SplitterItem[] = [
         <div class="flex-1 flex items-center justify-center p-2">
           <B24Button
             :icon="collapsed ? OpenChatIcon : CloseChatIcon"
-            :label="collapsed ? undefined : 'Collapse'"
-            :aria-label="collapsed ? 'Expand' : undefined"
+            :label="collapsed ? undefined : 'Свернуть'"
+            :aria-label="collapsed ? 'Развернуть' : undefined"
             color="air-secondary"
             size="sm"
             @click="collapsed ? expand() : collapse()"
@@ -26,7 +26,7 @@ const items: SplitterItem[] = [
       </template>
 
       <template #main>
-        Main
+        Основная часть
       </template>
     </B24Splitter>
   </div>

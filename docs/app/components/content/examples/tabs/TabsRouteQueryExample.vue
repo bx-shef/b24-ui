@@ -8,12 +8,12 @@ const router = useRouter()
 
 const items: TabsItem[] = [
   {
-    label: 'Account',
+    label: 'Аккаунт',
     icon: UserIcon,
     value: 'account'
   },
   {
-    label: 'Password',
+    label: 'Пароль',
     icon: Shield2ContourIcon,
     value: 'password'
   }
@@ -24,7 +24,7 @@ const active = computed({
     return (route.query.tab as string) || 'account'
   },
   set(tab) {
-    // Hash is specified here to prevent the page from scrolling to the top
+    // Хеш указан здесь, чтобы страница не прокручивалась наверх
     router.push({
       path: '/b24ui/docs/components/tabs',
       query: { tab },

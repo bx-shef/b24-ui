@@ -7,36 +7,36 @@ import UnderlineIcon from '@bitrix24/b24icons-vue/outline/UnderlineIcon'
 import StrikethroughIcon from '@bitrix24/b24icons-vue/outline/StrikethroughIcon'
 import DeveloperResourcesIcon from '@bitrix24/b24icons-vue/outline/DeveloperResourcesIcon'
 
-const value = ref(`# Toolbar
+const value = ref(`# Панель инструментов
 
-Select some text to see the formatting toolbar appear above your selection.`)
+Выделите текст, чтобы над выделением появилась панель форматирования.`)
 
 const items: EditorToolbarItem[][] = [
   [
     {
       icon: HeaderIcon,
-      tooltip: { text: 'Headings' },
+      tooltip: { text: 'Заголовки' },
       content: { align: 'start' },
       items: [
         {
           kind: 'heading',
           level: 1,
-          label: 'Heading 1'
+          label: 'Заголовок 1'
         },
         {
           kind: 'heading',
           level: 2,
-          label: 'Heading 2'
+          label: 'Заголовок 2'
         },
         {
           kind: 'heading',
           level: 3,
-          label: 'Heading 3'
+          label: 'Заголовок 3'
         },
         {
           kind: 'heading',
           level: 4,
-          label: 'Heading 4'
+          label: 'Заголовок 4'
         }
       ]
     }
@@ -46,28 +46,28 @@ const items: EditorToolbarItem[][] = [
       kind: 'mark',
       mark: 'bold',
       icon: BoldIcon,
-      tooltip: { text: 'Bold' }
+      tooltip: { text: 'Жирный' }
     }, {
       kind: 'mark',
       mark: 'italic',
       icon: ItalicIcon,
-      tooltip: { text: 'Italic' }
+      tooltip: { text: 'Курсив' }
     }, {
       kind: 'mark',
       mark: 'underline',
       icon: UnderlineIcon,
-      tooltip: { text: 'Underline' }
+      tooltip: { text: 'Подчёркнутый' }
     }, {
       kind: 'mark',
       mark: 'strike',
       icon: StrikethroughIcon,
-      tooltip: { text: 'Strikethrough' }
+      tooltip: { text: 'Зачёркнутый' }
     },
     {
       kind: 'mark',
       mark: 'code',
       icon: DeveloperResourcesIcon,
-      tooltip: { text: 'Code' }
+      tooltip: { text: 'Код' }
     }
   ]
 ]

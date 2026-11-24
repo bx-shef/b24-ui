@@ -7,16 +7,16 @@ import RefreshIcon from '@bitrix24/b24icons-vue/outline/RefreshIcon'
 <template>
   <B24Empty
     :icon="ProductIcon"
-    title="No projects found"
-    description="It looks like you haven't added any projects. Create one to get started."
+    title="Проекты не найдены"
+    description="Похоже, вы ещё не добавили ни одного проекта. Создайте первый, чтобы начать."
     :actions="[
       {
-        label: 'Create new',
+        label: 'Создать',
         icon: AddProductIcon,
         color: 'air-primary'
       },
       {
-        label: 'Refresh',
+        label: 'Обновить',
         icon: RefreshIcon
       }
     ]"

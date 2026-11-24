@@ -28,7 +28,7 @@ function onOpen() {
     :loading="status === 'pending'"
     :icon="UserIcon"
     :trailing-icon="Expand1Icon"
-    placeholder="Select user"
+    placeholder="Выберите пользователя"
     value-key="value"
     class="w-48"
     @update:open="onOpen"

@@ -3,7 +3,7 @@ import { useElementSize } from '@vueuse/core'
 
 const items = Array.from({ length: 1000 }).map((_, index) => ({
   id: index,
-  title: `Item ${index + 1}`,
+  title: `Элемент ${index + 1}`,
   src: `https://placehold.co/640x480?text=${index}`,
   width: 640,
   height: 480

@@ -41,7 +41,7 @@ const data = ref<Payment[]>([
     amount: 594,
     account: {
       id: '1',
-      name: 'Account 1'
+      name: 'Аккаунт 1'
     }
   },
   {
@@ -52,7 +52,7 @@ const data = ref<Payment[]>([
     amount: 276,
     account: {
       id: '2',
-      name: 'Account 2'
+      name: 'Аккаунт 2'
     }
   },
   {
@@ -63,7 +63,7 @@ const data = ref<Payment[]>([
     amount: 315,
     account: {
       id: '1',
-      name: 'Account 1'
+      name: 'Аккаунт 1'
     }
   },
   {
@@ -74,7 +74,7 @@ const data = ref<Payment[]>([
     amount: 529,
     account: {
       id: '2',
-      name: 'Account 2'
+      name: 'Аккаунт 2'
     }
   },
   {
@@ -85,7 +85,7 @@ const data = ref<Payment[]>([
     amount: 639,
     account: {
       id: '1',
-      name: 'Account 1'
+      name: 'Аккаунт 1'
     }
   }
 ])
@@ -93,7 +93,7 @@ const data = ref<Payment[]>([
 const columns: TableColumn<Payment>[] = [
   {
     id: 'title',
-    header: 'Item'
+    header: 'Элемент'
   },
   {
     id: 'account_id',
@@ -110,7 +110,7 @@ const columns: TableColumn<Payment>[] = [
   },
   {
     accessorKey: 'date',
-    header: 'Date',
+    header: 'Дата',
     cell: ({ row }) => {
       return new Date(row.getValue('date')).toLocaleString('en-US', {
         day: 'numeric',
@@ -125,7 +125,7 @@ const columns: TableColumn<Payment>[] = [
   },
   {
     accessorKey: 'status',
-    header: 'Status'
+    header: 'Статус'
   },
   {
     accessorKey: 'email',
@@ -143,7 +143,7 @@ const columns: TableColumn<Payment>[] = [
   },
   {
     accessorKey: 'amount',
-    header: 'Amount',
+    header: 'Сумма',
     meta: {
       class: {
         th: 'text-end',

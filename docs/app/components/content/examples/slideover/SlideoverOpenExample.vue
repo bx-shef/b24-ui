@@ -8,7 +8,7 @@ defineShortcuts({
 
 <template>
   <B24Slideover v-model:open="open" :b24ui="{ content: 'sm:top-[300px] sm:max-h-[calc(100%-300px)]' }">
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
     <template #content>
       <Placeholder class="h-full m-4" />

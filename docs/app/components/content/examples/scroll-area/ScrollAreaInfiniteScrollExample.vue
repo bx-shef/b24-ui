@@ -24,7 +24,7 @@ const { data, status } = useLazyFetch('https://dummyjson.com/users?limit=10&sele
   key: 'scroll-area-users-infinite-scroll',
   query: { skip },
   transform: async (data?: UserResponse) => {
-    // Simulating a delay
+    // Имитируем задержку
     await sleepAction(1000)
     return data?.users
   },

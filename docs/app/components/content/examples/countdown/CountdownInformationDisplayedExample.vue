@@ -9,6 +9,6 @@ const value = ref(2 * 24 * 60 * 60)
     v-slot="{ days, hours, minutes, seconds }"
     :seconds="value"
   >
-    Time Remaining：{{ days }} days, {{ hours }} hours, {{ minutes }} minutes, {{ seconds }} seconds.
+    Осталось：{{ days }} дн., {{ hours }} ч, {{ minutes }} мин, {{ seconds }} с.
   </B24Countdown>
 </template>

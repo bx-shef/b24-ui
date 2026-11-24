@@ -17,7 +17,7 @@ function showToast() {
 
       toast.update(t.id, {
         'title': 'File uploaded!',
-        'description': 'Your file has been successfully uploaded.',
+        'description': 'Файл успешно загружен.',
         'icon': CheckLIcon,
         'color': 'air-primary-success',
         'onUpdate:open': undefined
@@ -28,5 +28,5 @@ function showToast() {
 </script>
 
 <template>
-  <B24Button label="Show toast" @click="showToast" />
+  <B24Button label="Показать уведомление" @click="showToast" />
 </template>

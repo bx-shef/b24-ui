@@ -9,11 +9,11 @@ const props = defineProps<{
 
 function showToast() {
   toast.add({
-    title: 'Uh oh! Something went wrong.',
+    title: 'Ой! Что-то пошло не так.',
     description: props.description,
     actions: [{
       icon: Refresh9Icon,
-      label: 'Retry',
+      label: 'Повторить',
       color: 'air-secondary-accent-2',
       onClick: (e) => {
         e?.stopPropagation()
@@ -24,5 +24,5 @@ function showToast() {
 </script>
 
 <template>
-  <B24Button label="Show toast" @click="showToast" />
+  <B24Button label="Показать уведомление" @click="showToast" />
 </template>

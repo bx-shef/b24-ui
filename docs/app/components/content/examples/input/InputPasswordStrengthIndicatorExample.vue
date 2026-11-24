@@ -9,10 +9,10 @@ const password = ref('')
 
 function checkStrength(str: string) {
   const requirements = [
-    { regex: /.{8,}/, text: 'At least 8 characters' },
-    { regex: /\d/, text: 'At least 1 number' },
-    { regex: /[a-z]/, text: 'At least 1 lowercase letter' },
-    { regex: /[A-Z]/, text: 'At least 1 uppercase letter' }
+    { regex: /.{8,}/, text: 'Минимум 8 символов' },
+    { regex: /\d/, text: 'Минимум 1 цифра' },
+    { regex: /[a-z]/, text: 'Минимум 1 строчная буква' },
+    { regex: /[A-Z]/, text: 'Минимум 1 заглавная буква' }
   ]
 
   return requirements.map(req => ({ met: req.regex.test(str), text: req.text }))
@@ -30,19 +30,19 @@ const color = computed(() => {
 })
 
 const text = computed(() => {
-  if (score.value === 0) return 'Enter a password'
-  if (score.value <= 2) return 'Weak password'
-  if (score.value === 3) return 'Medium password'
-  return 'Strong password'
+  if (score.value === 0) return 'Введите пароль'
+  if (score.value <= 2) return 'Слабый пароль'
+  if (score.value === 3) return 'Средний пароль'
+  return 'Надёжный пароль'
 })
 </script>
 
 <template>
   <div class="space-y-2">
-    <B24FormField label="Password">
+    <B24FormField label="Пароль">
       <B24Input
         v-model="password"
-        placeholder="Password"
+        placeholder="Пароль"
         :color="color"
         :type="show ? 'text' : 'password'"
         :aria-invalid="score < 4"
@@ -55,7 +55,7 @@ const text = computed(() => {
             size="sm"
             color="air-tertiary-no-accent"
             :icon="show ? CrossedEyeIcon : ObserverIcon"
-            :aria-label="show ? 'Hide password' : 'Show password'"
+            :aria-label="show ? 'Скрыть пароль' : 'Показать пароль'"
             :aria-pressed="show"
             aria-controls="password"
             @click="show = !show"
@@ -76,7 +76,7 @@ const text = computed(() => {
       {{ text }}. Must contain:
     </p>
 
-    <ul class="space-y-1" aria-label="Password requirements">
+    <ul class="space-y-1" aria-label="Требования к паролю">
       <li
         v-for="(req, index) in strength"
         :key="index"
@@ -89,7 +89,7 @@ const text = computed(() => {
         <span class="text-(length:--ui-font-size-xs) font-(--ui-font-weight-light)">
           {{ req.text }}
           <span class="sr-only">
-            {{ req.met ? ' - Requirement met' : ' - Requirement not met' }}
+            {{ req.met ? ' — требование выполнено' : ' — требование не выполнено' }}
           </span>
         </span>
       </li>

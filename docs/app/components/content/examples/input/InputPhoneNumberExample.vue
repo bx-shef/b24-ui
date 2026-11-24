@@ -41,7 +41,7 @@ watch(countryCode, () => {
       :items="phoneCodes"
       value-key="code"
       :search-input="{
-        placeholder: 'Search country...',
+        placeholder: 'Найдите страну...',
         icon: CrmSearchIcon,
         loading: status === 'pending'
       }"

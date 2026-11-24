@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const value = ref(`# Drag Handle
+const value = ref(`# Ручка перетаскивания
 
-Hover over the left side of this block to see the drag handle appear and reorder blocks.`)
+Наведите курсор на левую сторону блока, чтобы появилась ручка перетаскивания, и меняйте порядок блоков.`)
 </script>
 
 <template>

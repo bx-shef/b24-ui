@@ -6,13 +6,13 @@ const toast = useToast()
 function showToast() {
   toast.add({
     title: h('span', {}, [
-      'Item ',
+      'Элемент ',
       h('span', { class: 'text-(--ui-color-accent-main-primary) font-bold' }, '#15'),
-      ' deleted'
+      ' удалён'
     ]),
     description: h('span', {}, [
-      'You have successfully deleted the item from your ',
-      h('span', { class: 'font-bold' }, 'account'),
+      'Вы успешно удалили элемент из своего ',
+      h('span', { class: 'font-bold' }, 'аккаунта'),
       '.'
     ]),
     icon: TrashcanIcon
@@ -21,5 +21,5 @@ function showToast() {
 </script>
 
 <template>
-  <B24Button label="Show toast" @click="showToast" />
+  <B24Button label="Показать уведомление" @click="showToast" />
 </template>

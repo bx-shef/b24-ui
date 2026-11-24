@@ -2,12 +2,12 @@
 const items = [
   {
     id: '/',
-    label: 'Introduction',
+    label: 'Введение',
     level: 1
   },
   {
     id: '/docs/getting-started/#whats-new-in-v3',
-    label: 'What\'s new in v3?',
+    label: 'Что нового в v3?',
     level: 2
   },
   {
@@ -27,13 +27,13 @@ const items = [
   },
   {
     id: '/docs/getting-started/installation/',
-    label: 'Installation',
+    label: 'Установка',
     level: 1
   }
 ]
 
 function postFilter(searchTerm: string, items: any[]) {
-  // Filter only first level items if no searchTerm
+  // Без searchTerm фильтруем только элементы первого уровня
   if (!searchTerm) {
     return items?.filter(item => item.level === 1)
   }

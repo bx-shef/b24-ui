@@ -34,6 +34,6 @@ const items: DropdownMenuItem[] = [
     :content="{ align: 'start' }"
     :b24ui="{ content: 'w-64', viewport: 'w-64' }"
   >
-    <B24Button label="Open" :icon="HamburgerMenuIcon" />
+    <B24Button label="Открыть" :icon="HamburgerMenuIcon" />
   </B24DropdownMenu>
 </template>

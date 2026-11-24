@@ -5,18 +5,18 @@ import Info1Icon from '@bitrix24/b24icons-vue/main/Info1Icon'
 
 const items = [
   {
-    label: 'Sales Pipeline',
+    label: 'Воронка продаж',
     icon: ConnectionIcon
   },
   {
-    label: 'Sales Analytics',
+    label: 'Аналитика продаж',
     badge: '+3'
   },
   {
-    label: 'Resources'
+    label: 'Ресурсы'
   },
   {
-    label: 'Support',
+    label: 'Поддержка',
     icon: Info1Icon,
     slot: 'support' as const
   }

@@ -7,22 +7,22 @@ import SyncCircleIcon from '@bitrix24/b24icons-vue/main/SyncCircleIcon'
 
 const items = ref<ListboxItem[]>([
   {
-    label: 'Backlog',
+    label: 'Бэклог',
     icon: InfoCircleIcon,
     value: 'backlog'
   },
   {
-    label: 'Todo',
+    label: 'К выполнению',
     icon: CirclePlusIcon,
     value: 'todo'
   },
   {
-    label: 'In Progress',
+    label: 'В работе',
     icon: SyncCircleIcon,
     value: 'in_progress'
   },
   {
-    label: 'Done',
+    label: 'Готово',
     icon: CircleCheckIcon,
     value: 'done'
   }

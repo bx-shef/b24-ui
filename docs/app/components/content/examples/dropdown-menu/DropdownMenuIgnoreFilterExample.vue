@@ -39,6 +39,6 @@ function onOpen() {
     :b24ui="{ content: 'w-48', viewport: 'w-48' }"
     @update:open="onOpen"
   >
-    <B24Button label="Open" :icon="HamburgerMenuIcon" />
+    <B24Button label="Открыть" :icon="HamburgerMenuIcon" />
   </B24DropdownMenu>
 </template>

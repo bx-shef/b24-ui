@@ -21,7 +21,7 @@ const items = Array.from({ length: 1000 }).map((_, index) => {
 
   return {
     id: index,
-    title: `Item ${index + 1}`,
+    title: `Элемент ${index + 1}`,
     src: `https://placehold.co/640x${height}?text=${index}`,
     width: 640,
     height

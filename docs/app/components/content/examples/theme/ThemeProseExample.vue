@@ -18,11 +18,11 @@ const b24ui = {
 
 const value = `## Getting started
 
-This is a paragraph with a **tighter typographic scale** applied through the \`Theme\` component.
+Это абзац с **более компактной типографской шкалой**, применённой через компонент \`Theme\`.
 
-- First item
-- Second item
-- Third item
+- Первый элемент
+- Второй элемент
+- Третий элемент
 
 > The spacing and font sizes are smaller than the defaults, making it ideal for compact content areas.`
 </script>

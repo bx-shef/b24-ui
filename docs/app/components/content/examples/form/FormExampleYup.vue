@@ -4,10 +4,10 @@ import type { InferType } from 'yup'
 import type { FormSubmitEvent } from '@bitrix24/b24ui-nuxt'
 
 const schema = object({
-  email: string().email('Invalid email').required('Required'),
+  email: string().email('Некорректный email').required('Обязательное поле'),
   password: string()
-    .min(8, 'Must be at least 8 characters')
-    .required('Required')
+    .min(8, 'Минимум 8 символов')
+    .required('Обязательное поле')
 })
 
 type Schema = InferType<typeof schema>
@@ -19,7 +19,7 @@ const state = reactive({
 
 const toast = useToast()
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  toast.add({ title: 'Success', description: 'The form has been submitted.', color: 'success' })
+  toast.add({ title: 'Успешно', description: 'Форма отправлена.', color: 'success' })
   console.log(event.data)
 }
 </script>
@@ -30,12 +30,12 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       <B24Input v-model="state.email" />
     </B24FormField>
 
-    <B24FormField label="Password" name="password">
+    <B24FormField label="Пароль" name="password">
       <B24Input v-model="state.password" type="password" />
     </B24FormField>
 
     <B24Button color="air-primary" type="submit">
-      Submit
+      Отправить
     </B24Button>
   </B24Form>
 </template>

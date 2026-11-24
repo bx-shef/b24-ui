@@ -8,14 +8,14 @@ import CloudWithCheckIcon from '@bitrix24/b24icons-vue/outline/CloudWithCheckIco
 
 const items = [
   {
-    label: 'Profile',
+    label: 'Профиль',
     icon: UserIcon,
     slot: 'profile' as const
   }, {
-    label: 'Billing',
+    label: 'Оплата',
     icon: PaymentIcon
   }, {
-    label: 'Settings',
+    label: 'Настройки',
     icon: Settings3Icon
   }
 ] satisfies DropdownMenuItem[]
@@ -23,7 +23,7 @@ const items = [
 
 <template>
   <B24DropdownMenu :items="items" :b24ui="{ content: 'w-48', viewport: 'w-48' }">
-    <B24Button label="Open" :icon="HamburgerMenuIcon" />
+    <B24Button label="Открыть" :icon="HamburgerMenuIcon" />
 
     <template #profile-trailing>
       <CloudWithCheckIcon class="shrink-0 size-5 text-(--ui-color-accent-main-primary)" />

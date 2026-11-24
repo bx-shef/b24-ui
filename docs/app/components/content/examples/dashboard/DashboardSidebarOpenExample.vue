@@ -7,16 +7,16 @@ import ContactIcon from '@bitrix24/b24icons-vue/outline/ContactIcon'
 
 const items: NavigationMenuItem[] = [
   {
-    label: 'Home',
+    label: 'Главная',
     icon: HomeIcon,
     active: true
   },
   {
-    label: 'Inbox',
+    label: 'Входящие',
     icon: MailIcon
   },
   {
-    label: 'Contacts',
+    label: 'Контакты',
     icon: ContactIcon
   }
 ]

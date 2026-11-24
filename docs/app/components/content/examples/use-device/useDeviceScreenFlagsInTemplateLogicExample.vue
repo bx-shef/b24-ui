@@ -5,7 +5,7 @@ const { screen } = useDevice()
 <template>
   <div class="flex flex-col gap-2">
     <B24Button :color="screen.isMobile ? 'air-primary' : 'air-secondary'">
-      Adaptive button
+      Адаптивная кнопка
     </B24Button>
   </div>
 </template>

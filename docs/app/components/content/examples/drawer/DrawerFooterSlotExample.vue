@@ -5,19 +5,19 @@ const open = ref(false)
 <template>
   <B24Drawer
     v-model:open="open"
-    title="Drawer with footer"
-    description="This is useful when you want a form in a Drawer."
+    title="Drawer с подвалом"
+    description="Пригодится, когда в Drawer нужна форма."
     :b24ui="{ container: 'max-w-xl mx-auto' }"
   >
-    <B24Button label="Open" use-dropdown :b24ui="{ trailingIcon: 'rotate-180' }" />
+    <B24Button label="Открыть" use-dropdown :b24ui="{ trailingIcon: 'rotate-180' }" />
 
     <template #body>
       <Placeholder class="h-48" />
     </template>
 
     <template #footer>
-      <B24Button label="Submit" color="air-primary-success" />
-      <B24Button label="Cancel" @click="open = false" />
+      <B24Button label="Отправить" color="air-primary-success" />
+      <B24Button label="Отмена" @click="open = false" />
     </template>
   </B24Drawer>
 </template>

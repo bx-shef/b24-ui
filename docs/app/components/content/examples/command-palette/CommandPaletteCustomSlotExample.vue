@@ -9,33 +9,33 @@ const groups = [
     id: 'settings',
     items: [
       {
-        label: 'Profile',
+        label: 'Профиль',
         icon: UserMaskIcon,
         kbds: ['meta', 'P']
       },
       {
-        label: 'Billing',
+        label: 'Оплата',
         icon: CreditDebitCardIcon,
         kbds: ['meta', 'B'],
         slot: 'billing' as const
       },
       {
-        label: 'Notifications',
+        label: 'Уведомления',
         icon: NotificationIcon
       },
       {
-        label: 'Security',
+        label: 'Безопасность',
         icon: LockLIcon
       }
     ]
   },
   {
     id: 'users',
-    label: 'Users',
+    label: 'Пользователи',
     slot: 'users' as const,
     items: [
       {
-        label: 'Assistant Name',
+        label: 'Имя ассистента',
         suffix: 'assistant',
         to: 'https://github.com/bitrix24',
         avatarSrc: '/b24ui/avatar/assistant.png',
@@ -49,7 +49,7 @@ const groups = [
         target: '_blank'
       },
       {
-        label: 'Employee Name',
+        label: 'Имя сотрудника',
         suffix: 'employee',
         to: 'https://github.com/bitrix24',
         avatarSrc: '/b24ui/avatar/employee.png',
@@ -70,7 +70,7 @@ const groups = [
       <span class="font-(--ui-font-weight-medium) text-(--ui-color-accent-main-primary)">{{ item.label }}</span>
 
       <B24Badge size="sm">
-        50% off
+        Скидка 50%
       </B24Badge>
     </template>
   </B24CommandPalette>

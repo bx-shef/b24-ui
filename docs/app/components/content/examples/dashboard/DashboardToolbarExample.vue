@@ -9,28 +9,28 @@ import OpenBookIcon from '@bitrix24/b24icons-vue/main/OpenBookIcon'
 const items: NavigationMenuItem[][] = [
   [
     {
-      label: 'General',
+      label: 'Общие',
       icon: UserIcon,
       active: true
     },
     {
-      label: 'Members',
+      label: 'Участники',
       icon: UserGroupIcon
     },
     {
-      label: 'Notifications',
+      label: 'Уведомления',
       icon: Bell1Icon
     }
   ],
   [
     {
-      label: 'Documentation',
+      label: 'Документация',
       icon: OpenBookIcon,
       to: 'https://bitrix24.github.io/b24ui/',
       target: '_blank'
     },
     {
-      label: 'Help & Feedback',
+      label: 'Помощь и обратная связь',
       icon: InfoCircleIcon,
       to: 'https://github.com/bitrix24/b24ui',
       target: '_blank'

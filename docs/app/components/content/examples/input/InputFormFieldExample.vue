@@ -7,12 +7,12 @@ const email = ref('')
 <template>
   <B24FormField
     label="Email"
-    help="We won't share your email."
+    help="Мы не передаём ваш email третьим лицам."
     required
   >
     <B24Input
       v-model="email"
-      placeholder="Enter your email"
+      placeholder="Введите ваш email"
       :icon="Bitrix24Icon"
     />
   </B24FormField>

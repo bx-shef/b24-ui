@@ -30,7 +30,7 @@ function onOpen() {
     :filter-fields="['label', 'email']"
     :icon="UserIcon"
     :trailing-icon="Expand1Icon"
-    placeholder="Select user"
+    placeholder="Выберите пользователя"
     class="w-80"
     :b24ui="{ content: 'w-80', viewport: 'w-80' }"
     @update:open="onOpen"

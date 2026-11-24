@@ -1,23 +1,23 @@
 <script setup lang="ts">
 import type { DescriptionListItem } from '@bitrix24/b24ui-nuxt'
 
-// `to` and `target` are not part of `DescriptionListItem`; the index signature
-// carries them so the `#description` slot can read them back.
+// `to` и `target` не входят в `DescriptionListItem`; индексная сигнатура
+// передаёт их, чтобы слот `#description` мог их прочитать.
 const items: DescriptionListItem[] = [
   {
-    label: 'Documentation',
-    description: 'Getting started guide',
+    label: 'Документация',
+    description: 'Руководство по началу работы',
     to: '/docs/getting-started'
   },
   {
-    label: 'Product site',
-    description: 'View on bitrix24.com',
+    label: 'Сайт продукта',
+    description: 'Открыть на bitrix24.com',
     to: 'https://www.bitrix24.com/',
     target: '_blank'
   },
   {
-    label: 'Created',
-    description: 'Oct 6, 2024 08:37'
+    label: 'Создано',
+    description: '6 октября 2024 08:37'
   }
 ]
 </script>

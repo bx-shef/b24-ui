@@ -8,21 +8,21 @@ import PencilDrawIcon from '@bitrix24/b24icons-vue/actions/PencilDrawIcon'
 const items: ContextMenuItem[][] = [
   [
     {
-      label: 'View',
+      label: 'Просмотр',
       icon: OpenedEyeIcon
     },
     {
-      label: 'Copy',
+      label: 'Копировать',
       icon: CopyPlatesIcon
     },
     {
-      label: 'Edit',
+      label: 'Изменить',
       icon: PencilDrawIcon
     }
   ],
   [
     {
-      label: 'Delete',
+      label: 'Удалить',
       color: 'air-primary-alert' as const,
       icon: TrashBinIcon
     }
@@ -33,7 +33,7 @@ const items: ContextMenuItem[][] = [
 <template>
   <B24ContextMenu :items="items">
     <div class="flex items-center justify-center rounded-md border border-dashed border-(--ui-color-design-outline-na-stroke) text-legend text-(length:--ui-font-size-sm) bg-default aspect-video w-72">
-      Right click here
+      Нажмите правой кнопкой мыши
     </div>
   </B24ContextMenu>
 </template>

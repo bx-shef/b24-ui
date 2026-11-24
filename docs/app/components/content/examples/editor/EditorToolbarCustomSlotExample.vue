@@ -4,9 +4,9 @@ import EditorLinkPopover from './EditorLinkPopover.vue'
 import BoldIcon from '@bitrix24/b24icons-vue/outline/BoldIcon'
 import ItalicIcon from '@bitrix24/b24icons-vue/outline/ItalicIcon'
 
-const value = ref(`Select text and click the link button to add a link with the custom popover.
+const value = ref(`Выделите текст и нажмите кнопку ссылки, чтобы добавить ссылку через собственный поповер.
 
-You can also edit existing links like [this one](https://bitrix24.github.io/b24ui/).`)
+Можно также изменять существующие ссылки, например [эту](https://bitrix24.github.io/b24ui/).`)
 
 const toolbarItems = [
   [

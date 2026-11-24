@@ -6,7 +6,7 @@ const chip = computed(() => ({ backgroundColor: color.value }))
 
 <template>
   <B24Popover>
-    <B24Button label="Choose color">
+    <B24Button label="Выбрать цвет">
       <template #leading>
         <span :style="chip" class="size-3 rounded-full" />
       </template>

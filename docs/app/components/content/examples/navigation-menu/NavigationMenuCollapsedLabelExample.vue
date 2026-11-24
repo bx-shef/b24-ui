@@ -7,20 +7,20 @@ import BookmarkIcon from '@bitrix24/b24icons-vue/outline/BookmarkIcon'
 
 const items: NavigationMenuItem[] = [
   {
-    label: 'Home',
+    label: 'Главная',
     icon: HomeIcon,
     active: true
   },
   {
-    label: 'Samples',
+    label: 'Примеры',
     icon: PlayIcon
   },
   {
-    label: 'Explore',
+    label: 'Обзор',
     icon: CompassIcon
   },
   {
-    label: 'Library',
+    label: 'Библиотека',
     icon: BookmarkIcon
   }
 ]

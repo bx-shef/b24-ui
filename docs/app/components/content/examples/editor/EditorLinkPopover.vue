@@ -51,7 +51,7 @@ function setLink() {
 
   let chain = props.editor.chain().focus()
 
-  // When linking code, extend the code mark range first to select the full code
+  // При добавлении ссылки к коду сначала расширяем диапазон метки кода, чтобы выделить весь код
   if (hasCode && !isEmpty) {
     chain = chain.extendMarkRange('code').setLink({ href: url.value })
   } else {
@@ -94,7 +94,7 @@ function handleKeyDown(event: KeyboardEvent) {
 
 <template>
   <B24Popover v-model:open="open" :b24ui="{ content: 'p-0.5' }">
-    <B24Tooltip text="Link">
+    <B24Tooltip text="Ссылка">
       <B24Button
         :icon="LinkIcon"
         color="air-tertiary-no-accent"
@@ -113,7 +113,7 @@ function handleKeyDown(event: KeyboardEvent) {
         name="url"
         type="url"
         size="sm"
-        placeholder="Paste a link..."
+        placeholder="Вставьте ссылку..."
         @keydown="handleKeyDown"
       >
         <div class="flex items-center me-0.5">
@@ -122,7 +122,7 @@ function handleKeyDown(event: KeyboardEvent) {
             color="air-tertiary-accent"
             size="sm"
             :disabled="!url && !active"
-            title="Apply link"
+            title="Применить ссылку"
             @click="setLink"
           />
 
@@ -133,7 +133,7 @@ function handleKeyDown(event: KeyboardEvent) {
             color="air-tertiary-no-accent"
             size="sm"
             :disabled="!url && !active"
-            title="Open in new window"
+            title="Открыть в новом окне"
             @click="openLink"
           />
 
@@ -142,7 +142,7 @@ function handleKeyDown(event: KeyboardEvent) {
             color="air-tertiary-no-accent"
             size="sm"
             :disabled="!url && !active"
-            title="Remove link"
+            title="Удалить ссылку"
             @click="removeLink"
           />
         </div>

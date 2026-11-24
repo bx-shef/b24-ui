@@ -66,7 +66,7 @@ const columns: TableColumn<Payment>[] = [{
     'color': 'air-secondary-no-accent',
     'size': 'sm',
     'use-dropdown': true,
-    'aria-label': 'Expand',
+    'aria-label': 'Развернуть',
     'b24ui': {
       trailingIcon: ['transition-transform', row.getIsExpanded() ? 'duration-200 rotate-180' : '']
     },
@@ -78,7 +78,7 @@ const columns: TableColumn<Payment>[] = [{
   cell: ({ row }) => `#${row.getValue('id')}`
 }, {
   accessorKey: 'date',
-  header: 'Date',
+  header: 'Дата',
   cell: ({ row }) => {
     return new Date(row.getValue('date')).toLocaleString('en-US', {
       day: 'numeric',
@@ -91,7 +91,7 @@ const columns: TableColumn<Payment>[] = [{
   }
 }, {
   accessorKey: 'status',
-  header: 'Status',
+  header: 'Статус',
   cell: ({ row }) => {
     const color = ({
       paid: 'air-primary-success' as const,
@@ -106,7 +106,7 @@ const columns: TableColumn<Payment>[] = [{
   header: 'Email'
 }, {
   accessorKey: 'amount',
-  header: 'Amount',
+  header: 'Сумма',
   meta: {
     class: {
       th: 'text-end',

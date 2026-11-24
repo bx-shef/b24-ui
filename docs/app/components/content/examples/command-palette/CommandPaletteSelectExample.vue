@@ -9,10 +9,10 @@ const toast = useToast()
 const groups = ref([
   {
     id: 'users',
-    label: 'Users',
+    label: 'Пользователи',
     items: [
       {
-        label: 'Assistant Name',
+        label: 'Имя ассистента',
         suffix: 'assistant',
         to: 'https://github.com/bitrix24',
         target: '_blank',
@@ -32,7 +32,7 @@ const groups = ref([
         }
       },
       {
-        label: 'Employee Name',
+        label: 'Имя сотрудника',
         suffix: 'employee',
         to: 'https://github.com/bitrix24',
         target: '_blank',
@@ -47,51 +47,51 @@ const groups = ref([
     id: 'actions',
     items: [
       {
-        label: 'Add new file',
-        suffix: 'Create a new file in the current directory or workspace.',
+        label: 'Добавить новый файл',
+        suffix: 'Создать новый файл в текущей папке или рабочем пространстве.',
         icon: FileUploadIcon,
         kbds: [
           'meta',
           'I'
         ],
         onSelect() {
-          toast.add({ title: 'Add new file' })
+          toast.add({ title: 'Добавить новый файл' })
         }
       },
       {
-        label: 'Add new folder',
-        suffix: 'Create a new folder in the current directory or workspace.',
+        label: 'Добавить новую папку',
+        suffix: 'Создать новую папку в текущей папке или рабочем пространстве.',
         icon: FolderPlusIcon,
         kbds: [
           'meta',
           'F'
         ],
         onSelect() {
-          toast.add({ title: 'Add new folder' })
+          toast.add({ title: 'Добавить новую папку' })
         }
       },
       {
-        label: 'Add hashtag',
-        suffix: 'Add a hashtag to the current item.',
+        label: 'Добавить хештег',
+        suffix: 'Добавить хештег к текущему элементу.',
         icon: TagIcon,
         kbds: [
           'meta',
           'H'
         ],
         onSelect() {
-          toast.add({ title: 'Add hashtag' })
+          toast.add({ title: 'Добавить хештег' })
         }
       },
       {
-        label: 'Add label',
-        suffix: 'Add a label to the current item.',
+        label: 'Добавить метку',
+        suffix: 'Добавить метку к текущему элементу.',
         icon: StageIcon,
         kbds: [
           'meta',
           'L'
         ],
         onSelect() {
-          toast.add({ title: 'Add label' })
+          toast.add({ title: 'Добавить метку' })
         }
       }
     ]

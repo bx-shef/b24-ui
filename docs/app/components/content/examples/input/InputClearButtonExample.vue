@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import CircleCrossIcon from '@bitrix24/b24icons-vue/outline/CircleCrossIcon'
 
-const value = ref('Click to clear')
+const value = ref('Нажмите, чтобы очистить')
 </script>
 
 <template>
   <B24Input
     v-model="value"
-    placeholder="Type something..."
+    placeholder="Введите что-нибудь..."
     :b24ui="{ trailing: 'pe-1' }"
   >
     <template v-if="value?.length" #trailing>
@@ -15,7 +15,7 @@ const value = ref('Click to clear')
         size="sm"
         color="air-tertiary-no-accent"
         :icon="CircleCrossIcon"
-        aria-label="Clear input"
+        aria-label="Очистить поле"
         @click="value = ''"
       />
     </template>

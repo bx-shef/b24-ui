@@ -5,30 +5,30 @@ import QuoteIcon from '@bitrix24/b24icons-vue/outline/QuoteIcon'
 import PlusLIcon from '@bitrix24/b24icons-vue/outline/PlusLIcon'
 import DragLIcon from '@bitrix24/b24icons-vue/outline/DragLIcon'
 
-const value = ref(`Click the plus button to open the suggestion menu and add new blocks.
+const value = ref(`Нажмите кнопку «плюс», чтобы открыть меню подсказок и добавить новые блоки.
 
-The button appears when hovering over blocks.`)
+Кнопка появляется при наведении на блоки.`)
 
 const suggestionItems: EditorSuggestionMenuItem[][] = [
   [
     {
       kind: 'heading',
       level: 1,
-      label: 'Heading 1'
+      label: 'Заголовок 1'
     },
     {
       kind: 'heading',
       level: 2,
-      label: 'Heading 2'
+      label: 'Заголовок 2'
     },
     {
       kind: 'bulletList',
-      label: 'Bullet List',
+      label: 'Маркированный список',
       icon: BulletedListIcon
     },
     {
       kind: 'blockquote',
-      label: 'Blockquote',
+      label: 'Цитата',
       icon: QuoteIcon
     }
   ]

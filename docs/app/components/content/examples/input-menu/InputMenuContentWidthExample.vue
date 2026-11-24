@@ -27,7 +27,7 @@ function onOpen() {
     :items="users"
     :icon="UserIcon"
     :trailing-icon="Expand1Icon"
-    placeholder="Select user"
+    placeholder="Выберите пользователя"
     :b24ui="{ content: 'min-w-fit', viewport: 'min-w-fit', item: 'min-w-fit' }"
     @update:open="onOpen"
   >
