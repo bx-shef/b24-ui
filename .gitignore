@@ -65,3 +65,4 @@ __pycache__/
 
 # Coverage reports (pnpm run test:coverage)
 /coverage
+docs/.data.bak

@@ -1,0 +1,67 @@
+# Обратный прокси с TLS — только если на сервере его ещё нет (install.sh ставит его сам, если порты
+# 80 и 443 свободны). Один на сервер: им же могут пользоваться другие сайты в сети proxy-net. Вручную:
+#   docker network create proxy-net
+#   docker compose -f proxy.compose.yml up -d
+#
+# nginx-proxy публикует контейнеры с переменной VIRTUAL_HOST, acme-companion выпускает для них
+# сертификаты Let's Encrypt (LETSENCRYPT_HOST). Документация: https://github.com/nginx-proxy/nginx-proxy
+# и https://github.com/nginx-proxy/acme-companion.
+#
+# Журнал доступа — без адреса клиента и строки запроса: LOG_FORMAT (README nginx-proxy, «Custom log
+# format»), $uri — путь без «?…»; «$» в compose пишется как «$$». Журнал ошибок — proxy-errorlog.conf
+# (уровень crit). Лимит запросов к /mcp/ — proxy-limits.conf (кладёт install.sh).
+name: proxy
+
+services:
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy:latest
+    container_name: nginx-proxy
+    restart: unless-stopped
+    environment:
+      LOG_FORMAT: '$$time_iso8601 $$host "$$request_method $$uri" $$status $$body_bytes_sent $$request_time'
+    logging: &proxy-logging
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+        compress: "true"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - certs:/etc/nginx/certs
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - ./proxy-errorlog.conf:/etc/nginx/conf.d/shef-errorlog.conf:ro
+      # Зона лимита /mcp/ — смонтирована, а не скопирована: пересоздание прокси её не теряет,
+      # иначе vhost.d/<домен>_location сослался бы на несуществующую зону и nginx не стартовал
+      - ./proxy-limits.conf:/etc/nginx/conf.d/b24ui-limits.conf:ro
+    networks:
+      - proxy-net
+
+  acme-companion:
+    image: nginxproxy/acme-companion:latest
+    container_name: nginx-proxy-acme
+    restart: unless-stopped
+    logging: *proxy-logging
+    environment:
+      NGINX_PROXY_CONTAINER: nginx-proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - certs:/etc/nginx/certs
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - acme:/etc/acme.sh
+    networks:
+      - proxy-net
+
+volumes:
+  certs:
+  vhost:
+  html:
+  acme:
+
+networks:
+  proxy-net:
+    external: true

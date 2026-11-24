@@ -1,0 +1,169 @@
+name: Docs image 🐳
+
+# Сайт документации (docs/, Nuxt-сервер) как Docker-образ ghcr.io/bx-shef/b24-ui-docs.
+# push в main — проверка (audit зависимостей, сборка, дымовая проверка), затем отдельная задача publish:
+# публикация latest + sha, только из main и только при заданном домене; на сервере образ подхватывает
+# Watchtower (deploy/docs/README.md). PR — только проверка, если затронуто то, что в образе.
+# Публикацию не обгоняет CI: audit зависимостей (тот же, что в ci.yml) идёт здесь же, до сборки.
+# GitHub Pages (deploy.yml) не заменяет: его выключают отдельным решением владельца (bx-shef/b24-ui#9).
+#
+# Адрес сайта вшивается в статику при сборке: переменная репозитория DOCS_SITE_URL (Settings → Variables)
+# или поле site_url при ручном запуске; пусто — плейсхолдер https://docs.example.com.
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    # Всё, кроме Markdown, и кроме служебных файлов GitHub; тексты документации (docs/content) и сам workflow
+    # — обратно в список (порядок важен: позднее правило перекрывает раннее).
+    paths:
+      - '**'
+      - '!**/*.md'
+      - '!.github/**'
+      - 'docs/content/**'
+      - '.github/workflows/docs-image.yml'
+  workflow_dispatch:
+    inputs:
+      site_url:
+        description: Адрес сайта для сборки (https://домен, без слэша на конце); пусто — переменная DOCS_SITE_URL
+        type: string
+        required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-image-${{ github.ref }}
+  # отменяем только проверки PR: публикацию из main вытеснять нельзя
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  SITE_URL: ${{ inputs.site_url || vars.DOCS_SITE_URL || 'https://docs.example.com' }}
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    steps:
+      - name: Адрес сайта — только https://домен
+        run: |
+          [[ "$SITE_URL" =~ ^https://[a-z0-9.-]+$ ]] || { echo "SITE_URL='$SITE_URL': нужен вид https://домен без слэша, пути и порта"; exit 1; }
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+
+      - name: Install node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+
+      # Как в ci.yml: образ с известной уязвимостью high/critical не публикуем. Так публикация не зависит
+      # от того, успел ли закончиться ci на том же коммите.
+      - name: Audit dependencies
+        run: pnpm audit --audit-level high --ignore-registry-errors
+
+      - uses: docker/setup-buildx-action@37fe631027851001ddb9b187196cc803df7f5f0e # v4.3.0
+
+      - name: Собрать образ
+        uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a # v7.3.0
+        with:
+          context: .
+          file: deploy/docs/Dockerfile
+          load: true
+          tags: b24-ui-docs:ci
+          build-args: |
+            SITE_URL=${{ env.SITE_URL }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Дымовая проверка
+        shell: bash
+        run: |
+          docker run -d --name docs -p 127.0.0.1:3000:3000 b24-ui-docs:ci
+          for i in $(seq 1 60); do curl -fs localhost:3000/llms.txt >/dev/null && break; sleep 1; done
+          check() { got=$(curl -s -o /dev/null -w '%{http_code}' "${@:2}"); echo "$1 → $got  ${*:2}"; [ "$got" = "$1" ]; }
+          check 200 localhost:3000/
+          check 200 localhost:3000/llms.txt
+          check 200 localhost:3000/sitemap.xml
+          check 200 localhost:3000/docs/getting-started/
+          check 200 localhost:3000/raw/docs/getting-started.md
+          check 200 localhost:3000/__nuxt_content/docs/sql_dump.txt
+          mcp() { curl -s -w '\n%{http_code}' -X POST localhost:3000/mcp/ \
+            -H 'content-type: application/json' -H 'accept: application/json, text/event-stream' -d "$1"; }
+          # MCP: список инструментов (ответ — в переменную: grep -q закрыл бы трубу раньше curl, а pipefail это ловит)
+          out=$(mcp '{"jsonrpc":"2.0","id":1,"method":"tools/list"}')
+          grep -q '"tools":\[{"name":"' <<<"$out" || { echo "/mcp/ tools/list: нет tools: ${out:0:300}"; exit 1; }
+          echo "/mcp/ tools/list → tools"
+          # MCP: контентные инструменты ходят в SQLite-базу @nuxt/content (в образе она в /data, пишет node)
+          for call in \
+            '{"name":"b24-ui-search-components","arguments":{"query":"button"}}|components' \
+            '{"name":"b24-ui-get-documentation-page","arguments":{"path":"/docs/getting-started/"}}|Introduction'; do
+            out=$(mcp "{\"jsonrpc\":\"2.0\",\"id\":2,\"method\":\"tools/call\",\"params\":${call%%|*}}")
+            if grep -q '"isError":true' <<<"$out" || ! grep -q '^200$' <<<"${out##*$'\n'}" || ! grep -qF -- "${call##*|}" <<<"$out"; then
+              echo "/mcp/ tools/call ${call%%|*}: ошибка или нет данных: ${out:0:400}"; docker logs docs 2>&1 | tail -20; exit 1
+            fi
+            echo "/mcp/ tools/call → данные: ${call%%|*}"
+          done
+          # адрес сайта из сборки дошёл до статики
+          llms=$(curl -fs localhost:3000/llms.txt)
+          grep -qF "$SITE_URL" <<<"$llms" || { echo "llms.txt: нет адреса $SITE_URL"; exit 1; }
+          # healthcheck образа — node fetch внутри контейнера
+          docker exec docs node -e "fetch('http://127.0.0.1:3000/llms.txt').then(r => process.exit(r.ok ? 0 : 1))"
+          # работает не от root
+          [ "$(docker exec docs id -un)" = node ]
+
+      - name: Лог контейнера при сбое
+        if: failure()
+        run: docker logs docs || true
+
+  # Публикация — отдельная задача: право писать пакеты есть только у неё. Только из main и только с настоящим
+  # доменом (адрес вшит в статику при сборке). Слои берёт из кэша задачи check — пересборки нет.
+  publish:
+    needs: check
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && !endsWith(inputs.site_url || vars.DOCS_SITE_URL || 'https://docs.example.com', '//docs.example.com')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: docker/setup-buildx-action@37fe631027851001ddb9b187196cc803df7f5f0e # v4.3.0
+
+      - name: Вход в GHCR
+        uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # v4.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Метки образа
+        id: meta
+        uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6.2.0
+        with:
+          images: ghcr.io/bx-shef/b24-ui-docs
+          tags: |
+            type=raw,value=latest
+            type=sha,prefix=sha-
+
+      - name: Опубликовать
+        uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a # v7.3.0
+        with:
+          context: .
+          file: deploy/docs/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            SITE_URL=${{ env.SITE_URL }}
+          cache-from: type=gha
