@@ -3295,68 +3295,68 @@
       "summary": "chore(deps): remove h3 override"
     },
     "84a48cb17cec964089b307f2f81ff37380de5d74": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 16,
+      "b24ui_sha": "72010970f2596d513dd5f6699417d1a70c7633a4",
       "decision": "port",
       "summary": "docs: allow crawlers on build assets — removed Disallow: /_nuxt/ from docs/public/robots.txt"
     },
     "8471aa71ca214f63455aea007f37624934bc0591": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 16,
+      "b24ui_sha": "72010970f2596d513dd5f6699417d1a70c7633a4",
       "decision": "port",
       "summary": "chore: pre-bundle docs and playground deps — optimizeDeps entries for deps b24ui has"
     },
     "377932863d3c701ea446f98ed4c63f0b2be72388": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 16,
+      "b24ui_sha": "72010970f2596d513dd5f6699417d1a70c7633a4",
       "decision": "port",
       "summary": "fix(ChatMessages): measure the submitted message once the layout settles (#7295)"
     },
     "4539c9b8b49074f0947a5f6410fc7fc9f2a7615b": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 16,
+      "b24ui_sha": "72010970f2596d513dd5f6699417d1a70c7633a4",
       "decision": "port",
       "summary": "docs(chat): queue messages sent while a response streams (#7264) — chat.md only, docs chat app n/a"
     },
     "dc7c7822f28000bb483aad5e0c39dc02b29dced7": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 16,
+      "b24ui_sha": "72010970f2596d513dd5f6699417d1a70c7633a4",
       "decision": "port",
       "summary": "docs(components): link TanStack Virtual and Charts docs of the major we use (#7298)"
     },
     "e6d6135119c5bd54cdad00d1eee30fc2ede7985e": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 16,
+      "b24ui_sha": "72010970f2596d513dd5f6699417d1a70c7633a4",
       "decision": "port",
       "summary": "fix(ChatTool): pick up a default slot added after mount (#7297)"
     },
     "94340a41500f7b69c7829d73894c9b90026aa284": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 16,
+      "b24ui_sha": "72010970f2596d513dd5f6699417d1a70c7633a4",
       "decision": "port",
       "summary": "docs(getting-started): add image integration page (#7300)"
     },
     "643bc9ab23110bea2ad9325932969e0736c13c19": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 16,
+      "b24ui_sha": "72010970f2596d513dd5f6699417d1a70c7633a4",
       "decision": "port",
       "summary": "fix(module): skip prose components when prose is false (#7266)"
     },
     "8f180de3497105d765b476d0e1558e5061b19175": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 16,
+      "b24ui_sha": "72010970f2596d513dd5f6699417d1a70c7633a4",
       "decision": "port",
       "summary": "fix(Table): merge grouped headers across rows (#7240)"
     },
     "55f957b1cfdd5487ec9ff16ff1a98c1eb3067f5c": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 16,
+      "b24ui_sha": "72010970f2596d513dd5f6699417d1a70c7633a4",
       "decision": "port",
       "summary": "fix(ProseImg/ColorModeImage): avoid applying app.baseURL twice with @nuxt/image (#7278)"
     },
     "1d0c49e423afb149b87cdfc22f1f06d3134a4aa4": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 16,
+      "b24ui_sha": "72010970f2596d513dd5f6699417d1a70c7633a4",
       "decision": "port",
       "summary": "chore(deps): pin tailwind-variants to 3.2.2 for consumers"
     }
