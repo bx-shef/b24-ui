@@ -143,6 +143,15 @@ export type Messages = {
   drawer: {
     close: string
   }
+  editorEmojiMenu: {
+    label: string
+  }
+  editorMentionMenu: {
+    label: string
+  }
+  editorSuggestionMenu: {
+    label: string
+  }
   pagination: {
     first: string
     last: string

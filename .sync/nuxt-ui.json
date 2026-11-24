@@ -1,7 +1,7 @@
 {
   "upstream": "nuxt/ui",
   "branch": "v4",
-  "cursor": "422d015e288bdae82a62c6aeeb7a722ad3070a83",
+  "cursor": "1ce815ebf64a78251f8bc08c838dd84eaca03b97",
   "_cursor_note": "cursor = last upstream commit ported into b24ui. The sync is manual by decision: one commit at a time, oldest-first, each with a `.sync/log/<sha>.md` journal and an entry in `processed`. There is no dispatcher, no porter workflow and no kill-switch — `.sync/PORTING.md` is the whole procedure. `processed` is maintained per port (backfilled #68-#72 on 2026-06-09).",
   "processed": {
     "2799fa6f2b25ce3eb15e050f3ef7c57d0d9a2fdb": {
@@ -3917,6 +3917,12 @@
       "b24ui_sha": "pending-merge",
       "decision": "port",
       "summary": "fix(EditorToolbar): aria-pressed у кнопок форматирования (mark, heading, textAlign, списки, blockquote, codeBlock, link; 'mixed' для частично ссылочного выделения); тест на настоящем Editor, снимки"
+    },
+    "1ce815ebf64a78251f8bc08c838dd84eaca03b97": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(useEditorMenu): имя у listbox и групп меню редактора — aria-label (editorEmojiMenu/MentionMenu/SuggestionMenu.label, сообщения добавлены во все 20 наших локалей и тип Messages), aria-labelledby у групп с label, разделитель aria-hidden; в теме editor-suggestion-menu добавлен слот separator; новый тест EditorSuggestionMenu"
     }
   }
 }

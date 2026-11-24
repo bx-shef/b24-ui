@@ -38,6 +38,7 @@ export default {
       'font-(--ui-font-weight-normal)',
       'after:ms-[10px] after:block after:flex-1 after:min-w-[15px] after:h-px after:bg-(--ui-color-divider-vibrant-default)'
     ].join(' '),
+    separator: 'my-2 mx-4.5 h-px bg-(--ui-color-divider-vibrant-default)',
     item: [
       'group',
       'w-full ', // min-w-[195px]

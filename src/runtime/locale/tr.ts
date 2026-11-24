@@ -140,6 +140,15 @@ export default defineLocale<Messages>({
     drawer: {
       close: 'Kapat'
     },
+    editorEmojiMenu: {
+      label: 'Emojiler'
+    },
+    editorMentionMenu: {
+      label: 'Bahsetmeler'
+    },
+    editorSuggestionMenu: {
+      label: 'Öneriler'
+    },
     pagination: {
       first: 'İlk sayfa',
       last: 'Son sayfa',
