@@ -744,7 +744,7 @@ defineExpose({
   </DefineRowTemplate>
 
   <DefineTableTemplate>
-    <table ref="tableRef" data-slot="base" :class="b24ui.base({ class: [props.b24ui?.base] })">
+    <table ref="tableRef" :aria-busy="props.loading ? 'true' : undefined" data-slot="base" :class="b24ui.base({ class: [props.b24ui?.base] })">
       <caption v-if="props.caption || !!slots.caption" data-slot="caption" :class="b24ui.caption({ class: [props.b24ui?.caption] })">
         <slot name="caption">
           {{ props.caption }}
@@ -812,7 +812,7 @@ defineExpose({
           <ReuseRowTemplate v-for="row in bottomRows" :key="row.id" :row="row" />
         </template>
 
-        <tr v-else-if="props.loading && !!slots['loading']">
+        <tr v-else-if="props.loading">
           <td :colspan="tableApi.getVisibleLeafColumns().length" data-slot="loading" :class="b24ui.loading({ class: props.b24ui?.loading })">
             <slot name="loading" />
           </td>
@@ -841,6 +841,7 @@ defineExpose({
             v-for="header in footerGroup.headers"
             :key="header.id"
             :data-pinned="header.column.getIsPinned()"
+            :scope="header.colSpan > 1 ? 'colgroup' : 'col'"
             :colspan="header.colSpan > 1 ? header.colSpan : undefined"
             :rowspan="header.rowSpan > 1 ? header.rowSpan : undefined"
             data-slot="th"

@@ -12,7 +12,7 @@ export default {
   slots: {
     root: 'relative flex items-start',
     base: [
-      'cursor-pointer',
+      'group/switch cursor-pointer',
       'inline-flex items-center',
       'shrink-0',
       'rounded-(--ui-border-radius-pill)',
@@ -31,7 +31,7 @@ export default {
       'bg-(--ui-color-base-white-fixed)',
       'shadow-lg',
       'ring-0',
-      'transition-transform duration-200 motion-reduce:transition-none',
+      'transition-[transform,translate,scale,rotate,width] duration-200 motion-reduce:transition-none',
       'data-[state=unchecked]:translate-x-0 data-[state=unchecked]:rtl:-translate-x-0'
     ].join(' '),
     icon: [
@@ -75,28 +75,28 @@ export default {
       xs: {
         base: 'w-[28px]',
         container: 'h-[16px]',
-        thumb: 'size-[12px] data-[state=checked]:translate-x-3 data-[state=checked]:rtl:-translate-x-3',
+        thumb: 'size-[12px] group-active/switch:w-[14px] data-[state=checked]:translate-x-3 data-[state=checked]:group-active/switch:translate-x-2.5 data-[state=checked]:rtl:-translate-x-3 data-[state=checked]:rtl:group-active/switch:-translate-x-2.5',
         wrapper: 'text-(length:--ui-font-size-xs)',
         label: 'leading-[16px]'
       },
       sm: {
         base: 'w-[32px]',
         container: 'h-[16px]',
-        thumb: 'size-[14px] data-[state=checked]:translate-x-3.5 data-[state=checked]:rtl:-translate-x-3.5',
+        thumb: 'size-[14px] group-active/switch:w-[16px] data-[state=checked]:translate-x-3.5 data-[state=checked]:group-active/switch:translate-x-3 data-[state=checked]:rtl:-translate-x-3.5 data-[state=checked]:rtl:group-active/switch:-translate-x-3',
         wrapper: 'text-(length:--ui-font-size-sm)',
         label: 'leading-[16px]'
       },
       md: {
         base: 'w-[36px]',
         container: 'h-[20px]',
-        thumb: 'size-[16px] data-[state=checked]:translate-x-4 data-[state=checked]:rtl:-translate-x-4',
+        thumb: 'size-[16px] group-active/switch:w-[20px] data-[state=checked]:translate-x-4 data-[state=checked]:group-active/switch:translate-x-3 data-[state=checked]:rtl:-translate-x-4 data-[state=checked]:rtl:group-active/switch:-translate-x-3',
         wrapper: 'text-(length:--ui-font-size-md)',
         label: 'leading-[20px]'
       },
       lg: {
         base: 'w-[40px]',
         container: 'h-[20px]',
-        thumb: 'size-[20px] data-[state=checked]:translate-x-4 data-[state=checked]:rtl:-translate-x-4',
+        thumb: 'size-[20px] group-active/switch:w-[24px] data-[state=checked]:translate-x-4 data-[state=checked]:group-active/switch:translate-x-3 data-[state=checked]:rtl:-translate-x-4 data-[state=checked]:rtl:group-active/switch:-translate-x-3',
         wrapper: 'text-(length:--ui-font-size-xl)',
         label: 'leading-[20px]'
       }

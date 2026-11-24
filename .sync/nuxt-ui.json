@@ -1,7 +1,7 @@
 {
   "upstream": "nuxt/ui",
   "branch": "v4",
-  "cursor": "366e948458689236e5b2fa98cb2e292f6e5327b3",
+  "cursor": "d463596280b8baf5abb9287aa812bdb7955bcf5b",
   "_cursor_note": "cursor = last upstream commit ported into b24ui. The sync is manual by decision: one commit at a time, oldest-first, each with a `.sync/log/<sha>.md` journal and an entry in `processed`. There is no dispatcher, no porter workflow and no kill-switch — `.sync/PORTING.md` is the whole procedure. `processed` is maintained per port (backfilled #68-#72 on 2026-06-09).",
   "processed": {
     "2799fa6f2b25ce3eb15e050f3ef7c57d0d9a2fdb": {
@@ -3421,58 +3421,148 @@
       "summary": "fix(module): useImage в шаблоне изображения импортируется, а не реэкспортируется из #imports"
     },
     "2be441f15ded837159a872483ddf3eb40d0ddb39": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 24,
+      "b24ui_sha": "8a59b0141b3beaecd8f36f81a78c41c802b80cb1",
       "decision": "port",
       "summary": "chore(skills): getRowId и watch-options в рецепте таблиц"
     },
     "c6cc98df63909817c6e21108c9f00cf972912255": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 24,
+      "b24ui_sha": "8a59b0141b3beaecd8f36f81a78c41c802b80cb1",
       "decision": "port",
       "summary": "docs: status/statusText в Error и createError, импорт nuxt/server в серверных примерах чата, актуальная модель OpenAI"
     },
     "6f1cdd805a548f9df5a597ec1cb948849d846c02": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 24,
+      "b24ui_sha": "8a59b0141b3beaecd8f36f81a78c41c802b80cb1",
       "decision": "port",
       "summary": "perf(module): шаблоны Nuxt пересобираются по dependsOn вместо сторожа builder:watch"
     },
     "55109f84fa38ea3f4efa72c49c48566cdaf93250": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 24,
+      "b24ui_sha": "8a59b0141b3beaecd8f36f81a78c41c802b80cb1",
       "decision": "port",
       "summary": "docs(templates): расширение автодополнения редактора в playgrounds (autoTrigger, onTrigger→false, dismiss); гайд редактора и шаблон — n/a"
     },
     "1f81af134c84bdfdeee9781fd74a914d5c70ae41": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 24,
+      "b24ui_sha": "8a59b0141b3beaecd8f36f81a78c41c802b80cb1",
       "decision": "port",
       "summary": "perf(tv): общий результат вызова tv для одинаковых простых вариантов, ключ не строится для неперечисляемых свойств"
     },
     "5ebbe6d02da6d1c69e10742211da7c814bd8897f": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 24,
+      "b24ui_sha": "8a59b0141b3beaecd8f36f81a78c41c802b80cb1",
       "decision": "no-op",
       "summary": "perf(PageCard): в B24PageCard нет spotlight и отслеживания мыши — нечего переносить"
     },
     "bab1c62950cdacb9c7af41b74cde1574da1b0cfe": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 24,
+      "b24ui_sha": "8a59b0141b3beaecd8f36f81a78c41c802b80cb1",
       "decision": "no-op",
       "summary": "perf(module): палитра tailwindcss/colors в b24ui не используется — плагин colors не генерирует оттенков"
     },
     "02e0a3be5f0500cad90951051d9a6140946245f0": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 24,
+      "b24ui_sha": "8a59b0141b3beaecd8f36f81a78c41c802b80cb1",
       "decision": "n/a",
       "summary": "docs(showcase): виртуальный showcase сайта апстрима (virtualrh.fr) — сайт-only"
     },
     "366e948458689236e5b2fa98cb2e292f6e5327b3": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 24,
+      "b24ui_sha": "8a59b0141b3beaecd8f36f81a78c41c802b80cb1",
       "decision": "n/a",
       "summary": "docs(templates): гайды шаблонов в llms.txt и ссылка на гайд редактора — у форка нет раздела гайдов и шаблонов; code-tree-intersection не используется"
+    },
+    "200b0bfb7a5666c870742f3f43c83cf09234aed9": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "skip",
+      "summary": "feat(module): @nuxt/ui/eslint — правила завязаны на палитру Nuxt UI, перенос с адаптацией под токены b24ui отдельной задачей #25"
+    },
+    "5ca1d18544a5f7cc92515ff381a153e3876a069e": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "chore(deps): обновление зависимостей без мажорных — каталог pnpm-workspace.yaml, packageManager pnpm@12.16.1, override unplugin ^3.7.0"
+    },
+    "ca0545fdd29651a2aee779463f2ece42d14996f3": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "chore(deps): tiptap ^3.32.2 — каталог pnpm-workspace.yaml"
+    },
+    "e5577af158dc2843f05cbb3b2cb9e0db8a0a48ef": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(module): локали @nuxtjs/i18n загружаются лениво — динамический import на локаль, en в составе плагина"
+    },
+    "37dde7b6cdddae1c32af2690dbd30f6682cc5ae8": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "feat(Switch): ползунок растягивается при нажатии — group/switch и group-active в теме"
+    },
+    "bcc09c0e81fa51bfd6f964e27ea5e6ae279d05d5": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(ContextMenu/DropdownMenu): слот item получает active"
+    },
+    "392122e81a599da9c6a310d4aa1941ef8fce023e": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "chore(deps): фреймворк Nuxt ^4.6.4 — каталог pnpm-workspace.yaml"
+    },
+    "4963b0d83b795b84bc87096ffb03bfc09c505b43": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(ContentSearchButton): валидная HTML-разметка слота trailing — span вместо div внутри button"
+    },
+    "4ac4c59ce4713104550738764c1d413c31f4a1d9": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(ProseTh): scope=\"col\" у ячеек заголовка"
+    },
+    "045befda7c3b6eba4eedc92088af76637f2ee261": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(Table): scope у ячеек заголовка подвала"
+    },
+    "f837b98d1b937fde06e636ad63c96964f81b7714": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "chore(deps): @nuxt/cli дедуплицирован через override ^4.0.3"
+    },
+    "cb0a51f12a9b4fe44fb232df9a25cff478235cef": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "docs(app): числовой tagPriority заменён на 'critical' в useTheme и плагине data; страницы темы и плагина theme у форка нет"
+    },
+    "ec2b6f3dad908707a123f21dd07de36d7b35bea8": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "docs(app): tagPriority в стилях темы типизирован литералом (as const)"
+    },
+    "848ebef47132d0f5f2a7f0b20c4a4cb6c09f8dae": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(Table): пустое состояние скрыто во время загрузки — строка загрузки не зависит от слота loading"
+    },
+    "d463596280b8baf5abb9287aa812bdb7955bcf5b": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(Table): aria-busy на table во время загрузки"
     }
   }
 }
