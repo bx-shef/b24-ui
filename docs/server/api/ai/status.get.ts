@@ -1,4 +1,3 @@
-import { defineEventHandler, setResponseHeader } from 'h3'
 import { chatConfig } from '../../utils/chatAvailability'
 
 /**

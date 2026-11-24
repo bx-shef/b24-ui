@@ -36,8 +36,8 @@ describe('docs chat: deploy and secrets', () => {
     const route = read('docs/server/api/ai.post.ts')
 
     expect(route.indexOf('if (!config.enabled)')).toBeGreaterThan(-1)
-    expect(route.indexOf('if (!config.enabled)')).toBeLessThan(route.indexOf('createDeepSeek('))
-    expect(route.indexOf('if (!config.enabled)')).toBeLessThan(route.indexOf('readBody('))
+    expect(route.indexOf('if (!config.enabled)')).toBeLessThan(route.indexOf('createChatModel('))
+    expect(route.indexOf('if (!config.enabled)')).toBeLessThan(route.indexOf('readJsonLimited(event'))
   })
 
   it('has no API key written into the chat files', () => {
@@ -45,6 +45,9 @@ describe('docs chat: deploy and secrets', () => {
       'docs/server/api/ai.post.ts',
       'docs/server/api/ai/status.get.ts',
       'docs/server/utils/chatAvailability.ts',
+      'docs/server/utils/chatConfig.ts',
+      'docs/server/utils/chatModel.ts',
+      'docs/server/utils/chatTools.ts',
       'docs/server/utils/chatGuard.ts',
       'docs/app/components/chat/Chat.vue',
       'docs/app/composables/useChat.ts',

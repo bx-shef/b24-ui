@@ -465,7 +465,7 @@ material. Reproduce its *intent* in b24ui by editing files under `src/` only.
     answers 404 before reading the body, `GET /api/ai/status` says
     `{ enabled: false }` and `useChat().enabled` hides every entry point
     (header button, search entry, "Объяснить с AI", ⌘I, the panel itself).
-    `runtimeConfig.public.aiChat` only mirrors the key at build/start;
+    `runtimeConfig.public.aiChat` only mirrors the key at build (the key itself is never set at image build);
     prerendered pages are built without it, so the browser asks the status
     route — keep that, a build-time flag alone would hide the chat in the
     Docker image.
@@ -477,8 +477,8 @@ material. Reproduce its *intent* in b24ui by editing files under `src/` only.
     `#nuxt-mcp-toolkit/tools.mjs`; `@ai-sdk/mcp` is not needed.
   - **Abuse protection is ours.** Upstream has none beyond Gateway limits;
     here `docs/server/utils/chatGuard.ts` (pure, covered by
-    `test/utils/docs-chat-guard.spec.ts`) holds the per-IP and global rate
-    limits (in process memory), the body checks and the history sanitising
+    `test/utils/docs-chat-guard.spec.ts`, the route by `docs-chat-route.spec.ts`) holds the per-IP (IPv6 by /64), window and daily rate
+    limits (in process memory), the bounded body read, the tool-result cut and the history sanitising
     (tool output of earlier turns is dropped before it reaches the model). The
     client address is the **last** `X-Forwarded-For` entry — what nginx-proxy
     appended; everything left of it is client-controlled. If the site is ever
