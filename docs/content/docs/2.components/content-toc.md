@@ -1,6 +1,6 @@
 ---
 title: ContentToc
-description: 'A sticky table of contents component with dynamic active section highlighting.'
+description: 'Закреплённое оглавление с динамической подсветкой активного раздела.'
 category: content
 framework: nuxt
 links:
@@ -13,15 +13,15 @@ links:
 ---
 
 ::warning{to="/docs/getting-started/integrations/content/"}
-This component is only available when the `@nuxt/content` module is installed.
+Компонент доступен, только если установлен модуль `@nuxt/content`.
 ::
 
-## Usage
+## Использование {#usage}
 
-Use the `links` prop with the `page?.body?.toc?.links`{lang="ts-type"} you get when fetching a page.
+Пропс `links` принимает `page?.body?.toc?.links`{lang="ts-type"}, которое возвращается при получении страницы.
 
 ::note
-Highlighting the reader's position is handled for you. The `useScrollspy` composable behind it is exported too, if you are building your own table of contents: `const { activeHeadings, updateHeadings } = useScrollspy()`{lang="ts"}. Call `updateHeadings()`{lang="ts"} with the heading elements to observe after the content changes. Prefer `activeHeadings` over `visibleHeadings` — it keeps the last heading lit while the reader is between two, where `visibleHeadings` goes empty and the highlight flickers.
+Подсветка текущей позиции читателя работает сама. Лежащий в её основе композабл `useScrollspy` экспортируется отдельно, если вы собираете своё оглавление: `const { activeHeadings, updateHeadings } = useScrollspy()`{lang="ts"}. После изменения контента вызывайте `updateHeadings()`{lang="ts"} с элементами заголовков, за которыми нужно следить. Используйте `activeHeadings`, а не `visibleHeadings`: он оставляет подсвеченным последний заголовок, пока читатель находится между двумя, а `visibleHeadings` в этот момент пустеет, и подсветка мигает.
 ::
 
 ::component-example
@@ -32,9 +32,9 @@ props:
 ---
 ::
 
-### Title
+### Заголовок {#title}
 
-Use the `title` prop to change the title of the Table of Contents.
+Пропс `title` меняет заголовок оглавления.
 
 ::component-code{prefix="content"}
 ---
@@ -49,37 +49,37 @@ external:
 externalTypes:
   - ContentTocLink[]
 props:
-  title: 'On this page'
+  title: 'На этой странице'
   class: 'w-full'
   links:
   - id: usage
     depth: 2
-    text: Usage
+    text: Использование
     children:
     - id: title
       depth: 3
-      text: Title
+      text: Заголовок
   - id: api
     depth: 2
     text: API
     children:
     - id: props
       depth: 3
-      text: Props
+      text: Пропсы
     - id: slots
       depth: 3
-      text: Slots
+      text: Слоты
   - id: theme
     depth: 2
-    text: Theme
+    text: Тема
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Within a page
+### На странице {#within-a-page}
 
-Use the ContentToc component in a page to display the Table of Contents:
+Компонент ContentToc на странице показывает оглавление:
 
 ```vue [pages/\[...slug\\].vue]{14-16}
 <script setup lang="ts">
@@ -112,18 +112,18 @@ if (!page.value) {
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

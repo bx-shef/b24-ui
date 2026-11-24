@@ -1,6 +1,6 @@
 ---
 title: DashboardGroup
-description: 'A fixed-layout dashboard container with sidebar state management and persistent UI state.'
+description: 'Контейнер дашборда с фиксированной раскладкой, управлением состоянием бокового меню и сохранением состояния интерфейса.'
 category: dashboard
 links:
   - label: GitHub
@@ -11,11 +11,11 @@ links:
     to: https://ui.nuxt.com/docs/components/dashboard-group
 ---
 
-## Usage
+## Использование {#usage}
 
-The DashboardGroup component is the main layout that wraps the [DashboardSidebar](/docs/components/dashboard-sidebar/) and [DashboardPanel](/docs/components/dashboard-panel/) components to create a responsive dashboard interface.
+Компонент DashboardGroup — основная раскладка, которая оборачивает компоненты [DashboardSidebar](/docs/components/dashboard-sidebar/) и [DashboardPanel](/docs/components/dashboard-panel/) и собирает адаптивный интерфейс дашборда.
 
-Use it in a layout or in your `app.vue`:
+Используйте его в раскладке или в `app.vue`:
 
 ```vue [layouts/dashboard.vue]{2,6}
 <template>
@@ -29,14 +29,14 @@ Use it in a layout or in your `app.vue`:
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

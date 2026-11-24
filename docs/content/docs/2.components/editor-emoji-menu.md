@@ -1,12 +1,12 @@
 ---
 title: EditorEmojiMenu
-description: "An emoji suggestion menu that automatically appears upon typing the colon : character in the editor."
+description: 'Меню подсказок эмодзи, которое автоматически появляется при вводе двоеточия в редакторе.'
 category: editor
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/EditorEmojiMenu.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/editor
   - label: Nuxt UI
@@ -14,16 +14,16 @@ links:
     to: https://ui.nuxt.com/docs/components/editor-emoji-menu
 ---
 
-## Usage
+## Использование {#usage}
 
-The EditorEmojiMenu component displays a menu of emoji suggestions when typing the `:` character in the editor and inserts the selected emoji. It works alongside the `@tiptap/extension-emoji` package to provide emoji support.
+Компонент EditorEmojiMenu показывает меню подсказок эмодзи, когда в редакторе вводят символ `:`, и вставляет выбранное эмодзи. Для поддержки эмодзи он работает вместе с пакетом `@tiptap/extension-emoji`.
 
 ::note
-It uses the `useEditorMenu` composable built on top of TipTap's [Suggestion](https://tiptap.dev/docs/editor/api/utilities/suggestion) utility to filter items as you type and support keyboard navigation (arrow keys, enter to select, escape to close).
+Он использует композабл `useEditorMenu` на основе утилиты [Suggestion](https://tiptap.dev/docs/editor/api/utilities/suggestion) из TipTap: элементы фильтруются по мере ввода, а по меню можно перемещаться с клавиатуры (стрелки, Enter для выбора, Escape для закрытия).
 ::
 
 ::caution
-It must be used inside an [Editor](/docs/components/editor/) component's default slot to have access to the editor instance.
+Компонент нужно использовать в слоте по умолчанию компонента [Editor](/docs/components/editor/), чтобы получить доступ к экземпляру редактора.
 ::
 
 ::component-example
@@ -36,16 +36,16 @@ class: 'p-8'
 ::
 
 ::warning
-The `@tiptap/extension-emoji` package is not installed by default, you need to install it separately.
+Пакет `@tiptap/extension-emoji` по умолчанию не установлен, его нужно установить отдельно.
 ::
 
 ::callout{to="https://tiptap.dev/docs/editor/extensions/nodes/emoji" target="_blank"}
-Learn more about the Emoji extension in the TipTap documentation.
+Подробнее о расширении Emoji — в документации TipTap.
 ::
 
-### Items
+### Элементы {#items}
 
-Use the `items` prop as an array of objects with the following properties:
+Пропс `items` — массив объектов со свойствами:
 
 - `name: string`{lang="ts-type"}
 - `emoji: string`{lang="ts-type"}
@@ -64,12 +64,12 @@ class: 'p-8'
 ::
 
 ::note
-You can also pass an array of arrays to the `items` prop to create separated groups of items.
+Чтобы получить отдельные группы элементов, передайте в `items` массив массивов.
 ::
 
-### Char
+### Символ {#char}
 
-Use the `char` prop to change the trigger character. Defaults to `:`{lang="ts-type"}.
+Пропс `char` меняет символ-триггер. По умолчанию `:`{lang="ts-type"}.
 
 ```vue
 <template>
@@ -79,11 +79,11 @@ Use the `char` prop to change the trigger character. Defaults to `:`{lang="ts-ty
 </template>
 ```
 
-### Suggestion
+### Подсказка {#suggestion}
 
-Use the `suggestion` prop to customize TipTap's [Suggestion matching behavior](https://tiptap.dev/docs/editor/api/utilities/suggestion#settings).
+Пропс `suggestion` настраивает [поведение сопоставления Suggestion](https://tiptap.dev/docs/editor/api/utilities/suggestion#settings) из TipTap.
 
-This is useful when the trigger character should open directly after other characters instead of requiring the default whitespace prefix.
+Это нужно, если меню должно открываться сразу после других символов, а не только после пробела, как по умолчанию.
 
 ```vue
 <template>
@@ -99,9 +99,9 @@ This is useful when the trigger character should open directly after other chara
 </template>
 ```
 
-### Options
+### Параметры {#options}
 
-Use the `options` prop to customize the positioning behavior using [Floating UI options](https://floating-ui.com/docs/computeposition#options).
+Пропс `options` настраивает позиционирование с помощью [параметров Floating UI](https://floating-ui.com/docs/computeposition#options).
 
 ```vue
 <template>
@@ -120,10 +120,10 @@ Use the `options` prop to customize the positioning behavior using [Floating UI 
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-## Theme
+## Тема {#theme}
 
 :component-theme

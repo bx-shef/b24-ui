@@ -1,6 +1,6 @@
 ---
 title: Container
-description: A box for centering and setting a maximum width for your content.
+description: 'Контейнер для центрирования контента и ограничения его максимальной ширины.'
 category: layout
 links:
   - label: GitHub
@@ -11,12 +11,12 @@ links:
     to: https://ui.nuxt.com/docs/components/container
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the default slot to center and constrain the width of your content.
+Слот по умолчанию центрирует контент и ограничивает его ширину.
 
 ::tip{to="/docs/getting-started/theme/css-variables/#container"}
-Its max width is controlled by the `--b24ui-container-width` CSS variable.
+Максимальная ширина задаётся CSS-переменной `--b24ui-container-width`.
 ::
 
 ::component-example
@@ -29,14 +29,14 @@ props:
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

@@ -1,6 +1,6 @@
 ---
 title: DashboardNavbar
-description: 'A responsive navigation bar for dashboards.'
+description: 'Адаптивная навигационная панель для дашбордов.'
 category: dashboard
 links:
   - label: GitHub
@@ -11,11 +11,11 @@ links:
     to: https://ui.nuxt.com/docs/components/dashboard-navbar
 ---
 
-## Usage
+## Использование {#usage}
 
-The DashboardNavbar component is a responsive navigation bar that integrates with the [DashboardSidebar](/docs/components/dashboard-sidebar/) component. It includes a mobile toggle button to enable responsive navigation in dashboard layouts.
+Компонент DashboardNavbar — адаптивная навигационная панель, которая работает вместе с [DashboardSidebar](/docs/components/dashboard-sidebar/). В ней есть кнопка для мобильных устройств, которая открывает навигацию в раскладках дашборда.
 
-Use it inside the `header` slot of the [DashboardPanel](/docs/components/dashboard-panel/) component:
+Используйте его в слоте `header` компонента [DashboardPanel](/docs/components/dashboard-panel/):
 
 ```vue [pages/index.vue]{9-11}
 <script setup lang="ts">
@@ -33,7 +33,7 @@ definePageMeta({
 </template>
 ```
 
-Use the `left`, `default` and `right` slots to customize the navbar.
+Слоты `left`, `default` и `right` настраивают панель.
 
 ::component-example
 ---
@@ -45,28 +45,28 @@ props:
 ---
 ::
 
-### Title
+### Заголовок {#title}
 
-Use the `title` prop to set the title of the navbar.
+Пропс `title` задаёт заголовок панели.
 
 ::component-code
 ---
 hide:
   - class
 props:
-  title: 'Dashboard'
+  title: 'Дашборд'
   class: 'w-full'
 class: '!px-0 !pt-0'
 ---
 ::
 
 ::tip
-The title is rendered as an `h1` by default. Use the `as` prop with an object to change it, for example `:as="{ title: 'h2' }"`{lang="ts-type"}. You can also set the root element this way: `:as="{ root: 'section', title: 'h2' }"`{lang="ts-type"}.
+По умолчанию заголовок отрисовывается как `h1`. Чтобы изменить тег, передайте в пропс `as` объект: например, `:as="{ title: 'h2' }"`{lang="ts-type"}. Так же можно задать корневой элемент: `:as="{ root: 'section', title: 'h2' }"`{lang="ts-type"}.
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to set the icon of the navbar.
+Пропс `icon` задаёт иконку панели.
 
 ::component-code
 ---
@@ -78,18 +78,18 @@ ignore:
 cast:
   icon: 'RocketIcon'
 props:
-  title: 'Dashboard'
+  title: 'Дашборд'
   icon: 'RocketIcon'
   class: 'w-full'
 class: '!px-0 !pt-0'
 ---
 ::
 
-### Toggle
+### Кнопка переключения {#toggle}
 
-Use the `toggle` prop to customize the toggle button displayed on mobile that opens the [DashboardSidebar](/docs/components/dashboard-sidebar/) component.
+Пропс `toggle` настраивает кнопку переключения, которая показывается на мобильных устройствах и открывает [DashboardSidebar](/docs/components/dashboard-sidebar/).
 
-You can pass any property from the [Button](/docs/components/button/) component to customize it.
+Кнопку можно настроить любым свойством компонента [Button](/docs/components/button/).
 
 ::component-example
 ---
@@ -104,9 +104,9 @@ props:
 ---
 ::
 
-### Toggle Side
+### Сторона кнопки {#toggle-side}
 
-Use the `toggle-side` prop to change the side of the toggle button. Defaults to `left`.
+Пропс `toggle-side` меняет сторону, с которой стоит кнопка переключения. По умолчанию `left`.
 
 ::component-example
 ---
@@ -121,14 +121,14 @@ props:
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

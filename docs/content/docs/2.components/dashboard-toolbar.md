@@ -1,6 +1,6 @@
 ---
 title: DashboardToolbar
-description: 'A secondary action bar positioned beneath the main navigation in dashboards.'
+description: 'Дополнительная панель действий под основной навигацией дашборда.'
 category: dashboard
 links:
   - label: GitHub
@@ -11,11 +11,11 @@ links:
     to: https://ui.nuxt.com/docs/components/dashboard-toolbar
 ---
 
-## Usage
+## Использование {#usage}
 
-The DashboardToolbar component is used to display a toolbar under the [DashboardNavbar](/docs/components/dashboard-navbar/) component.
+Компонент DashboardToolbar показывает панель инструментов под компонентом [DashboardNavbar](/docs/components/dashboard-navbar/).
 
-Use it inside the `header` slot of the [DashboardPanel](/docs/components/dashboard-panel/) component:
+Используйте его в слоте `header` компонента [DashboardPanel](/docs/components/dashboard-panel/):
 
 ```vue [pages/index.vue]{9-13}
 <script setup lang="ts">
@@ -35,7 +35,7 @@ definePageMeta({
 </template>
 ```
 
-Use the `left`, `default` and `right` slots to customize the toolbar.
+Слоты `left`, `default` и `right` настраивают панель инструментов.
 
 ::component-example
 ---
@@ -48,19 +48,19 @@ props:
 ::
 
 ::note
-In this example, we use the [NavigationMenu](/docs/components/navigation-menu/) component to render some links.
+В этом примере для вывода ссылок используется компонент [NavigationMenu](/docs/components/navigation-menu/).
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme
