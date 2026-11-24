@@ -1,14 +1,13 @@
-import { defineEventHandler, createError, getRequestHeader, readBody, setResponseHeader } from 'h3'
-import type { UIMessage, Tool } from 'ai'
-import { ToolLoopAgent, createAgentUIStreamResponse, dynamicTool, jsonSchema, smoothStream, isStepCount, consumeStream, APICallError } from 'ai'
-import { createDeepSeek } from '@ai-sdk/deepseek'
-import { z } from 'zod'
-import { tools as mcpToolDefinitions } from '#nuxt-mcp-toolkit/tools.mjs'
+import type { UIMessage } from 'ai'
+import { ToolLoopAgent, createAgentUIStreamResponse, smoothStream, isStepCount, consumeStream, APICallError } from 'ai'
+import { createChatModel } from '../utils/chatModel'
+import { chatTools as tools } from '../utils/chatTools'
 import { chatConfig } from '../utils/chatAvailability'
 import {
   CHAT_MAX_BODY_BYTES,
   createRateLimiter,
   clientAddress,
+  readJsonLimited,
   validateChatBody,
   safePagePath
 } from '../utils/chatGuard'
@@ -21,39 +20,6 @@ import {
  */
 
 const rateLimiter = createRateLimiter()
-
-/** Инструменты MCP-сервера сайта в виде инструментов AI SDK: чат читает ту же документацию, что и внешние агенты. */
-function mcpToolsToAiTools() {
-  const aiTools: Record<string, Tool> = {}
-
-  for (const def of mcpToolDefinitions as any[]) {
-    const filename = def._meta?.filename as string | undefined
-    const name = def.name || (filename
-      ? filename.replace(/\.(ts|js|mts|mjs)$/, '').replace(/([a-z0-9])([A-Z])/g, '$1-$2').replace(/[_\s]+/g, '-').toLowerCase()
-      : null)
-    if (!name) continue
-
-    const schema = def.inputSchema
-      ? z.toJSONSchema(z.object(def.inputSchema)) as Record<string, unknown>
-      : { type: 'object' as const, properties: {} }
-
-    aiTools[name] = dynamicTool({
-      description: def.description || '',
-      inputSchema: jsonSchema(schema),
-      execute: async (args: any) => {
-        try {
-          return await def.handler(args, {})
-        } catch (error: any) {
-          return { error: error.statusCode ? `[${error.statusCode}] ${error.message}` : error.message || String(error) }
-        }
-      }
-    })
-  }
-
-  return aiTools
-}
-
-const tools = mcpToolsToAiTools()
 
 export type DocsChatMessage = UIMessage<{ currentPage?: string }>
 
@@ -112,7 +78,9 @@ export default defineEventHandler(async (event) => {
       statusMessage: 'Too Many Requests',
       message: limit.scope === 'global'
         ? 'Чат сейчас перегружен. Попробуйте через несколько минут.'
-        : LIMIT_TEXT,
+        : limit.scope === 'daily'
+          ? 'Дневной лимит запросов к чату исчерпан. Попробуйте завтра.'
+          : LIMIT_TEXT,
       data: { retryAfter: limit.retryAfter }
     })
   }
@@ -122,8 +90,15 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 413, statusMessage: 'Payload Too Large', message: 'Слишком длинная беседа. Начните новую.' })
   }
 
-  const body = await readBody(event).catch(() => undefined)
-  const checked = validateChatBody(body)
+  // Читаем сами и с пределом на чтение: chunked-запрос без Content-Length иначе уместил бы в память что угодно
+  const read = await readJsonLimited(event.node.req, CHAT_MAX_BODY_BYTES)
+  if (!read.ok) {
+    if (read.status === 413) setResponseHeader(event, 'connection', 'close')
+    throw createError(read.status === 413
+      ? { statusCode: 413, statusMessage: 'Payload Too Large', message: 'Слишком длинная беседа. Начните новую.' }
+      : { statusCode: 400, statusMessage: 'Bad Request', message: 'Некорректный запрос.' })
+  }
+  const checked = validateChatBody(read.body)
   if (!checked.ok) {
     throw createError({ statusCode: 400, statusMessage: 'Bad Request', message: checked.message })
   }
@@ -142,13 +117,17 @@ export default defineEventHandler(async (event) => {
     }
   })
 
+  // Отмена — когда закрылся ответ или сокет до окончания потока. `req.on('close')` срабатывает уже после чтения
+  // тела запроса и стрим не прерывал бы вовремя.
   const abortController = new AbortController()
-  event.node.req.on('close', () => abortController.abort())
-
-  const deepseek = createDeepSeek({ apiKey: config.apiKey, baseURL: config.baseURL })
+  const res = event.node.res
+  res.on('close', () => {
+    if (!res.writableFinished) abortController.abort()
+  })
+  event.node.req.socket?.on('close', () => abortController.abort())
 
   const agent = new ToolLoopAgent({
-    model: deepseek(config.model),
+    model: createChatModel(config),
     instructions: checked.framework === 'vue' ? instructions.vue : instructions.nuxt,
     maxOutputTokens: 4000,
     stopWhen: isStepCount(6),
