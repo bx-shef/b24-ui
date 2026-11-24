@@ -72,7 +72,7 @@ const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.prose?.cod
         :icon="props.icon || icons.chevronDown"
         color="air-secondary-accent-1"
         :data-state="open ? 'open' : 'closed'"
-        :label="`${open ? (props.closeText || t('prose.codeCollapse.closeText')) : (props.openText || t('prose.codeCollapse.openText'))} ${props.name || t('prose.codeCollapse.name')}`"
+        :label="t('prose.codeCollapse.label', { text: open ? (props.closeText || t('prose.codeCollapse.closeText')) : (props.openText || t('prose.codeCollapse.openText')), name: props.name || t('prose.codeCollapse.name') })"
         data-slot="trigger"
         :class="b24ui.trigger({ class: props.b24ui?.trigger })"
         :b24ui="{ leadingIcon: b24ui.triggerIcon({ class: props.b24ui?.triggerIcon }) }"

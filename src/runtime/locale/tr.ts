@@ -152,14 +152,16 @@ export default defineLocale<Messages>({
     },
     prose: {
       codeCollapse: {
-        closeText: 'Gizle',
-        name: 'kod',
-        openText: 'Göster'
+        closeText: 'gizle',
+        label: '{name} {text}',
+        name: 'Kodu',
+        openText: 'göster'
       },
       collapsible: {
-        closeText: 'Gizle',
-        name: 'özellikler',
-        openText: 'Göster'
+        closeText: 'gizle',
+        label: '{name} {text}',
+        name: 'Özellikleri',
+        openText: 'göster'
       },
       pre: {
         copy: 'Kodu panoya kopyala'
