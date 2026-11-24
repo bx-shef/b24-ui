@@ -744,7 +744,7 @@ defineExpose({
   </DefineRowTemplate>
 
   <DefineTableTemplate>
-    <table ref="tableRef" data-slot="base" :class="b24ui.base({ class: [props.b24ui?.base] })">
+    <table ref="tableRef" :aria-busy="props.loading ? 'true' : undefined" data-slot="base" :class="b24ui.base({ class: [props.b24ui?.base] })">
       <caption v-if="props.caption || !!slots.caption" data-slot="caption" :class="b24ui.caption({ class: [props.b24ui?.caption] })">
         <slot name="caption">
           {{ props.caption }}

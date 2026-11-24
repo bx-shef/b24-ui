@@ -1496,7 +1496,7 @@ exports[`Table > renders with header slot correctly 1`] = `
 
 exports[`Table > renders with loading animation carousel correctly 1`] = `
 "<div data-slot="root" class="relative overflow-auto style-filled">
-  <table data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
+  <table aria-busy="true" data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
     <!--v-if-->
     <thead data-slot="thead" class="relative [&amp;>tr]:[&amp;>th]:h-[45px] after:absolute after:z-1 after:h-px after:bg-(--b24ui-background) motion-reduce:after:inset-x-0 motion-reduce:after:animate-pulse motion-safe:after:animate-[carousel_2s_linear_infinite] motion-safe:rtl:after:animate-[carousel-rtl_2s_linear_infinite]">
       <tr data-slot="tr" class="data-[selected=true]:bg-(--ui-color-bg-content-tertiary) light:data-[selected=true]:bg-[#f4fcde]">
@@ -1557,7 +1557,7 @@ exports[`Table > renders with loading animation carousel correctly 1`] = `
 
 exports[`Table > renders with loading animation carousel-inverse correctly 1`] = `
 "<div data-slot="root" class="relative overflow-auto style-filled">
-  <table data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
+  <table aria-busy="true" data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
     <!--v-if-->
     <thead data-slot="thead" class="relative [&amp;>tr]:[&amp;>th]:h-[45px] after:absolute after:z-1 after:h-px after:bg-(--b24ui-background) motion-reduce:after:inset-x-0 motion-reduce:after:animate-pulse motion-safe:after:animate-[carousel-inverse_2s_linear_infinite] motion-safe:rtl:after:animate-[carousel-inverse-rtl_2s_linear_infinite]">
       <tr data-slot="tr" class="data-[selected=true]:bg-(--ui-color-bg-content-tertiary) light:data-[selected=true]:bg-[#f4fcde]">
@@ -1618,7 +1618,7 @@ exports[`Table > renders with loading animation carousel-inverse correctly 1`] =
 
 exports[`Table > renders with loading animation elastic correctly 1`] = `
 "<div data-slot="root" class="relative overflow-auto style-filled">
-  <table data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
+  <table aria-busy="true" data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
     <!--v-if-->
     <thead data-slot="thead" class="relative [&amp;>tr]:[&amp;>th]:h-[45px] after:absolute after:z-1 after:h-px after:bg-(--b24ui-background) motion-reduce:after:inset-x-0 motion-reduce:after:animate-pulse motion-safe:after:animate-[elastic_2s_var(--ease-in-out)_infinite]">
       <tr data-slot="tr" class="data-[selected=true]:bg-(--ui-color-bg-content-tertiary) light:data-[selected=true]:bg-[#f4fcde]">
@@ -1679,7 +1679,7 @@ exports[`Table > renders with loading animation elastic correctly 1`] = `
 
 exports[`Table > renders with loading animation loading correctly 1`] = `
 "<div data-slot="root" class="relative overflow-auto style-filled">
-  <table data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
+  <table aria-busy="true" data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
     <!--v-if-->
     <thead data-slot="thead" class="relative [&amp;>tr]:[&amp;>th]:h-[45px] after:absolute after:z-1 after:h-px after:bg-(--b24ui-background) motion-reduce:after:inset-x-0 motion-reduce:after:animate-pulse motion-safe:after:animate-[progressbar-loading_2s_infinite]">
       <tr data-slot="tr" class="data-[selected=true]:bg-(--ui-color-bg-content-tertiary) light:data-[selected=true]:bg-[#f4fcde]">
@@ -1740,7 +1740,7 @@ exports[`Table > renders with loading animation loading correctly 1`] = `
 
 exports[`Table > renders with loading animation swing correctly 1`] = `
 "<div data-slot="root" class="relative overflow-auto style-filled">
-  <table data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
+  <table aria-busy="true" data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
     <!--v-if-->
     <thead data-slot="thead" class="relative [&amp;>tr]:[&amp;>th]:h-[45px] after:absolute after:z-1 after:h-px after:bg-(--b24ui-background) motion-reduce:after:inset-x-0 motion-reduce:after:animate-pulse motion-safe:after:animate-[swing_2s_var(--ease-in-out)_infinite]">
       <tr data-slot="tr" class="data-[selected=true]:bg-(--ui-color-bg-content-tertiary) light:data-[selected=true]:bg-[#f4fcde]">
@@ -1801,7 +1801,7 @@ exports[`Table > renders with loading animation swing correctly 1`] = `
 
 exports[`Table > renders with loading color air-primary correctly 1`] = `
 "<div data-slot="root" class="relative overflow-auto style-filled">
-  <table data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
+  <table aria-busy="true" data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
     <!--v-if-->
     <thead data-slot="thead" class="relative [&amp;>tr]:[&amp;>th]:h-[45px] after:absolute after:z-1 after:h-px after:bg-(--b24ui-background) motion-reduce:after:inset-x-0 motion-reduce:after:animate-pulse motion-safe:after:animate-[progressbar-loading_2s_infinite]">
       <tr data-slot="tr" class="data-[selected=true]:bg-(--ui-color-bg-content-tertiary) light:data-[selected=true]:bg-[#f4fcde]">
@@ -1862,7 +1862,7 @@ exports[`Table > renders with loading color air-primary correctly 1`] = `
 
 exports[`Table > renders with loading color air-primary-alert correctly 1`] = `
 "<div data-slot="root" class="relative overflow-auto style-filled-alert">
-  <table data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
+  <table aria-busy="true" data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
     <!--v-if-->
     <thead data-slot="thead" class="relative [&amp;>tr]:[&amp;>th]:h-[45px] after:absolute after:z-1 after:h-px after:bg-(--b24ui-background) motion-reduce:after:inset-x-0 motion-reduce:after:animate-pulse motion-safe:after:animate-[progressbar-loading_2s_infinite]">
       <tr data-slot="tr" class="data-[selected=true]:bg-(--ui-color-bg-content-tertiary) light:data-[selected=true]:bg-[#f4fcde]">
@@ -1923,7 +1923,7 @@ exports[`Table > renders with loading color air-primary-alert correctly 1`] = `
 
 exports[`Table > renders with loading color air-primary-copilot correctly 1`] = `
 "<div data-slot="root" class="relative overflow-auto style-filled-copilot">
-  <table data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
+  <table aria-busy="true" data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
     <!--v-if-->
     <thead data-slot="thead" class="relative [&amp;>tr]:[&amp;>th]:h-[45px] after:absolute after:z-1 after:h-px after:bg-(--b24ui-background) motion-reduce:after:inset-x-0 motion-reduce:after:animate-pulse motion-safe:after:animate-[progressbar-loading_2s_infinite]">
       <tr data-slot="tr" class="data-[selected=true]:bg-(--ui-color-bg-content-tertiary) light:data-[selected=true]:bg-[#f4fcde]">
@@ -1984,7 +1984,7 @@ exports[`Table > renders with loading color air-primary-copilot correctly 1`] = 
 
 exports[`Table > renders with loading color air-primary-success correctly 1`] = `
 "<div data-slot="root" class="relative overflow-auto style-filled-success">
-  <table data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
+  <table aria-busy="true" data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
     <!--v-if-->
     <thead data-slot="thead" class="relative [&amp;>tr]:[&amp;>th]:h-[45px] after:absolute after:z-1 after:h-px after:bg-(--b24ui-background) motion-reduce:after:inset-x-0 motion-reduce:after:animate-pulse motion-safe:after:animate-[progressbar-loading_2s_infinite]">
       <tr data-slot="tr" class="data-[selected=true]:bg-(--ui-color-bg-content-tertiary) light:data-[selected=true]:bg-[#f4fcde]">
@@ -2045,7 +2045,7 @@ exports[`Table > renders with loading color air-primary-success correctly 1`] = 
 
 exports[`Table > renders with loading color air-primary-warning correctly 1`] = `
 "<div data-slot="root" class="relative overflow-auto style-filled-warning">
-  <table data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
+  <table aria-busy="true" data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
     <!--v-if-->
     <thead data-slot="thead" class="relative [&amp;>tr]:[&amp;>th]:h-[45px] after:absolute after:z-1 after:h-px after:bg-(--b24ui-background) motion-reduce:after:inset-x-0 motion-reduce:after:animate-pulse motion-safe:after:animate-[progressbar-loading_2s_infinite]">
       <tr data-slot="tr" class="data-[selected=true]:bg-(--ui-color-bg-content-tertiary) light:data-[selected=true]:bg-[#f4fcde]">
@@ -2106,7 +2106,7 @@ exports[`Table > renders with loading color air-primary-warning correctly 1`] = 
 
 exports[`Table > renders with loading correctly 1`] = `
 "<div data-slot="root" class="relative overflow-auto style-filled">
-  <table data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
+  <table aria-busy="true" data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
     <!--v-if-->
     <thead data-slot="thead" class="relative [&amp;>tr]:[&amp;>th]:h-[45px] after:absolute after:z-1 after:h-px after:bg-(--b24ui-background) motion-reduce:after:inset-x-0 motion-reduce:after:animate-pulse motion-safe:after:animate-[progressbar-loading_2s_infinite]">
       <tr data-slot="tr" class="data-[selected=true]:bg-(--ui-color-bg-content-tertiary) light:data-[selected=true]:bg-[#f4fcde]">
@@ -2167,7 +2167,7 @@ exports[`Table > renders with loading correctly 1`] = `
 
 exports[`Table > renders with loading slot correctly 1`] = `
 "<div data-slot="root" class="relative overflow-auto style-filled">
-  <table data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
+  <table aria-busy="true" data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
     <!--v-if-->
     <thead data-slot="thead" class="relative [&amp;>tr]:[&amp;>th]:h-[45px] after:absolute after:z-1 after:h-px after:bg-(--b24ui-background) motion-reduce:after:inset-x-0 motion-reduce:after:animate-pulse motion-safe:after:animate-[progressbar-loading_2s_infinite]">
       <tr data-slot="tr" class="data-[selected=true]:bg-(--ui-color-bg-content-tertiary) light:data-[selected=true]:bg-[#f4fcde]">
@@ -2237,7 +2237,7 @@ exports[`Table > renders with loading slot correctly 1`] = `
 
 exports[`Table > renders with loading without data correctly 1`] = `
 "<div data-slot="root" class="relative overflow-auto style-filled">
-  <table data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
+  <table aria-busy="true" data-slot="base" class="min-w-full font-[family-name:var(--ui-font-family-primary)] table-fixed border-separate border-spacing-0">
     <!--v-if-->
     <thead data-slot="thead" class="relative [&amp;>tr]:[&amp;>th]:h-[45px] after:absolute after:z-1 after:h-px after:bg-(--b24ui-background) motion-reduce:after:inset-x-0 motion-reduce:after:animate-pulse motion-safe:after:animate-[progressbar-loading_2s_infinite]">
       <tr data-slot="tr" class="data-[selected=true]:bg-(--ui-color-bg-content-tertiary) light:data-[selected=true]:bg-[#f4fcde]">
