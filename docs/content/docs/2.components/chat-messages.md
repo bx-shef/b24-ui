@@ -1,6 +1,6 @@
 ---
 title: ChatMessages
-description: 'A chat messages list component designed for seamless integration with the Vercel AI SDK.'
+description: 'Список сообщений чата, рассчитанный на интеграцию с Vercel AI SDK.'
 category: chat
 links:
   - label: GitHub
@@ -11,9 +11,9 @@ links:
     to: https://ui.nuxt.com/docs/components/chat-messages
 ---
 
-## Usage
+## Использование {#usage}
 
-The ChatMessages component displays a list of [ChatMessage](/docs/components/chat-message/) components using either the default slot or the `messages` prop.
+Компонент ChatMessages показывает список компонентов [ChatMessage](/docs/components/chat-message/): через слот по умолчанию или через пропс `messages`.
 
 ```vue {2,8}
 <template>
@@ -28,18 +28,18 @@ The ChatMessages component displays a list of [ChatMessage](/docs/components/cha
 ```
 
 ::callout{color="air-secondary"}
-This component is purpose-built for AI chatbots with features like:
+Компонент создан специально для чат-ботов с AI и умеет:
 
-- Initial scroll to the bottom upon loading ([`shouldScrollToBottom`](#should-scroll-to-bottom)).
-- Continuous scrolling down as new messages arrive ([`shouldAutoScroll`](#should-auto-scroll)).
-- An "Auto scroll" button appears when scrolled up, allowing users to jump back to the latest messages ([`autoScroll`](#auto-scroll)).
-- A loading indicator displays while the assistant is processing ([`status`](#status)).
-- Submitted messages are scrolled to the top of the viewport and the height of the last user message is dynamically adjusted.
+- прокручивать вниз при загрузке ([`shouldScrollToBottom`](#should-scroll-to-bottom));
+- непрерывно прокручивать вниз по мере поступления сообщений ([`shouldAutoScroll`](#should-auto-scroll));
+- показывать кнопку автопрокрутки, когда страницу прокрутили вверх, чтобы быстро вернуться к последним сообщениям ([`autoScroll`](#auto-scroll));
+- показывать индикатор загрузки, пока ассистент обрабатывает запрос ([`status`](#status));
+- прокручивать отправленное сообщение к верху области просмотра и подбирать высоту последнего сообщения пользователя.
 ::
 
-### Messages
+### Сообщения {#messages}
 
-Use the `messages` prop to display a list of chat messages.
+Пропс `messages` показывает список сообщений чата.
 
 ::component-code
 ---
@@ -58,29 +58,29 @@ props:
       role: user
       parts:
         - type: 'text'
-          text: 'Hello, how are you?'
+          text: 'Привет, как дела?'
     - id: '7a92b3c1-d5f8-4e76-b8a9-3c1e5fb2e0d8'
       role: assistant
       parts:
         - type: 'text'
-          text: 'I am doing well, thank you for asking! How can I assist you today?'
+          text: 'Всё хорошо, спасибо, что спросили! Чем могу помочь?'
     - id: '9c84d6a7-8b23-4f12-a1d5-e7f3b9c05e2a'
       role: user
       parts:
         - type: 'text'
-          text: 'What is the current weather in Tokyo?'
+          text: 'Какая сейчас погода в Токио?'
     - id: 'b2e5f8c3-a1d9-4e67-b3f2-c9d8e7a6b5f4'
       role: assistant
       parts:
         - type: 'text'
-          text: "Based on the latest data, Tokyo is currently experiencing sunny weather with temperatures around 24°C (75°F). It's a beautiful day with clear skies."
+          text: "По последним данным, в Токио солнечно, температура около 24 °C. Прекрасный день с ясным небом."
   shouldScrollToBottom: false
 ---
 ::
 
-### Status
+### Статус {#status}
 
-Use the `status` prop to display a visual indicator when the assistant is processing.
+Пропс `status` показывает индикатор, пока ассистент обрабатывает запрос.
 
 ::component-code
 ---
@@ -100,23 +100,23 @@ props:
       role: user
       parts:
         - type: 'text'
-          text: 'Hello, how are you?'
+          text: 'Привет, как дела?'
   shouldScrollToBottom: false
 ---
 ::
 
 ::note
-Here's the detail of the different statuses from the AI SDK Chat class:
+Статусы класса Chat из AI SDK:
 
-- `submitted`: The message has been sent to the API and we're awaiting the start of the response stream.
-- `streaming`: The response is actively streaming in from the API, receiving chunks of data.
-- `ready`: The full response has been received and processed; a new user message can be submitted.
-- `error`: An error occurred during the API request, preventing successful completion.
+- `submitted` — сообщение отправлено в API, ждём начала потока ответа.
+- `streaming` — ответ поступает из API потоком, приходят порции данных.
+- `ready` — ответ получен и обработан целиком, можно отправлять новое сообщение.
+- `error` — при запросе к API произошла ошибка, и он не завершился.
 ::
 
-### User
+### Пользователь {#user}
 
-Use the `user` prop to change the [ChatMessage](/docs/components/chat-message/) props for `user` messages. Defaults to:
+Пропс `user` меняет пропсы [ChatMessage](/docs/components/chat-message/) у сообщений пользователя (`user`). По умолчанию:
 
 - `side: 'right'`{lang="ts-type"}
 - `variant: 'message'`{lang="ts-type"}
@@ -154,29 +154,29 @@ props:
       role: user
       parts:
         - type: 'text'
-          text: 'Hello, how are you?'
+          text: 'Привет, как дела?'
     - id: '7a92b3c1-d5f8-4e76-b8a9-3c1e5fb2e0d8'
       role: assistant
       parts:
         - type: 'text'
-          text: 'I am doing well, thank you for asking! How can I assist you today?'
+          text: 'Всё хорошо, спасибо, что спросили! Чем могу помочь?'
     - id: '9c84d6a7-8b23-4f12-a1d5-e7f3b9c05e2a'
       role: user
       parts:
         - type: 'text'
-          text: 'What is the current weather in Tokyo?'
+          text: 'Какая сейчас погода в Токио?'
     - id: 'b2e5f8c3-a1d9-4e67-b3f2-c9d8e7a6b5f4'
       role: assistant
       parts:
         - type: 'text'
-          text: "Based on the latest data, Tokyo is currently experiencing sunny weather with temperatures around 24°C (75°F). It's a beautiful day with clear skies."
+          text: "По последним данным, в Токио солнечно, температура около 24 °C. Прекрасный день с ясным небом."
   shouldScrollToBottom: false
 ---
 ::
 
-### Assistant
+### Ассистент {#assistant}
 
-Use the `assistant` prop to change the [ChatMessage](/docs/components/chat-message/) props for `assistant` messages. Defaults to:
+Пропс `assistant` меняет пропсы [ChatMessage](/docs/components/chat-message/) у сообщений ассистента (`assistant`). По умолчанию:
 
 - `side: 'left'`{lang="ts-type"}
 - `variant: 'message'`{lang="ts-type"}
@@ -210,39 +210,39 @@ props:
     avatar:
       src: '/b24ui/avatar/employee.png'
     actions:
-      - label: 'Copy to clipboard'
+      - label: 'Копировать в буфер обмена'
   messages:
     - id: '6045235a-a435-46b8-989d-2df38ca2eb47'
       role: user
       parts:
         - type: 'text'
-          text: 'Hello, how are you?'
+          text: 'Привет, как дела?'
     - id: '7a92b3c1-d5f8-4e76-b8a9-3c1e5fb2e0d8'
       role: assistant
       parts:
         - type: 'text'
-          text: 'I am doing well, thank you for asking! How can I assist you today?'
+          text: 'Всё хорошо, спасибо, что спросили! Чем могу помочь?'
     - id: '9c84d6a7-8b23-4f12-a1d5-e7f3b9c05e2a'
       role: user
       parts:
         - type: 'text'
-          text: 'What is the current weather in Tokyo?'
+          text: 'Какая сейчас погода в Токио?'
     - id: 'b2e5f8c3-a1d9-4e67-b3f2-c9d8e7a6b5f4'
       role: assistant
       parts:
         - type: 'text'
-          text: "Based on the latest data, Tokyo is currently experiencing sunny weather with temperatures around 24°C (75°F). It's a beautiful day with clear skies."
+          text: "По последним данным, в Токио солнечно, температура около 24 °C. Прекрасный день с ясным небом."
   shouldScrollToBottom: false
 ---
 ::
 
-### Auto Scroll
+### Автопрокрутка {#auto-scroll}
 
-Use the `auto-scroll` prop to customize or hide the auto scroll button (with `false` value) displayed when scrolling to the top of the chat. Defaults to:
+Пропс `auto-scroll` настраивает кнопку автопрокрутки, которая появляется при прокрутке чата вверх, или скрывает её (значение `false`). По умолчанию:
 
 - `color: 'air-secondary-no-accent'`{lang="ts-type"}
 
-You can pass any property from the [Button](/docs/components/button/) component to customize it.
+Для настройки передайте любое свойство компонента [Button](/docs/components/button/).
 
 ::component-code
 ---
@@ -264,38 +264,38 @@ props:
       role: user
       parts:
         - type: 'text'
-          text: 'Hello, how are you?'
+          text: 'Привет, как дела?'
     - id: '7a92b3c1-d5f8-4e76-b8a9-3c1e5fb2e0d8'
       role: assistant
       parts:
         - type: 'text'
-          text: 'I am doing well, thank you for asking! How can I assist you today?'
+          text: 'Всё хорошо, спасибо, что спросили! Чем могу помочь?'
     - id: '9c84d6a7-8b23-4f12-a1d5-e7f3b9c05e2a'
       role: user
       parts:
         - type: 'text'
-          text: 'What is the current weather in Tokyo?'
+          text: 'Какая сейчас погода в Токио?'
     - id: 'b2e5f8c3-a1d9-4e67-b3f2-c9d8e7a6b5f4'
       role: assistant
       parts:
         - type: 'text'
-          text: "Based on the latest data, Tokyo is currently experiencing sunny weather with temperatures around 24°C (75°F). It's a beautiful day with clear skies. The forecast for the rest of the week shows a slight chance of rain on Thursday, with temperatures gradually rising to 28°C by the weekend. Humidity levels are moderate at around 65%, and wind speeds are light at 8 km/h from the southeast. Air quality is good with an index of 42. The UV index is high at 7, so it's recommended to wear sunscreen if you're planning to spend time outdoors. Sunrise was at 5:24 AM and sunset will be at 6:48 PM, giving Tokyo approximately 13 hours and 24 minutes of daylight today. The moon is currently in its waxing gibbous phase."
+          text: "По последним данным, в Токио солнечно, температура около 24 °C. Прекрасный день с ясным небом. По прогнозу на остаток недели, в четверг возможен небольшой дождь, а к выходным температура постепенно поднимется до 28 °C. Влажность умеренная, около 65 %, ветер слабый — 8 км/ч, юго-восточный. Качество воздуха хорошее, индекс 42. Индекс УФ высокий — 7, поэтому на улице лучше пользоваться солнцезащитным кремом. Восход был в 5:24, закат будет в 18:48, так что световой день в Токио сегодня длится около 13 часов 24 минут. Луна сейчас в фазе растущей."
     - id: 'c3e5f8c3-a1d9-4e67-b3f2-c9d8e7a6b5f4'
       role: user
       parts:
         - type: 'text'
-          text: 'Can you recommend some popular tourist attractions in Kyoto?'
+          text: 'Можете посоветовать популярные туристические места в Киото?'
     - id: 'd4f5g8c3-a1d9-4e67-b3f2-c9d8e7a6b5f4'
       role: assistant
       parts:
         - type: 'text'
-          text: 'Kyoto is known for its beautiful temples, traditional tea houses, and gardens. Some popular attractions include Kinkaku-ji (Golden Pavilion) with its stunning gold leaf exterior reflecting in the mirror pond, Fushimi Inari Shrine with its thousands of vermilion torii gates winding up the mountainside, Arashiyama Bamboo Grove where towering stalks create an otherworldly atmosphere, Kiyomizu-dera Temple perched on a hillside offering panoramic views of the city, and the historic Gion district where you might spot geisha hurrying to evening appointments through narrow stone-paved streets lined with traditional wooden machiya houses.'
+          text: 'Киото известен красивыми храмами, традиционными чайными домами и садами. Среди популярных мест — Кинкаку-дзи (Золотой павильон), чья золочёная отделка отражается в зеркальном пруду; святилище Фусими Инари с тысячами киноварных ворот тории, уходящих вверх по склону горы; бамбуковая роща Арасияма, где высокие стебли создают неземную атмосферу; храм Киёмидзу-дэра на склоне холма с панорамным видом на город; и исторический квартал Гион, где можно заметить гейш, спешащих на вечерние встречи по узким мощёным улочкам среди традиционных деревянных домов матия.'
 ---
 ::
 
-### Auto Scroll Icon
+### Иконка автопрокрутки {#auto-scroll-icon}
 
-Use the `auto-scroll-icon` prop to customize the auto scroll button [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `auto-scroll-icon` задаёт [иконку](https://bitrix24.github.io/b24icons/icons/) кнопки автопрокрутки.
 
 ::component-code
 ---
@@ -319,38 +319,38 @@ props:
       role: user
       parts:
         - type: 'text'
-          text: 'Hello, how are you?'
+          text: 'Привет, как дела?'
     - id: '7a92b3c1-d5f8-4e76-b8a9-3c1e5fb2e0d8'
       role: assistant
       parts:
         - type: 'text'
-          text: 'I am doing well, thank you for asking! How can I assist you today?'
+          text: 'Всё хорошо, спасибо, что спросили! Чем могу помочь?'
     - id: '9c84d6a7-8b23-4f12-a1d5-e7f3b9c05e2a'
       role: user
       parts:
         - type: 'text'
-          text: 'What is the current weather in Tokyo?'
+          text: 'Какая сейчас погода в Токио?'
     - id: 'b2e5f8c3-a1d9-4e67-b3f2-c9d8e7a6b5f4'
       role: assistant
       parts:
         - type: 'text'
-          text: "Based on the latest data, Tokyo is currently experiencing sunny weather with temperatures around 24°C (75°F). It's a beautiful day with clear skies. The forecast for the rest of the week shows a slight chance of rain on Thursday, with temperatures gradually rising to 28°C by the weekend. Humidity levels are moderate at around 65%, and wind speeds are light at 8 km/h from the southeast. Air quality is good with an index of 42. The UV index is high at 7, so it's recommended to wear sunscreen if you're planning to spend time outdoors. Sunrise was at 5:24 AM and sunset will be at 6:48 PM, giving Tokyo approximately 13 hours and 24 minutes of daylight today. The moon is currently in its waxing gibbous phase."
+          text: "По последним данным, в Токио солнечно, температура около 24 °C. Прекрасный день с ясным небом. По прогнозу на остаток недели, в четверг возможен небольшой дождь, а к выходным температура постепенно поднимется до 28 °C. Влажность умеренная, около 65 %, ветер слабый — 8 км/ч, юго-восточный. Качество воздуха хорошее, индекс 42. Индекс УФ высокий — 7, поэтому на улице лучше пользоваться солнцезащитным кремом. Восход был в 5:24, закат будет в 18:48, так что световой день в Токио сегодня длится около 13 часов 24 минут. Луна сейчас в фазе растущей."
     - id: 'c3e5f8c3-a1d9-4e67-b3f2-c9d8e7a6b5f4'
       role: user
       parts:
         - type: 'text'
-          text: 'Can you recommend some popular tourist attractions in Kyoto?'
+          text: 'Можете посоветовать популярные туристические места в Киото?'
     - id: 'd4f5g8c3-a1d9-4e67-b3f2-c9d8e7a6b5f4'
       role: assistant
       parts:
         - type: 'text'
-          text: 'Kyoto is known for its beautiful temples, traditional tea houses, and gardens. Some popular attractions include Kinkaku-ji (Golden Pavilion) with its stunning gold leaf exterior reflecting in the mirror pond, Fushimi Inari Shrine with its thousands of vermilion torii gates winding up the mountainside, Arashiyama Bamboo Grove where towering stalks create an otherworldly atmosphere, Kiyomizu-dera Temple perched on a hillside offering panoramic views of the city, and the historic Gion district where you might spot geisha hurrying to evening appointments through narrow stone-paved streets lined with traditional wooden machiya houses.'
+          text: 'Киото известен красивыми храмами, традиционными чайными домами и садами. Среди популярных мест — Кинкаку-дзи (Золотой павильон), чья золочёная отделка отражается в зеркальном пруду; святилище Фусими Инари с тысячами киноварных ворот тории, уходящих вверх по склону горы; бамбуковая роща Арасияма, где высокие стебли создают неземную атмосферу; храм Киёмидзу-дэра на склоне холма с панорамным видом на город; и исторический квартал Гион, где можно заметить гейш, спешащих на вечерние встречи по узким мощёным улочкам среди традиционных деревянных домов матия.'
 ---
 ::
 
-### Should Auto Scroll
+### Автопрокрутка при потоке {#should-auto-scroll}
 
-Use the `should-auto-scroll` prop to enable/disable continuous auto scroll while messages are streaming. Defaults to `false`.
+Пропс `should-auto-scroll` включает и выключает непрерывную прокрутку вниз, пока сообщения приходят потоком. По умолчанию — `false`.
 
 ```vue
 <template>
@@ -358,9 +358,9 @@ Use the `should-auto-scroll` prop to enable/disable continuous auto scroll while
 </template>
 ```
 
-### Should Scroll To Bottom
+### Прокрутка вниз при монтировании {#should-scroll-to-bottom}
 
-Use the `should-scroll-to-bottom` prop to enable/disable bottom auto scroll when the component is mounted. Defaults to `true`.
+Пропс `should-scroll-to-bottom` включает и выключает прокрутку вниз при монтировании компонента. По умолчанию — `true`.
 
 ```vue
 <template>
@@ -368,15 +368,15 @@ Use the `should-scroll-to-bottom` prop to enable/disable bottom auto scroll when
 </template>
 ```
 
-## Examples
+## Примеры {#examples}
 
 ::tip{to="/docs/components/chat/"}
-Check the **Chat** overview page for installation instructions, server setup and usage examples.
+Установка, настройка сервера и примеры использования — на обзорной странице **Chat**.
 ::
 
-### With indicator slot
+### Со слотом indicator {#with-indicator-slot}
 
-Use the `#indicator` slot to customize the loading indicator with a [`ChatShimmer`](/docs/components/chat-shimmer/) effect.
+Слот `#indicator` настраивает индикатор загрузки, например эффектом [`ChatShimmer`](/docs/components/chat-shimmer/).
 
 ::component-example
 ---
@@ -386,9 +386,9 @@ collapse: true
 ---
 ::
 
-### With sticky prompt
+### С закреплённым полем ввода {#with-sticky-prompt}
 
-Use the `#footer` slot to keep a [ChatPrompt](/docs/components/chat-prompt/) stuck to the bottom of the list. Its height is measured, so the last message keeps enough room and the auto scroll button stays above it, even when the prompt grows.
+Слот `#footer` закрепляет [ChatPrompt](/docs/components/chat-prompt/) внизу списка. Высота поля измеряется, поэтому у последнего сообщения всегда хватает места, а кнопка автопрокрутки остаётся над полем, даже когда оно растёт.
 
 ```vue
 <template>
@@ -403,16 +403,16 @@ Use the `#footer` slot to keep a [ChatPrompt](/docs/components/chat-prompt/) stu
 ```
 
 ::note
-The `#footer` slot replaces the deprecated `spacing-offset` prop for a sticky prompt, which needed its height by hand. Render `B24ChatMessages` even when there are no messages yet, so the prompt in its footer stays visible.
+Слот `#footer` заменяет устаревший пропс `spacing-offset`, которому для закреплённого поля приходилось задавать высоту вручную. Отрисовывайте `B24ChatMessages`, даже если сообщений ещё нет, — тогда поле ввода в подвале остаётся видимым.
 ::
 
 ::tip
-When the prompt sits outside the scroll container, like in the footer of a [DashboardPanel](/docs/components/dashboard-panel/) or a [Sidebar](/docs/components/sidebar/), make the auto scroll button stick to the bottom of the scroll container with `:b24ui="{ viewport: 'sticky top-auto bottom-4 h-0' }"`.
+Если поле ввода находится вне прокручиваемого контейнера, например в подвале [DashboardPanel](/docs/components/dashboard-panel/) или [Sidebar](/docs/components/sidebar/), закрепите кнопку автопрокрутки у нижнего края контейнера: `:b24ui="{ viewport: 'sticky top-auto bottom-4 h-0' }"`.
 ::
 
-### With agent steps
+### С шагами агента {#with-agent-steps}
 
-Use the `#part` slot to render each step of an agent: [ChatReasoning](/docs/components/chat-reasoning/) for reasoning, [ChatTool](/docs/components/chat-tool/) for tool calls and sources, and markdown for the reply. Set the `error` prop on a failed tool call, and render its output with the prose components.
+Слот `#part` отрисовывает каждый шаг агента: [ChatReasoning](/docs/components/chat-reasoning/) — рассуждения, [ChatTool](/docs/components/chat-tool/) — вызовы инструментов и источники, Markdown — ответ. У неудавшегося вызова инструмента задайте пропс `error`, а его вывод отрисуйте компонентами prose.
 
 ::component-example
 ---
@@ -423,16 +423,16 @@ collapse: true
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
 ::tip
-You can use all the slots of the [`ChatMessage`](/docs/components/chat-message/#slots) component inside ChatMessages, they are automatically forwarded allowing you to customize individual messages when using the `messages` prop. Each slot also receives the `message` and a `streaming` boolean, `true` only for the last message while the chat is submitted or streaming.
+Внутри ChatMessages доступны все слоты компонента [`ChatMessage`](/docs/components/chat-message/#slots): они пробрасываются автоматически, поэтому при использовании пропса `messages` можно настроить каждое сообщение. Каждый слот получает также `message` и булево `streaming` — `true` только у последнего сообщения, пока чат в состоянии `submitted` или `streaming`.
 
 ```vue{7-9}
 <script setup lang="ts">
@@ -449,17 +449,17 @@ import { isReasoningUIPart } from 'ai'
 ```
 ::
 
-### Expose
+### Доступ через ref {#expose}
 
-When accessing the component via a template ref, you can use the following:
+При обращении к компоненту через ref в шаблоне доступно:
 
-| Name | Type |
+| Имя | Тип |
 | ---- | ---- |
 | `registerMessageRef(id: string, element: ComponentPublicInstance \| null)`{lang="ts-type"} | `void`{lang="ts-type"} |
 | `scrollToBottom(smooth?: boolean)`{lang="ts-type"} | `void`{lang="ts-type"} |
 | `scrollToMessage(id: string, smooth?: boolean)`{lang="ts-type"} | `void`{lang="ts-type"} |
 | `isAtBottom`{lang="ts-type"} | `Readonly<Ref<boolean>>`{lang="ts-type"} |
 
-## Theme
+## Тема {#theme}
 
 :component-theme

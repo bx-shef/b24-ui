@@ -1,6 +1,6 @@
 ---
 title: Calendar
-description: A calendar tool for choosing individual dates, multiple dates, or date spans.
+description: 'Календарь для выбора одной даты, нескольких дат или диапазона.'
 category: element
 keywords:
   - date picker
@@ -10,7 +10,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Calendar.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/calendar
   - label: Nuxt UI
@@ -22,9 +22,9 @@ links:
     to: https://reka-ui.com/docs/components/calendar
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `v-model` directive to control the selected date.
+Выбранной датой управляет директива `v-model`.
 
 ::component-code
 ---
@@ -40,7 +40,7 @@ props:
 ---
 ::
 
-Use the `default-value` prop to set the initial value when you do not need to control its state.
+Пропс `default-value` задаёт начальное значение, если управлять состоянием не нужно.
 
 ::component-code
 ---
@@ -59,20 +59,20 @@ props:
 ::framework-only
 #nuxt
 :::note{to="/docs/getting-started/integrations/i18n/nuxt/#locale"}
-This component uses the `@internationalized/date` package for locale-aware formatting. The date format is determined by the `locale` prop of the App component.
+Для форматирования с учётом локали компонент использует пакет `@internationalized/date`. Формат даты определяет пропс `locale` компонента App.
 :::
 
 #vue
 :::note{to="/docs/getting-started/integrations/i18n/vue/#locale"}
-This component uses the `@internationalized/date` package for locale-aware formatting. The date format is determined by the `locale` prop of the App component.
+Для форматирования с учётом локали компонент использует пакет `@internationalized/date`. Формат даты определяет пропс `locale` компонента App.
 :::
 ::
 
-### Type :badge{label="2.14+" class="align-text-top"}
+### Тип :badge{label="2.14+" class="align-text-top"} {#type}
 
-Use the `type` prop to change what the calendar selects. Defaults to `date`.
+Пропс `type` меняет то, что выбирается в календаре. По умолчанию — `date`.
 
-When using `date`, click the heading to switch from the day view to a month then year view for quick navigation, then drill back down to pick a date.
+При `date` щелчок по заголовку переключает вид дней на вид месяцев, а затем лет — так удобно быстро перейти к нужному периоду; потом вы возвращаетесь к выбору дня.
 
 ::component-code
 ---
@@ -89,7 +89,7 @@ props:
 ---
 ::
 
-Use `type="year"` to render a standalone year picker.
+`type="year"` отрисовывает отдельный выбор года.
 
 ::component-code
 ---
@@ -106,9 +106,9 @@ props:
 ---
 ::
 
-### Multiple
+### Множественный выбор {#multiple}
 
-Use the `multiple` prop to allow multiple selections.
+Пропс `multiple` разрешает выбрать несколько дат.
 
 ::component-code
 ---
@@ -126,9 +126,9 @@ props:
 ---
 ::
 
-### Locale
+### Локаль {#locale}
 
-Use the `locale` prop to change the locale of the calendar.
+Пропс `locale` меняет локаль календаря.
 
 ::component-code
 ---
@@ -166,9 +166,9 @@ props:
 ---
 ::
 
-### Range
+### Диапазон {#range}
 
-Use the `range` prop to select a range of dates.
+Пропс `range` включает выбор диапазона дат.
 
 ::component-code
 ---
@@ -189,7 +189,7 @@ props:
 ---
 ::
 
-The `range` prop also works with `type="month"` and `type="year"`, letting you select a range of months or years.
+Пропс `range` работает и с `type="month"` и `type="year"` — можно выбрать диапазон месяцев или лет.
 
 ::component-code
 ---
@@ -212,9 +212,9 @@ props:
 ---
 ::
 
-### Number Of Months
+### Число месяцев {#number-of-months}
 
-Use the `numberOfMonths` prop to change the number of months in the calendar.
+Пропс `numberOfMonths` меняет число месяцев в календаре.
 
 ::component-code
 ---
@@ -224,9 +224,9 @@ props:
 ---
 ::
 
-### Month Controls
+### Управление месяцами {#month-controls}
 
-Use the `month-controls` prop to show the month controls. Defaults to `true`.
+Пропс `month-controls` показывает кнопки переключения месяцев. По умолчанию — `true`.
 
 ::component-code
 ---
@@ -236,7 +236,7 @@ props:
 ---
 ::
 
-Use the `prev-month` and `next-month` props to override the month buttons.
+Пропсы `prev-month` и `next-month` переопределяют кнопки месяцев.
 
 ::component-code
 ---
@@ -254,9 +254,9 @@ props:
 ---
 ::
 
-### Year Controls
+### Управление годами {#year-controls}
 
-Use the `year-controls` prop to show the year controls. Defaults to `true`.
+Пропс `year-controls` показывает кнопки переключения годов. По умолчанию — `true`.
 
 ::component-code
 ---
@@ -265,7 +265,7 @@ props:
 ---
 ::
 
-Use the `prev-year` and `next-year` props to override the year buttons.
+Пропсы `prev-year` и `next-year` переопределяют кнопки годов.
 
 ::component-code
 ---
@@ -283,9 +283,9 @@ props:
 ---
 ::
 
-### View Control :badge{label="2.14+" class="align-text-top"}
+### Переключение вида :badge{label="2.14+" class="align-text-top"} {#view-control}
 
-Use the `view-control` prop to make the heading a button that switches between the day, month and year views. Defaults to `true`.
+Пропс `view-control` превращает заголовок в кнопку, которая переключает виды дней, месяцев и лет. По умолчанию — `true`.
 
 ::component-code
 ---
@@ -298,7 +298,7 @@ props:
 ---
 ::
 
-Set the `view-control` prop to an object to override the heading button.
+Если передать в `view-control` объект, он переопределит кнопку заголовка.
 
 ::component-code
 ---
@@ -312,9 +312,9 @@ props:
 ---
 ::
 
-### Years Per Page :badge{label="2.15+" class="align-text-top"}
+### Годов на странице :badge{label="2.15+" class="align-text-top"} {#years-per-page}
 
-Use the `years-per-page` prop to change the number of years displayed in the year view. Defaults to `12`.
+Пропс `years-per-page` меняет число лет в виде годов. По умолчанию — `12`.
 
 ::component-code
 ---
@@ -326,9 +326,9 @@ props:
 ---
 ::
 
-### Fixed Weeks
+### Фиксированные недели {#fixed-weeks}
 
-Use the `fixed-weeks` prop to display the calendar with fixed weeks.
+Пропс `fixed-weeks` показывает календарь с фиксированным числом недель.
 
 ::component-code
 ---
@@ -338,9 +338,9 @@ props:
 ---
 ::
 
-### Week Numbers
+### Номера недель {#week-numbers}
 
-Use the `week-numbers` prop to display week numbers in the calendar.
+Пропс `week-numbers` показывает номера недель.
 
 ::component-code
 ---
@@ -350,9 +350,9 @@ props:
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of the calendar.
+Пропс `color` меняет цвет календаря.
 
 ::component-code
 ---
@@ -373,9 +373,9 @@ props:
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the calendar.
+Пропс `size` меняет размер календаря.
 
 ::component-code
 ---
@@ -385,9 +385,9 @@ props:
 ---
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the calendar.
+Пропс `disabled` отключает календарь.
 
 ::component-code
 ---
@@ -397,11 +397,11 @@ props:
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With chip events
+### С событиями в чипах {#with-chip-events}
 
-Use the [Chip](/docs/components/chip/) component to add events to specific days.
+Компонент [Chip](/docs/components/chip/) добавляет события к отдельным дням.
 
 ::component-example
 ---
@@ -409,9 +409,9 @@ name: 'calendar-events-example'
 ---
 ::
 
-### With disabled dates
+### С отключёнными датами {#with-disabled-dates}
 
-Use the `is-date-disabled` prop with a function to mark specific dates as disabled. When using `type="month"` or `type="year"`, use the `is-month-disabled` or `is-year-disabled` prop instead.
+Пропс `is-date-disabled` с функцией помечает отдельные даты как отключённые. При `type="month"` или `type="year"` используйте `is-month-disabled` или `is-year-disabled`.
 
 ::component-example
 ---
@@ -419,9 +419,9 @@ name: 'calendar-disabled-dates-example'
 ---
 ::
 
-### With unavailable dates
+### С недоступными датами {#with-unavailable-dates}
 
-Use the `is-date-unavailable` prop with a function to mark specific dates as unavailable. When using `type="month"` or `type="year"`, use the `is-month-unavailable` or `is-year-unavailable` prop instead.
+Пропс `is-date-unavailable` с функцией помечает отдельные даты как недоступные. При `type="month"` или `type="year"` используйте `is-month-unavailable` или `is-year-unavailable`.
 
 ::component-example
 ---
@@ -429,9 +429,9 @@ name: 'calendar-unavailable-dates-example'
 ---
 ::
 
-### With min/max dates
+### С минимальной и максимальной датой {#with-minmax-dates}
 
-Use the `min-value` and `max-value` props to limit the dates.
+Пропсы `min-value` и `max-value` ограничивают диапазон дат.
 
 ::component-example
 ---
@@ -439,9 +439,9 @@ name: 'calendar-min-max-dates-example'
 ---
 ::
 
-### With other calendar systems
+### С другими календарными системами {#with-other-calendar-systems}
 
-You can use other calenders from `@internationalized/date` to implement a different calendar system.
+Другие календари из `@internationalized/date` дают другую календарную систему.
 
 ::component-example
 ---
@@ -450,12 +450,12 @@ name: 'calendar-other-system-example'
 ::
 
 ::note{to="https://react-spectrum.adobe.com/internationalized/date/Calendar.html#implementations"}
-You can check all the available calendars on `@internationalized/date` docs.
+Все доступные календари перечислены в документации `@internationalized/date`.
 ::
 
-### With external controls
+### С внешним управлением {#with-external-controls}
 
-You can control the calendar with external controls by manipulating the date passed in the `v-model`.
+Календарём можно управлять извне, меняя дату в `v-model`.
 
 ::component-example
 ---
@@ -463,9 +463,9 @@ name: 'calendar-external-controls-example'
 ---
 ::
 
-### With today's date
+### С сегодняшней датой {#with-todays-date}
 
-Use the `today` function from `@internationalized/date` with `getLocalTimeZone` to set the value to the current date.
+Функция `today` из `@internationalized/date` вместе с `getLocalTimeZone` задаёт текущую дату.
 
 ::component-example
 ---
@@ -473,9 +473,9 @@ name: 'calendar-today-example'
 ---
 ::
 
-### As a date picker
+### Как выбор даты {#as-a-date-picker}
 
-Use a [Button](/docs/components/button/) and a [Popover](/docs/components/popover/) component to create a date picker.
+Из [Button](/docs/components/button/) и [Popover](/docs/components/popover/) собирается выбор даты.
 
 ::component-example
 ---
@@ -483,9 +483,9 @@ name: 'calendar-date-picker-example'
 ---
 ::
 
-### As a date range picker
+### Как выбор диапазона дат {#as-a-date-range-picker}
 
-Use a [Button](/docs/components/button/) and a [Popover](/docs/components/popover/) component to create a date range picker with preset ranges.
+Из [Button](/docs/components/button/) и [Popover](/docs/components/popover/) собирается выбор диапазона дат с готовыми диапазонами.
 
 ::component-example
 ---
@@ -495,18 +495,18 @@ name: 'calendar-date-range-picker-example'
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

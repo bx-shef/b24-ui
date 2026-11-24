@@ -1,6 +1,6 @@
 ---
 title: Checkbox
-description: A toggle input for marking as checked or unchecked.
+description: 'Поле-переключатель: отмечено или не отмечено.'
 category: form
 keywords:
   - tickbox
@@ -10,7 +10,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Checkbox.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/checkbox
   - label: Nuxt UI
@@ -22,9 +22,9 @@ links:
     to: https://reka-ui.com/docs/components/checkbox
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `v-model` directive to control the checked state of the Checkbox.
+Состоянием Checkbox управляет директива `v-model`.
 
 ::component-code
 ---
@@ -38,7 +38,7 @@ props:
 ---
 ::
 
-Use the `default-value` prop to set the initial value when you do not need to control its state.
+Пропс `default-value` задаёт начальное значение, если управлять состоянием не нужно.
 
 ::component-code
 ---
@@ -50,9 +50,9 @@ props:
 ---
 ::
 
-### Indeterminate
+### Неопределённое состояние {#indeterminate}
 
-Use the `indeterminate` value in the `v-model` directive or `default-value` prop to set the Checkbox to an [indeterminate state](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes).
+Значение `indeterminate` в `v-model` или `default-value` переводит Checkbox в [неопределённое состояние](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox#indeterminate_state_checkboxes).
 
 ::component-code
 ---
@@ -64,19 +64,19 @@ props:
 ---
 ::
 
-### Label
+### Подпись {#label}
 
-Use the `label` prop to set the label of the Checkbox.
+Пропс `label` задаёт подпись Checkbox.
 
 ::component-code
 ---
 prettier: true
 props:
-  label: All employees can post to Feed
+  label: Все сотрудники могут писать в Ленту
 ---
 ::
 
-When using the `required` prop, an asterisk is added next to the label.
+При пропсе `required` рядом с подписью появляется звёздочка.
 
 ::component-code
 ---
@@ -85,13 +85,13 @@ ignore:
   - label
 props:
   required: true
-  label: All employees can post to Feed
+  label: Все сотрудники могут писать в Ленту
 ---
 ::
 
-### Description
+### Описание {#description}
 
-Use the `description` prop to set the description of the Checkbox.
+Пропс `description` задаёт описание Checkbox.
 
 ::component-code
 ---
@@ -99,14 +99,14 @@ prettier: true
 ignore:
   - label
 props:
-  label: All employees can post to Feed
-  description: 'Broadcast posting is allowed in Feed. These posts will be visible to everyone.'
+  label: Все сотрудники могут писать в Ленту
+  description: 'Рассылка сообщений в Ленте разрешена. Эти сообщения будут видны всем.'
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of the Checkbox.
+Пропс `color` меняет цвет Checkbox.
 
 ::component-code
 ---
@@ -117,13 +117,13 @@ ignore:
 props:
   color: 'air-primary-copilot'
   defaultValue: true
-  label: Enable rich link previews
+  label: Включить расширенный предпросмотр ссылок
 ---
 ::
 
-### Variant
+### Вариант {#variant}
 
-Use the `variant` prop to change the variant of the Checkbox.
+Пропс `variant` меняет вариант Checkbox.
 
 ::component-code
 ---
@@ -135,14 +135,14 @@ props:
   variant: 'card'
   color: 'air-primary-copilot'
   defaultValue: true
-  label: All employees can post to Feed
-  description: 'Broadcast posting is allowed in Feed. These posts will be visible to everyone.'
+  label: Все сотрудники могут писать в Ленту
+  description: 'Рассылка сообщений в Ленте разрешена. Эти сообщения будут видны всем.'
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the Checkbox.
+Пропс `size` меняет размер Checkbox.
 
 ::component-code
 ---
@@ -155,17 +155,17 @@ props:
   size: lg
   variant: list
   defaultValue: true
-  label: All employees can post to Feed
-  description: 'Broadcast posting is allowed in Feed. These posts will be visible to everyone.'
+  label: Все сотрудники могут писать в Ленту
+  description: 'Рассылка сообщений в Ленте разрешена. Эти сообщения будут видны всем.'
 ---
 ::
 
-### Indicator
+### Индикатор {#indicator}
 
-Use the `indicator` prop to change the position or hide the indicator. Defaults to `start`.
+Пропс `indicator` меняет положение индикатора или скрывает его. По умолчанию — `start`.
 
 ::note
-When `indicator` is `hidden`, the `icon` is displayed above the label instead.
+При `indicator` равном `hidden` `icon` показывается над подписью.
 ::
 
 ::component-code
@@ -186,13 +186,13 @@ props:
   variant: 'card'
   icon: 'RocketIcon'
   defaultValue: true
-  label: All employees can post to Feed
+  label: Все сотрудники могут писать в Ленту
 ---
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the Checkbox.
+Пропс `disabled` отключает Checkbox.
 
 ::component-code
 ---
@@ -201,30 +201,30 @@ ignore:
   - description
 props:
   disabled: true
-  label: All employees can post to Feed
-  description: 'Broadcast posting is allowed in Feed. These posts will be visible to everyone.'
+  label: Все сотрудники могут писать в Ленту
+  description: 'Рассылка сообщений в Ленте разрешена. Эти сообщения будут видны всем.'
   variant: list
 ---
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes" target="_blank"}
-This component also supports all native `<button>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<button>`.
 ::
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

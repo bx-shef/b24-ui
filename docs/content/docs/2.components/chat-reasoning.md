@@ -1,12 +1,12 @@
 ---
 title: ChatReasoning
-description: An expandable panel that shows the AI's internal reasoning steps.
+description: 'Раскрывающаяся панель с промежуточными шагами рассуждений AI.'
 category: chat
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/ChatReasoning.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/chat-reasoning
   - label: Nuxt UI
@@ -18,9 +18,9 @@ links:
     to: https://reka-ui.com/docs/components/collapsible
 ---
 
-## Usage
+## Использование {#usage}
 
-The ChatReasoning component renders a collapsible block that displays AI reasoning or thinking content. It auto-opens during streaming and auto-closes after.
+Компонент ChatReasoning отрисовывает сворачиваемый блок с рассуждениями AI. Он сам раскрывается во время потока ответа и сворачивается после него.
 
 ::component-example
 ---
@@ -32,12 +32,12 @@ class: 'h-[252px]'
 ::
 
 ::note{to="/docs/composables/use-scroll-shadow/"}
-The body content uses the `useScrollShadow` composable to apply fade shadows when overflowing.
+Тело блока использует композабл `useScrollShadow`: при переполнении по краям появляются затухающие тени.
 ::
 
-### Text
+### Текст {#text}
 
-Use the `text` prop to set the reasoning content. The text is displayed inside the collapsible body.
+Пропс `text` задаёт текст рассуждений. Он показывается внутри сворачиваемого блока.
 
 ::component-code
 ---
@@ -45,14 +45,14 @@ prettier: true
 hide:
   - class
 props:
-  text: 'The user is asking about Vue components...'
+  text: 'Пользователь спрашивает про компоненты Vue...'
   class: 'w-60'
 ---
 ::
 
-### Streaming :badge{label="2.15+" class="align-text-top"}
+### Поток :badge{label="2.15+" class="align-text-top"} {#streaming}
 
-Use the `streaming` prop to indicate active reasoning. The component auto-opens when streaming starts and auto-closes when it ends.
+Пропс `streaming` показывает, что рассуждение идёт. Компонент раскрывается при начале потока и сворачивается при его окончании.
 
 ::component-code
 ---
@@ -63,22 +63,22 @@ ignore:
   - text
 props:
   streaming: true
-  text: 'The user is asking about Vue components...'
+  text: 'Пользователь спрашивает про компоненты Vue...'
   class: 'w-60'
 ---
 ::
 
 ::tip
-Set the `auto-open` prop to `false` to keep the component closed when streaming starts, and `auto-close-delay` to `0` to keep it open when streaming ends. If the user toggles it while streaming, it stays as they left it.
+Пропс `auto-open` со значением `false` оставляет компонент свёрнутым при начале потока, а `auto-close-delay` со значением `0` оставляет его раскрытым после окончания. Если пользователь переключил блок во время потока, блок остаётся в выбранном им состоянии.
 ::
 
 ::tip
-Use the `isPartStreaming` utility from `@bitrix24/b24ui-nuxt/utils/ai` to determine if a reasoning part is currently being streamed. Pass it the `streaming` slot prop of [ChatMessages](/docs/components/chat-messages/#slots) so it stops when the chat is stopped.
+Утилита `isPartStreaming` из `@bitrix24/b24ui-nuxt/utils/ai` определяет, идёт ли сейчас поток для части с рассуждениями. Передайте ей слот-пропс `streaming` компонента [ChatMessages](/docs/components/chat-messages/#slots), чтобы она остановилась вместе с чатом.
 ::
 
-### Shimmer
+### Мерцание {#shimmer}
 
-When streaming, the trigger label uses the [`ChatShimmer`](/docs/components/chat-shimmer/) component. Use the `shimmer` prop to customize its `duration` and `spread`.
+Во время потока подпись триггера использует компонент [`ChatShimmer`](/docs/components/chat-shimmer/). Пропс `shimmer` настраивает его `duration` и `spread`.
 
 ::component-code
 ---
@@ -89,7 +89,7 @@ ignore:
   - text
 props:
   streaming: true
-  text: 'The user is asking about Vue components...'
+  text: 'Пользователь спрашивает про компоненты Vue...'
   shimmer:
     duration: 2
     spread: 2
@@ -97,9 +97,9 @@ props:
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to display an [Icon](https://bitrix24.github.io/b24icons/icons/) component next to the trigger.
+Пропс `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/) рядом с триггером.
 
 ::component-code
 ---
@@ -113,17 +113,17 @@ cast:
   icon: 'RocketIcon'
 props:
   icon: 'RocketIcon'
-  text: 'The user is asking about Vue components...'
+  text: 'Пользователь спрашивает про компоненты Vue...'
   class: 'w-60'
 ---
 ::
 
-### Chevron
+### Шеврон {#chevron}
 
-Use the `chevron` prop to change the position of the chevron icon.
+Пропс `chevron` меняет положение иконки-шеврона.
 
 ::note
-When `chevron` is set to `leading` with an `icon`, the icon swaps with the chevron on hover and when open.
+Если у `chevron` значение `leading` и задан `icon`, иконка заменяется шевроном при наведении и в раскрытом состоянии.
 ::
 
 ::component-code
@@ -139,14 +139,14 @@ cast:
 props:
   chevron: leading
   icon: 'RocketIcon'
-  text: 'The user is asking about Vue components...'
+  text: 'Пользователь спрашивает про компоненты Vue...'
   class: 'w-60'
 ---
 ::
 
-### Chevron Icon
+### Иконка шеврона {#chevron-icon}
 
-Use the `chevron-icon` prop to customize the chevron [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `chevron-icon` задаёт [иконку](https://bitrix24.github.io/b24icons/icons/) шеврона.
 
 ::component-code
 ---
@@ -160,31 +160,31 @@ cast:
     chevronIcon: 'RocketIcon'
 props:
   chevronIcon: 'RocketIcon'
-  text: 'The user is asking about Vue components...'
+  text: 'Пользователь спрашивает про компоненты Vue...'
   class: 'w-60'
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
 ::tip{to="/docs/components/chat/"}
-Check the **Chat** overview page for installation instructions, server setup and usage examples.
+Установка, настройка сервера и примеры использования — на обзорной странице **Chat**.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

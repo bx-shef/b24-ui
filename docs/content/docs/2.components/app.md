@@ -1,6 +1,6 @@
 ---
 title: App
-description: Encases your app to deliver global settings and additional features.
+description: 'Оборачивает приложение и даёт глобальные настройки и дополнительные возможности.'
 category: layout
 links:
   - label: GitHub
@@ -11,17 +11,17 @@ links:
     to: https://ui.nuxt.com/docs/components/app
 ---
 
-## Usage
+## Использование {#usage}
 
-This component implements Reka UI [ConfigProvider](https://reka-ui.com/docs/utilities/config-provider) to provide global configuration to all components:
+Компонент использует [ConfigProvider](https://reka-ui.com/docs/utilities/config-provider) из Reka UI, чтобы передать всем компонентам глобальную конфигурацию:
 
-- Enables all primitives to inherit global reading direction.
-- Enables changing the behavior of scroll body when setting body lock.
-- Much more controls to prevent layout shifts.
+- Все примитивы наследуют общее направление чтения.
+- Можно менять поведение прокрутки страницы при блокировке `body`.
+- Больше настроек, которые не дают содержимому «прыгать».
 
-It's also using [ToastProvider](https://reka-ui.com/docs/components/toast#provider) and [TooltipProvider](https://reka-ui.com/docs/components/tooltip#provider) to provide global toasts and tooltips.
+Кроме того, он использует [ToastProvider](https://reka-ui.com/docs/components/toast#provider) и [TooltipProvider](https://reka-ui.com/docs/components/tooltip#provider) для глобальных уведомлений и подсказок.
 
-Use it as at the root of your app:
+Разместите его в корне приложения:
 
 ```vue [app.vue]
 <template>
@@ -34,21 +34,21 @@ Use it as at the root of your app:
 ::framework-only
 #nuxt
 :::tip{to="/docs/getting-started/integrations/i18n/nuxt/#locale"}
-Learn how to use the `locale` prop to change the locale of your app. This also controls the date/time format in components like Calendar, InputDate, and InputTime.
+Как сменить локаль приложения пропсом `locale` — в руководстве. Локаль задаёт и формат даты и времени в компонентах Calendar, InputDate и InputTime.
 :::
 
 #vue
 :::tip{to="/docs/getting-started/integrations/i18n/vue/#locale"}
-Learn how to use the `locale` prop to change the locale of your app. This also controls the date/time format in components like Calendar, InputDate, and InputTime.
+Как сменить локаль приложения пропсом `locale` — в руководстве. Локаль задаёт и формат даты и времени в компонентах Calendar, InputDate и InputTime.
 :::
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots

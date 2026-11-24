@@ -1,12 +1,12 @@
 ---
 title: ChatTool
-description: An expandable section that indicates whether an AI tool has been called and its execution state.
+description: 'Раскрывающийся раздел: показывает, вызван ли инструмент AI и в каком он состоянии.'
 category: chat
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/ChatTool.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/chat-tool
   - label: Nuxt UI
@@ -18,9 +18,9 @@ links:
     to: https://reka-ui.com/docs/components/collapsible
 ---
 
-## Usage
+## Использование {#usage}
 
-The ChatTool component renders a collapsible block that displays AI tool invocation status, such as "Searching components" or "Reading documentation". When a default slot is provided, it becomes collapsible to reveal tool output.
+Компонент ChatTool отрисовывает сворачиваемый блок со статусом вызова инструмента AI, например «Searching components» или «Reading documentation». Если задан слот по умолчанию, блок сворачивается и раскрывает вывод инструмента.
 
 ::component-example
 ---
@@ -31,7 +31,7 @@ name: 'chat-tool-example'
 ::
 
 ::tip
-When the output arrives later, put the `v-if` on the slot itself rather than on its content. A slot that renders nothing still makes the block collapsible, with an empty panel.
+Если результат приходит позже, ставьте `v-if` на сам слот, а не на его содержимое: слот, который ничего не рисует, всё равно делает блок раскрываемым — с пустой панелью.
 
 ```vue
 <template>
@@ -44,23 +44,23 @@ When the output arrives later, put the `v-if` on the slot itself rather than on 
 ```
 ::
 
-### Text
+### Текст {#text}
 
-Use the `text` prop to set the tool status text.
+Пропс `text` задаёт текст статуса инструмента.
 
 ::component-code
 ---
 hide:
   - class
 props:
-  text: 'Searched components'
+  text: 'Поиск компонентов выполнен'
   class: 'w-60'
 ---
 ::
 
-### Suffix
+### Суффикс {#suffix}
 
-Use the `suffix` prop to display secondary text after the main label.
+Пропс `suffix` показывает дополнительный текст после основной подписи.
 
 ::component-code
 ---
@@ -69,15 +69,15 @@ hide:
 ignore:
   - text
 props:
-  text: 'Reading component'
+  text: 'Чтение компонента'
   suffix: 'Button'
   class: 'w-60'
 ---
 ::
 
-### Streaming
+### Поток {#streaming}
 
-Use the `streaming` prop to indicate the tool is actively running. The text displays a shimmer animation.
+Пропс `streaming` показывает, что инструмент сейчас работает. Текст мерцает.
 
 ::component-code
 ---
@@ -87,18 +87,18 @@ ignore:
   - text
 props:
   streaming: true
-  text: 'Searching components...'
+  text: 'Ищем компоненты...'
   class: 'w-60'
 ---
 ::
 
 ::tip
-Use the `isToolStreaming` utility from `@bitrix24/b24ui-nuxt/utils/ai` to determine if a tool part is still running. Pass it the `streaming` slot prop of [ChatMessages](/docs/components/chat-messages/#slots) so it stops when the chat is stopped.
+Утилита `isToolStreaming` из `@bitrix24/b24ui-nuxt/utils/ai` определяет, выполняется ли ещё часть с вызовом инструмента. Передайте ей слот-пропс `streaming` компонента [ChatMessages](/docs/components/chat-messages/#slots), чтобы она остановилась вместе с чатом.
 ::
 
-### Shimmer
+### Мерцание {#shimmer}
 
-When streaming, the trigger label uses the [`ChatShimmer`](/docs/components/chat-shimmer/) component. Use the `shimmer` prop to customize its `duration` and `spread`.
+Во время потока подпись триггера использует компонент [`ChatShimmer`](/docs/components/chat-shimmer/). Пропс `shimmer` настраивает его `duration` и `spread`.
 
 ::component-code
 ---
@@ -109,7 +109,7 @@ ignore:
   - text
 props:
   streaming: true
-  text: 'Searching components...'
+  text: 'Ищем компоненты...'
   shimmer:
     duration: 2
     spread: 2
@@ -117,9 +117,9 @@ props:
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to display an [Icon](https://bitrix24.github.io/b24icons/icons/) component next to the trigger.
+Пропс `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/) рядом с триггером.
 
 ::component-code
 ---
@@ -132,14 +132,14 @@ cast:
   icon: 'RocketIcon'
 props:
   icon: 'RocketIcon'
-  text: 'Searched components'
+  text: 'Поиск компонентов выполнен'
   class: 'w-60'
 ---
 ::
 
-### Loading
+### Загрузка {#loading}
 
-Use the `loading` prop to show a loading indicator. Use the `loading-icon` prop to customize the loading icon.
+Пропс `loading` показывает индикатор загрузки, а пропс `loading-icon` задаёт его иконку.
 
 ::component-code
 ---
@@ -149,16 +149,16 @@ ignore:
   - text
 props:
   loading: true
-  text: 'Searching components...'
+  text: 'Ищем компоненты...'
   class: 'w-60'
 ---
 ::
 
-### Loading Icon
+### Иконка загрузки {#loading-icon}
 
-Use `use-clock` or `use-wait` props to show different loading icons.
+Пропсы `use-clock` и `use-wait` показывают разные иконки загрузки.
 
-Use the `loading-icon` prop to customize the loading icon.
+Пропс `loading-icon` задаёт иконку загрузки.
 
 ::component-code
 ---
@@ -173,7 +173,7 @@ cast:
 props:
   loading: true
   loadingIcon: 'RocketIcon'
-  text: 'Searching components...'
+  text: 'Ищем компоненты...'
   class: 'w-60'
 ---
 ::
@@ -188,14 +188,14 @@ props:
   loading: true
   useWait: true
   useClock: false
-  text: 'Searching components...'
+  text: 'Ищем компоненты...'
   class: 'w-60'
 ---
 ::
 
-### Error
+### Ошибка {#error}
 
-Use the `error` prop to show that the tool call failed, for example when the part state is `output-error`.
+Пропс `error` показывает, что вызов инструмента завершился ошибкой, например когда состояние части — `output-error`.
 
 ::component-code
 ---
@@ -205,14 +205,14 @@ ignore:
   - text
 props:
   error: true
-  text: 'Failed to search components'
+  text: 'Не удалось найти компоненты'
   class: 'w-60'
 ---
 ::
 
-### Error Icon
+### Иконка ошибки {#error-icon}
 
-Use the `error-icon` prop to customize the error [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `error-icon` задаёт [иконку](https://bitrix24.github.io/b24icons/icons/) ошибки.
 
 ::component-code
 ---
@@ -227,17 +227,17 @@ cast:
 props:
   error: true
   errorIcon: 'RocketIcon'
-  text: 'Failed to search components'
+  text: 'Не удалось найти компоненты'
   class: 'w-60'
 ---
 ::
 
-### Chevron
+### Шеврон {#chevron}
 
-Use the `chevron` prop to change the position of the chevron icon.
+Пропс `chevron` меняет положение иконки-шеврона.
 
 ::note
-When `chevron` is set to `leading` with an `icon`, the icon swaps with the chevron on hover and when open.
+Если у `chevron` значение `leading` и задан `icon`, иконка заменяется шевроном при наведении и в раскрытом состоянии.
 ::
 
 ::component-code
@@ -253,18 +253,18 @@ cast:
 props:
   chevron: leading
   icon: 'RocketIcon'
-  text: 'Searched components'
+  text: 'Поиск компонентов выполнен'
   class: 'w-60'
 slots:
   default: |
 
-    Tool output content
+    Вывод инструмента
 ---
 ::
 
-### Chevron Icon
+### Иконка шеврона {#chevron-icon}
 
-Use the `chevron-icon` prop to customize the chevron [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `chevron-icon` задаёт [иконку](https://bitrix24.github.io/b24icons/icons/) шеврона.
 
 ::component-code
 ---
@@ -278,18 +278,18 @@ cast:
   chevronIcon: 'RocketIcon'
 props:
   chevronIcon: 'RocketIcon'
-  text: 'Searched components'
+  text: 'Поиск компонентов выполнен'
   class: 'w-60'
 slots:
   default: |
 
-    Tool output content
+    Вывод инструмента
 ---
 ::
 
-### Variant
+### Вариант {#variant}
 
-Use the `variant` prop to change the visual style. Defaults to `inline`.
+Пропс `variant` меняет внешний вид. По умолчанию — `inline`.
 
 ::component-code
 ---
@@ -303,20 +303,20 @@ cast:
   icon: 'RocketIcon'
 props:
   variant: card
-  text: 'Searched components'
+  text: 'Поиск компонентов выполнен'
   icon: 'RocketIcon'
   chevron: trailing
   class: 'w-60'
 slots:
   default: |
 
-    Tool output content
+    Вывод инструмента
 ---
 ::
 
-### Actions
+### Действия {#actions}
 
-Use the `actions` prop to display a list of [Button](/docs/components/button/) below the trigger, useful for tools that require a user confirmation before running.
+Пропс `actions` показывает под триггером список [кнопок](/docs/components/button/). Это удобно для инструментов, которым перед запуском нужно подтверждение пользователя.
 
 ::component-code
 ---
@@ -332,10 +332,10 @@ cast:
   icon: 'RocketIcon'
 props:
   actions:
-    - label: 'Approve'
-    - label: 'Deny'
+    - label: 'Разрешить'
+    - label: 'Отклонить'
       color: air-secondary
-  text: 'Run terminal command'
+  text: 'Выполнить команду в терминале'
   variant: card
   icon: 'RocketIcon'
   class: 'w-60'
@@ -346,26 +346,26 @@ slots:
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
 ::tip{to="/docs/components/chat/"}
-Check the **Chat** overview page for installation instructions, server setup and usage examples.
+Установка, настройка сервера и примеры использования — на обзорной странице **Chat**.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

@@ -1,6 +1,6 @@
 ---
 title: ChatPalette
-description: 'A chat interface component designed to be displayed in a modal overlay.'
+description: 'Интерфейс чата для показа в модальном оверлее.'
 category: chat
 links:
   - label: GitHub
@@ -11,9 +11,9 @@ links:
     to: https://ui.nuxt.com/docs/components/chat-palette
 ---
 
-## Usage
+## Использование {#usage}
 
-The ChatPalette component is a structured layout wrapper that organizes [ChatMessages](/docs/components/chat-messages/) in a scrollable content area and [ChatPrompt](/docs/components/chat-prompt/) in a fixed bottom section, creating cohesive chatbot interfaces for modals, slideovers.
+Компонент ChatPalette — обёртка-раскладка: [ChatMessages](/docs/components/chat-messages/) размещаются в прокручиваемой области, а [ChatPrompt](/docs/components/chat-prompt/) — в закреплённой нижней части. Так получаются цельные интерфейсы чат-ботов для модальных окон и боковых панелей.
 
 ```vue{2,8}
 <template>
@@ -27,15 +27,15 @@ The ChatPalette component is a structured layout wrapper that organizes [ChatMes
 </template>
 ```
 
-## Examples
+## Примеры {#examples}
 
 ::tip{to="/docs/components/chat/"}
-Check the **Chat** overview page for installation instructions, server setup and usage examples.
+Установка, настройка сервера и примеры использования — на обзорной странице **Chat**.
 ::
 
-### Within a Modal
+### В модальном окне {#within-a-modal}
 
-You can use the ChatPalette component inside a [Modal](/docs/components/modal/)'s content.
+ChatPalette можно разместить внутри содержимого [Modal](/docs/components/modal/).
 
 ::component-example
 ---
@@ -48,9 +48,9 @@ name: 'chat-palette-modal-example'
 ---
 ::
 
-### Within ContentSearch
+### В ContentSearch {#within-contentsearch}
 
-You can use the ChatPalette component conditionally inside [ContentSearch](/docs/components/content-search/)'s content to display a chatbot interface when a user selects an item.
+ChatPalette можно показывать по условию внутри содержимого [ContentSearch](/docs/components/content-search/): интерфейс чат-бота появляется, когда пользователь выбирает элемент.
 
 ::component-example
 ---
@@ -65,14 +65,14 @@ name: 'chat-palette-content-search-example'
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme
