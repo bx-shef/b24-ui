@@ -81,10 +81,11 @@ const groups = computed<ContextMenuItem[][]>(() =>
 </script>
 
 <template>
-  <DefineItemTemplate v-slot="{ item, active, index }">
+  <DefineItemTemplate v-slot="{ item, active = false, index }">
     <slot
       :name="((item.slot || 'item') as keyof ContextMenuSlots<T>)"
       :item="item"
+      :active="active"
       :index="index"
       :b24ui="b24ui"
     >

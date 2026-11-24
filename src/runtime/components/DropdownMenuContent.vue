@@ -141,10 +141,11 @@ const hasFilteredItems = computed(() => filteredGroups.value.some(group => group
 </script>
 
 <template>
-  <DefineItemTemplate v-slot="{ item, active, index }">
+  <DefineItemTemplate v-slot="{ item, active = false, index }">
     <slot
       :name="((item.slot || 'item') as keyof DropdownMenuContentSlots<T>)"
       :item="(item as Extract<NestedItem<T>, { slot: string; }>)"
+      :active="active"
       :index="index"
       :b24ui="props.b24ui"
     >
