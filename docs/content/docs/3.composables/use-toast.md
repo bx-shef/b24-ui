@@ -211,6 +211,10 @@ function updateToast(id: string | number) {
   ::
 ::
 
+::warning
+Не показывайте пользователю внутренние сообщения об ошибках бэкенда: вместо `error: e => e.message` задавайте понятный текст.
+::
+
 **Возвращает:** переданный промис, поэтому его результат можно ждать через `await`.
 
 ```vue
@@ -221,7 +225,7 @@ async function save() {
   await toast.promise($fetch('/api/save', { method: 'POST' }), {
     loading: 'Saving...',
     success: { title: 'Saved', color: 'air-primary-success' },
-    error: (error: any) => ({ title: error.message, color: 'air-primary-alert' })
+    error: { title: 'Не удалось сохранить', color: 'air-primary-alert' }
   })
 }
 </script>

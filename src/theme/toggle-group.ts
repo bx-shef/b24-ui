@@ -4,7 +4,8 @@
  * ---
  * Reka renders a hidden input after the items when the group has a `name`
  * inside a form, so the rounding of attached items counts buttons only
- * (`*-of-type`) rather than children. The pressed item is lifted above its
+ * (`*-of-type`) rather than children, and the 1px overlap is a negative margin on
+ * the buttons themselves, since that input would otherwise be the last child. The pressed item is lifted above its
  * neighbours so its border shows, and the focused one above both.
  */
 export default {
@@ -32,16 +33,16 @@ export default {
       orientation: 'horizontal',
       attached: true,
       class: {
-        root: 'gap-0 -space-x-px',
-        item: 'first-of-type:rounded-s-(--ui-btn-radius) last-of-type:rounded-e-(--ui-btn-radius)'
+        root: 'gap-0',
+        item: 'not-first-of-type:-ms-px first-of-type:rounded-s-(--ui-btn-radius) last-of-type:rounded-e-(--ui-btn-radius)'
       }
     },
     {
       orientation: 'vertical',
       attached: true,
       class: {
-        root: 'gap-0 -space-y-px',
-        item: 'first-of-type:rounded-t-(--ui-btn-radius) last-of-type:rounded-b-(--ui-btn-radius)'
+        root: 'gap-0',
+        item: 'not-first-of-type:-mt-px first-of-type:rounded-t-(--ui-btn-radius) last-of-type:rounded-b-(--ui-btn-radius)'
       }
     }
   ],

@@ -73,6 +73,40 @@ describe('ToggleGroup', () => {
     expect(buttons.map(button => button.attributes('aria-pressed'))).toEqual(['true', 'true', 'false'])
   })
 
+  describe.each([
+    ['horizontal', 'first-of-type:rounded-s-(--ui-btn-radius)', 'last-of-type:rounded-e-(--ui-btn-radius)', 'not-first-of-type:-ms-px'],
+    ['vertical', 'first-of-type:rounded-t-(--ui-btn-radius)', 'last-of-type:rounded-b-(--ui-btn-radius)', 'not-first-of-type:-mt-px']
+  ])('attached %s inside a form with a name', (orientation, first, last, overlap) => {
+    async function mountAttached() {
+      return await renderForm({
+        props: {},
+        slotVars: { items, orientation },
+        slotTemplate: `<B24ToggleGroup attached name="align" :orientation="orientation" :items="items" default-value="left" />`
+      })
+    }
+
+    it('rounds the buttons by tag type, so the hidden input does not break it', async () => {
+      const wrapper = await mountAttached()
+      const group = wrapper.find('[role="group"]')
+      const buttons = group.findAll('button')
+
+      // Reka renders a hidden input after the buttons: it is the last child, not the last button
+      const hidden = group.find('input')
+      expect(hidden.exists()).toBe(true)
+      expect(group.element.lastElementChild).toBe(hidden.element)
+      expect(buttons[buttons.length - 1]!.element.matches(':last-of-type')).toBe(true)
+      expect(buttons[buttons.length - 1]!.element.matches(':last-child')).toBe(false)
+      expect(buttons[0]!.element.matches(':first-of-type')).toBe(true)
+
+      expect(buttons[0]!.classes()).toContain(first)
+      expect(buttons[buttons.length - 1]!.classes()).toContain(last)
+      expect(buttons.every(button => !button.classes().some(cls => /(?:^|:)(?:first|last):rounded/.test(cls)))).toBe(true)
+      // The overlap is a margin on the buttons, not on the group, so the input does not shift the last one
+      expect(buttons.every(button => button.classes().includes(overlap))).toBe(true)
+      expect(group.classes().some(cls => cls.includes('space-'))).toBe(false)
+    })
+  })
+
   it('passes accessibility tests', async () => {
     const wrapper = await mountSuspended(ToggleGroup, { props: { ...props, defaultValue: 'center' } })
 

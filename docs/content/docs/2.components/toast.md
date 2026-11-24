@@ -349,6 +349,10 @@ name: 'toast-promise-example'
 ---
 ::
 
+::warning
+Не показывайте пользователю внутренние сообщения об ошибках бэкенда: вместо `error: e => e.message` задавайте понятный текст.
+::
+
 ### С HTML-содержимым {#with-html-content}
 
 [Функция отрисовки `h()`](https://vuejs.org/api/render-function.html#h) в полях `title` или `description` отрисовывает HTML-элементы или компоненты Vue с произвольным оформлением.
