@@ -1,7 +1,7 @@
 {
   "upstream": "nuxt/ui",
   "branch": "v4",
-  "cursor": "d96f2d595c013885202591ea7c69e01f1ae12a61",
+  "cursor": "1ee53fe5ac0483b189aba7e47da8a4971d24cad2",
   "_cursor_note": "cursor = last upstream commit ported into b24ui. The sync is manual by decision: one commit at a time, oldest-first, each with a `.sync/log/<sha>.md` journal and an entry in `processed`. There is no dispatcher, no porter workflow and no kill-switch — `.sync/PORTING.md` is the whole procedure. `processed` is maintained per port (backfilled #68-#72 on 2026-06-09).",
   "processed": {
     "2799fa6f2b25ce3eb15e050f3ef7c57d0d9a2fdb": {
@@ -3713,6 +3713,12 @@
       "b24ui_sha": "pending-merge",
       "decision": "port",
       "summary": "fix(Calendar): неконтролируемый выбор сохраняется при смене вида — uncontrolledValue как defaultValue пикера"
+    },
+    "1ee53fe5ac0483b189aba7e47da8a4971d24cad2": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(Calendar): фокус остаётся внутри календаря при смене вида — keepFocus после cycleView и onSelect"
     }
   }
 }
