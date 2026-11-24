@@ -7,77 +7,77 @@ import QuoteIcon from '@bitrix24/b24icons-vue/outline/QuoteIcon'
 import CodeIcon from '@bitrix24/b24icons-vue/common-service/CodeIcon'
 import HrIcon from '@bitrix24/b24icons-vue/editor/HrIcon'
 
-const value = ref(`# Suggestion Menu
+const value = ref(`# Меню подсказок
 
-Type / to open the suggestion menu and browse available formatting commands.`)
+Введите /, чтобы открыть меню подсказок и посмотреть доступные команды форматирования.`)
 
 const items: EditorSuggestionMenuItem[][] = [
   [
     {
       type: 'label',
-      label: 'Text'
+      label: 'Текст'
     },
     {
       kind: 'paragraph',
-      label: 'Paragraph',
+      label: 'Абзац',
       icon: TextIcon
     },
     {
       kind: 'heading',
       level: 1,
-      label: 'Heading 1'
+      label: 'Заголовок 1'
     },
     {
       kind: 'heading',
       level: 2,
-      label: 'Heading 2'
+      label: 'Заголовок 2'
     },
     {
       kind: 'heading',
       level: 3,
-      label: 'Heading 3'
+      label: 'Заголовок 3'
     }
   ],
   [
     {
       type: 'label',
-      label: 'Lists'
+      label: 'Списки'
     },
     {
       kind: 'bulletList',
-      label: 'Bullet List',
+      label: 'Маркированный список',
       icon: BulletedListIcon
     },
     {
       kind: 'orderedList',
-      label: 'Numbered List',
+      label: 'Нумерованный список',
       icon: NumberedListIcon
     }
   ],
   [
     {
       type: 'label',
-      label: 'Insert'
+      label: 'Вставка'
     },
     {
       kind: 'blockquote',
-      label: 'Blockquote',
+      label: 'Цитата',
       icon: QuoteIcon
     },
     {
       kind: 'codeBlock',
-      label: 'Code Block',
+      label: 'Блок кода',
       icon: CodeIcon
     },
     {
       kind: 'horizontalRule',
-      label: 'Divider',
+      label: 'Разделитель',
       icon: HrIcon
     }
   ]
 ]
 
-// SSR-safe function to append menus to body (avoids z-index issues in docs)
+// Безопасная для SSR функция, добавляющая меню в body (чтобы не было проблем с z-index в документации)
 const appendToBody = import.meta.client ? () => document.body : undefined
 </script>
 
@@ -86,7 +86,7 @@ const appendToBody = import.meta.client ? () => document.body : undefined
     v-slot="{ editor }"
     v-model="value"
     content-type="markdown"
-    placeholder="Type / for commands..."
+    placeholder="Введите / для команд..."
     class="w-full min-h-21"
   >
     <B24EditorSuggestionMenu :editor="editor" :items="items" :append-to="appendToBody" />

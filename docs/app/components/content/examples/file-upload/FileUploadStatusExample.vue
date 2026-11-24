@@ -67,8 +67,8 @@ onScopeDispose(() => {
   <B24FileUpload
     :model-value="files"
     layout="list"
-    label="Drop your images here"
-    description="SVG, PNG, JPG or GIF"
+    label="Перетащите изображения сюда"
+    description="SVG, PNG, JPG или GIF"
     accept="image/*"
     multiple
     class="w-96 min-h-48"
@@ -90,7 +90,7 @@ onScopeDispose(() => {
           color="air-tertiary-no-accent"
           size="xs"
           :icon="CrossMIcon"
-          :aria-label="`Remove ${file.name}`"
+          :aria-label="`Удалить ${file.name}`"
           @click.stop.prevent="removeFile(index)"
         />
       </div>

@@ -20,57 +20,57 @@ import AlignCenterIcon from '@bitrix24/b24icons-vue/outline/AlignCenterIcon'
 import AlignRightIcon from '@bitrix24/b24icons-vue/outline/AlignRightIcon'
 import AlignJustifyIcon from '@bitrix24/b24icons-vue/outline/AlignJustifyIcon'
 
-const value = ref(`This toolbar showcases **all available formatting options** using built-in handlers. Try the different controls to see them in action!
+const value = ref(`Эта панель инструментов показывает **все доступные параметры форматирования** со встроенными обработчиками. Попробуйте разные элементы управления в действии!
 
-You can apply **bold**, *italic*, <u>underline</u>, ~~strikethrough~~, and \`inline code\` formatting to your text.
+К тексту можно применить **жирный**, *курсив*, <u>подчёркнутый</u>, ~~зачёркнутый~~ и \`строчный код\`.
 `)
 
 const items: EditorToolbarItem[][] = [
-  // History controls
+  // Управление историей
   [
     {
       kind: 'undo',
       icon: UndoIcon,
-      tooltip: { text: 'Undo' }
+      tooltip: { text: 'Отменить' }
     },
     {
       kind: 'redo',
       icon: RedoIcon,
-      tooltip: { text: 'Redo' }
+      tooltip: { text: 'Повторить' }
     }
   ],
-  // Block types
+  // Типы блоков
   [
     {
       icon: HeaderIcon,
-      tooltip: { text: 'Headings' },
+      tooltip: { text: 'Заголовки' },
       content: { align: 'start' },
       items: [
         {
           kind: 'heading',
           level: 1,
-          label: 'Heading 1'
+          label: 'Заголовок 1'
         },
         {
           kind: 'heading',
           level: 2,
-          label: 'Heading 2'
+          label: 'Заголовок 2'
         },
         {
           kind: 'heading',
           level: 3,
-          label: 'Heading 3'
+          label: 'Заголовок 3'
         },
         {
           kind: 'heading',
           level: 4,
-          label: 'Heading 4'
+          label: 'Заголовок 4'
         }
       ]
     },
     {
       icon: BulletedListIcon,
-      tooltip: { text: 'Lists' },
+      tooltip: { text: 'Списки' },
       content: {
         align: 'start'
       },
@@ -78,77 +78,77 @@ const items: EditorToolbarItem[][] = [
         {
           kind: 'bulletList',
           icon: BulletedListIcon,
-          label: 'Bullet List'
+          label: 'Маркированный список'
         },
         {
           kind: 'orderedList',
           icon: NumberedListIcon,
-          label: 'Ordered List'
+          label: 'Нумерованный список'
         }
       ]
     },
     {
       kind: 'blockquote',
       icon: QuoteIcon,
-      tooltip: { text: 'Blockquote' }
+      tooltip: { text: 'Цитата' }
     },
     {
       kind: 'codeBlock',
       icon: CodeIcon,
-      tooltip: { text: 'Code Block' }
+      tooltip: { text: 'Блок кода' }
     },
     {
       kind: 'horizontalRule',
       icon: HrIcon,
-      tooltip: { text: 'Horizontal Rule' }
+      tooltip: { text: 'Горизонтальная линия' }
     }
   ],
-  // Text formatting
+  // Форматирование текста
   [
     {
       kind: 'mark',
       mark: 'bold',
       icon: BoldIcon,
-      tooltip: { text: 'Bold' }
+      tooltip: { text: 'Жирный' }
     },
     {
       kind: 'mark',
       mark: 'italic',
       icon: ItalicIcon,
-      tooltip: { text: 'Italic' }
+      tooltip: { text: 'Курсив' }
     },
     {
       kind: 'mark',
       mark: 'underline',
       icon: UnderlineIcon,
-      tooltip: { text: 'Underline' }
+      tooltip: { text: 'Подчёркнутый' }
     },
     {
       kind: 'mark',
       mark: 'strike',
       icon: StrikethroughIcon,
-      tooltip: { text: 'Strikethrough' }
+      tooltip: { text: 'Зачёркнутый' }
     },
     {
       kind: 'mark',
       mark: 'code',
       icon: DeveloperResourcesIcon,
-      tooltip: { text: 'Code' }
+      tooltip: { text: 'Код' }
     }
   ],
-  // Link
+  // Ссылка
   [
     {
       kind: 'link',
       icon: LinkIcon,
-      tooltip: { text: 'Link' }
+      tooltip: { text: 'Ссылка' }
     }
   ],
-  // Text alignment
+  // Выравнивание текста
   [
     {
       icon: AlignJustifyIcon,
-      tooltip: { text: 'Text Align' },
+      tooltip: { text: 'Выравнивание текста' },
       content: {
         align: 'end'
       },
@@ -157,22 +157,22 @@ const items: EditorToolbarItem[][] = [
           kind: 'textAlign',
           align: 'left',
           icon: AlignLeftIcon,
-          label: 'Align Left'
+          label: 'По левому краю'
         }, {
           kind: 'textAlign',
           align: 'center',
           icon: AlignCenterIcon,
-          label: 'Align Center'
+          label: 'По центру'
         }, {
           kind: 'textAlign',
           align: 'right',
           icon: AlignRightIcon,
-          label: 'Align Right'
+          label: 'По правому краю'
         }, {
           kind: 'textAlign',
           align: 'justify',
           icon: AlignJustifyIcon,
-          label: 'Align Justify'
+          label: 'По ширине'
         }
       ]
     }

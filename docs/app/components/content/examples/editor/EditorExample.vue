@@ -42,38 +42,38 @@ import HrIcon from '@bitrix24/b24icons-vue/editor/HrIcon'
 import PlusLIcon from '@bitrix24/b24icons-vue/outline/PlusLIcon'
 import DragLIcon from '@bitrix24/b24icons-vue/outline/DragLIcon'
 
-const value = ref(`# Building Modern Interfaces with Bitrix24 UI
+const value = ref(`# Создание современных интерфейсов с Bitrix24 UI
 
-Welcome to the **Bitrix24 UI Editor** — a powerful rich text editing experience built on [TipTap](https://tiptap.dev). This editor combines *flexibility* with ease of use, making content creation a breeze.
+Добро пожаловать в **Bitrix24 UI Editor** — мощный редактор форматированного текста на основе [TipTap](https://tiptap.dev). Он сочетает *гибкость* и простоту использования, поэтому создавать контент легко.
 
 ![Placeholder](https://bitrix24.github.io/b24ui/assets/demo/b24rich_new.png)
 
-## Rich Formatting Options
+## Богатые возможности форматирования
 
-The editor supports all common text formatting including **bold**, *italic*, <u>underline</u>, ~~strikethrough~~, and \`inline code\`. You can also combine them for **_bold and italic_** text.
+Редактор поддерживает всё привычное форматирование текста: **жирный**, *курсив*, <u>подчёркнутый</u>, ~~зачёркнутый~~ и \`строчный код\`. Их можно сочетать, например **_жирный курсив_**.
 
-### Interactive Features
+### Интерактивные возможности
 
-Try out these powerful capabilities:
+Попробуйте эти возможности:
 
-- **Bubble Menu** — Select any text to see formatting options appear
-- **Slash Commands** — Type \`/\` for quick access to blocks and formatting
-- **Mentions** — Use \`@\` to tag people or entities
-- **Emoji Picker** — Type \`:\` followed by an emoji name like :smile:
-- **Drag & Drop** — Hover over any block to see the drag handle
+- **Всплывающее меню** — выделите текст, чтобы появились параметры форматирования
+- **Слэш-команды** — введите \`/\` для быстрого доступа к блокам и форматированию
+- **Упоминания** — используйте \`@\`, чтобы отметить людей или сущности
+- **Выбор эмодзи** — введите \`:\` и название эмодзи, например :smile:
+- **Перетаскивание** — наведите курсор на блок, чтобы увидеть ручку перетаскивания
 
-> **Pro tip:** You can use keyboard shortcuts like Cmd/Ctrl + B for bold, Cmd/Ctrl + I for italic, and more!
+> **Совет:** используйте сочетания клавиш, например Cmd/Ctrl + B для жирного, Cmd/Ctrl + I для курсива и другие!
 
-### Advanced Capabilities
+### Расширенные возможности
 
-1. **Custom Extensions** — Add your own TipTap extensions seamlessly
-2. **Multiple Content Types** — Support for JSON, HTML, and Markdown
-3. **Customizable Toolbars** — Fixed, bubble, and floating layouts
-4. **Theme Integration** — Fully styled with Bitrix24 UI theme system
+1. **Собственные расширения** — добавляйте свои расширения TipTap без лишних усилий
+2. **Разные типы содержимого** — поддержка JSON, HTML и Markdown
+3. **Настраиваемые панели инструментов** — раскладки fixed, bubble и floating
+4. **Интеграция с темами** — полностью оформлен системой тем Bitrix24 UI
 
-#### Code Blocks
+#### Блоки кода
 
-Perfect for technical documentation:
+Подходит для технической документации:
 
 \`\`\`vue
 <template>
@@ -83,7 +83,7 @@ Perfect for technical documentation:
 
 ---
 
-Whether you're building a blog, documentation site, or content management system, the Bitrix24 UI Editor provides everything you need for a professional editing experience. Visit [bitrix24.github.io/b24ui](https://bitrix24.github.io/b24ui/) to explore more components.`)
+Строите ли вы блог, сайт документации или систему управления контентом, Bitrix24 UI Editor даёт всё необходимое для профессиональной работы с текстом. Загляните на [bitrix24.github.io/b24ui](https://bitrix24.github.io/b24ui/), чтобы познакомиться с другими компонентами.`)
 
 const customHandlers = {
   imageUpload: {
@@ -99,66 +99,66 @@ const fixedToolbarItems = [
     {
       kind: 'undo',
       icon: UndoIcon,
-      tooltip: { text: 'Undo' }
+      tooltip: { text: 'Отменить' }
     },
     {
       kind: 'redo',
       icon: RedoIcon,
-      tooltip: { text: 'Redo' }
+      tooltip: { text: 'Повторить' }
     }
   ],
   [
     {
       icon: HeaderIcon,
-      tooltip: { text: 'Headings' },
+      tooltip: { text: 'Заголовки' },
       content: { align: 'start' },
       items: [
         {
           kind: 'heading',
           level: 1,
-          label: 'Heading 1'
+          label: 'Заголовок 1'
         },
         {
           kind: 'heading',
           level: 2,
-          label: 'Heading 2'
+          label: 'Заголовок 2'
         }, {
           kind: 'heading',
           level: 3,
-          label: 'Heading 3'
+          label: 'Заголовок 3'
         }, {
           kind: 'heading',
           level: 4,
-          label: 'Heading 4'
+          label: 'Заголовок 4'
         }
       ]
     },
     {
       icon: BulletedListIcon,
-      tooltip: { text: 'Lists' },
+      tooltip: { text: 'Списки' },
       content: { align: 'start' },
       items: [
         {
           kind: 'bulletList',
           icon: BulletedListIcon,
-          label: 'Bullet List'
+          label: 'Маркированный список'
         },
         {
           kind: 'orderedList',
           icon: NumberedListIcon,
-          label: 'Ordered List'
+          label: 'Нумерованный список'
         }
       ]
     },
     {
       kind: 'blockquote',
       icon: QuoteIcon,
-      tooltip: { text: 'Blockquote' }
+      tooltip: { text: 'Цитата' }
     },
     {
       kind: 'codeBlock',
       icon: CodeIcon,
-      tooltip: { text: 'Code Block' }
+      tooltip: { text: 'Блок кода' }
     }
   ],
   [
@@ -166,31 +166,31 @@ const fixedToolbarItems = [
       kind: 'mark',
       mark: 'bold',
       icon: BoldIcon,
-      tooltip: { text: 'Bold' }
+      tooltip: { text: 'Жирный' }
     },
     {
       kind: 'mark',
       mark: 'italic',
       icon: ItalicIcon,
-      tooltip: { text: 'Italic' }
+      tooltip: { text: 'Курсив' }
     },
     {
       kind: 'mark',
       mark: 'underline',
       icon: UnderlineIcon,
-      tooltip: { text: 'Underline' }
+      tooltip: { text: 'Подчёркнутый' }
     },
     {
       kind: 'mark',
       mark: 'strike',
       icon: StrikethroughIcon,
-      tooltip: { text: 'Strikethrough' }
+      tooltip: { text: 'Зачёркнутый' }
     },
     {
       kind: 'mark',
       mark: 'code',
       icon: DeveloperResourcesIcon,
-      tooltip: { text: 'Code' }
+      tooltip: { text: 'Код' }
     }
   ],
   [
@@ -201,38 +201,38 @@ const fixedToolbarItems = [
     {
       kind: 'imageUpload',
       icon: ImageIcon,
-      tooltip: { text: 'Image' }
+      tooltip: { text: 'Изображение' }
     }
   ],
   [
     {
       icon: AlignJustifyIcon,
-      tooltip: { text: 'Text Align' },
+      tooltip: { text: 'Выравнивание текста' },
       content: { align: 'end' },
       items: [
         {
           kind: 'textAlign',
           align: 'left',
           icon: AlignLeftIcon,
-          label: 'Align Left'
+          label: 'По левому краю'
         },
         {
           kind: 'textAlign',
           align: 'center',
           icon: AlignCenterIcon,
-          label: 'Align Center'
+          label: 'По центру'
         },
         {
           kind: 'textAlign',
           align: 'right',
           icon: AlignRightIcon,
-          label: 'Align Right'
+          label: 'По правому краю'
         },
         {
           kind: 'textAlign',
           align: 'justify',
           icon: AlignJustifyIcon,
-          label: 'Align Justify'
+          label: 'По ширине'
         }
       ]
     }
@@ -242,61 +242,61 @@ const fixedToolbarItems = [
 const bubbleToolbarItems = computed(() => [
   [
     {
-      label: 'Turn into',
+      label: 'Преобразовать в',
       useDropdown: true,
       activeColor: 'air-secondary-no-accent',
-      tooltip: { text: 'Turn into' },
+      tooltip: { text: 'Преобразовать в' },
       content: { align: 'start' },
       b24ui: { label: 'text-xs' },
       items: [
         {
           type: 'label',
-          label: 'Turn into'
+          label: 'Преобразовать в'
         },
         {
           kind: 'paragraph',
-          label: 'Paragraph',
+          label: 'Абзац',
           icon: TextIcon
         },
         {
           kind: 'heading',
           level: 1,
-          label: 'Heading 1'
+          label: 'Заголовок 1'
         },
         {
           kind: 'heading',
           level: 2,
-          label: 'Heading 2'
+          label: 'Заголовок 2'
         },
         {
           kind: 'heading',
           level: 3,
-          label: 'Heading 3'
+          label: 'Заголовок 3'
         },
         {
           kind: 'heading',
           level: 4,
-          label: 'Heading 4'
+          label: 'Заголовок 4'
         },
         {
           kind: 'bulletList',
           icon: BulletedListIcon,
-          label: 'Bullet List'
+          label: 'Маркированный список'
         },
         {
           kind: 'orderedList',
           icon: NumberedListIcon,
-          label: 'Ordered List'
+          label: 'Нумерованный список'
         },
         {
           kind: 'blockquote',
           icon: QuoteIcon,
-          label: 'Blockquote'
+          label: 'Цитата'
         },
         {
           kind: 'codeBlock',
           icon: CodeIcon,
-          label: 'Code Block'
+          label: 'Блок кода'
         }
       ]
     }
@@ -306,28 +306,28 @@ const bubbleToolbarItems = computed(() => [
       kind: 'mark',
       mark: 'bold',
       icon: BoldIcon,
-      tooltip: { text: 'Bold' }
+      tooltip: { text: 'Жирный' }
     }, {
       kind: 'mark',
       mark: 'italic',
       icon: ItalicIcon,
-      tooltip: { text: 'Italic' }
+      tooltip: { text: 'Курсив' }
     }, {
       kind: 'mark',
       mark: 'underline',
       icon: UnderlineIcon,
-      tooltip: { text: 'Underline' }
+      tooltip: { text: 'Подчёркнутый' }
     }, {
       kind: 'mark',
       mark: 'strike',
       icon: StrikethroughIcon,
-      tooltip: { text: 'Strikethrough' }
+      tooltip: { text: 'Зачёркнутый' }
     },
     {
       kind: 'mark',
       mark: 'code',
       icon: DeveloperResourcesIcon,
-      tooltip: { text: 'Code' }
+      tooltip: { text: 'Код' }
     }
   ],
   [
@@ -338,13 +338,13 @@ const bubbleToolbarItems = computed(() => [
     {
       kind: 'imageUpload',
       icon: ImageIcon,
-      tooltip: { text: 'Image' }
+      tooltip: { text: 'Изображение' }
     }
   ],
   [
     {
       icon: AlignJustifyIcon,
-      tooltip: { text: 'Text Align' },
+      tooltip: { text: 'Выравнивание текста' },
       content: {
         align: 'end'
       },
@@ -353,25 +353,25 @@ const bubbleToolbarItems = computed(() => [
           kind: 'textAlign',
           align: 'left',
           icon: AlignLeftIcon,
-          label: 'Align Left'
+          label: 'По левому краю'
         },
         {
           kind: 'textAlign',
           align: 'center',
           icon: AlignCenterIcon,
-          label: 'Align Center'
+          label: 'По центру'
         },
         {
           kind: 'textAlign',
           align: 'right',
           icon: AlignRightIcon,
-          label: 'Align Right'
+          label: 'По правому краю'
         },
         {
           kind: 'textAlign',
           align: 'justify',
           icon: AlignJustifyIcon,
-          label: 'Align Justify'
+          label: 'По ширине'
         }
       ]
     }
@@ -387,11 +387,11 @@ const imageToolbarItems = (editor: Editor): EditorToolbarItem[][] => {
         icon: DownloadIcon,
         to: node?.attrs?.src,
         download: true,
-        tooltip: { text: 'Download' }
+        tooltip: { text: 'Скачать' }
       },
       {
         icon: RefreshIcon,
-        tooltip: { text: 'Replace' },
+        tooltip: { text: 'Заменить' },
         onClick: () => {
           const { state } = editor
           const { selection } = state
@@ -408,7 +408,7 @@ const imageToolbarItems = (editor: Editor): EditorToolbarItem[][] => {
     [
       {
         icon: TrashcanIcon,
-        tooltip: { text: 'Delete' },
+        tooltip: { text: 'Удалить' },
         onClick: () => {
           const { state } = editor
           const { selection } = state
@@ -439,24 +439,24 @@ const handleItems = (editor: Editor): DropdownMenuItem[][] => {
         label: upperFirst(selectedNode.value.node.type)
       },
       {
-        label: 'Turn into',
+        label: 'Преобразовать в',
         icon: RepeatIcon,
         children: [
-          { kind: 'paragraph', label: 'Paragraph', icon: TextIcon },
-          { kind: 'heading', level: 1, label: 'Heading 1' },
-          { kind: 'heading', level: 2, label: 'Heading 2' },
-          { kind: 'heading', level: 3, label: 'Heading 3' },
-          { kind: 'heading', level: 4, label: 'Heading 4' },
-          { kind: 'bulletList', label: 'Bullet List', icon: BulletedListIcon },
-          { kind: 'orderedList', label: 'Ordered List', icon: NumberedListIcon },
-          { kind: 'blockquote', label: 'Blockquote', icon: QuoteIcon },
-          { kind: 'codeBlock', label: 'Code Block', icon: CodeIcon }
+          { kind: 'paragraph', label: 'Абзац', icon: TextIcon },
+          { kind: 'heading', level: 1, label: 'Заголовок 1' },
+          { kind: 'heading', level: 2, label: 'Заголовок 2' },
+          { kind: 'heading', level: 3, label: 'Заголовок 3' },
+          { kind: 'heading', level: 4, label: 'Заголовок 4' },
+          { kind: 'bulletList', label: 'Маркированный список', icon: BulletedListIcon },
+          { kind: 'orderedList', label: 'Нумерованный список', icon: NumberedListIcon },
+          { kind: 'blockquote', label: 'Цитата', icon: QuoteIcon },
+          { kind: 'codeBlock', label: 'Блок кода', icon: CodeIcon }
         ]
       },
       {
         kind: 'clearFormatting',
         pos: selectedNode.value?.pos,
-        label: 'Reset formatting',
+        label: 'Сбросить форматирование',
         icon: ResumeIcon
       }
     ],
@@ -464,11 +464,11 @@ const handleItems = (editor: Editor): DropdownMenuItem[][] => {
       {
         kind: 'duplicate',
         pos: selectedNode.value?.pos,
-        label: 'Duplicate',
+        label: 'Дублировать',
         icon: CopyIcon
       },
       {
-        label: 'Copy to clipboard',
+        label: 'Копировать в буфер обмена',
         icon: CopyFileIcon,
         onSelect: async () => {
           if (!selectedNode.value) return
@@ -485,13 +485,13 @@ const handleItems = (editor: Editor): DropdownMenuItem[][] => {
       {
         kind: 'moveUp',
         pos: selectedNode.value?.pos,
-        label: 'Move up',
+        label: 'Переместить вверх',
         icon: ArrowTopLIcon
       },
       {
         kind: 'moveDown',
         pos: selectedNode.value?.pos,
-        label: 'Move down',
+        label: 'Переместить вниз',
         icon: ArrowDownLIcon
       }
     ],
@@ -499,7 +499,7 @@ const handleItems = (editor: Editor): DropdownMenuItem[][] => {
       {
         kind: 'delete',
         pos: selectedNode.value?.pos,
-        label: 'Delete',
+        label: 'Удалить',
         icon: TrashcanIcon
       }
     ]
@@ -510,72 +510,72 @@ const suggestionItems = [
   [
     {
       type: 'label',
-      label: 'Style'
+      label: 'Стиль'
     },
     {
       kind: 'paragraph',
-      label: 'Paragraph',
+      label: 'Абзац',
       icon: TextIcon
     },
     {
       kind: 'heading',
       level: 1,
-      label: 'Heading 1'
+      label: 'Заголовок 1'
     },
     {
       kind: 'heading',
       level: 2,
-      label: 'Heading 2'
+      label: 'Заголовок 2'
     },
     {
       kind: 'heading',
       level: 3,
-      label: 'Heading 3'
+      label: 'Заголовок 3'
     },
     {
       kind: 'bulletList',
-      label: 'Bullet List',
+      label: 'Маркированный список',
       icon: BulletedListIcon
     },
     {
       kind: 'orderedList',
-      label: 'Numbered List',
+      label: 'Нумерованный список',
       icon: NumberedListIcon
     },
     {
       kind: 'blockquote',
-      label: 'Blockquote',
+      label: 'Цитата',
       icon: QuoteIcon
     },
     {
       kind: 'codeBlock',
-      label: 'Code Block',
+      label: 'Блок кода',
       icon: CodeIcon
     }
   ],
   [
     {
       type: 'label',
-      label: 'Insert'
+      label: 'Вставка'
     },
     {
       kind: 'mention',
-      label: 'Mention',
+      label: 'Упоминание',
       icon: MentionIcon
     },
     {
       kind: 'emoji',
-      label: 'Emoji',
+      label: 'Эмодзи',
       icon: SmileIcon
     },
     {
       kind: 'imageUpload',
-      label: 'Image',
+      label: 'Изображение',
       icon: ImageIcon
     },
     {
       kind: 'horizontalRule',
-      label: 'Horizontal Rule',
+      label: 'Горизонтальная линия',
       icon: HrIcon
     }
   ]
@@ -587,11 +587,11 @@ const mentionItems: EditorMentionMenuItem[] = [
     avatar: { src: 'https://github.com/bitrix24.png', loading: 'lazy' as const }
   },
   {
-    label: 'Employee',
+    label: 'Сотрудник',
     avatar: { src: '/b24ui/avatar/employee.png', loading: 'lazy' as const }
   },
   {
-    label: 'Assistant',
+    label: 'Ассистент',
     avatar: { src: '/b24ui/avatar/assistant.png', loading: 'lazy' as const }
   }
 ]
@@ -617,7 +617,7 @@ const emojiItems: EditorEmojiMenuItem[] = gitHubEmojis.filter(emoji => !emoji.na
       })
     ]"
     :handlers="customHandlers"
-    placeholder="Write, type '/' for commands..."
+    placeholder="Пишите, введите «/» для команд..."
     :b24ui="{ base: 'p-8 sm:px-16 py-24' }"
     class="w-full h-176 overflow-y-auto scrollbar-thin"
   >

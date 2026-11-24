@@ -11,45 +11,45 @@ import InfoCircleIcon from '@bitrix24/b24icons-vue/outline/InfoCircleIcon'
 const items: NavigationMenuItem[][] = [
   [
     {
-      label: 'Home',
+      label: 'Главная',
       icon: HomeIcon,
       active: true
     },
     {
-      label: 'Inbox',
+      label: 'Входящие',
       icon: MailIcon,
       badge: '4'
     },
     {
-      label: 'Contacts',
+      label: 'Контакты',
       icon: ContactIcon
     },
     {
-      label: 'Settings',
+      label: 'Настройки',
       icon: SettingsIcon,
       defaultOpen: true,
       children: [
         {
-          label: 'General'
+          label: 'Общие'
         },
         {
-          label: 'Members'
+          label: 'Участники'
         },
         {
-          label: 'Notifications'
+          label: 'Уведомления'
         }
       ]
     }
   ],
   [
     {
-      label: 'Feedback',
+      label: 'Обратная связь',
       icon: FeedbackIcon,
       to: 'https://github.com/bitrix24/b24ui/issues',
       target: '_blank'
     },
     {
-      label: 'Help & Support',
+      label: 'Помощь и поддержка',
       icon: InfoCircleIcon,
       to: 'https://github.com/bitrix24/b24ui',
       target: '_blank'

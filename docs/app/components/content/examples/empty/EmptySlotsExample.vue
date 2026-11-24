@@ -4,24 +4,24 @@ import AddProductIcon from '@bitrix24/b24icons-vue/outline/AddProductIcon'
 
 const members: UserProps[] = [
   {
-    name: 'Employee Name',
-    description: 'Team employee',
+    name: 'Имя сотрудника',
+    description: 'Сотрудник команды',
     to: 'https://github.com/bitrix24',
     target: '_blank',
     avatar: {
       src: '/b24ui/avatar/employee.png',
-      alt: 'Employee Name',
+      alt: 'Имя сотрудника',
       loading: 'lazy' as const
     }
   },
   {
-    name: 'Employee Name',
-    description: 'Team assistant',
+    name: 'Имя сотрудника',
+    description: 'Ассистент команды',
     to: 'https://github.com/bitrix24',
     target: '_blank',
     avatar: {
       src: '/b24ui/avatar/assistant.png',
-      alt: 'Assistant Name',
+      alt: 'Имя ассистента',
       loading: 'lazy' as const
     }
   }
@@ -30,16 +30,16 @@ const members: UserProps[] = [
 
 <template>
   <B24Empty
-    title="No team members"
-    description="Invite your team to collaborate on this project."
+    title="Нет участников команды"
+    description="Пригласите команду для совместной работы над проектом."
     :actions="[{
-      label: 'Invite members',
+      label: 'Пригласить участников',
       icon: AddProductIcon
     }]"
   >
     <template #leading>
       <B24AvatarGroup size="xl">
-        <B24Avatar src="/b24ui/avatar/employee.png" alt="Employee Name" loading="lazy" />
+        <B24Avatar src="/b24ui/avatar/employee.png" alt="Имя сотрудника" loading="lazy" />
         <B24Avatar src="https://github.com/bitrix24.png" alt="bitrix24" loading="lazy" />
       </B24AvatarGroup>
     </template>
@@ -66,7 +66,7 @@ const members: UserProps[] = [
               :to="member.to"
               :target="member.target"
             >
-              Invite
+              Пригласить
             </B24Link>
           </div>
         </B24Card>

@@ -10,7 +10,7 @@ const items: NavigationMenuItem[] = [
     target: '_blank'
   },
   {
-    label: 'Releases',
+    label: 'Релизы',
     to: 'https://github.com/bitrix24/b24ui/releases',
     target: '_blank'
   }

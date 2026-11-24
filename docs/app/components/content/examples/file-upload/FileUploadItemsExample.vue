@@ -16,8 +16,8 @@ const files = ref<FileUploadItem[]>([{
   <B24FileUpload
     v-model="files"
     layout="list"
-    label="Drop your images here"
-    description="SVG, PNG, JPG or GIF"
+    label="Перетащите изображения сюда"
+    description="SVG, PNG, JPG или GIF"
     accept="image/*"
     multiple
     class="w-96 min-h-48"

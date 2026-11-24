@@ -17,9 +17,9 @@ import ArrowTopLIcon from '@bitrix24/b24icons-vue/outline/ArrowTopLIcon'
 import ArrowDownLIcon from '@bitrix24/b24icons-vue/outline/ArrowDownLIcon'
 import TrashcanIcon from '@bitrix24/b24icons-vue/outline/TrashcanIcon'
 
-const value = ref(`Hover over the left side to see both drag handle and menu button.
+const value = ref(`Наведите курсор на левую сторону, чтобы увидеть ручку перетаскивания и кнопку меню.
 
-Click the menu to see block actions. Try duplicating or deleting a block.`)
+Нажмите на меню, чтобы увидеть действия с блоком. Попробуйте продублировать или удалить блок.`)
 
 const selectedNode = ref<{ node: JSONContent, pos: number }>()
 
@@ -35,24 +35,24 @@ const items = (editor: Editor): DropdownMenuItem[][] => {
         label: upperFirst(selectedNode.value.node.type)
       },
       {
-        label: 'Turn into',
+        label: 'Преобразовать в',
         icon: RepeatIcon,
         children: [
-          { kind: 'paragraph', label: 'Paragraph', icon: TextIcon },
-          { kind: 'heading', level: 1, label: 'Heading 1' },
-          { kind: 'heading', level: 2, label: 'Heading 2' },
-          { kind: 'heading', level: 3, label: 'Heading 3' },
-          { kind: 'heading', level: 4, label: 'Heading 4' },
-          { kind: 'bulletList', label: 'Bullet List', icon: BulletedListIcon },
-          { kind: 'orderedList', label: 'Ordered List', icon: NumberedListIcon },
-          { kind: 'blockquote', label: 'Blockquote', icon: QuoteIcon },
-          { kind: 'codeBlock', label: 'Code Block', icon: CodeIcon }
+          { kind: 'paragraph', label: 'Абзац', icon: TextIcon },
+          { kind: 'heading', level: 1, label: 'Заголовок 1' },
+          { kind: 'heading', level: 2, label: 'Заголовок 2' },
+          { kind: 'heading', level: 3, label: 'Заголовок 3' },
+          { kind: 'heading', level: 4, label: 'Заголовок 4' },
+          { kind: 'bulletList', label: 'Маркированный список', icon: BulletedListIcon },
+          { kind: 'orderedList', label: 'Нумерованный список', icon: NumberedListIcon },
+          { kind: 'blockquote', label: 'Цитата', icon: QuoteIcon },
+          { kind: 'codeBlock', label: 'Блок кода', icon: CodeIcon }
         ]
       },
       {
         kind: 'clearFormatting',
         pos: selectedNode.value?.pos,
-        label: 'Reset formatting',
+        label: 'Сбросить форматирование',
         icon: ResumeIcon
       }
     ],
@@ -60,11 +60,11 @@ const items = (editor: Editor): DropdownMenuItem[][] => {
       {
         kind: 'duplicate',
         pos: selectedNode.value?.pos,
-        label: 'Duplicate',
+        label: 'Дублировать',
         icon: CopyIcon
       },
       {
-        label: 'Copy to clipboard',
+        label: 'Копировать в буфер обмена',
         icon: CopyFileIcon,
         onSelect: async () => {
           if (!selectedNode.value) return
@@ -81,13 +81,13 @@ const items = (editor: Editor): DropdownMenuItem[][] => {
       {
         kind: 'moveUp',
         pos: selectedNode.value?.pos,
-        label: 'Move up',
+        label: 'Переместить вверх',
         icon: ArrowTopLIcon
       },
       {
         kind: 'moveDown',
         pos: selectedNode.value?.pos,
-        label: 'Move down',
+        label: 'Переместить вниз',
         icon: ArrowDownLIcon
       }
     ],
@@ -95,7 +95,7 @@ const items = (editor: Editor): DropdownMenuItem[][] => {
       {
         kind: 'delete',
         pos: selectedNode.value?.pos,
-        label: 'Delete',
+        label: 'Удалить',
         icon: TrashcanIcon
       }
     ]

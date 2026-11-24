@@ -11,16 +11,16 @@ defineProps<{
 
 const items: NavigationMenuItem[] = [
   {
-    label: 'Home',
+    label: 'Главная',
     icon: HomeIcon,
     active: true
   },
   {
-    label: 'Inbox',
+    label: 'Входящие',
     icon: MailIcon
   },
   {
-    label: 'Contacts',
+    label: 'Контакты',
     icon: ContactIcon
   }
 ]
@@ -44,7 +44,7 @@ const items: NavigationMenuItem[] = [
 
     <B24DashboardPanel>
       <template #header>
-        <B24DashboardNavbar title="Dashboard" class="bg-(--ui-color-design-outline-bg-alt) backdrop-blur-md" />
+        <B24DashboardNavbar title="Дашборд" class="bg-(--ui-color-design-outline-bg-alt) backdrop-blur-md" />
       </template>
     </B24DashboardPanel>
   </B24DashboardGroup>

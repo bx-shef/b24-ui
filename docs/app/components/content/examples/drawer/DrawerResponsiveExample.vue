@@ -10,8 +10,8 @@ const state = reactive({
   email: undefined
 })
 
-const title = 'Edit profile'
-const description = 'Make changes to your profile here. Click save when you\'re done.'
+const title = 'Изменить профиль'
+const description = 'Здесь можно изменить данные профиля. Нажмите «Сохранить», когда закончите.'
 </script>
 
 <template>
@@ -21,12 +21,12 @@ const description = 'Make changes to your profile here. Click save when you\'re 
         <B24Input v-model="state.email" placeholder="you@example.com" required />
       </B24FormField>
 
-      <B24Button label="Save changes" color="air-primary-success" type="submit" />
+      <B24Button label="Сохранить изменения" color="air-primary-success" type="submit" />
     </B24Form>
   </DefineFormTemplate>
 
   <B24Modal v-if="!screen.isMobile" v-model:open="open" :title="title" :description="description">
-    <B24Button label="Edit profile" />
+    <B24Button label="Изменить профиль" />
 
     <template #body>
       <ReuseFormTemplate />
@@ -34,7 +34,7 @@ const description = 'Make changes to your profile here. Click save when you\'re 
   </B24Modal>
 
   <B24Drawer v-else v-model:open="open" :title="title" :description="description">
-    <B24Button label="Edit profile" />
+    <B24Button label="Изменить профиль" />
 
     <template #body>
       <ReuseFormTemplate />

@@ -11,7 +11,7 @@ const formatBytes = (bytes: number, decimals = 2) => {
   if (bytes === 0) return '0 Bytes'
   const k = 1024
   const dm = decimals < 0 ? 0 : decimals
-  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
+  const sizes = ['Б', 'КБ', 'МБ', 'ГБ', 'ТБ', 'ПБ', 'ЭБ', 'ЗБ', 'ЙБ']
   const i = Math.floor(Math.log(bytes) / Math.log(k))
   return Number.parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i]
 }
@@ -19,13 +19,13 @@ const formatBytes = (bytes: number, decimals = 2) => {
 const schema = z.object({
   image: z
     .instanceof(File, {
-      message: 'Please select an image file.'
+      message: 'Выберите файл изображения.'
     })
     .refine(file => file.size <= MAX_FILE_SIZE, {
-      message: `The image is too large. Please choose an image smaller than ${formatBytes(MAX_FILE_SIZE)}.`
+      message: `Изображение слишком большое. Выберите изображение меньше ${formatBytes(MAX_FILE_SIZE)}.`
     })
     .refine(file => ACCEPTED_IMAGE_TYPES.includes(file.type), {
-      message: 'Please upload a valid image file (JPEG, PNG, or WebP).'
+      message: 'Загрузите корректный файл изображения (JPEG, PNG или WebP).'
     })
     .refine(
       file =>
@@ -46,7 +46,7 @@ const schema = z.object({
           reader.readAsDataURL(file)
         }),
       {
-        message: `The image dimensions are invalid. Please upload an image between ${MIN_DIMENSIONS.width}x${MIN_DIMENSIONS.height} and ${MAX_DIMENSIONS.width}x${MAX_DIMENSIONS.height} pixels.`
+        message: `Недопустимые размеры изображения. Загрузите изображение от ${MIN_DIMENSIONS.width}x${MIN_DIMENSIONS.height} до ${MAX_DIMENSIONS.width}x${MAX_DIMENSIONS.height} пикселей.`
       }
     )
 })
@@ -64,10 +64,10 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 
 <template>
   <B24Form :schema="schema" :state="state" class="space-y-4 w-96" @submit="onSubmit">
-    <B24FormField name="image" label="Image" description="JPG, GIF or PNG. 2MB Max.">
+    <B24FormField name="image" label="Изображение" description="JPG, GIF или PNG. Не более 2 МБ.">
       <B24FileUpload v-model="state.image" accept="image/*" class="min-h-48" />
     </B24FormField>
 
-    <B24Button type="submit" label="Submit" />
+    <B24Button type="submit" label="Отправить" />
   </B24Form>
 </template>

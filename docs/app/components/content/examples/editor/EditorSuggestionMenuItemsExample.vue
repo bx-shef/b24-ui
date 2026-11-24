@@ -7,71 +7,71 @@ import QuoteIcon from '@bitrix24/b24icons-vue/outline/QuoteIcon'
 import CodeIcon from '@bitrix24/b24icons-vue/common-service/CodeIcon'
 import HrIcon from '@bitrix24/b24icons-vue/editor/HrIcon'
 
-const value = ref(`Type / to see a list of commands.
+const value = ref(`Введите /, чтобы увидеть список команд.
 
-You can customize the items with icons, labels, and descriptions.`)
+Элементы можно настроить: добавить иконки, подписи и описания.`)
 
 const items: EditorSuggestionMenuItem[][] = [
   [
     {
       type: 'label',
-      label: 'Text Styles'
+      label: 'Стили текста'
     },
     {
       kind: 'paragraph',
-      label: 'Paragraph',
+      label: 'Абзац',
       icon: TextIcon
     },
     {
       kind: 'heading',
       level: 1,
-      label: 'Heading 1'
+      label: 'Заголовок 1'
     },
     {
       kind: 'heading',
       level: 2,
-      label: 'Heading 2'
+      label: 'Заголовок 2'
     },
     {
       kind: 'heading',
       level: 3,
-      label: 'Heading 3'
+      label: 'Заголовок 3'
     }
   ],
   [
     {
       type: 'label',
-      label: 'Lists'
+      label: 'Списки'
     },
     {
       kind: 'bulletList',
-      label: 'Bullet List',
+      label: 'Маркированный список',
       icon: BulletedListIcon
     },
     {
       kind: 'orderedList',
-      label: 'Numbered List',
+      label: 'Нумерованный список',
       icon: NumberedListIcon
     }
   ],
   [
     {
       type: 'label',
-      label: 'Blocks'
+      label: 'Блоки'
     },
     {
       kind: 'blockquote',
-      label: 'Blockquote',
+      label: 'Цитата',
       icon: QuoteIcon
     },
     {
       kind: 'codeBlock',
-      label: 'Code Block',
+      label: 'Блок кода',
       icon: CodeIcon
     },
     {
       kind: 'horizontalRule',
-      label: 'Divider',
+      label: 'Разделитель',
       icon: HrIcon
     }
   ]
@@ -83,7 +83,7 @@ const items: EditorSuggestionMenuItem[][] = [
     v-slot="{ editor }"
     v-model="value"
     content-type="markdown"
-    placeholder="Type / for commands..."
+    placeholder="Введите / для команд..."
     class="w-full min-h-19"
   >
     <B24EditorSuggestionMenu :editor="editor" :items="items" />

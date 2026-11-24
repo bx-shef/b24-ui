@@ -9,8 +9,8 @@ const value = ref<File[]>([])
   <B24FileUpload
     v-model="value"
     :icon="ImageIcon"
-    label="Drop your images here"
-    description="SVG, PNG, JPG or GIF (max. 2MB)"
+    label="Перетащите изображения сюда"
+    description="SVG, PNG, JPG или GIF (не более 2 МБ)"
     layout="list"
     multiple
     :interactive="false"
@@ -18,7 +18,7 @@ const value = ref<File[]>([])
   >
     <template #actions="{ open }">
       <B24Button
-        label="Select images"
+        label="Выберите изображения"
         :icon="UploadIcon"
         color="air-selection"
         @click="open()"
@@ -28,7 +28,7 @@ const value = ref<File[]>([])
     <template #files-bottom="{ removeFile, files }">
       <B24Button
         v-if="files?.length"
-        label="Remove all files"
+        label="Удалить все файлы"
         color="air-primary-alert"
         @click="removeFile()"
       />

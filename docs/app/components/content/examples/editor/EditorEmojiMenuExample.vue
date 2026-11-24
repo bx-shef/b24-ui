@@ -2,13 +2,13 @@
 import type { EditorEmojiMenuItem } from '@bitrix24/b24ui-nuxt'
 import { Emoji, gitHubEmojis } from '@tiptap/extension-emoji'
 
-const value = ref(`# Emoji Menu
+const value = ref(`# Меню эмодзи
 
-Type : to insert emojis and select from the list of available emojis.`)
+Введите :, чтобы вставить эмодзи, и выберите нужный из списка.`)
 
 const items: EditorEmojiMenuItem[] = gitHubEmojis.filter(emoji => !emoji.name.startsWith('regional_indicator_'))
 
-// SSR-safe function to append menus to body (avoids z-index issues in docs)
+// Безопасная для SSR функция, добавляющая меню в body (чтобы не было проблем с z-index в документации)
 const appendToBody = import.meta.client ? () => document.body : undefined
 </script>
 
@@ -18,7 +18,7 @@ const appendToBody = import.meta.client ? () => document.body : undefined
     v-model="value"
     :extensions="[Emoji]"
     content-type="markdown"
-    placeholder="Type : to add emojis..."
+    placeholder="Введите : для добавления эмодзи..."
     class="w-full min-h-21"
   >
     <B24EditorEmojiMenu :editor="editor" :items="items" :append-to="appendToBody" />

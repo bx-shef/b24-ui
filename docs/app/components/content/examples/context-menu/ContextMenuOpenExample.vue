@@ -12,13 +12,13 @@ defineShortcuts({
 
 const items: ContextMenuItem[] = [
   {
-    label: 'Profile',
+    label: 'Профиль',
     icon: UserIcon
   }, {
-    label: 'Billing',
+    label: 'Оплата',
     icon: PaymentIcon
   }, {
-    label: 'Settings',
+    label: 'Настройки',
     icon: Settings3Icon
   }
 ]
@@ -27,7 +27,7 @@ const items: ContextMenuItem[] = [
 <template>
   <B24ContextMenu v-model:open="open" :items="items" :b24ui="{ content: 'w-50' }">
     <div class="flex items-center justify-center rounded-md border border-dashed border-(--ui-color-design-outline-na-stroke) text-legend text-(length:--ui-font-size-sm) bg-default aspect-video w-72">
-      Right click here
+      Нажмите правой кнопкой мыши
     </div>
   </B24ContextMenu>
 </template>

@@ -5,7 +5,7 @@ const open = ref(false)
 
 const users = [
   {
-    label: 'Assistant Name',
+    label: 'Имя ассистента',
     suffix: 'assistant',
     to: 'https://github.com/bitrix24',
     target: '_blank',
@@ -25,7 +25,7 @@ const users = [
     }
   },
   {
-    label: 'Employee Name',
+    label: 'Имя сотрудника',
     suffix: 'employee',
     to: 'https://github.com/bitrix24',
     target: '_blank',
@@ -40,7 +40,7 @@ const users = [
 <template>
   <B24Modal v-model:open="open" :b24ui="{ content: 'p-0 pt-0 pb-2.5' }">
     <B24Button
-      label="Search users..."
+      label="Найдите пользователей..."
       :icon="SearchIcon"
     />
 

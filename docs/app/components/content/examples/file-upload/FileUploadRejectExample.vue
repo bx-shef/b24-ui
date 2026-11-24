@@ -7,7 +7,7 @@ const toast = useToast()
 
 function onReject(files: File[]) {
   toast.add({
-    title: 'Only images are allowed',
+    title: 'Допускаются только изображения',
     description: files.map(file => file.name).join(', '),
     color: 'air-primary-alert'
   })
@@ -19,8 +19,8 @@ function onReject(files: File[]) {
     v-model="value"
     accept="image/*"
     :icon="ImageIcon"
-    label="Drop your images here"
-    description="SVG, PNG, JPG or GIF"
+    label="Перетащите изображения сюда"
+    description="SVG, PNG, JPG или GIF"
     multiple
     class="w-96 min-h-48"
     @reject="onReject"
