@@ -31,20 +31,44 @@ const tableProps = {
   externalScroll: false
 } as const
 
+// A single `tv()` call is too short to time reliably (and cached ones nearly free),
+// so each body repeats it; the ratios between the groups are what is compared.
+const ITERATIONS = 100
+
+// Bound once: reading an imported binding inside a hot loop goes through the
+// module's export getter, which Vitest flags as benchmark overhead.
+const build = tv
+const button = buttonTheme
+const table = tableTheme
+const navigationMenu = navigationMenuTheme
+
 // Building the factory is the expensive step (deep-merges the whole variant
-// matrix, joins every slot, flattens compound variants). Today it happens inside
-// each component's `computed`, so every variant-prop change re-runs it.
+// matrix, joins every slot, flattens compound variants). `tv` memoizes it per
+// theme and config, so only the cold build below skips the cache.
 test('factory build', async ({ bench }) => {
   await bench('button', () => {
-    tv({ extend: buttonTheme })
+    for (let i = 0; i < ITERATIONS; i++) {
+      build({ extend: button })
+    }
   }).run()
 
   await bench('table', () => {
-    tv({ extend: tableTheme })
+    for (let i = 0; i < ITERATIONS; i++) {
+      build({ extend: table })
+    }
   }).run()
 
   await bench('navigation-menu', () => {
-    tv({ extend: navigationMenuTheme })
+    for (let i = 0; i < ITERATIONS; i++) {
+      build({ extend: navigationMenu })
+    }
+  }).run()
+
+  let cold = 0
+  await bench('button (~6 slots, cold build)', () => {
+    for (let i = 0; i < ITERATIONS; i++) {
+      build({ extend: button, base: `cold-${cold++}` })
+    }
   }).run()
 })
 
