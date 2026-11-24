@@ -96,7 +96,7 @@ export interface ModalSlots {
 <script setup lang="ts">
 import { computed, toRef } from 'vue'
 import { DialogRoot, DialogTrigger, DialogPortal, DialogOverlay, DialogContent, DialogTitle, DialogDescription, DialogClose, VisuallyHidden } from 'reka-ui'
-import { reactivePick, createReusableTemplate } from '@vueuse/core'
+import { createReusableTemplate } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
@@ -129,7 +129,7 @@ const appConfig = useAppConfig() as Modal['AppConfig']
 
 // `useBlurOnOpen` wraps the emits as a workaround for reka-ui#1280; drop it and
 // restore the bare `emits` argument when that is fixed upstream. See #159.
-const rootProps = useForwardProps(reactivePick(props, 'open', 'defaultOpen', 'modal', 'unmountOnHide'), useBlurOnOpen(() => props.open, emits))
+const rootProps = useForwardProps(props, ['open', 'defaultOpen', 'modal', 'unmountOnHide'], useBlurOnOpen(() => props.open, emits))
 const portalProps = usePortal(toRef(() => props.portal))
 const contentProps = toRef(() => props.content)
 const contentEvents = computed(() => {

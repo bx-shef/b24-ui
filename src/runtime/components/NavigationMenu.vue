@@ -246,7 +246,7 @@ import { computed, toRef } from 'vue'
 // @memo not use NavigationMenuIndicator
 import { NavigationMenuRoot, NavigationMenuList, NavigationMenuItem, NavigationMenuTrigger, NavigationMenuContent, NavigationMenuLink, NavigationMenuViewport, AccordionRoot, AccordionItem, AccordionTrigger, AccordionContent } from 'reka-ui'
 import { defu } from 'defu'
-import { reactivePick, createReusableTemplate } from '@vueuse/core'
+import { createReusableTemplate } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
@@ -292,7 +292,7 @@ const rootProps = useForwardProps(computed(() => ({
   disablePointerLeaveClose: props.disablePointerLeaveClose,
   unmountOnHide: props.unmountOnHide
 })), emits)
-const accordionProps = useForwardProps(reactivePick(props, 'collapsible', 'disabled', 'type', 'unmountOnHide'), emits)
+const accordionProps = useForwardProps(props, ['collapsible', 'disabled', 'type', 'unmountOnHide'], emits)
 const contentProps = toRef(() => props.content)
 const viewportProps = toRef(() => props.viewport)
 const tooltipProps = toRef(() => defu(typeof props.tooltip === 'boolean' ? {} : props.tooltip, { ...(props.orientation === 'vertical' && { delayDuration: 0, content: { side: 'right' } }) }) as TooltipProps)
