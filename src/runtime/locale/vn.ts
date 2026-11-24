@@ -176,7 +176,7 @@ export default defineLocale<Messages>({
     },
     sidebar: {
       close: 'Đóng',
-      toggle: 'Chuyển đổi'
+      toggle: 'Mở/đóng'
     },
     selectMenu: {
       create: 'Tạo "{label}"',

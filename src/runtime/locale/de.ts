@@ -69,7 +69,7 @@ export default defineLocale<Messages>({
     contentSearch: {
       links: 'Ergebnisse',
       search: 'Ergebnisse',
-      theme: 'Thema'
+      theme: 'Design'
     },
     contentSearchButton: {
       label: 'Suchen…'
@@ -95,7 +95,7 @@ export default defineLocale<Messages>({
       search: 'Suchen…'
     },
     dashboardSearch: {
-      theme: 'Thema'
+      theme: 'Design'
     },
     dashboardSearchButton: {
       label: 'Suchen…'

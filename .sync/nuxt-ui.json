@@ -1,7 +1,7 @@
 {
   "upstream": "nuxt/ui",
   "branch": "v4",
-  "cursor": "728c9ed8e6b351dd4f35a80bffb1b972f33128aa",
+  "cursor": "8db2b2de4eed65265c4d8fbf0ece888639bdc6b5",
   "_cursor_note": "cursor = last upstream commit ported into b24ui. The sync is manual by decision: one commit at a time, oldest-first, each with a `.sync/log/<sha>.md` journal and an entry in `processed`. There is no dispatcher, no porter workflow and no kill-switch — `.sync/PORTING.md` is the whole procedure. `processed` is maintained per port (backfilled #68-#72 on 2026-06-09).",
   "processed": {
     "2799fa6f2b25ce3eb15e050f3ef7c57d0d9a2fdb": {
@@ -3743,6 +3743,12 @@
       "b24ui_sha": "pending-merge",
       "decision": "port",
       "summary": "fix(CommandPalette): слот content без контура фокуса (focus:outline-none) — тема command-palette.ts, снимки CommandPalette/DashboardSearch/ContentSearch"
+    },
+    "8db2b2de4eed65265c4d8fbf0ece888639bdc6b5": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(locale): исправления переводов — применены к нашим локалям de (theme «Design» ×2), sc (nextYear/prevYear), vn (toggle); остальные правки апстрима у нас уже верны или в чужих локалях"
     }
   }
 }
