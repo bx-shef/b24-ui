@@ -92,6 +92,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # Every advisory in the whole tree — the library, docs (served publicly with
+      # its MCP server) and the tooling. A new one fails CI; one without a fix in
+      # the line we can take goes into `auditConfig.ignoreGhsas` in
+      # pnpm-workspace.yaml with its reason, never silently.
+      - name: Audit dependencies
+        run: pnpm audit
+
       - name: Prepare
         run: pnpm run dev:prepare
 
