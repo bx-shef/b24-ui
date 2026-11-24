@@ -206,7 +206,6 @@ function getUserAvatar(value: string) {
         v-model="statusKey"
         :items="statuses"
         value-key="value"
-        v-bind="{ ...singleAttrs, ...props }"
         :b24ui="{ root: 'w-full' }"
       >
         <template #leading="{ item, b24ui }">

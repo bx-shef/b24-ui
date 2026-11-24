@@ -287,14 +287,14 @@ describe('useToast', () => {
       const { promise, reject } = deferred<undefined>()
       const result = toast.promise(promise, {
         loading: { title: 'Uploading', description: 'Uploading 3 files', close: false, actions: [{ label: 'Cancel' }] },
-        error: { title: 'Upload failed', color: 'error' }
+        error: { title: 'Upload failed', color: 'danger' }
       })
       await vi.waitFor(() => expect(toast.toasts.value).toHaveLength(1))
 
       reject(new Error('Failed'))
       await expect(result).rejects.toThrow('Failed')
 
-      expect(toast.toasts.value[0]).toMatchObject({ title: 'Upload failed', color: 'error', description: undefined, close: undefined, actions: undefined })
+      expect(toast.toasts.value[0]).toMatchObject({ title: 'Upload failed', color: 'danger', description: undefined, close: undefined, actions: undefined })
     })
 
     it('resets the fields set by the loading state when the promise settles before the toast is displayed', async () => {
