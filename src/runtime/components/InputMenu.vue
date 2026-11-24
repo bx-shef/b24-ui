@@ -259,7 +259,7 @@ import { computed, ref, useTemplateRef, toRef, onMounted, toRaw, nextTick, watch
 import { TagsInputRoot, TagsInputItem, TagsInputItemText, TagsInputItemDelete, TagsInputInput, ComboboxRoot, ComboboxInput, ComboboxAnchor, ComboboxEmpty, ComboboxTrigger, ComboboxCancel, ComboboxGroup, ComboboxLabel, ComboboxContent, ComboboxVirtualizer, ComboboxItem, ComboboxItemIndicator, ComboboxSeparator, ComboboxArrow, ComboboxPortal, AutocompleteRoot, AutocompleteInput, AutocompleteAnchor, AutocompleteEmpty, AutocompleteTrigger, AutocompleteCancel, AutocompleteGroup, AutocompleteLabel, AutocompleteContent, AutocompleteVirtualizer, AutocompleteItem, AutocompleteItemIndicator, AutocompleteSeparator, AutocompleteArrow, AutocompletePortal } from 'reka-ui'
 import { defu } from 'defu'
 import { isEqual } from 'ohash/utils'
-import { reactivePick, reactiveOmit, createReusableTemplate } from '@vueuse/core'
+import { createReusableTemplate } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
@@ -308,9 +308,9 @@ const { filterGroups } = useFilter()
 const isAutocomplete = computed(() => props.mode === 'autocomplete')
 // `multiple` doesn't apply in autocomplete mode.
 const isMultiple = computed(() => !!props.multiple && !isAutocomplete.value)
-const rootPropsPick = reactivePick(props, 'as', 'modelValue', 'defaultValue', 'open', 'defaultOpen', 'required', 'multiple', 'resetSearchTermOnBlur', 'resetSearchTermOnSelect', 'resetModelValueOnClear', 'highlightOnHover', 'loop', 'openOnClick', 'openOnFocus', 'by')
-const rootPropsOmitted = reactiveOmit(rootPropsPick, 'multiple', 'resetSearchTermOnSelect', 'resetModelValueOnClear', 'by')
-const rootProps = useForwardProps(computed(() => isAutocomplete.value ? rootPropsOmitted : rootPropsPick), emits)
+const comboboxRootProps = useForwardProps(props, ['as', 'modelValue', 'defaultValue', 'open', 'defaultOpen', 'required', 'multiple', 'resetSearchTermOnBlur', 'resetSearchTermOnSelect', 'resetModelValueOnClear', 'highlightOnHover', 'loop', 'openOnClick', 'openOnFocus', 'by'], emits)
+const autocompleteRootProps = useForwardProps(props, ['as', 'modelValue', 'defaultValue', 'open', 'defaultOpen', 'required', 'resetSearchTermOnBlur', 'highlightOnHover', 'loop', 'openOnClick', 'openOnFocus'], emits)
+const rootProps = computed(() => isAutocomplete.value ? autocompleteRootProps.value : comboboxRootProps.value)
 const Component = computed(() => isAutocomplete.value ? Autocomplete : Combobox)
 const portalProps = usePortal(toRef(() => props.portal))
 const contentProps = toRef(() => defu(props.content, { side: 'bottom', sideOffset: 8, collisionPadding: 8, position: 'popper' }) as ComboboxContentProps)

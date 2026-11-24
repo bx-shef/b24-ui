@@ -95,7 +95,6 @@ export type TabsSlots<T extends TabsItem = TabsItem> = {
 <script setup lang="ts" generic="T extends TabsItem">
 import { ref, computed } from 'vue'
 import { TabsRoot, TabsList, TabsIndicator, TabsTrigger, TabsContent } from 'reka-ui'
-import { reactivePick } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
@@ -119,7 +118,7 @@ const props = useComponentProps<TabsProps<T>>('tabs', _props)
 
 const appConfig = useAppConfig() as Tabs['AppConfig']
 
-const rootProps = useForwardProps(reactivePick(props, 'as', 'unmountOnHide'), emits)
+const rootProps = useForwardProps(props, ['as', 'unmountOnHide'], emits)
 
 // eslint-disable-next-line vue/no-dupe-keys
 const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.tabs || {}) })({

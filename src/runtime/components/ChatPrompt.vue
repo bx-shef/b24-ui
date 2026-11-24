@@ -103,7 +103,7 @@ export interface ChatPromptSlots extends Omit<TextareaSlots, 'default'> {
 <script setup lang="ts">
 import { computed, ref, toRaw, toRef, useId, useTemplateRef } from 'vue'
 import { Primitive } from 'reka-ui'
-import { reactivePick, useElementSize } from '@vueuse/core'
+import { useElementSize } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
@@ -140,7 +140,7 @@ const queue = defineModel<ChatPromptQueueItem[]>('queue')
 const { t } = useLocale()
 const appConfig = useAppConfig() as ChatPrompt['AppConfig']
 
-const textareaProps = useForwardProps(reactivePick(props, 'rows', 'autofocus', 'autofocusDelay', 'autoresize', 'autoresizeDelay', 'maxrows', 'icon', 'avatar', 'loading'))
+const textareaProps = useForwardProps(props, ['rows', 'autofocus', 'autofocusDelay', 'autoresize', 'autoresizeDelay', 'maxrows', 'icon', 'avatar', 'loading'])
 
 const getProxySlots = () => omit(slots, ['header', 'footer', 'default', 'body', 'files', 'queue'])
 

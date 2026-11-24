@@ -77,9 +77,8 @@ export type DashboardSearchSlots = CommandPaletteSlots<CommandPaletteItem> & {
 
 <script setup lang="ts">
 import { computed, defineAsyncComponent, useTemplateRef } from 'vue'
-import { useForwardProps } from 'reka-ui'
+import { useForwardProps } from '../composables/useForwardProps'
 import { defu } from 'defu'
-import { reactivePick } from '@vueuse/core'
 import { useAppConfig, useColorMode, defineShortcuts, useRuntimeHook } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useLocale } from '../composables/useLocale'
@@ -113,8 +112,8 @@ const colorMode = useColorMode()
 const appConfig = useAppConfig() as DashboardSearch['AppConfig']
 
 /** @memo not use loadingIcon */
-const commandPaletteProps = useForwardProps(reactivePick(props, 'size', 'icon', 'trailingIcon', 'selectedIcon', 'childrenIcon', 'placeholder', 'autofocus', 'loading', 'close', 'closeIcon', 'back', 'backIcon', 'disabled', 'highlightOnHover', 'loop', 'labelKey', 'descriptionKey', 'preserveGroupOrder', 'virtualize', 'searchDelay'))
-const modalProps = useForwardProps(reactivePick(props, 'overlay', 'transition', 'content', 'dismissible', 'fullscreen', 'modal', 'portal', 'unmountOnHide'))
+const commandPaletteProps = useForwardProps(props, ['size', 'icon', 'trailingIcon', 'selectedIcon', 'childrenIcon', 'placeholder', 'autofocus', 'loading', 'close', 'closeIcon', 'back', 'backIcon', 'disabled', 'highlightOnHover', 'loop', 'labelKey', 'descriptionKey', 'preserveGroupOrder', 'virtualize', 'searchDelay'])
+const modalProps = useForwardProps(props, ['overlay', 'transition', 'content', 'dismissible', 'fullscreen', 'modal', 'portal', 'unmountOnHide'])
 const inputProps = computed(() => {
   if (props.input === false) {
     return false

@@ -65,7 +65,6 @@ export interface SwitchSlots {
 <script setup lang="ts" generic="T = boolean">
 import { computed, useId } from 'vue'
 import { Primitive, SwitchRoot, SwitchThumb, Label } from 'reka-ui'
-import { reactivePick } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
@@ -84,7 +83,7 @@ const props = useComponentProps<SwitchProps<T>>('switch', _props)
 
 const appConfig = useAppConfig() as Switch['AppConfig']
 
-const rootProps = useForwardProps(reactivePick(props, 'required', 'value', 'defaultValue', 'modelValue', 'trueValue', 'falseValue'), emits)
+const rootProps = useForwardProps(props, ['required', 'value', 'defaultValue', 'modelValue', 'trueValue', 'falseValue'], emits)
 
 const { id: _id, emitFormChange, emitFormInput, size: formFieldSize, color: formFieldColor, highlight: formFieldHighlight, name, disabled: formFieldDisabled, ariaAttrs } = useFormField<SwitchProps<T>>(_props)
 const id = _id.value ?? useId()

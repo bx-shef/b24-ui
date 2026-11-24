@@ -115,7 +115,6 @@ export interface CollapsibleSlots {
 <script setup lang="ts">
 import { computed } from 'vue'
 import { CollapsibleRoot, CollapsibleTrigger, CollapsibleContent } from 'reka-ui'
-import { reactivePick } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
@@ -136,7 +135,7 @@ const appConfig = useAppConfig() as Collapsible['AppConfig']
 // Use the local `useForwardProps` — reka-ui's `useForwardProps` /
 // `useForwardPropsEmits` filter root props by `vm.vnode.props ∪ withDefaults`
 // and would strip <B24Theme :props> values.
-const rootProps = useForwardPropsEmits(reactivePick(props, 'as', 'defaultOpen', 'open', 'disabled', 'unmountOnHide'), emits)
+const rootProps = useForwardProps(props, ['as', 'defaultOpen', 'open', 'disabled', 'unmountOnHide'], emits)
 
 // eslint-disable-next-line vue/no-dupe-keys
 const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.collapsible || {}) })())
@@ -429,17 +428,16 @@ Notes:
 - The `b24ui` prop is deep-merged (slot classes layered on top of theme overrides). All other props are explicit-wins.
 - **Always read props as `props.x` in templates and `<script setup>`.** Bare prop names (`{{ label }}`, `v-if="arrow"`) resolve to `_props` and bypass the proxy, so `<B24Theme :props>` defaults won't apply. The `bitrix24-ui/no-bare-prop-refs` ESLint rule autofixes this.
 - Pass the **raw** `_props` (not the proxy) to context composables — `useFormField`, `useFieldGroup`, `useAvatarGroup`. Their internal fallback is `props?.x ?? injected.x`, so the wrapping `<B24FormField>` / `<B24FieldGroup>` / `<B24AvatarGroup>` should beat `<B24Theme :props>` / `withDefaults` / `app.config` defaults (closer context wins). **Then always fall back to the proxy in `tv()` calls** — `size: formSize.value ?? props.size`, `color: color.value ?? props.color`, `highlight: highlight.value ?? props.highlight`. Without `?? props.X`, `<B24Theme :props>` is silently dropped when no closer context wraps the component. Final chain: `explicit > closer-context > B24Theme > withDefaults > app.config > tv defaults`. `useComponentIcons` has no injection chain, so pass the proxy `props` directly.
-- Reka primitives' `useForwardProps` / `useForwardPropsEmits` filter root props by `vm.vnode.props ∪ withDefaults` and would strip theme-supplied values. Import `useForwardProps` from `composables/useForwardProps.ts` instead — same `(source, emits?)` signature, proxy-aware.
+- Reka primitives' `useForwardProps` / `useForwardPropsEmits` filter root props by `vm.vnode.props ∪ withDefaults` and would strip theme-supplied values. Import `useForwardProps` from `composables/useForwardProps.ts` instead — proxy-aware; pass `props` and the list of keys to forward: `useForwardProps(props, [...], emits?)`.
 
 ## Key Patterns
 
 | Pattern | Usage |
 |---|---|
 | `useComponentProps(name, _props)` | Theme-aware proxy — default for new components |
-| `useForwardProps(source, emits?)` (local) | Forward Reka UI props/emits without filtering theme defaults |
+| `useForwardProps(props, keys?, emits?)` (local) | Forward the listed Reka UI props/emits without filtering theme defaults |
 | `withDefaults` | Runtime default values |
 | `defineOptions({ inheritAttrs: false })` | When spreading `$attrs` to inner element |
-| `reactivePick` | Pick keys off `props` (the proxy) before forwarding |
 | `createReusableTemplate` | Complex template reuse (Table, Modal) |
 | `useTemplateRef` | Template refs (Vue 3.5+) |
 | `toRef(() => props.x)` | Reactive prop access |

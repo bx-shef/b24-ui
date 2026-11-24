@@ -46,7 +46,6 @@ export interface RangeEmits {
 <script setup lang="ts" generic="T extends number | number[]">
 import { computed, useAttrs } from 'vue'
 import { SliderRoot, SliderRange, SliderTrack, SliderThumb } from 'reka-ui'
-import { reactivePick } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
@@ -73,7 +72,7 @@ const props = useComponentProps<RangeProps>('range', _props)
 const { t } = useLocale()
 const appConfig = useAppConfig() as Range['AppConfig']
 
-const rootProps = useForwardProps(reactivePick(props, 'as', 'orientation', 'min', 'max', 'step', 'minStepsBetweenThumbs', 'inverted'))
+const rootProps = useForwardProps(props, ['as', 'orientation', 'min', 'max', 'step', 'minStepsBetweenThumbs', 'inverted'])
 
 const { id, emitFormChange, emitFormInput, size: formFieldSize, color: formFieldColor, name, disabled: formFieldDisabled, ariaAttrs } = useFormField<RangeProps>(props)
 
