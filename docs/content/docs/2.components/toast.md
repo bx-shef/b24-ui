@@ -1,6 +1,6 @@
 ---
 title: Toast
-description: A short message to offer information or feedback to the user.
+description: 'Короткое сообщение, которое сообщает пользователю информацию или результат действия.'
 category: overlay
 keywords:
   - notification
@@ -10,7 +10,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Toast.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/toast
   - label: Nuxt UI
@@ -22,9 +22,9 @@ links:
     to: https://reka-ui.com/docs/components/toast
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the [useToast](/docs/composables/use-toast/) composable to display a toast in your application.
+Композабл [useToast](/docs/composables/use-toast/) показывает уведомление в приложении.
 
 ::component-example
 ---
@@ -35,47 +35,47 @@ name: 'toast-example'
 ::
 
 ::warning
-Make sure to wrap your app with the [`App`](/docs/components/app/) component which uses our [`Toaster`](https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Toaster.vue) component which uses the [`ToastProvider`](https://reka-ui.com/docs/components/toast#provider) component from Reka UI.
+Оберните приложение в компонент [`App`](/docs/components/app/): он использует наш компонент [`Toaster`](https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Toaster.vue), а тот — компонент [`ToastProvider`](https://reka-ui.com/docs/components/toast#provider) из Reka UI.
 ::
 
 ::tip{to="/docs/components/app/#props"}
-You can check the `App` component `toaster` prop to see how to configure the Toaster globally.
+Пропс `toaster` компонента `App` показывает, как настроить Toaster глобально.
 ::
 
-### Title
+### Заголовок {#title}
 
-Pass a `title` field to the `toast.add` method to display a title.
+Поле `title` в методе `toast.add` показывает заголовок.
 
 ::component-example
 ---
 options:
   - name: 'title'
     label: 'title'
-    default: 'Uh oh! Something went wrong.'
+    default: 'Ой! Что-то пошло не так.'
 name: 'toast-title-example'
 ---
 ::
 
-### Description
+### Описание {#description}
 
-Pass a `description` field to the `toast.add` method to display a description.
+Поле `description` в методе `toast.add` показывает описание.
 
 ::component-example
 ---
 options:
   - name: 'title'
     label: 'title'
-    default: 'Uh oh! Something went wrong.'
+    default: 'Ой! Что-то пошло не так.'
   - name: 'description'
     label: 'description'
-    default: 'There was a problem with your request.'
+    default: 'Возникла проблема с вашим запросом.'
 name: 'toast-description-example'
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Pass an `icon` field to the `toast.add` method to display an [Icon](https://bitrix24.github.io/b24icons/icons/).
+Поле `icon` в методе `toast.add` показывает [иконку](https://bitrix24.github.io/b24icons/icons/).
 
 ::component-example
 ---
@@ -83,9 +83,9 @@ name: 'toast-icon-example'
 ---
 ::
 
-### Avatar
+### Аватар {#avatar}
 
-Pass an `avatar` field to the `toast.add` method to display an [Avatar](/docs/components/avatar/).
+Поле `avatar` в методе `toast.add` показывает [Avatar](/docs/components/avatar/).
 
 ::component-example
 ---
@@ -93,9 +93,9 @@ name: 'toast-avatar-example'
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Pass a `color` field to the `toast.add` method to change the color of the Toast.
+Поле `color` в методе `toast.add` меняет цвет уведомления.
 
 ::component-example
 ---
@@ -114,9 +114,9 @@ name: 'toast-color-example'
 ---
 ::
 
-### Close
+### Закрытие {#close}
 
-Pass a `close` field to customize or hide the close [Button](/docs/components/button/) (with `false` value).
+Поле `close` настраивает кнопку закрытия [Button](/docs/components/button/) или скрывает её (значение `false`).
 
 ::component-example
 ---
@@ -124,9 +124,9 @@ name: 'toast-close-example'
 ---
 ::
 
-### Close Icon
+### Иконка закрытия {#close-icon}
 
-Pass a `closeIcon` field to customize the close button [Icon](https://bitrix24.github.io/b24icons/icons/).
+Поле `closeIcon` меняет [иконку](https://bitrix24.github.io/b24icons/icons/) кнопки закрытия.
 
 ::component-example
 ---
@@ -134,26 +134,26 @@ name: 'toast-close-icon-example'
 ---
 ::
 
-### Actions
+### Действия {#actions}
 
-Pass an `actions` field to add some [Button](/docs/components/button/) actions to the Toast.
+Поле `actions` добавляет уведомлению кнопки действий [Button](/docs/components/button/).
 
 ::component-example
 ---
 options:
   - name: 'description'
     label: 'description'
-    default: 'There was a problem with your request.'
+    default: 'Возникла проблема с вашим запросом.'
 name: 'toast-actions-example'
 ---
 ::
 
-### Duration
+### Длительность {#duration}
 
-Pass a `duration` field to the `toast.add` method to change how long the Toast remains visible (in milliseconds). Defaults to `5000`.
+Поле `duration` в методе `toast.add` задаёт, как долго уведомление остаётся на экране (в миллисекундах). По умолчанию `5000`.
 
 ::tip
-Set the `duration` field to `0` to keep the Toast open until it's manually closed.
+Значение `0` в поле `duration` оставляет уведомление открытым, пока его не закроют вручную.
 ::
 
 ::component-example
@@ -171,12 +171,12 @@ name: 'toast-duration-example'
 ---
 ::
 
-### Progress
+### Прогресс {#progress}
 
-Pass a `progress` field to customize or hide the [Progress](/docs/components/progress/) bar (with `false` value).
+Поле `progress` настраивает полосу [Progress](/docs/components/progress/) или скрывает её (значение `false`).
 
 ::tip
-The Progress bar inherits the Toast color by default, but you can override it using the `progress.color` field.
+По умолчанию полоса Progress наследует цвет уведомления, но его можно переопределить полем `progress.color`.
 ::
 
 ::component-example
@@ -185,9 +185,9 @@ name: 'toast-progress-example'
 ---
 ::
 
-### Orientation
+### Ориентация {#orientation}
 
-Pass an `orientation` field to the `toast.add` method to change the orientation of the Toast.
+Поле `orientation` в методе `toast.add` меняет ориентацию уведомления.
 
 ::component-example
 ---
@@ -202,15 +202,15 @@ name: 'toast-orientation-example'
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
 ::note{to="/docs/components/app/"}
-Bitrix24 UI provides an **App** component that wraps your app to provide global configurations.
+Bitrix24 UI предоставляет компонент **App**, который оборачивает приложение и задаёт глобальные настройки.
 ::
 
-### Change global position
+### Глобальная позиция {#change-global-position}
 
-Change the `toaster.position` prop on the [App](/docs/components/app/#props) component to change the position of the toasts.
+Пропс `toaster.position` компонента [App](/docs/components/app/#props) меняет позицию уведомлений.
 
 ```vue [app.vue]
 <script setup lang="ts">
@@ -234,9 +234,9 @@ name: 'toast-example'
 :toaster-position-example
 ::
 
-### Change global duration
+### Глобальная длительность {#change-global-duration}
 
-Change the `toaster.duration` prop on the [App](/docs/components/app/#props) component to change the duration of the toasts.
+Пропс `toaster.duration` компонента [App](/docs/components/app/#props) меняет длительность уведомлений.
 
 ```vue [app.vue]
 <script setup lang="ts">
@@ -260,9 +260,9 @@ name: 'toast-example'
 :toaster-duration-example
 ::
 
-### Change global max
+### Глобальный максимум {#change-global-max}
 
-Change the `toaster.max` prop on the [App](/docs/components/app/#props) component to change the max number of toasts displayed at once.
+Пропс `toaster.max` компонента [App](/docs/components/app/#props) меняет максимальное число уведомлений, показываемых одновременно.
 
 ```vue [app.vue]
 <script setup lang="ts">
@@ -286,9 +286,9 @@ name: 'toast-example'
 :toaster-max-example
 ::
 
-### Stacked toasts
+### Стопка уведомлений {#stacked-toasts}
 
-Set the `toaster.expand` prop to `false` on the [App](/docs/components/app/#props) component to display stacked toasts (inspired by [Sonner](https://sonner.emilkowal.ski/)).
+Пропс `toaster.expand` со значением `false` в компоненте [App](/docs/components/app/#props) показывает уведомления стопкой (по мотивам [Sonner](https://sonner.emilkowal.ski/)).
 
 ```vue [app.vue]
 <script setup lang="ts">
@@ -303,7 +303,7 @@ const toaster = { expand: false }
 ```
 
 ::tip
-You can hover over the toasts to expand them. This will also pause the timer of the toasts.
+При наведении на уведомления стопка разворачивается, а таймер уведомлений ставится на паузу.
 ::
 
 ::component-example
@@ -316,9 +316,9 @@ name: 'toast-example'
 :toaster-expand-example
 ::
 
-### Deduplicated toasts
+### Дедупликация уведомлений {#deduplicated-toasts}
 
-When calling `toast.add` with an `id` that already exists, the existing toast will pulse instead of creating a duplicate.
+Если вызвать `toast.add` с уже существующим `id`, существующее уведомление пульсирует, а дубликат не создаётся.
 
 ::component-example
 ---
@@ -327,9 +327,9 @@ name: 'toast-duplicate-example'
 ---
 ::
 
-### With callback
+### С обратным вызовом {#with-callback}
 
-Pass an `onUpdateOpen` field to execute a callback when the toast is closed (either by expiration or user dismissal).
+Поле `onUpdateOpen` задаёт обратный вызов, который выполняется при закрытии уведомления (по истечении времени или по действию пользователя).
 
 ::component-example
 ---
@@ -338,9 +338,9 @@ name: 'toast-callback-example'
 ---
 ::
 
-### With HTML content
+### С HTML-содержимым {#with-html-content}
 
-Use the [`h()` render function](https://vuejs.org/api/render-function.html#h) in the `title` or `description` fields to render HTML elements or Vue components with custom styling.
+[Функция отрисовки `h()`](https://vuejs.org/api/render-function.html#h) в полях `title` или `description` отрисовывает HTML-элементы или компоненты Vue с произвольным оформлением.
 
 ::component-example
 ---
@@ -350,28 +350,28 @@ name: 'toast-html-example'
 ::
 
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-### Expose
+### Доступ через ref {#expose}
 
-When accessing the component via a template ref, you can use the following:
+При обращении к компоненту через ref в шаблоне доступно:
 
-| Name | Type |
+| Имя | Тип |
 | ---- | ---- |
 | `height`{lang="ts-type"} | `Ref<number>`{lang="ts-type"} |
 
-## Theme
+## Тема {#theme}
 
 :component-theme

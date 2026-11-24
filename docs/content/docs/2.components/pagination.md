@@ -1,6 +1,6 @@
 ---
 title: Pagination
-description: A navigation component with buttons or links for pagination.
+description: 'Навигационный компонент с кнопками или ссылками для постраничного вывода.'
 category: navigation
 keywords:
   - pager
@@ -9,7 +9,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Pagination.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/pagination
   - label: Nuxt UI
@@ -21,9 +21,9 @@ links:
     to: https://reka-ui.com/docs/components/pagination
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `default-page` prop or the `v-model:page` directive to control the current page.
+Пропс `default-page` или директива `v-model:page` управляет текущей страницей.
 
 ::component-code
 ---
@@ -41,12 +41,12 @@ props:
 ::
 
 ::note
-The Pagination component uses some [`Button`](/docs/components/button/) to display the pages, use [`color`](#color) and [`size`](#size) props to style them.
+Pagination использует [`Button`](/docs/components/button/) для отображения страниц; пропсы [`color`](#color) и [`size`](#size) задают их стиль.
 ::
 
-### Total
+### Всего {#total}
 
-Use the `total` prop to set the total number of items in the list.
+Пропс `total` задаёт общее число элементов в списке.
 
 ::component-code
 ---
@@ -60,9 +60,9 @@ props:
 ---
 ::
 
-### Items Per Page
+### Элементов на странице {#items-per-page}
 
-Use the `items-per-page` prop to set the number of items per page. Defaults to `10`.
+Пропс `items-per-page` задаёт число элементов на странице. По умолчанию `10`.
 
 ::component-code
 ---
@@ -79,9 +79,9 @@ props:
 ---
 ::
 
-### Sibling Count
+### Число соседних страниц {#sibling-count}
 
-Use the `sibling-count` prop to set the number of siblings to show. Defaults to `2`.
+Пропс `sibling-count` задаёт, сколько соседних страниц показывать. По умолчанию `2`.
 
 ::component-code
 ---
@@ -99,9 +99,9 @@ props:
 ---
 ::
 
-### Show Edges
+### Крайние страницы {#show-edges}
 
-Use the `show-edges` prop to always show the ellipsis, first and last pages. Defaults to `false`.
+Пропс `show-edges` всегда показывает многоточие, первую и последнюю страницы. По умолчанию `false`.
 
 ::component-code
 ---
@@ -120,9 +120,9 @@ props:
 ---
 ::
 
-### Show Controls
+### Кнопки управления {#show-controls}
 
-Use the `show-controls` prop to show the first, prev, next and last buttons. Defaults to `true`.
+Пропс `show-controls` показывает кнопки «первая», «предыдущая», «следующая» и «последняя». По умолчанию `true`.
 
 ::component-code
 ---
@@ -141,9 +141,9 @@ props:
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to set the color of the inactive controls. Defaults to `air-secondary-no-accent`.
+Пропс `color` задаёт цвет неактивных элементов управления. По умолчанию `air-secondary-no-accent`.
 
 ::component-code
 ---
@@ -178,9 +178,9 @@ props:
 ---
 ::
 
-### Active Color
+### Цвет активной страницы {#active-color}
 
-Use the `active-color` prop to set the color of the active control. Defaults to `air-primary`.
+Пропс `active-color` задаёт цвет активного элемента управления. По умолчанию `air-primary`.
 
 ::component-code
 ---
@@ -215,9 +215,9 @@ props:
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to set the size of the controls. Defaults to `md`.
+Пропс `size` задаёт размер элементов управления. По умолчанию `md`.
 
 ::component-code
 ---
@@ -243,9 +243,9 @@ props:
 ---
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the pagination controls.
+Пропс `disabled` отключает элементы управления пагинацией.
 
 ::component-code
 ---
@@ -263,11 +263,11 @@ props:
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With links
+### Со ссылками {#with-links}
 
-Use the `to` prop to transform buttons into links. Pass a function that receives the page number and returns a route destination.
+Пропс `to` превращает кнопки в ссылки. Передайте функцию, которая принимает номер страницы и возвращает маршрут.
 
 ::component-example
 ---
@@ -276,23 +276,23 @@ name: 'pagination-links-example'
 ::
 
 ::note
-In this example we're adding the `#with-links` hash to avoid going to the top of the page.
+В этом примере к адресу добавлен хеш `#with-links`, чтобы страница не прокручивалась вверх.
 ::
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

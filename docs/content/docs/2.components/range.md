@@ -1,12 +1,12 @@
 ---
 title: Range
-description: A control for selecting a numeric value within a specified range.
+description: 'Элемент управления для выбора числового значения в заданном диапазоне.'
 category: form
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Range.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/range
   - label: Nuxt UI
@@ -18,9 +18,9 @@ links:
     to: https://reka-ui.com/docs/components/slider
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `v-model` directive to control the value of the Range.
+Директива `v-model` управляет значением Range.
 
 ::component-code
 ---
@@ -31,7 +31,7 @@ props:
 ---
 ::
 
-Use the `default-value` prop to set the initial value when you do not need to control its state.
+Пропс `default-value` задаёт начальное значение, когда управлять состоянием не нужно.
 
 ::component-code
 ---
@@ -43,14 +43,14 @@ props:
 ::
 
 ::tip
-Use `aria-label` or `aria-labelledby` to name a single thumb Range, they are forwarded to the thumb which is the element with the `slider` role.
+Чтобы назвать Range с одним бегунком, используйте `aria-label` или `aria-labelledby`: они передаются бегунку — элементу с ролью `slider`.
 
-The thumbs of a multiple thumbs Range are named by their position so they can be told apart, `Minimum` / `Maximum` for two thumbs and `Value n of m` for three or more. Those names are kept, and an `aria-label` names the Range as a whole through a `group` role on the root instead of being repeated on every thumb.
+У Range с несколькими бегунками бегунки получают названия по положению, чтобы их можно было различать: `Minimum` / `Maximum` для двух и `Value n of m` для трёх и более. Эти названия сохраняются, а `aria-label` называет Range целиком через роль `group` на корне и не повторяется на каждом бегунке.
 ::
 
-### Min / Max
+### Минимум и максимум {#min-max}
 
-Use the `min` and `max` props to set the minimum and maximum values of the Range. Defaults to `0` and `100`.
+Пропсы `min` и `max` задают минимальное и максимальное значения Range. По умолчанию `0` и `100`.
 
 ::component-code
 ---
@@ -63,9 +63,9 @@ props:
 ---
 ::
 
-### Step
+### Шаг {#step}
 
-Use the `step` prop to set the increment value of the Range. Defaults to `1`.
+Пропс `step` задаёт шаг изменения значения Range. По умолчанию `1`.
 
 ::component-code
 ---
@@ -77,9 +77,9 @@ props:
 ---
 ::
 
-### Multiple
+### Несколько бегунков {#multiple}
 
-Use the `v-model` directive or the `default-value` prop with an array of values to create a range Range.
+Директива `v-model` или пропс `default-value` с массивом значений создают Range-диапазон.
 
 ::component-code
 ---
@@ -92,7 +92,7 @@ props:
 ---
 ::
 
-Use the `min-steps-between-thumbs` prop to limit the minimum distance between the thumbs.
+Пропс `min-steps-between-thumbs` ограничивает минимальное расстояние между бегунками.
 
 ::component-code
 ---
@@ -106,9 +106,9 @@ props:
 ---
 ::
 
-### Orientation
+### Ориентация {#orientation}
 
-Use the `orientation` prop to change the orientation of the Range. Defaults to `horizontal`.
+Пропс `orientation` меняет ориентацию Range. По умолчанию `horizontal`.
 
 ::component-code
 ---
@@ -122,9 +122,9 @@ props:
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of the Range.
+Пропс `color` меняет цвет Range.
 
 ::component-code
 ---
@@ -136,9 +136,9 @@ props:
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the Range.
+Пропс `size` меняет размер Range.
 
 ::component-code
 ---
@@ -150,9 +150,9 @@ props:
 ---
 ::
 
-### Tooltip
+### Подсказка {#tooltip}
 
-Use the `tooltip` prop to display a [Tooltip](/docs/components/tooltip/) around the Range thumbs with the current value. You can set it to `true` for default behavior or pass an object to customize it with any property from the [Tooltip](/docs/components/tooltip/#props) component.
+Пропс `tooltip` показывает вокруг бегунков Range [Tooltip](/docs/components/tooltip/) с текущим значением. Значение `true` включает поведение по умолчанию, а объект настраивает подсказку любыми свойствами компонента [Tooltip](/docs/components/tooltip/#props).
 
 ::component-code
 ---
@@ -165,9 +165,9 @@ props:
 ---
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the Range.
+Пропс `disabled` отключает Range.
 
 ::component-code
 ---
@@ -179,9 +179,9 @@ props:
 ---
 ::
 
-### Inverted
+### Инверсия {#inverted}
 
-Use the `inverted` prop to visually invert the Range.
+Пропс `inverted` визуально инвертирует Range.
 
 ::component-code
 ---
@@ -193,16 +193,16 @@ props:
 ---
 ::
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

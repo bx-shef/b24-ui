@@ -1,6 +1,6 @@
 ---
 title: Tabs
-description: A collection of tab panels shown individually.
+description: 'Набор вкладок, панели которых показываются по одной.'
 category: navigation
 keywords:
   - tabbed
@@ -10,7 +10,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Tabs.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/tabs
   - label: Nuxt UI
@@ -22,9 +22,9 @@ links:
     to: https://reka-ui.com/docs/components/tabs
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the Tabs component to display a list of items in tabs.
+Tabs показывает список элементов в виде вкладок.
 
 ::component-example
 ---
@@ -36,9 +36,9 @@ props:
 ---
 ::
 
-### Items
+### Элементы {#items}
 
-Use the `items` prop as an array of objects with the following properties:
+Пропс `items` — массив объектов со свойствами:
 
 - `label?: string`{lang="ts-type"}
 - [`icon?: IconComponent`{lang="ts-type"}](#usage)
@@ -63,17 +63,17 @@ externalTypes:
   - TabsItem[]
 props:
   items:
-    - label: Account
-      content: 'This is the account content.'
-    - label: Password
-      content: 'This is the password content.'
+    - label: Аккаунт
+      content: 'Это содержимое аккаунта.'
+    - label: Пароль
+      content: 'Это содержимое пароля.'
   class: 'w-full'
 ---
 ::
 
-### Content
+### Содержимое {#content}
 
-Set the `content` prop to `false` to render the triggers without any panels. Defaults to `true`.
+Значение `false` в пропсе `content` отрисовывает триггеры без панелей. По умолчанию `true`.
 
 ::component-code
 ---
@@ -89,17 +89,17 @@ externalTypes:
 props:
   content: false
   items:
-    - label: Account
-      content: 'This is the account content.'
-    - label: Password
-      content: 'This is the password content.'
+    - label: Аккаунт
+      content: 'Это содержимое аккаунта.'
+    - label: Пароль
+      content: 'Это содержимое пароля.'
   class: 'w-full'
 ---
 ::
 
-### Unmount
+### Выгрузка содержимого {#unmount}
 
-Use the `unmount-on-hide` prop to prevent the content from being unmounted when the Tabs is collapsed. Defaults to `true`.
+Пропс `unmount-on-hide` не даёт выгружать содержимое, когда вкладка скрыта. По умолчанию `true`.
 
 ::component-code
 ---
@@ -115,21 +115,21 @@ externalTypes:
 props:
   unmountOnHide: false
   items:
-    - label: Account
-      content: 'This is the account content.'
-    - label: Password
-      content: 'This is the password content.'
+    - label: Аккаунт
+      content: 'Это содержимое аккаунта.'
+    - label: Пароль
+      content: 'Это содержимое пароля.'
   class: 'w-full'
 ---
 ::
 
 ::note
-You can inspect the DOM to see each item's content being rendered.
+В DOM видно, что содержимое каждого элемента отрисовано.
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the Tabs.
+Пропс `size` меняет размер Tabs.
 
 ::component-code
 ---
@@ -146,15 +146,15 @@ props:
   size: md
   content: false
   items:
-    - label: Account
-    - label: Password
+    - label: Аккаунт
+    - label: Пароль
   class: 'w-full'
 ---
 ::
 
-### Orientation
+### Ориентация {#orientation}
 
-Use the `orientation` prop to change the orientation of the Tabs. Defaults to `horizontal`.
+Пропс `orientation` меняет ориентацию Tabs. По умолчанию `horizontal`.
 
 ::component-code
 ---
@@ -171,47 +171,47 @@ props:
   orientation: vertical
   content: false
   items:
-    - label: Account
-    - label: Password
+    - label: Аккаунт
+    - label: Пароль
   class: 'w-full'
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Control active item
+### Управление активным элементом {#control-active-item}
 
-You can control the active item by using the `default-value` prop or the `v-model` directive with the `value` of the item. If no `value` is provided, it defaults to the index **as a string**.
+Активным элементом управляют пропс `default-value` или директива `v-model` со значением `value` элемента. Если `value` не задан, берётся индекс **в виде строки**.
 
 :component-example{name="tabs-model-value-example" collapse}
 
 ::tip
-Use the `value-key` prop to change the key used to match items when a `v-model` or `default-value` is provided.
+Пропс `value-key` меняет ключ, по которому элементы сопоставляются с `v-model` или `default-value`.
 ::
 
-### With route query
+### С query-параметром маршрута {#with-route-query}
 
-You can control the active item by a URL query parameter, using `route.query.tab` as the `value` of the item.
+Активным элементом можно управлять через query-параметр URL, используя `route.query.tab` как `value` элемента.
 
 :component-example{name="tabs-route-query-example"}
 
-### With content slot
+### Со слотом content {#with-content-slot}
 
-Use the `#content` slot to customize the content of each item.
+Слот `#content` настраивает содержимое каждого элемента.
 
 :component-example{name="tabs-content-slot-example" collapse}
 
-### With bottom tab bar
+### С нижней панелью вкладок {#with-bottom-tab-bar}
 
-Use the `b24ui` prop to transform the Tabs into a mobile-style bottom tab bar with icons and small labels, similar to YouTube or Instagram.
+Пропс `b24ui` превращает Tabs в нижнюю панель вкладок в мобильном стиле: значки и маленькие подписи, как в YouTube или Instagram.
 
 :component-example{name="tabs-bottom-tab-bar-example" collapse}
 
-### With custom slot
+### С собственным слотом {#with-custom-slot}
 
-Use the `slot` property to customize a specific item.
+Свойство `slot` настраивает отдельный элемент.
 
-You will have access to the following slots:
+Вам будут доступны слоты:
 
 - `#{{ item.slot }}`{lang="ts-type"}
 
@@ -222,28 +222,28 @@ name: 'tabs-custom-slot-example'
 ---
 ::
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-### Expose
+### Доступ через ref {#expose}
 
-When accessing the component via a template ref, you can use the following:
+При обращении к компоненту через ref в шаблоне доступно:
 
-| Name | Type |
+| Имя | Тип |
 | ---- | ---- |
 | `triggersRef`{lang="ts-type"} | `Ref<ComponentPublicInstance[]>`{lang="ts-type"} |
 
-## Theme
+## Тема {#theme}
 
 :component-theme

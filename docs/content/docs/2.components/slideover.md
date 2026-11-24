@@ -1,6 +1,6 @@
 ---
 title: Slideover
-description: A dialog that slides in from any side of the screen.
+description: 'Диалог, который выезжает с любой стороны экрана.'
 category: overlay
 keywords:
   - sheet
@@ -10,7 +10,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Slideover.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/slideover
   - label: Nuxt UI
@@ -22,11 +22,11 @@ links:
     to: https://reka-ui.com/docs/components/dialog
 ---
 
-## Usage
+## Использование {#usage}
 
-Use a [Button](/docs/components/button/) or any other component in the default slot of the Slideover.
+Поместите в слот по умолчанию Slideover [Button](/docs/components/button/) или любой другой компонент.
 
-Then, use the `#content` slot to add the content displayed when the Slideover is open.
+Затем слот `#content` задаёт содержимое, которое показывается при открытом Slideover.
 
 ::component-code
 ---
@@ -52,18 +52,18 @@ slots:
 :placeholder{class="h-full m-4"}
 ::
 
-You can also use the `#header`{lang="ts-type"}, `#body`{lang="ts-type"} and `#footer`{lang="ts-type"} slots to customize the Slideover's content.
+Слоты `#header`{lang="ts-type"}, `#body`{lang="ts-type"} и `#footer`{lang="ts-type"} позволяют настроить содержимое Slideover.
 
-### Title
+### Заголовок {#title}
 
-Use the `title` prop to set the title of the Slideover's header.
+Пропс `title` задаёт заголовок в шапке Slideover.
 
 ::component-code
 ---
 prettier: true
 collapse: true
 props:
-  title: 'Slideover with title'
+  title: 'Боковая панель с заголовком'
 slots:
   default: |
 
@@ -80,9 +80,9 @@ slots:
 :placeholder{class="h-full"}
 ::
 
-### Description
+### Описание {#description}
 
-Use the `description` prop to set the description of the Slideover's header.
+Пропс `description` задаёт описание в шапке Slideover.
 
 ::component-code
 ---
@@ -91,7 +91,7 @@ collapse: true
 ignore:
   - title
 props:
-  title: 'Slideover with description'
+  title: 'Боковая панель с описанием'
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
 slots:
   default: |
@@ -109,11 +109,11 @@ slots:
 :placeholder{class="h-full"}
 ::
 
-### Close
+### Закрытие {#close}
 
-Use the `close` prop to customize or hide the close button (with `false` value) displayed in the Slideover's header.
+Пропс `close` настраивает кнопку закрытия в шапке Slideover или скрывает её (значение `false`).
 
-You can pass any property from the [Button](/docs/components/button/) component to customize it.
+Можно передать любое свойство компонента [Button](/docs/components/button/).
 
 ::component-code
 ---
@@ -123,7 +123,7 @@ ignore:
   - title
   - close.color
 props:
-  title: 'Slideover with close button'
+  title: 'Боковая панель с кнопкой закрытия'
   close:
     color: air-secondary-accent-2
 slots:
@@ -143,12 +143,12 @@ slots:
 ::
 
 ::note
-The close button is not displayed if the `#content` slot is used as it's a part of the header.
+Кнопка закрытия не показывается, если используется слот `#content`: она входит в шапку.
 ::
 
-### Close Icon
+### Иконка закрытия {#close-icon}
 
-Use the `close-icon` prop to customize the close button [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `close-icon` меняет [иконку](https://bitrix24.github.io/b24icons/icons/) кнопки закрытия.
 
 ::component-code
 ---
@@ -160,7 +160,7 @@ ignore:
 cast:
   closeIcon: 'RocketIcon'
 props:
-  title: 'Slideover with close button'
+  title: 'Боковая панель с кнопкой закрытия'
   closeIcon: 'RocketIcon'
 slots:
   default: |
@@ -178,9 +178,9 @@ slots:
 :placeholder{class="h-full"}
 ::
 
-### Side
+### Сторона {#side}
 
-Use the `side` prop to set the side of the screen where the Slideover will slide in from. Defaults to `bottom`.
+Пропс `side` задаёт сторону экрана, с которой выезжает Slideover. По умолчанию `bottom`.
 
 ::component-code
 ---
@@ -190,7 +190,7 @@ ignore:
   - title
 props:
   side: 'bottom'
-  title: 'Slideover with side'
+  title: 'Боковая панель со стороной выезда'
 slots:
   default: |
 
@@ -207,9 +207,9 @@ slots:
 :placeholder{class="h-full min-h-48"}
 ::
 
-### Inset
+### Отступ от краёв {#inset}
 
-Use the `inset` prop to inset the Slideover from the edges.
+Пропс `inset` отодвигает Slideover от краёв экрана.
 
 ::component-code
 ---
@@ -219,7 +219,7 @@ ignore:
 props:
   side: 'right'
   inset: true
-  title: 'Slideover with inset'
+  title: 'Боковая панель с отступом от краёв'
 slots:
   default: |
 
@@ -237,9 +237,9 @@ slots:
 ::
 
 
-### Transition
+### Анимация {#transition}
 
-Use the `transition` prop to control whether the Slideover is animated or not. Defaults to `true`.
+Пропс `transition` определяет, анимируется ли Slideover. По умолчанию `true`.
 
 ::component-code
 ---
@@ -249,7 +249,7 @@ ignore:
   - title
 props:
   transition: false
-  title: 'Slideover without transition'
+  title: 'Боковая панель без анимации'
 slots:
   default: |
 
@@ -266,9 +266,9 @@ slots:
 :placeholder{class="h-full"}
 ::
 
-### Overlay
+### Оверлей {#overlay}
 
-Use the `overlay` prop to control whether the Slideover has an overlay or not. Defaults to `true`.
+Пропс `overlay` определяет, есть ли у Slideover оверлей. По умолчанию `true`.
 
 ::component-code
 ---
@@ -278,7 +278,7 @@ ignore:
   - title
 props:
   overlay: false
-  title: 'Slideover without overlay'
+  title: 'Боковая панель без оверлея'
 slots:
   default: |
 
@@ -295,15 +295,15 @@ slots:
 :placeholder{class="h-full"}
 ::
 
-### Overlay blur
+### Размытие оверлея {#overlay-blur}
 
-If you want to disable background blur, you should use the `overlayBlur` prop.
+Чтобы отключить размытие фона, используйте пропс `overlayBlur`.
 
-The `overlayBlur` prop has 3 options:
+У пропса `overlayBlur` три значения:
 
-- `auto`: when the user has **not requested** [reduced motion](https://tailwindcss.com/docs/hover-focus-and-other-states#prefers-reduced-motion)
-- `on`: always use blur
-- `off`: (default) do not use blur
+- `auto`: когда пользователь **не запрашивал** [уменьшение анимации](https://tailwindcss.com/docs/hover-focus-and-other-states#prefers-reduced-motion)
+- `on`: размытие всегда включено
+- `off`: (по умолчанию) размытия нет
 
 ::component-code
 ---
@@ -320,7 +320,7 @@ items:
 props:
   overlay: true
   overlayBlur: 'auto'
-  title: 'Overlay blur'
+  title: 'Размытие оверлея'
 slots:
   default: |
 
@@ -337,12 +337,12 @@ slots:
 :placeholder{class="h-full"}
 ::
 
-### Modal
+### Модальный режим {#modal}
 
-Use the `modal` prop to control whether the Slideover blocks interaction with outside content. Defaults to `true`.
+Пропс `modal` определяет, блокирует ли Slideover взаимодействие с содержимым вне панели. По умолчанию `true`.
 
 ::note
-When `modal` is set to `false`, the overlay is automatically disabled and outside content becomes interactive.
+При `modal` равном `false` оверлей отключается автоматически, а содержимое вне панели остаётся интерактивным.
 ::
 
 ::component-code
@@ -352,7 +352,7 @@ ignore:
   - title
 props:
   modal: false
-  title: 'Slideover interactive'
+  title: 'Интерактивная боковая панель'
 slots:
   default: |
 
@@ -369,16 +369,16 @@ slots:
 :placeholder{class="h-full"}
 ::
 
-### Dismissible
+### Закрытие по действию вне окна {#dismissible}
 
-Use the `dismissible` prop to control whether the Slideover is dismissible when clicking outside of it or pressing escape. Defaults to `true`.
+Пропс `dismissible` определяет, закрывается ли Slideover щелчком вне панели или нажатием Escape. По умолчанию `true`.
 
 ::note
-A `close:prevent` event will be emitted when the user tries to close it.
+При попытке закрыть панель генерируется событие `close:prevent`.
 ::
 
 ::tip
-You can combine `modal: false` with `dismissible: false` to make the Slideover's background interactive without closing it.
+Сочетание `modal: false` и `dismissible: false` делает фон интерактивным, не закрывая Slideover.
 ::
 
 ::component-code
@@ -391,7 +391,7 @@ ignore:
 props:
   dismissible: false
   modal: true
-  title: 'Slideover non-dismissible'
+  title: 'Боковая панель без закрытия по щелчку вне панели'
 slots:
   default: |
 
@@ -408,9 +408,9 @@ slots:
 :placeholder{class="h-full"}
 ::
 
-### Unmount
+### Выгрузка содержимого {#unmount}
 
-Use the `unmount-on-hide` prop to prevent the Slideover's content from being unmounted when it is closed. Defaults to `true`.
+Пропс `unmount-on-hide` управляет выгрузкой содержимого Slideover при закрытии. По умолчанию `true`.
 
 ::component-code
 ---
@@ -419,7 +419,7 @@ ignore:
   - title
 props:
   unmountOnHide: false
-  title: 'Slideover'
+  title: 'Боковая панель'
 slots:
   default: |
 
@@ -437,18 +437,18 @@ slots:
 ::
 
 ::note
-You can inspect the DOM to see the Slideover's content being rendered even while it is closed.
+В DOM видно, что содержимое Slideover отрисовано, даже пока панель закрыта.
 ::
 
 ::tip
-When the `portal` prop is set to `false`, the content is also rendered on the server. This is useful to render an open Slideover during SSR without a flash on page load, or to expose its content for SEO.
+Если пропс `portal` равен `false`, содержимое отрисовывается и на сервере. Это полезно, чтобы отрисовать открытый Slideover при SSR без мигания при загрузке страницы, или чтобы открыть содержимое для SEO.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Control open state
+### Управление открытием {#control-open-state}
 
-You can control the open state by using the `default-open` prop or the `v-model:open` directive.
+Состоянием открытия управляют пропс `default-open` или директива `v-model:open`.
 
 ::component-example
 ---
@@ -458,22 +458,22 @@ collapse: true
 ::
 
 ::note
-In this example, leveraging [`defineShortcuts`](/docs/composables/define-shortcuts/), you can toggle the Slideover by pressing :kbd{value="O"}.
+В этом примере с помощью [`defineShortcuts`](/docs/composables/define-shortcuts/) Slideover переключается по нажатию :kbd{value="O"}.
 ::
 
 ::tip
-This lets you move the trigger outside of the Slideover or remove it entirely.
+Так можно вынести триггер за пределы Slideover или убрать его совсем.
 ::
 
-### Programmatic usage
+### Программное использование {#programmatic-usage}
 
-You can use the [`useOverlay`](/docs/composables/use-overlay/) composable to open a Slideover programmatically.
+Открыть Slideover программно позволяет композабл [`useOverlay`](/docs/composables/use-overlay/).
 
 ::warning
-Make sure to wrap your app with the [`App`](/docs/components/app/) component which uses the [`OverlayProvider`](https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/OverlayProvider.vue) component.
+Оберните приложение в компонент [`App`](/docs/components/app/), который использует компонент [`OverlayProvider`](https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/OverlayProvider.vue).
 ::
 
-First, create a slideover component that will be opened programmatically:
+Сначала создайте компонент боковой панели, которая будет открываться программно:
 
 ::component-example
 ---
@@ -484,10 +484,10 @@ preview: false
 ::
 
 ::note
-We are emitting a `close` event when the slideover is closed or dismissed here. You can emit any data through the `close` event, and that data becomes the resolved value of `open()`. The event must be emitted for the promise to resolve.
+Здесь при закрытии или отклонении панели генерируется событие `close`. Через него можно передать любые данные: они станут результатом `open()`. Событие нужно сгенерировать, иначе промис не завершится.
 ::
 
-Then, use it in your app:
+Затем используйте его в приложении:
 
 ::component-example
 ---
@@ -497,12 +497,12 @@ collapse: true
 ::
 
 ::tip
-You can close the slideover within the slideover component by emitting `emit('close')`.
+Закрыть боковую панель изнутри компонента можно вызовом `emit('close')`.
 ::
 
-### Nested slideovers
+### Вложенные боковые панели {#nested-slideovers}
 
-You can nest slideovers within each other.
+Боковые панели можно вкладывать друг в друга.
 
 ::component-example
 ---
@@ -511,9 +511,9 @@ collapse: true
 ---
 ::
 
-### With footer slot
+### Со слотом footer {#with-footer-slot}
 
-Use the `#footer` slot to add content after the Slideover's body.
+Слот `#footer` добавляет содержимое после тела Slideover.
 
 ::component-example
 ---
@@ -522,7 +522,7 @@ collapse: true
 ---
 ::
 
-### Simple list of elements
+### Простой список элементов {#simple-list-of-elements}
 
 ::component-example
 ---
@@ -532,36 +532,29 @@ collapse: true
 ::
 
 ::tip
-Many examples can be found on the [`playground`](https://bitrix24.github.io/b24ui/demo/components/slideover) and also seen in the [`demo`](https://github.com/bitrix24/b24ui/blob/main/playgrounds/demo/app/pages/components/slideover.vue) version.
+Много примеров есть в [песочнице](https://bitrix24.github.io/b24ui/demo/components/slideover) и в [демо-версии](https://github.com/bitrix24/b24ui/blob/main/playgrounds/demo/app/pages/components/slideover.vue).
 ::
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Accessibility :badge{label="2.14+" class="align-text-top"}
+## Доступность :badge{label="2.14+" class="align-text-top"} {#accessibility}
 
-On open, focus is moved off the trigger for one tick before the dialog's focus
-trap takes over. This works around a [reka-ui timing
-bug](https://github.com/unovue/reka-ui/issues/1280) that otherwise makes the
-browser refuse `aria-hidden` and log *"Blocked aria-hidden on an element
-because its descendant retained focus"*.
+При открытии фокус на один такт снимается с триггера, после чего его перехватывает ловушка фокуса диалога. Так обходится [ошибка тайминга в reka-ui](https://github.com/unovue/reka-ui/issues/1280), из-за которой браузер отказывается применять `aria-hidden` и пишет в журнал *«Blocked aria-hidden on an element because its descendant retained focus»*.
 
-Focus returns to whatever was focused before opening, including when you open
-the component programmatically rather than through its trigger slot. Screen
-readers that announce focus changes eagerly — VoiceOver in particular — may
-briefly announce the page title before the dialog title.
+Фокус возвращается туда, где он был до открытия, в том числе когда компонент открыт программно, а не через слот триггера. Скринридеры, которые сразу озвучивают смену фокуса (в первую очередь VoiceOver), могут на мгновение произнести заголовок страницы раньше заголовка диалога.
 
-## Theme
+## Тема {#theme}
 
 :component-theme

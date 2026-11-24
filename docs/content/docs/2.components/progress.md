@@ -1,6 +1,6 @@
 ---
 title: Progress
-description: A progress bar displaying task completion status.
+description: 'Индикатор выполнения, показывающий, насколько завершена задача.'
 category: element
 keywords:
   - progress bar
@@ -10,7 +10,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Progress.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/progress
   - label: Nuxt UI
@@ -22,9 +22,9 @@ links:
     to: https://reka-ui.com/docs/components/progress
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `v-model` directive to control the value of the Progress.
+Директива `v-model` управляет значением Progress.
 
 ::component-code
 ---
@@ -36,12 +36,12 @@ props:
 ::
 
 ::note
-Use the [`ProgressGroup`](/docs/components/progress-group) component to split a single bar into multiple segments that add up to a total.
+Компонент [`ProgressGroup`](/docs/components/progress-group) делит одну полосу на несколько сегментов, которые в сумме дают общее значение.
 ::
 
-### Max
+### Максимум {#max}
 
-Use the `max` prop to set the maximum value of the Progress.
+Пропс `max` задаёт максимальное значение Progress.
 
 ::component-code
 ---
@@ -53,7 +53,7 @@ props:
 ---
 ::
 
-Use the `max` prop with an array of strings to display the active step under the bar, the maximum value of the Progress is the length of the array.
+Если передать в `max` массив строк, под полосой показывается активный шаг, а максимальное значение равно длине массива.
 
 ::component-code
 ---
@@ -65,17 +65,17 @@ external:
 props:
   modelValue: 3
   max:
-    - 'Prospecting...'
-    - 'Qualifying...'
-    - 'Presenting...'
-    - 'Negotiating...'
-    - 'Closed!'
+    - 'Поиск клиентов...'
+    - 'Квалификация...'
+    - 'Презентация...'
+    - 'Переговоры...'
+    - 'Сделка закрыта!'
 ---
 ::
 
-### Status
+### Статус {#status}
 
-Use the `status` prop to display the current Progress value above the bar.
+Пропс `status` показывает текущее значение Progress над полосой.
 
 ::component-code
 ---
@@ -88,12 +88,12 @@ props:
 ::
 
 ::tip
-The status tracks the end of the bar, use `:b24ui="{ status: 'w-full' }"` to make it span the full width instead.
+Статус следует за концом полосы; чтобы растянуть его на всю ширину, используйте `:b24ui="{ status: 'w-full' }"`.
 ::
 
-### Indeterminate
+### Неопределённое состояние {#indeterminate}
 
-When no `v-model` is set or the value is `null`, the Progress becomes _indeterminate_. The progress bar is animated as a `loading`, but you can change it using the [`animation`](#animation) prop.
+Когда `v-model` не задан или значение равно `null`, Progress переходит в _неопределённое состояние_: полоса анимируется как `loading`; анимацию можно сменить пропсом [`animation`](#animation).
 
 ::component-code
 ---
@@ -105,12 +105,12 @@ props:
 ::
 
 ::tip
-The animation is automatically disabled when the user prefers reduced motion, the indeterminate bar is displayed as a full width pulse instead.
+Если пользователь предпочитает уменьшенное движение, анимация отключается, и полоса неопределённого состояния показывается как пульсация на всю ширину.
 ::
 
-### Animation
+### Анимация {#animation}
 
-Use the `animation` prop to change the animation of the Progress to an inverse carousel, a swinging bar or an elastic bar. Defaults to `loading`.
+Пропс `animation` меняет анимацию Progress на обратную карусель, качающуюся полосу или упругую полосу. По умолчанию `loading`.
 
 ::component-code
 ---
@@ -119,9 +119,9 @@ props:
 ---
 ::
 
-### Orientation
+### Ориентация {#orientation}
 
-Use the `orientation` prop to change the orientation of the Progress. Defaults to `horizontal`.
+Пропс `orientation` меняет ориентацию Progress. По умолчанию `horizontal`.
 
 ::component-code
 ---
@@ -133,9 +133,9 @@ props:
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of the Progress.
+Пропс `color` меняет цвет Progress.
 
 ::component-code
 ---
@@ -144,9 +144,9 @@ props:
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the Progress.
+Пропс `size` меняет размер Progress.
 
 ::component-code
 ---
@@ -155,9 +155,9 @@ props:
 ---
 ::
 
-### Inverted
+### Инверсия {#inverted}
 
-Use the `inverted` prop to visually invert the Progress.
+Пропс `inverted` визуально инвертирует Progress.
 
 ::component-code
 ---
@@ -167,20 +167,20 @@ props:
 ---
 ::
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

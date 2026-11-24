@@ -1,6 +1,6 @@
 ---
 title: Splitter
-description: Panels that share one area and are resized by dragging the divider between them.
+description: 'Панели, которые делят одну область и меняют размер перетаскиванием разделителя между ними.'
 category: layout
 keywords:
   - resizable
@@ -11,7 +11,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Splitter.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/splitter
   - label: Nuxt UI
@@ -23,9 +23,9 @@ links:
     to: https://reka-ui.com/docs/components/splitter
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the Splitter component to display a list of resizable panels separated by draggable handles.
+Splitter показывает список панелей с изменяемым размером, разделённых перетаскиваемыми ручками.
 
 ::component-example
 ---
@@ -35,12 +35,12 @@ name: 'splitter-example'
 ::
 
 ::note
-The Splitter fills the height of its container, so make sure a parent element defines one.
+Splitter занимает всю высоту контейнера, поэтому высота должна быть задана у родительского элемента.
 ::
 
-### Items
+### Элементы {#items}
 
-Use the `items` prop as an array of objects with the following properties:
+Пропс `items` — массив объектов со свойствами:
 
 - `defaultSize?: number`{lang="ts-type"}
 - `minSize?: number`{lang="ts-type"}
@@ -54,10 +54,10 @@ Use the `items` prop as an array of objects with the following properties:
 - `class?: any`{lang="ts-type"}
 - `b24ui?: { panel?: ClassNameValue }`{lang="ts-type"}
 
-Use the `slot` key to fill the content of a panel and the `class` key to style it. Items without a `slot` key fall back to a `panel-{index}` slot. Sizes are percentages by default, set `sizeUnit: 'px'` on an item for pixel values.
+Ключ `slot` задаёт содержимое панели, ключ `class` — её стиль. Элементы без ключа `slot` используют слот `panel-{index}`. По умолчанию размеры заданы в процентах; чтобы задать пиксели, укажите у элемента `sizeUnit: 'px'`.
 
 ::caution
-When rendering on the server, set the `id` prop and give `defaultSize` to all items or to none. Ids are generated automatically otherwise and the server and the client can disagree, which breaks the layout on hydration. An item without a `defaultSize` falls back to an equal share on the server, so mixing the two makes panels jump once hydrated. Pixel sizes are measured on the client and always shift a little.
+При отрисовке на сервере задайте пропс `id` и укажите `defaultSize` либо у всех элементов, либо ни у одного. Иначе идентификаторы генерируются автоматически, сервер и клиент могут разойтись, и при гидратации раскладка сломается. Элемент без `defaultSize` получает на сервере равную долю, поэтому смешивать оба подхода нельзя: после гидратации панели «прыгнут». Размеры в пикселях измеряются на клиенте и всегда немного смещаются.
 ::
 
 ::component-code
@@ -84,20 +84,20 @@ props:
       defaultSize: 75
       class: 'bg-(--ui-color-bg-content-secondary) border border-(--ui-color-divider-default) rounded-(--ui-border-radius-md) items-center justify-center text-description font-(--ui-font-weight-medium)'
 slots:
-  sidebar: Sidebar
-  main: Main
+  sidebar: Боковое меню
+  main: Основная часть
 ---
 
 #sidebar
-Sidebar
+Боковое меню
 
 #main
-Main
+Основная часть
 ::
 
-### Orientation
+### Ориентация {#orientation}
 
-Use the `orientation` prop to change the direction of the splitter. Defaults to `horizontal`.
+Пропс `orientation` меняет направление Splitter. По умолчанию `horizontal`.
 
 ::component-code
 ---
@@ -120,22 +120,22 @@ props:
     - slot: 'second'
       class: 'bg-(--ui-color-bg-content-secondary) border border-(--ui-color-divider-default) rounded-(--ui-border-radius-md) items-center justify-center text-description font-(--ui-font-weight-medium)'
 slots:
-  first: First
-  second: Second
+  first: Первая
+  second: Вторая
 ---
 
 #first
-First
+Первая
 
 #second
-Second
+Вторая
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With collapsible panel
+### Со сворачиваемой панелью {#with-collapsible-panel}
 
-Set `collapsible: true` on an item to let it collapse past its `minSize`, and use `collapsedSize` to keep part of the panel visible when collapsed. The panel slot exposes `collapsed`, `collapse` and `expand` so you can control it programmatically, and the `collapse`, `expand` and `resize` events fire with the panel index.
+Параметр `collapsible: true` у элемента позволяет панели свернуться за пределы `minSize`, а `collapsedSize` оставляет часть свёрнутой панели видимой. Слот панели даёт `collapsed`, `collapse` и `expand`, чтобы управлять ею программно, а события `collapse`, `expand` и `resize` приходят с индексом панели.
 
 ::component-example
 ---
@@ -144,9 +144,9 @@ name: 'splitter-collapsible-example'
 ---
 ::
 
-### With nested splitters
+### С вложенными Splitter {#with-nested-splitters}
 
-Nest a `Splitter` inside a panel to build two-dimensional, IDE-style layouts.
+Вложите `Splitter` в панель, чтобы получить двумерные раскладки в стиле IDE.
 
 ::component-example
 ---
@@ -155,9 +155,9 @@ name: 'splitter-nested-example'
 ---
 ::
 
-### With custom handle
+### С собственной ручкой {#with-custom-handle}
 
-The handle is invisible by default. Use the `b24ui` prop to restyle it, for example as a visible divider for flush layouts, and the `resize-handle` slot to render content inside it like a grip.
+По умолчанию ручка невидима. Пропс `b24ui` меняет её стиль, например делает видимым разделителем для сплошных раскладок, а слот `resize-handle` отрисовывает внутри неё содержимое, например рукоять.
 
 ::component-example
 ---
@@ -166,9 +166,9 @@ name: 'splitter-custom-handle-example'
 ---
 ::
 
-### With persistence
+### С сохранением раскладки {#with-persistence}
 
-Provide an `auto-save-id` to persist the layout to `localStorage` and restore it on reload.
+Пропс `auto-save-id` сохраняет раскладку в `localStorage` и восстанавливает её после перезагрузки.
 
 ```vue
 <template>
@@ -178,24 +178,24 @@ Provide an `auto-save-id` to persist the layout to `localStorage` and restore it
 </template>
 ```
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme
 
-## Changelog
+## История изменений {#changelog}
 
 :component-changelog

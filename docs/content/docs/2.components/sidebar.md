@@ -1,12 +1,12 @@
 ---
 title: Sidebar
-description: 'A collapsible sidebar with multiple visual style options.'
+description: 'Сворачиваемое боковое меню с несколькими вариантами оформления.'
 category: layout
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Sidebar.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/sidebar
   - label: Nuxt UI
@@ -14,15 +14,15 @@ links:
     to: https://ui.nuxt.com/docs/components/sidebar
 ---
 
-## Usage
+## Использование {#usage}
 
-The Sidebar component is a standalone, fixed sidebar that pushes the page content. On desktop, it renders inline and can be collapsed; on mobile, it opens a [Modal](/docs/components/modal/), [Slideover](/docs/components/slideover/) or [Drawer](/docs/components/drawer/) component.
+Sidebar — самостоятельное фиксированное боковое меню, которое сдвигает содержимое страницы. На десктопе оно отрисовывается в потоке и сворачивается, на мобильных открывается в компоненте [Modal](/docs/components/modal/), [Slideover](/docs/components/slideover/) или [Drawer](/docs/components/drawer/).
 
 ::tip{to="/docs/components/dashboard-sidebar/"}
-**Sidebar vs DashboardSidebar**: This component is a simple, standalone sidebar you can drop anywhere (chat panel, settings, navigation). If you need drag-to-resize, state persistence and integration with [DashboardGroup](/docs/components/dashboard-group/), use [DashboardSidebar](/docs/components/dashboard-sidebar/) instead.
+**Sidebar и DashboardSidebar.** Sidebar — простое самостоятельное боковое меню, которое можно поставить куда угодно (панель чата, настройки, навигация). Если нужны изменение размера перетаскиванием, сохранение состояния и интеграция с [DashboardGroup](/docs/components/dashboard-group/), используйте [DashboardSidebar](/docs/components/dashboard-sidebar/).
 ::
 
-Use the `header`, `default` and `footer` slots to customize the sidebar content. The `v-model:open` directive is viewport-aware: on desktop it controls the expanded/collapsed state, on mobile it controls the menu.
+Слоты `header`, `default` и `footer` настраивают содержимое меню. Директива `v-model:open` учитывает область просмотра: на десктопе она управляет состоянием «развёрнуто / свёрнуто», на мобильных — самим меню.
 
 ::component-example
 ---
@@ -34,9 +34,9 @@ class: '!p-0 !justify-st2art h-[500px] contain-[paint] transform-gpu'
 ---
 ::
 
-### Variant
+### Вариант {#variant}
 
-Use the `variant` prop to change the visual style of the sidebar. Defaults to `sidebar`.
+Пропс `variant` меняет визуальный стиль меню. По умолчанию `sidebar`.
 
 ::component-example
 ---
@@ -56,13 +56,13 @@ class: '!p-0 !justify-start h-[500px] contain-[paint] transform-gpu'
 ---
 ::
 
-### Collapsible
+### Сворачивание {#collapsible}
 
-Use the `collapsible` prop to change the collapse behavior of the sidebar. Defaults to `offcanvas`.
+Пропс `collapsible` меняет способ сворачивания меню. По умолчанию `offcanvas`.
 
-- `offcanvas`: The sidebar slides out of view completely.
-- `icon`: The sidebar shrinks to icon-only width.
-- `none`: The sidebar is not collapsible.
+- `offcanvas`: меню полностью уезжает за пределы экрана.
+- `icon`: меню сужается до ширины иконки.
+- `none`: меню не сворачивается.
 
 ::component-example
 ---
@@ -90,12 +90,12 @@ class: '!p-0 !justify-start h-[500px] contain-[paint] transform-gpu'
 ::
 
 ::tip{to="#slots"}
-You can access the `state` in the slot props to customize the content of the sidebar when it is collapsed.
+В пропсах слота доступно `state`: по нему можно менять содержимое свёрнутого меню.
 ::
 
-### Side
+### Сторона {#side}
 
-Use the `side` prop to change the side of the sidebar. Defaults to `left`.
+Пропс `side` меняет сторону, с которой стоит меню. По умолчанию `left`.
 
 ::component-example
 ---
@@ -114,9 +114,9 @@ class: '!p-0 !justify-start h-[500px] contain-[paint] transform-gpu'
 ---
 ::
 
-### Title
+### Заголовок {#title}
 
-Use the `title` prop to set the title of the sidebar header.
+Пропс `title` задаёт заголовок шапки меню.
 
 ::component-code
 ---
@@ -127,7 +127,7 @@ hide:
 ignore:
   - b24ui.container
 props:
-  title: Navigation
+  title: Навигация
   b24ui:
     container: h-full
 slots:
@@ -140,9 +140,9 @@ class: '!p-0 !justify-start h-[500px] contain-[paint] transform-gpu'
 :placeholder{class="h-full"}
 ::
 
-### Description
+### Описание {#description}
 
-Use the `description` prop to set the description of the sidebar header.
+Пропс `description` задаёт описание в шапке меню.
 
 ::component-code
 ---
@@ -154,8 +154,8 @@ ignore:
   - title
   - b24ui.container
 props:
-  title: Navigation
-  description: Browse your workspace
+  title: Навигация
+  description: Просмотр рабочего пространства
   b24ui:
     container: h-full
 slots:
@@ -168,9 +168,9 @@ class: '!p-0 !justify-start h-[500px] contain-[paint] transform-gpu'
 :placeholder{class="h-full"}
 ::
 
-### Rail
+### Рейка {#rail}
 
-Use the `rail` prop to display a thin interactive edge on the sidebar that toggles the collapsed state on click. The rail is only rendered when `collapsible` is not `none`.
+Пропс `rail` показывает у меню тонкий интерактивный край, по клику на который меню сворачивается и разворачивается. Рейка отрисовывается, только когда `collapsible` не равен `none`.
 
 ::component-code
 ---
@@ -184,7 +184,7 @@ hide:
 props:
   rail: true
   collapsible: icon
-  title: Navigation
+  title: Навигация
   b24ui.container: h-full
 slots:
   default: |
@@ -196,11 +196,11 @@ class: '!p-0 !justify-start h-[500px] contain-[paint] transform-gpu'
 :placeholder{class="h-full"}
 ::
 
-### Close
+### Закрытие {#close}
 
-Use the `close` prop to display a close button in the sidebar header. The close button is only rendered when `collapsible` is not `none`.
+Пропс `close` показывает в шапке меню кнопку закрытия. Кнопка отрисовывается, только когда `collapsible` не равен `none`.
 
-You can pass any property from the [Button](/docs/components/button/) component to customize it.
+Чтобы настроить её, передайте любые свойства компонента [Button](/docs/components/button/).
 
 ::component-code
 ---
@@ -216,7 +216,7 @@ props:
   close: true
   rail: true
   collapsible: icon
-  title: Navigation
+  title: Навигация
   b24ui:
     container: h-full
 items:
@@ -233,9 +233,9 @@ class: '!p-0 !justify-start h-[500px] contain-[paint] transform-gpu'
 :placeholder{class="h-full"}
 ::
 
-### Close Icon
+### Иконка закрытия {#close-icon}
 
-Use the `close-icon` prop to customize the close button [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `close-icon` меняет [иконку](https://bitrix24.github.io/b24icons/icons/) кнопки закрытия.
 
 ::component-code
 ---
@@ -258,7 +258,7 @@ props:
   rail: true
   collapsible: icon
   side: right
-  title: Navigation
+  title: Навигация
   b24ui:
     container: h-full
 items:
@@ -275,9 +275,9 @@ class: '!p-0 !justify-start h-[500px] contain-[paint] transform-gpu'
 :placeholder{class="h-full"}
 ::
 
-### Breakpoint :badge{label="2.15+" class="align-text-top"}
+### Контрольная точка :badge{label="2.15+" class="align-text-top"} {#breakpoint}
 
-Use the `breakpoint` prop to change the breakpoint below which the sidebar renders as a menu. Defaults to `lg`.
+Пропс `breakpoint` задаёт контрольную точку, ниже которой меню отрисовывается как меню-оверлей. По умолчанию `lg`.
 
 ```vue
 <template>
@@ -286,12 +286,12 @@ Use the `breakpoint` prop to change the breakpoint below which the sidebar rende
 ```
 
 ::note
-The values follow the default Tailwind CSS breakpoints. Custom `--breakpoint-*` values are not picked up.
+Значения соответствуют стандартным контрольным точкам Tailwind CSS. Свои значения `--breakpoint-*` не учитываются.
 ::
 
-### Mode
+### Режим {#mode}
 
-Use the `mode` prop to change the mode of the sidebar menu on mobile. Defaults to `slideover`.
+Пропс `mode` меняет режим меню на мобильных. По умолчанию `slideover`.
 
 ::component-example
 ---
@@ -315,14 +315,14 @@ props:
 ::
 
 ::tip{to="#props"}
-You can use the `menu` prop to customize the menu of the sidebar, it will adapt depending on the mode you choose.
+Пропс `menu` настраивает меню; оно подстраивается под выбранный режим.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Control open state
+### Управление открытием {#control-open-state}
 
-You can control the open state by using the `open` prop or the `v-model:open` directive. On desktop it controls the expanded/collapsed state, on mobile it opens/closes the sheet menu.
+Состоянием открытия управляют пропс `open` или директива `v-model:open`. На десктопе она переключает «развёрнуто / свёрнуто», на мобильных — открывает и закрывает выезжающее меню.
 
 ::component-example
 ---
@@ -335,12 +335,12 @@ class: '!p-0 !justify-start h-[500px] contain-[paint] transform-gpu'
 ::
 
 ::note
-In this example, leveraging [`defineShortcuts`](/docs/composables/define-shortcuts/), you can toggle the open state of the Sidebar by pressing :kbd{value="O"}.
+В этом примере с помощью [`defineShortcuts`](/docs/composables/define-shortcuts/) Sidebar переключается по нажатию :kbd{value="O"}.
 ::
 
-### Persist open state
+### Сохранение состояния {#persist-open-state}
 
-Use [`useLocalStorage`](https://vueuse.org/core/useLocalStorage/) from VueUse or [`useCookie`](https://nuxt.com/docs/4.x/api/composables/use-cookie) instead of `ref` to persist the sidebar state across page reloads.
+Чтобы сохранять состояние меню между перезагрузками страницы, используйте вместо `ref` [`useLocalStorage`](https://vueuse.org/core/useLocalStorage/) из VueUse или [`useCookie`](https://nuxt.com/docs/4.x/api/composables/use-cookie).
 
 ::component-example
 ---
@@ -353,14 +353,14 @@ class: '!p-0 !justify-start h-[500px] contain-[paint] transform-gpu'
 ::
 
 ::note
-The only difference with the previous example is replacing `ref(true)` with `useLocalStorage('sidebar-open', true)`.
+Единственное отличие от предыдущего примера — `ref(true)` заменён на `useLocalStorage('sidebar-open', true)`.
 ::
 
-### With custom width
+### С нестандартной шириной {#with-custom-width}
 
-The sidebar width is controlled by the `--sidebar-width` CSS variable (defaults to `16rem`). The collapsed icon width is controlled by `--sidebar-width-icon` (defaults to `4rem`).
+Ширину меню задаёт CSS-переменная `--sidebar-width` (по умолчанию `16rem`), а ширину свёрнутого меню с иконками — `--sidebar-width-icon` (по умолчанию `4rem`).
 
-Override them globally in your CSS or per-instance with the `style` attribute.
+Переопределить их можно глобально в CSS или для отдельного экземпляра через атрибут `style`.
 
 ::component-example
 ---
@@ -372,9 +372,9 @@ class: '!p-0 !justify-start h-[500px] contain-[paint] transform-gpu'
 ---
 ::
 
-### With header
+### С шапкой {#with-header}
 
-To position the sidebar below a [Header](/docs/components/header/), customize the `gap` and `container` using the `b24ui` prop.
+Чтобы расположить меню под [Header](/docs/components/header/), настройте `gap` и `container` через пропс `b24ui`.
 
 ::component-example
 ---
@@ -387,12 +387,12 @@ class: '!p-0 !justify-start h-[500px] contain-[paint] transform-gpu'
 ::
 
 ::note
-The `--b24ui-header-height` variable defaults to `3.625rem` and is used by the Header. Adjust it if your navbar uses a different height.
+Переменная `--b24ui-header-height` по умолчанию равна `3.625rem` и используется в Header. Измените её, если у навигационной панели другая высота.
 ::
 
-### With AI chat
+### С AI-чатом {#with-ai-chat}
 
-Use the sidebar on the right side with [ChatMessages](/docs/components/chat-messages/) and [ChatPrompt](/docs/components/chat-prompt/) to create an AI chat panel.
+Разместите меню справа вместе с [ChatMessages](/docs/components/chat-messages/) и [ChatPrompt](/docs/components/chat-prompt/), чтобы получить панель AI-чата.
 
 ::component-example
 ---
@@ -404,16 +404,16 @@ class: '!p-0 !justify-start h-[500px] contain-[paint] transform-gpu'
 ---
 ::
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

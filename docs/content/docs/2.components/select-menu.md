@@ -1,6 +1,6 @@
 ---
 title: SelectMenu
-description: A refined and searchable selection component.
+description: 'Удобный компонент выбора с поиском.'
 category: form
 keywords:
   - combobox
@@ -10,7 +10,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/SelectMenu.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/select-menu
   - label: Nuxt UI
@@ -22,9 +22,9 @@ links:
     to: https://reka-ui.com/docs/components/combobox
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `v-model` directive to control the value of the SelectMenu or the `default-value` prop to set the initial value when you do not need to control its state.
+Директива `v-model` управляет значением SelectMenu, а пропс `default-value` задаёт начальное значение, когда управлять состоянием не нужно.
 
 ::component-code
 ---
@@ -50,16 +50,16 @@ props:
 ::
 
 ::tip
-Use this over a [`Select`](/docs/components/select/) to take advantage of Reka UI's [`Combobox`](https://reka-ui.com/docs/components/combobox) component that offers search capabilities and multiple selection.
+Используйте его вместо [`Select`](/docs/components/select/), чтобы получить возможности поиска и множественного выбора компонента [`Combobox`](https://reka-ui.com/docs/components/combobox) из Reka UI.
 ::
 
 ::note
-This component is similar to the [`InputMenu`](/docs/components/input-menu/) but it's using a Select instead of an Input with the search inside the menu.
+Компонент похож на [`InputMenu`](/docs/components/input-menu/), но использует Select вместо Input, а поиск находится внутри меню.
 ::
 
-### Items
+### Элементы {#items}
 
-Use the `items` prop as an array of strings, numbers or booleans:
+Пропс `items` принимает массив строк, чисел или булевых значений:
 
 ::component-code
 ---
@@ -82,7 +82,7 @@ props:
 ---
 ::
 
-You can also pass an array of objects with the following properties:
+Можно передать и массив объектов со свойствами:
 
 - `label?: string`{lang="ts-type"}
 - [`type?: "label" | "separator" | "item"`{lang="ts-type"}](#with-items-type)
@@ -118,11 +118,11 @@ props:
 ---
 ::
 ::caution
-Unlike the [`Select`](/docs/components/select/) component, the SelectMenu expects the whole object to be passed to the `v-model` directive or the `default-value` prop by default.
+В отличие от компонента [`Select`](/docs/components/select/), SelectMenu по умолчанию ожидает, что в директиву `v-model` или пропс `default-value` передан весь объект.
 ::
 
-You can also pass an array of arrays to the `items` prop.
-Use the element type `separator` as a separator.
+В пропс `items` можно передать и массив массивов.
+Тип элемента `separator` задаёт разделитель.
 
 ::component-code
 ---
@@ -152,9 +152,9 @@ props:
 ---
 ::
 
-### Value Key
+### Ключ значения {#value-key}
 
-You can choose to bind a single property of the object rather than the whole object by using the `value-key` prop. Defaults to `undefined`.
+Пропс `value-key` позволяет привязать одно свойство объекта вместо всего объекта. По умолчанию `undefined`.
 
 ::component-code
 ---
@@ -186,12 +186,12 @@ props:
 ::
 
 ::tip
-Use the `by` prop to compare objects by a field instead of reference when the `model-value` is an object.
+Пропс `by` сравнивает объекты по полю, а не по ссылке, когда `model-value` — объект.
 ::
 
-### Multiple
+### Множественный выбор {#multiple}
 
-Use the `multiple` prop to allow multiple selections, the selected items will be separated by a comma in the trigger.
+Пропс `multiple` разрешает выбрать несколько элементов; выбранные элементы показываются в триггере через запятую.
 
 ::component-code
 ---
@@ -219,12 +219,12 @@ props:
 ::
 
 ::caution
-Ensure to pass an array to the `default-value` prop or the `v-model` directive.
+В `default-value` или `v-model` нужно передать массив.
 ::
 
-### Placeholder
+### Плейсхолдер {#placeholder}
 
-Use the `placeholder` prop to set a placeholder text.
+Пропс `placeholder` задаёт текст плейсхолдера.
 
 ::component-code
 ---
@@ -235,7 +235,7 @@ ignore:
 external:
   - items
 props:
-  placeholder: 'Select status'
+  placeholder: 'Выберите статус'
   items:
     - Backlog
     - Todo
@@ -245,11 +245,11 @@ props:
 ---
 ::
 
-### Search Input
+### Поле поиска {#search-input}
 
-Use the `search-input` prop to customize or hide the search input (with `false` value).
+Пропс `search-input` настраивает или скрывает поле поиска (значение `false`).
 
-You can pass any property from the [Input](/docs/components/input/) component to customize it.
+Чтобы настроить его, передайте любые свойства компонента [Input](/docs/components/input/).
 
 ::component-code
 ---
@@ -268,7 +268,7 @@ props:
   modelValue:
     label: 'Backlog'
   searchInput:
-    placeholder: 'Filter...'
+    placeholder: 'Фильтр...'
   items:
     - label: Backlog
     - label: Todo
@@ -279,16 +279,16 @@ props:
 ::
 
 ::tip
-You can set the `search-input` prop to `false` to hide the search input.
+Значение `false` в пропсе `search-input` скрывает поле поиска.
 ::
 
 ::note
-Use `:search-input="{ autofocus: false }"` to prevent the search input from being focused when the menu opens, e.g. to avoid opening the virtual keyboard on touch devices.
+Чтобы поле поиска не получало фокус при открытии меню (например, чтобы не открывалась виртуальная клавиатура на сенсорных устройствах), используйте `:search-input="{ autofocus: false }"`.
 ::
 
-### Content
+### Содержимое {#content}
 
-Use the `content` prop to control how the SelectMenu content is rendered, like its `align` or `side` for example.
+Пропс `content` управляет отрисовкой содержимого SelectMenu, например его `align` или `side`.
 
 ::component-code
 ---
@@ -325,9 +325,9 @@ props:
 ---
 ::
 
-### Arrow
+### Стрелка {#arrow}
 
-Use the `arrow` prop to display an arrow on the SelectMenu.
+Пропс `arrow` показывает стрелку у SelectMenu.
 
 ::component-code
 ---
@@ -352,9 +352,9 @@ props:
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the ring color when the SelectMenu is focused.
+Пропс `color` меняет цвет кольца, когда SelectMenu в фокусе.
 
 ::component-code
 ---
@@ -380,12 +380,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state. It's used internally when a validation error occurs.
+Пропс `highlight` здесь показывает состояние фокуса. Внутри компонента он включается при ошибке валидации.
 ::
 
-### Tag
+### Тег {#tag}
 
-Use the `tag` property to display a [Badge](/docs/components/badge/) on top of the SelectMenu.
+Свойство `tag` показывает [Badge](/docs/components/badge/) поверх SelectMenu.
 
 ::component-code
 ---
@@ -403,7 +403,7 @@ props:
   tag: note
   color: air-primary-warning
   highlight: true
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
   items:
     - Backlog
     - Todo
@@ -414,10 +414,10 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state. It's used internally when a validation error occurs.
+Пропс `highlight` здесь показывает состояние фокуса. Внутри компонента он включается при ошибке валидации.
 ::
 
-Use the `tagColor` property to set the color for Badge.
+Свойство `tagColor` задаёт цвет Badge.
 
 ::component-code
 ---
@@ -450,7 +450,7 @@ props:
   tagColor: air-secondary-alert
   color: air-primary-warning
   highlight: true
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
   items:
     - Backlog
     - Todo
@@ -461,12 +461,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state. It's used internally when a validation error occurs.
+Пропс `highlight` здесь показывает состояние фокуса. Внутри компонента он включается при ошибке валидации.
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the SelectMenu.
+Пропс `size` меняет размер SelectMenu.
 
 ::component-code
 ---
@@ -490,9 +490,9 @@ props:
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to show an [Icon](https://bitrix24.github.io/b24icons/icons/) inside the SelectMenu.
+Пропс `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/) внутри SelectMenu.
 
 ::component-code
 ---
@@ -520,9 +520,9 @@ props:
 ---
 ::
 
-### Trailing Icon
+### Иконка справа {#trailing-icon}
 
-Use the `trailing-icon` prop to customize the trailing [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `trailing-icon` меняет [иконку](https://bitrix24.github.io/b24icons/icons/) справа.
 
 ::component-code
 ---
@@ -550,9 +550,9 @@ props:
 ---
 ::
 
-### Selected Icon
+### Иконка выбранного элемента {#selected-icon}
 
-Use the `selected-icon` prop to customize the [Icon](https://bitrix24.github.io/b24icons/icons/) when an item is selected.
+Пропс `selected-icon` меняет [иконку](https://bitrix24.github.io/b24icons/icons/) выбранного элемента.
 
 ::component-code
 ---
@@ -580,9 +580,9 @@ props:
 ---
 ::
 
-### Clear
+### Очистка {#clear}
 
-Use the `clear` prop to display a clear button when a value is selected.
+Пропс `clear` показывает кнопку очистки, когда выбрано значение.
 
 ::component-code
 ---
@@ -610,9 +610,9 @@ props:
 ---
 ::
 
-### Clear Icon
+### Иконка очистки {#clear-icon}
 
-Use the `clear-icon` prop to customize the clear button [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `clear-icon` меняет [иконку](https://bitrix24.github.io/b24icons/icons/) кнопки очистки.
 
 ::component-code
 ---
@@ -644,9 +644,9 @@ props:
 ---
 ::
 
-### Avatar
+### Аватар {#avatar}
 
-Use the `avatar` prop to display an [Avatar](/docs/components/avatar/) inside the SelectMenu.
+Пропс `avatar` показывает [Avatar](/docs/components/avatar/) внутри SelectMenu.
 
 ::component-code
 ---
@@ -674,9 +674,9 @@ props:
 ---
 ::
 
-### Loading
+### Загрузка {#loading}
 
-Use the `loading` prop to show a loading icon on the SelectMenu.
+Пропс `loading` показывает иконку загрузки в SelectMenu.
 
 ::component-code
 ---
@@ -700,9 +700,9 @@ props:
 ---
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the SelectMenu.
+Пропс `disabled` отключает SelectMenu.
 
 ::component-code
 ---
@@ -715,7 +715,7 @@ external:
   - items
 props:
   disabled: true
-  placeholder: 'Select status'
+  placeholder: 'Выберите статус'
   items:
     - Backlog
     - Todo
@@ -725,9 +725,9 @@ props:
 ---
 ::
 
-### No padding
+### Без отступов {#no-padding}
 
-Use the `noPadding` prop to removes padding from the SelectMenu.
+Пропс `noPadding` убирает у SelectMenu внутренние отступы.
 
 ::component-code
 ---
@@ -741,7 +741,7 @@ external:
 props:
   noPadding: true
   highlight: true
-  placeholder: 'Select status'
+  placeholder: 'Выберите статус'
   items:
     - Backlog
     - Todo
@@ -752,12 +752,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-### No border
+### Без границы {#no-border}
 
-Use the `noBorder` prop to removes all borders (rings) from the SelectMenu.
+Пропс `noBorder` убирает у SelectMenu все границы (кольца).
 
 ::component-code
 ---
@@ -771,7 +771,7 @@ external:
 props:
   noBorder: true
   highlight: true
-  placeholder: 'Select status'
+  placeholder: 'Выберите статус'
   items:
     - Backlog
     - Todo
@@ -782,12 +782,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to indicate that there is no focus state.
+Пропс `highlight` здесь показывает, что состояния фокуса нет.
 ::
 
-### Underline
+### Подчёркивание {#underline}
 
-Use the `underline` prop to removes all borders (rings) except the bottom one from the SelectMenu.
+Пропс `underline` убирает у SelectMenu все границы (кольца), кроме нижней.
 
 ::component-code
 ---
@@ -801,7 +801,7 @@ external:
 props:
   underline: true
   highlight: true
-  placeholder: 'Select status'
+  placeholder: 'Выберите статус'
   items:
     - Backlog
     - Todo
@@ -812,12 +812,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-### Rounded
+### Скругление {#rounded}
 
-Use the `rounded` prop to round the SelectMenu.
+Пропс `rounded` скругляет SelectMenu.
 
 ::component-code
 ---
@@ -831,7 +831,7 @@ external:
 props:
   rounded: true
   highlight: true
-  placeholder: 'Select status'
+  placeholder: 'Выберите статус'
   items:
     - Backlog
     - Todo
@@ -842,14 +842,14 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With items type
+### С типом элемента {#with-items-type}
 
-You can use the `type` property with `separator` to display a separator between items or `label` to display a label.
+Свойство `type` со значением `separator` показывает разделитель между элементами, а со значением `label` — подпись.
 
 ::component-code
 ---
@@ -886,12 +886,12 @@ props:
 ::
 
 ::note
-When using `label` items as group headings, pass an array of arrays so a label gets filtered out together with its group when searching.
+Если `label` используется как заголовок группы, передайте массив массивов: тогда при поиске подпись исчезает вместе со своей группой.
 ::
 
-### With colors items
+### С цветными элементами {#with-colors-items}
 
-You can use the `color` property to change the color of items.
+Свойство `color` меняет цвет элементов.
 
 ::component-example
 ---
@@ -900,9 +900,9 @@ name: 'select-menu-items-color-example'
 ---
 ::
 
-### With icon in items
+### С иконкой в элементах {#with-icon-in-items}
 
-You can use the `icon` property to display an [Icon](https://bitrix24.github.io/b24icons/icons/) inside the items.
+Свойство `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/) внутри элементов.
 
 ::component-example
 ---
@@ -912,12 +912,12 @@ name: 'select-menu-items-icon-example'
 ::
 
 ::tip
-You can also use the `#leading` slot to display the selected icon.
+Слот `#leading` позволяет показать иконку выбранного элемента.
 ::
 
-### With avatar in items
+### С аватаром в элементах {#with-avatar-in-items}
 
-You can use the `avatar` property to display an [Avatar](/docs/components/avatar/) inside the items.
+Свойство `avatar` показывает [Avatar](/docs/components/avatar/) внутри элементов.
 
 ::component-example
 ---
@@ -927,12 +927,12 @@ name: 'select-menu-items-avatar-example'
 ::
 
 ::tip
-You can also use the `#leading` slot to display the selected avatar.
+Слот `#leading` позволяет показать аватар выбранного элемента.
 ::
 
-### With chip in items
+### С чипом в элементах {#with-chip-in-items}
 
-You can use the `chip` property to display a [Chip](/docs/components/chip/) inside the items.
+Свойство `chip` показывает [Chip](/docs/components/chip/) внутри элементов.
 
 ::component-example
 ---
@@ -942,12 +942,12 @@ name: 'select-menu-items-chip-example'
 ::
 
 ::note
-In this example, the `#leading` slot is used to display the selected chip.
+В этом примере слот `#leading` показывает выбранный чип.
 ::
 
-### Control open state
+### Управление открытием {#control-open-state}
 
-You can control the open state by using the `default-open` prop or the `v-model:open` directive.
+Состоянием открытия управляют пропс `default-open` или директива `v-model:open`.
 
 ::component-example
 ---
@@ -956,12 +956,12 @@ name: 'select-menu-open-example'
 ::
 
 ::note
-In this example, leveraging [`defineShortcuts`](/docs/composables/define-shortcuts/), you can toggle the SelectMenu by pressing :kbd{value="O"}.
+В этом примере с помощью [`defineShortcuts`](/docs/composables/define-shortcuts/) SelectMenu переключается по нажатию :kbd{value="O"}.
 ::
 
-### Control search term
+### Управление поисковым запросом {#control-search-term}
 
-Use the `v-model:search-term` directive to control the search term.
+Директива `v-model:search-term` управляет поисковым запросом.
 
 ::component-example
 ---
@@ -969,9 +969,9 @@ name: 'select-menu-search-term-example'
 ---
 ::
 
-### With rotating icon
+### С вращающейся иконкой {#with-rotating-icon}
 
-Here is an example with a rotating icon that indicates the open state of the SelectMenu.
+Пример с вращающейся иконкой, которая показывает состояние открытия SelectMenu.
 
 ::component-example
 ---
@@ -979,9 +979,9 @@ name: 'select-menu-icon-example'
 ---
 ::
 
-### With create item
+### С созданием элемента {#with-create-item}
 
-Use the `create-item` prop to enable users to add custom values that aren't in the predefined options.
+Пропс `create-item` позволяет пользователям добавлять собственные значения, которых нет в готовых вариантах.
 
 ::component-example
 ---
@@ -991,16 +991,16 @@ name: 'select-menu-create-item-example'
 ::
 
 ::note
-The create option shows when no match is found by default. Set it to `always` to show it even when similar values exist.
+По умолчанию пункт создания показывается, когда совпадений нет. Значение `always` показывает его, даже если есть похожие значения.
 ::
 
 ::tip{to="#emits"}
-Use the `@create` event to handle the creation of the item. You will receive the event and the item as arguments.
+Событие `@create` обрабатывает создание элемента. В обработчик придут событие и элемент.
 ::
 
-### With fetched items
+### С загружаемыми элементами {#with-fetched-items}
 
-You can fetch items from an API and use them in the SelectMenu.
+Элементы можно загружать из API и использовать в SelectMenu.
 
 ::component-example
 ---
@@ -1010,12 +1010,12 @@ name: 'select-menu-fetch-example'
 ::
 
 ::note
-This example uses `useLazyFetch` with `immediate: false` to only fetch data when the menu opens, avoiding unnecessary API calls on page load.
+В примере `useLazyFetch` вызывается с `immediate: false`, поэтому данные запрашиваются только при открытии меню, а лишних запросов к API при загрузке страницы нет.
 ::
 
-### With ignore filter
+### С отключённым фильтром {#with-ignore-filter}
 
-Set the `ignore-filter` prop to `true` to disable the internal search and use your own search logic.
+Пропс `ignore-filter` со значением `true` отключает внутренний поиск, и вы можете использовать собственную логику поиска.
 
 ::component-example
 ---
@@ -1025,12 +1025,12 @@ name: 'select-menu-ignore-filter-example'
 ::
 
 ::note
-This example uses [`refDebounced`](https://vueuse.org/shared/refDebounced/#refdebounced) to debounce the API calls. The fetch is deferred with `immediate: false` so no request is made until the menu opens.
+В примере запросы к API откладываются через [`refDebounced`](https://vueuse.org/shared/refDebounced/#refdebounced). Загрузка отложена через `immediate: false`, поэтому запрос не отправляется, пока меню не откроется.
 ::
 
-### With filter fields
+### С полями фильтрации {#with-filter-fields}
 
-Use the `filter-fields` prop with an array of fields to filter on. Defaults to `[labelKey]`.
+Пропс `filter-fields` принимает массив полей, по которым выполняется фильтрация. По умолчанию `[labelKey]`.
 
 ::component-example
 ---
@@ -1040,15 +1040,15 @@ name: 'select-menu-filter-fields-example'
 ::
 
 ::note
-This example uses `useLazyFetch` with `immediate: false` to only fetch data when the menu opens, avoiding unnecessary API calls on page load.
+В примере `useLazyFetch` вызывается с `immediate: false`, поэтому данные запрашиваются только при открытии меню, а лишних запросов к API при загрузке страницы нет.
 ::
 
-### With virtualization
+### С виртуализацией {#with-virtualization}
 
-Use the `virtualize` prop to enable virtualization for large lists as a boolean or an object with options like `{ estimateSize: 32, overscan: 12 }`.
+Пропс `virtualize` включает виртуализацию для больших списков: булево значение или объект с параметрами вроде `{ estimateSize: 32, overscan: 12 }`.
 
 ::warning{to="https://github.com/unovue/reka-ui/issues/1885" target="_blank"}
-When enabled, all groups are flattened into a single list due to a limitation of Reka UI.
+При включении все группы объединяются в один список из-за ограничения Reka UI.
 ::
 
 ::component-example
@@ -1058,9 +1058,9 @@ name: 'select-menu-virtualize-example'
 ---
 ::
 
-### With infinite scroll
+### С бесконечной прокруткой {#with-infinite-scroll}
 
-You can use the [`useInfiniteScroll`](https://vueuse.org/core/useInfiniteScroll/) composable to load more data as the user scrolls.
+Композабл [`useInfiniteScroll`](https://vueuse.org/core/useInfiniteScroll/) подгружает данные по мере прокрутки.
 
 ::component-example
 ---
@@ -1075,12 +1075,12 @@ name: 'select-menu-infinite-scroll-example'
 ::
 
 ::note
-This example uses `useLazyFetch` with `immediate: false` so data is only loaded as the user scrolls.
+В примере `useLazyFetch` вызывается с `immediate: false`, поэтому данные загружаются только по мере прокрутки.
 ::
 
-### With full content width
+### С содержимым на всю ширину {#with-full-content-width}
 
-You can expand the content to the full width of its items by adding the `b24ui.content`,`b24ui.item` and `b24ui.viewport` slots.
+Чтобы содержимое занимало всю ширину своих элементов, настройте слоты `b24ui.content`, `b24ui.item` и `b24ui.viewport`.
 
 ::component-example
 ---
@@ -1089,9 +1089,9 @@ collapse: true
 ---
 ::
 
-### As a country picker
+### Как выбор страны {#as-a-country-picker}
 
-You can use the SelectMenu as a country picker with lazy loading. Countries are only fetched when the menu is first opened.
+SelectMenu можно использовать как выбор страны с ленивой загрузкой. Страны загружаются только при первом открытии меню.
 
 ::component-example
 ---
@@ -1100,33 +1100,33 @@ name: 'select-menu-countries-example'
 ---
 ::
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes" target="_blank"}
-This component also supports all native `<button>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<button>`.
 ::
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-### Expose
+### Доступ через ref {#expose}
 
-When accessing the component via a template ref, you can use the following:
+При обращении к компоненту через ref в шаблоне доступно:
 
-| Name | Type |
+| Имя | Тип |
 | ---- | ---- |
 | `triggerRef`{lang="ts-type"} | `Ref<HTMLButtonElement \| null>`{lang="ts-type"} |
 | `viewportRef`{lang="ts-type"} | `Ref<HTMLDivElement \| null>`{lang="ts-type"} |
 
-## Theme
+## Тема {#theme}
 
 :component-theme
