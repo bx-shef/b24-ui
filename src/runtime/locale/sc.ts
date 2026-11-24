@@ -32,6 +32,10 @@ export default defineLocale<Messages>({
       next: '下一步',
       prev: '上一步'
     },
+    chatAttachment: {
+      uploading: '正在上传',
+      error: '上传失败'
+    },
     chatMessages: {
       autoScroll: '滚动到底部'
     },

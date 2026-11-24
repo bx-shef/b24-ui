@@ -32,6 +32,10 @@ export default defineLocale<Messages>({
       next: 'Selanjutnya',
       prev: 'Sebelumnya'
     },
+    chatAttachment: {
+      uploading: 'Mengunggah',
+      error: 'Gagal mengunggah'
+    },
     chatMessages: {
       autoScroll: 'Gulir ke bawah'
     },

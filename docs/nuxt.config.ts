@@ -146,6 +146,7 @@ const pages = [
   // endregion ////
   // region Chat ////
   '/docs/components/chat/',
+  '/docs/components/chat-attachment/',
   '/docs/components/chat-message/',
   '/docs/components/chat-messages/',
   '/docs/components/chat-palette/',

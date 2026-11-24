@@ -25,6 +25,10 @@ export type Messages = {
     next: string
     prev: string
   }
+  chatAttachment: {
+    uploading: string
+    error: string
+  }
   chatMessages: {
     autoScroll: string
   }

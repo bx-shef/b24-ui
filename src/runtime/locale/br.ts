@@ -32,6 +32,10 @@ export default defineLocale<Messages>({
       next: 'Próximo',
       prev: 'Anterior'
     },
+    chatAttachment: {
+      uploading: 'Enviando',
+      error: 'Falha no envio'
+    },
     chatMessages: {
       autoScroll: 'Rolar para baixo'
     },

@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { VNode } from 'vue'
+import type { ComponentPublicInstance, VNode } from 'vue'
 import type { ChatStatus } from 'ai'
 import type { AppConfig } from '@nuxt/schema'
 import theme from '#build/b24ui/chat-prompt'
@@ -34,6 +34,17 @@ export interface ChatPromptProps extends Pick<TextareaProps, 'rows' | 'autofocus
    */
   status?: ChatStatus
   error?: Error
+  /**
+   * The file types accepted when pasting or dropping files, used with `v-model:files`.
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/accept
+   * @defaultValue '*'
+   */
+  accept?: string
+  /**
+   * Allow more than one file, used with `v-model:files`.
+   * @defaultValue true
+   */
+  multiple?: boolean
   class?: any
   b24ui?: ChatPrompt['slots'] & TextareaProps['b24ui']
 }
@@ -47,7 +58,11 @@ export interface ChatPromptSlots extends Omit<TextareaSlots, 'default'> {
   header?(props?: {}): VNode[]
   // @memo: this is our modification.
   default?(props: { b24ui: ChatPrompt['slots'] }): VNode[]
-  footer?(props?: {}): VNode[]
+  /**
+   * Replace the attachments rendered above the textarea when using `v-model:files`.
+   */
+  files?(props: { files: File[], remove: (index: number) => void }): VNode[]
+  footer?(props: { open: () => void }): VNode[]
   /**
    * Replace the internal textarea, e.g. to render an [Editor](/docs/components/editor/) with mentions.
    */
@@ -62,11 +77,13 @@ import { reactivePick } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
+import { useFileUpload, isFileAccepted } from '../composables/useFileUpload'
 import { useIMEGuard } from '../composables/useIMEGuard'
 import { useLocale } from '../composables/useLocale'
 import { omit, transformUI } from '../utils'
 import { tv } from '../utils/tv'
 import B24Textarea from './Textarea.vue'
+import B24ChatAttachment from './ChatAttachment.vue'
 
 defineOptions({ inheritAttrs: false })
 
@@ -75,7 +92,9 @@ const _props = withDefaults(defineProps<ChatPromptProps>(), {
   autofocus: true,
   autoresize: true,
   rows: 1,
-  submitOnEnter: true
+  submitOnEnter: true,
+  accept: '*',
+  multiple: true
 })
 const emits = defineEmits<ChatPromptEmits>()
 const slots = defineSlots<ChatPromptSlots>()
@@ -83,13 +102,14 @@ const slots = defineSlots<ChatPromptSlots>()
 const props = useComponentProps('chatPrompt', _props)
 
 const model = defineModel<string>({ default: '' })
+const files = defineModel<File[]>('files')
 
 const { t } = useLocale()
 const appConfig = useAppConfig() as ChatPrompt['AppConfig']
 
 const textareaProps = useForwardProps(reactivePick(props, 'rows', 'autofocus', 'autofocusDelay', 'autoresize', 'autoresizeDelay', 'maxrows', 'icon', 'avatar', 'loading'))
 
-const getProxySlots = () => omit(slots, ['header', 'footer', 'default', 'body'])
+const getProxySlots = () => omit(slots, ['header', 'footer', 'default', 'body', 'files'])
 
 // eslint-disable-next-line vue/no-dupe-keys
 const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.chatPrompt || {}) })({
@@ -98,8 +118,62 @@ const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.chatPrompt
 
 const textareaRef = useTemplateRef('textareaRef')
 
+// Attachments are only handled when the files are bound with `v-model:files`, and not while the prompt is disabled
+const hasFiles = computed(() => files.value !== undefined)
+const canAttach = computed(() => hasFiles.value && !props.disabled && !props.error)
+
+function addFiles(newFiles: File[]) {
+  if (!canAttach.value) {
+    return
+  }
+
+  files.value = props.multiple ? [...(files.value ?? []), ...newFiles] : newFiles.slice(0, 1)
+}
+
+function removeFile(index: number) {
+  files.value = files.value?.filter((_, i) => i !== index)
+}
+
+const { isDragging, open: openFileDialog, dropzoneRef } = useFileUpload({
+  accept: toRef(() => props.accept),
+  multiple: toRef(() => props.multiple),
+  dropzone: canAttach,
+  reset: true,
+  onUpdate: addFiles
+})
+
+function open() {
+  if (canAttach.value) {
+    openFileDialog()
+  }
+}
+
+// The root is the drop zone, `Primitive` hands back a component instance
+function setRoot(el: Element | ComponentPublicInstance | null) {
+  dropzoneRef.value = ((el as ComponentPublicInstance | null)?.$el ?? el) as HTMLDivElement | undefined
+}
+
+function onPaste(event: ClipboardEvent) {
+  // Listened on the root so a custom `#body` like an editor gets it too, unless it handled the paste itself
+  if (event.defaultPrevented || !canAttach.value || !event.clipboardData?.files.length) {
+    return
+  }
+
+  const pasted = Array.from(event.clipboardData.files).filter(file => isFileAccepted(file, props.accept))
+  if (!pasted.length) {
+    return
+  }
+
+  // A paste that also holds text still inserts it, a file-only one is not inserted by an editor body
+  if (!event.clipboardData.getData('text/plain')) {
+    event.preventDefault()
+  }
+
+  addFiles(pasted)
+}
+
 function submit(e?: Event) {
-  if (model.value.trim() === '' || props.status === 'submitted' || props.status === 'streaming') {
+  if ((model.value.trim() === '' && !files.value?.length) || props.status === 'submitted' || props.status === 'streaming') {
     return
   }
 
@@ -137,14 +211,36 @@ function onKeydown(event: KeyboardEvent) {
 }
 
 defineExpose({
-  textareaRef: toRef(() => textareaRef.value?.textareaRef)
+  textareaRef: toRef(() => textareaRef.value?.textareaRef),
+  open
 })
 </script>
 
 <template>
-  <Primitive :as="props.as" :method="props.as === 'form' ? 'post' : undefined" data-slot="root" :class="b24ui.root({ class: [props.b24ui?.root, props.class] })" @submit.prevent="submit">
+  <Primitive
+    :ref="setRoot"
+    :as="props.as"
+    :method="props.as === 'form' ? 'post' : undefined"
+    :data-dragging="hasFiles ? isDragging : undefined"
+    data-slot="root"
+    :class="b24ui.root({ class: [props.b24ui?.root, props.class] })"
+    @submit.prevent="submit"
+    @paste="onPaste"
+  >
     <div v-if="!!slots.header" data-slot="header" :class="b24ui.header({ class: props.b24ui?.header })">
       <slot name="header" />
+    </div>
+
+    <div v-if="files?.length" data-slot="files" :class="b24ui.files({ class: props.b24ui?.files })">
+      <slot name="files" :files="files" :remove="removeFile">
+        <B24ChatAttachment
+          v-for="(file, index) in files"
+          :key="`${file.name}-${file.lastModified}-${index}`"
+          :file="file"
+          removable
+          @remove="removeFile(index)"
+        />
+      </slot>
     </div>
 
     <slot
@@ -163,7 +259,7 @@ defineExpose({
         no-border
         fixed
         v-bind="{ ...textareaProps, ...$attrs }"
-        :b24ui="transformUI(omit(b24ui, ['root', 'body', 'header', 'footer']), props.b24ui)"
+        :b24ui="transformUI(omit(b24ui, ['root', 'body', 'header', 'footer', 'files']), props.b24ui)"
         data-slot="body"
         :class="b24ui.body({ class: props.b24ui?.body })"
         @keydown="onKeydown"
@@ -176,8 +272,8 @@ defineExpose({
     </slot>
 
     <div data-slot="footer" :class="b24ui.footer({ class: props.b24ui?.footer })">
-      <slot name="footer" />
-      <slot name="default" :b24ui="transformUI(omit(b24ui, ['root', 'body', 'header', 'footer']), props.b24ui)" />
+      <slot name="footer" :open="open" />
+      <slot name="default" :b24ui="transformUI(omit(b24ui, ['root', 'body', 'header', 'footer', 'files']), props.b24ui)" />
     </div>
   </Primitive>
 </template>

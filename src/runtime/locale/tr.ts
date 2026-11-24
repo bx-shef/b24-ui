@@ -32,6 +32,10 @@ export default defineLocale<Messages>({
       next: 'Sonraki',
       prev: 'Önceki'
     },
+    chatAttachment: {
+      uploading: 'Yükleniyor',
+      error: 'Yükleme başarısız'
+    },
     chatMessages: {
       autoScroll: 'Aşağı kaydır'
     },

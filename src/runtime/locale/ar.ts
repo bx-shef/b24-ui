@@ -33,6 +33,10 @@ export default defineLocale<Messages>({
       next: 'التالي',
       prev: 'السابق'
     },
+    chatAttachment: {
+      uploading: 'جارٍ الرفع',
+      error: 'فشل الرفع'
+    },
     chatMessages: {
       autoScroll: 'التمرير إلى الأسفل'
     },

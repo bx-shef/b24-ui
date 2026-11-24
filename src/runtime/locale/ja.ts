@@ -32,6 +32,10 @@ export default defineLocale<Messages>({
       next: '次へ',
       prev: '前へ'
     },
+    chatAttachment: {
+      uploading: 'アップロード中',
+      error: 'アップロードに失敗しました'
+    },
     chatMessages: {
       autoScroll: '一番下までスクロール'
     },

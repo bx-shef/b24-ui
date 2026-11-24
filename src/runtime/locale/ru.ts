@@ -32,6 +32,10 @@ export default defineLocale<Messages>({
       next: 'Далее',
       prev: 'Назад'
     },
+    chatAttachment: {
+      uploading: 'Загрузка',
+      error: 'Не удалось загрузить'
+    },
     chatMessages: {
       autoScroll: 'Прокрутить вниз'
     },

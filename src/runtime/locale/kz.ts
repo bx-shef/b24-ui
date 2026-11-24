@@ -32,6 +32,10 @@ export default defineLocale<Messages>({
       next: 'Келесі',
       prev: 'Алдыңғы'
     },
+    chatAttachment: {
+      uploading: 'Жүктелуде',
+      error: 'Жүктеу сәтсіз аяқталды'
+    },
     chatMessages: {
       autoScroll: 'Төмен айналдыру'
     },

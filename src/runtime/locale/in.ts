@@ -32,6 +32,10 @@ export default defineLocale<Messages>({
       next: 'अगला',
       prev: 'पिछला'
     },
+    chatAttachment: {
+      uploading: 'अपलोड हो रहा है',
+      error: 'अपलोड विफल रहा'
+    },
     chatMessages: {
       autoScroll: 'नीचे स्क्रॉल करें'
     },

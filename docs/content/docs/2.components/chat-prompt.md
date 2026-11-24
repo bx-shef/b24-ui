@@ -79,6 +79,70 @@ props:
 ---
 ::
 
+### Файлы {#files}
+
+Директива `v-model:files` позволяет пользователю прикреплять файлы. Их можно вставить в поле или перетащить на промпт, и каждый файл показывается над полем как [ChatAttachment](/docs/components/chat-attachment/) с кнопкой удаления. Слот `#footer` получает функцию `open`, чтобы выбрать файлы кнопкой.
+
+::component-example
+---
+collapse: true
+name: 'chat-prompt-files-example'
+---
+::
+
+::tip
+Пропс `attachment` настраивает вложения, например `{ variant: 'thumbnail', size: 'xl' }`{lang="ts-type"} для превью картинок; слот `#files` позволяет отрисовать их самостоятельно.
+::
+
+::note
+Пропс `accept` ограничивает типы файлов, а `multiple` со значением `false` оставляет один файл. Форма отправляется с файлами, даже если поле пустое. Пока файл тянут над промптом, у корня стоит `data-dragging="true"`, его можно оформить через `data-[dragging=true]:`.
+::
+
+::tip
+Утилита `toFileUIParts` из `@bitrix24/b24ui-nuxt/utils/ai` превращает файлы в data URL для AI SDK, а слот `#files` компонента [ChatMessages](/docs/components/chat-messages/) выводит их в беседе.
+
+```vue
+<script setup lang="ts">
+import { useChat } from '@ai-sdk/vue'
+import { toFileUIParts } from '@bitrix24/b24ui-nuxt/utils/ai'
+
+const input = ref('')
+const files = ref<File[]>([])
+
+const { messages, status, sendMessage } = useChat()
+
+async function onSubmit() {
+  const text = input.value
+  const submitted = files.value
+
+  input.value = ''
+  files.value = []
+
+  const parts = await toFileUIParts(submitted)
+  sendMessage(text.trim() ? { text, files: parts } : { files: parts })
+}
+</script>
+
+<template>
+  <B24ChatMessages :messages="messages" :status="status">
+    <template #files="{ parts }">
+      <B24ChatAttachment
+        v-for="(part, index) in parts"
+        :key="index"
+        :name="part.filename"
+        :type="part.mediaType"
+        :url="part.url"
+      />
+    </template>
+  </B24ChatMessages>
+
+  <B24ChatPrompt v-model="input" v-model:files="files" @submit="onSubmit">
+    <B24ChatPromptSubmit :status="status" />
+  </B24ChatPrompt>
+</template>
+```
+::
+
 ## Примеры {#examples}
 
 ::tip{to="/docs/components/chat/"}
@@ -160,6 +224,7 @@ name: 'chat-prompt-speech-recognition-example'
 | Имя | Тип |
 | ---- | ---- |
 | `textareaRef`{lang="ts-type"} | `Ref<HTMLTextAreaElement \| null>`{lang="ts-type"} |
+| `open()`{lang="ts-type"} | `void`{lang="ts-type"} |
 
 ## Тема {#theme}
 

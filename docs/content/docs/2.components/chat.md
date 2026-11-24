@@ -19,6 +19,7 @@ Bitrix24 UI даёт набор компонентов для чат-интер�
 
 | Компонент | Описание |
 | --- | --- |
+| [ChatAttachment](/docs/components/chat-attachment/) | Файл, прикреплённый к запросу или сообщению, с состояниями загрузки. |
 | [ChatMessages](/docs/components/chat-messages/) | Прокручиваемый список сообщений с автопрокруткой и индикатором загрузки. |
 | [ChatMessage](/docs/components/chat-message/) | Отдельное сообщение с аватаром, действиями и слотами. |
 | [ChatPrompt](/docs/components/chat-prompt/) | Улучшенное многострочное поле для отправки запросов. |

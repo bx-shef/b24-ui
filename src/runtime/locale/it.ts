@@ -32,6 +32,10 @@ export default defineLocale<Messages>({
       next: 'Successivo',
       prev: 'Precedente'
     },
+    chatAttachment: {
+      uploading: 'Caricamento',
+      error: 'Caricamento non riuscito'
+    },
     chatMessages: {
       autoScroll: 'Scorri in fondo'
     },

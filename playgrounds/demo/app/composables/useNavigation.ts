@@ -22,6 +22,7 @@ const components = [
   'card',
   // 'carousel',
   'chart',
+  'chat-attachment',
   'chat-message',
   'chat-reasoning',
   'chat-shimmer',

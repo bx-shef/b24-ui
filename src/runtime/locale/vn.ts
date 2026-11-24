@@ -32,6 +32,10 @@ export default defineLocale<Messages>({
       next: 'Tiếp',
       prev: 'Trước'
     },
+    chatAttachment: {
+      uploading: 'Đang tải lên',
+      error: 'Tải lên thất bại'
+    },
     chatMessages: {
       autoScroll: 'Cuộn xuống dưới'
     },
