@@ -1,6 +1,6 @@
 ---
 title: useDevice
-description: Detect the current platform (Bitrix24 mobile/desktop app or web) and screen size based on Tailwind breakpoints.
+description: Определяет текущую платформу (мобильное или десктопное приложение Bitrix24, веб) и размер экрана по контрольным точкам Tailwind.
 links:
   - label: useDevice
     iconName: GitHubIcon
@@ -10,9 +10,9 @@ links:
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/plugins/platform.ts
 ---
 
-## Usage
+## Использование {#usage}
 
-The composable is auto‑imported in Nuxt. It combines the platform detection from the Bitrix plugin with reactive screen‑size queries.
+Композабл автоматически импортируется в Nuxt. Он объединяет определение платформы из плагина Bitrix с реактивными запросами размера экрана.
 
 ```vue
 <script setup lang="ts">
@@ -20,48 +20,48 @@ const { isBitrixMobile, screen } = useDevice()
 </script>
 ```
 
-- Platform detection is based on the `User‑Agent`{lang="ts-type"} header and is globally shared via `useState`{lang="ts-type"}.
-- Screen‑size flags are powered by `useMediaQuery`{lang="ts-type"} from VueUse, so they update reactively when the viewport changes.
+- Платформа определяется по заголовку `User‑Agent`{lang="ts-type"} и общая для всего приложения через `useState`{lang="ts-type"}.
+- Флаги размера экрана построены на `useMediaQuery`{lang="ts-type"} из VueUse и реактивно обновляются при изменении области просмотра.
 
 ::note
-On the server, screen‑size flags default to `false`{lang="ts-type"}. Hydration will work correctly because the client values will eventually take over.
+На сервере флаги размера экрана по умолчанию равны `false`{lang="ts-type"}. Гидратация проходит корректно: в итоге значения подставляет клиент.
 ::
 
 ## API
 
-The composable returns an object with the following properties:
+Композабл возвращает объект со следующими свойствами:
 
-### Platform
+### Платформа {#platform}
 
-| Property | Type | Description |
+| Свойство | Тип | Описание |
 |---|---|---|
-| `platform`{lang="ts-type"} | `Readonly<{ name?: PlatformName, version?: string }>`{lang="ts-type"} | Raw platform state (readonly)  |
-| `version`{lang="ts-type"} | `ComputedRef<string \| undefined>`{lang="ts-type"} | Version string of the Bitrix app (if available) |
-| `isWeb`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | `true` when running in a regular web browser |
-| `isBitrixMobile`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | `true` inside the Bitrix24 mobile app  |
-| `isBitrixDesktop`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | `true` inside the Bitrix24 desktop app |
+| `platform`{lang="ts-type"} | `Readonly<{ name?: PlatformName, version?: string }>`{lang="ts-type"} | Исходное состояние платформы (только чтение)  |
+| `version`{lang="ts-type"} | `ComputedRef<string \| undefined>`{lang="ts-type"} | Строка версии приложения Bitrix (если доступна) |
+| `isWeb`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | `true` в обычном веб-браузере |
+| `isBitrixMobile`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | `true` внутри мобильного приложения Bitrix24  |
+| `isBitrixDesktop`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | `true` внутри десктопного приложения Bitrix24 |
 
-### Screen
+### Экран {#screen}
 
-The `screen` object contains reactive flags for every Tailwind breakpoint (xs, sm, md, lg, xl, 2xl) and a few convenience shortcuts.
+Объект `screen` содержит реактивные флаги для каждой контрольной точки Tailwind (xs, sm, md, lg, xl, 2xl) и несколько удобных сокращений.
 
-| Property | Type | Description |
+| Свойство | Тип | Описание |
 |-------------------|--------------------------|-------------------------------------------------------------------------|
-| `screen.current`{lang="ts-type"} | `ComputedRef<ScreenSize>`{lang="ts-type"} | The smallest active breakpoint: `'2xl' \| 'xl' \| 'lg' \| 'md' \| 'sm' \| 'xs'` |
-| `screen.xs`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | Width < 640px |
-| `screen.sm`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | Width ≥ 640px |
-| `screen.md`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | Width ≥ 768px |
-| `screen.lg`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | Width ≥ 1024px  |
-| `screen.xl`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | Width ≥ 1280px  |
-| `screen['2xl']`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | Width ≥ 1536px  |
-| `screen.isMobile`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | Width < 768px (alias for `!screen.md`)  |
-| `screen.isTablet`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | Width between 768px and 1023px (alias for `screen.md && !screen.lg`)  |
-| `screen.isDesktop`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | Width ≥ 1024px (alias for `screen.lg`)  |
-| `screen.isLargeDesktop`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | Width ≥ 1536px (alias for `screen['2xl']`) |
+| `screen.current`{lang="ts-type"} | `ComputedRef<ScreenSize>`{lang="ts-type"} | Наименьшая активная контрольная точка: `'2xl' \| 'xl' \| 'lg' \| 'md' \| 'sm' \| 'xs'` |
+| `screen.xs`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | Ширина < 640px |
+| `screen.sm`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | Ширина ≥ 640px |
+| `screen.md`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | Ширина ≥ 768px |
+| `screen.lg`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | Ширина ≥ 1024px  |
+| `screen.xl`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | Ширина ≥ 1280px  |
+| `screen['2xl']`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | Ширина ≥ 1536px  |
+| `screen.isMobile`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | Ширина < 768px (псевдоним `!screen.md`)  |
+| `screen.isTablet`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | Ширина от 768px до 1023px (псевдоним `screen.md && !screen.lg`)  |
+| `screen.isDesktop`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | Ширина ≥ 1024px (псевдоним `screen.lg`)  |
+| `screen.isLargeDesktop`{lang="ts-type"} | `ComputedRef<boolean>`{lang="ts-type"} | Ширина ≥ 1536px (псевдоним `screen['2xl']`) |
 
-## Example
+## Примеры {#example}
 
-### Basic usage – platform and mobile screen
+### Базовое использование: платформа и мобильный экран {#basic-usage-platform-and-mobile-screen}
 
 ::component-example
 ---
@@ -70,7 +70,7 @@ name: 'use-device-example'
 ---
 ::
 
-### Conditional rendering based on current breakpoint
+### Условная отрисовка по текущей контрольной точке {#conditional-rendering-based-on-current-breakpoint}
 
 ::component-example
 ---
@@ -79,7 +79,7 @@ name: 'use-device-current-breakpoint-example'
 ---
 ::
 
-### Using screen flags in template logic
+### Флаги экрана в логике шаблона {#using-screen-flags-in-template-logic}
 
 ::component-example
 ---
@@ -88,9 +88,9 @@ name: 'use-device-screen-flags-in-template-logic-example'
 ---
 ::
 
-### Combine with Tailwind CSS classes
+### Вместе с классами Tailwind CSS {#combine-with-tailwind-css-classes}
 
-Because the [plugin](https://github.com/bitrix24/b24ui/blob/main/src/runtime/plugins/platform.ts) already adds `data-platform` and `data-version` attributes to the `<html>` tag, you can use [Tailwind variants](https://github.com/bitrix24/b24ui/blob/09b6f208a51d85703770ac599b742c844259a0b3/src/runtime/index.css#L10) like `bitrix-mobile:` directly in your templates.
+[Плагин](https://github.com/bitrix24/b24ui/blob/main/src/runtime/plugins/platform.ts) уже добавляет тегу `<html>` атрибуты `data-platform` и `data-version`, поэтому в шаблонах можно сразу использовать [варианты Tailwind](https://github.com/bitrix24/b24ui/blob/09b6f208a51d85703770ac599b742c844259a0b3/src/runtime/index.css#L10) вроде `bitrix-mobile:`.
 
 ::component-example
 ---
@@ -98,8 +98,8 @@ collapse: false
 name: 'use-device-with-tailwind-example'
 ---
 
-## Notes
+## Примечания {#notes}
 
-- The platform detection relies on the Bitrix plugin. If the plugin is not installed, `platform.name`{lang="ts-type"} will be `undefined`{lang="ts-type"}.
-- Screen‑size flags are based on the **default Tailwind breakpoints**. It won't be possible to change them.
-- All screen‑size flags are `ComputedRef<boolean>`{lang="ts-type"} – they can be used directly in the template and are reactive.
+- Платформа определяется плагином Bitrix. Если плагин не установлен, `platform.name`{lang="ts-type"} будет `undefined`{lang="ts-type"}.
+- Флаги размера экрана основаны на **контрольных точках Tailwind по умолчанию**. Изменить их нельзя.
+- Все флаги размера экрана — `ComputedRef<boolean>`{lang="ts-type"}: их можно использовать прямо в шаблоне, и они реактивны.

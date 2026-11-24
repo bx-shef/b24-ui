@@ -1,6 +1,6 @@
 ---
 title: ProseSteps
-description: 'Turn your headings into clear, sequential instructions.'
+description: 'Заголовки превращаются в понятную пошаговую инструкцию.'
 category: components
 navigation.title: Steps
 links:
@@ -12,16 +12,16 @@ links:
     to: https://ui.nuxt.com/docs/typography/steps
 ---
 
-## Usage
+## Использование {#usage}
 
-Wrap your headings with the Steps component to display a list of steps.
+Компонент Steps оборачивает заголовки и показывает их списком шагов.
 
-Use the `level` prop to define which heading will be used for the steps.
+Пропс `level` определяет, какой уровень заголовков используется для шагов.
 
 :::code-preview{class="[&>div]:*:w-full"}
 ::steps{level="4"}
 
-#### Add the Bitrix24 UI module in your `nuxt.config.ts`
+#### Добавьте модуль Bitrix24 UI в `nuxt.config.ts`
 
 ```ts [nuxt.config.ts]
 export default defineNuxtConfig({
@@ -29,13 +29,13 @@ export default defineNuxtConfig({
 })
 ```
 
-#### Import Tailwind CSS in your CSS
+#### Подключите Tailwind CSS в стилях
 
 ```css [app/assets/css/main.css]
 @import "tailwindcss";
 ```
 
-#### Start your development server
+#### Запустите сервер разработки
 
 ```bash
 npm run dev
@@ -48,7 +48,7 @@ npm run dev
 ````mdc
 ::steps{level="4"}
 
-#### Add the Bitrix24 UI module in your `nuxt.config.ts`
+#### Добавьте модуль Bitrix24 UI в `nuxt.config.ts`
 
 ```ts [nuxt.config.ts]
 export default defineNuxtConfig({
@@ -56,13 +56,13 @@ export default defineNuxtConfig({
 })
 ```
 
-#### Import Tailwind CSS in your CSS
+#### Подключите Tailwind CSS в стилях
 
 ```css [app/assets/css/main.css]
 @import "tailwindcss";
 ```
 
-#### Start your development server
+#### Запустите сервер разработки
 
 ```bash
 npm run dev
@@ -75,14 +75,14 @@ npm run dev
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props{prose}
 
-### Slots
+### Слоты {#slots}
 
 :component-slots{prose}
 
-## Theme
+## Тема {#theme}
 
 :component-theme{prose}

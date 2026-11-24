@@ -1,6 +1,6 @@
 ---
 title: ProseFieldGroup
-description: 'Combine logically connected fields to create exhaustive API documentation.'
+description: 'Логически связанные поля в группе для полной документации API.'
 category: components
 navigation.title: FieldGroup
 links:
@@ -12,28 +12,28 @@ links:
     to: https://ui.nuxt.com/docs/typography/field-group
 ---
 
-## Usage
+## Использование {#usage}
 
-Group fields together in a list.
+Объединяет поля в список.
 
 ::code-preview
 
 ::field-group{class="my-0"}
 
   ::field{name="analytics" type="boolean"}
-  Defaults to `false`. Enables analytics for your project.
+  По умолчанию `false`. Включает аналитику для проекта.
   ::
 
   ::field{name="blob" type="boolean"}
-  Defaults to `false`. Enables blob storage to store static assets, such as images, videos and more.
+  По умолчанию `false`. Включает blob-хранилище для статических ресурсов: изображений, видео и т. п.
   ::
 
   ::field{name="cache" type="boolean"}
-  Defaults to `false`. Enables cache storage to cache your server route responses or functions using Nitro's `cachedEventHandler` and `cachedFunction`
+  По умолчанию `false`. Включает кеш-хранилище для кеширования ответов серверных маршрутов и функций через `cachedEventHandler` и `cachedFunction` из Nitro
   ::
 
   ::field{name="database" type="boolean"}
-  Defaults to `false`. Enables SQL database to store your application's data.
+  По умолчанию `false`. Включает SQL-базу данных для хранения данных приложения.
   ::
 
 ::
@@ -43,19 +43,19 @@ Group fields together in a list.
 ```mdc
 ::field-group
   ::field{name="analytics" type="boolean"}
-    Defaults to `false`. Enables analytics for your project.
+    По умолчанию `false`. Включает аналитику для проекта.
   ::
 
   ::field{name="blob" type="boolean"}
-    Defaults to `false`. Enables blob storage to store static assets, such as images, videos and more.
+    По умолчанию `false`. Включает blob-хранилище для статических ресурсов: изображений, видео и т. п.
   ::
 
   ::field{name="cache" type="boolean"}
-    Defaults to `false`. Enables cache storage to cache your server route responses or functions using Nitro's `cachedEventHandler` and `cachedFunction`
+    По умолчанию `false`. Включает кеш-хранилище для кеширования ответов серверных маршрутов и функций через `cachedEventHandler` и `cachedFunction` из Nitro
   ::
 
   ::field{name="database" type="boolean"}
-    Defaults to `false`. Enables SQL database to store your application's data.
+    По умолчанию `false`. Включает SQL-базу данных для хранения данных приложения.
   ::
 ::
 ```
@@ -64,14 +64,14 @@ Group fields together in a list.
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props{prose}
 
-### Slots
+### Слоты {#slots}
 
 :component-slots{prose}
 
-## Theme
+## Тема {#theme}
 
 :component-theme{prose}

@@ -1,11 +1,11 @@
 ---
 title: useTour
-description: 'A composable to build guided tours by re-anchoring a single Popover across steps.'
+description: 'Композабл для пошаговых туров по интерфейсу: один Popover переносится от шага к шагу.'
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the auto-imported `useTour` composable to drive a guided tour with a single [Popover](/docs/components/popover/) whose anchor moves between steps. The composable owns the step state and resolves each step's `target` into a `reference` you bind to `<B24Popover>`, while you keep full control over the content and navigation.
+Автоимпортируемый композабл `useTour` ведёт пошаговый тур с помощью одного [Popover](/docs/components/popover/), у которого от шага к шагу меняется точка привязки. Композабл хранит состояние шагов и превращает `target` каждого шага в `reference`, который вы привязываете к `<B24Popover>`; содержимое и навигация остаются полностью под вашим контролем.
 
 ::component-example
 ---
@@ -14,7 +14,7 @@ name: 'use-tour-example'
 ---
 ::
 
-Each step requires a `target` that the popover anchors to. It accepts a bare id (a plain word is always treated as an id, never as a tag selector) or any CSS selector, an element, a virtual element (anything with `getBoundingClientRect`), or a ref/getter returning one of those. Pass `null` to anchor the step to the center of the viewport. Any other field on a step (`title`, `body`, `side`, …) is passed through untouched and available via `current`.
+Каждому шагу нужен `target`, к которому привязывается popover. Это может быть голый id (простое слово всегда считается id, а не селектором тега), любой CSS-селектор, элемент, виртуальный элемент (любой объект с `getBoundingClientRect`) либо ref или геттер, возвращающий любой из них. `null` привязывает шаг к центру области просмотра. Остальные поля шага (`title`, `body`, `side` и др.) передаются без изменений и доступны через `current`.
 
 ```vue
 <script setup lang="ts">
@@ -40,119 +40,119 @@ const tour = useTour([
 </template>
 ```
 
-- Built on the Popover's reactive `reference` prop, so the popover smoothly repositions when the active step changes.
-- The active target is scrolled into view automatically when a step becomes active.
-- Since you render the content yourself, there is no extra theme or locale to maintain.
+- Основан на реактивном пропсе `reference` у Popover, поэтому при смене активного шага popover плавно перемещается.
+- Когда шаг становится активным, страница автоматически прокручивается к его цели.
+- Содержимое вы отрисовываете сами, поэтому отдельной темы и локали поддерживать не нужно.
 
 ## API
 
 `useTour(steps, options?)`{lang="ts-type"}
 
-### Parameters
+### Параметры {#parameters}
 
 ::field-group
 
   ::field{name="steps" type="MaybeRefOrGetter<TourStep[]>" required}
-  The list of tour steps. Can be a static array, a `ref`, or a getter for reactive steps.
+  Список шагов тура. Это может быть статичный массив, `ref` или геттер для реактивных шагов.
 
     ::collapsible
 
       ::field-group
         ::field{name="target" type="MaybeRefOrGetter<string | ReferenceElement | null | undefined>"}
-        The element the step anchors to. Accepts a bare id (`'id'` — a plain word is always treated as an id, never as a tag selector) or any CSS selector (`'#id'`, `'.class'`, `'[data-tour="step"]'`, …), an element, a virtual element, or a ref/getter returning one. Use `null` to center the step in the viewport.
+        Элемент, к которому привязан шаг. Принимает голый id (`'id'` — простое слово всегда считается id, а не селектором тега), любой CSS-селектор (`'#id'`, `'.class'`, `'[data-tour="step"]'` и т. д.), элемент, виртуальный элемент либо ref или геттер, возвращающий любой из них. `null` помещает шаг в центр области просмотра.
         ::
 
         ::field{name="[key: string]" type="any"}
-        Any additional fields (`title`, `body`, `side`, …) are passed through and available via `current`.
+        Любые дополнительные поля (`title`, `body`, `side` и др.) передаются как есть и доступны через `current`.
         ::
       ::
     ::
   ::
 
   ::field{name="options" type="UseTourOptions"}
-  Configuration options for the tour.
+  Настройки тура.
 
     ::collapsible
 
       ::field-group
         ::field{name="initialStep" type="number" default="0"}
-        The step index the tour starts on.
+        Индекс шага, с которого начинается тур.
         ::
 
         ::field{name="loop" type="boolean" default="false"}
-        Loop back to the first step after the last one.
+        Возвращаться к первому шагу после последнего.
         ::
 
         ::field{name="scrollIntoView" type="boolean | ScrollIntoViewOptions" default="true"}
-        Scroll the target into view when a step becomes active.
+        Прокручивать страницу к цели, когда шаг становится активным.
         ::
       ::
     ::
   ::
 ::
 
-### Return
+### Возвращаемое значение {#return}
 
 ::field-group
 
   ::field{name="open" type="Ref<boolean>"}
-  Whether the tour is currently open.
+  Открыт ли тур сейчас.
   ::
 
   ::field{name="index" type="Ref<number>"}
-  The current step index, clamped to the steps range.
+  Индекс текущего шага, ограниченный диапазоном шагов.
   ::
 
   ::field{name="current" type="ComputedRef<TourStep | undefined>"}
-  The current step object, or `undefined` when there are no steps.
+  Объект текущего шага или `undefined`, если шагов нет.
   ::
 
   ::field{name="reference" type="ComputedRef<ReferenceElement | undefined>"}
-  The resolved anchor for the current step, to pass to `<B24Popover :reference>`.
+  Вычисленная точка привязки текущего шага; передаётся в `<B24Popover :reference>`.
   ::
 
   ::field{name="total" type="ComputedRef<number>"}
-  The total number of steps.
+  Общее число шагов.
   ::
 
   ::field{name="hasNext" type="ComputedRef<boolean>"}
-  Whether a next step exists.
+  Есть ли следующий шаг.
   ::
 
   ::field{name="hasPrev" type="ComputedRef<boolean>"}
-  Whether a previous step exists.
+  Есть ли предыдущий шаг.
   ::
 
   ::field{name="start" type="(index?: number) => void"}
-  Open the tour, optionally at a given index.
+  Открывает тур, при необходимости с заданного шага.
   ::
 
   ::field{name="next" type="() => void"}
-  Go to the next step. Loops or finishes at the end depending on the `loop` option.
+  Переходит к следующему шагу. В конце тур зацикливается или завершается — в зависимости от опции `loop`.
   ::
 
   ::field{name="prev" type="() => void"}
-  Go to the previous step.
+  Переходит к предыдущему шагу.
   ::
 
   ::field{name="goTo" type="(index: number) => void"}
-  Jump to a specific step and open the tour.
+  Переходит к указанному шагу и открывает тур.
   ::
 
   ::field{name="finish" type="() => void"}
-  Close the tour.
+  Закрывает тур.
   ::
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Spotlight
+### Подсветка цели {#spotlight}
 
-This example demonstrates how to dim the page around the current target by combining `reference` with VueUse's [`useElementBounding`](https://vueuse.org/core/useElementBounding/). The target stays clickable while the rest of the page is blocked, and a step without a target dims the whole page. Setting it up takes three steps:
+Пример показывает, как затемнить страницу вокруг текущей цели, сочетая `reference` с [`useElementBounding`](https://vueuse.org/core/useElementBounding/) из VueUse. Цель остаётся кликабельной, остальная страница заблокирована, а шаг без цели затемняет всю страницу. Настройка занимает три шага:
 
-1. Copy the overlay component below into your app. It measures the target with `useElementBounding` and draws a `clip-path` backdrop with a cutout and a ring around it.
-2. Render `<UseTourSpotlight :tour="tour" />` next to your `<B24Popover>`. Keep the measuring inside the overlay: the box updates on every scroll frame, so reading it in the parent template would re-render the whole parent while scrolling.
-3. Give the popover `:b24ui="{ content: 'z-50' }"` so it stays above the backdrop (`z-40`), and a `sideOffset` of `16` so it clears the cutout padding.
+1. Скопируйте компонент оверлея ниже в своё приложение. Он измеряет цель через `useElementBounding` и рисует подложку с `clip-path`: вырез и кольцо вокруг цели.
+2. Отрисуйте `<UseTourSpotlight :tour="tour" />` рядом с `<B24Popover>`. Измерение оставьте внутри оверлея: размеры обновляются на каждом кадре прокрутки, и чтение их в родительском шаблоне перерисовывало бы весь родитель при прокрутке.
+3. Задайте popover `:b24ui="{ content: 'z-50' }"`, чтобы он оставался над подложкой (`z-40`), и `sideOffset` со значением `16`, чтобы он не заходил на отступ выреза.
 
 ::component-example
 ---

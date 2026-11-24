@@ -1,6 +1,6 @@
 ---
 title: defineShortcuts
-description: 'A composable to assign keyboard shortcuts in your app.'
+description: 'Композабл для назначения горячих клавиш в приложении.'
 links:
   - label: GitHub
     iconName: GitHubIcon
@@ -10,9 +10,9 @@ links:
     to: https://ui.nuxt.com/docs/composables/define-shortcuts
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the auto-imported `defineShortcuts` composable to define keyboard shortcuts.
+Автоимпортируемый композабл `defineShortcuts` задаёт горячие клавиши.
 
 ```vue
 <script setup lang="ts">
@@ -26,97 +26,97 @@ defineShortcuts({
 </script>
 ```
 
-- Shortcuts are automatically adjusted for non-macOS platforms, converting `meta` to `ctrl`.
-- The composable uses VueUse's [`useEventListener`](https://vueuse.org/core/useEventListener/) to handle keydown events.
-- For a complete list of available shortcut keys, refer to the [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values) API documentation. Note that the key should be written in lowercase.
+- На платформах, отличных от macOS, сочетания подстраиваются автоматически: `meta` заменяется на `ctrl`.
+- Для обработки нажатий (`keydown`) композабл использует [`useEventListener`](https://vueuse.org/core/useEventListener/) из VueUse.
+- Полный список доступных клавиш — в документации API [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values). Клавишу нужно писать строчными буквами.
 
 ::tip{to="/docs/components/kbd/"}
-Learn how to display shortcuts in components in the **Kbd** component documentation.
+Как показывать горячие клавиши в компонентах — в документации компонента **Kbd**.
 ::
 
 ## API
 
 `defineShortcuts(config: MaybeRef<ShortcutsConfig>, options?: ShortcutsOptions): () => void`{lang="ts-type"}
 
-Define keyboard shortcuts for your application. Returns a function that removes the listener, in case you need to stop the shortcuts before the component unmounts.
+Задаёт горячие клавиши приложения. Возвращает функцию, которая снимает обработчик: она нужна, если сочетания надо отключить до размонтирования компонента.
 
-### Parameters
+### Параметры {#parameters}
 
 ::field-group
 
   ::field{name="config" type="MaybeRef<ShortcutsConfig>" required}
-  An object where keys are shortcut definitions and values are either handler functions or shortcut configuration objects. Pass a `ref` to update the shortcuts reactively. A value of `false`, `null` or `undefined` skips that shortcut, which is how you enable one conditionally.
+  Объект, где ключи описывают сочетания, а значения — функции-обработчики или объекты конфигурации сочетания. Передайте `ref`, чтобы обновлять сочетания реактивно. Значение `false`, `null` или `undefined` пропускает сочетание — так его можно включать по условию.
   ::
 
   ::field{name="options" type="ShortcutsOptions"}
-  Optional configuration for the shortcuts behavior.
+  Необязательные настройки поведения сочетаний.
 
     ::collapsible
   
       ::field{name="chainDelay" type="number"}
-      The delay between key presses to consider the shortcut as chained. Defaults to `800`.
+      Задержка между нажатиями, при которой сочетание считается последовательностью. По умолчанию `800`.
       ::
   
       ::field{name="layoutIndependent" type="boolean"}
-      When enabled, shortcuts work consistently across different keyboard layouts (Arabic, Hebrew) by matching physical key positions rather than character values.
-      - `false` (default): Uses `e.key` for character-based matching (Layout specific)
-      - `true`: Uses `e.code` for physical key matching (Layout agnostic)
+      Если включено, сочетания работают одинаково в разных раскладках клавиатуры (арабской, ивритской): сравниваются физические позиции клавиш, а не символы.
+      - `false` (по умолчанию): сравнение по символу через `e.key` (зависит от раскладки)
+      - `true`: сравнение по физической клавише через `e.code` (не зависит от раскладки)
       ::
     ::
   ::
 ::
 
-#### Shortcut definition
+#### Описание сочетания {#shortcut-definition}
 
-Shortcuts are defined using the following format:
+Сочетания записываются в таком формате:
 
-- Single key: `'a'`, `'b'`, `'1'`, `'?'`, etc.
-- Key combinations: Use `_` to separate keys, e.g. `'meta_k'`, `'ctrl_shift_f'`
-- Key sequences: Use `-` to define a sequence, e.g. `'g-d'`
+- Одна клавиша: `'a'`, `'b'`, `'1'`, `'?'` и т. д.
+- Комбинации клавиш: клавиши разделяются знаком `_`, например `'meta_k'`, `'ctrl_shift_f'`
+- Последовательности клавиш: клавиши разделяются знаком `-`, например `'g-d'`
 
-#### Modifiers
+#### Модификаторы {#modifiers}
 
-- `meta` / `command`: Represents `⌘ Command` on macOS and `Ctrl` on other platforms
-- `ctrl`: Represents `Ctrl` on all platforms
-- `shift`: Used for alphabetic keys when Shift is required
-- `alt` / `option`: Represents `⌥ Option` on macOS and `Alt` on other platforms. Matched by physical key position, since Option rewrites the character on macOS
+- `meta` / `command`: `⌘ Command` на macOS и `Ctrl` на остальных платформах
+- `ctrl`: `Ctrl` на всех платформах
+- `shift`: Используется для буквенных клавиш, когда нужен Shift
+- `alt` / `option`: `⌥ Option` на macOS и `Alt` на остальных платформах. Сравнивается по физической позиции клавиши, потому что на macOS Option меняет символ
 
-#### Special keys
+#### Специальные клавиши {#special-keys}
 
-Use these names to match special keys.
+Специальные клавиши задаются такими именами.
 
-- `escape`: Triggers on Esc key
-- `enter`: Triggers on Enter key
-- `arrowleft`, `arrowright`, `arrowup`, `arrowdown`: Trigger on respective arrow keys
-- `tab`: Triggers on Tab key
-- `backspace`: Triggers on Backspace key
-- `delete`: Triggers on Delete key
-- `space`: Triggers on the space bar. Requires `layoutIndependent` unless combined with `alt`
+- `escape`: срабатывает на Esc
+- `enter`: срабатывает на Enter
+- `arrowleft`, `arrowright`, `arrowup`, `arrowdown`: срабатывают на соответствующие стрелки
+- `tab`: срабатывает на Tab
+- `backspace`: срабатывает на Backspace
+- `delete`: срабатывает на Delete
+- `space`: срабатывает на пробел. Требует `layoutIndependent`, если не используется вместе с `alt`
 
-#### Shortcut configuration
+#### Конфигурация сочетания {#shortcut-configuration}
 
-Each shortcut can be defined as a function or an object with the following properties:
+Каждое сочетание задаётся функцией или объектом со следующими свойствами:
 
 `interface ShortcutConfig { handler: (e?: KeyboardEvent) => void; usingInput?: boolean | string }`{lang="ts-type"}
 
-#### Parameters
+#### Параметры {#parameters-1}
 
 ::field-group
   ::field{name="handler" type="() => void" required}
-  Function to be executed when the shortcut is triggered.
+  Функция, которая вызывается при срабатывании сочетания.
   ::
 
   ::field{name="usingInput" type="boolean | string"}
-  Controls when the shortcut should trigger based on input focus:
-  - `false` (default): Shortcut only triggers when no input is focused
-  - `true`: Shortcut triggers even when any input is focused
-  - `string`: Shortcut only triggers when the specified input (by name) is focused
+  Определяет, когда сочетание срабатывает, в зависимости от фокуса в поле ввода:
+  - `false` (по умолчанию): сочетание срабатывает, только если фокус не в поле ввода
+  - `true`: сочетание срабатывает, даже когда фокус в любом поле ввода
+  - `string`: сочетание срабатывает, только когда в фокусе поле с указанным именем
   ::
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Basic usage
+### Базовое использование {#basic-usage}
 
 ```vue
 <script setup lang="ts">
@@ -128,9 +128,9 @@ defineShortcuts({
 </script>
 ```
 
-### With input focus handling
+### С учётом фокуса в поле ввода {#with-input-focus-handling}
 
-Use `usingInput` to trigger a shortcut only when a specific input is focused.
+`usingInput` запускает сочетание только при фокусе в нужном поле ввода.
 
 ```vue
 <template>
@@ -153,10 +153,10 @@ defineShortcuts({
 </script>
 ```
 
-### Extracting shortcuts from menu items
+### Извлечение сочетаний из пунктов меню {#extracting-shortcuts-from-menu-items}
 
-Use the `extractShortcuts` utility to automatically define shortcuts from menu items.
+Утилита `extractShortcuts` автоматически задаёт сочетания по пунктам меню.
 
 ::tip{to="/docs/composables/extract-shortcuts/"}
-Learn more about the **extractShortcuts** utility.
+Подробнее об утилите **extractShortcuts**.
 ::
