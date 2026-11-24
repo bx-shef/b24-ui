@@ -4,27 +4,27 @@ import Bitrix24Icon from '@bitrix24/b24icons-vue/common-service/Bitrix24Icon'
 const testimonials = ref([
   {
     user: {
-      name: 'Employee Name',
-      description: 'Clients Relations Manager',
+      name: 'Имя сотрудника',
+      description: 'Менеджер по работе с клиентами',
       avatar: {
         src: '/b24ui/avatar/employee.png',
         alt: 'employee',
         loading: 'lazy' as const
       }
     },
-    quote: 'Bitrix24 has given us a crystal-clear overview of all our ongoing projects. The combination of task deadlines, time tracking, and visual workflow management in Kanban boards ensures that nothing falls through the cracks, significantly improving our on-time delivery and team accountability.'
+    quote: 'Bitrix24 дал нам полную картину всех текущих проектов. Сроки задач, учёт времени и наглядное управление процессами на канбан-досках не дают ничему потеряться, и мы заметно чаще сдаём работу вовремя, а команда стала ответственнее.'
   },
   {
     user: {
-      name: 'Assistant Name',
-      description: 'CEO',
+      name: 'Имя ассистента',
+      description: 'Генеральный директор',
       avatar: {
         src: '/b24ui/avatar/assistant.png',
-        alt: 'Assistant Name',
+        alt: 'Имя ассистента',
         loading: 'lazy' as const
       }
     },
-    quote: 'The CRM and marketing automation tools in Bitrix24 have revolutionized our sales process. We can now track every customer interaction, automate follow-up emails, and segment our leads effectively, which has directly led to a higher conversion rate and more closed deals.'
+    quote: 'CRM и инструменты маркетинговой автоматизации в Bitrix24 изменили наш процесс продаж. Мы видим каждое взаимодействие с клиентом, автоматизируем письма и эффективно сегментируем лиды — конверсия выросла, а закрытых сделок стало больше.'
   },
   {
     user: {
@@ -36,7 +36,7 @@ const testimonials = ref([
         loading: 'lazy' as const
       }
     },
-    quote: 'Bitrix24 帮助我们整个团队在一个功能丰富的统一平台上进行协作，彻底结束了之前需要在多个独立软件之间频繁切换的麻烦。这大大节省了我们的时间，并简化了工作流程。'
+    quote: 'Bitrix24 помогает всей нашей команде работать на одной многофункциональной платформе, и больше не нужно постоянно переключаться между разными программами. Это сильно экономит время и упрощает рабочие процессы.'
   },
   {
     user: {
@@ -59,8 +59,8 @@ const testimonials = ref([
       variant="filled"
       to="https://www.bitrix24.com/tools/"
       :icon="Bitrix24Icon"
-      title="Bitrix24 - Free online workspace for your business: CRM, tasks, online meetings, and more."
-      description="An all-in-one free platform to manage your team and run your sales, Bitrix24 is designed to be seamlessly integrated into all your business processes and help you manage them with the highest precision and efficiency."
+      title="Bitrix24 — бесплатное онлайн-пространство для вашего бизнеса: CRM, задачи, онлайн-встречи и многое другое."
+      description="Бесплатная универсальная платформа для управления командой и продажами. Bitrix24 легко встраивается во все бизнес-процессы и помогает управлять ими максимально точно и эффективно."
       :b24ui="{ leadingIcon: 'size-10' }"
     />
 

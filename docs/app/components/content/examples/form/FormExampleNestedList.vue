@@ -33,7 +33,7 @@ function removeItem() {
 const toast = useToast()
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  toast.add({ title: 'Success', description: 'The form has been submitted.', color: 'air-primary-success' })
+  toast.add({ title: 'Успешно', description: 'Форма отправлена.', color: 'air-primary-success' })
   console.log(event.data)
 }
 </script>
@@ -45,8 +45,8 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     class="gap-4 flex flex-col w-60"
     @submit="onSubmit"
   >
-    <B24FormField label="Customer" name="customer">
-      <B24Input v-model="state.customer" placeholder="Wonka Industries" />
+    <B24FormField label="Клиент" name="customer">
+      <B24Input v-model="state.customer" placeholder="ООО «Ромашка»" />
     </B24FormField>
 
     <B24Form
@@ -57,26 +57,26 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       class="flex gap-2"
       nested
     >
-      <B24FormField :label="!count ? 'Description' : undefined" name="description">
+      <B24FormField :label="!count ? 'Описание' : undefined" name="description">
         <B24Input v-model="item.description" />
       </B24FormField>
-      <B24FormField :label="!count ? 'Price' : undefined" name="price" class="w-20">
+      <B24FormField :label="!count ? 'Цена' : undefined" name="price" class="w-20">
         <B24Input v-model="item.price" type="number" />
       </B24FormField>
     </B24Form>
 
     <div class="flex gap-2">
       <B24Button size="sm" @click="addItem()">
-        Add Item
+        Добавить элемент
       </B24Button>
 
       <B24Button size="sm" @click="removeItem()">
-        Remove Item
+        Удалить элемент
       </B24Button>
     </div>
     <div>
       <B24Button color="air-primary" type="submit">
-        Submit
+        Отправить
       </B24Button>
     </div>
   </B24Form>

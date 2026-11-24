@@ -15,7 +15,7 @@ const { copy, copied } = useClipboard()
     :b24ui="{ trailing: 'pe-0.5' }"
   >
     <template v-if="value?.length" #trailing>
-      <B24Tooltip text="Copy to clipboard" :content="{ side: 'right' }">
+      <B24Tooltip text="Копировать в буфер обмена" :content="{ side: 'right' }">
         <B24Button
           :b24ui="{
             leadingIcon: [copied ? 'text-(--ui-color-accent-main-success)' : 'text-(--ui-btn-color)']
@@ -23,7 +23,7 @@ const { copy, copied } = useClipboard()
           size="sm"
           color="air-tertiary-no-accent"
           :icon="copied ? CircleCheckIcon : CopyIcon"
-          aria-label="Copy to clipboard"
+          aria-label="Копировать в буфер обмена"
           @click="copy(value)"
         />
       </B24Tooltip>

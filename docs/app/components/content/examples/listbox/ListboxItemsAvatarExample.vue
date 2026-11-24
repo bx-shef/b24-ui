@@ -3,13 +3,13 @@ import type { ListboxItem } from '@bitrix24/b24ui-nuxt'
 
 const items = ref<ListboxItem[]>([
   {
-    label: 'Assistant',
+    label: 'Ассистент',
     avatar: {
       src: '/b24ui/avatar/assistant.png'
     }
   },
   {
-    label: 'Employee',
+    label: 'Сотрудник',
     avatar: {
       src: '/b24ui/avatar/employee.png'
     }

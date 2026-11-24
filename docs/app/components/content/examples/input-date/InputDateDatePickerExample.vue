@@ -15,7 +15,7 @@ const modelValue = shallowRef(new CalendarDate(2022, 1, 10))
           color="air-tertiary-no-accent"
           size="sm"
           :icon="CalendarIcon"
-          aria-label="Select a date"
+          aria-label="Выберите дату"
           class="px-0"
         />
 

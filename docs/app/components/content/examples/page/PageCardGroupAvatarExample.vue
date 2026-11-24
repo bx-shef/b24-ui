@@ -8,20 +8,20 @@ const items: PageCardGroupItem[] = [
   {
     value: 'callback',
     avatar: { color: 'air-primary-success', icon: TelephonyHandset1Icon },
-    label: 'Callback',
-    description: 'Capture the phone number and start a callback'
+    label: 'Обратный звонок',
+    description: 'Записать номер телефона и начать обратный звонок'
   },
   {
     value: 'contacts',
     avatar: { color: 'air-primary-copilot', icon: MailIcon },
-    label: 'Contact details',
-    description: 'Collect phone, email and client name'
+    label: 'Контактные данные',
+    description: 'Собрать телефон, email и имя клиента'
   },
   {
     value: 'feedback',
     avatar: { color: 'air-primary-warning', icon: FeedbackIcon },
-    label: 'Feedback',
-    description: 'Gather customer reviews'
+    label: 'Обратная связь',
+    description: 'Сбор отзывов клиентов'
   }
 ]
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const items = ref(['Backlog', 'Todo', 'In Progress', 'Done'])
+const items = ref(['Бэклог', 'К выполнению', 'В работе', 'Готово'])
 const value = ref('')
 </script>
 
@@ -9,6 +9,6 @@ const value = ref('')
     mode="autocomplete"
     :items="items"
     :content="{ hideWhenEmpty: true }"
-    placeholder="Type a status..."
+    placeholder="Введите статус..."
   />
 </template>

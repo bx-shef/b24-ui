@@ -9,7 +9,7 @@ const password = ref('')
 <template>
   <B24Input
     v-model="password"
-    placeholder="Password"
+    placeholder="Пароль"
     :type="show ? 'text' : 'password'"
     :b24ui="{ trailing: 'pe-1' }"
   >
@@ -18,7 +18,7 @@ const password = ref('')
         size="sm"
         color="air-tertiary-no-accent"
         :icon="show ? CrossedEyeIcon : ObserverIcon"
-        :aria-label="show ? 'Hide password' : 'Show password'"
+        :aria-label="show ? 'Скрыть пароль' : 'Показать пароль'"
         :aria-pressed="show"
         aria-controls="password"
         @click="show = !show"
@@ -28,7 +28,7 @@ const password = ref('')
 </template>
 
 <style>
-/* Hide the password reveal button in Edge */
+/* Скрываем кнопку показа пароля в Edge */
 ::-ms-reveal {
     display: none;
 }

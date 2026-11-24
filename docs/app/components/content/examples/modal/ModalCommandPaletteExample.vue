@@ -14,7 +14,7 @@ const { data: users, status, execute } = await useLazyFetch('https://jsonplaceho
 
 const groups = computed(() => [{
   id: 'users',
-  label: searchTerm.value ? `Users matching “${searchTerm.value}”...` : 'Users',
+  label: searchTerm.value ? `Пользователи по запросу «${searchTerm.value}»...` : 'Пользователи',
   items: users.value || [],
   ignoreFilter: true
 }])
@@ -32,7 +32,7 @@ function onOpen() {
     @update:open="onOpen"
   >
     <B24Button
-      label="Search users..."
+      label="Найдите пользователей..."
       :icon="PersonSearchIcon"
     />
 
@@ -41,7 +41,7 @@ function onOpen() {
         v-model:search-term="searchTerm"
         :loading="status === 'pending'"
         :groups="groups"
-        placeholder="Search users..."
+        placeholder="Найдите пользователей..."
         class="h-80"
       />
     </template>

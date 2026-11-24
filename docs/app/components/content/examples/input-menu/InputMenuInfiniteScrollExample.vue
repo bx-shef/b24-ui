@@ -54,7 +54,7 @@ onMounted(() => {
 <template>
   <B24InputMenu
     ref="inputMenu"
-    placeholder="Select user"
+    placeholder="Выберите пользователя"
     :items="users"
     @update:open="onOpen"
   />
