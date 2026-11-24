@@ -1,7 +1,7 @@
 {
   "upstream": "nuxt/ui",
   "branch": "v4",
-  "cursor": "96c1990c1d5fd9b175e132798a83e205d9156f22",
+  "cursor": "468dce9d57801c2de4fb3f1a0d2feea9239bf8e1",
   "_cursor_note": "cursor = last upstream commit ported into b24ui. The sync is manual by decision: one commit at a time, oldest-first, each with a `.sync/log/<sha>.md` journal and an entry in `processed`. There is no dispatcher, no porter workflow and no kill-switch — `.sync/PORTING.md` is the whole procedure. `processed` is maintained per port (backfilled #68-#72 on 2026-06-09).",
   "processed": {
     "2799fa6f2b25ce3eb15e050f3ef7c57d0d9a2fdb": {
@@ -3287,6 +3287,12 @@
       "b24ui_sha": "pending-merge",
       "decision": "port",
       "summary": "feat(ChatMessages): add `footer` slot"
+    },
+    "468dce9d57801c2de4fb3f1a0d2feea9239bf8e1": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "chore(deps): remove h3 override"
     }
   }
 }
