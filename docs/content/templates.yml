@@ -1,18 +1,18 @@
-title: Official Bitrix24 UI Templates
-description: 'Explore ready-made templates powered by our Vue components. These templates are fully responsive, accessible, and easy to customize, so you can launch your project quickly and effortlessly.'
+title: Официальные шаблоны Bitrix24 UI
+description: 'Готовые шаблоны на наших Vue-компонентах. Они адаптивны, доступны и легко настраиваются, поэтому проект можно запустить быстро и без усилий.'
 hero:
-  title: Ship faster with :br Bitrix24 UI Templates
-  description: 'Explore ready-made templates powered by our Vue components. These templates are fully responsive, accessible, and easy to customize, so you can launch your project quickly and effortlessly.'
+  title: Запускайте быстрее :br с шаблонами Bitrix24 UI
+  description: 'Готовые шаблоны на наших Vue-компонентах. Они адаптивны, доступны и легко настраиваются, поэтому проект можно запустить быстро и без усилий.'
 navigation: false
 items:
   - title: 'Dashboard'
-    description: "A dashboard template with multi-column layout for building sophisticated app interfaces."
+    description: "Шаблон дашборда с многоколоночной раскладкой для сложных интерфейсов приложений."
     iconName: TodoIconsChartBig
     framework: nuxt
     features:
-      - title: Charts and date pickers
+      - title: Графики и выбор дат
         iconName: TodoIconsChartBig
-      - title: Multi-column layout
+      - title: Многоколоночная раскладка
         iconName: TodoIconsColumns3
     deploy_links:
       - label: Vercel
@@ -24,7 +24,7 @@ items:
         target: _blank
         iconName: TodoIconsNetlify
     links:
-      - label: Preview
+      - label: Предпросмотр
         to: https://bitrix24.github.io/templates-dashboard/
         target: _blank
         iconName: TodoIconsLink
@@ -38,13 +38,13 @@ items:
         target: _blank
         iconName: TodoIconsV0
   - title: 'Dashboard'
-    description: "A dashboard template with multi-column layout for building sophisticated app interfaces."
+    description: "Шаблон дашборда с многоколоночной раскладкой для сложных интерфейсов приложений."
     iconName: TodoIconsChartBig
     framework: vue
     features:
-      - title: Charts and date pickers
+      - title: Графики и выбор дат
         iconName: TodoIconsChartBig
-      - title: Multi-column layout
+      - title: Многоколоночная раскладка
         iconName: TodoIconsColumns3
     deploy_links:
       - label: Vercel
@@ -56,7 +56,7 @@ items:
         target: _blank
         iconName: TodoIconsNetlify
     links:
-      - label: Preview
+      - label: Предпросмотр
         to: https://bitrix24.github.io/templates-dashboard-vue/
         target: _blank
         iconName: TodoIconsLink
@@ -70,13 +70,13 @@ items:
         target: _blank
         iconName: TodoIconsV0
   - title: 'Starter'
-    description: "A minimal template to get started with Bitrix24 UI."
+    description: "Минимальный шаблон для начала работы с Bitrix24 UI."
     iconName: TodoIconsFlower
     framework: nuxt
     features:
-      - title: Nuxt configured
+      - title: Настроенный Nuxt
         iconName: NuxtIcon
-      - title: ESLint configured
+      - title: Настроенный ESLint
         iconName: TodoIconsEslint
     deploy_links:
       - label: Vercel
@@ -88,7 +88,7 @@ items:
         target: _blank
         iconName: TodoIconsNetlify
     links:
-      - label: Preview
+      - label: Предпросмотр
         to: https://bitrix24.github.io/starter-b24ui/
         target: _blank
         iconName: TodoIconsLink
@@ -102,13 +102,13 @@ items:
         target: _blank
         iconName: TodoIconsV0
   - title: 'Starter'
-    description: "A minimal template to get started with Bitrix24 UI."
+    description: "Минимальный шаблон для начала работы с Bitrix24 UI."
     iconName: TodoIconsFlower
     framework: vue
     features:
-      - title: Vite configured
+      - title: Настроенный Vite
         iconName: TodoIconsVite
-      - title: ESLint configured
+      - title: Настроенный ESLint
         iconName: TodoIconsEslint
     deploy_links:
       - label: Vercel
@@ -120,7 +120,7 @@ items:
         target: _blank
         iconName: TodoIconsNetlify
     links:
-      - label: Preview
+      - label: Предпросмотр
         to: https://bitrix24.github.io/starter-b24ui-vue/
         target: _blank
         iconName: TodoIconsLink
