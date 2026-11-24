@@ -40,7 +40,11 @@ export default defineLocale<Messages>({
       autoScroll: '滚动到底部'
     },
     chatPrompt: {
-      placeholder: '在此输入消息…'
+      placeholder: '在此输入消息…',
+      queue: '排队中的消息',
+      sendNow: '立即发送',
+      edit: '编辑',
+      remove: '移除'
     },
     chatPromptSubmit: {
       label: '发送',

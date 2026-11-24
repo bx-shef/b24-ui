@@ -462,6 +462,34 @@
     ]
   },
   {
+    "file": "components/__snapshots__/ChatAttachment-vue.spec.ts.snap",
+    "names": [
+      "ChatAttachment > renders with name correctly 1",
+      "ChatAttachment > renders with size md correctly 1"
+    ]
+  },
+  {
+    "file": "components/__snapshots__/ChatAttachment-vue.spec.ts.snap",
+    "names": [
+      "ChatAttachment > renders with orientation horizontal correctly 1",
+      "ChatAttachment > renders with variant card correctly 1"
+    ]
+  },
+  {
+    "file": "components/__snapshots__/ChatAttachment.spec.ts.snap",
+    "names": [
+      "ChatAttachment > renders with name correctly 1",
+      "ChatAttachment > renders with size md correctly 1"
+    ]
+  },
+  {
+    "file": "components/__snapshots__/ChatAttachment.spec.ts.snap",
+    "names": [
+      "ChatAttachment > renders with orientation horizontal correctly 1",
+      "ChatAttachment > renders with variant card correctly 1"
+    ]
+  },
+  {
     "file": "components/__snapshots__/ChatMessage-vue.spec.ts.snap",
     "names": [
       "ChatMessage > renders with b24ui correctly 1",

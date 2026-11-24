@@ -40,7 +40,11 @@ export default defineLocale<Messages>({
       autoScroll: 'Scorri in fondo'
     },
     chatPrompt: {
-      placeholder: 'Scrivi il tuo messaggio qui…'
+      placeholder: 'Scrivi il tuo messaggio qui…',
+      queue: 'Messaggi in coda',
+      sendNow: 'Invia ora',
+      edit: 'Modifica',
+      remove: 'Rimuovi'
     },
     chatPromptSubmit: {
       label: 'Invia',

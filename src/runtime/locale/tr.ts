@@ -40,7 +40,11 @@ export default defineLocale<Messages>({
       autoScroll: 'Aşağı kaydır'
     },
     chatPrompt: {
-      placeholder: 'Mesajınızı buraya yazın…'
+      placeholder: 'Mesajınızı buraya yazın…',
+      queue: 'Sıradaki mesajlar',
+      sendNow: 'Şimdi gönder',
+      edit: 'Düzenle',
+      remove: 'Kaldır'
     },
     chatPromptSubmit: {
       label: 'Gönder',

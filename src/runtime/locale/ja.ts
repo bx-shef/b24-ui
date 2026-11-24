@@ -40,7 +40,11 @@ export default defineLocale<Messages>({
       autoScroll: '一番下までスクロール'
     },
     chatPrompt: {
-      placeholder: 'メッセージを入力してください…'
+      placeholder: 'メッセージを入力してください…',
+      queue: 'キュー内のメッセージ',
+      sendNow: '今すぐ送信',
+      edit: '編集',
+      remove: '削除'
     },
     chatPromptSubmit: {
       label: '送信',

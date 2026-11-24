@@ -40,7 +40,11 @@ export default defineLocale<Messages>({
       autoScroll: 'नीचे स्क्रॉल करें'
     },
     chatPrompt: {
-      placeholder: 'अपना संदेश यहाँ लिखें…'
+      placeholder: 'अपना संदेश यहाँ लिखें…',
+      queue: 'कतार में संदेश',
+      sendNow: 'अभी भेजें',
+      edit: 'संपादित करें',
+      remove: 'हटाएँ'
     },
     chatPromptSubmit: {
       label: 'भेजें',
