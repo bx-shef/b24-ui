@@ -1,23 +1,23 @@
-# Import icon and use it
+# Импорт и использование иконки
 
-The icon metadata from `@bitrix24/b24icons-vue` is stored in `node_modules/@bitrix24/b24icons-vue/dist/info-metadata.json` (all data in English).
+Метаданные иконок `@bitrix24/b24icons-vue` лежат в `node_modules/@bitrix24/b24icons-vue/dist/info-metadata.json` (все данные на английском).
 
-**When the user asks for an icon:**
+**Когда пользователь просит иконку:**
 
-1. **Search** the metadata file **case-insensitively** by partial match on the icon name. If multiple matches exist, show the most relevant ones.
-2. **Extract** from the matching entry:
-   - `code` (e.g., `"outline::AchievementIcon"`)
-   - `type` (e.g., `"outline"` or `"solid"`)
-   - `icon` – the component name (e.g., `"AchievementIcon"`)
-3. **Generate** the import statement, substituting the `icon` and `type` fields from step 2 into
-   `import <icon> from '@bitrix24/b24icons-vue/<type>/<icon>'`. Each icon is a **default** export — the name is never braced, so `import { AchievementIcon } from …` does not work.
-4. **Provide usage examples** (Vue 3 `<script setup>` style), following the worked example below exactly: render the icon as a component, and pass it to `:icon` as the imported component itself — not a string, and not an object literal such as `:icon="{AchievementIcon}"`.
+1. **Найдите** в файле метаданных иконку по части имени, **без учёта регистра**. Если совпадений несколько, покажите самые подходящие.
+2. **Возьмите** из найденной записи:
+   - `code` (например, `"outline::AchievementIcon"`);
+   - `type` (например, `"outline"` или `"solid"`);
+   - `icon` — имя компонента (например, `"AchievementIcon"`).
+3. **Сформируйте** импорт, подставив поля `icon` и `type` из шага 2 в
+   `import <icon> from '@bitrix24/b24icons-vue/<type>/<icon>'`. Каждая иконка — экспорт **по умолчанию**: имя без фигурных скобок, поэтому `import { AchievementIcon } from …` не работает.
+4. **Приведите примеры использования** (Vue 3, стиль `<script setup>`) строго по образцу ниже: отрисуйте иконку как компонент и передайте в `:icon` сам импортированный компонент — не строку и не объектный литерал вроде `:icon="{AchievementIcon}"`.
 
-**Answer format** (copy-paste ready):
-- Import line
-- Minimal Vue component example with icon and optional `B24Button`
+**Формат ответа** (чтобы можно было скопировать):
+- строка импорта;
+- минимальный пример Vue-компонента с иконкой и, при необходимости, `B24Button`.
 
-**Example response for "achievement":**
+**Пример ответа на запрос «achievement»:**
 ```ts
 import AchievementIcon from '@bitrix24/b24icons-vue/outline/AchievementIcon'
 ```

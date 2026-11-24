@@ -14,7 +14,7 @@ const { b24DocsLink, tgLink } = useHeader()
   <B24Footer>
     <template #left>
       <ProseP small accent="less">
-        Copyright © 2024-present Bitrix24
+        Copyright © 2024 — настоящее время, Bitrix24
       </ProseP>
     </template>
 
@@ -28,14 +28,14 @@ const { b24DocsLink, tgLink } = useHeader()
       />
 
       <B24Button
-        aria-label="Bitrix24 UI on Telegram"
+        aria-label="Bitrix24 UI в Telegram"
         :icon="TelegramIcon"
         :to="tgLink"
         target="_blank"
         size="md"
       />
       <B24Button
-        label="Releases"
+        label="Релизы"
         :icon="RocketIcon"
         :to="`${config.public.gitUrl}/releases`"
         target="_blank"
@@ -44,7 +44,7 @@ const { b24DocsLink, tgLink } = useHeader()
     </template>
 
     <NuxtLink :to="config.public.gitUrl" target="_blank" class="text-legend text-(length:--ui-font-size-sm) hover:underline">
-      Published under MIT License.
+      Опубликовано под лицензией MIT.
     </NuxtLink>
   </B24Footer>
 </template>

@@ -5,7 +5,7 @@ import UploadIcon from '@bitrix24/b24icons-vue/outline/UploadIcon'
 
 const { data: page } = await useAsyncData('templates', () => queryCollection('templates').first())
 if (!page.value) {
-  throw createError({ status: 404, statusText: 'Page not found', fatal: true })
+  throw createError({ status: 404, statusText: 'Страница не найдена', fatal: true })
 }
 
 useSeoMeta({
@@ -68,7 +68,7 @@ useCanonical()
         >
           <B24Button
             use-dropdown
-            label="Open on"
+            label="Открыть в"
             :icon="DeveloperResourcesIcon"
             :b24ui="{ trailingIcon: 'group-data-[state=open]:rotate-180 transition-transform duration-200' }"
           />
@@ -77,7 +77,7 @@ useCanonical()
         <B24DropdownMenu
           :items="[
             ...template.deploy_links,
-            { label: 'Other', to: 'https://nuxt.com/deploy', target: '_blank' }
+            { label: 'Другое', to: 'https://nuxt.com/deploy', target: '_blank' }
           ]"
           :b24ui="{ content: 'w-[110px]', viewport: 'min-w-[110px] w-[110px]' }"
           :modal="false"
@@ -85,7 +85,7 @@ useCanonical()
         >
           <B24Button
             use-dropdown
-            label="Deploy to"
+            label="Развернуть в"
             :icon="UploadIcon"
             :b24ui="{ trailingIcon: 'group-data-[state=open]:rotate-180 transition-transform duration-200' }"
           />
@@ -101,7 +101,7 @@ useCanonical()
           :light="`/assets/templates/${template.framework}/${template.title.toLowerCase()}-light.png`"
           :dark="`/assets/templates/${template.framework}/${template.title.toLowerCase()}-dark.png`"
           class="w-full h-auto border border-(--ui-color-divider-accent) rounded-sm"
-          :alt="`Template ${template.title} screenshot`"
+          :alt="`Скриншот шаблона ${template.title}`"
           width="654"
           height="368"
           loading="lazy"

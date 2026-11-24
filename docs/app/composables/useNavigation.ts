@@ -22,63 +22,63 @@ const categories = {
   'components': [
     {
       id: 'layout',
-      title: 'Layout',
+      title: 'Раскладка',
       icon: LayersIcon
     },
     {
       id: 'element',
-      title: 'Element',
+      title: 'Элементы',
       icon: ItemIcon
     },
     {
       id: 'form',
-      title: 'Form',
+      title: 'Формы',
       icon: FormIcon
     },
     {
       id: 'data',
-      title: 'Data',
+      title: 'Данные',
       icon: BulletedListIcon
     },
     {
       id: 'navigation',
-      title: 'Navigation',
+      title: 'Навигация',
       icon: LinkIcon
     },
     {
       id: 'overlay',
-      title: 'Overlay',
+      title: 'Оверлеи',
       icon: OpenChatIcon
     },
     {
       id: 'page',
-      title: 'Page',
+      title: 'Страница',
       icon: PageIcon
     },
     {
       id: 'dashboard',
-      title: 'Dashboard',
+      title: 'Дашборд',
       icon: CodeIcon
     },
     {
       id: 'chat',
-      title: 'AI Chat',
+      title: 'AI-чат',
       icon: AiStarsIcon
     },
     {
       id: 'editor',
-      title: 'Editor',
+      title: 'Редактор',
       icon: EditPencilIcon
     },
     {
       id: 'content',
-      title: 'Content',
+      title: 'Контент',
       framework: 'nuxt',
       icon: TaskListIcon
     },
     {
       id: 'color-mode',
-      title: 'Color Mode',
+      title: 'Цветовая схема',
       icon: BrushIcon
     },
     {
@@ -90,24 +90,24 @@ const categories = {
   'typography': [
     {
       id: 'components',
-      title: 'Components',
+      title: 'Компоненты',
       icon: ALetterIcon
     }
   ],
   'getting-started': [
     {
       id: 'theme',
-      title: 'Theme',
+      title: 'Тема',
       icon: undefined
     },
     {
       id: 'integrations',
-      title: 'Integrations',
+      title: 'Интеграции',
       icon: undefined
     },
     {
       id: 'aiTools',
-      title: 'AI Tools',
+      title: 'AI-инструменты',
       icon: undefined
     }
   ]
@@ -141,7 +141,7 @@ function groupChildrenByCategory(items: ContentNavigationItem[], slug: string): 
 
     if (withoutChildren.length) {
       groups.push({
-        title: 'Overview',
+        title: 'Обзор',
         type: 'trigger' as const,
         /** @memo this path */
         path: `/docs/${slug}/`,

@@ -57,7 +57,7 @@ defineShortcuts({
         <template #left>
           <B24PageAside class="scrollbar-thin scrollbar-transparent border-(--ui-color-divider-accent) border-e-1">
             <div v-if="isSearchActive" class="py-3">
-              <B24Input ref="input" v-model="searchTerm" placeholder="Filter..." class="group">
+              <B24Input ref="input" v-model="searchTerm" placeholder="Фильтр…" class="group">
                 <template #trailing>
                   <B24Kbd value="/" />
                 </template>

@@ -5,15 +5,15 @@
 [![License][license-src]][license-href]
 [![Bitrix24 UI][b24ui-src]][b24ui-href]
 
-Bitrix24 UI Kit for building REST-API web applications with Nuxt & Vue
+Bitrix24 UI Kit — библиотека для создания веб-приложений на REST API с помощью Nuxt и Vue.
 
-Find more details in the [documentation](https://bitrix24.github.io/b24ui/)
+Подробности — в [документации](https://bitrix24.github.io/b24ui/).
 
-## Documentation
+## Документация
 
-Visit https://bitrix24.github.io/b24ui/ to explore the documentation.
+Документация доступна на https://bitrix24.github.io/b24ui/.
 
-## Installation
+## Установка
 
 ```bash [pnpm]
 pnpm add @bitrix24/b24ui-nuxt @bitrix24/b24icons-vue tailwindcss
@@ -33,7 +33,7 @@ bun add @bitrix24/b24ui-nuxt @bitrix24/b24icons-vue tailwindcss
 
 ### Nuxt
 
-1. Add the Bitrix24 UI module in your `nuxt.config.ts`:
+1. Добавьте модуль Bitrix24 UI в `nuxt.config.ts`:
 
 ```ts [nuxt.config.ts]
 export default defineNuxtConfig({
@@ -42,18 +42,18 @@ export default defineNuxtConfig({
 })
 ```
 
-2. Import Tailwind CSS and Bitrix24 UI in your CSS:
+2. Подключите Tailwind CSS и Bitrix24 UI в своём CSS:
 
 ```css [app/assets/css/main.css]
 @import "tailwindcss";
 @import "@bitrix24/b24ui-nuxt";
 ```
 
-Learn more in the [installation guide](https://bitrix24.github.io/b24ui/docs/getting-started/installation/nuxt/).
+Подробнее — в [руководстве по установке](https://bitrix24.github.io/b24ui/docs/getting-started/installation/nuxt/).
 
 ### Vue
 
-1. Add the Bitrix24 UI Vite plugin in your `vite.config.ts`:
+1. Добавьте Vite-плагин Bitrix24 UI в `vite.config.ts`:
 
 ```ts [vite.config.ts]
 import { defineConfig } from 'vite'
@@ -68,7 +68,7 @@ export default defineConfig({
 })
 ```
 
-2. Use the Bitrix24 UI Vue plugin in your `main.ts`:
+2. Подключите Vue-плагин Bitrix24 UI в `main.ts`:
 
 ```ts [src/main.ts]
 import './assets/css/main.css'
@@ -91,28 +91,28 @@ app.use(b24UiPlugin)
 app.mount('#app')
 ```
 
-3. Import Tailwind CSS and Bitrix24 UI in your CSS:
+3. Подключите Tailwind CSS и Bitrix24 UI в своём CSS:
 
 ```css [src/assets/css/main.css]
 @import "tailwindcss";
 @import "@bitrix24/b24ui-nuxt";
 ```
 
-Learn more in the [installation guide](https://bitrix24.github.io/b24ui/docs/getting-started/installation/vue/).
+Подробнее — в [руководстве по установке](https://bitrix24.github.io/b24ui/docs/getting-started/installation/vue/).
 
-## Contribution
+## Участие в разработке
 
-Thank you for considering contributing to Bitrix24 UI. Here are a few ways you can get involved:
+Спасибо, что хотите помочь Bitrix24 UI. Вот несколько способов принять участие:
 
-- **Security**: found a vulnerability? [Report it privately](https://github.com/bitrix24/b24ui/security/advisories/new) — not through the forms below. [SECURITY.md](https://github.com/bitrix24/b24ui/blob/main/SECURITY.md) says what counts.
-- **Reporting bugs**: [open a bug report](https://github.com/bitrix24/b24ui/issues/new?template=bug-report.yml). The form asks for a reproduction, and that is the field that decides whether the report can be acted on — see [reporting a bug](https://github.com/bitrix24/b24ui/blob/main/CONTRIBUTING.md#reporting-a-bug).
-- **Suggestions**: [open a feature request](https://github.com/bitrix24/b24ui/issues/new?template=feature-request.yml). Have any thoughts to enhance Bitrix24 UI? We'd love to hear them.
-- **Code**: [CONTRIBUTING.md](https://github.com/bitrix24/b24ui/blob/main/CONTRIBUTING.md) is the map — setup, the deep-dive guides, and what CI expects of a pull request. The [contribution guide](https://bitrix24.github.io/b24ui/docs/getting-started/contribution/) on the documentation site covers getting the repository running.
+- **Безопасность**: нашли уязвимость? [Сообщите о ней приватно](https://github.com/bitrix24/b24ui/security/advisories/new), а не через формы ниже. Что считается уязвимостью, сказано в [SECURITY.md](https://github.com/bitrix24/b24ui/blob/main/SECURITY.md).
+- **Сообщения об ошибках**: [создайте отчёт об ошибке](https://github.com/bitrix24/b24ui/issues/new?template=bug-report.yml). В форме просят воспроизведение — от этого поля зависит, можно ли что-то сделать по отчёту; см. [как сообщить об ошибке](https://github.com/bitrix24/b24ui/blob/main/CONTRIBUTING.md#reporting-a-bug).
+- **Предложения**: [создайте запрос на новую возможность](https://github.com/bitrix24/b24ui/issues/new?template=feature-request.yml). Есть идеи, как улучшить Bitrix24 UI? Мы будем рады их услышать.
+- **Код**: [CONTRIBUTING.md](https://github.com/bitrix24/b24ui/blob/main/CONTRIBUTING.md) — путеводитель: настройка окружения, подробные руководства и то, чего CI ждёт от pull request. Как запустить репозиторий, описано в [руководстве по участию](https://bitrix24.github.io/b24ui/docs/getting-started/contribution/) на сайте документации.
 
 > [!TIP]
-> We provide contributing guidelines through [`AGENTS.md`](https://github.com/bitrix24/b24ui/blob/main/AGENTS.md) for AI assistants to help you contribute to Bitrix24 UI. It is automatically picked up by all AI coding agents and guides through component structure, theming patterns, testing conventions, and documentation guidelines.
+> Правила участия для AI-ассистентов лежат в [`AGENTS.md`](https://github.com/bitrix24/b24ui/blob/main/AGENTS.md). Файл подхватывают все AI-агенты для программирования, и он подсказывает им устройство компонентов, приёмы темизации, соглашения о тестах и правила документации.
 
-## Credits
+## Благодарности
 
 - [nuxt/nuxt](https://github.com/nuxt/nuxt)
 - [nuxt/ui](https://github.com/nuxt/ui)

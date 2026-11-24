@@ -5,7 +5,7 @@ import { resolveIcon } from '@bitrix24/b24ui-nuxt/utils'
 
 const { data: page } = await useAsyncData('index', () => queryCollection('index').first())
 if (!page.value) {
-  throw createError({ status: 404, statusText: 'Page not found', fatal: true })
+  throw createError({ status: 404, statusText: 'Страница не найдена', fatal: true })
 }
 
 const config = useRuntimeConfig()
@@ -65,7 +65,7 @@ useSeoMeta({
       />
       <div>
         <B24Badge
-          label="source"
+          label="исходник"
           use-link
           color="air-tertiary"
           @click.prevent="navigateTo({

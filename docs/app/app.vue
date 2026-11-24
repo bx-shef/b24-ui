@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { ContentNavigationItem } from '@nuxt/content'
 import type { ToasterProps } from '@bitrix24/b24ui-nuxt'
+import { ru } from '@bitrix24/b24ui-nuxt/locale'
 
 const route = useRoute()
 const appConfig = useAppConfig()
@@ -34,7 +35,7 @@ provide('navigation', rootNavigation)
 </script>
 
 <template>
-  <B24App :toaster="appConfig.toaster as ToasterProps">
+  <B24App :locale="ru" :toaster="appConfig.toaster as ToasterProps">
     <NuxtLoadingIndicator color="var(--ui-color-design-filled-warning-bg)" :height="3" />
 
     <div class="flex">

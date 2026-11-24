@@ -1,8 +1,8 @@
-# Data Tables
+# Таблицы данных
 
-Complete patterns for displaying and managing tabular data.
+Готовые приёмы вывода и управления табличными данными.
 
-## Basic table
+## Простая таблица
 
 ```vue
 <script setup lang="ts">
@@ -30,7 +30,7 @@ const columns: TableColumn<typeof data.value[number]>[] = [{
 </template>
 ```
 
-## With search and filters (dashboard)
+## С поиском и фильтрами (дашборд)
 
 ```vue
 <script setup lang="ts">
@@ -101,9 +101,9 @@ const filteredRows = computed(() => {
 </template>
 ```
 
-## With row selection
+## С выбором строк
 
-Row selection uses TanStack Table's `rowSelection` state, a `Record<string, boolean>` keyed by row ID. The default ID is the row index. Provide `getRowId` with a stable unique string ID when replacing data, filtering it before passing it to the table, or fetching server pages.
+Выбор строк использует состояние `rowSelection` из TanStack Table — `Record<string, boolean>` с ID строки в качестве ключа. По умолчанию ID — индекс строки. Если данные заменяются, фильтруются до передачи в таблицу или приходят страницами с сервера, задайте `getRowId` со стабильным уникальным строковым ID.
 
 ```vue
 <script setup lang="ts">
@@ -116,14 +116,14 @@ const rowSelection = ref<Record<string, boolean>>({})
 
   <div class="px-4 py-3.5 text-sm text-muted">
     {{ table?.tableApi?.getFilteredSelectedRowModel().rows.length || 0 }} of
-    {{ table?.tableApi?.getFilteredRowModel().rows.length || 0 }} row(s) selected.
+    {{ table?.tableApi?.getFilteredRowModel().rows.length || 0 }} строк выбрано.
   </div>
 </template>
 ```
 
-This example assumes each record has a unique string `id`. With server-side pagination, selected row models only include records in the current input data. For cross-page bulk actions, keep the selected IDs in `rowSelection` rather than deriving the full selection from `getSelectedRowModel()` or `getFilteredSelectedRowModel()`. Decide whether page or filter changes should clear selection.
+Пример предполагает, что у каждой записи есть уникальный строковый `id`. При серверной пагинации модели выбранных строк включают только записи текущих входных данных. Для массовых действий через несколько страниц храните выбранные ID в `rowSelection`, а не выводите полный выбор из `getSelectedRowModel()` или `getFilteredSelectedRowModel()`. Решите, должна ли смена страницы или фильтра сбрасывать выбор.
 
-Add a checkbox column using the `h` function. Use tri-state `modelValue` (`true`, `false`, or `'indeterminate'`) for the "select all" header:
+Колонку с чекбоксами добавьте через функцию `h`. Для заголовка «выбрать всё» используйте трёхзначный `modelValue` (`true`, `false` или `'indeterminate'`):
 
 ```ts
 import { h } from 'vue'
@@ -143,13 +143,13 @@ const columns: TableColumn[] = [{
     'aria-label': 'Select row'
   })
 },
-// ... other columns
+// ... остальные колонки
 ]
 ```
 
-## With pagination
+## С пагинацией
 
-Use `v-model:pagination` on `B24Table` with TanStack's `getPaginationRowModel`, then wire `B24Pagination` to the table API. `B24Pagination`'s `total` is total **items** (not pages) — it calculates page count from `total / items-per-page`.
+Задайте `v-model:pagination` у `B24Table` вместе с `getPaginationRowModel` из TanStack, затем свяжите `B24Pagination` с API таблицы. `total` у `B24Pagination` — общее число **элементов** (не страниц): число страниц он считает как `total / items-per-page`.
 
 ```vue
 <script setup lang="ts">
@@ -183,9 +183,9 @@ const pagination = ref({
 </template>
 ```
 
-## With async data (Nuxt)
+## С асинхронными данными (Nuxt)
 
-Use `status === 'pending' || status === 'idle'` for loading state — `idle` covers the initial render before `useLazyFetch` starts.
+Для состояния загрузки используйте `status === 'pending' || status === 'idle'`: `idle` покрывает первую отрисовку до старта `useLazyFetch`.
 
 ```vue
 <script setup lang="ts">
@@ -197,7 +197,7 @@ const { data, status } = useLazyFetch('/api/users', { server: false })
 </template>
 ```
 
-For server-side pagination:
+Для серверной пагинации:
 
 ```vue
 <script setup lang="ts">
@@ -219,9 +219,9 @@ const { data, status } = await useAsyncData(
 </template>
 ```
 
-## Updating large datasets
+## Обновление больших наборов данных
 
-B24Table deep-watches `data` by default. For rows managed through array replacement, disable deep watching with `:watch-options="{ deep: false }"`. Replace the array and each changed row so the table refreshes its row models.
+B24Table по умолчанию следит за `data` глубоко. Если строки обновляются заменой массива, отключите глубокое слежение — `:watch-options="{ deep: false }"` — и заменяйте массив и каждую изменённую строку, чтобы таблица обновила модели строк.
 
 ```vue
 <script setup lang="ts">
@@ -237,16 +237,16 @@ function renameRow(id: string, name: string) {
 </template>
 ```
 
-With deep watching disabled, do not rely on `push()`, `splice()`, or nested edits alone to refresh table row models. Keep the default watcher when in-place mutation is part of the update model.
+С отключённым глубоким слежением не рассчитывайте, что `push()`, `splice()` или правки вложенных полей сами обновят модели строк. Если изменение на месте — часть модели обновления, оставьте слежение по умолчанию.
 
-The separate `virtualize` option limits rendered rows for large datasets. It does not disable deep watching. Check the installed b24ui version for virtualization support and its sticky or pinning restrictions.
+Отдельная опция `virtualize` ограничивает число отрисованных строк для больших наборов, но глубокое слежение не отключает. Поддержку виртуализации и её ограничения для закреплённых и зафиксированных колонок сверяйте с установленной версией b24ui.
 
-## Tips
+## Советы
 
-- Table is built on [TanStack Table v8](https://tanstack.com/table/v8) — columns use `ColumnDef` format with `accessorKey`, `header`, `cell`
-- Use `#<column>-cell` and `#<column>-header` template slots to customize rendering with Vue templates
-- Alternatively, use the `h` function inside `header` and `cell` column properties for inline rendering
-- Row data in slots is accessed via `row.original` (not `row` directly)
-- Use `v-model:row-selection` for selection, `v-model:sorting` for sort state
-- Wrap tables in `B24DashboardPanel` with `#header` toolbar for the dashboard pattern
-- For empty states, use the `#empty` slot
+- Таблица построена на [TanStack Table v8](https://tanstack.com/table/v8): колонки описываются в формате `ColumnDef` с `accessorKey`, `header`, `cell`.
+- Слоты `#<column>-cell` и `#<column>-header` позволяют настраивать отрисовку Vue-шаблонами.
+- Либо используйте функцию `h` в свойствах колонки `header` и `cell` для отрисовки на месте.
+- Данные строки в слотах берутся через `row.original` (не из `row` напрямую).
+- `v-model:row-selection` — для выбора, `v-model:sorting` — для состояния сортировки.
+- В дашборде оборачивайте таблицы в `B24DashboardPanel` с панелью инструментов в `#header`.
+- Для пустого состояния используйте слот `#empty`.
