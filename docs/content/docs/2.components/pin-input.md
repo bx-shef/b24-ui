@@ -1,6 +1,6 @@
 ---
 title: PinInput
-description: A PIN code input component.
+description: 'Компонент для ввода PIN-кода.'
 category: form
 keywords:
   - otp
@@ -10,7 +10,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/PinInput.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/pin-input
   - label: Nuxt UI
@@ -22,9 +22,9 @@ links:
     to: https://reka-ui.com/docs/components/pin-input
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `v-model` directive to control the value of the PinInput.
+Директива `v-model` управляет значением PinInput.
 
 ::component-code
 ---
@@ -38,7 +38,7 @@ props:
 ---
 ::
 
-Use the `default-value` prop to set the initial value when you do not need to control its state.
+Пропс `default-value` задаёт начальное значение, когда управлять состоянием не нужно.
 
 ::component-code
 ---
@@ -50,9 +50,9 @@ props:
 ---
 ::
 
-### Type
+### Тип {#type}
 
-Use the `type` prop to change the input type. Defaults to `text`.
+Пропс `type` меняет тип поля ввода. По умолчанию `text`.
 
 ::component-code
 ---
@@ -66,12 +66,12 @@ props:
 ::
 
 ::note
-When `type` is set to `number`, it will only accept numeric characters.
+При `type`, равном `number`, принимаются только цифры.
 ::
 
-### Mask
+### Маска {#mask}
 
-Use the `mask` prop to treat the input like a password.
+Пропс `mask` скрывает вводимые символы, как в поле пароля.
 
 ::component-code
 ---
@@ -85,9 +85,9 @@ props:
 ---
 ::
 
-### OTP
+### OTP {#otp}
 
-Use the `otp` prop to enable One-Time Password functionality. When enabled, mobile devices can automatically detect and fill OTP codes from SMS messages or clipboard content, with autocomplete support.
+Пропс `otp` включает поддержку одноразовых паролей (OTP). На мобильных устройствах код из SMS или буфера обмена подставляется автоматически, есть и автодополнение.
 
 ::component-code
 ---
@@ -96,9 +96,9 @@ props:
 ---
 ::
 
-### Length
+### Длина {#length}
 
-Use the `length` prop to change the amount of inputs.
+Пропс `length` меняет число полей ввода.
 
 ::component-code
 ---
@@ -107,9 +107,9 @@ props:
 ---
 ::
 
-### Placeholder
+### Плейсхолдер {#placeholder}
 
-Use the `placeholder` prop to set a placeholder text.
+Пропс `placeholder` задаёт текст плейсхолдера.
 
 ::component-code
 ---
@@ -118,9 +118,9 @@ props:
 ---
 ::
 
-### Separator
+### Разделитель {#separator}
 
-Use the `separator` prop to insert a separator between groups of inputs. Pass a number to insert one after every Nth input.
+Пропс `separator` вставляет разделитель между группами полей. Число означает, что разделитель ставится после каждого N-го поля.
 
 ::component-code
 ---
@@ -133,7 +133,7 @@ props:
 ---
 ::
 
-You can also pass an array of positions to insert separators after specific inputs.
+Можно передать и массив позиций, чтобы вставить разделители после определённых полей.
 
 ::component-code
 ---
@@ -149,9 +149,9 @@ props:
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the ring color when the PinInput is focused.
+Пропс `color` меняет цвет кольца, когда PinInput в фокусе.
 
 ::component-code
 ---
@@ -165,12 +165,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state. It's used internally when a validation error occurs.
+Пропс `highlight` здесь показывает состояние фокуса. Внутри компонента он включается при ошибке валидации.
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the PinInput.
+Пропс `size` меняет размер PinInput.
 
 ::component-code
 ---
@@ -182,9 +182,9 @@ props:
 ---
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the PinInput.
+Пропс `disabled` отключает PinInput.
 
 ::component-code
 ---
@@ -196,9 +196,9 @@ props:
 ---
 ::
 
-### No border
+### Без границы {#no-border}
 
-Use the `noBorder` prop to removes all borders (rings) from the InputTags.
+Пропс `noBorder` убирает у PinInput все границы (кольца).
 
 ::component-code
 ---
@@ -213,12 +213,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to indicate that there is no focus state.
+Пропс `highlight` здесь показывает, что состояния фокуса нет.
 ::
 
-### Underline
+### Подчёркивание {#underline}
 
-Use the `underline` prop to removes all borders (rings) except the bottom one from the InputTags.
+Пропс `underline` убирает у PinInput все границы (кольца), кроме нижней.
 
 ::component-code
 ---
@@ -233,12 +233,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-### Rounded
+### Скругление {#rounded}
 
-Use the `rounded` prop to round the InputTags.
+Пропс `rounded` скругляет PinInput.
 
 ::component-code
 ---
@@ -253,14 +253,14 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With separator slot
+### Со слотом separator {#with-separator-slot}
 
-Use the `separator` slot to customize the separator appearance.
+Слот `separator` меняет внешний вид разделителя.
 
 ::component-example
 ---
@@ -268,28 +268,28 @@ name: 'pin-input-separator-slot-example'
 ---
 ::
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-### Expose
+### Доступ через ref {#expose}
 
-When accessing the component via a template ref, you can use the following:
+При обращении к компоненту через ref в шаблоне доступно:
 
-| Name | Type |
+| Имя | Тип |
 | ---- | ---- |
 | `inputsRef`{lang="ts-type"} | `Ref<ComponentPublicInstance[]>`{lang="ts-type"} |
 
-## Theme
+## Тема {#theme}
 
 :component-theme

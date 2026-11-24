@@ -1,6 +1,6 @@
 ---
 title: User
-description: 'A component to display user details, including their name, bio, and profile picture.'
+description: 'Компонент для показа данных пользователя: имени, описания и фото профиля.'
 category: data
 keywords:
   - profile
@@ -10,7 +10,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/User.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/user
   - label: Nuxt UI
@@ -18,34 +18,34 @@ links:
     to: https://ui.nuxt.com/docs/components/user
 ---
 
-## Usage
+## Использование {#usage}
 
-### Name
+### Имя {#name}
 
-Use the `name` prop to display a name for the user.
-
-::component-code
----
-props:
-  name: 'John Doe'
----
-::
-
-### Description
-
-Use the `description` prop to display a description for the user.
+Пропс `name` показывает имя пользователя.
 
 ::component-code
 ---
 props:
-  name: 'John Doe'
-  description: 'Software Engineer'
+  name: 'Иван Петров'
 ---
 ::
 
-### Avatar
+### Описание {#description}
 
-Use the `avatar` prop to display an [Avatar](/docs/components/avatar/) component.
+Пропс `description` показывает описание пользователя.
+
+::component-code
+---
+props:
+  name: 'Иван Петров'
+  description: 'Инженер-программист'
+---
+::
+
+### Аватар {#avatar}
+
+Пропс `avatar` показывает компонент [Avatar](/docs/components/avatar/).
 
 ::component-code
 ---
@@ -56,15 +56,15 @@ ignore:
   - avatar.src
   - avatar.loading
 props:
-  name: 'John Doe'
-  description: 'Software Engineer'
+  name: 'Иван Петров'
+  description: 'Инженер-программист'
   avatar:
     src: '/b24ui/avatar/employee.png'
     loading: lazy
 ---
 ::
 
-::collapsible{name="all avatar properties"}
+::collapsible{name="все свойства аватара"}
 
 ::component-props
 ---
@@ -77,9 +77,9 @@ ignore:
 
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to tint the inner [Avatar](/docs/components/avatar/). A non-`undefined` `avatar.color` overrides it.
+Пропс `color` тонирует вложенный [Avatar](/docs/components/avatar/). Значение `avatar.color`, отличное от `undefined`, переопределяет его.
 
 ::component-code
 ---
@@ -108,17 +108,17 @@ items:
     - air-selection
     - air-boost
 props:
-  name: 'John Doe'
-  description: 'Software Engineer'
+  name: 'Иван Петров'
+  description: 'Инженер-программист'
   avatar:
     src: '/b24ui/avatar/employee.png'
   color: 'air-primary-alert'
 ---
 ::
 
-### Chip
+### Чип {#chip}
 
-Use the `chip` prop to display a [Chip](/docs/components/chip/) component.
+Пропс `chip` показывает компонент [Chip](/docs/components/chip/).
 
 ::component-code
 ---
@@ -144,8 +144,8 @@ items:
     - bottom-left
     - bottom-right
 props:
-  name: 'John Doe'
-  description: 'Software Engineer'
+  name: 'Иван Петров'
+  description: 'Инженер-программист'
   avatar:
     src: '/b24ui/avatar/employee.png'
   chip:
@@ -154,7 +154,7 @@ props:
 ---
 ::
 
-::collapsible{name="all chip properties"}
+::collapsible{name="все свойства чипа"}
 
 ::component-props
 ---
@@ -168,9 +168,9 @@ ignore:
 
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the user avatar and text.
+Пропс `size` меняет размер аватара и текста пользователя.
 
 ::component-code
 ---
@@ -181,8 +181,8 @@ ignore:
   - avatar.src
   - chip
 props:
-  name: 'John Doe'
-  description: 'Software Engineer'
+  name: 'Иван Петров'
+  description: 'Инженер-программист'
   avatar:
     src: '/b24ui/avatar/employee.png'
   chip: true
@@ -190,9 +190,9 @@ props:
 ---
 ::
 
-### Orientation
+### Ориентация {#orientation}
 
-Use the `orientation` prop to change the orientation. Defaults to `horizontal`.
+Пропс `orientation` меняет ориентацию. По умолчанию `horizontal`.
 
 ::component-code
 ---
@@ -201,16 +201,16 @@ ignore:
   - avatar.src
 props:
   orientation: 'vertical'
-  name: 'John Doe'
-  description: 'Software Engineer'
+  name: 'Иван Петров'
+  description: 'Инженер-программист'
   avatar:
     src: '/b24ui/avatar/employee.png'
 ---
 ::
 
-### Link
+### Ссылка {#link}
 
-You can pass any property from the [`<NuxtLink>`](https://nuxt.com/docs/api/components/nuxt-link) component such as `to`, `target`, `rel`, etc.
+Можно передать любое свойство компонента [`<NuxtLink>`](https://nuxt.com/docs/api/components/nuxt-link), например `to`, `target`, `rel` и другие.
 
 ::component-code
 ---
@@ -223,27 +223,27 @@ ignore:
 props:
   to: 'https://github.com/bitrix24'
   target: '_blank'
-  name: 'Username'
-  description: 'User description'
+  name: 'Имя пользователя'
+  description: 'Описание пользователя'
   avatar:
     src: 'https://github.com/bitrix24.png'
 ---
 ::
 
 ::note
-The `NuxtLink` component will inherit all other attributes you pass to the `User` component.
+Компонент `NuxtLink` наследует все остальные атрибуты, которые вы передали компоненту `User`.
 ::
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

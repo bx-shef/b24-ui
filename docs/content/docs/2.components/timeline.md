@@ -1,6 +1,6 @@
 ---
 title: Timeline
-description: 'A component for displaying a chronological sequence of events, with dates, titles, and supporting icons or avatars.'
+description: 'Компонент для хронологической последовательности событий с датами, заголовками и вспомогательными иконками или аватарами.'
 category: data
 keywords:
   - activity feed
@@ -9,7 +9,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Timeline.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/timeline
   - label: Nuxt UI
@@ -17,9 +17,9 @@ links:
     to: https://ui.nuxt.com/docs/components/timeline
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the Timeline component to display a list of items in a timeline.
+Timeline показывает список элементов в виде хронологии.
 
 ::component-code
 ---
@@ -38,25 +38,25 @@ externalTypes:
 props:
   defaultValue: 2
   items:
-    - date: 'Mar 15, 2025'
-      title: 'Project Kickoff'
-      description: 'Kicked off the project with team alignment. Set up project milestones and allocated resources.'
-    - date: 'Mar 22 2025'
-      title: 'Design Phase'
-      description: 'User research and design workshops. Created wireframes and prototypes for user testing.'
-    - date: 'Mar 29 2025'
-      title: 'Development Sprint'
-      description: 'Frontend and backend development. Implemented core features and integrated with APIs.'
-    - date: 'Apr 5 2025'
-      title: 'Testing & Deployment'
-      description: 'QA testing and performance optimization. Deployed the application to production.'
+    - date: '15 марта 2025'
+      title: 'Старт проекта'
+      description: 'Запустили проект и согласовали работу команды. Определили вехи и распределили ресурсы.'
+    - date: '22 марта 2025'
+      title: 'Этап дизайна'
+      description: 'Исследование пользователей и дизайн-воркшопы. Создали макеты и прототипы для проверки с пользователями.'
+    - date: '29 марта 2025'
+      title: 'Спринт разработки'
+      description: 'Разработка фронтенда и бэкенда. Реализовали основные функции и интегрировали с API.'
+    - date: '5 апреля 2025'
+      title: 'Тестирование и развёртывание'
+      description: 'QA-тестирование и оптимизация производительности. Развернули приложение в продакшене.'
   class: 'w-[384px]'
 ---
 ::
 
-### Items
+### Элементы {#items}
 
-Use the `items` prop as an array of objects with the following properties:
+Пропс `items` — массив объектов со свойствами:
 
 - `date?: string`{lang="ts-type"}
 - `title?: string`{lang="ts-type"}
@@ -81,25 +81,25 @@ externalTypes:
 props:
   defaultValue: 2
   items:
-    - date: 'Mar 15, 2025'
-      title: 'Project Kickoff'
-      description: 'Kicked off the project with team alignment. Set up project milestones and allocated resources.'
-    - date: 'Mar 22 2025'
-      title: 'Design Phase'
-      description: 'User research and design workshops. Created wireframes and prototypes for user testing.'
-    - date: 'Mar 29 2025'
-      title: 'Development Sprint'
-      description: 'Frontend and backend development. Implemented core features and integrated with APIs.'
-    - date: 'Apr 5 2025'
-      title: 'Testing & Deployment'
-      description: 'QA testing and performance optimization. Deployed the application to production.'
+    - date: '15 марта 2025'
+      title: 'Старт проекта'
+      description: 'Запустили проект и согласовали работу команды. Определили вехи и распределили ресурсы.'
+    - date: '22 марта 2025'
+      title: 'Этап дизайна'
+      description: 'Исследование пользователей и дизайн-воркшопы. Создали макеты и прототипы для проверки с пользователями.'
+    - date: '29 марта 2025'
+      title: 'Спринт разработки'
+      description: 'Разработка фронтенда и бэкенда. Реализовали основные функции и интегрировали с API.'
+    - date: '5 апреля 2025'
+      title: 'Тестирование и развёртывание'
+      description: 'QA-тестирование и оптимизация производительности. Развернули приложение в продакшене.'
   class: 'w-[384px]'
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of the active items in a Timeline.
+Пропс `color` меняет цвет активных элементов Timeline.
 
 ::component-code
 ---
@@ -115,25 +115,25 @@ props:
   color: air-primary
   defaultValue: 2
   items:
-    - date: 'Mar 15, 2025'
-      title: 'Project Kickoff'
-      description: 'Kicked off the project with team alignment. Set up project milestones and allocated resources.'
-    - date: 'Mar 22 2025'
-      title: 'Design Phase'
-      description: 'User research and design workshops. Created wireframes and prototypes for user testing.'
-    - date: 'Mar 29 2025'
-      title: 'Development Sprint'
-      description: 'Frontend and backend development. Implemented core features and integrated with APIs.'
-    - date: 'Apr 5 2025'
-      title: 'Testing & Deployment'
-      description: 'QA testing and performance optimization. Deployed the application to production.'
+    - date: '15 марта 2025'
+      title: 'Старт проекта'
+      description: 'Запустили проект и согласовали работу команды. Определили вехи и распределили ресурсы.'
+    - date: '22 марта 2025'
+      title: 'Этап дизайна'
+      description: 'Исследование пользователей и дизайн-воркшопы. Создали макеты и прототипы для проверки с пользователями.'
+    - date: '29 марта 2025'
+      title: 'Спринт разработки'
+      description: 'Разработка фронтенда и бэкенда. Реализовали основные функции и интегрировали с API.'
+    - date: '5 апреля 2025'
+      title: 'Тестирование и развёртывание'
+      description: 'QA-тестирование и оптимизация производительности. Развернули приложение в продакшене.'
   class: 'w-[384px]'
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the Timeline.
+Пропс `size` меняет размер Timeline.
 
 ::component-code
 ---
@@ -149,25 +149,25 @@ props:
   size: xs
   defaultValue: 2
   items:
-    - date: 'Mar 15, 2025'
-      title: 'Project Kickoff'
-      description: 'Kicked off the project with team alignment. Set up project milestones and allocated resources.'
-    - date: 'Mar 22 2025'
-      title: 'Design Phase'
-      description: 'User research and design workshops. Created wireframes and prototypes for user testing.'
-    - date: 'Mar 29 2025'
-      title: 'Development Sprint'
-      description: 'Frontend and backend development. Implemented core features and integrated with APIs.'
-    - date: 'Apr 5 2025'
-      title: 'Testing & Deployment'
-      description: 'QA testing and performance optimization. Deployed the application to production.'
+    - date: '15 марта 2025'
+      title: 'Старт проекта'
+      description: 'Запустили проект и согласовали работу команды. Определили вехи и распределили ресурсы.'
+    - date: '22 марта 2025'
+      title: 'Этап дизайна'
+      description: 'Исследование пользователей и дизайн-воркшопы. Создали макеты и прототипы для проверки с пользователями.'
+    - date: '29 марта 2025'
+      title: 'Спринт разработки'
+      description: 'Разработка фронтенда и бэкенда. Реализовали основные функции и интегрировали с API.'
+    - date: '5 апреля 2025'
+      title: 'Тестирование и развёртывание'
+      description: 'QA-тестирование и оптимизация производительности. Развернули приложение в продакшене.'
   class: 'w-[384px]'
 ---
 ::
 
-### Orientation
+### Ориентация {#orientation}
 
-Use the `orientation` prop to change the orientation of the Timeline. Defaults to `vertical`.
+Пропс `orientation` меняет ориентацию Timeline. По умолчанию `vertical`.
 
 ::component-code
 ---
@@ -183,26 +183,26 @@ props:
   orientation: 'horizontal'
   defaultValue: 2
   items:
-    - date: 'Mar 15, 2025'
-      title: 'Project Kickoff'
-      description: 'Kicked off the project with team alignment.'
-    - date: 'Mar 22 2025'
-      title: 'Design Phase'
-      description: 'User research and design workshops.'
-    - date: 'Mar 29 2025'
-      title: 'Development Sprint'
-      description: 'Frontend and backend development.'
-    - date: 'Apr 5 2025'
-      title: 'Testing & Deployment'
-      description: 'QA testing and performance optimization.'
+    - date: '15 марта 2025'
+      title: 'Старт проекта'
+      description: 'Запустили проект и согласовали работу команды.'
+    - date: '22 марта 2025'
+      title: 'Этап дизайна'
+      description: 'Исследование пользователей и дизайн-воркшопы.'
+    - date: '29 марта 2025'
+      title: 'Спринт разработки'
+      description: 'Разработка фронтенда и бэкенда.'
+    - date: '5 апреля 2025'
+      title: 'Тестирование и развёртывание'
+      description: 'QA-тестирование и оптимизация производительности.'
   class: 'w-full'
 class: 'overflow-x-auto'
 ---
 ::
 
-### Reverse
+### Обратный порядок {#reverse}
 
-Use the reverse prop to reverse the direction of the Timeline.
+Пропс `reverse` меняет направление Timeline на обратное.
 
 ::component-code
 ---
@@ -219,43 +219,43 @@ props:
   modelValue: 2
   orientation: 'vertical'
   items:
-    - date: 'Mar 15, 2025'
-      title: 'Project Kickoff'
-      description: 'Kicked off the project with team alignment.'
-    - date: 'Mar 22 2025'
-      title: 'Design Phase'
-      description: 'User research and design workshops.'
-    - date: 'Mar 29 2025'
-      title: 'Development Sprint'
-      description: 'Frontend and backend development.'
-    - date: 'Apr 5 2025'
-      title: 'Testing & Deployment'
-      description: 'QA testing and performance optimization.'
+    - date: '15 марта 2025'
+      title: 'Старт проекта'
+      description: 'Запустили проект и согласовали работу команды.'
+    - date: '22 марта 2025'
+      title: 'Этап дизайна'
+      description: 'Исследование пользователей и дизайн-воркшопы.'
+    - date: '29 марта 2025'
+      title: 'Спринт разработки'
+      description: 'Разработка фронтенда и бэкенда.'
+    - date: '5 апреля 2025'
+      title: 'Тестирование и развёртывание'
+      description: 'QA-тестирование и оптимизация производительности.'
   class: 'w-full'
 class: 'overflow-x-auto'
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Control active item
+### Управление активным элементом {#control-active-item}
 
-You can control the active item by using the `default-value` prop or the `v-model` directive with the `value` of the item. If no `value` is provided, it defaults to the index.
+Активным элементом управляют пропс `default-value` или директива `v-model` со значением `value` элемента. Если `value` не задан, берётся индекс.
 
 :component-example{name="timeline-model-value-example" prettier}
 
 ::tip
-Use the `value-key` prop to change the key used to match items when a `v-model` or `default-value` is provided.
+Пропс `value-key` меняет ключ, по которому элементы сопоставляются с `v-model` или `default-value`.
 
-The value is matched against `value-key` on each item, whatever its type. A number keeps its positional meaning when the item at that position carries no `value-key` — so plain arrays keep working by index — and falls back to a position when it matches no item. Out-of-range numbers select nothing.
+Значение сопоставляется с `value-key` каждого элемента независимо от его типа. Число сохраняет позиционный смысл, если у элемента на этой позиции нет `value-key` (поэтому обычные массивы по-прежнему работают по индексу), и превращается в позицию, если ни один элемент не совпал. Числа вне диапазона не выбирают ничего.
 ::
 
-### With select event
+### С событием select {#with-select-event}
 
-You can add a `@select` listener to make items clickable.
+Слушатель `@select` делает элементы кликабельными.
 
 ::note
-The handler function receives the `Event` and `TimelineItem` as the first and second arguments respectively.
+Функция-обработчик получает `Event` первым аргументом и `TimelineItem` вторым.
 ::
 
 ::component-example
@@ -266,17 +266,17 @@ name: 'timeline-select-example'
 ::
 
 
-### With alternating layout
+### С чередующейся раскладкой {#with-alternating-layout}
 
-Use the `b24ui` prop to create a Timeline with alternating layout.
+Пропс `b24ui` создаёт Timeline с чередующейся раскладкой.
 
 :component-example{name="timeline-alternating-layout-example" prettier}
 
-### With custom slot
+### С собственным слотом {#with-custom-slot}
 
-Use the `slot` property to customize a specific item.
+Свойство `slot` настраивает отдельный элемент.
 
-You will have access to the following slots:
+Вам будут доступны слоты:
 
 - `#{{ item.slot }}-indicator`{lang="ts-type"}
 - `#{{ item.slot }}-date`{lang="ts-type"}
@@ -285,26 +285,26 @@ You will have access to the following slots:
 
 :component-example{name="timeline-custom-slot-example" prettier}
 
-### With slots
+### Со слотами {#with-slots}
 
-Use the available slots to create a more complex Timeline.
+Доступные слоты позволяют собрать более сложный Timeline.
 
 :component-example{name="timeline-slots-example" prettier}
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

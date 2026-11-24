@@ -1,6 +1,6 @@
 ---
 title: Switch
-description: A toggle control for switching between two states.
+description: 'Переключатель между двумя состояниями.'
 category: form
 keywords:
   - toggle
@@ -9,7 +9,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Switch.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/switch
   - label: Nuxt UI
@@ -21,9 +21,9 @@ links:
     to: https://reka-ui.com/docs/components/switch
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `v-model` directive to control the checked state of the Switch.
+Директива `v-model` управляет состоянием Switch.
 
 ::component-code
 ---
@@ -36,7 +36,7 @@ props:
 ---
 ::
 
-Use the `default-value` prop to set the initial value when you do not need to control its state.
+Пропс `default-value` задаёт начальное значение, когда управлять состоянием не нужно.
 
 ::component-code
 ---
@@ -47,18 +47,18 @@ props:
 ---
 ::
 
-### Label
+### Подпись {#label}
 
-Use the `label` prop to set the label of the Switch.
+Пропс `label` задаёт подпись Switch.
 
 ::component-code
 ---
 props:
-  label: Check me
+  label: Включить уведомления
 ---
 ::
 
-When using the `required` prop, an asterisk is added next to the label.
+При использовании пропса `required` рядом с подписью появляется звёздочка.
 
 ::component-code
 ---
@@ -66,27 +66,27 @@ ignore:
   - label
 props:
   required: true
-  label: Check me
+  label: Включить уведомления
 ---
 ::
 
-### Description
+### Описание {#description}
 
-Use the `description` prop to set the description of the Switch.
+Пропс `description` задаёт описание Switch.
 
 ::component-code
 ---
 ignore:
   - label
 props:
-  label: Check me
-  description: 'This is a checkbox.'
+  label: Включить уведомления
+  description: 'Это переключатель.'
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `checked-icon` and `unchecked-icon` props to set the icons of the Switch when checked and unchecked.
+Пропсы `checked-icon` и `unchecked-icon` задают иконки Switch во включённом и выключенном состоянии.
 
 ::component-code
 ---
@@ -100,13 +100,13 @@ cast:
 props:
   checkedIcon: 'RocketIcon'
   defaultValue: true
-  label: Check me
+  label: Включить уведомления
 ---
 ::
 
-### Loading
+### Загрузка {#loading}
 
-Use the `loading` prop to show a loading icon on the Switch.
+Пропс `loading` показывает иконку загрузки в Switch.
 
 ::component-code
 ---
@@ -116,13 +116,13 @@ ignore:
 props:
   loading: true
   defaultValue: true
-  label: Check me
+  label: Включить уведомления
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of the Switch.
+Пропс `color` меняет цвет Switch.
 
 ::component-code
 ---
@@ -132,13 +132,13 @@ ignore:
 props:
   color: air-primary-copilot
   defaultValue: true
-  label: Check me
+  label: Включить уведомления
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the Switch.
+Пропс `size` меняет размер Switch.
 
 ::component-code
 ---
@@ -148,13 +148,13 @@ ignore:
 props:
   size: lg
   defaultValue: true
-  label: Check me
+  label: Включить уведомления
 ---
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the Switch.
+Пропс `disabled` отключает Switch.
 
 ::component-code
 ---
@@ -162,28 +162,28 @@ ignore:
   - label
 props:
   disabled: true
-  label: Check me
+  label: Включить уведомления
 ---
 ::
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes" target="_blank"}
-This component also supports all native `<button>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<button>`.
 ::
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme
