@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { compare, extractPromptText, get, getDisplayValue, resolveIcon, set } from '../../src/runtime/utils'
+import { compare, extractPromptText, findItem, get, getDisplayValue, getSelectedItem, resolveIcon, set } from '../../src/runtime/utils'
 import icons from '../../src/runtime/dictionary/icons'
 
 function el(html: string): HTMLElement {
@@ -329,5 +329,46 @@ describe('compare with null', () => {
   it('does not match a label item for a null value with `by`', () => {
     const items = [{ type: 'label', label: 'Status' }, { value: 1, label: 'One' }]
     expect(getDisplayValue(items, null, { by: 'value', labelKey: 'label' } as any)).toBeUndefined()
+  })
+})
+
+describe('findItem', () => {
+  const items = [{ value: 1, label: 'One' }, { value: 2, label: 'Two' }]
+
+  it('finds primitive items', () => {
+    expect(findItem(['a', 'b'], 'b')).toBe('b')
+    expect(findItem(['a'], 'z')).toBeUndefined()
+  })
+
+  it('finds the item with `valueKey`', () => {
+    expect(findItem(items, 2, { valueKey: 'value' })).toBe(items[1])
+  })
+
+  it('finds the item with `by`', () => {
+    expect(findItem(items, { value: 2 }, { by: 'value' })).toBe(items[1])
+  })
+
+  it('returns undefined without a value', () => {
+    expect(findItem(items, undefined, { valueKey: 'value' })).toBeUndefined()
+  })
+})
+
+describe('getSelectedItem', () => {
+  const items = [{ value: 1, label: 'One' }, { value: 2, label: 'Two' }]
+
+  it('returns the matching item', () => {
+    expect(getSelectedItem(items, 2, { valueKey: 'value' })).toBe(items[1])
+    expect(getSelectedItem(items, 3, { valueKey: 'value' })).toBeUndefined()
+  })
+
+  it('keeps an object value missing from items when there is no `valueKey`', () => {
+    const value = { value: 3, label: 'Three' }
+    expect(getSelectedItem(items, value)).toBe(value)
+    expect(getSelectedItem(items, null)).toBeUndefined()
+  })
+
+  it('returns the matching items with `multiple`', () => {
+    expect(getSelectedItem(items, [2, 3, 1], { valueKey: 'value', multiple: true })).toEqual([items[1], items[0]])
+    expect(getSelectedItem(items, undefined, { valueKey: 'value', multiple: true })).toEqual([])
   })
 })

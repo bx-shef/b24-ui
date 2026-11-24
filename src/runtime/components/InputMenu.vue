@@ -13,7 +13,7 @@ import type { InputProps } from './Input.vue'
 import type { LinkPropsKeys } from './Link.vue'
 import type { ModelModifiers, ApplyModifiers } from '../types/input'
 import type { InputHTMLAttributes } from '../types/html'
-import type { AcceptableValue, ArrayOrNested, GetItemKeys, GetItemValue, GetModelValue, NestedItem, EmitsToProps } from '../types/utils'
+import type { AcceptableValue, ArrayOrNested, GetItemKeys, GetItemValue, GetModelValue, GetSelectedItem, NestedItem, EmitsToProps } from '../types/utils'
 import type { ComponentConfig } from '../types/tv'
 
 type InputMenu = ComponentConfig<typeof theme, AppConfig, 'inputMenu'>
@@ -229,6 +229,19 @@ export interface InputMenuEmits<
 
 type SlotProps<T extends InputMenuItem> = (props: { item: T, index: number, b24ui: InputMenu['b24ui'] }) => VNode[]
 
+type TriggerSlotProps<
+  A extends ArrayOrNested<InputMenuItem>,
+  VK extends GetItemKeys<A> | undefined,
+  M extends boolean,
+  Mod extends Omit<ModelModifiers, 'lazy'>,
+  C extends boolean | object
+> = (props: {
+  modelValue: ApplyModifiers<GetModelValue<A, VK, M, ExcludeItem>, Mod> | IsClearUsed<M, C>
+  item: GetSelectedItem<A, M, ExcludeItem>
+  open: boolean
+  b24ui: InputMenu['b24ui']
+}) => VNode[]
+
 export interface InputMenuSlots<
   A extends ArrayOrNested<InputMenuItem> = ArrayOrNested<InputMenuItem>,
   VK extends GetItemKeys<A> | undefined = undefined,
@@ -237,9 +250,9 @@ export interface InputMenuSlots<
   C extends boolean | object = false,
   T extends NestedItem<A> = NestedItem<A>
 > {
-  'leading'?(props: { modelValue: ApplyModifiers<GetModelValue<A, VK, M, ExcludeItem>, Mod> | IsClearUsed<M, C>, open: boolean, b24ui: InputMenu['b24ui'] }): VNode[]
-  'default'?(props: { modelValue: ApplyModifiers<GetModelValue<A, VK, M, ExcludeItem>, Mod> | IsClearUsed<M, C>, open: boolean, b24ui: InputMenu['b24ui'] }): VNode[]
-  'trailing'?(props: { modelValue: ApplyModifiers<GetModelValue<A, VK, M, ExcludeItem>, Mod> | IsClearUsed<M, C>, open: boolean, b24ui: InputMenu['b24ui'] }): VNode[]
+  'leading'?: TriggerSlotProps<A, VK, M, Mod, C>
+  'default'?: TriggerSlotProps<A, VK, M, Mod, C>
+  'trailing'?: TriggerSlotProps<A, VK, M, Mod, C>
   'empty'?(props: { searchTerm: string }): VNode[]
   'item'?: SlotProps<T>
   'item-leading'?: SlotProps<T>
@@ -269,7 +282,7 @@ import { useFormField } from '../composables/useFormField'
 import { useFilter } from '../composables/useFilter'
 import { useLocale } from '../composables/useLocale'
 import { usePortal } from '../composables/usePortal'
-import { compare, get, getDisplayValue, isArrayOfArray, looseToNumber, safeIcon } from '../utils'
+import { compare, get, getDisplayValue, getSelectedItem, isArrayOfArray, looseToNumber, safeIcon } from '../utils'
 import { getEstimateSize } from '../utils/virtualizer'
 import { tv } from '../utils/tv'
 import icons from '../dictionary/icons'
@@ -384,6 +397,23 @@ const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.inputMenu 
 
 // eslint-disable-next-line vue/no-dupe-keys
 const items = computed(() => groups.value.flatMap(group => group) as T[])
+
+function resolveSelectedItem(slot: 'leading' | 'default' | 'trailing', value: unknown) {
+  if (!slots[slot]) {
+    return undefined as GetSelectedItem<T, M, ExcludeItem>
+  }
+
+  // In autocomplete mode `modelValue` is the typed text, so nothing is selected.
+  if (isAutocomplete.value) {
+    return (props.multiple ? [] : undefined) as GetSelectedItem<T, M, ExcludeItem>
+  }
+
+  return getSelectedItem(items.value, value, {
+    valueKey: props.valueKey,
+    by: props.by,
+    multiple: isMultiple.value
+  }) as GetSelectedItem<T, M, ExcludeItem>
+}
 
 function displayValue(value: GetItemValue<T, VK, ExcludeItem>): string {
   return getDisplayValue<T[], GetItemValue<T, VK, ExcludeItem>>(items.value, value, {
@@ -813,10 +843,10 @@ defineExpose({
         @update:model-value="onInputUpdate($event, open, modelValue)"
       />
 
-      <slot :model-value="(modelValue as ApplyModifiers<GetModelValue<T, VK, M, ExcludeItem>, Mod>)" :open="open" :b24ui="b24ui" />
+      <slot :model-value="(modelValue as ApplyModifiers<GetModelValue<T, VK, M, ExcludeItem>, Mod>)" :item="resolveSelectedItem('default', modelValue)" :open="open" :b24ui="b24ui" />
 
       <span v-if="isLeading || !!props.avatar || !!slots.leading" data-slot="leading" :class="b24ui.leading({ class: props.b24ui?.leading })">
-        <slot name="leading" :model-value="(modelValue as ApplyModifiers<GetModelValue<T, VK, M, ExcludeItem>, Mod>)" :open="open" :b24ui="b24ui">
+        <slot name="leading" :model-value="(modelValue as ApplyModifiers<GetModelValue<T, VK, M, ExcludeItem>, Mod>)" :item="resolveSelectedItem('leading', modelValue)" :open="open" :b24ui="b24ui">
           <Component
             :is="leadingIconName"
             v-if="isLeading && leadingIconName"
@@ -834,7 +864,7 @@ defineExpose({
       </span>
 
       <Component.Trigger v-if="isTrailing || !!slots.trailing || !!props.clear" :aria-label="t('inputMenu.trigger')" data-slot="trailing" :class="b24ui.trailing({ class: props.b24ui?.trailing })">
-        <slot name="trailing" :model-value="(modelValue as ApplyModifiers<GetModelValue<T, VK, M, ExcludeItem>, Mod>)" :open="open" :b24ui="b24ui">
+        <slot name="trailing" :model-value="(modelValue as ApplyModifiers<GetModelValue<T, VK, M, ExcludeItem>, Mod>)" :item="resolveSelectedItem('trailing', modelValue)" :open="open" :b24ui="b24ui">
           <Component.Cancel v-if="!!props.clear && !disabled && !isModelValueEmpty(modelValue as ApplyModifiers<GetModelValue<T, VK, M, ExcludeItem>, Mod>)" as-child>
             <B24Button
               as="span"

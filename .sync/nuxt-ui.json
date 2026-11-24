@@ -1,7 +1,7 @@
 {
   "upstream": "nuxt/ui",
   "branch": "v4",
-  "cursor": "073be5e6a323c706a97039a749c7bebc27ebe029",
+  "cursor": "27207f52b43e3b0f632b4a0ddd61ace67671cdeb",
   "_cursor_note": "cursor = last upstream commit ported into b24ui. The sync is manual by decision: one commit at a time, oldest-first, each with a `.sync/log/<sha>.md` journal and an entry in `processed`. There is no dispatcher, no porter workflow and no kill-switch — `.sync/PORTING.md` is the whole procedure. `processed` is maintained per port (backfilled #68-#72 on 2026-06-09).",
   "processed": {
     "2799fa6f2b25ce3eb15e050f3ef7c57d0d9a2fdb": {
@@ -3797,6 +3797,12 @@
       "b24ui_sha": "pending-merge",
       "decision": "port",
       "summary": "fix(utils): compare() сопоставляет null только с null (guard перед сравнением строк/comparator/get); тесты добавлены в test/utils/index.spec.ts, так как у форка нет блока compare"
+    },
+    "27207f52b43e3b0f632b4a0ddd61ace67671cdeb": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "feat(Select/SelectMenu/InputMenu): слоты leading/default/trailing получают item (выбранный элемент), новые findItem/getSelectedItem/GetSelectedItem, примеры и документация на русском, плейграунды"
     }
   }
 }
