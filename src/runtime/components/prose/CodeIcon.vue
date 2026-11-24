@@ -14,6 +14,7 @@ export interface ProseCodeIconProps {
 </script>
 
 <script setup lang="ts">
+import { safeIcon } from '../../utils'
 import { computed } from 'vue'
 import { defu } from 'defu'
 import { useAppConfig } from '#imports'
@@ -70,7 +71,7 @@ const appConfig = useAppConfig() as ProseCodeIcon['AppConfig']
 const icons = computed<any>(() => defu(appConfig.b24ui?.prose?.codeIcon || {}, theme))
 
 const icon = computed(() => {
-  if (props.icon) {
+  if (safeIcon(props.icon)) {
     return props.icon
   }
 

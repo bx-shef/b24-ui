@@ -79,7 +79,7 @@ export type DescriptionListSlots<T extends DescriptionListItem = DescriptionList
 import { computed } from 'vue'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
-import { get } from '../utils'
+import { get, safeIcon } from '../utils'
 import { tv } from '../utils/tv'
 import B24Avatar from './Avatar.vue'
 import B24Button from './Button.vue'
@@ -171,7 +171,7 @@ const normalizedItems = computed(() => {
           >
             <slot name="leading" :item="item" :index="index" :b24ui="b24ui">
               <Component
-                :is="item.icon"
+                :is="safeIcon(item.icon)"
                 v-if="item.icon"
                 data-slot="icon"
                 :class="b24ui.icon({

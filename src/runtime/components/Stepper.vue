@@ -85,7 +85,7 @@ import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
 import { useLocale } from '../composables/useLocale'
 import { tv } from '../utils/tv'
-import { get, itemValueIndex } from '../utils'
+import { get, itemValueIndex, safeIcon } from '../utils'
 
 const _props = withDefaults(defineProps<StepperProps<T>>(), {
   orientation: 'horizontal',
@@ -195,7 +195,7 @@ defineExpose({
             <StepperIndicator data-slot="indicator" :class="b24ui.indicator({ class: [props.b24ui?.indicator, item.b24ui?.indicator] })">
               <slot name="indicator" :item="item" :b24ui="b24ui">
                 <Component
-                  :is="item.icon"
+                  :is="safeIcon(item.icon)"
                   v-if="item.icon"
                   data-slot="icon"
                   :class="b24ui.icon({ class: [props.b24ui?.icon, item.b24ui?.icon] })"

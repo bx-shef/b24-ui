@@ -45,7 +45,7 @@ import { reactiveOmit, createReusableTemplate } from '@vueuse/core'
 import { FieldGroupReset } from '../composables/useFieldGroup'
 import { useLocale } from '../composables/useLocale'
 import { usePortal } from '../composables/usePortal'
-import { omit, get, isArrayOfArray } from '../utils'
+import { omit, get, isArrayOfArray, safeIcon } from '../utils'
 import { pickLinkProps } from '../utils/link'
 import icons from '../dictionary/icons'
 import B24LinkBase from './LinkBase.vue'
@@ -135,7 +135,7 @@ const groups = computed<ContextMenuItem[][]>(() =>
       <span data-slot="itemTrailing" :class="b24ui.itemTrailing({ class: [b24uiOverride?.itemTrailing, item.b24ui?.itemTrailing] })">
         <ContextMenu.ItemIndicator as-child>
           <Component
-            :is="checkedIcon || icons.check"
+            :is="safeIcon(checkedIcon) || icons.check"
             data-slot="itemTrailingIcon"
             :class="b24ui.itemTrailingIcon({ class: [b24uiOverride?.itemTrailingIcon, item.b24ui?.itemTrailingIcon], color: item?.color })"
           />
@@ -149,7 +149,7 @@ const groups = computed<ContextMenuItem[][]>(() =>
           :b24ui="b24ui"
         >
           <Component
-            :is="loadingIcon || icons.loading"
+            :is="safeIcon(loadingIcon) || icons.loading"
             v-if="item.loading"
             data-slot="itemLeadingIcon"
             :class="b24ui.itemLeadingIcon({ class: [b24uiOverride?.itemLeadingIcon, item.b24ui?.itemLeadingIcon], color: item?.color, loading: true })"
@@ -161,13 +161,13 @@ const groups = computed<ContextMenuItem[][]>(() =>
             :class="b24ui.itemTrailingIcon({ class: [b24uiOverride?.itemTrailingIcon, item.b24ui?.itemTrailingIcon], color: item?.color, active })"
           />
           <Component
-            :is="typeof externalIcon !== 'boolean' ? externalIcon : icons.external"
+            :is="typeof externalIcon !== 'boolean' ? safeIcon(externalIcon) : icons.external"
             v-else-if="item.target === '_blank' && externalIcon !== false"
             data-slot="itemLabelExternalIcon"
             :class="b24ui.itemLabelExternalIcon({ class: [b24uiOverride?.itemLabelExternalIcon, item.b24ui?.itemLabelExternalIcon], color: item?.color, active })"
           />
           <Component
-            :is="item.icon"
+            :is="safeIcon(item.icon)"
             v-else-if="item.icon"
             data-slot="itemLeadingIcon"
             :class="b24ui.itemLeadingIcon({ class: [b24uiOverride?.itemLeadingIcon, item.b24ui?.itemLeadingIcon], color: item?.color, active })"

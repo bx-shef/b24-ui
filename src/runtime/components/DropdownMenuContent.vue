@@ -67,7 +67,7 @@ import { FieldGroupReset } from '../composables/useFieldGroup'
 import { useFilter } from '../composables/useFilter'
 import { useLocale } from '../composables/useLocale'
 import { usePortal } from '../composables/usePortal'
-import { omit, get, isArrayOfArray } from '../utils'
+import { omit, get, isArrayOfArray, safeIcon } from '../utils'
 import { pickLinkProps } from '../utils/link'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
@@ -227,7 +227,7 @@ const hasFilteredItems = computed(() => filteredGroups.value.some(group => group
             :class="props.b24ui.itemLabelExternalIcon({ class: [props.b24uiOverride?.itemLabelExternalIcon, item.b24ui?.itemLabelExternalIcon], color: item?.color, active })"
           />
           <Component
-            :is="item.icon"
+            :is="safeIcon(item.icon)"
             v-else-if="item.icon"
             data-slot="itemLeadingIcon"
             :class="props.b24ui.itemLeadingIcon({ class: [props.b24uiOverride?.itemLeadingIcon, item.b24ui?.itemLeadingIcon], color: item?.color, active })"

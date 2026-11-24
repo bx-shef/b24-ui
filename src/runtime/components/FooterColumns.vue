@@ -54,7 +54,7 @@ import { Primitive } from 'reka-ui'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { pickLinkProps } from '../utils/link'
-import { resolveAs } from '../utils'
+import { resolveAs, safeIcon } from '../utils'
 import { tv } from '../utils/tv'
 import icons from '../dictionary/icons'
 import B24Link from './Link.vue'
@@ -96,7 +96,7 @@ const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.footerColu
                   <slot name="link" :link="(link as T)" :active="active" :b24ui="b24ui">
                     <slot name="link-leading" :link="(link as T)" :active="active" :b24ui="b24ui">
                       <Component
-                        :is="link.icon"
+                        :is="safeIcon(link.icon)"
                         v-if="link.icon"
                         data-slot="linkLeadingIcon"
                         :class="b24ui.linkLeadingIcon({ class: [props.b24ui?.linkLeadingIcon, link.b24ui?.linkLeadingIcon], active })"

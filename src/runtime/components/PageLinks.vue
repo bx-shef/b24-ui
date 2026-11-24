@@ -42,6 +42,7 @@ export interface PageLinksSlots<T extends PageLink = PageLink> {
 </script>
 
 <script setup lang="ts" generic="T extends PageLink">
+import { safeIcon } from '../utils'
 import { computed } from 'vue'
 import { Primitive } from 'reka-ui'
 import { useAppConfig } from '#imports'
@@ -81,7 +82,7 @@ const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.pageLinks 
               <div data-slot="linkWrapper" :class="b24ui.linkWrapper({ class: [props.b24ui?.linkWrapper, link.b24ui?.linkWrapper], active })">
                 <slot name="link-leading" :link="link" :active="active" :b24ui="b24ui">
                   <Component
-                    :is="link.icon"
+                    :is="safeIcon(link.icon)"
                     v-if="link.icon"
                     data-slot="linkLeadingIcon"
                     :class="b24ui.linkLeadingIcon({ class: [props.b24ui?.linkLeadingIcon, link.b24ui?.linkLeadingIcon], active })"

@@ -71,6 +71,7 @@ export type ProgressGroupSlots<T extends ProgressGroupItem = ProgressGroupItem> 
 </script>
 
 <script setup lang="ts" generic="T extends ProgressGroupItem">
+import { safeIcon } from '../utils'
 import { computed } from 'vue'
 import { Primitive, ProgressRoot, ProgressIndicator } from 'reka-ui'
 import { useAppConfig } from '#imports'
@@ -163,7 +164,7 @@ const valueLabels = computed(() => (props.items ?? []).map((item) => {
       <li v-for="(item, index) in props.items" :key="index" data-slot="item" :class="b24ui.item({ class: [props.b24ui?.item, item.b24ui?.item, item.class] })">
         <slot :name="((item.slot || 'item') as keyof ProgressGroupSlots<T>)" :item="(item as Extract<T, { slot: string; }>)" :index="index" :percent="percents[index] ?? 0">
           <slot :name="((item.slot ? `${item.slot}-leading` : 'item-leading') as keyof ProgressGroupSlots<T>)" :item="(item as Extract<T, { slot: string; }>)" :index="index" :percent="percents[index] ?? 0">
-            <Component :is="item.icon" v-if="item.icon" data-slot="itemLeadingIcon" :class="b24ui.itemLeadingIcon({ color: itemColors[index], class: [props.b24ui?.itemLeadingIcon, item.b24ui?.itemLeadingIcon] })" />
+            <Component :is="safeIcon(item.icon)" v-if="item.icon" data-slot="itemLeadingIcon" :class="b24ui.itemLeadingIcon({ color: itemColors[index], class: [props.b24ui?.itemLeadingIcon, item.b24ui?.itemLeadingIcon] })" />
             <span v-else data-slot="itemLeadingDot" :class="b24ui.itemLeadingDot({ color: itemColors[index], class: [props.b24ui?.itemLeadingDot, item.b24ui?.itemLeadingDot] })" />
           </slot>
 

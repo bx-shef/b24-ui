@@ -33,6 +33,7 @@ export interface EditorMentionMenuProps<T extends EditorMentionMenuItem = Editor
 </script>
 
 <script setup lang="ts" generic="T extends EditorMentionMenuItem">
+import { safeIcon } from '../utils'
 import { computed, h, onMounted, onBeforeUnmount, nextTick, toRef } from 'vue'
 import { useAppConfig } from '#imports'
 import { useEditorMenu } from '../composables/useEditorMenu'
@@ -91,8 +92,8 @@ onMounted(async () => {
       /**
        * @memo Icon - first, Avatar - second
        */
-      item.icon
-        ? h(item.icon, { class: styles.value.itemLeadingIcon() })
+      safeIcon(item.icon)
+        ? h(safeIcon(item.icon), { class: styles.value.itemLeadingIcon() })
         : item.avatar
           ? h(B24Avatar, { ...item.avatar, size: styles.value.itemLeadingAvatarSize(), class: styles.value.itemLeadingAvatar() })
           : null,

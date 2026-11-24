@@ -51,6 +51,7 @@ export interface EditorSuggestionMenuProps<T extends EditorSuggestionMenuItem = 
 </script>
 
 <script setup lang="ts" generic="T extends EditorSuggestionMenuItem">
+import { safeIcon } from '../utils'
 import { computed, h, inject, onMounted, onBeforeUnmount, nextTick, toRef } from 'vue'
 import { useAppConfig } from '#imports'
 import { useEditorMenu } from '../composables/useEditorMenu'
@@ -113,8 +114,8 @@ onMounted(async () => {
 
       // Render regular item
       return [
-        item.icon
-          ? h(item.icon, { class: styles.value.itemLeadingIcon() })
+        safeIcon(item.icon)
+          ? h(safeIcon(item.icon), { class: styles.value.itemLeadingIcon() })
           : null,
         h('span', { class: styles.value.itemWrapper() }, [
           h('span', { class: styles.value.itemLabel() }, item.label),

@@ -467,6 +467,16 @@ export function isUnsafeAs(value: unknown): boolean {
 }
 
 /**
+ * Returns an icon value as is, or `undefined` when it is an unsafe component object
+ * (`template`, `__v_raw`, a forged VNode, …), e.g. an `item.icon` coming from untrusted
+ * markdown or JSON. b24ui has no `Icon` component to guard, so icon data read from items
+ * goes through here before it is rendered with `<Component :is>` or `h()`.
+ */
+export function safeIcon<T>(value: T): T | undefined {
+  return isUnsafeComponent(value) ? undefined : value
+}
+
+/**
  * Drops attributes holding a value `isUnsafeComponent` rejects (or an `as` that `isUnsafeAs`
  * rejects), for components forwarding `$attrs` to a Reka part that renders its `as`.
  */

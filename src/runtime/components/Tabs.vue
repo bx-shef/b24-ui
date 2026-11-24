@@ -98,7 +98,7 @@ import { TabsRoot, TabsList, TabsIndicator, TabsTrigger, TabsContent } from 'rek
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
-import { get } from '../utils'
+import { get, safeIcon } from '../utils'
 import { tv } from '../utils/tv'
 import B24Avatar from './Avatar.vue'
 import B24Badge from './Badge.vue'
@@ -165,7 +165,7 @@ defineExpose({
       >
         <slot name="leading" :item="item" :index="index" :b24ui="b24ui">
           <Component
-            :is="item.icon"
+            :is="safeIcon(item.icon)"
             v-if="item.icon"
             data-slot="leadingIcon"
             :class="b24ui.leadingIcon({ class: [props.b24ui?.leadingIcon, item.b24ui?.leadingIcon] })"
