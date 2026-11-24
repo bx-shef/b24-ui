@@ -415,41 +415,31 @@ function onSubmit() {
     :messages="messages"
     :status="status"
   >
-    <template #content="{ message, streaming }">
-      <template
-        v-for="(part, index) in message.parts"
-        :key="`${message.id}-${part.type}-${index}`"
+    <template #part="{ part, index, message, streaming }">
+      <B24ChatReasoning
+        v-if="isReasoningUIPart(part)"
+        :text="part.text"
+        :streaming="isPartStreaming(part, streaming)"
       >
-        <B24ChatReasoning
-          v-if="isReasoningUIPart(part)"
-          :text="part.text"
-          :streaming="isPartStreaming(part, streaming)"
-        >
-          <MDC
-            :value="part.text"
-            :cache-key="`reasoning-${message.id}-${index}`"
-            class="*:first:mt-0 *:last:mb-0"
-          />
-        </B24ChatReasoning>
-
-        <B24ChatTool
-          v-else-if="isToolUIPart(part)"
-          :text="getToolName(part)"
-          :streaming="isToolStreaming(part, streaming)"
+        <MDC
+          :value="part.text"
+          :cache-key="`reasoning-${message.id}-${index}`"
+          class="*:first:mt-0 *:last:mb-0"
         />
+      </B24ChatReasoning>
 
-        <template v-else-if="isTextUIPart(part)">
-          <MDC
-            v-if="message.role === 'assistant'"
-            :value="part.text"
-            :cache-key="`${message.id}-${index}`"
-            class="*:first:mt-0 *:last:mb-0"
-          />
-          <p v-else-if="message.role === 'user'" class="whitespace-pre-wrap">
-            {{ part.text }}
-          </p>
-        </template>
-      </template>
+      <B24ChatTool
+        v-else-if="isToolUIPart(part)"
+        :text="getToolName(part)"
+        :streaming="isToolStreaming(part, streaming)"
+      />
+
+      <MDC
+        v-else-if="isTextUIPart(part) && message.role === 'assistant'"
+        :value="part.text"
+        :cache-key="`${message.id}-${index}`"
+        class="*:first:mt-0 *:last:mb-0"
+      />
     </template>
   </B24ChatMessages>
 
@@ -470,4 +460,8 @@ function onSubmit() {
 
 ::note
 In this example, we use the `MDC` component from [`@nuxtjs/mdc`](https://github.com/nuxt-modules/mdc) to render messages as Markdown. As Bitrix24 UI provides pre-styled prose components, your content will be automatically styled.
+::
+
+::note
+The `#part` slot is called once for each part of a message, with the `part`, its `index` and the `message`. A part the slot doesn't render, like the user's text above, falls back to the default output. Use the `#content` slot instead to render the whole message yourself.
 ::

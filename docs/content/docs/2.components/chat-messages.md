@@ -399,26 +399,15 @@ collapse: true
 ::tip
 You can use all the slots of the [`ChatMessage`](/docs/components/chat-message/#slots) component inside ChatMessages, they are automatically forwarded allowing you to customize individual messages when using the `messages` prop. Each slot also receives the `message` and a `streaming` boolean, `true` only for the last message while the chat is submitted or streaming.
 
-```vue{4-19}
+```vue{7-9}
+<script setup lang="ts">
+import { isReasoningUIPart } from 'ai'
+</script>
+
 <template>
   <B24ChatMessages :messages="messages" :status="status">
-    <template #content="{ message }">
-      <template
-        v-for="(part, index) in message.parts"
-        :key="`${message.id}-${part.type}-${index}`"
-      >
-        <template v-if="isTextUIPart(part)">
-          <MDC
-            v-if="message.role === 'assistant'"
-            :value="part.text"
-            :cache-key="`${message.id}-${index}`"
-            class="*:first:mt-0 *:last:mb-0"
-          />
-          <p v-else-if="message.role === 'user'" class="whitespace-pre-wrap">
-            {{ part.text }}
-          </p>
-        </template>
-      </template>
+    <template #part="{ part }">
+      <B24ChatReasoning v-if="isReasoningUIPart(part)" :text="part.text" />
     </template>
   </B24ChatMessages>
 </template>

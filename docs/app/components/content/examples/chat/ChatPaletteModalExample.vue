@@ -58,24 +58,17 @@ const b24ui = {
           <B24ChatMessages
             :messages="messages"
             status="ready"
-            :user="{ side: 'left', variant: 'message', avatar: { src: '/b24ui/avatar/employee.png', loading: 'lazy' as const } }"
+            :user="{ side: 'left', variant: 'message', avatar: { src: '/b24ui/avatar/employee.png', loading: 'lazy' as const }, b24ui: { text: 'leading-6' } }"
             :assistant="{ icon: RobotIcon }"
           >
-            <template #content="{ message, streaming }">
-              <template v-for="(part, index) in message.parts" :key="`${message.id}-${part.type}-${index}`">
-                <template v-if="part.type === 'text'">
-                  <Markdown
-                    v-if="message.role === 'assistant'"
-                    :value="part.text"
-                    :streaming="isPartStreaming(part, streaming)"
-                    :plugins="[shiki()]"
-                    class="*:first:mt-0 *:last:mb-0"
-                  />
-                  <p v-else-if="message.role === 'user'" class="whitespace-pre-wrap leading-6">
-                    {{ part.text }}
-                  </p>
-                </template>
-              </template>
+            <template #part="{ part, message, streaming }">
+              <Markdown
+                v-if="part.type === 'text' && message.role === 'assistant'"
+                :value="part.text"
+                :streaming="isPartStreaming(part, streaming)"
+                :plugins="[shiki()]"
+                class="*:first:mt-0 *:last:mb-0"
+              />
             </template>
           </B24ChatMessages>
 
