@@ -386,6 +386,30 @@ collapse: true
 ---
 ::
 
+### With sticky prompt
+
+Use the `#footer` slot to keep a [ChatPrompt](/docs/components/chat-prompt/) stuck to the bottom of the list. Its height is measured, so the last message keeps enough room and the auto scroll button stays above it, even when the prompt grows.
+
+```vue
+<template>
+  <B24ChatMessages :messages="messages" :status="status">
+    <template #footer>
+      <B24ChatPrompt v-model="input" :status="status" @submit="onSubmit">
+        <B24ChatPromptSubmit :status="status" @stop="stop()" @reload="regenerate()" />
+      </B24ChatPrompt>
+    </template>
+  </B24ChatMessages>
+</template>
+```
+
+::note
+The `#footer` slot replaces the deprecated `spacing-offset` prop for a sticky prompt, which needed its height by hand. Render `B24ChatMessages` even when there are no messages yet, so the prompt in its footer stays visible.
+::
+
+::tip
+When the prompt sits outside the scroll container, like in the footer of a [DashboardPanel](/docs/components/dashboard-panel/) or a [Sidebar](/docs/components/sidebar/), make the auto scroll button stick to the bottom of the scroll container with `:b24ui="{ viewport: 'sticky top-auto bottom-4 h-0' }"`.
+::
+
 ### With agent steps
 
 Use the `#part` slot to render each step of an agent: [ChatReasoning](/docs/components/chat-reasoning/) for reasoning, [ChatTool](/docs/components/chat-tool/) for tool calls and sources, and markdown for the reply. Set the `error` prop on a failed tool call, and render its output with the prose components.

@@ -45,6 +45,7 @@ describe('ChatMessages', () => {
     // rendered the closed state and was byte-identical to `with messages`
     // (#454). It is covered by a test of its own below, which stubs the
     // geometry and dispatches the event.
+    ['with footer slot', { props, slots: { footer: () => 'Footer slot' } }],
     ['with content slot', { props, slots: { content: () => 'Content slot' } }],
     // `files` renders only when a message carries a part of `type: 'file'`;
     // every fixture here has text parts only, so the slot never appeared.
@@ -212,6 +213,31 @@ describe('ChatMessages', () => {
 
       expect(constructed).toBe(baseline)
     })
+  })
+
+  it.each([
+    ['without', undefined, 'absolute'],
+    ['with', () => 'Prompt', 'sticky']
+  ])('positions the auto scroll button %s a footer', async (_, footer, position) => {
+    const Parent = defineComponent({
+      setup() {
+        return () => h('div', { style: 'overflow-y: auto' }, [h(ChatMessages, { ...props, shouldScrollToBottom: false }, footer ? { footer } : {})])
+      }
+    })
+
+    const wrapper = await mountSuspended(Parent, { attachTo: document.body })
+    Object.defineProperties(wrapper.element, {
+      scrollHeight: { value: 1000 },
+      clientHeight: { value: 100 }
+    })
+    wrapper.element.dispatchEvent(new Event('scroll'))
+    await nextTick()
+
+    const viewport = wrapper.find('[data-slot="viewport"]').classes()
+    expect(viewport).toContain(position)
+    expect(viewport.includes('top-[78%]')).toBe(position === 'absolute')
+
+    wrapper.unmount()
   })
 
   it('scrolls the scroll parent in `scrollToMessage`', async () => {
