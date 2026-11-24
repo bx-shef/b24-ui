@@ -176,6 +176,57 @@ function updateToast(id: string | number) {
 </script>
 ```
 
+### promise() :badge{label="Soon" class="align-text-top"}
+
+`promise<T>(promise: Promise<T>, options: ToastPromiseOptions<T>): Promise<T>`{lang="ts-type"}
+
+Показывает уведомление загрузки, пока промис не завершён, и обновляет его, когда промис выполнен или отклонён.
+
+#### Параметры {#parameters-promise}
+
+::field-group
+  ::field{name="promise" type="Promise<T>" required}
+  Отслеживаемый промис.
+  ::
+
+  ::field{name="options" type="ToastPromiseOptions<T>" required}
+  Уведомление для каждого состояния. Состояние — частичный объект `Toast` или строка, которая становится заголовком.
+
+    ::collapsible
+
+      ::field-group
+        ::field{name="loading" type="string | Partial<Toast>"}
+        Уведомление, пока промис не завершён. Показывает иконку `loading` из словаря иконок и остаётся открытым до завершения промиса.
+        ::
+
+        ::field{name="success" type="string | Partial<Toast> | ((data: T) => string | Partial<Toast>)"}
+        Уведомление при выполнении промиса. Функция получает результат промиса. Если не задано, уведомление закрывается.
+        ::
+
+        ::field{name="error" type="string | Partial<Toast> | ((error: unknown) => string | Partial<Toast>)"}
+        Уведомление при отклонении промиса. Функция получает ошибку. Если не задано, уведомление закрывается.
+        ::
+      ::
+    ::
+  ::
+::
+
+**Возвращает:** переданный промис, поэтому его результат можно ждать через `await`.
+
+```vue
+<script setup lang="ts">
+const toast = useToast()
+
+async function save() {
+  await toast.promise($fetch('/api/save', { method: 'POST' }), {
+    loading: 'Saving...',
+    success: { title: 'Saved', color: 'air-primary-success' },
+    error: (error: any) => ({ title: error.message, color: 'air-primary-alert' })
+  })
+}
+</script>
+```
+
 ### remove()
 
 `remove(id: string | number): void`{lang="ts-type"}
