@@ -58,6 +58,11 @@ export interface ChatMessageSlots<TMetadata = unknown, TDataParts extends UIData
   files?(props: Omit<UIMessage<TMetadata, TDataParts, TTools>, 'parts'> & { parts: FileUIPart[] }): VNode[]
   body?(props: UIMessage<TMetadata, TDataParts, TTools>): VNode[]
   content?(props: UIMessage<TMetadata, TDataParts, TTools> & { content?: string }): VNode[]
+  /**
+   * Render each part of the message, parts the slot doesn't render fall back to the default output.
+   * Ignored when the `content` slot is used.
+   */
+  part?(props: { part: UIMessage<TMetadata, TDataParts, TTools>['parts'][number], index: number, message: UIMessage<TMetadata, TDataParts, TTools> }): VNode[]
   actions?(props: UIMessage<TMetadata, TDataParts, TTools> & { actions: ChatMessageProps<TMetadata, TDataParts, TTools>['actions'] }): VNode[]
 }
 </script>
@@ -82,8 +87,14 @@ const props = useComponentProps<ChatMessageProps<TMetadata, TDataParts, TTools>>
 
 const appConfig = useAppConfig() as ChatMessage['AppConfig']
 
+function isTextPart(part: { type: string }): part is TextUIPart {
+  return part.type === 'text'
+}
+
 const fileParts = computed(() => props.parts?.filter((part): part is FileUIPart => part.type === 'file') ?? [])
-const textParts = computed(() => props.parts?.filter((part): part is TextUIPart => part.type === 'text') ?? [])
+const textParts = computed(() => props.parts?.filter(isTextPart) ?? [])
+
+const hasContent = computed(() => !!textParts.value.length || !!slots.content || (!!slots.part && !!props.parts?.length))
 
 const messageProps = computed(() => omit(props, ['as', 'icon', 'avatar', 'variant', 'color', 'side', 'actions', 'compact', 'class', 'b24ui']))
 
@@ -123,12 +134,19 @@ const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.chatMessag
         </slot>
       </div>
 
-      <div v-if="textParts.length || !!slots.content || props.actions || !!slots.actions || !!slots.body" data-slot="body" :class="b24ui.body({ class: props.b24ui?.body })">
+      <div v-if="hasContent || props.actions || !!slots.actions || !!slots.body" data-slot="body" :class="b24ui.body({ class: props.b24ui?.body })">
         <slot name="body" v-bind="{ ...messageProps }">
-          <div v-if="textParts.length || !!slots.content" data-slot="content" :class="b24ui.content({ class: props.b24ui?.content })">
+          <div v-if="hasContent" data-slot="content" :class="b24ui.content({ class: props.b24ui?.content })">
             <slot name="content" v-bind="{ ...messageProps }">
-              <template v-for="(part, index) in textParts" :key="`${props.id}-${part.type}-${index}`">
-                {{ part.text }}
+              <template v-if="!!slots.part && props.parts?.length">
+                <template v-for="(part, index) in props.parts" :key="`${props.id}-${part.type}-${index}`">
+                  <slot name="part" :part="part" :index="index" :message="messageProps">
+                    <span v-if="isTextPart(part)" data-slot="text" :class="b24ui.text({ class: props.b24ui?.text })">{{ part.text }}</span>
+                  </slot>
+                </template>
+              </template>
+              <template v-else>
+                <span v-for="(part, index) in textParts" :key="`${props.id}-${part.type}-${index}`" data-slot="text" :class="b24ui.text({ class: props.b24ui?.text })">{{ part.text }}</span>
               </template>
             </slot>
           </div>

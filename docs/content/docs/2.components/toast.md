@@ -292,7 +292,7 @@ Set the `toaster.expand` prop to `false` on the [App](/docs/components/app/#prop
 
 ```vue [app.vue]
 <script setup lang="ts">
-const toaster = { expand: true }
+const toaster = { expand: false }
 </script>
 
 <template>

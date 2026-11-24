@@ -2,7 +2,7 @@
   "name": "@bitrix24/b24ui-nuxt",
   "description": "Bitrix24 UI Kit for building REST-API web applications with Nuxt & Vue",
   "version": "2.15.0",
-  "packageManager": "pnpm@12.14.0",
+  "packageManager": "pnpm@12.15.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bitrix24/b24ui.git"
@@ -145,7 +145,7 @@
     "test": "vitest",
     "test:vue": "vitest --project vue",
     "test:nuxt": "vitest --project nuxt",
-    "bench": "vitest bench --project vue",
+    "bench": "vitest bench --project 'vue (bench)'",
     "test:workflows": "test/workflows/run.sh",
     "test:module": "vitest run --config vitest.module.config.ts",
     "test:update": "vitest run -u",

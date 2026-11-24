@@ -45,6 +45,7 @@ describe('ChatMessages', () => {
     // rendered the closed state and was byte-identical to `with messages`
     // (#454). It is covered by a test of its own below, which stubs the
     // geometry and dispatches the event.
+    ['with footer slot', { props, slots: { footer: () => 'Footer slot' } }],
     ['with content slot', { props, slots: { content: () => 'Content slot' } }],
     // `files` renders only when a message carries a part of `type: 'file'`;
     // every fixture here has text parts only, so the slot never appeared.
@@ -212,6 +213,72 @@ describe('ChatMessages', () => {
 
       expect(constructed).toBe(baseline)
     })
+  })
+
+  it.each([
+    ['without', undefined, 'absolute'],
+    ['with', () => 'Prompt', 'sticky']
+  ])('positions the auto scroll button %s a footer', async (_, footer, position) => {
+    const Parent = defineComponent({
+      setup() {
+        return () => h('div', { style: 'overflow-y: auto' }, [h(ChatMessages, { ...props, shouldScrollToBottom: false }, footer ? { footer } : {})])
+      }
+    })
+
+    const wrapper = await mountSuspended(Parent, { attachTo: document.body })
+    Object.defineProperties(wrapper.element, {
+      scrollHeight: { value: 1000 },
+      clientHeight: { value: 100 }
+    })
+    wrapper.element.dispatchEvent(new Event('scroll'))
+    await nextTick()
+
+    const viewport = wrapper.find('[data-slot="viewport"]').classes()
+    expect(viewport).toContain(position)
+    expect(viewport.includes('top-[78%]')).toBe(position === 'absolute')
+
+    wrapper.unmount()
+  })
+
+  it('scrolls the scroll parent in `scrollToMessage`', async () => {
+    const chatRef = ref<{ scrollToMessage: (id: string, smooth?: boolean) => void } | null>(null)
+    const Parent = defineComponent({
+      setup() {
+        return () => h('div', { style: 'overflow-y: auto; scroll-padding-top: 8px' }, [h(ChatMessages, { ref: chatRef, ...props, shouldScrollToBottom: false })])
+      }
+    })
+
+    const wrapper = await mountSuspended(Parent, { attachTo: document.body })
+    vi.spyOn(wrapper.element, 'getBoundingClientRect').mockReturnValue({ top: 100 } as DOMRect)
+    for (const article of wrapper.findAll('article')) {
+      (article.element as HTMLElement).style.scrollMarginTop = '4px'
+      vi.spyOn(article.element, 'getBoundingClientRect').mockReturnValue({ top: 150 } as DOMRect)
+    }
+    const scrollTo = vi.fn()
+    wrapper.element.scrollTo = scrollTo
+    const scrollIntoView = vi.spyOn(Element.prototype, 'scrollIntoView')
+
+    chatRef.value!.scrollToMessage(props.messages[0]!.id, false)
+
+    expect(scrollTo).toHaveBeenCalledWith({ top: 38, behavior: 'instant' })
+    expect(scrollIntoView).not.toHaveBeenCalled()
+
+    scrollIntoView.mockRestore()
+    wrapper.unmount()
+  })
+
+  it('sets aria-busy while submitted or streaming', async () => {
+    const wrapper = await mountSuspended(ChatMessages, { props: { ...props, status: 'ready' } })
+    expect(wrapper.attributes('aria-busy')).toBeUndefined()
+
+    await wrapper.setProps({ status: 'submitted' })
+    expect(wrapper.attributes('aria-busy')).toBe('true')
+
+    await wrapper.setProps({ status: 'streaming' })
+    expect(wrapper.attributes('aria-busy')).toBe('true')
+
+    await wrapper.setProps({ status: 'ready' })
+    expect(wrapper.attributes('aria-busy')).toBeUndefined()
   })
 
   it('forwards content slot props together with `message`', async () => {

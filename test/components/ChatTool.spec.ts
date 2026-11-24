@@ -19,6 +19,8 @@ describe('ChatTool', () => {
     ['with icon', { props: { ...props, icon: SignIcon } }],
     ['with loading', { props: { ...props, loading: true } }],
     ['with loading and loadingIcon', { props: { ...props, loading: true, loadingIcon: Cross30Icon } }],
+    ['with error', { props: { ...props, error: true } }],
+    ['with error and errorIcon', { props: { ...props, error: true, errorIcon: Cross30Icon } }],
     ['with variant inline', { props: { ...props, variant: 'inline' } }],
     ['with variant card', { props: { ...props, variant: 'card' } }],
     ['with defaultOpen', { props: { ...props, defaultOpen: true } }],

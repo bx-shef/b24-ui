@@ -1,4 +1,4 @@
-import { bench, describe } from 'vitest'
+import { describe, test } from 'vitest'
 import { h } from 'vue'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
 import { Primitive } from 'reka-ui'
@@ -33,31 +33,26 @@ function makeParent(render: (cls: string) => any) {
   }
 }
 
-describe('mount', () => {
+test('mount', async ({ bench }) => {
   for (const [name, render] of CASES) {
-    bench(name, async () => {
+    await bench(name, async () => {
       const wrapper = await mountSuspended(makeParent(render), { props: { cls: 'p-2' } })
       wrapper.unmount()
-    })
+    }).run()
   }
 })
 
 describe('re-render', () => {
   for (const [name, render] of CASES) {
-    describe(name, () => {
-      let wrapper: Awaited<ReturnType<typeof mountSuspended>>
+    test(name, async ({ bench }) => {
+      const wrapper = await mountSuspended(makeParent(render), { props: { cls: 'p-2' } })
 
-      bench(name, async () => {
+      await bench(name, async () => {
         await wrapper.setProps({ cls: 'p-3' })
         await wrapper.setProps({ cls: 'p-2' })
-      }, {
-        async setup() {
-          wrapper = await mountSuspended(makeParent(render), { props: { cls: 'p-2' } })
-        },
-        teardown() {
-          wrapper?.unmount()
-        }
-      })
+      }).run()
+
+      wrapper.unmount()
     })
   }
 })

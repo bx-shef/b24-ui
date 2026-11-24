@@ -738,7 +738,8 @@ For each commit:
    in the deploy, not in the PR. Give that run `deploy.yml`'s env: without
    `NUXT_PUBLIC_GIT_URL` the footer link collapses to a relative `/releases`
    and the prerender crawler fails on it.
-4. Update [`nuxt-ui.json`](./nuxt-ui.json): advance `cursor`, add the
+4. Update [`nuxt-ui.json`](./nuxt-ui.json) — [`ledger.py`](./ledger.py) does the
+   cursor, the entry, the log file and the dep-parity refresh in one call: advance `cursor`, add the
    `processed[sha]` entry, and reconcile the **previous** entry with its merged
    PR number and squash SHA. The last entry in a run has no follower to
    reconcile it — close it out with its own small bookkeeping PR.

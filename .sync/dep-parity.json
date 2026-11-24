@@ -1,6 +1,6 @@
 {
   "$note": "Upstream's pinned versions for every dependency both trees declare in the SAME section, snapshotted at `cursor`. The sync ports deltas, which is correct per commit and lets a one-time divergence become permanent: once a version is off upstream's line, every later `chore(deps)` batch skips it, because those ports bump only where this fork already matched upstream's pre-image. `prettier` sat at ^3.8.4 against upstream's ^3.9.6 for that reason, through four ported batches, until this file was written. Section-aware on purpose: 18 packages are declared on both sides but in different sections — the whole `@tiptap/*` family is a peer `^3` upstream and a dependency `^3.29.2` here, and `ai` is a peer there and a devDependency here. Those are structural divergences, not drift, and comparing a peer range against a dependency range says nothing. They are absent from this file by construction rather than by omission. Guarded by `test/utils/dep-parity.spec.ts`. Refresh with `node .sync/dep-parity.mjs <path-to-nuxt-ui-mirror> [cursor]`, which preserves `exceptions`.",
-  "cursor": "671713e2eca58a7109c573c2458bb64c58dc2ff3",
+  "cursor": "468dce9d57801c2de4fb3f1a0d2feea9239bf8e1",
   "manifests": {
     "package.json": {
       "dependencies": {
@@ -13,7 +13,7 @@
         "@tailwindcss/postcss": "^4.3.3",
         "@tailwindcss/vite": "^4.3.3",
         "@tanstack/vue-table": "^8.21.3",
-        "@tanstack/vue-virtual": "^3.13.47",
+        "@tanstack/vue-virtual": "^3.13.48",
         "@tiptap/core": "^3.32.0",
         "@tiptap/extension-bubble-menu": "^3.32.0",
         "@tiptap/extension-code": "^3.32.0",
@@ -74,15 +74,15 @@
         "@tanstack/table-core": "^8.21.3",
         "@vitejs/plugin-vue": "^6.0.10",
         "@vue/test-utils": "^2.5.1",
-        "ai": "^7.0.143",
+        "ai": "^7.0.153",
         "embla-carousel": "^8.6.0",
         "eslint": "^10.13.0",
-        "eslint-plugin-better-tailwindcss": "^4.9.1",
+        "eslint-plugin-better-tailwindcss": "^4.10.0",
         "happy-dom": "^20.14.6",
         "jiti": "^2.7.0",
         "nuxt": "^4.6.2",
         "unbuild": "^3.6.1",
-        "vitest": "^4.1.12",
+        "vitest": "^5.0.5",
         "vitest-axe": "^0.1.0",
         "vitest-environment-nuxt": "^2.0.0",
         "vue": "^3.5.44",
@@ -106,7 +106,7 @@
     },
     "docs/package.json": {
       "dependencies": {
-        "@comark/vue": "^0.7.0",
+        "@comark/vue": "^0.8.1",
         "@nuxt/content": "^3.16.2",
         "@nuxt/image": "^2.2.0",
         "@nuxtjs/mcp-toolkit": "^0.24.2",
@@ -127,8 +127,8 @@
         "motion-v": "^2.8.0",
         "nuxt": "^4.6.2",
         "nuxt-component-meta": "^0.19.0",
-        "nuxt-llms": "^0.2.0",
-        "nuxt-schema-org": "^6.4.3",
+        "nuxt-llms": "^0.3.0",
+        "nuxt-schema-org": "^7.0.1",
         "prettier": "^3.9.10",
         "shiki": "^4.5.0",
         "shiki-transformer-color-highlight": "^1.1.0",
@@ -149,7 +149,7 @@
     },
     "playgrounds/nuxt/package.json": {
       "dependencies": {
-        "@comark/vue": "^0.7.0",
+        "@comark/vue": "^0.8.1",
         "@internationalized/date": "^3.12.4",
         "@nuxt/content": "^3.16.2",
         "@tanstack/charts": "^1.1.0",
@@ -177,7 +177,7 @@
       "devDependencies": {
         "@vitejs/plugin-vue": "^6.0.10",
         "typescript": "^6.0.3",
-        "vite": "^8.3.4",
+        "vite": "^8.3.5",
         "vue-tsc": "^3.3.11"
       }
     }

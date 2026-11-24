@@ -82,23 +82,17 @@ const b24ui = {
           :messages="messages"
           status="ready"
           compact
+          :user="{ b24ui: { text: 'text-sm/6' } }"
           class="px-0"
         >
-          <template #content="{ message, streaming }">
-            <template v-for="(part, index) in message.parts" :key="`${message.id}-${part.type}-${index}`">
-              <template v-if="part.type === 'text'">
-                <Markdown
-                  v-if="message.role === 'assistant'"
-                  :value="part.text"
-                  :streaming="isPartStreaming(part, streaming)"
-                  :plugins="[shiki()]"
-                  class="*:first:mt-0 *:last:mb-0"
-                />
-                <p v-else-if="message.role === 'user'" class="whitespace-pre-wrap text-sm/6">
-                  {{ part.text }}
-                </p>
-              </template>
-            </template>
+          <template #part="{ part, message, streaming }">
+            <Markdown
+              v-if="part.type === 'text' && message.role === 'assistant'"
+              :value="part.text"
+              :streaming="isPartStreaming(part, streaming)"
+              :plugins="[shiki()]"
+              class="*:first:mt-0 *:last:mb-0"
+            />
           </template>
         </B24ChatMessages>
       </B24Theme>

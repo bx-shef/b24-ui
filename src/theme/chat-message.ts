@@ -22,6 +22,7 @@ export default {
       'border-[length:var(--b24ui-border-width,var(--b24ui-default-border-width))]',
       'text-[color:var(--b24ui-color,var(--b24ui-default-color))]'
     ].join(' '),
+    text: 'whitespace-pre-wrap',
     actions: [
       '[@media(hover:hover)]:opacity-0 group-hover/message:opacity-100 focus-within:opacity-100 absolute bottom-0 flex items-center',
       'transition-opacity'

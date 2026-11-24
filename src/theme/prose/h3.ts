@@ -9,7 +9,7 @@ export default {
       'relative mb-2',
       'scroll-mt-[calc(32px+45px+24px+var(--topbar-height))] lg:scroll-mt-[calc(32px+22px+15px+var(--topbar-height))]',
       'text-(length:--ui-font-size-3xl)',
-      '[&>a>code]:text-(length:--ui-font-size-2xl)/6',
+      '[&_code]:text-(length:--ui-font-size-2xl)/6',
       '[&>a]:focus-visible:outline-(--ui-color-accent-main-primary)',
       'hover:[&>a>code]:text-(--ui-color-accent-main-primary-alt-2)',
       'hover:[&>a>code]:bg-(--ui-color-design-selection-bg)',
