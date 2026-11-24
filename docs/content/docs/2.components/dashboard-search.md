@@ -1,6 +1,6 @@
 ---
 title: DashboardSearch
-description: 'A ready-to-use CommandPalette component for your dashboard.'
+description: 'Готовая командная палитра CommandPalette для вашего дашборда.'
 category: dashboard
 links:
   - label: GitHub
@@ -14,11 +14,11 @@ links:
     to: https://ui.nuxt.com/docs/components/dashboard-search
 ---
 
-## Usage
+## Использование {#usage}
 
-The DashboardSearch component extends the [CommandPalette](/docs/components/command-palette/) component, so you can pass any property such as `icon`, `placeholder`, etc.
+Компонент DashboardSearch расширяет [CommandPalette](/docs/components/command-palette/), поэтому ему можно передать любое свойство: `icon`, `placeholder` и другие.
 
-Use it inside the default slot of the [DashboardGroup](/docs/components/dashboard-group/) component:
+Используйте его в слоте по умолчанию компонента [DashboardGroup](/docs/components/dashboard-group/):
 
 ```vue [layouts/dashboard.vue]{4}
 <template>
@@ -35,12 +35,12 @@ Use it inside the default slot of the [DashboardGroup](/docs/components/dashboar
 ```
 
 ::tip
-You can open the CommandPalette by pressing :kbd{value="meta"} :kbd{value="K" class="ms-px"}, by using the [DashboardSearchButton](/docs/components/dashboard-search-button/) component or by using a `v-model:open`{lang="ts"} directive.
+Открыть палитру можно сочетанием :kbd{value="meta"} :kbd{value="K" class="ms-px"}, компонентом [DashboardSearchButton](/docs/components/dashboard-search-button/) или директивой `v-model:open`{lang="ts"}.
 ::
 
-### Shortcut
+### Сочетание клавиш {#shortcut}
 
-Use the `shortcut` prop to change the shortcut used in [defineShortcuts](/docs/composables/define-shortcuts/) to open the ContentSearch component. Defaults to `meta_k` (:kbd{value="meta"} :kbd{value="K"}).
+Пропс `shortcut` меняет сочетание клавиш, которое [defineShortcuts](/docs/composables/define-shortcuts/) использует для открытия DashboardSearch. По умолчанию `meta_k` (:kbd{value="meta"} :kbd{value="K"}).
 
 ```vue [app.vue]{4}
 <template>
@@ -53,9 +53,9 @@ Use the `shortcut` prop to change the shortcut used in [defineShortcuts](/docs/c
 </template>
 ```
 
-### Color Mode
+### Цветовая схема {#color-mode}
 
-By default, a group of commands will be added to the command palette so you can switch between light and dark mode. This will only take effect if the `colorMode` is not forced in a specific page which can be achieved through `definePageMeta`:
+По умолчанию в палитру добавляется группа команд для переключения между светлой и тёмной темой. Это работает, только если `colorMode` не зафиксирован на конкретной странице через `definePageMeta`:
 
 ```vue [pages/index.vue]
 <script setup lang="ts">
@@ -65,7 +65,7 @@ definePageMeta({
 </script>
 ```
 
-You can disable this behavior by setting the `color-mode` prop to `false`:
+Отключить эту группу можно пропсом `color-mode` со значением `false`:
 
 ```vue [app.vue]{4}
 <template>
@@ -80,26 +80,26 @@ You can disable this behavior by setting the `color-mode` prop to `false`:
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-### Expose
+### Доступ через ref {#expose}
 
-When accessing the component via a template ref, you can use the following:
+Через ref шаблона доступно:
 
 | Name | Type |
 | ---- | ---- |
 | `commandPaletteRef`{lang="ts-type"} | `Ref<InstanceType<typeof B24CommandPalette> \| null>`{lang="ts-type"} |
 
-## Theme
+## Тема {#theme}
 
 :component-theme

@@ -1,12 +1,12 @@
 ---
 title: EditorDragHandle
-description: A draggable handle component for reordering and selecting editor blocks.
+description: 'Ручка для перетаскивания, с помощью которой блоки редактора переупорядочивают и выделяют.'
 category: editor
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/EditorDragHandle.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/editor
   - label: Nuxt UI
@@ -14,15 +14,15 @@ links:
     to: https://ui.nuxt.com/docs/components/editor-drag-handle
 ---
 
-## Usage
+## Использование {#usage}
 
-The EditorDragHandle component provides drag-and-drop functionality for reordering editor blocks using the `@tiptap/extension-drag-handle-vue-3` package.
+Компонент EditorDragHandle добавляет перетаскивание для изменения порядка блоков редактора. Он использует пакет `@tiptap/extension-drag-handle-vue-3`.
 
 ::caution
-It must be used inside an [Editor](/docs/components/editor/) component's default slot to have access to the editor instance.
+Компонент нужно использовать в слоте по умолчанию компонента [Editor](/docs/components/editor/), чтобы получить доступ к экземпляру редактора.
 ::
 
-It extends the [Button](/docs/components/button/) component, so you can pass any property such as `color`, `size`, etc.
+Компонент расширяет [Button](/docs/components/button/), поэтому ему можно передать любое свойство: `color`, `size` и другие.
 
 ::component-example
 ---
@@ -34,12 +34,12 @@ class: 'p-8'
 ::
 
 ::callout{to="https://tiptap.dev/docs/editor/extensions/functionality/drag-handle-vue" target="_blank"}
-Learn more about the Drag Handle extension in the TipTap documentation.
+Подробнее о расширении Drag Handle — в документации TipTap.
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to customize the drag handle icon.
+Пропс `icon` задаёт иконку ручки.
 
 ```vue
 <script setup lang="ts">
@@ -53,12 +53,12 @@ import DragLIcon from '@bitrix24/b24icons-vue/outline/DragLIcon'
 </template>
 ```
 
-### Options
+### Параметры {#options}
 
-Use the `options` prop to customize the positioning behavior using [Floating UI options](https://floating-ui.com/docs/computeposition#options).
+Пропс `options` настраивает позиционирование с помощью [параметров Floating UI](https://floating-ui.com/docs/computeposition#options).
 
 ::note
-The offset is automatically calculated to center the handle for small blocks and align it to the top for taller blocks.
+Смещение вычисляется автоматически: у небольших блоков ручка центрируется, у высоких — выравнивается по верхнему краю.
 ::
 
 ```vue
@@ -74,13 +74,13 @@ The offset is automatically calculated to center the handle for small blocks and
 </template>
 ```
 
-## Examples
+## Примеры {#examples}
 
-### With dropdown menu
+### С выпадающим меню {#with-dropdown-menu}
 
-Use the default slot to add a [DropdownMenu](/docs/components/dropdown-menu/) with block-level actions like duplicate, delete, move up/down, or transform blocks into different types.
+В слот по умолчанию можно добавить [DropdownMenu](/docs/components/dropdown-menu/) с действиями над блоком: дублировать, удалить, переместить вверх или вниз, преобразовать в другой тип.
 
-Listen to the `@node-change` event to track the currently hovered node and its position, then use `editor.chain().setMeta('lockDragHandle', open).run()`{lang="ts-type"} to lock the handle position while the menu is open.
+Событие `@node-change` отслеживает блок под курсором и его позицию, а `editor.chain().setMeta('lockDragHandle', open).run()`{lang="ts-type"} фиксирует положение ручки, пока меню открыто.
 
 ::component-example
 ---
@@ -92,14 +92,14 @@ class: 'p-8'
 ::
 
 ::note
-This example uses the `mapEditorItems` utility from `@bitrix24/b24ui-nuxt/utils/editor` to automatically map handler kinds (like `duplicate`, `delete`, `moveUp`, etc.) to their corresponding editor commands with proper state management.
+В этом примере утилита `mapEditorItems` из `@bitrix24/b24ui-nuxt/utils/editor` сопоставляет виды обработчиков (`duplicate`, `delete`, `moveUp` и другие) с командами редактора и сама управляет состоянием.
 ::
 
-### With suggestion menu
+### С меню подсказок {#with-suggestion-menu}
 
-Use the default slot to add a [Button](/docs/components/button/) next to the drag handle to open the [EditorSuggestionMenu](/docs/components/editor-suggestion-menu/).
+В слот по умолчанию можно добавить рядом с ручкой кнопку [Button](/docs/components/button/), которая открывает [EditorSuggestionMenu](/docs/components/editor-suggestion-menu/).
 
-Call the `onClick` slot function to get the current node position, then use `handlers.suggestion?.execute(editor, { pos: node?.pos }).run()`{lang="ts-type"} to insert new blocks at that position.
+Функция слота `onClick` возвращает позицию текущего блока, а `handlers.suggestion?.execute(editor, { pos: node?.pos }).run()`{lang="ts-type"} вставляет новые блоки в эту позицию.
 
 ::component-example
 ---
@@ -112,18 +112,18 @@ class: '!p-0'
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

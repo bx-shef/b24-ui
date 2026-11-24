@@ -1,12 +1,12 @@
 ---
 title: Editor
-description: A rich text editor built on TipTap supporting markdown, HTML, and JSON content formats.
+description: 'Редактор форматированного текста на базе TipTap с поддержкой Markdown, HTML и JSON.'
 category: editor
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Editor.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/editor
   - label: Nuxt UI
@@ -19,9 +19,9 @@ links:
     to: https://tiptap.dev/
 ---
 
-## Usage
+## Использование {#usage}
 
-The Editor component provides a powerful rich text editing experience built on [TipTap](https://tiptap.dev/). It supports multiple content formats (JSON, HTML, Markdown), customizable toolbars, drag-and-drop block reordering, slash commands, mentions, emoji picker, and extensible architecture for adding custom functionality.
+Компонент Editor — мощный редактор форматированного текста на базе [TipTap](https://tiptap.dev/). Он поддерживает несколько форматов содержимого (JSON, HTML, Markdown), настраиваемые панели инструментов, перетаскивание блоков, слэш-команды, упоминания, выбор эмодзи и расширяемую архитектуру для своих возможностей.
 
 ::component-example
 ---
@@ -32,12 +32,12 @@ class: 'relative h-176 !p-0 rounded-b-md'
 ---
 ::
 
-::callout{icon-name="GitHubIcon" to="https://github.com/bitrix24/b24ui/blob/main/docs/app/components/content/examples/editor/EditorExample.vue" aria-label="View source code"}
-This example demonstrates a production-ready Editor component. Check out the source code on GitHub.
+::callout{icon-name="GitHubIcon" to="https://github.com/bitrix24/b24ui/blob/main/docs/app/components/content/examples/editor/EditorExample.vue" aria-label="Посмотреть исходный код"}
+В этом примере показан Editor, готовый к использованию в продакшене. Исходный код — на GitHub.
 ::
 
 ::warning
-If you encounter prosemirror-related errors such as `Adding different instances of a keyed plugin` when using the Editor component or its extensions, you may need to add prosemirror packages to the `vite.optimizeDeps.include` list in your `nuxt.config.ts` file. This ensures Vite pre-bundles these dependencies to avoid loading multiple instances.
+Если при работе с Editor или его расширениями возникают ошибки prosemirror вроде `Adding different instances of a keyed plugin`, добавьте пакеты prosemirror в список `vite.optimizeDeps.include` в файле `nuxt.config.ts`. Тогда Vite предварительно собирает эти зависимости и не загружает несколько экземпляров.
 
 ```ts [nuxt.config.ts]
 export default defineNuxtConfig({
@@ -57,9 +57,9 @@ export default defineNuxtConfig({
 ::
 
 
-### Content
+### Содержимое {#content}
 
-Use the `v-model` directive to control the value of the Editor.
+Директива `v-model` управляет значением Editor.
 
 ::component-code
 ---
@@ -82,26 +82,26 @@ props:
           level: 1
         content:
           - type: 'text'
-            text: 'Hello World'
+            text: 'Привет, мир'
       - type: 'paragraph'
         content:
           - type: 'text'
-            text: 'This is a '
+            text: 'Это редактор '
           - type: 'text'
             marks:
               - type: 'bold'
-            text: 'rich text'
+            text: 'форматированного текста'
           - type: 'text'
-            text: ' editor.'
+            text: '.'
   class: 'w-full min-h-21'
 ---
 ::
 
-### Content Type
+### Тип содержимого {#content-type}
 
-The Editor automatically detects the content format based on `v-model` type: strings are treated as `html`{lang="ts-type"} and objects as `json`{lang="ts-type"}.
+Editor сам определяет формат содержимого по типу `v-model`: строки считаются `html`{lang="ts-type"}, объекты — `json`{lang="ts-type"}.
 
-You can explicitly set the format using the `content-type` prop: `json`{lang="ts-type"}, `html`{lang="ts-type"}, or `markdown`{lang="ts-type"}.
+Формат можно задать явно пропсом `content-type`: `json`{lang="ts-type"}, `html`{lang="ts-type"} или `markdown`{lang="ts-type"}.
 
 ::component-code
 ---
@@ -116,28 +116,28 @@ external:
 class: 'p-8'
 props:
   modelValue: |
-    <h1>Hello World</h1>
-    <p>This is a <strong>rich text</strong> editor.</p>
+    <h1>Привет, мир</h1>
+    <p>Это редактор <strong>форматированного текста</strong>.</p>
   contentType: 'html'
   class: 'w-full min-h-21'
 ---
 ::
 
-### Extensions
+### Расширения {#extensions}
 
-The Editor includes the following extensions by default:
+В Editor по умолчанию включены расширения:
 
-- [**StarterKit**](#starter-kit) - Core editing features (bold, italic, headings, lists, etc.)
-- [**Placeholder**](#placeholder) - Show placeholder text (when placeholder prop is provided)
-- **Image** - Insert and display images
-- **Mention** - Add @ mentions support
-- **Markdown** - Parse and serialize markdown (when content type is markdown)
+- [**StarterKit**](#starter-kit) — базовые возможности редактирования (жирный, курсив, заголовки, списки и другое);
+- [**Placeholder**](#placeholder) — текст плейсхолдера (если задан пропс placeholder);
+- **Image** — вставка и показ изображений;
+- **Mention** — поддержка упоминаний через @;
+- **Markdown** — разбор и сериализация Markdown (если тип содержимого — markdown).
 
 ::note
-Each built-in extension can be configured using its corresponding prop (`starter-kit`, `placeholder`, `image`, `mention`, `markdown`) to customize its behavior with TipTap options.
+Каждое встроенное расширение настраивается своим пропсом (`starter-kit`, `placeholder`, `image`, `mention`, `markdown`) через параметры TipTap.
 ::
 
-You can use the `extensions` prop to add additional TipTap extensions to enhance the Editor's capabilities:
+Пропс `extensions` добавляет дополнительные расширения TipTap и расширяет возможности Editor:
 
 ```vue
 <script setup lang="ts">
@@ -161,12 +161,12 @@ const value = ref('<h1>Hello World</h1>\n')
 ```
 
 ::tip{to="#with-image-upload"}
-Check out the image upload example for creating custom TipTap extensions.
+Пример загрузки изображений показывает, как создавать собственные расширения TipTap.
 ::
 
-### Placeholder
+### Плейсхолдер {#placeholder}
 
-Use the `placeholder` prop to set a placeholder text that shows in empty paragraphs.
+Пропс `placeholder` задаёт текст плейсхолдера, который показывается в пустых абзацах.
 
 ::component-code
 ---
@@ -182,15 +182,15 @@ external:
 class: 'p-8'
 props:
   modelValue: ''
-  placeholder: 'Start writing...'
+  placeholder: 'Начните писать...'
   class: 'w-full min-h-7'
 ---
 ::
 
 ::note
-The `placeholder` prop accepts a string or an object with [PlaceholderOptions](https://tiptap.dev/docs/editor/extensions/functionality/placeholder) and an additional `mode` property:
-- `everyLine`: Display placeholder on every empty line when focused (default).
-- `firstLine`: Display placeholder only on the first line when the editor is empty.
+Пропс `placeholder` принимает строку или объект с [PlaceholderOptions](https://tiptap.dev/docs/editor/extensions/functionality/placeholder) и дополнительным свойством `mode`:
+- `everyLine` — плейсхолдер в каждой пустой строке при фокусе (по умолчанию);
+- `firstLine` — плейсхолдер только в первой строке, когда редактор пуст.
 
 ```vue
 <template>
@@ -200,7 +200,7 @@ The `placeholder` prop accepts a string or an object with [PlaceholderOptions](h
 ::
 
 ::tip
-By default, placeholders only appear on top-level empty nodes. To show placeholders in nested elements like list items, set `includeChildren` to `true`:
+По умолчанию плейсхолдеры показываются только в пустых узлах верхнего уровня. Чтобы показывать их во вложенных элементах, например в пунктах списка, задайте `includeChildren: true`:
 
 ```vue
 <template>
@@ -210,12 +210,12 @@ By default, placeholders only appear on top-level empty nodes. To show placehold
 ::
 
 ::callout{to="https://tiptap.dev/docs/editor/extensions/functionality/placeholder" target="_blank"}
-Learn more about Placeholder extension in the TipTap documentation.
+Подробнее о расширении Placeholder — в документации TipTap.
 ::
 
-### Starter Kit
+### Starter Kit {#starter-kit}
 
-Use the `starter-kit` prop to configure the built-in TipTap StarterKit extension which includes common editor features like bold, italic, headings, lists, blockquotes, code blocks, and more.
+Пропс `starter-kit` настраивает встроенное расширение TipTap StarterKit, в которое входят типичные возможности редактора: жирный текст, курсив, заголовки, списки, цитаты, блоки кода и другое.
 
 ```vue
 <script setup lang="ts">
@@ -243,51 +243,51 @@ const value = ref('<h1>Hello World</h1>\n')
 ```
 
 ::tip
-Set `starter-kit` to `false` for a plain text editor. It keeps the essential nodes (paragraph, text, history) and disables every formatting feature such as bold, italic, headings, lists, code, blockquote, links and horizontal rules.
+Значение `false` у `starter-kit` превращает Editor в редактор простого текста. Остаются только базовые узлы (абзац, текст, история), а все возможности форматирования отключаются: жирный текст, курсив, заголовки, списки, код, цитаты, ссылки и горизонтальные линии.
 ::
 
 ::callout{to="https://tiptap.dev/docs/editor/extensions/functionality/starterkit" target="_blank"}
-Learn more about StarterKit extension in the TipTap documentation.
+Подробнее о расширении StarterKit — в документации TipTap.
 ::
 
-### Handlers
+### Обработчики {#handlers}
 
-Handlers wrap TipTap's built-in commands to provide a unified interface for editor actions. When you add a `kind` property to a [EditorToolbar](/docs/components/editor-toolbar/) or [EditorSuggestionMenu](/docs/components/editor-suggestion-menu/) item, the corresponding handler executes the TipTap command and manages its state (active, disabled, etc.).
+Обработчики оборачивают встроенные команды TipTap и дают единый интерфейс для действий редактора. Если элементу [EditorToolbar](/docs/components/editor-toolbar/) или [EditorSuggestionMenu](/docs/components/editor-suggestion-menu/) задать свойство `kind`, соответствующий обработчик выполнит команду TipTap и будет следить за её состоянием (активна, отключена и так далее).
 
-#### Default handlers
+#### Обработчики по умолчанию {#default-handlers}
 
-The Editor component provides these default handlers, which you can reference in toolbar or suggestion menu items using the `kind` property:
+В Editor есть такие обработчики по умолчанию. Их можно указывать в элементах панели инструментов или меню подсказок через свойство `kind`:
 
-| Handler | Description | Usage |
+| Обработчик | Описание | Использование |
 |---------|-------------|-------|
-| `mark`{lang="ts-type"} | Toggle text marks (bold, italic, strike, code, underline) | Requires `mark` property in item |
-| `textAlign`{lang="ts-type"} | Set text alignment (left, center, right, justify) | Requires `align` property in item |
-| `heading`{lang="ts-type"} | Toggle heading levels (1-6) | Requires `level` property in item |
-| `link`{lang="ts-type"} | Add, edit, or remove links | Prompts for URL if not provided |
-| `image`{lang="ts-type"} | Insert images | Prompts for URL if not provided |
-| `blockquote`{lang="ts-type"} | Toggle blockquotes | |
-| `bulletList`{lang="ts-type"} | Toggle bullet lists | Handles list conversions |
-| `orderedList`{lang="ts-type"} | Toggle ordered lists | Handles list conversions |
-| `taskList`{lang="ts-type"} | Toggle task lists | Handles list conversions |
-| `codeBlock`{lang="ts-type"} | Toggle code blocks | |
-| `horizontalRule`{lang="ts-type"} | Insert horizontal rules | |
-| `paragraph`{lang="ts-type"} | Set paragraph format | |
-| `undo`{lang="ts-type"} | Undo last change | |
-| `redo`{lang="ts-type"} | Redo last undone change | |
-| `clearFormatting`{lang="ts-type"} | Remove all formatting | Works with selection or position |
-| `duplicate`{lang="ts-type"} | Duplicate a node | Requires `pos` property in item |
-| `delete`{lang="ts-type"} | Delete a node | Requires `pos` property in item |
-| `moveUp`{lang="ts-type"} | Move a node up | Requires `pos` property in item |
-| `moveDown`{lang="ts-type"} | Move a node down | Requires `pos` property in item |
-| `suggestion`{lang="ts-type"} | Trigger suggestion menu | Inserts `/` character |
-| `mention`{lang="ts-type"} | Trigger mention menu | Inserts `@` character |
-| `emoji`{lang="ts-type"} | Trigger emoji picker | Inserts `:` character |
+| `mark`{lang="ts-type"} | Переключает текстовые выделения (жирный, курсив, зачёркнутый, код, подчёркнутый) | Нужно свойство `mark` в элементе |
+| `textAlign`{lang="ts-type"} | Задаёт выравнивание текста (слева, по центру, справа, по ширине) | Нужно свойство `align` в элементе |
+| `heading`{lang="ts-type"} | Переключает уровни заголовков (1–6) | Нужно свойство `level` в элементе |
+| `link`{lang="ts-type"} | Добавляет, редактирует или удаляет ссылки | Если URL не задан, запрашивает его |
+| `image`{lang="ts-type"} | Вставляет изображения | Если URL не задан, запрашивает его |
+| `blockquote`{lang="ts-type"} | Переключает цитаты | |
+| `bulletList`{lang="ts-type"} | Переключает маркированные списки | Преобразует списки |
+| `orderedList`{lang="ts-type"} | Переключает нумерованные списки | Преобразует списки |
+| `taskList`{lang="ts-type"} | Переключает списки задач | Преобразует списки |
+| `codeBlock`{lang="ts-type"} | Переключает блоки кода | |
+| `horizontalRule`{lang="ts-type"} | Вставляет горизонтальные линии | |
+| `paragraph`{lang="ts-type"} | Задаёт формат абзаца | |
+| `undo`{lang="ts-type"} | Отменяет последнее изменение | |
+| `redo`{lang="ts-type"} | Возвращает отменённое изменение | |
+| `clearFormatting`{lang="ts-type"} | Убирает всё форматирование | Работает с выделением или позицией |
+| `duplicate`{lang="ts-type"} | Дублирует узел | Нужно свойство `pos` в элементе |
+| `delete`{lang="ts-type"} | Удаляет узел | Нужно свойство `pos` в элементе |
+| `moveUp`{lang="ts-type"} | Перемещает узел вверх | Нужно свойство `pos` в элементе |
+| `moveDown`{lang="ts-type"} | Перемещает узел вниз | Нужно свойство `pos` в элементе |
+| `suggestion`{lang="ts-type"} | Вызывает меню подсказок | Вставляет символ `/` |
+| `mention`{lang="ts-type"} | Вызывает меню упоминаний | Вставляет символ `@` |
+| `emoji`{lang="ts-type"} | Вызывает выбор эмодзи | Вставляет символ `:` |
 
 ::warning
-The `taskList` and `textAlign` handlers only work when their respective extensions are installed, as they are not included in the Editor by default.
+Обработчики `taskList` и `textAlign` работают, только если установлены соответствующие расширения: в Editor их по умолчанию нет.
 ::
 
-Here's how to use default handlers in toolbar or suggestion menu items:
+Так обработчики по умолчанию используются в элементах панели инструментов или меню подсказок:
 
 ```vue
 <script setup lang="ts">
@@ -324,26 +324,26 @@ const items: EditorToolbarItem[] = [
 </template>
 ```
 
-#### Custom handlers
+#### Свои обработчики {#custom-handlers}
 
-Use the `handlers` prop to extend or override the default handlers. Custom handlers are merged with the default handlers, so you can add new actions or modify existing behavior.
+Пропс `handlers` расширяет или переопределяет обработчики по умолчанию. Свои обработчики объединяются со стандартными, поэтому можно добавлять новые действия и менять поведение существующих.
 
-Each handler implements the `EditorHandler`{lang="ts-type"} interface:
+Каждый обработчик реализует интерфейс `EditorHandler`{lang="ts-type"}:
 
 ```ts
 interface EditorHandler {
-  /* Checks if the command can be executed in the current editor state */
+  /* Проверяет, можно ли выполнить команду в текущем состоянии редактора */
   canExecute: (editor: Editor, item?: any) => boolean
-  /* Executes the command and returns a Tiptap chain */
+  /* Выполняет команду и возвращает цепочку Tiptap */
   execute: (editor: Editor, item?: any) => any
-  /* Determines if the item should appear active (used for toggle states) */
+  /* Определяет, выглядит ли элемент активным (для переключателей) */
   isActive: (editor: Editor, item?: any) => boolean
-  /* Optional additional check to disable the item (combined with `canExecute`) */
+  /* Дополнительная проверка для отключения элемента (объединяется с `canExecute`) */
   isDisabled?: (editor: Editor, item?: any) => boolean
 }
 ```
 
-Here's an example of creating custom handlers:
+Пример собственных обработчиков:
 
 ```vue
 <script setup lang="ts">
@@ -364,9 +364,9 @@ const customHandlers = {
 } satisfies EditorCustomHandlers
 
 const items = [
-  // Built-in handler
+  // Встроенный обработчик
   { kind: 'mark', mark: 'bold', icon: BoldIcon },
-  // Custom handler
+  // Свой обработчик
   { kind: 'highlight', icon: TextColorIcon }
 ] satisfies EditorToolbarItem<typeof customHandlers>[]
 </script>
@@ -379,14 +379,14 @@ const items = [
 ```
 
 ::tip{to="#with-image-upload"}
-Check out the image upload example for a complete implementation with custom handlers.
+Полный пример с собственными обработчиками показывает загрузка изображений.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With toolbar
+### С панелью инструментов {#with-toolbar}
 
-You can use the [EditorToolbar](/docs/components/editor-toolbar/) component to add a `fixed`, `bubble`, or `floating` toolbar to the Editor with common formatting actions.
+Компонент [EditorToolbar](/docs/components/editor-toolbar/) добавляет в Editor панель инструментов `fixed`, `bubble` или `floating` с типичными действиями форматирования.
 
 ::component-example
 ---
@@ -398,9 +398,9 @@ class: 'p-8'
 ---
 ::
 
-### With drag handle
+### С ручкой перетаскивания {#with-drag-handle}
 
-You can use the [EditorDragHandle](/docs/components/editor-drag-handle/) component to add a draggable handle for reordering blocks.
+Компонент [EditorDragHandle](/docs/components/editor-drag-handle/) добавляет ручку для перетаскивания блоков.
 
 ::component-example
 ---
@@ -412,9 +412,9 @@ class: 'p-8'
 ---
 ::
 
-### With suggestion menu
+### С меню подсказок {#with-suggestion-menu}
 
-You can use the [EditorSuggestionMenu](/docs/components/editor-suggestion-menu/) component to add slash commands for quick formatting and insertions.
+Компонент [EditorSuggestionMenu](/docs/components/editor-suggestion-menu/) добавляет слэш-команды для быстрого форматирования и вставки.
 
 ::component-example
 ---
@@ -426,9 +426,9 @@ class: 'p-8'
 ---
 ::
 
-### With mention menu
+### С меню упоминаний {#with-mention-menu}
 
-You can use the [EditorMentionMenu](/docs/components/editor-mention-menu/) component to add @ mentions for tagging users or entities.
+Компонент [EditorMentionMenu](/docs/components/editor-mention-menu/) добавляет упоминания через @ для тегов пользователей и других сущностей.
 
 ::component-example
 ---
@@ -440,9 +440,9 @@ class: 'p-8'
 ---
 ::
 
-### With emoji menu
+### С меню эмодзи {#with-emoji-menu}
 
-You can use the [EditorEmojiMenu](/docs/components/editor-emoji-menu/) component to add emoji picker support.
+Компонент [EditorEmojiMenu](/docs/components/editor-emoji-menu/) добавляет выбор эмодзи.
 
 ::component-example
 ---
@@ -454,11 +454,11 @@ class: 'p-8'
 ---
 ::
 
-### With image upload
+### С загрузкой изображений {#with-image-upload}
 
-This example demonstrates how to create an image upload feature using the `extensions` prop to register a custom TipTap node and the `handlers` prop to define how the toolbar button triggers the upload flow.
+В этом примере загрузка изображений собрана так: пропс `extensions` регистрирует свой узел TipTap, а пропс `handlers` определяет, как кнопка панели запускает загрузку.
 
-1. Create a Vue component that uses the [FileUpload](/docs/components/file-upload/) component:
+1. Создайте Vue-компонент на основе [FileUpload](/docs/components/file-upload/):
 
 ::component-example
 ---
@@ -468,7 +468,7 @@ name: 'editor-image-upload-node'
 ---
 ::
 
-2. Create a custom TipTap extension to register the node:
+2. Создайте своё расширение TipTap, которое регистрирует узел:
 
 ::component-example
 ---
@@ -479,7 +479,7 @@ name: 'editor-image-upload-extension'
 ---
 ::
 
-3. Use the custom extension in the Editor:
+3. Подключите своё расширение в Editor:
 
 ::component-example
 ---
@@ -492,35 +492,35 @@ class: '!p-0'
 ::
 
 ::callout{to="https://tiptap.dev/docs/editor/extensions/custom-extensions" target="_blank"}
-Learn more about creating custom extensions in the TipTap documentation.
+Подробнее о создании своих расширений — в документации TipTap.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-### Expose
+### Доступ через ref {#expose}
 
-When accessing the component via a template ref, you can use the following:
+Через ref шаблона доступно:
 
 | Name | Type |
 | ---- | ---- |
 | `editor`{lang="ts-type"} | `Ref<Editor \| undefined>`{lang="ts-type"} |
 
 ::callout{to="https://tiptap.dev/docs/editor/api/editor" target="_blank"}
-The exposed editor instance is the TipTap Editor API. Check the TipTap documentation for all available methods and properties.
+Доступный через ref экземпляр — это API редактора TipTap. Все методы и свойства описаны в документации TipTap.
 ::
 
-## Theme
+## Тема {#theme}
 
 :component-theme

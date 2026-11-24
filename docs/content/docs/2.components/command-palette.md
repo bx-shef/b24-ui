@@ -1,6 +1,6 @@
 ---
 title: CommandPalette
-description: A searchable command palette powered by Fuse.js for fast, fuzzy text search.
+description: 'Командная палитра с поиском на базе Fuse.js: быстрый нечёткий поиск по тексту.'
 category: navigation
 keywords:
   - command menu
@@ -11,7 +11,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/CommandPalette.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/command-palette
   - label: Nuxt UI
@@ -28,9 +28,9 @@ links:
     to: https://reka-ui.com/docs/components/listbox
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `v-model` directive to control the value of the CommandPalette or the `default-value` prop to set the initial value when you do not need to control its state.
+Директива `v-model` управляет значением CommandPalette, а пропс `default-value` задаёт начальное значение, если состоянием управлять не нужно.
 
 ::component-code
 ---
@@ -52,7 +52,7 @@ props:
   autofocus: false
   groups:
     - id: 'users'
-      label: 'Users'
+      label: 'Пользователи'
       items:
         - label: 'Assistant Name'
           suffix: 'assistant'
@@ -74,12 +74,12 @@ props:
 ::
 
 ::tip{to="#control-selected-items"}
-You can also use the `@update:model-value` event to listen to the selected item(s).
+Выбранные элементы можно отслеживать и через событие `@update:model-value`.
 ::
 
-### Groups
+### Группы {#groups}
 
-The CommandPalette component filters groups and ranks matching commands by relevance as users type. It provides dynamic, instant search results for efficient command discovery. Use the `groups` prop as an array of objects with the following properties:
+CommandPalette фильтрует группы и ранжирует подходящие команды по релевантности по мере ввода. Поиск мгновенный и динамический, что упрощает поиск команд. Пропс `groups` — массив объектов со свойствами:
 
 - `id: string`{lang="ts-type"}
 - `label?: string`{lang="ts-type"}
@@ -90,10 +90,10 @@ The CommandPalette component filters groups and ranks matching commands by relev
 - `highlightedIcon?: IconComponent`{lang="ts-type"}
 
 ::caution
-You must provide an `id` for each group otherwise the group will be ignored.
+У каждой группы должен быть `id`, иначе группа игнорируется.
 ::
 
-Each group contains an `items` array of objects that define the commands. Each item can have the following properties:
+В каждой группе есть массив `items` — объекты, описывающие команды. У элемента могут быть свойства:
 
 - `prefix?: string`{lang="ts-type"}
 - `label?: string`{lang="ts-type"}
@@ -115,10 +115,10 @@ Each group contains an `items` array of objects that define the commands. Each i
 - `class?: any`{lang="ts-type"}
 - `b24ui?: { item?: ClassNameValue, itemLeadingIcon?: ClassNameValue, itemLeadingAvatarSize?: ClassNameValue, itemLeadingAvatar?: ClassNameValue, itemLeadingChipSize?: ClassNameValue, itemLeadingChip?: ClassNameValue, itemLabel?: ClassNameValue, itemLabelPrefix?: ClassNameValue, itemLabelBase?: ClassNameValue, itemLabelSuffix?: ClassNameValue, itemTrailing?: ClassNameValue, itemTrailingKbds?: ClassNameValue, itemTrailingKbdsSize?: ClassNameValue, itemTrailingHighlightedIcon?: ClassNameValue, itemTrailingIcon?: ClassNameValue }`{lang="ts-type"}
 
-You can pass any property from the [Link](/docs/components/link/#props) component such as `to`, `target`, etc.
+Можно передать любое свойство компонента [Link](/docs/components/link/#props): `to`, `target` и другие.
 
 ::caution
-`labelHtml`, `suffixHtml` and `descriptionHtml` are inserted with `v-html`. The palette normally computes them for you from the search match — everything escaped, `<mark>` around the matched run — but a value you set yourself skips that entirely and is rendered as raw HTML. Sanitize anything that comes from a CMS, an API or your users before putting it there.
+`labelHtml`, `suffixHtml` и `descriptionHtml` вставляются через `v-html`. Обычно палитра сама вычисляет их по совпадению с поиском: всё экранируется, найденный фрагмент оборачивается в `<mark>`. Значение, заданное вручную, этот шаг пропускает и отрисовывается как сырой HTML. Очищайте всё, что приходит из CMS, API или от пользователей, прежде чем передавать сюда.
 ::
 
 ::component-code
@@ -141,7 +141,7 @@ props:
   autofocus: false
   groups:
     - id: 'users'
-      label: 'Users'
+      label: 'Пользователи'
       items:
         - label: 'Assistant Name'
           suffix: 'assistant'
@@ -163,12 +163,12 @@ props:
 ::
 
 ::tip{to="#with-children-in-items"}
-Each item can take a `children` array of objects with the following properties to create submenus:
+Чтобы создать подменю, элемент может содержать массив `children` с такими же свойствами:
 ::
 
-### Multiple
+### Множественный выбор {#multiple}
 
-Use the `multiple` prop to allow multiple selections.
+Пропс `multiple` разрешает выбрать несколько элементов.
 
 ::component-code
 ---
@@ -192,7 +192,7 @@ props:
   modelValue: []
   groups:
     - id: 'users'
-      label: 'Users'
+      label: 'Пользователи'
       items:
         - label: 'Assistant Name'
           suffix: 'assistant'
@@ -214,12 +214,12 @@ props:
 ::
 
 ::caution
-Ensure to pass an array to the `default-value` prop or the `v-model` directive.
+Передавайте в пропс `default-value` или в директиву `v-model` массив.
 ::
 
-### Placeholder
+### Плейсхолдер {#placeholder}
 
-Use the `placeholder` prop to change the placeholder text.
+Пропс `placeholder` меняет текст плейсхолдера.
 
 ::component-code
 ---
@@ -236,20 +236,20 @@ externalTypes:
 class: '!p-0'
 props:
   autofocus: false
-  placeholder: 'Search an app...'
+  placeholder: 'Найти приложение...'
   groups:
     - id: 'apps'
       items:
-        - label: 'Calendar'
-        - label: 'Music'
-        - label: 'Maps'
+        - label: 'Календарь'
+        - label: 'Музыка'
+        - label: 'Карты'
   class: 'flex-1'
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the CommandPalette.
+Пропс `size` меняет размер CommandPalette.
 
 ::component-code
 ---
@@ -270,16 +270,16 @@ props:
   groups:
     - id: 'apps'
       items:
-        - label: 'Calendar'
-        - label: 'Music'
-        - label: 'Maps'
+        - label: 'Календарь'
+        - label: 'Музыка'
+        - label: 'Карты'
   class: 'flex-1'
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to customize the input [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `icon` задаёт [иконку](https://bitrix24.github.io/b24icons/icons/) в поле ввода.
 
 ::component-code
 ---
@@ -303,16 +303,16 @@ props:
   groups:
     - id: 'apps'
       items:
-        - label: 'Calendar'
-        - label: 'Music'
-        - label: 'Maps'
+        - label: 'Календарь'
+        - label: 'Музыка'
+        - label: 'Карты'
   class: 'flex-1'
 ---
 ::
 
-### Selected Icon
+### Иконка выбранного элемента {#selected-icon}
 
-Use the `selected-icon` prop to customize the selected item [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `selected-icon` задаёт [иконку](https://bitrix24.github.io/b24icons/icons/) выбранного элемента.
 
 ::component-code
 ---
@@ -345,7 +345,7 @@ props:
   selectedIcon: 'RocketIcon'
   groups:
     - id: 'users'
-      label: 'Users'
+      label: 'Пользователи'
       items:
         - label: 'Assistant Name'
           suffix: 'assistant'
@@ -366,9 +366,9 @@ props:
 ---
 ::
 
-### Trailing Icon
+### Иконка справа {#trailing-icon}
 
-Use the `trailing-icon` prop to customize the trailing [Icon](https://bitrix24.github.io/b24icons/icons/) when an item has children.
+Пропс `trailing-icon` задаёт [иконку](https://bitrix24.github.io/b24icons/icons/) справа у элементов с подменю.
 
 ::component-code
 ---
@@ -393,18 +393,18 @@ props:
   groups:
     - id: 'actions'
       items:
-        - label: 'Share'
+        - label: 'Поделиться'
           children:
-            - label: 'Email'
-            - label: 'Copy'
-            - label: 'Link'
+            - label: 'Почта'
+            - label: 'Копировать'
+            - label: 'Ссылка'
   class: 'flex-1'
 ---
 ::
 
-### Loading
+### Загрузка {#loading}
 
-Use the `loading` prop to show a loading icon on the CommandPalette.
+Пропс `loading` показывает в CommandPalette иконку загрузки.
 
 ::component-code
 ---
@@ -425,19 +425,19 @@ props:
   groups:
     - id: 'apps'
       items:
-        - label: 'Calendar'
-        - label: 'Music'
-        - label: 'Maps'
+        - label: 'Календарь'
+        - label: 'Музыка'
+        - label: 'Карты'
   class: 'flex-1'
 ---
 ::
 
-### Close
+### Закрытие {#close}
 
-Use the `close` prop to display a [Button](/docs/components/button/) to dismiss the CommandPalette.
+Пропс `close` показывает кнопку [Button](/docs/components/button/), которая закрывает CommandPalette.
 
 ::tip
-An `update:open` event will be emitted when the close button is clicked.
+По нажатию на кнопку закрытия срабатывает событие `update:open`.
 ::
 
 ::component-code
@@ -460,14 +460,14 @@ props:
   groups:
     - id: 'apps'
       items:
-        - label: 'Calendar'
-        - label: 'Music'
-        - label: 'Maps'
+        - label: 'Календарь'
+        - label: 'Музыка'
+        - label: 'Карты'
   class: 'flex-1'
 ---
 ::
 
-You can pass any property from the [Button](/docs/components/button/) component to customize it.
+Кнопку можно настроить любым свойством компонента [Button](/docs/components/button/).
 
 ::component-code
 ---
@@ -495,16 +495,16 @@ props:
   groups:
     - id: 'apps'
       items:
-        - label: 'Calendar'
-        - label: 'Music'
-        - label: 'Maps'
+        - label: 'Календарь'
+        - label: 'Музыка'
+        - label: 'Карты'
   class: 'flex-1'
 ---
 ::
 
-### Close Icon
+### Иконка закрытия {#close-icon}
 
-Use the `close-icon` prop to customize the close button [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `close-icon` задаёт [иконку](https://bitrix24.github.io/b24icons/icons/) кнопки закрытия.
 
 ::component-code
 ---
@@ -530,18 +530,18 @@ props:
   groups:
     - id: 'apps'
       items:
-        - label: 'Calendar'
-        - label: 'Music'
-        - label: 'Maps'
+        - label: 'Календарь'
+        - label: 'Музыка'
+        - label: 'Карты'
   class: 'flex-1'
 ---
 ::
 
-### Back
+### Кнопка «Назад» {#back}
 
-Use the `back` prop to customize or hide the back button (with `false` value) displayed when navigating into a submenu.
+Пропс `back` настраивает кнопку «Назад», которая показывается при переходе в подменю, или скрывает её (значение `false`).
 
-You can pass any property from the [Button](/docs/components/button/) component to customize it.
+Кнопку можно настроить любым свойством компонента [Button](/docs/components/button/).
 
 ::component-code
 ---
@@ -565,18 +565,18 @@ props:
   groups:
     - id: 'actions'
       items:
-        - label: 'Share'
+        - label: 'Поделиться'
           children:
-            - label: 'Email'
-            - label: 'Copy'
-            - label: 'Link'
+            - label: 'Почта'
+            - label: 'Копировать'
+            - label: 'Ссылка'
   class: 'flex-1'
 ---
 ::
 
-### Back Icon
+### Иконка кнопки «Назад» {#back-icon}
 
-Use the `back-icon` prop to customize the back button [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `back-icon` задаёт [иконку](https://bitrix24.github.io/b24icons/icons/) кнопки «Назад».
 
 ::component-code
 ---
@@ -602,18 +602,18 @@ props:
   groups:
     - id: 'actions'
       items:
-        - label: 'Share'
+        - label: 'Поделиться'
           children:
-            - label: 'Email'
-            - label: 'Copy'
-            - label: 'Link'
+            - label: 'Почта'
+            - label: 'Копировать'
+            - label: 'Ссылка'
   class: 'flex-1'
 ---
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the CommandPalette.
+Пропс `disabled` отключает CommandPalette.
 
 ::component-code
 ---
@@ -634,18 +634,18 @@ props:
   groups:
     - id: 'apps'
       items:
-        - label: 'Calendar'
-        - label: 'Music'
-        - label: 'Maps'
+        - label: 'Календарь'
+        - label: 'Музыка'
+        - label: 'Карты'
   class: 'flex-1'
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Control selected item(s)
+### Управление выбранными элементами {#control-selected-items}
 
-You can control the selected item(s) by using the `default-value` prop or the `v-model` directive, by using the `onSelect` field on each item or by using the `@update:model-value` event.
+Выбранными элементами можно управлять через пропс `default-value` или директиву `v-model`, через поле `onSelect` у каждого элемента или через событие `@update:model-value`.
 
 ::component-example
 ---
@@ -658,12 +658,12 @@ props:
 ::
 
 ::tip
-Use the `value-key` prop to select a field of an item to use as the value instead of the object itself. Use the `by` prop to compare objects by a field instead of reference.
+Пропс `value-key` выбирает поле элемента, которое используется как значение вместо самого объекта. Пропс `by` сравнивает объекты по полю, а не по ссылке.
 ::
 
-### Control search term
+### Управление поисковым запросом {#control-search-term}
 
-Use the `v-model:search-term` directive to control the search term.
+Директива `v-model:search-term` управляет поисковым запросом.
 
 ::component-example
 ---
@@ -676,12 +676,12 @@ props:
 ::
 
 ::note
-This example uses the `@update:model-value` event to reset the search term when an item is selected.
+В этом примере событие `@update:model-value` сбрасывает поисковый запрос при выборе элемента.
 ::
 
-### With children in items
+### Вложенные элементы {#with-children-in-items}
 
-You can create hierarchical menus by using the `children` property in items. When an item has children, it will automatically display a chevron icon and enable navigation into a submenu.
+Иерархические меню создаются свойством `children` у элементов. Если у элемента есть `children`, он автоматически показывает шеврон, и по нему можно перейти в подменю.
 
 ::component-example
 ---
@@ -695,15 +695,15 @@ props:
 ::
 
 ::note
-When navigating into a submenu:
-- The search term is reset
-- A back button appears in the input
-- You can go back to the previous group by pressing the :kbd{value="backspace"} key
+При переходе в подменю:
+- поисковый запрос сбрасывается;
+- в поле ввода появляется кнопка «Назад»;
+- к предыдущей группе можно вернуться клавишей :kbd{value="backspace"}.
 ::
 
-### With fetched items
+### Элементы из API {#with-fetched-items}
 
-You can fetch items from an API and use them in the CommandPalette.
+Элементы можно получать из API и использовать в CommandPalette.
 
 ::component-example
 ---
@@ -716,12 +716,12 @@ props:
 ::
 
 ::note
-This example uses `useLazyFetch` with `server: false` to fetch data on the client without blocking the initial render. The loading state checks for both `pending` and `idle` status to display a loading indicator before and during the fetch.
+В этом примере `useLazyFetch` с `server: false` загружает данные на клиенте и не блокирует первую отрисовку. Состояние загрузки проверяет и `pending`, и `idle`, чтобы индикатор загрузки показывался до запроса и во время него.
 ::
 
-### With ignore filter
+### Игнорирование фильтра {#with-ignore-filter}
 
-You can set the `ignoreFilter` field to `true` on a group to disable the internal search and use your own search logic.
+Поле `ignoreFilter` со значением `true` у группы отключает встроенный поиск, и вы используете свою логику поиска.
 
 ::component-example
 ---
@@ -734,16 +734,16 @@ props:
 ::
 
 ::note
-This example uses [`refDebounced`](https://vueuse.org/shared/refDebounced/#refdebounced) to debounce the API calls. The loading state checks for both `pending` and `idle` status to display a loading indicator before and during the fetch.
+В этом примере [`refDebounced`](https://vueuse.org/shared/refDebounced/#refdebounced) откладывает вызовы API. Состояние загрузки проверяет и `pending`, и `idle`, чтобы индикатор загрузки показывался до запроса и во время него.
 ::
 
 ::tip
-Set the `ignore-filter` prop to `true` to disable the internal search for every group at once. A group can opt back in by setting its `ignoreFilter` field to `false`.
+Пропс `ignore-filter` со значением `true` отключает встроенный поиск сразу для всех групп. Группа может вернуть его, указав `ignoreFilter: false`.
 ::
 
-### With post-filtered items
+### Фильтрация после поиска {#with-post-filtered-items}
 
-You can use the `postFilter` field on a group to filter items after the search happened.
+Поле `postFilter` у группы фильтрует элементы после поиска.
 
 ::component-example
 ---
@@ -756,12 +756,12 @@ props:
 ::
 
 ::note
-Start typing to see items with higher level appear.
+Начните вводить текст, и появятся элементы более высокого уровня.
 ::
 
-### With custom fuse search
+### Свои настройки Fuse {#with-custom-fuse-search}
 
-You can use the `fuse` prop to override the options of [useFuse](https://vueuse.org/integrations/useFuse) which defaults to:
+Пропс `fuse` переопределяет параметры [useFuse](https://vueuse.org/integrations/useFuse). По умолчанию они такие:
 
 ```ts
 {
@@ -776,10 +776,10 @@ You can use the `fuse` prop to override the options of [useFuse](https://vueuse.
 ```
 
 ::tip
-The `fuseOptions` are the options of [Fuse.js](https://www.fusejs.io/), the `resultLimit` is the maximum number of results to return and the `matchAllWhenSearchEmpty` is a boolean to match all items when the search term is empty.
+`fuseOptions` — параметры [Fuse.js](https://www.fusejs.io/), `resultLimit` — максимальное число результатов, а `matchAllWhenSearchEmpty` — булево значение: показывать все элементы, если поисковый запрос пуст.
 ::
 
-You can for example set `{ fuseOptions: { includeMatches: true } }`{lang="ts-type"} to highlight the search term in the items.
+Например, `{ fuseOptions: { includeMatches: true } }`{lang="ts-type"} подсвечивает искомый текст в элементах.
 
 ::component-example
 ---
@@ -791,12 +791,12 @@ props:
 ---
 ::
 
-### With virtualization
+### Виртуализация {#with-virtualization}
 
-Use the `virtualize` prop to enable virtualization for large lists as a boolean or an object with options like `{ estimateSize: 32, overscan: 12 }`.
+Пропс `virtualize` включает виртуализацию для больших списков: булево значение или объект с параметрами вроде `{ estimateSize: 32, overscan: 12 }`.
 
 ::warning{to="https://github.com/unovue/reka-ui/issues/1885" target="_blank"}
-When enabled, all groups are flattened into a single list due to a limitation of Reka UI.
+При включении все группы сводятся в один список из-за ограничения Reka UI.
 ::
 
 ::component-example
@@ -809,9 +809,9 @@ props:
 ---
 ::
 
-### Within a Popover
+### Внутри Popover {#within-a-popover}
 
-You can use the CommandPalette component inside a [Popover](/docs/components/popover/)'s content.
+CommandPalette можно использовать внутри содержимого [Popover](/docs/components/popover/).
 
 ::component-example
 ---
@@ -822,9 +822,9 @@ props:
 ---
 ::
 
-### Within a Modal
+### Внутри Modal {#within-a-modal}
 
-You can use the CommandPalette component inside a [Modal](/docs/components/modal/)'s content.
+CommandPalette можно использовать внутри содержимого [Modal](/docs/components/modal/).
 
 ::component-example
 ---
@@ -836,12 +836,12 @@ props:
 ::
 
 ::note
-This example uses `useLazyFetch` with `immediate: false` to only fetch data when the Modal opens.
+В этом примере `useLazyFetch` с `immediate: false` загружает данные только при открытии Modal.
 ::
 
-### Within a Drawer
+### Внутри Drawer {#within-a-drawer}
 
-You can use the CommandPalette component inside a [Drawer](/docs/components/drawer/)'s content.
+CommandPalette можно использовать внутри содержимого [Drawer](/docs/components/drawer/).
 
 ::component-example
 ---
@@ -853,12 +853,12 @@ props:
 ::
 
 ::note
-This example uses `useLazyFetch` with `immediate: false` to only fetch data when the Drawer opens.
+В этом примере `useLazyFetch` с `immediate: false` загружает данные только при открытии Drawer.
 ::
 
-### Listen open state
+### Отслеживание состояния открытия {#listen-open-state}
 
-When using the `close` prop, you can listen to the `update:open` event when the button is clicked.
+Если задан пропс `close`, на нажатие кнопки можно реагировать событием `update:open`.
 
 ::component-example
 ---
@@ -870,12 +870,12 @@ props:
 ::
 
 ::note
-This can be useful when using the CommandPalette inside a [`Modal`](/docs/components/modal/) for example.
+Это удобно, например, когда CommandPalette находится внутри [`Modal`](/docs/components/modal/).
 ::
 
-### With footer slot
+### Слот footer {#with-footer-slot}
 
-Use the `#footer` slot to add custom content at the bottom of the CommandPalette, such as keyboard shortcuts help or additional actions.
+Слот `#footer` добавляет свой контент внизу CommandPalette: например, подсказку по горячим клавишам или дополнительные действия.
 
 ::component-example
 ---
@@ -887,11 +887,11 @@ props:
 ---
 ::
 
-### With custom slot
+### Свой слот {#with-custom-slot}
 
-Use the `slot` property to customize a specific item or group.
+Свойство `slot` настраивает отдельный элемент или группу.
 
-You will have access to the following slots:
+Вам будут доступны слоты:
 
 - `#{{ item.slot }}`{lang="ts-type"}
 - `#{{ item.slot }}-leading`{lang="ts-type"}
@@ -914,23 +914,23 @@ props:
 ::
 
 ::tip{to="#slots"}
-You can also use the `#item`, `#item-leading`, `#item-label` and `#item-trailing` slots to customize all items.
+Слоты `#item`, `#item-leading`, `#item-label` и `#item-trailing` настраивают сразу все элементы.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

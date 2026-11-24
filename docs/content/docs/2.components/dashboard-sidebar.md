@@ -1,6 +1,6 @@
 ---
 title: DashboardSidebar
-description: 'A resizable and collapsible sidebar component for dashboards.'
+description: 'Боковое меню дашборда с изменяемым размером и возможностью сворачивания.'
 category: dashboard
 links:
   - label: GitHub
@@ -11,11 +11,11 @@ links:
     to: https://ui.nuxt.com/docs/components/dashboard-sidebar
 ---
 
-## Usage
+## Использование {#usage}
 
-The DashboardSidebar component is used to display a sidebar. Its state (size, collapsed, etc.) will be saved based on the `storage` and `storage-key` props you provide to the [DashboardGroup](/docs/components/dashboard-group/#props) component.
+Компонент DashboardSidebar показывает боковое меню. Его состояние (размер, свёрнутость и другое) сохраняется по пропсам `storage` и `storage-key` компонента [DashboardGroup](/docs/components/dashboard-group/#props).
 
-Use it inside the default slot of the [DashboardGroup](/docs/components/dashboard-group/) component:
+Используйте его в слоте по умолчанию компонента [DashboardGroup](/docs/components/dashboard-group/):
 
 ```vue [layouts/dashboard.vue]{3}
 <template>
@@ -28,10 +28,10 @@ Use it inside the default slot of the [DashboardGroup](/docs/components/dashboar
 ```
 
 ::warning
-This component does not have a single root element when using the `resizable` prop, so wrap it in a container (e.g. `<div class="flex flex-1">`) if you use page transitions or require a single root for layout.
+С пропсом `resizable` у компонента нет единого корневого элемента, поэтому при переходах между страницами или если нужен единый корень для раскладки, оберните его в контейнер (например, `<div class="flex flex-1">`).
 ::
 
-Use the `header`, `default` and `footer` slots to customize the sidebar and the `body` or `content` slots to customize the sidebar menu.
+Слоты `header`, `default` и `footer` настраивают боковое меню, а слоты `body` и `content` — его мобильное меню.
 
 ::component-example
 ---
@@ -44,12 +44,12 @@ props:
 ::
 
 ::note
-Drag the sidebar near the left edge of the screen to collapse it.
+Чтобы свернуть меню, перетащите его к левому краю экрана.
 ::
 
-### Resizable
+### Изменяемый размер {#resizable}
 
-Use the `resizable` prop to make the sidebar resizable.
+Пропс `resizable` делает размер бокового меню изменяемым.
 
 ::component-code
 ---
@@ -69,12 +69,12 @@ class: '!p-0 !justify-start'
 :placeholder{class="ms-2 h-96"}
 ::
 
-### Collapsible
+### Сворачивание {#collapsible}
 
-Use the `collapsible` prop to make the sidebar collapsible when dragging near the edge of the screen.
+Пропс `collapsible` позволяет сворачивать боковое меню, когда его перетаскивают к краю экрана.
 
 ::warning
-The [`DashboardSidebarCollapse`](/docs/components/dashboard-sidebar-collapse/) component will have no effect if the sidebar is not **collapsible**.
+Если боковое меню не **collapsible**, компонент [`DashboardSidebarCollapse`](/docs/components/dashboard-sidebar-collapse/) ничего не сделает.
 ::
 
 ::component-code
@@ -99,12 +99,12 @@ class: '!p-0 !justify-start'
 ::
 
 ::tip{to="#slots"}
-You can access the `collapsed` state in the slot props to customize the content of the sidebar when it is collapsed.
+Состояние `collapsed` доступно в слот-пропсах, поэтому содержимое свёрнутого меню можно настроить.
 ::
 
-### Size
+### Размер {#size}
 
-Use the `min-size`,  `max-size`, `default-size` and `collapsed-size` props (`px`) to customize the size of the sidebar.
+Пропсы `min-size`, `max-size`, `default-size` и `collapsed-size` (в `px`) задают размер бокового меню.
 
 ::component-code
 ---
@@ -133,16 +133,16 @@ class: '!p-0 !justify-start'
 ::
 
 ::tip{to="/docs/components/dashboard-group/#props"}
-Sizes are calculated as percentages by default. You can change this using the `unit` prop on the `DashboardGroup` component.
+По умолчанию размеры считаются в процентах. Единицу меняет пропс `unit` компонента `DashboardGroup`.
 ::
 
 ::note
-The `collapsed-size` prop is set to `0` by default but the sidebar has a `min-w-16` to make sure it is visible.
+По умолчанию `collapsed-size` равен `0`, но у бокового меню есть `min-w-16`, чтобы оно оставалось видимым.
 ::
 
-### Side
+### Сторона {#side}
 
-Use the `side` prop to change the side of the sidebar. Defaults to `left`.
+Пропс `side` меняет сторону бокового меню. По умолчанию `left`.
 
 ::component-code
 ---
@@ -168,14 +168,14 @@ class: '!p-0 !justify-end'
 :placeholder{class="ms-2 h-96"}
 ::
 
-### Mode
+### Режим {#mode}
 
-Use the `mode` prop to change the mode of the sidebar menu. Defaults to `slideover`.
+Пропс `mode` меняет режим мобильного меню. По умолчанию `slideover`.
 
-Use the `body` slot to fill the menu body (under the header) or the `content` slot to fill the entire menu.
+Слот `body` заполняет тело меню (под шапкой), слот `content` — всё меню целиком.
 
 ::tip{to="#props"}
-You can use the `menu` prop to customize the menu of the sidebar, it will adapt depending on the mode you choose.
+Пропс `menu` настраивает мобильное меню бокового меню и подстраивается под выбранный режим.
 ::
 
 ::component-example
@@ -201,14 +201,14 @@ props:
 ::
 
 ::note
-These examples contain the [`DashboardGroup`](/docs/components/dashboard-group/), [`DashboardPanel`](/docs/components/dashboard-panel/) and [`DashboardNavbar`](/docs/components/dashboard-navbar/) components as they are required to demonstrate the sidebar on mobile.
+В этих примерах есть компоненты [`DashboardGroup`](/docs/components/dashboard-group/), [`DashboardPanel`](/docs/components/dashboard-panel/) и [`DashboardNavbar`](/docs/components/dashboard-navbar/): они нужны, чтобы показать боковое меню на мобильных устройствах.
 ::
 
-### Toggle
+### Кнопка переключения {#toggle}
 
-Use the `toggle` prop to customize the [DashboardSidebarToggle](/docs/components/dashboard-sidebar-toggle/) component displayed on mobile.
+Пропс `toggle` настраивает компонент [DashboardSidebarToggle](/docs/components/dashboard-sidebar-toggle/), который показывается на мобильных устройствах.
 
-You can pass any property from the [Button](/docs/components/button/) component to customize it.
+Кнопку можно настроить любым свойством компонента [Button](/docs/components/button/).
 
 ::component-example
 ---
@@ -224,9 +224,9 @@ props:
 ---
 ::
 
-### Toggle Side
+### Сторона кнопки {#toggle-side}
 
-Use the `toggle-side` prop to change the side of the toggle button. Defaults to `left`.
+Пропс `toggle-side` меняет сторону, с которой стоит кнопка переключения. По умолчанию `left`.
 
 ::component-example
 ---
@@ -242,14 +242,14 @@ props:
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Control open state
+### Управление состоянием открытия {#control-open-state}
 
-You can control the open state by using the `open` prop or the `v-model:open` directive.
+Состоянием открытия управляют пропс `open` или директива `v-model:open`.
 
 ::note
-In this example, leveraging [`defineShortcuts`](/docs/composables/define-shortcuts/), you can toggle the open state of the DashboardSidebar by pressing :kbd{value="O"}.
+В этом примере с помощью [`defineShortcuts`](/docs/composables/define-shortcuts/) DashboardSidebar открывается и закрывается клавишей :kbd{value="O"}.
 ::
 
 ::component-example
@@ -265,12 +265,12 @@ class: '!p-0 !justify-start'
 ---
 ::
 
-### Control collapsed state
+### Управление состоянием сворачивания {#control-collapsed-state}
 
-You can control the collapsed state by using the `collapsed` prop or the `v-model:collapsed` directive.
+Состоянием сворачивания управляют пропс `collapsed` или директива `v-model:collapsed`.
 
 ::note
-In this example, leveraging [`defineShortcuts`](/docs/composables/define-shortcuts/), you can toggle the collapsed state of the DashboardSidebar by pressing :kbd{value="C"}.
+В этом примере с помощью [`defineShortcuts`](/docs/composables/define-shortcuts/) DashboardSidebar сворачивается и разворачивается клавишей :kbd{value="C"}.
 ::
 
 ::component-example
@@ -285,14 +285,14 @@ props:
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

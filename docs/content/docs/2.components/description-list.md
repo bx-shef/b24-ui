@@ -1,19 +1,19 @@
 ---
 title: DescriptionList
-description: 'For instances requiring the conversion of a table row into its own table to enhance page completeness.'
+description: 'Список описаний: таблица из пар «название — значение» для полноты страницы.'
 category: data
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/DescriptionList.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/description-list
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `items` prop as an array of objects to control the value of the DescriptionList:
+Пропс `items` — массив объектов, который задаёт содержимое DescriptionList:
 
 - `label?: string`{lang="ts-type"}
 - `description?: string`{lang="ts-type"}
@@ -37,16 +37,16 @@ externalTypes:
   - DescriptionListItem[]
 props:
   items:
-    - label: 'Full name'
+    - label: 'Полное имя'
       description: 'Michael Foster'
-    - label: 'Event'
-      description: 'Payment is made through Atol online'
+    - label: 'Событие'
+      description: 'Оплата проходит через Atol Online'
 ---
 ::
 
-### Legend
+### Легенда {#legend}
 
-Use the `legend` prop to set the legend of the DescriptionList.
+Пропс `legend` задаёт легенду DescriptionList.
 
 ::component-code
 ---
@@ -59,18 +59,18 @@ external:
 externalTypes:
   - DescriptionListItem[]
 props:
-  legend: 'Applicant Information'
+  legend: 'Данные заявителя'
   items:
-    - label: 'Full name'
+    - label: 'Полное имя'
       description: 'Michael Foster'
-    - label: 'Event'
-      description: 'Payment is made through Atol online'
+    - label: 'Событие'
+      description: 'Оплата проходит через Atol Online'
 ---
 ::
 
-### Text
+### Текст {#text}
 
-Use the `text` prop to set the description of the DescriptionList.
+Пропс `text` задаёт описание DescriptionList.
 
 ::component-code
 ---
@@ -83,19 +83,19 @@ external:
 externalTypes:
   - DescriptionListItem[]
 props:
-  legend: 'Applicant Information'
-  text: 'Personal details and application.'
+  legend: 'Данные заявителя'
+  text: 'Личные данные и заявка.'
   items:
-    - label: 'Full name'
+    - label: 'Полное имя'
       description: 'Michael Foster'
-    - label: 'Event'
-      description: 'Payment is made through Atol online'
+    - label: 'Событие'
+      description: 'Оплата проходит через Atol Online'
 ---
 ::
 
-### Label Key
+### Ключ подписи {#label-key}
 
-You can change the property that is used to set the label by using the `label-key` prop. Defaults to `label`.
+Свойство объекта, из которого берётся подпись, меняет пропс `label-key`. По умолчанию `label`.
 
 ::component-code
 ---
@@ -111,20 +111,20 @@ external:
 externalTypes:
   - DescriptionListItem[]
 props:
-  legend: 'Applicant Information'
-  text: 'Personal details and application.'
+  legend: 'Данные заявителя'
+  text: 'Личные данные и заявка.'
   labelKey: 'title'
   items:
-    - title: 'Full name'
+    - title: 'Полное имя'
       description: 'Michael Foster'
-    - title: 'Event'
-      description: 'Payment is made through Atol online'
+    - title: 'Событие'
+      description: 'Оплата проходит через Atol Online'
 ---
 ::
 
-### Description Key
+### Ключ описания {#description-key}
 
-You can change the property that is used to set the description by using the `description-key` prop. Defaults to `description`.
+Свойство объекта, из которого берётся описание, меняет пропс `description-key`. По умолчанию `description`.
 
 ::component-code
 ---
@@ -141,21 +141,21 @@ external:
 externalTypes:
   - DescriptionListItem[]
 props:
-  legend: 'Applicant Information'
-  text: 'Personal details and application.'
+  legend: 'Данные заявителя'
+  text: 'Личные данные и заявка.'
   labelKey: 'title'
   descriptionKey: 'info'
   items:
-    - title: 'Full name'
+    - title: 'Полное имя'
       info: 'Michael Foster'
-    - title: 'Event'
-      info: 'Payment is made through Atol online'
+    - title: 'Событие'
+      info: 'Оплата проходит через Atol Online'
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the DescriptionList.
+Пропс `size` меняет размер DescriptionList.
 
 ::component-code
 ---
@@ -169,21 +169,21 @@ externalTypes:
   - DescriptionListItem[]
 props:
   size: sm
-  legend: 'Applicant Information'
-  text: 'Personal details and application.'
+  legend: 'Данные заявителя'
+  text: 'Личные данные и заявка.'
   items:
-    - label: 'Full name'
+    - label: 'Полное имя'
       description: 'Michael Foster'
-    - label: 'Event'
-      description: 'Payment is made through Atol online'
+    - label: 'Событие'
+      description: 'Оплата проходит через Atol Online'
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With icon in items
+### С иконками в элементах {#with-icon-in-items}
 
-You can use the `icon` property to display an [Icon](https://bitrix24.github.io/b24icons/icons/) inside the items.
+Свойство `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/) внутри элементов.
 
 ::component-example
 ---
@@ -192,9 +192,9 @@ name: 'description-list-icon-example'
 ---
 ::
 
-### With avatar in items
+### С аватарами в элементах {#with-avatar-in-items}
 
-You can use the `avatar` property to display an [Avatar](/docs/components/avatar/) inside the items.
+Свойство `avatar` показывает [аватар](/docs/components/avatar/) внутри элементов.
 
 ::component-example
 ---
@@ -203,11 +203,11 @@ name: 'description-list-avatar-example'
 ---
 ::
 
-### With actions in items
+### С действиями в элементах {#with-actions-in-items}
 
-Use the `actions` property to add some [Button](/docs/components/button/) actions to the items of the DescriptionList.
+Свойство `actions` добавляет к элементам DescriptionList кнопки [Button](/docs/components/button/).
 
-Use the `orientation` property to change the orientation actions of the items.
+Свойство `orientation` меняет ориентацию действий элементов.
 
 ::component-example
 ---
@@ -216,11 +216,11 @@ name: 'description-list-actions-example'
 ---
 ::
 
-### With custom slot
+### Свой слот {#with-custom-slot}
 
-Use the `slot` property to customize a specific item.
+Свойство `slot` настраивает отдельный элемент.
 
-You will have access to the following slots:
+Вам будут доступны слоты:
 
 - `#{{ item.slot }}`{lang="ts-type"}
 
@@ -231,12 +231,12 @@ name: 'description-list-custom-slot-example'
 ---
 ::
 
-### Link in the description
+### Ссылка в описании {#link-in-the-description}
 
-The `description` slot receives the item, so a description can be rendered as a
-[Link](/docs/components/link/) without any extra prop on the item. The slot is
-global rather than per-item, so the fallback branch keeps every other item
-rendering as plain text.
+Слот `description` получает элемент, поэтому описание можно отрисовать как
+[Link](/docs/components/link/) без дополнительного свойства у элемента. Слот
+общий, а не отдельный для каждого элемента, поэтому ветка по умолчанию
+оставляет остальные элементы обычным текстом.
 
 ::component-example
 ---
@@ -247,14 +247,14 @@ name: 'description-list-link-slot-example'
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

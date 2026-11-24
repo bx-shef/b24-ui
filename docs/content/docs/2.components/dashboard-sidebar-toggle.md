@@ -1,6 +1,6 @@
 ---
 title: DashboardSidebarToggle
-description: 'A mobile menu button that shows or hides the sidebar navigation.'
+description: 'Кнопка мобильного меню, которая показывает или скрывает навигацию бокового меню.'
 category: dashboard
 links:
   - label: GitHub
@@ -14,11 +14,11 @@ links:
     to: https://ui.nuxt.com/docs/components/dashboard-sidebar-toggle
 ---
 
-## Usage
+## Использование {#usage}
 
-The DashboardSidebarToggle component is used by the [DashboardNavbar](/docs/components/dashboard-navbar/) and [DashboardSidebar](/docs/components/dashboard-sidebar/) components.
+Компонент DashboardSidebarToggle используют [DashboardNavbar](/docs/components/dashboard-navbar/) и [DashboardSidebar](/docs/components/dashboard-sidebar/).
 
-It is automatically displayed on mobile to toggle the sidebar, **you don't have to add it manually**.
+На мобильных устройствах он показывается автоматически и переключает боковое меню, **добавлять его вручную не нужно**.
 
 ::component-code
 ---
@@ -29,7 +29,7 @@ props:
 ---
 ::
 
-It extends the [Button](/docs/components/button/) component, so you can pass any property such as `color`, `size`, etc.
+Компонент расширяет [Button](/docs/components/button/), поэтому ему можно передать любое свойство: `color`, `size` и другие.
 
 ::component-code
 ---
@@ -44,14 +44,14 @@ props:
 ::
 
 ::note
-The button defaults to `color="air-tertiary"`.
+По умолчанию у кнопки `color="air-tertiary"`.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Within `toggle` slot
+### В слоте `toggle` {#within-toggle-slot}
 
-Even though this component is automatically displayed on mobile, you can use the `toggle` slot of the [DashboardNavbar](/docs/components/dashboard-navbar/) and [DashboardSidebar](/docs/components/dashboard-sidebar/) components to customize the button.
+Хотя на мобильных устройствах компонент показывается автоматически, слот `toggle` компонентов [DashboardNavbar](/docs/components/dashboard-navbar/) и [DashboardSidebar](/docs/components/dashboard-sidebar/) позволяет настроить кнопку.
 
 ::code-group
 
@@ -92,19 +92,19 @@ definePageMeta({
 ::
 
 ::tip
-When using the `toggle-side` prop of the `DashboardSidebar` and `DashboardNavbar` components, the button will be displayed on the specified side.
+Пропс `toggle-side` компонентов `DashboardSidebar` и `DashboardNavbar` задаёт сторону, на которой стоит кнопка.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes" target="_blank"}
-This component also supports all native `<button>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<button>`.
 ::
 
-## Theme
+## Тема {#theme}
 
 :component-theme

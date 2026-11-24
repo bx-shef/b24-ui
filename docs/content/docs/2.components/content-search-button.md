@@ -1,6 +1,6 @@
 ---
 title: ContentSearchButton
-description: 'A pre-styled button that opens the content search modal.'
+description: 'Готовая кнопка, которая открывает модальное окно поиска по контенту.'
 category: content
 framework: nuxt
 links:
@@ -16,16 +16,16 @@ links:
 ---
 
 ::warning{to="/docs/getting-started/integrations/content/"}
-This component is only available when the `@nuxt/content` module is installed.
+Компонент доступен, только если установлен модуль `@nuxt/content`.
 ::
 
-## Usage
+## Использование {#usage}
 
-The ContentSearchButton component is used to open the [ContentSearch](/docs/components/content-search/) modal.
+Компонент ContentSearchButton открывает модальное окно [ContentSearch](/docs/components/content-search/).
 
 :component-code{prefix="content"}
 
-It extends the [Button](/docs/components/button/) component, so you can pass any property such as `color`, `size`, etc.
+Компонент расширяет [Button](/docs/components/button/), поэтому ему можно передать любое свойство: `color`, `size` и другие.
 
 ::component-code{prefix="content"}
 ---
@@ -37,12 +37,12 @@ props:
 ::
 
 ::note{to="#collapsed"}
-The button defaults to `color="air-secondary-no-accent"` when not collapsed, `color="air-tertiary-no-accent"` when collapsed.
+По умолчанию кнопка имеет `color="air-secondary-no-accent"`, если не свёрнута, и `color="air-tertiary-no-accent"`, если свёрнута.
 ::
 
-### Collapsed
+### Свёрнутая кнопка {#collapsed}
 
-Use the `collapsed` prop to show the button's label and [kbds](#kbds). Defaults to `true`.
+Пропс `collapsed` показывает подпись кнопки и [клавиши](#kbds). По умолчанию `true`.
 
 ::component-code{prefix="content"}
 ---
@@ -52,9 +52,9 @@ props:
 ---
 ::
 
-### Kbds
+### Клавиши {#kbds}
 
-Use the `kbds` prop to display keyboard keys in the button. Defaults to `['meta', 'K']`{lang="ts-type"} to match the default shortcut of the [ContentSearch](/docs/components/content-search/#shortcut) component.
+Пропс `kbds` показывает на кнопке клавиши. По умолчанию `['meta', 'K']`{lang="ts-type"}, как сочетание клавиш компонента [ContentSearch](/docs/components/content-search/#shortcut).
 
 ::component-code{prefix="content"}
 ---
@@ -71,14 +71,14 @@ props:
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

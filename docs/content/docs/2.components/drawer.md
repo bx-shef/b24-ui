@@ -1,6 +1,6 @@
 ---
 title: Drawer
-description: A toggleable drawer with fluid enter/exit transitions.
+description: 'Выдвижная шторка с плавными анимациями появления и скрытия.'
 category: overlay
 keywords:
   - bottom sheet
@@ -10,7 +10,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Drawer.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/drawer
   - label: Nuxt UI
@@ -22,11 +22,11 @@ links:
     to: https://github.com/unovue/vaul-vue
 ---
 
-## Usage
+## Использование {#usage}
 
-Use a [Button](/docs/components/button/) or any other component in the default slot of the Drawer.
+Поместите в слот по умолчанию Drawer компонент [Button](/docs/components/button/) или любой другой.
 
-Then, use the `#content` slot to add the content displayed when the Drawer is open.
+Затем слот `#content` добавляет содержимое, которое показывается при открытом Drawer.
 
 ::component-code
 ---
@@ -34,49 +34,49 @@ prettier: true
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   content: |
 
     <Placeholder class="h-48 m-4" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #content
 :placeholder{class="h-48 m-4"}
 ::
 
-You can also use the `#header`{lang="ts-type"}, `#body`{lang="ts-type"} and `#footer`{lang="ts-type"} slots to customize the Drawer's content.
+Слоты `#header`{lang="ts-type"}, `#body`{lang="ts-type"} и `#footer`{lang="ts-type"} настраивают содержимое Drawer.
 
-### Title
+### Заголовок {#title}
 
-Use the `title` prop to set the title of the Drawer's header.
+Пропс `title` задаёт заголовок в шапке Drawer.
 
 ::component-code
 ---
 prettier: true
 props:
-  title: 'Drawer with title'
+  title: 'Drawer с заголовком'
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   body: |
 
     <Placeholder class="h-48" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #body
 :placeholder{class="h-48"}
 ::
 
-### Description
+### Описание {#description}
 
-Use the `description` prop to set the description of the Drawer's header.
+Пропс `description` задаёт описание в шапке Drawer.
 
 ::component-code
 ---
@@ -84,27 +84,27 @@ prettier: true
 ignore:
   - title
 props:
-  title: 'Drawer with description'
+  title: 'Drawer с описанием'
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
 slots:
   default: |
     
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   body: |
 
     <Placeholder class="h-48" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #body
 :placeholder{class="h-48"}
 ::
 
-### Direction
+### Направление {#direction}
 
-Use the `direction` prop to control the direction of the Drawer. Defaults to `bottom`.
+Пропс `direction` задаёт направление Drawer. По умолчанию `bottom`.
 
 ::component-code
 ---
@@ -114,22 +114,22 @@ props:
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   content: |
 
     <Placeholder class="min-w-96 min-h-96 size-full m-4" />
 ---
 
-:B24-button{label="Open"}
+:B24-button{label="Открыть"}
 
 #content
 :placeholder{class="min-w-96 min-h-96 size-full m-4"}
 ::
 
-### Inset
+### Отступ от краёв {#inset}
 
-Use the `inset` prop to inset the Drawer from the edges.
+Пропс `inset` отодвигает Drawer от краёв.
 
 ::component-code
 ---
@@ -140,22 +140,22 @@ props:
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   content: |
 
     <Placeholder class="min-w-96 min-h-96 size-full m-4" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #content
 :placeholder{class="min-w-96 min-h-96 size-full m-4"}
 ::
 
-### Handle
+### Ручка {#handle}
 
-Use the `handle` prop to control whether the Drawer has a handle or not. Defaults to `true`.
+Пропс `handle` определяет, есть ли у Drawer ручка. По умолчанию `true`.
 
 ::component-code
 ---
@@ -165,22 +165,22 @@ props:
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   content: |
 
     <Placeholder class="h-48 m-4" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #content
 :placeholder{class="h-48 m-4"}
 ::
 
-### Handle Only
+### Только ручка {#handle-only}
 
-Use the `handle-only` prop to only allow the Drawer to be dragged by the handle.
+Пропс `handle-only` разрешает перетаскивать Drawer только за ручку.
 
 ::component-code
 ---
@@ -190,22 +190,22 @@ props:
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   content: |
 
     <Placeholder class="h-48 m-4" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #content
 :placeholder{class="h-48 m-4"}
 ::
 
-### Overlay
+### Оверлей {#overlay}
 
-Use the `overlay` prop to control whether the Drawer has an overlay or not. Defaults to `true`.
+Пропс `overlay` определяет, есть ли у Drawer оверлей. По умолчанию `true`.
 
 ::component-code
 ---
@@ -215,25 +215,25 @@ props:
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   content: |
 
     <Placeholder class="h-48 m-4" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #content
 :placeholder{class="h-48 m-4"}
 ::
 
-### Modal
+### Модальный режим {#modal}
 
-Use the `modal` prop to control whether the Drawer blocks interaction with outside content. Defaults to `true`.
+Пропс `modal` определяет, блокирует ли Drawer взаимодействие с контентом вне него. По умолчанию `true`.
 
 ::note
-When `modal` is set to `false`, the overlay is automatically disabled and outside content becomes interactive.
+Если `modal` равен `false`, оверлей отключается автоматически, и контент вне Drawer остаётся доступным.
 ::
 
 ::component-code
@@ -244,29 +244,29 @@ props:
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   content: |
 
     <Placeholder class="h-48 m-4" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #content
 :placeholder{class="h-48 m-4"}
 ::
 
-### Dismissible
+### Закрытие вне Drawer {#dismissible}
 
-Use the `dismissible` prop to control whether the Drawer is dismissible when clicking outside of it or pressing escape. Defaults to `true`.
+Пропс `dismissible` определяет, закрывается ли Drawer по щелчку вне его или по клавише Esc. По умолчанию `true`.
 
 ::note
-A `close:prevent` event will be emitted when the user tries to close it.
+Когда пользователь пытается закрыть Drawer, срабатывает событие `close:prevent`.
 ::
 
 ::tip
-You can combine `modal: false` with `dismissible: false` to make the Drawer's background interactive without closing it.
+Чтобы фон при открытом Drawer оставался доступным и Drawer не закрывался, объедините `modal: false` и `dismissible: false`.
 ::
 
 ::component-example
@@ -276,9 +276,9 @@ name: 'drawer-dismissible-example'
 ---
 ::
 
-### Scale Background
+### Масштабирование фона {#scale-background}
 
-Use the `should-scale-background` prop to scale the background when the Drawer is open, creating a visual depth effect. You can set the `set-background-color-on-scale` prop to `false` to prevent changing the background color.
+Пропс `should-scale-background` масштабирует фон при открытом Drawer и создаёт эффект глубины. Пропс `set-background-color-on-scale` со значением `false` запрещает менять цвет фона.
 
 ::component-code
 ---
@@ -289,21 +289,21 @@ props:
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   content: |
 
     <Placeholder class="h-48 m-4" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #content
 :placeholder{class="h-screen m-4"}
 ::
 
 ::warning
-Make sure to add the `data-vaul-drawer-wrapper` directive to a parent element of your app to make this work.
+Чтобы это работало, добавьте директиву `data-vaul-drawer-wrapper` родительскому элементу приложения.
 
 ```vue [app.vue]
 <template>
@@ -330,12 +330,12 @@ export default defineNuxtConfig({
 
 ::
 
-### No Body Styles :badge{label="2.15+" class="align-text-top"}
+### Без стилей для body :badge{label="2.15+" class="align-text-top"} {#no-body-styles}
 
-Use the `no-body-styles` prop to prevent the Drawer from applying styles to the `<body>` element, such as `pointer-events: none` which blocks interaction with the page while the Drawer is open.
+Пропс `no-body-styles` запрещает Drawer применять стили к элементу `<body>`: например, `pointer-events: none`, который блокирует взаимодействие со страницей, пока Drawer открыт.
 
 ::note
-When `overlay` is enabled, it still locks the body scroll. Combine `no-body-styles` with `overlay: false` to keep the page interactive.
+При включённом `overlay` прокрутка body всё равно блокируется. Чтобы страница оставалась интерактивной, объедините `no-body-styles` и `overlay: false`.
 ::
 
 ::component-code
@@ -347,24 +347,24 @@ props:
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   content: |
 
     <Placeholder class="h-48 m-4" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #content
 :placeholder{class="h-48 m-4"}
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Control open state
+### Управление состоянием открытия {#control-open-state}
 
-You can control the open state by using the `default-open` prop or the `v-model:open` directive.
+Состоянием открытия управляют пропс `default-open` или директива `v-model:open`.
 
 ::component-example
 ---
@@ -374,16 +374,16 @@ name: 'drawer-open-example'
 ::
 
 ::note
-In this example, leveraging [`defineShortcuts`](/docs/composables/define-shortcuts/), you can toggle the Drawer by pressing :kbd{value="O"}.
+В этом примере с помощью [`defineShortcuts`](/docs/composables/define-shortcuts/) Drawer открывается и закрывается клавишей :kbd{value="O"}.
 ::
 
 ::tip
-This lets you move the trigger outside of the Drawer or remove it entirely.
+Так триггер можно вынести за пределы Drawer или убрать совсем.
 ::
 
-### Responsive drawer
+### Адаптивный Drawer {#responsive-drawer}
 
-You can render a [Modal](/docs/components/modal/) component on desktop and a Drawer on mobile for example.
+Например, на десктопе можно показывать компонент [Modal](/docs/components/modal/), а на мобильных устройствах — Drawer.
 
 ::component-example
 ---
@@ -392,9 +392,9 @@ name: 'drawer-responsive-example'
 ---
 ::
 
-### Nested drawers
+### Вложенные Drawer {#nested-drawers}
 
-You can nest drawers within each other by using the `nested` prop.
+Drawer можно вкладывать друг в друга пропсом `nested`.
 
 ::component-example
 ---
@@ -403,9 +403,9 @@ name: 'drawer-nested-example'
 ---
 ::
 
-### With footer slot
+### Слот footer {#with-footer-slot}
 
-Use the `#footer` slot to add content after the Drawer's body.
+Слот `#footer` добавляет контент после тела Drawer.
 
 ::component-example
 ---
@@ -415,9 +415,9 @@ name: 'drawer-footer-slot-example'
 ---
 ::
 
-### With command palette
+### С командной палитрой {#with-command-palette}
 
-You can use a [CommandPalette](/docs/components/command-palette/) component inside the Drawer's content.
+Внутри содержимого Drawer можно использовать [CommandPalette](/docs/components/command-palette/).
 
 ::component-example
 ---
@@ -427,36 +427,29 @@ name: 'drawer-command-palette-example'
 ::
 
 ::note
-This example uses `useLazyFetch` with `immediate: false` to only fetch data when the Drawer opens.
+В этом примере `useLazyFetch` с `immediate: false` загружает данные только при открытии Drawer.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Accessibility :badge{label="2.14+" class="align-text-top"}
+## Доступность :badge{label="2.14+" class="align-text-top"} {#accessibility}
 
-On open, focus is moved off the trigger for one tick before the dialog's focus
-trap takes over. This works around a [reka-ui timing
-bug](https://github.com/unovue/reka-ui/issues/1280) that otherwise makes the
-browser refuse `aria-hidden` and log *"Blocked aria-hidden on an element
-because its descendant retained focus"*.
+При открытии фокус на один такт уходит с триггера, и только потом его перехватывает ловушка фокуса диалога. Так обходится [ошибка тайминга в reka-ui](https://github.com/unovue/reka-ui/issues/1280), из-за которой браузер отказывается применять `aria-hidden` и пишет в консоль *«Blocked aria-hidden on an element because its descendant retained focus»*.
 
-Focus returns to whatever was focused before opening, including when you open
-the component programmatically rather than through its trigger slot. Screen
-readers that announce focus changes eagerly — VoiceOver in particular — may
-briefly announce the page title before the dialog title.
+Фокус возвращается туда, где он был до открытия, в том числе когда компонент открывают программно, а не через слот триггера. Скринридеры, которые сразу озвучивают смену фокуса (прежде всего VoiceOver), могут ненадолго озвучить заголовок страницы раньше заголовка диалога.
 
-## Theme
+## Тема {#theme}
 
 :component-theme

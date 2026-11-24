@@ -1,12 +1,12 @@
 ---
 title: EditorToolbar
-description: 'A customizable toolbar for editor actions with multiple display modes: fixed, bubble, or floating.'
+description: 'Настраиваемая панель инструментов редактора с несколькими режимами показа: фиксированная, всплывающая над выделением или плавающая.'
 category: editor
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/EditorToolbar.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/editor
   - label: Nuxt UI
@@ -14,15 +14,15 @@ links:
     to: https://ui.nuxt.com/docs/components/editor-toolbar
 ---
 
-## Usage
+## Использование {#usage}
 
-The EditorToolbar component displays a toolbar of formatting buttons that automatically sync their active state with the editor content. It supports three layout modes using the `@tiptap/vue-3/menus` package:
-- `fixed`{lang="ts-type"} (always visible)
-- `bubble`{lang="ts-type"} (appears on text selection)
-- `floating`{lang="ts-type"} (appears on empty lines)
+Компонент EditorToolbar показывает панель кнопок форматирования, состояние которых автоматически синхронизируется с содержимым редактора. Он поддерживает три режима раскладки через пакет `@tiptap/vue-3/menus`:
+- `fixed`{lang="ts-type"} — всегда на виду;
+- `bubble`{lang="ts-type"} — появляется при выделении текста;
+- `floating`{lang="ts-type"} — появляется на пустых строках.
 
 ::caution
-It must be used inside an [Editor](/docs/components/editor/) component's default slot to have access to the editor instance.
+Компонент нужно использовать в слоте по умолчанию компонента [Editor](/docs/components/editor/), чтобы получить доступ к экземпляру редактора.
 ::
 
 ::component-example
@@ -35,12 +35,12 @@ class: 'p-8'
 ::
 
 ::note
-The bubble and floating layouts use TipTap's [`BubbleMenu`](https://tiptap.dev/docs/editor/extensions/functionality/bubble-menu) and [`FloatingMenu`](https://tiptap.dev/docs/editor/extensions/functionality/floatingmenu) extensions.
+Раскладки bubble и floating используют расширения TipTap [`BubbleMenu`](https://tiptap.dev/docs/editor/extensions/functionality/bubble-menu) и [`FloatingMenu`](https://tiptap.dev/docs/editor/extensions/functionality/floatingmenu).
 ::
 
-### Items
+### Элементы {#items}
 
-Use the `items` prop as an array of objects with the following properties:
+Пропс `items` — массив объектов со свойствами:
 
 - `label?: string`{lang="ts-type"}
 - `icon?: IconComponent`{lang="ts-type"}
@@ -57,7 +57,7 @@ Use the `items` prop as an array of objects with the following properties:
 - `items?: EditorToolbarItem[] | EditorToolbarItem[][]`{lang="ts-type"}
 - `class?: any`{lang="ts-type"}
 
-You can pass any property from the [Button](/docs/components/button/#props) component such as `color`, `size`, etc.
+Можно передать любое свойство компонента [Button](/docs/components/button/#props): `color`, `size` и другие.
 
 ::component-example
 ---
@@ -69,16 +69,16 @@ class: 'p-8'
 ::
 
 ::note
-You can also pass an array of arrays to the `items` prop to create separated groups of items.
+Чтобы получить отдельные группы элементов, передайте в `items` массив массивов.
 ::
 
 ::tip
-Each item can take an `items` array of objects with the same properties as the `items` prop to create a [DropdownMenu](/docs/components/dropdown-menu/).
+Чтобы создать [DropdownMenu](/docs/components/dropdown-menu/), элемент может содержать массив `items` с такими же свойствами, как у пропса `items`.
 ::
 
-### Layout
+### Раскладка {#layout}
 
-Use the `layout` prop to change how the toolbar is displayed. Defaults to `fixed`{lang="ts-type"}.
+Пропс `layout` меняет способ показа панели. По умолчанию `fixed`{lang="ts-type"}.
 
 ::component-example
 ---
@@ -88,7 +88,7 @@ name: 'editor-toolbar-layout-example'
 class: 'p-8'
 options:
   - name: layout
-    label: Layout
+    label: Раскладка
     default: bubble
     items:
       - fixed
@@ -97,9 +97,9 @@ options:
 ---
 ::
 
-### Options
+### Параметры {#options}
 
-When using `bubble`{lang="ts-type"} or `floating`{lang="ts-type"} layouts, use the `options` prop to customize the positioning behavior using [Floating UI options](https://floating-ui.com/docs/computeposition#options).
+В раскладках `bubble`{lang="ts-type"} и `floating`{lang="ts-type"} пропс `options` настраивает позиционирование с помощью [параметров Floating UI](https://floating-ui.com/docs/computeposition#options).
 
 ```vue
 <template>
@@ -119,9 +119,9 @@ When using `bubble`{lang="ts-type"} or `floating`{lang="ts-type"} layouts, use t
 </template>
 ```
 
-### Should Show
+### Условие показа {#should-show}
 
-When using `bubble`{lang="ts-type"} or `floating`{lang="ts-type"} layouts, use the `should-show` prop to control when the toolbar appears. This function receives context about the editor state and returns a boolean.
+В раскладках `bubble`{lang="ts-type"} и `floating`{lang="ts-type"} пропс `should-show` определяет, когда появляется панель. Функция получает контекст состояния редактора и возвращает булево значение.
 
 ```vue
 <template>
@@ -141,11 +141,11 @@ When using `bubble`{lang="ts-type"} or `floating`{lang="ts-type"} layouts, use t
 </template>
 ```
 
-## Examples
+## Примеры {#examples}
 
-### With image toolbar
+### С панелью для изображений {#with-image-toolbar}
 
-Use the `should-show` prop to create context-specific toolbars that appear only for certain node types. This example shows a `bubble` toolbar with download and delete actions that only appears when an image is selected.
+Пропс `should-show` позволяет сделать панели, которые появляются только для определённых типов узлов. В этом примере панель `bubble` с действиями «скачать» и «удалить» появляется только при выборе изображения.
 
 ::component-example
 ---
@@ -156,11 +156,11 @@ class: 'p-8'
 ---
 ::
 
-### With link popover
+### С выпадающим окном для ссылки {#with-link-popover}
 
-This example demonstrates how to create a custom link popover using the `slot` property on toolbar items and the [Popover](/docs/components/popover/) component.
+Этот пример показывает, как собрать своё выпадающее окно для ссылки через свойство `slot` у элементов панели и компонент [Popover](/docs/components/popover/).
 
-1. Create a Vue component that wraps a [Popover](/docs/components/popover/) with link editing functionality:
+1. Создайте Vue-компонент, который оборачивает [Popover](/docs/components/popover/) и позволяет редактировать ссылку:
 
 ::component-example
 ---
@@ -170,7 +170,7 @@ name: 'editor-link-popover'
 ---
 ::
 
-2. Use the custom component in the toolbar with a named slot:
+2. Используйте этот компонент в панели через именованный слот:
 
 ::component-example
 ---
@@ -183,14 +183,14 @@ class: 'p-8'
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

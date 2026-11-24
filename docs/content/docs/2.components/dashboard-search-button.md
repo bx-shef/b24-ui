@@ -1,6 +1,6 @@
 ---
 title: DashboardSearchButton
-description: 'A pre-styled button that opens the DashboardSearch modal.'
+description: 'Готовая кнопка, которая открывает модальное окно DashboardSearch.'
 category: dashboard
 links:
   - label: GitHub
@@ -14,9 +14,9 @@ links:
     to: https://ui.nuxt.com/docs/components/dashboard-search-button
 ---
 
-## Usage
+## Использование {#usage}
 
-The DashboardSearchButton component is used to open the [DashboardSearch](/docs/components/dashboard-search/) modal.
+Компонент DashboardSearchButton открывает модальное окно [DashboardSearch](/docs/components/dashboard-search/).
 
 ::component-code
 ---
@@ -28,7 +28,7 @@ props:
 ---
 ::
 
-It extends the [Button](/docs/components/button/) component, so you can pass any property such as `color`, `size`, etc.
+Компонент расширяет [Button](/docs/components/button/), поэтому ему можно передать любое свойство: `color`, `size` и другие.
 
 ::component-code
 ---
@@ -42,12 +42,12 @@ props:
 ::
 
 ::note{to="#collapsed"}
-The button defaults to `color="air-secondary-no-accent"` when not collapsed, `color="air-tertiary-no-accent"` when collapsed.
+По умолчанию кнопка имеет `color="air-secondary-no-accent"`, если не свёрнута, и `color="air-tertiary-no-accent"`, если свёрнута.
 ::
 
-### Collapsed
+### Свёрнутая кнопка {#collapsed}
 
-Use the `collapsed` prop to hide the button's label and [kbds](#kbds). Defaults to `false`.
+Пропс `collapsed` скрывает подпись кнопки и [клавиши](#kbds). По умолчанию `false`.
 
 ::component-code
 ---
@@ -57,12 +57,12 @@ props:
 ::
 
 ::tip{to="/docs/components/dashboard-sidebar/#slots"}
-When using the button in the **DashboardSidebar** component, use the `collapsed` slot prop directly.
+В компоненте **DashboardSidebar** используйте слот-проп `collapsed` напрямую.
 ::
 
-### Kbds
+### Клавиши {#kbds}
 
-Use the `kbds` prop to display keyboard keys in the button. Defaults to `['meta', 'K']`{lang="ts-type"} to match the default shortcut of the [DashboardSearch](/docs/components/dashboard-search/#shortcut) component.
+Пропс `kbds` показывает на кнопке клавиши. По умолчанию `['meta', 'K']`{lang="ts-type"}, как сочетание клавиш компонента [DashboardSearch](/docs/components/dashboard-search/#shortcut).
 
 ::component-code
 ---
@@ -79,18 +79,18 @@ props:
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes" target="_blank"}
-This component also supports all native `<button>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<button>`.
 ::
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

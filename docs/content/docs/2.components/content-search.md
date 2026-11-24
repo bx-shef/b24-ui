@@ -1,6 +1,6 @@
 ---
 title: ContentSearch
-description: 'A ready-to-use Command Palette component for your documentation.'
+description: 'Готовая командная палитра для вашей документации.'
 category: content
 framework: nuxt
 links:
@@ -16,12 +16,12 @@ links:
 ---
 
 ::warning{to="/docs/getting-started/integrations/content/"}
-This component is only available when the `@nuxt/content` module is installed.
+Компонент доступен, только если установлен модуль `@nuxt/content`.
 ::
 
-## Usage
+## Использование {#usage}
 
-The ContentSearch component extends the [CommandPalette](/docs/components/command-palette/) component with built-in [`@nuxt/content`](https://content.nuxt.com) search support, navigation grouping and color mode commands. It supports both client-side [Fuse.js](https://www.fusejs.io/) filtering and server-side [FTS5 full-text search](https://www.sqlite.org/fts5.html). You can pass any CommandPalette property such as `icon`, `placeholder`, etc.
+Компонент ContentSearch расширяет [CommandPalette](/docs/components/command-palette/): к нему добавлены поиск `@nuxt/content`, группировка навигации и команды переключения цветовой схемы. Он поддерживает фильтрацию на клиенте через [Fuse.js](https://www.fusejs.io/) и серверный [полнотекстовый поиск FTS5](https://www.sqlite.org/fts5.html). Можно передать любое свойство CommandPalette: `icon`, `placeholder` и другие.
 
 ::component-example
 ---
@@ -35,16 +35,16 @@ name: 'content-search-example'
 ::
 
 ::note
-You can open the CommandPalette by pressing :kbd{value="meta"} :kbd{value="K" class="ms-px"}, by using the [ContentSearchButton](/docs/components/content-search-button/) component or by using the `useContentSearch` composable: `const { open } = useContentSearch()`{lang="ts"}.
+Открыть палитру можно сочетанием :kbd{value="meta"} :kbd{value="K" class="ms-px"}, компонентом [ContentSearchButton](/docs/components/content-search-button/) или композаблом `useContentSearch`: `const { open } = useContentSearch()`{lang="ts"}.
 ::
 
 ::tip
-It is recommended to wrap the `ContentSearch` component in a [ClientOnly](https://nuxt.com/docs/api/components/client-only) component so it's not rendered on the server.
+Рекомендуем обернуть `ContentSearch` в компонент [ClientOnly](https://nuxt.com/docs/api/components/client-only), чтобы он не отрисовывался на сервере.
 ::
 
-### Navigation
+### Навигация {#navigation}
 
-Use the `navigation` prop with [`queryCollectionNavigation`](https://content.nuxt.com/docs/utils/query-collection-navigation) to group search results by section:
+Пропс `navigation` вместе с [`queryCollectionNavigation`](https://content.nuxt.com/docs/utils/query-collection-navigation) группирует результаты поиска по разделам:
 
 ```vue [app.vue] {2, 9}
 <script setup lang="ts">
@@ -62,9 +62,9 @@ const { data: navigation } = await useAsyncData('navigation', () => queryCollect
 </template>
 ```
 
-### Files
+### Файлы {#files}
 
-Use the `files` prop with [`queryCollectionSearchSections`](https://content.nuxt.com/docs/utils/query-collection-search-sections) to load all search sections upfront and use client-side [Fuse.js](https://www.fusejs.io/) filtering:
+Пропс `files` вместе с [`queryCollectionSearchSections`](https://content.nuxt.com/docs/utils/query-collection-search-sections) сразу загружает все разделы для поиска и включает фильтрацию на клиенте через [Fuse.js](https://www.fusejs.io/):
 
 ```vue [app.vue] {4-8, 16}
 <script setup lang="ts">
@@ -91,15 +91,15 @@ const { data: files } = useLazyAsyncData('search', () => queryCollectionSearchSe
 ```
 
 ::tip
-Use the `fuse` prop to configure [useFuse](https://vueuse.org/integrations/useFuse) options passed to the underlying [CommandPalette](/docs/components/command-palette/) such as `resultLimit` (default `12`) and `fuseOptions.threshold` (default `0.1`).
+Пропс `fuse` задаёт параметры [useFuse](https://vueuse.org/integrations/useFuse), которые уходят в базовый [CommandPalette](/docs/components/command-palette/): например, `resultLimit` (по умолчанию `12`) и `fuseOptions.threshold` (по умолчанию `0.1`).
 ::
 
-### Search
+### Поиск {#search}
 
-Use the `search` prop with [`useSearchCollection`](https://content.nuxt.com/docs/utils/use-search-collection) for server-side [FTS5 full-text search](https://www.sqlite.org/fts5.html) with highlighted snippets instead of client-side filtering:
+Пропс `search` вместе с [`useSearchCollection`](https://content.nuxt.com/docs/utils/use-search-collection) вместо фильтрации на клиенте включает серверный [полнотекстовый поиск FTS5](https://www.sqlite.org/fts5.html) с подсвеченными фрагментами:
 
 ::warning
-Requires `@nuxt/content` v3.14+.
+Нужен `@nuxt/content` версии 3.14 или выше.
 ::
 
 ```vue [app.vue] {4-7, 24-25}
@@ -113,7 +113,7 @@ const { search, status, init } = useSearchCollection('content', {
 
 const { open } = useContentSearch()
 
-// Defer index initialization until the user opens the palette when using `immediate: false`
+// Откладываем инициализацию индекса до открытия палитры при `immediate: false`
 watch(open, (value) => {
   if (value && status.value === 'idle') {
     init()
@@ -135,16 +135,16 @@ watch(open, (value) => {
 ```
 
 ::tip
-Pass `search-status` so the component can automatically re-trigger the search once the index becomes ready. Use `search-delay` (default `100ms`) to control how long typing must pause before the search fires. The `fuse.resultLimit` option caps the total results returned across all groups (search results, links, theme, etc.).
+Передайте `search-status`, чтобы компонент сам повторял поиск, когда индекс будет готов. Пропс `search-delay` (по умолчанию `100ms`) задаёт, сколько ждать после паузы в наборе, прежде чем запустить поиск. Параметр `fuse.resultLimit` ограничивает общее число результатов по всем группам (результаты поиска, ссылки, тема и т. д.).
 ::
 
 ::note
-When using the `search` prop, you don't need to pass `files`. The component calls the async search function on each keystroke instead of Fuse.js. Results are automatically mapped and grouped by navigation with highlighted snippets. Unlike the `files` approach which loads all search sections upfront and lets you browse navigation items before typing, the `search` prop only returns results after a query is entered.
+С пропсом `search` передавать `files` не нужно. Вместо Fuse.js компонент вызывает асинхронную функцию поиска при каждом нажатии клавиши. Результаты автоматически сопоставляются и группируются по навигации, фрагменты подсвечиваются. В отличие от подхода с `files`, который сразу загружает все разделы и позволяет просматривать навигацию до ввода, `search` возвращает результаты только после ввода запроса.
 ::
 
-### Shortcut
+### Сочетание клавиш {#shortcut}
 
-Use the `shortcut` prop to change the shortcut used in [defineShortcuts](/docs/composables/define-shortcuts/) to open the ContentSearch component. Defaults to `meta_k` (:kbd{value="meta"} :kbd{value="K"}).
+Пропс `shortcut` меняет сочетание клавиш, которое [defineShortcuts](/docs/composables/define-shortcuts/) использует для открытия ContentSearch. По умолчанию `meta_k` (:kbd{value="meta"} :kbd{value="K"}).
 
 ```vue [app.vue]{5}
 <template>
@@ -158,20 +158,20 @@ Use the `shortcut` prop to change the shortcut used in [defineShortcuts](/docs/c
 </template>
 ```
 
-### Links
+### Ссылки {#links}
 
-Use the `links` prop to add a group of quick-access links at the top of the command palette:
+Пропс `links` добавляет вверху палитры группу быстрых ссылок:
 
 ```vue [app.vue] {18}
 <script setup lang="ts">
 const links = [{
-  label: 'Docs',
+  label: 'Документация',
   to: '/docs/getting-started'
 }, {
-  label: 'Components',
+  label: 'Компоненты',
   to: '/docs/components'
 }, {
-  label: 'Showcase',
+  label: 'Примеры',
   to: '/showcase'
 }]
 </script>
@@ -187,9 +187,9 @@ const links = [{
 </template>
 ```
 
-### Color Mode
+### Цветовая схема {#color-mode}
 
-By default, a group of commands will be added to the command palette so you can switch between light and dark mode. This will only take effect if the `colorMode` is not forced in a specific page which can be achieved through `definePageMeta`:
+По умолчанию в палитру добавляется группа команд для переключения между светлой и тёмной темой. Это работает, только если `colorMode` не зафиксирован на конкретной странице через `definePageMeta`:
 
 ```vue [pages/index.vue]
 <script setup lang="ts">
@@ -199,7 +199,7 @@ definePageMeta({
 </script>
 ```
 
-You can disable this behavior by setting the `color-mode` prop to `false`:
+Отключить эту группу можно пропсом `color-mode` со значением `false`:
 
 ```vue [app.vue]{5}
 <template>
@@ -215,26 +215,26 @@ You can disable this behavior by setting the `color-mode` prop to `false`:
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-### Expose
+### Доступ через ref {#expose}
 
-When accessing the component via a template ref, you can use the following:
+Через ref шаблона доступно:
 
 | Name | Type |
 | ---- | ---- |
 | `commandPaletteRef`{lang="ts-type"} | `Ref<InstanceType<typeof B24CommandPalette> \| null>`{lang="ts-type"} |
 
-## Theme
+## Тема {#theme}
 
 :component-theme

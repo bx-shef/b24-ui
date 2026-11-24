@@ -1,6 +1,6 @@
 ---
 title: Empty
-description: 'An empty state component.'
+description: 'Компонент пустого состояния.'
 category: data
 keywords:
   - no data
@@ -15,7 +15,7 @@ links:
     to: https://ui.nuxt.com/docs/components/empty
 ---
 
-## Usage
+## Использование {#usage}
 
 ::component-example
 ---
@@ -24,24 +24,24 @@ name: 'empty-example'
 ---
 ::
 
-### Title
+### Заголовок {#title}
 
-Use the `title` prop to set the title of the empty state.
+Пропс `title` задаёт заголовок пустого состояния.
 
 ::component-code
 ---
 props:
-  title: No projects found
+  title: Проекты не найдены
 ---
 ::
 
 ::tip
-The title is rendered as an `h2` by default. Use the `as` prop with an object to change it, for example `:as="{ title: 'h3' }"`{lang="ts-type"}. You can also set the root element this way: `:as="{ root: 'section', title: 'h3' }"`{lang="ts-type"}.
+По умолчанию заголовок отрисовывается как `h2`. Чтобы изменить тег, передайте в пропс `as` объект: например, `:as="{ title: 'h3' }"`{lang="ts-type"}. Так же можно задать корневой элемент: `:as="{ root: 'section', title: 'h3' }"`{lang="ts-type"}.
 ::
 
-### Description
+### Описание {#description}
 
-Use the `description` prop to set the description of the empty state.
+Пропс `description` задаёт описание пустого состояния.
 
 ::component-code
 ---
@@ -49,14 +49,14 @@ prettier: true
 ignore:
   - title
 props:
-  title: No projects found
-  description: It looks like you haven't added any projects. Create one to get started.
+  title: Проекты не найдены
+  description: 'Похоже, вы ещё не добавили ни одного проекта. Создайте проект, чтобы начать.'
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to set the icon of the empty state.
+Пропс `icon` задаёт иконку пустого состояния.
 
 ::component-code
 ---
@@ -69,14 +69,14 @@ cast:
   icon: 'RocketIcon'
 props:
   icon: 'RocketIcon'
-  title: No projects found
-  description: It looks like you haven't added any projects. Create one to get started.
+  title: Проекты не найдены
+  description: 'Похоже, вы ещё не добавили ни одного проекта. Создайте проект, чтобы начать.'
 ---
 ::
 
-### Loading
+### Загрузка {#loading}
 
-Use the `loading` prop to show a loading icon in place of the icon. The layout stays identical, so you can toggle between loading and empty states without layout shifts.
+Пропс `loading` показывает иконку загрузки вместо обычной иконки. Раскладка при этом не меняется, поэтому между состояниями загрузки и пустоты можно переключаться без сдвигов.
 
 ::component-code
 ---
@@ -86,14 +86,14 @@ ignore:
   - description
 props:
   loading: true
-  title: Loading projects
-  description: Please wait while we fetch your projects.
+  title: Загрузка проектов
+  description: Подождите, мы загружаем ваши проекты.
 ---
 ::
 
-### Loading Icon
+### Иконка загрузки {#loading-icon}
 
-Use the `loading-icon` prop to customize the loading icon. Defaults to `icons.loading`.
+Пропс `loading-icon` меняет иконку загрузки. По умолчанию `icons.loading`.
 
 ::component-code
 ---
@@ -108,14 +108,14 @@ cast:
 props:
   loading: true
   loadingIcon: 'RocketIcon'
-  title: Loading projects
-  description: Please wait while we fetch your projects.
+  title: Загрузка проектов
+  description: Подождите, мы загружаем ваши проекты.
 ---
 ::
 
-### Actions
+### Действия {#actions}
 
-Use the `actions` prop to add some [Button](/docs/components/button/) actions to the empty state.
+Пропс `actions` добавляет в пустое состояние действия в виде кнопок [Button](/docs/components/button/).
 
 ::component-code
 ---
@@ -130,18 +130,18 @@ cast:
   icon: 'RocketIcon'
 props:
   icon: RocketIcon
-  title: No projects found
-  description: It looks like you haven't added any projects. Create one to get started.
+  title: Проекты не найдены
+  description: 'Похоже, вы ещё не добавили ни одного проекта. Создайте проект, чтобы начать.'
   actions:
-    - label: Create new
+    - label: Создать
       color: air-primary
-    - label: Refresh
+    - label: Обновить
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of the empty state.
+Пропс `color` меняет цвет пустого состояния.
 
 ::component-code
 ---
@@ -157,19 +157,19 @@ cast:
 props:
   color: 'air-secondary-accent-2'
   icon: 'RocketIcon'
-  title: No notifications
-  description: You're all caught up. New notifications will appear here.
+  title: Уведомлений нет
+  description: 'Вы всё прочитали. Новые уведомления появятся здесь.'
   actions:
-    - label: Refresh
+    - label: Обновить
 ---
 ::
 
-### Inverted
+### Инверсия {#inverted}
 
-Use the `inverted` prop to invert the color of the empty state.
+Пропс `inverted` инвертирует цвет пустого состояния.
 
 ::warning
-Only available for `air-primary*` colors
+Доступно только для цветов `air-primary*`.
 ::
 
 ::component-code
@@ -187,16 +187,16 @@ props:
   inverted: true
   color: 'air-primary'
   icon: 'RocketIcon'
-  title: No notifications
-  description: You're all caught up. New notifications will appear here.
+  title: Уведомлений нет
+  description: 'Вы всё прочитали. Новые уведомления появятся здесь.'
   actions:
-    - label: Refresh
+    - label: Обновить
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the empty state.
+Пропс `size` меняет размер пустого состояния.
 
 ::component-code
 ---
@@ -212,18 +212,18 @@ cast:
 props:
   size: xl
   icon: 'RocketIcon'
-  title: No notifications
-  description: You're all caught up. New notifications will appear here.
+  title: Уведомлений нет
+  description: 'Вы всё прочитали. Новые уведомления появятся здесь.'
   actions:
-    - label: Refresh
+    - label: Обновить
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With slots
+### Со слотами {#with-slots}
 
-Use the available slots to create a more complex empty state.
+Слоты позволяют собрать более сложное пустое состояние.
 
 ::component-example
 ---
@@ -234,14 +234,14 @@ name: 'empty-slots-example'
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme
