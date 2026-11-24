@@ -91,7 +91,7 @@ describe('icon bindings in the runtime', () => {
     const bad = bindings
       .filter(binding => binding.kind === ':is' && !binding.proxied)
       .filter(binding => !/safeIcon\(/.test(binding.expression) && /[iI]con/.test(binding.expression.replace(/\bicons\.\w+/g, '')))
-      .filter(binding => !(UNPROXIED_ALLOWED[binding.file] ?? []).some(name => binding.expression === name))
+      .filter(binding => !(UNPROXIED_ALLOWED[binding.file] ?? []).includes(binding.expression))
       .map(binding => `${binding.file} :is="${binding.expression}"`)
     expect(bad).toEqual([])
   })

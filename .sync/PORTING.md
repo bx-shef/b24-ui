@@ -117,17 +117,23 @@ material. Reproduce its *intent* in b24ui by editing files under `src/` only.
   with `node -e "..."` diffing nuxt vs demo (and check vue/repl), then
   regenerate the lockfile once. A dep that exists only in `nuxt` but not `demo`
   (or vice-versa) is fine; a dep present in **both** must not drift.
-- **Icons pass `isUnsafeComponent` (b24ui has no `Icon` component).** Upstream guards
+- **Icons pass `isUnsafeIcon` (b24ui has no `Icon` component).** Upstream guards
   icons in `Icon.vue`; here icons are rendered with `<Component :is>` / `h()` in dozens
-  of components, so the guard lives in two places: `useComponentProps` returns `undefined`
-  for any prop whose name ends in `icon` (`icon`, `trailingIcon`, `selectedIcon`, …) when
-  the value is an unsafe component object (explicit, `B24Theme :props` and `app.config`
-  alike), and `safeIcon()` from `utils` wraps every icon read from items
-  (`item.icon`, `link.icon`, `item.trailingIcon`, `h(item.icon)`) and from components that
-  don't use `useComponentProps` (`prose/CodeIcon`, `ContextMenuContent`, `Editor*Menu`).
-  When a port brings a new `:is="…icon"` / `h(…icon)` over an `items[]` element, add
-  `safeIcon`; a new icon prop works as is if the component reads it through
-  `useComponentProps`. Guarded by `test/components/prose/UnsafeIcon.spec.ts`.
+  of components, so the guard lives in two places. `useComponentProps` ignores the value of
+  any prop whose name ends in `icon`/`Icon` (`icon`, `trailingIcon`, `selectedIcon`, …) when
+  `isUnsafeIcon` rejects it, and the usual chain applies instead: `B24Theme :props`,
+  `app.config.b24ui.<name>.defaultVariants`, then the default (the theme and `app.config`
+  values are checked too). Only keys ending in `icon` are guarded: a differently named prop
+  holding an icon (`iconName` is a string name, not an icon) is not. `safeIcon()` from `utils`
+  does the same for icons read from items (`item.icon`, `link.icon`, `item.trailingIcon`,
+  `h(item.icon)`, `labelIcon(item)`) and in components without the proxy
+  (`prose/CodeIcon`, `ContextMenuContent`, `Editor*Menu`). An icon is a function or an object
+  with a real `render`/`ssrRender`/`setup`; **strings are dropped** (`resolveDynamicComponent`
+  turns `img src=x onerror=…` into a raw tag on SSR), as are `template`, `__v_raw`, forged
+  VNodes and `{ render: 'x' }`. A `v-if` / `v-else-if` that tests the icon must test
+  `safeIcon(…)` too, or the fallback (step number, avatar, chip) disappears with the icon.
+  A new `:is="…icon"` / `h(…icon)` over an `items[]` element needs `safeIcon`; guarded by
+  `test/components/prose/UnsafeIcon.spec.ts` and the scan in `test/utils/unsafe-icon-bindings.spec.ts`.
 - **Icons reach components through `dictionary/icons.ts`.** A component that
   imports a glyph directly is outside `app.config.b24ui.icons.<role>`, so a
   consumer's override silently does not apply. #380 catalogued both shapes this
@@ -769,6 +775,10 @@ History of the maps lives in git; no separate version field.
   finish, from a port made in `0536b294`. Diff the whole hunk, not just the
   added control-flow keyword. `test/utils/v-html-bindings.spec.ts` now fails on
   a `v-html` that contains `||` or `??`, so this one is enforced.
+- A new `<Component :is>` / `h()` fed from data (an item field, an object prop, markdown) →
+  an icon goes through `safeIcon()` (and its `v-if` too), content through `isUnsafeContent()`,
+  an `as` through `isUnsafeAs()`; never hand a string from data to `:is`. `test/utils/unsafe-icon-bindings.spec.ts`
+  fails on an unguarded item icon.
 - No new runtime network calls, eval, or dynamic `import()` of remote code.
 - Changes stay within `src/` (+ tests/snapshots).
 
@@ -1056,4 +1066,4 @@ same bug facing the other way and needs reading rather than diffing.
 - 2026-09-10 — decision on #352 (no PR beyond this entry): added the §2 **tiptap stays in `dependencies`** invariant. The issue asked for a measurement first — "#99 asked for this and it has never been done" — and the measurement is what settled it against the change: ≈9 MB for a consumer, traded against a breaking change requiring 17 manifest entries from every `B24Editor` user. Worth recording the wrong number as well as the right one, because the wrong one is the one a hurried check produces: `du -sm node_modules/.pnpm/@tiptap*` says 86 MB across 77 directories, and 77 is not 17 — pnpm keeps one store entry per package-and-peer-set combination, so the figure counts the same package many times over. Resolving each `node_modules/@tiptap/*` symlink to its real path and deduplicating gives 17 paths and 7 MB, of which `@tiptap/core` alone is 3.7 MB. Also confirmed the doubt the issue raised about upstream: their 17 tiptap peers really are **required** — `peerDependenciesMeta` lists eleven optional entries and no tiptap among them — so copying their shape wholesale would have imposed required peers for a component most apps never mount. Their peer count has grown from the 21 recorded in the issue to 30. Last reviewed: 2026-09-10.
 - 2026-09-24 — maintainer decision: the AI chat is removed from the docs site and both Nuxt playgrounds. Replaced the §2 **AI provider packages are fork-only and must move with `ai`** invariant (2026-08-18) with **This fork has no AI chat**: the providers it guarded — `@ai-sdk/deepseek`, `@ai-sdk/mcp` — are gone along with `@ai-sdk/vue`, and no manifest outside the root declares any AI SDK package, so there is no longer a provider-spec coupling to keep in step. `ai` stays as a root `devDependency` only because `src/` imports its types. Removing the old bullet also repaired a layout fault it had introduced: it had been inserted between the `reka-ui` / `vaul-vue` bullet and that bullet's own continuation paragraph ("Both sit at the same versions upstream does…"), so the continuation rendered under the AI bullet. Two further facts found while removing it: `NUXT_PUBLIC_USE_AI`, set in `ci.yml` and `deploy.yml`, had already had no effect — `runtimeConfig.public.useAI` was commented out, so the "Ask AI" search group and the Editor's AI menu items were never enabled; and upstream's docs-chat and AI-completion commits are now `n/a` here by absence, per the new bullet. Last reviewed: 2026-09-24.
 - 2026-11-24 — maintainer decision (bx-shef/b24-ui#7): the docs-site AI chat is back, on DeepSeek. Replaced the §2 **This fork has no AI chat** invariant (2026-09-24) with **The docs site has an AI chat on DeepSeek; the playgrounds do not**: provider, key and no-key behaviour, which upstream pieces are not ported (gateway, theme tools), the fork's own rate limit and history sanitising, and the `ai` / `@ai-sdk/deepseek` coupling. Upstream's docs-chat commits are no longer `n/a`; they port by idea. Last reviewed: 2026-11-24.
-- 2026-11-24 — fix of #35: added the §2 **Icons pass `isUnsafeComponent`** invariant. The `Icon` component where upstream (`aa54cd89`, `499b5b3`) puts the guard does not exist here, so a faithful port leaves `:icon='{"template":…}'` from untrusted markdown open; the guard is in `useComponentProps` (props ending in `icon`) and `safeIcon()` (icons read from items). Last reviewed: 2026-11-24.
+- 2026-11-24 — fix of #35: added the §2 **Icons pass `isUnsafeIcon`** invariant (strings dropped, `v-if` by `safeIcon`; Toast `title`/`description` by `isUnsafeContent`). The `Icon` component where upstream (`aa54cd89`, `499b5b3`) puts the guard does not exist here, so a faithful port leaves `:icon='{"template":…}'` from untrusted markdown open; the guard is in `useComponentProps` (props ending in `icon`) and `safeIcon()` (icons read from items). Last reviewed: 2026-11-24.

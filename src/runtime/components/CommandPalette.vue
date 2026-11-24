@@ -698,7 +698,7 @@ function onSelect(e: Event, item: T) {
                 </span>
 
                 <Component
-                  :is="safeIcon(group.highlightedIcon)"
+                  :is="safeIcon(group?.highlightedIcon)"
                   v-else-if="safeIcon(group?.highlightedIcon)"
                   data-slot="itemTrailingHighlightedIcon"
                   :class="b24ui.itemTrailingHighlightedIcon({ class: [props.b24ui?.itemTrailingHighlightedIcon, item.b24ui?.itemTrailingHighlightedIcon] })"

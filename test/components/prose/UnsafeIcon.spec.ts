@@ -133,7 +133,7 @@ describe('unsafe icons from markdown', () => {
 
     it('is not rendered through a reactive object', async () => {
       if (typeof make() !== 'object') return
-      const wrapper = await mountSuspended(Button, { props: { label: 'x', icon: reactive(make()) as any } })
+      const wrapper = await mountSuspended(Button, { props: { label: 'x', icon: reactive(make() as any) as any } })
       expectClean(wrapper.html())
     })
   })
@@ -169,8 +169,7 @@ describe('unsafe icons from markdown', () => {
 
   it('keeps the fallback when an icon is dropped', async () => {
     const stepper = await mountSuspended(Stepper, { props: { items: [{ title: 'a', icon: template() }, { title: 'b', icon: tag() }] } as any })
-    expect(stepper.text()).toContain('1')
-    expect(stepper.text()).toContain('2')
+    expect(stepper.findAll('[data-slot=indicator]').map(indicator => indicator.text())).toEqual(['1', '2'])
     const tabs = await mountSuspended(Tabs, { props: { items: [{ label: 'a', icon: template(), avatar: { text: 'A' } }] } as any })
     expect(tabs.find('[data-slot=trigger]').text()).toContain('A')
     const menu = await mountSuspended(NavigationMenu, { props: { items: [{ label: 'a', icon: template(), chip: true }] } as any })
