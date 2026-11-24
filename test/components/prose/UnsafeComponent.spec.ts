@@ -37,7 +37,12 @@ describe('unsafe components from markdown', () => {
 
   it('does not render a template from A `as` fallthrough', async () => {
     // `LinkBase` declares `as` as a string, so Vue warns about the object it is handed; the render is what counts
-    const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+    // Глушим только ожидаемое предупреждение о типе `as`; остальные идут в консольный гейт
+    const original = console.warn
+    const warn = vi.spyOn(console, 'warn').mockImplementation((...args: unknown[]) => {
+      if (String(args[0]).includes('Invalid prop') && String(args[0]).includes('"as"')) return
+      original(...args)
+    })
     try {
       const wrapper = await mountSuspended(A, { attrs: { as: payload() } })
       expect(wrapper.html()).not.toContain('1337')

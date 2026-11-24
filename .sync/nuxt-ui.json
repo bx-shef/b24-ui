@@ -3724,7 +3724,7 @@
       "pr": "pending-merge",
       "b24ui_sha": "pending-merge",
       "decision": "port",
-      "summary": "fix(components): шаблонные компоненты и опасные as не рендерятся — isUnsafeComponent/isUnsafeAs/omitUnsafeAttrs в utils, useComponentProps, LinkBase (+inertia), Select, SelectMenu, ChatTool, ChatReasoning, prose Field/FieldGroup/CodeGroup; защита иконок (Icon.vue/prose Icon) — n/a, у форка нет компонента Icon"
+      "summary": "fix(components): шаблонные компоненты и опасные as не рендерятся — isUnsafeComponent/isUnsafeAs/omitUnsafeAttrs в utils, useComponentProps, LinkBase (+inertia), Select, SelectMenu, ChatTool, ChatReasoning, prose Field/FieldGroup/CodeGroup; ЧАСТИЧНО: иконки не закрыты — у форка нет компонента Icon, где апстрим ставит защиту; шаблон из пропса icon исполняется — issue #35"
     },
     "499b5b333a53a6dac22e89e412db905a9ab986e3": {
       "pr": "pending-merge",
