@@ -7,6 +7,7 @@ import { resolveIcon } from '@bitrix24/b24ui-nuxt/utils'
 import DesignIcon from '@bitrix24/b24icons-vue/outline/DesignIcon'
 import FavoriteIcon from '@bitrix24/b24icons-vue/outline/FavoriteIcon'
 import MoreMIcon from '@bitrix24/b24icons-vue/outline/MoreMIcon'
+import AiStarsIcon from '@bitrix24/b24icons-vue/outline/AiStarsIcon'
 
 // const isDev = import.meta.dev
 
@@ -18,6 +19,10 @@ const config = useRuntimeConfig()
 definePageMeta({
   layout: 'docs'
 })
+
+// Чат «Спросить AI»: кнопка «Объяснить с AI» есть, только когда чат включён на сервере
+const { enabled: chatEnabled, open: chatOpen, ask } = useChat()
+const { track } = useAnalytics()
 
 const { data: page } = await useAsyncData(kebabCase(pageUrl), () => queryCollection('docs').path(pageUrl).first())
 if (!page.value) {
@@ -121,6 +126,11 @@ const cardColorContext = computed(() => {
 onMounted(() => {
   isMounted.value = true
 })
+
+function makeExplain() {
+  track('AI Chat Opened', { source: 'explain' })
+  ask('Прочитай эту страницу документации и коротко перескажи её. Я хочу задать по ней вопросы.')
+}
 </script>
 
 <template>
@@ -128,8 +138,8 @@ onMounted(() => {
     v-if="page"
     :b24ui="{
       root: 'lg:gap-2.5 lg:py-3',
-      center: 'flex flex-col lg:gap-4',
-      right: 'order-first lg:order-last lg:top-[0px] lg:col-span-2'
+      center: `flex flex-col lg:gap-4 ${chatOpen ? 'lg:col-span-10' : ''}`,
+      right: `order-first lg:order-last lg:top-[0px] ${chatOpen ? 'lg:hidden' : 'lg:col-span-2'}`
     }"
   >
     <PageHeader>
@@ -153,6 +163,15 @@ onMounted(() => {
         />
       </template>
       <template #head-links>
+        <B24Button
+          v-if="chatEnabled"
+          :icon="AiStarsIcon"
+          label="Объяснить с AI"
+          color="air-selection"
+          size="sm"
+          @click="makeExplain"
+        />
+
         <PageHeaderLinks />
 
         <B24DropdownMenu
@@ -198,7 +217,7 @@ onMounted(() => {
       </B24Card>
     </B24PageBody>
 
-    <template v-if="page?.body?.toc?.links?.length" #right>
+    <template v-if="page?.body?.toc?.links?.length && !chatOpen" #right>
       <B24ContentToc
         :links="page.body.toc.links"
         class="sticky top-(--b24ui-header-height) px-3 py-3 pb-0 lg:p-4 lg:top-(--b24ui-header-height) scrollbar-thin scrollbar-transparent bg-(--ui-color-accent-soft-element-violet)/60 dark:bg-(--ui-color-copilot-bg-content-3)/40 lg:bg-transparent dark:lg:bg-transparent backdrop-blur-md lg:ms-0 overflow-y-auto max-h-[calc(100vh-var(--b24ui-header-height))] lg:col-span-2 order-first lg:order-last z-2"

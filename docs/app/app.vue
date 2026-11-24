@@ -7,6 +7,34 @@ const route = useRoute()
 const appConfig = useAppConfig()
 const { style, link } = useTheme()
 
+const { enabled: chatEnabled, open: chatOpen } = useChat()
+// Панель чата (AI SDK и её интерфейс) монтируется при первом открытии: обычный просмотр документации
+// не скачивает её код. Состояние «открыто» хранится, поэтому оставленная открытой панель монтируется при загрузке.
+const chatSeen = ref(false)
+watch(chatOpen, (value) => {
+  if (value) chatSeen.value = true
+}, { immediate: true })
+
+// ⌘I живёт здесь, а не в Chat.vue: панель появляется только после открытия, и привязка внутри неё не существовала бы
+// на свежей загрузке, где палитра поиска уже показывает это сочетание.
+const { open: searchOpen } = useContentSearch()
+
+defineShortcuts({
+  meta_i: {
+    handler: () => {
+      if (!chatEnabled.value) return
+
+      if (searchOpen.value) {
+        searchOpen.value = false
+        chatOpen.value = true
+      } else {
+        chatOpen.value = !chatOpen.value
+      }
+    },
+    usingInput: true
+  }
+})
+
 const { data: navigation } = await useFetch<ContentNavigationItem[]>('/api/navigation.json')
 
 useHead({
@@ -64,6 +92,8 @@ provide('navigation', rootNavigation)
 
       <template v-if="!route.path.startsWith('/examples')">
         <ClientOnly>
+          <LazyChat v-if="chatEnabled && chatSeen" />
+
           <Search :navigation="navigationByFramework" />
         </ClientOnly>
       </template>
