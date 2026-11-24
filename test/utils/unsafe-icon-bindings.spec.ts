@@ -20,6 +20,8 @@ import { glob } from 'tinyglobby'
  */
 const runtimeDir = join(process.cwd(), 'src', 'runtime')
 
+// Имена переменных цикла — закрытый список: новое имя (`tab.icon`, `step.icon`) сторож не увидит,
+// добавьте его сюда, когда оно появится в компоненте.
 const ITEM_ICON = /\b(?:item|link|childItem|group|option|entry)\??\.\w*[iI]con\b|\blabelIcon\(/
 
 /** Icons read in a component that has no props proxy, and why they are fine as they are. */
