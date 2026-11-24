@@ -6,6 +6,10 @@
 # nginx-proxy публикует контейнеры с переменной VIRTUAL_HOST, acme-companion выпускает для них
 # сертификаты Let's Encrypt (LETSENCRYPT_HOST). Документация: https://github.com/nginx-proxy/nginx-proxy
 # и https://github.com/nginx-proxy/acme-companion.
+#
+# Журнал доступа — без адреса клиента и строки запроса: LOG_FORMAT (README nginx-proxy, «Custom log
+# format»), $uri — путь без «?…»; «$» в compose пишется как «$$». Журнал ошибок — proxy-errorlog.conf
+# (уровень crit). Лимит запросов к /mcp/ — proxy-limits.conf (кладёт install.sh).
 name: proxy
 
 services:
@@ -13,6 +17,14 @@ services:
     image: nginxproxy/nginx-proxy:latest
     container_name: nginx-proxy
     restart: unless-stopped
+    environment:
+      LOG_FORMAT: '$$time_iso8601 $$host "$$request_method $$uri" $$status $$body_bytes_sent $$request_time'
+    logging: &proxy-logging
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+        compress: "true"
     ports:
       - "80:80"
       - "443:443"
@@ -21,6 +33,7 @@ services:
       - certs:/etc/nginx/certs
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
+      - ./proxy-errorlog.conf:/etc/nginx/conf.d/shef-errorlog.conf:ro
     networks:
       - proxy-net
 
@@ -28,6 +41,7 @@ services:
     image: nginxproxy/acme-companion:latest
     container_name: nginx-proxy-acme
     restart: unless-stopped
+    logging: *proxy-logging
     environment:
       NGINX_PROXY_CONTAINER: nginx-proxy
     volumes:

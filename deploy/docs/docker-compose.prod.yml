@@ -33,6 +33,14 @@ services:
       LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL:-}
       # Адреса сайта (canonical, sitemap, llms.txt) вшиты в образ при сборке и рантаймом не меняются — README.md, «Адреса сайта».
     restart: unless-stopped
+    # Сайт публичный (с MCP): без лишних прав и с потолком ресурсов. Замер: ~150 МБ и 11 потоков под нагрузкой.
+    mem_limit: 1g
+    cpus: 1.0
+    pids_limit: 200
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
     healthcheck:
       # 127.0.0.1, а не localhost: в контейнере localhost резолвится и в ::1.
       test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/llms.txt').then(r => process.exit(r.ok ? 0 : 1), () => process.exit(1))"]

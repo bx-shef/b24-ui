@@ -10,21 +10,23 @@
 #
 #   DOMAIN    домен сайта (при первом запуске обязателен; плейсхолдер docs.example.com не принимается)
 #   EMAIL     почта для Let's Encrypt
-#   DIR       каталог сайта на сервере            (по умолчанию /home/bitrix/b24-ui-docs)
-#   PROXY     имя контейнера nginx-proxy, если их на сервере несколько
-#   SITE_FILES  откуда брать файлы установки      (по умолчанию — каталог этого скрипта)
+#   B24_DIR   каталог сайта на сервере            (по умолчанию /home/bitrix/b24-ui-docs)
+#   B24_PROXY имя контейнера nginx-proxy, если их на сервере несколько
+#   B24_SITE_FILES  откуда брать файлы установки  (по умолчанию — каталог этого скрипта)
+# Префикс B24_ — чтобы чужие DIR и PROXY из окружения сервера не подменили каталог и прокси.
 #
 # Заданное в команде пишется в DIR/.env, не заданное там остаётся как было.
 #
 # Сервер — общий docker-хост проектов bx-shef: nginx-proxy, acme-companion и Watchtower на нём ОБЩИЕ.
 # Скрипт их не пересоздаёт — находит работающий nginx-proxy и подключает к нему только свой домен.
+# К общему прокси скрипт добавляет лимит запросов к /mcp/ (conf.d и vhost.d прокси, nginx -t и reload).
 # Прокси на хосте нет вовсе — ставит его (proxy.compose.yml рядом), но только если порты 80 и 443
 # свободны. Watchtower скрипт не ставит (нужен вход в ghcr — make shared-watchtower).
 set -euo pipefail
 
-DIR="${DIR:-/home/bitrix/b24-ui-docs}"
+DIR="${B24_DIR:-/home/bitrix/b24-ui-docs}"
 CONTAINER=b24-ui-docs
-SITE_FILES="${SITE_FILES:-$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)}"
+SITE_FILES="${B24_SITE_FILES:-$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)}"
 
 ok()   { printf '[ok] %s\n' "$*"; }
 note() { printf '[..] %s\n' "$*"; }
@@ -38,7 +40,7 @@ command -v curl >/dev/null 2>&1 || fail "нет curl"
 ok "Docker $(docker version --format '{{.Server.Version}}' 2>/dev/null), $(docker compose version --short 2>/dev/null)"
 
 # --- 2. Файлы сайта ---------------------------------------------------------
-[ -f "$SITE_FILES/docker-compose.prod.yml" ] || fail "нет $SITE_FILES/docker-compose.prod.yml — запускайте скрипт из клона репозитория или задайте SITE_FILES"
+[ -f "$SITE_FILES/docker-compose.prod.yml" ] || fail "нет $SITE_FILES/docker-compose.prod.yml — запускайте скрипт из клона репозитория или задайте B24_SITE_FILES"
 mkdir -p "$DIR/proxy"
 cd "$DIR"
 fetch() { # fetch <имя в SITE_FILES> <куда>
@@ -49,6 +51,9 @@ fetch Makefile Makefile
 fetch .env.example .env.example
 fetch proxy.compose.yml proxy/proxy.compose.yml
 fetch watchtower.compose.yml watchtower.compose.yml
+fetch proxy-errorlog.conf proxy/proxy-errorlog.conf
+fetch proxy-limits.conf proxy/proxy-limits.conf
+fetch mcp-location.conf proxy/mcp-location.conf
 ok "файлы сайта в $DIR"
 
 umask 077
@@ -79,6 +84,8 @@ own_dir
 DOMAIN="$(grep -E '^DOMAIN=' .env | cut -d= -f2-)"
 [ -n "$DOMAIN" ] || fail "DOMAIN пуст в $DIR/.env"
 [ "$DOMAIN" != docs.example.com ] || fail "в $DIR/.env плейсхолдер DOMAIN=docs.example.com — задайте домен: DOMAIN=<домен> sudo -E bash …/install.sh"
+# Домен идёт в имя файла nginx и в VIRTUAL_HOST: только строчные буквы, цифры, точки, дефисы, хотя бы одна точка
+[[ "$DOMAIN" =~ ^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$ ]] || fail "DOMAIN='$DOMAIN' не похож на имя домена (нужно вида docs.example.com, без https:// и пути)"
 ok "домен $DOMAIN"
 
 # DNS: только предупреждение — сертификат выпустится, когда запись дойдёт
@@ -97,7 +104,7 @@ docker network inspect proxy-net >/dev/null 2>&1 || { docker network create prox
 
 # Работающий nginx-proxy — по образу, а не по имени
 find_proxy() {
-	if [ -n "${PROXY:-}" ]; then printf '%s\n' "$PROXY"; return; fi
+	if [ -n "${B24_PROXY:-}" ]; then printf '%s\n' "$B24_PROXY"; return; fi
 	docker ps -q | xargs -r docker inspect -f '{{.Name}} {{.Config.Image}}' 2>/dev/null \
 		| awk '$2 ~ /(^|\/)nginx-proxy(:|@|$)/ { sub(/^\//, "", $1); print $1 }'
 }
@@ -105,12 +112,13 @@ proxy="$(find_proxy)"
 count="$(printf '%s\n' "$proxy" | grep -c . || true)"
 
 if [ "$count" -gt 1 ]; then
-	fail "контейнеров nginx-proxy несколько ($(echo "$proxy" | tr '\n' ' ')) — укажите нужный: PROXY=<имя>"
+	fail "контейнеров nginx-proxy несколько ($(echo "$proxy" | tr '\n' ' ')) — укажите нужный: B24_PROXY=<имя>"
 elif [ "$count" = 1 ]; then
 	[ "$(docker inspect -f '{{.State.Running}}' "$proxy" 2>/dev/null)" = true ] || fail "контейнер прокси $proxy не запущен"
-	ok "общий прокси: $proxy (не трогаем)"
+	ok "общий прокси: $proxy (контейнер не пересоздаём)"
 else
 	busy=""
+	command -v ss >/dev/null 2>&1 || note "нет ss (пакет iproute2): занятые порты 80/443 не проверены"
 	for port in 80 443; do
 		if ss -ltnH "sport = :$port" 2>/dev/null | grep -q .; then
 			busy="$busy $port ($(ss -ltnpH "sport = :$port" 2>/dev/null | grep -o 'users:(("[^"]*' | head -1 | cut -d'"' -f2))"
@@ -120,6 +128,24 @@ else
 	docker compose -f "$DIR/proxy/proxy.compose.yml" up -d
 	proxy=nginx-proxy
 	ok "nginx-proxy и acme-companion запущены (их на хосте не было)"
+fi
+
+# Прокси должен быть в сети proxy-net, иначе не увидит сайт (чужой прокси мог быть запущен в другой сети)
+if ! docker inspect -f '{{range $k, $_ := .NetworkSettings.Networks}}{{$k}} {{end}}' "$proxy" | tr ' ' '\n' | grep -qx proxy-net; then
+	docker network connect proxy-net "$proxy" 2>/dev/null \
+		&& ok "прокси $proxy подключён к сети proxy-net" \
+		|| fail "прокси $proxy не в сети proxy-net и подключить не удалось — выполните: docker network connect proxy-net $proxy"
+fi
+
+# Лимит запросов к MCP: зона — в conf.d (http), включение — в vhost.d/<домен>_location. Не прошло nginx -t — откат.
+docker cp proxy/proxy-limits.conf "$proxy:/etc/nginx/conf.d/b24ui-limits.conf" >/dev/null
+docker cp proxy/mcp-location.conf "$proxy:/etc/nginx/vhost.d/${DOMAIN}_location" >/dev/null
+if docker exec "$proxy" nginx -t >/dev/null 2>&1; then
+	docker exec "$proxy" nginx -s reload >/dev/null 2>&1 || true
+	ok "лимит запросов к /mcp/ включён в прокси (30 в минуту с адреса)"
+else
+	docker exec "$proxy" rm -f /etc/nginx/conf.d/b24ui-limits.conf "/etc/nginx/vhost.d/${DOMAIN}_location" >/dev/null 2>&1 || true
+	note "лимит /mcp/ не включён: nginx -t в прокси не прошёл, файлы убраны — настройте limit_req вручную (proxy/proxy-limits.conf, proxy/mcp-location.conf)"
 fi
 
 # --- 4. Сайт ---------------------------------------------------------------
@@ -143,7 +169,10 @@ for _ in $(seq 1 90); do
 	sleep 1
 done
 probe "$LLMS" || { docker logs --tail 30 "$CONTAINER" >&2 || true; fail "сайт не отвечает — лог выше"; }
-ok "сайт работает"
+curl_in() { docker exec "$CONTAINER" node -e "fetch('http://127.0.0.1:3000/llms.txt').then(r => r.text()).then(t => { process.stdout.write(t); }, () => process.exit(1))" 2>/dev/null; }
+curl_in | grep -qF "$DOMAIN" \
+	&& ok "сайт работает, адрес $DOMAIN в llms.txt" \
+	|| note "сайт работает, но в llms.txt нет $DOMAIN: образ собран под другой адрес (в GitHub — переменная DOCS_SITE_URL, затем запуск «Docs image» и make prod-redeploy)"
 
 own_dir
 

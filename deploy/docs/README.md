@@ -9,7 +9,9 @@
 |---|---|
 | `Dockerfile` | сборка: библиотека, затем `docs`; финальный образ `node:24-slim`, `USER node`, порт 3000, healthcheck |
 | `docker-compose.prod.yml` | сервис за прокси в сети `proxy-net` (`VIRTUAL_HOST`, `LETSENCRYPT_HOST`), метка Watchtower |
-| `proxy.compose.yml`, `watchtower.compose.yml` | общий прокси и Watchtower — только если их на сервере ещё нет |
+| `proxy.compose.yml`, `proxy-errorlog.conf` | общий прокси — только если его на сервере ещё нет; журнал без IP и строки запроса |
+| `proxy-limits.conf`, `mcp-location.conf` | лимит запросов к `/mcp/` (30 в минуту с адреса, всплеск 20, сверх — 429); `install.sh` кладёт их в прокси |
+| `watchtower.compose.yml` | общий Watchtower — только если его на сервере ещё нет |
 | `install.sh`, `Makefile`, `.env.example` | установка и обновление на сервере |
 | `../../.github/workflows/docs-image.yml` | сборка, дымовая проверка и публикация образа |
 
@@ -44,20 +46,28 @@ git clone https://github.com/bx-shef/b24-ui.git
 DOMAIN=<домен> EMAIL=<почта для Let's Encrypt> sudo -E bash b24-ui/deploy/docs/install.sh
 ```
 
-Скрипт: проверяет Docker, кладёт файлы в `/home/bitrix/b24-ui-docs` (`DIR=` — другой каталог), пишет `.env`,
+Скрипт: проверяет Docker, кладёт файлы в `/home/bitrix/b24-ui-docs` (`B24_DIR=` — другой каталог; `B24_PROXY=` — имя контейнера, если `nginx-proxy` на сервере несколько), пишет `.env`,
 находит работающий `nginx-proxy` (не трогает его; если прокси нет и порты свободны — ставит `proxy.compose.yml`),
-скачивает образ, поднимает контейнер и ждёт ответа `/llms.txt`. Сертификат выпускается 1–2 минуты после того,
+подключает прокси к сети `proxy-net` (если он вне её), включает лимит `/mcp/` (`nginx -t` и reload; не прошёл — откат
+и предупреждение), скачивает образ, поднимает контейнер и ждёт ответа `/llms.txt`. Сертификат выпускается 1–2 минуты после того,
 как DNS указывает на сервер.
 
-Если пакет `ghcr.io/bx-shef/b24-ui-docs` приватный, до установки: `docker login ghcr.io` (логин GitHub и
-classic PAT только с `read:packages`).
+Если пакет `ghcr.io/bx-shef/b24-ui-docs` приватный, до установки войдите **от того же пользователя, под которым
+идёт установка (root при `sudo`)**: `sudo docker login ghcr.io -u <логин GitHub>` (пароль — classic PAT только
+с `read:packages`).
+
+Контейнер ограничен: 1 ГБ памяти, 1 CPU, 200 процессов, без capabilities и с `no-new-privileges`; код образа
+только читается, база контента (`NUXT_CONTENT_DATABASE_FILENAME`) лежит в `/data` и пересоздаётся при старте.
+Журнал прокси не содержит IP и строки запроса. Лимит `/mcp/` лежит в прокси (conf.d, пропадает при его
+пересоздании — повторите `install.sh`).
 
 ### Обновление
 
 - **Само.** Общий Watchtower (проверка раз в 5 минут) подхватывает новый `:latest` по метке
   `com.centurylinklabs.watchtower.enable=true`. Если Watchtower на хосте нет: в `/home/bitrix/watchtower/.env`
   — `GHCR_USER`, `GHCR_TOKEN`, `WATCHTOWER_API_VERSION=1.44`, затем `make shared-watchtower`.
-- **Сразу:** `cd /home/bitrix/b24-ui-docs && make prod-redeploy`.
+- **Сразу:** `cd /home/bitrix/b24-ui-docs && make prod-redeploy` (под пользователем с доступом к Docker; для
+  приватного пакета — после `docker login ghcr.io` от него же).
 - **Файлы установки** (compose, Makefile) — `git pull` в клоне и та же команда `install.sh`.
 - **Закрепить версию:** `IMAGE_TAG=sha-<коммит>` в `.env`, `make prod-up`.
 
@@ -71,6 +81,10 @@ classic PAT только с `read:packages`).
 docker build -f deploy/docs/Dockerfile --build-arg SITE_URL=https://docs.example.com -t b24-ui-docs .
 docker run --rm -p 3000:3000 b24-ui-docs        # http://localhost:3000
 ```
+
+Публикует образ только задача `publish` из ветки `main` и только при заданном домене; перед сборкой идёт
+`pnpm audit --audit-level high` (как в `ci.yml`), сборка кэшируется в GitHub Actions cache. Права на запись
+пакетов есть только у `publish`.
 
 pnpm ставится через corepack, версия — из `packageManager` корневого `package.json`; зависимости —
 `pnpm install --frozen-lockfile`. В образ попадает только `docs/.output` (Nitro уже включает нужные

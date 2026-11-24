@@ -11,3 +11,6 @@
 deploy
 .github
 playgrounds/*/dist
+# секреты и локальные настройки не попадают в слой COPY . .
+**/.env*
+!**/.env.example

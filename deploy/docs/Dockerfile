@@ -51,7 +51,14 @@ ENV NODE_ENV=production \
     HOST=0.0.0.0 \
     PORT=3000 \
     NITRO_PORT=3000
-COPY --from=build --chown=node:node /repo/docs/.output ./.output
+COPY --from=build /repo/docs/.output ./.output
+# @nuxt/content (sqliteConnector: native) на старте собирает SQLite-базу из встроенного дампа и по умолчанию
+# кладёт её рядом с сервером (.output/server/contents.sqlite) — туда node писать не может, и контентные
+# инструменты MCP и /__nuxt_content/* отвечают 500 («unable to open database file»). Путь переопределяется
+# в рантайме через runtimeConfig; база — в каталоге, который принадлежит node, код образа остаётся
+# только для чтения. База пересоздаётся при каждом старте, хранить её не нужно.
+RUN mkdir /data && chown node:node /data
+ENV NUXT_CONTENT_DATABASE_FILENAME=/data/contents.sqlite
 EXPOSE 3000
 LABEL org.opencontainers.image.source=https://github.com/bx-shef/b24-ui \
       org.opencontainers.image.description="Bitrix24 UI — сайт документации (Nuxt-сервер)"
