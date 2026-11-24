@@ -5,15 +5,37 @@ import ViewmodeCodeIcon from '@bitrix24/b24icons-vue/editor/ViewmodeCodeIcon'
 import FormattingIcon from '@bitrix24/b24icons-vue/editor/FormattingIcon'
 import FormIcon from '@bitrix24/b24icons-vue/outline/FormIcon'
 // import DemonstrationOnIcon from '@bitrix24/b24icons-vue/outline/DemonstrationOnIcon'
+import AiStarsIcon from '@bitrix24/b24icons-vue/outline/AiStarsIcon'
 import GitHubIcon from '@bitrix24/b24icons-vue/social/GitHubIcon'
 
 export function useSearch() {
   const route = useRoute()
   const { frameworks } = useFrameworks()
+  const { track } = useAnalytics()
+  const { enabled: chatEnabled, open: chatOpen, ask } = useChat()
 
   const searchTerm = ref('')
 
+  function onSelect() {
+    track('AI Chat Opened', { source: 'search', hasSearchTerm: !!searchTerm.value })
+
+    if (searchTerm.value) {
+      ask(searchTerm.value)
+    } else {
+      chatOpen.value = true
+    }
+  }
+
   const links = computed(() => [
+    chatEnabled.value && {
+      label: 'Спросить AI',
+      icon: AiStarsIcon,
+      kbds: ['meta', 'i'],
+      b24ui: {
+        itemLeadingIcon: 'text-primary group-data-highlighted:not-group-data-disabled:text-primary-copilot'
+      },
+      onSelect
+    },
     {
       label: 'Начало работы',
       description: 'Как начать работу с Bitrix24 UI.',
@@ -55,7 +77,7 @@ export function useSearch() {
       to: 'https://github.com/bitrix24/b24ui',
       target: '_blank'
     }
-  ] as ContentSearchLink[])
+  ].filter(link => !!link) as ContentSearchLink[])
 
   const groups = computed(() => [
     {

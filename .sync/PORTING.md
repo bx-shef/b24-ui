@@ -444,23 +444,63 @@ material. Reproduce its *intent* in b24ui by editing files under `src/` only.
   minor may be pinned locally ahead of upstream, with a comment citing the
   advisory, because waiting for a port is not an acceptable answer to a live
   CVE. Everything else waits.
-- **This fork has no AI chat — not in the docs, not in the playgrounds.**
-  Removed on purpose: the docs "Ask AI" panel and its "Explain with AI" button,
-  the `bx-assistant` module, the `/api/ai`, `/api/chat` and `/api/completion`
-  routes, the Nuxt playground's chat page, and the Editor's AI completion
-  example. Upstream keeps all of them, so its commits to those files —
-  `docs/server/api/{ai,chat,completion}.post.ts`, `docs/app/components/chat/`,
-  `useChat` / `useAIChat`, the playground `server/api/` routes,
-  `useEditorCompletion` — are **n/a** here: absent, not skipped. Do not port
-  them back one fix at a time.
-  What stays, and still ports normally: the `Chat*` components in `src/`, their
-  docs pages (whose live examples use static messages rather than a backend),
-  and the AI SDK integration guide on `chat.md`, which is prose and code
-  samples. `src/` imports only **types** from `ai` (`UIMessage`, `ChatStatus`),
-  which is why `ai` remains a root `devDependency` while the docs and
-  playgrounds declare no AI SDK package at all. The MCP server, `llms.txt`, the
-  skills and the "Open in ChatGPT / Claude" page links are tooling for outside
-  agents, not chat, and stay.
+- **The docs site has an AI chat ("Спросить AI") on DeepSeek; the playgrounds do not.**
+  Restored on 2026-11-24 (bx-shef/b24-ui#7) after the 2026-09-24 removal. The
+  panel, the header button, the search-palette entry and "Объяснить с AI" on
+  docs pages are back; the Editor's AI completion and the playgrounds' chat
+  pages and routes stay removed (those upstream files are **n/a** here:
+  `playgrounds/*/server/api/`, `useEditorCompletion`). So upstream's commits
+  to the docs chat **port again**, by hand and by idea, because the fork's
+  files diverge on purpose:
+  - **Provider.** Upstream calls Vercel AI Gateway with an Anthropic model.
+    Here `docs/server/api/ai.post.ts` builds `createDeepSeek({ apiKey })`
+    (`@ai-sdk/deepseek`, fork-only, in the catalog and in `docs/package.json`).
+    Everything gateway-shaped is **not** ported: `@ai-sdk/gateway`,
+    `@ai-sdk/anthropic`, `providerOptions.gateway/anthropic`, `getChatUser`
+    (`docs/server/utils/chatUser.ts` — a gateway attribution cookie, useless
+    here). The key is `NUXT_DEEPSEEK_API_KEY`, the model `NUXT_DEEPSEEK_MODEL`
+    (default `deepseek-chat`), both server-only `runtimeConfig`
+    (`deepseekApiKey`, `deepseekModel`); `NUXT_DEEPSEEK_BASE_URL` exists for
+    pointing the route at a stub in tests. **No key — no chat**: `ai.post.ts`
+    answers 404 before reading the body, `GET /api/ai/status` says
+    `{ enabled: false }` and `useChat().enabled` hides every entry point
+    (header button, search entry, "Объяснить с AI", ⌘I, the panel itself).
+    `runtimeConfig.public.aiChat` only mirrors the key at build (the key itself is never set at image build);
+    prerendered pages are built without it, so the browser asks the status
+    route — keep that, a build-time flag alone would hide the chat in the
+    Docker image.
+  - **Theme tools are not ported.** Upstream's `applyTheme`, `applyPreset`,
+    `resetTheme`, `getThemeGuide`, `searchFonts`, `getComponentTheme`,
+    `useThemeStudio`, `useStudioIcons` and the live theme studio have no
+    counterpart here (b24ui's look follows the Bitrix24 style). Tools are the
+    site's own MCP tools (`b24-ui-*`), wrapped in-process from
+    `#nuxt-mcp-toolkit/tools.mjs`; `@ai-sdk/mcp` is not needed.
+  - **Abuse protection is ours.** Upstream has none beyond Gateway limits;
+    here `docs/server/utils/chatGuard.ts` (pure, covered by
+    `test/utils/docs-chat-guard.spec.ts`, the route by `docs-chat-route.spec.ts`) holds the per-IP (IPv6 by /64), window and daily rate
+    limits (in process memory), the bounded body read, the tool-result cut and the history sanitising
+    (tool output of earlier turns is dropped before it reaches the model). The
+    client address is the **last** `X-Forwarded-For` entry — what nginx-proxy
+    appended; everything left of it is client-controlled. If the site is ever
+    served without a proxy in front, that header is spoofable and the limiter
+    must key on the socket address.
+  - **Texts.** The panel, the system prompt and the error texts are Russian and
+    the prompt restricts the model to Bitrix24 UI. When a port brings
+    English strings or a prompt change, translate and keep the restriction.
+  - **Components.** `B24Sidebar`, `B24ChatMessages` (`#part`, `#footer`),
+    `B24ChatPrompt` (`v-model:queue`), `B24ChatTool`, `B24ChatReasoning`;
+    icons from `@bitrix24/b24icons-vue`; no `UTheme` icon packs.
+  - **Dependencies.** `ai` and `@ai-sdk/vue` in `docs/package.json` follow
+    upstream (`.sync/dep-parity.json` records them); `@ai-sdk/deepseek` must
+    move with `ai`: providers pin `@ai-sdk/provider`, and two majors of the
+    provider spec in one tree broke the old assistant silently (2026-08-18).
+    After any `ai` bump check that the lockfile resolves a single
+    `@ai-sdk/provider` major. `src/` still imports only **types** from `ai`
+    (`UIMessage`, `ChatStatus`).
+  What stays regardless: the `Chat*` components in `src/` and their docs pages,
+  the AI SDK integration guide on `chat.md`, the MCP server, `llms.txt`, the
+  skills and the "Open in ChatGPT / Claude" page links. The key is never in the
+  repository: it is set on the server (`deploy/docs/.env`).
 - **A `withDefaults` default on a prop that also flows through `useFormField`
   breaks the theme chain.** `useFormField` is handed the **raw** `_props`, so a
   `withDefaults` value lands on it and `formFieldX.value ?? props.X` can never
@@ -1004,3 +1044,4 @@ same bug facing the other way and needs reading rather than diffing.
 - 2026-09-09 — decision on #392 (PR #563): added the §2 **`highlight()` skips a value-less match** invariant, and recorded the half that was decided *not* to change. The issue raised two behaviours as questions rather than bugs, and measurement separated them. The truncation budget scaling with the number of marks is real (13 characters per mark, reproduced at 1/2/3/4) but harmless and upstream's — a product preference with no defect behind it, so it stays. The value-less match was worse than the issue described: it reported "no live rendering difference today", which holds for the render path, but the loop returns on the first match it reaches, so a value-less match does not merely render as `''` — it **prevents a later real match from being highlighted at all**. That is what moved it from a question to a fix. Both behaviours are byte-identical to upstream at v4 HEAD, so the fix is the third recorded divergence in three days, all three of the same shape: upstream carries the defect, checked rather than assumed, and a port would silently take the fix back out. One process note: the first version of the new shadowing test failed on an expectation of `'<mark>alpha</mark> squad'` when the fixture's `label` is `'alpha team'` — `squad` is the neighbouring `suffix` constant. A fixture value recalled instead of read, which is rule 5.3 in miniature and cost one run. Last reviewed: 2026-09-09.
 - 2026-09-10 — decision on #352 (no PR beyond this entry): added the §2 **tiptap stays in `dependencies`** invariant. The issue asked for a measurement first — "#99 asked for this and it has never been done" — and the measurement is what settled it against the change: ≈9 MB for a consumer, traded against a breaking change requiring 17 manifest entries from every `B24Editor` user. Worth recording the wrong number as well as the right one, because the wrong one is the one a hurried check produces: `du -sm node_modules/.pnpm/@tiptap*` says 86 MB across 77 directories, and 77 is not 17 — pnpm keeps one store entry per package-and-peer-set combination, so the figure counts the same package many times over. Resolving each `node_modules/@tiptap/*` symlink to its real path and deduplicating gives 17 paths and 7 MB, of which `@tiptap/core` alone is 3.7 MB. Also confirmed the doubt the issue raised about upstream: their 17 tiptap peers really are **required** — `peerDependenciesMeta` lists eleven optional entries and no tiptap among them — so copying their shape wholesale would have imposed required peers for a component most apps never mount. Their peer count has grown from the 21 recorded in the issue to 30. Last reviewed: 2026-09-10.
 - 2026-09-24 — maintainer decision: the AI chat is removed from the docs site and both Nuxt playgrounds. Replaced the §2 **AI provider packages are fork-only and must move with `ai`** invariant (2026-08-18) with **This fork has no AI chat**: the providers it guarded — `@ai-sdk/deepseek`, `@ai-sdk/mcp` — are gone along with `@ai-sdk/vue`, and no manifest outside the root declares any AI SDK package, so there is no longer a provider-spec coupling to keep in step. `ai` stays as a root `devDependency` only because `src/` imports its types. Removing the old bullet also repaired a layout fault it had introduced: it had been inserted between the `reka-ui` / `vaul-vue` bullet and that bullet's own continuation paragraph ("Both sit at the same versions upstream does…"), so the continuation rendered under the AI bullet. Two further facts found while removing it: `NUXT_PUBLIC_USE_AI`, set in `ci.yml` and `deploy.yml`, had already had no effect — `runtimeConfig.public.useAI` was commented out, so the "Ask AI" search group and the Editor's AI menu items were never enabled; and upstream's docs-chat and AI-completion commits are now `n/a` here by absence, per the new bullet. Last reviewed: 2026-09-24.
+- 2026-11-24 — maintainer decision (bx-shef/b24-ui#7): the docs-site AI chat is back, on DeepSeek. Replaced the §2 **This fork has no AI chat** invariant (2026-09-24) with **The docs site has an AI chat on DeepSeek; the playgrounds do not**: provider, key and no-key behaviour, which upstream pieces are not ported (gateway, theme tools), the fork's own rate limit and history sanitising, and the `ai` / `@ai-sdk/deepseek` coupling. Upstream's docs-chat commits are no longer `n/a`; they port by idea. Last reviewed: 2026-11-24.
