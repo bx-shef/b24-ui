@@ -3565,38 +3565,38 @@
       "summary": "fix(Table): aria-busy на table во время загрузки"
     },
     "d2cb6ed68dbaf7723775ea25c942fd6c4a65d08b": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 30,
+      "b24ui_sha": "c826b9582da6326e15b412861a5f9a1ffea97fc5",
       "decision": "port",
       "summary": "perf(components): useForwardProps(props, keys, emits) вместо reactivePick — во всех компонентах; DashboardSearch переведён на локальный useForwardProps; тесты Icon — n/a (Icon у форка нет), Carousel — n/a"
     },
     "a11f0327cc374c2e5f8694db6aa0a7ddc6a028f8": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 30,
+      "b24ui_sha": "c826b9582da6326e15b412861a5f9a1ffea97fc5",
       "decision": "port",
       "summary": "fix(Stepper): шаги для Reka UI нумеруются с 1 (rootStep), объявление «Step N of M» верное; правило слота valueKey сохранено"
     },
     "8d0897340a54fb4f8b8c37f329fc084de3bb29b7": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 30,
+      "b24ui_sha": "c826b9582da6326e15b412861a5f9a1ffea97fc5",
       "decision": "no-op",
       "summary": "fix(ContentSearch): код уже отдаёт suffix/description без двойного экранирования (инвариант §2) — перенесён только тест"
     },
     "44cdcbe80645cc0a7c46f3b1effb3b6b364fa5e7": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 30,
+      "b24ui_sha": "c826b9582da6326e15b412861a5f9a1ffea97fc5",
       "decision": "port",
       "summary": "chore(deps): обновление зависимостей без мажорных — каталог pnpm-workspace.yaml (14 записей, остальных у форка нет), packageManager pnpm@12.18.0"
     },
     "964ca80d7729f6ccf8c216c5153cc14db85a2c0f": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 30,
+      "b24ui_sha": "c826b9582da6326e15b412861a5f9a1ffea97fc5",
       "decision": "port",
       "summary": "chore(deps): tiptap ^3.33.0 — каталог pnpm-workspace.yaml (19 записей)"
     },
     "f4f284c6c6d5c4c3087f76b7bfb4b0bb3621cdd7": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 30,
+      "b24ui_sha": "c826b9582da6326e15b412861a5f9a1ffea97fc5",
       "decision": "n/a",
       "summary": "docs(theme): предпросмотр опций темы по наведению — у форка нет Theme Studio (docs/app/components/theme-studio, useThemePreview)"
     }
