@@ -1,6 +1,6 @@
 ---
 title: Avatar
-description: An img element that includes fallback and supports Nuxt Image.
+description: 'Элемент img с запасным видом; поддерживает Nuxt Image.'
 category: element
 keywords:
   - profile picture
@@ -9,7 +9,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Avatar.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/avatar
   - label: Nuxt UI
@@ -17,11 +17,11 @@ links:
     to: https://ui.nuxt.com/docs/components/avatar
 ---
 
-## Usage
+## Использование {#usage}
 
 ::framework-only
 #nuxt
-The Avatar uses the `<NuxtImg>` component when [`@nuxt/image`](/docs/getting-started/integrations/image) is installed, falling back to `img` otherwise.
+Если установлен [`@nuxt/image`](/docs/getting-started/integrations/image), Avatar использует компонент `<NuxtImg>`, иначе — обычный `img`.
 ::
 
 ::component-code
@@ -39,20 +39,20 @@ props:
 ::
 
 ::note
-You can pass any property from the HTML `<img>` element such as `alt`, `loading`, etc.
+Можно передать любое свойство HTML-элемента `<img>`: `alt`, `loading` и другие.
 ::
 
 ::framework-only
 #nuxt
 :::tip
-To opt-out of `@nuxt/image`, use the `as` prop: `:as="{ img: 'img' }"`.
+Чтобы отказаться от `@nuxt/image`, используйте пропс `as`: `:as="{ img: 'img' }"`.
 :::
 ::
 
 
-### Src
+### Источник изображения {#src}
 
-Use the `src` prop to set the image URL.
+Пропс `src` задаёт адрес изображения.
 
 ::component-code
 ---
@@ -65,9 +65,9 @@ props:
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to set the size of the Avatar.
+Пропс `size` задаёт размер Avatar.
 
 ::component-code
 ---
@@ -83,12 +83,12 @@ props:
 ::
 
 ::note
-The `<img>` element's `width` and `height` are automatically set based on the `size` prop.
+Атрибуты `width` и `height` элемента `<img>` выставляются автоматически по пропсу `size`.
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to display a fallback [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `icon` показывает запасную [иконку](https://bitrix24.github.io/b24icons/icons/).
 
 ::component-code
 ---
@@ -103,9 +103,9 @@ props:
 ---
 ::
 
-### Text
+### Текст {#text}
 
-Use the `text` prop to display a fallback text.
+Пропс `text` показывает запасной текст.
 
 ::component-code
 ---
@@ -117,39 +117,39 @@ props:
 ::
 
 
-### Alt
+### Альтернативный текст {#alt}
 
-When no icon or text is provided, the **initials** of the `alt` prop is used as fallback.
+Если нет ни иконки, ни текста, запасным видом служат **инициалы** из пропса `alt`.
 
 ::component-code
 ---
 prettier: true
 props:
-  alt: 'Employee Name'
+  alt: 'Иван Петров'
   size: xl
 ---
 ::
 
 ::note
-The `alt` prop is passed to the `img` element as the `alt` attribute.
+Пропс `alt` передаётся элементу `img` как атрибут `alt`.
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of the Avatar.
+Пропс `color` меняет цвет Avatar.
 
 ::component-code
 ---
 props:
   color: air-boost
-  alt: 'Employee Name'
+  alt: 'Иван Петров'
 ---
 ::
 
 
-### Chip
+### Чип {#chip}
 
-Use the `chip` prop to display a chip around the Avatar.
+Пропс `chip` показывает чип рядом с Avatar.
 
 ::component-code
 ---
@@ -169,30 +169,30 @@ props:
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With tooltip
+### С подсказкой {#with-tooltip}
 
-You can use a [Tooltip](/docs/components/tooltip/) component to display a tooltip when hovering the Avatar.
+Компонент [Tooltip](/docs/components/tooltip/) показывает подсказку при наведении на Avatar.
 
 :component-example{name="avatar-tooltip-example"}
 
-### With mask
+### С маской {#with-mask}
 
-You can use a CSS mask to display an Avatar with a custom shape instead of a simple circle.
+CSS-маска позволяет показать Avatar не кругом, а в нестандартной форме.
 
 :component-example{name="avatar-mask-example"}
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes" target="_blank"}
-This component also supports all native `<img>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<img>`.
 ::
 
-## Theme
+## Тема {#theme}
 
 :component-theme

@@ -1,12 +1,12 @@
 ---
 title: ChatMessage
-description: 'A chat message component with icon, avatar, and action buttons.'
+description: 'Сообщение чата с иконкой, аватаром и кнопками действий.'
 category: chat
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/ChatMessage.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/chat-message/
   - label: Nuxt UI
@@ -14,9 +14,9 @@ links:
     to: https://ui.nuxt.com/docs/components/chat-message
 ---
 
-## Usage
+## Использование {#usage}
 
-The ChatMessage component renders an `<article>` element for a `user` or `assistant` chat message.
+Компонент ChatMessage отрисовывает элемент `<article>` для сообщения чата от пользователя (`user`) или ассистента (`assistant`).
 
 ::code-preview
 
@@ -25,7 +25,7 @@ The ChatMessage component renders an `<article>` element for a `user` or `assist
 parts:
   - type: 'text'
     id: '1'
-    text: 'Hello! Tell me more about building AI chatbots with Bitrix24 UI.'
+    text: 'Привет! Расскажи подробнее о создании чат-ботов с ИИ на Bitrix24 UI.'
 side: 'right'
 variant: 'message'
 role: 'user'
@@ -39,12 +39,12 @@ avatar:
 ::
 
 ::tip{to="/docs/components/chat-messages/"}
-Use the `ChatMessages` component to display a list of chat messages.
+Список сообщений чата показывает компонент `ChatMessages`.
 ::
 
-### Parts
+### Части {#parts}
 
-Use the `parts` prop to display the message content using the AI SDK format.
+Пропс `parts` показывает содержимое сообщения в формате AI SDK.
 
 ::component-code
 ---
@@ -57,19 +57,19 @@ props:
   parts:
     - type: 'text'
       id: '1'
-      text: 'Hello! Tell me more about building AI chatbots with Bitrix24 UI.'
+      text: 'Привет! Расскажи подробнее о создании чат-ботов с ИИ на Bitrix24 UI.'
   role: 'user'
   id: '1'
 ---
 ::
 
 ::note
-The `parts` prop is the recommended format for the AI SDK. Each part has a `type` (e.g., 'text') and corresponding content.
+Пропс `parts` — рекомендуемый формат AI SDK. У каждой части есть `type` (например, 'text') и соответствующее содержимое.
 ::
 
-### Side
+### Сторона {#side}
 
-Use the `side` prop to display the message on the left or right.
+Пропс `side` показывает сообщение слева или справа.
 
 ::component-code
 ---
@@ -83,19 +83,19 @@ props:
   parts:
     - type: 'text'
       id: '1'
-      text: 'Hello! Tell me more about building AI chatbots with Bitrix24 UI.'
+      text: 'Привет! Расскажи подробнее о создании чат-ботов с ИИ на Bitrix24 UI.'
   role: 'user'
   id: '1'
 ---
 ::
 
 ::note
-When using the [`ChatMessages`](/docs/components/chat-messages/) component, the `side` prop is set to `left` for `assistant` messages and `right` for `user` messages.
+В компоненте [`ChatMessages`](/docs/components/chat-messages/) пропс `side` равен `left` у сообщений ассистента (`assistant`) и `right` у сообщений пользователя (`user`).
 ::
 
-### Variant
+### Вариант {#variant}
 
-Use the `variant` prop to change style of the message.
+Пропс `variant` меняет стиль сообщения.
 
 ::component-code
 ---
@@ -109,19 +109,19 @@ props:
   parts:
     - type: 'text'
       id: '1'
-      text: 'Hello! Tell me more about building AI chatbots with Bitrix24 UI.'
+      text: 'Привет! Расскажи подробнее о создании чат-ботов с ИИ на Bitrix24 UI.'
   role: 'user'
   id: '1'
 ---
 ::
 
 ::note
-When using the [`ChatMessages`](/docs/components/chat-messages/) component, the `variant` prop is set to `message` for `assistant` messages and `message` for `user` messages.
+В компоненте [`ChatMessages`](/docs/components/chat-messages/) пропс `variant` равен `message` и у сообщений ассистента (`assistant`), и у сообщений пользователя (`user`).
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of the message.
+Пропс `color` меняет цвет сообщения.
 
 ::component-code
 ---
@@ -141,15 +141,15 @@ props:
   parts:
     - type: 'text'
       id: '1'
-      text: 'Hello! Tell me more about building AI chatbots with Bitrix24 UI.'
+      text: 'Привет! Расскажи подробнее о создании чат-ботов с ИИ на Bitrix24 UI.'
   role: 'user'
   id: '1'
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to display an [Icon](https://bitrix24.github.io/b24icons/icons/)  component next to the message.
+Пропс `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/) рядом с сообщением.
 
 ::component-code
 ---
@@ -170,15 +170,15 @@ props:
   parts:
     - type: 'text'
       id: '1'
-      text: 'Hello! Tell me more about building AI chatbots with Bitrix24 UI.'
+      text: 'Привет! Расскажи подробнее о создании чат-ботов с ИИ на Bitrix24 UI.'
   role: 'user'
   id: '1'
 ---
 ::
 
-### Avatar
+### Аватар {#avatar}
 
-Use the `avatar` prop to display an [Avatar](/docs/components/avatar/) component next to the message.
+Пропс `avatar` показывает [аватар](/docs/components/avatar/) рядом с сообщением.
 
 ::component-code
 ---
@@ -200,13 +200,13 @@ props:
   parts:
     - type: 'text'
       id: '1'
-      text: 'Hello! Tell me more about building AI chatbots with Bitrix24 UI.'
+      text: 'Привет! Расскажи подробнее о создании чат-ботов с ИИ на Bitrix24 UI.'
   role: 'user'
   id: '1'
 ---
 ::
 
-You can also use the `avatar.icon` prop to display an icon as the avatar.
+Пропс `avatar.icon` показывает иконку вместо аватара.
 
 ::component-example
 ---
@@ -216,9 +216,9 @@ collapse: true
 ---
 ::
 
-### Actions
+### Действия {#actions}
 
-Use the `actions` prop to display actions below the message that will be displayed when hovering over the message.
+Пропс `actions` показывает под сообщением действия, которые появляются при наведении на сообщение.
 
 ::component-code
 ---
@@ -234,32 +234,32 @@ ignore:
   - id
 props:
   actions:
-    - label: 'Copy to clipboard'
+    - label: 'Копировать в буфер обмена'
   parts:
     - type: 'text'
       id: '1'
-      text: 'Bitrix24 UI offers several features for building AI chatbots including the ChatMessage, ChatMessages, and ChatPrompt components. Best practices include using the Chat class from AI SDK, implementing proper message styling with variants, and utilizing the built-in actions for message interactions. The components are fully customizable with theming support and responsive design.'
+      text: 'Bitrix24 UI предлагает несколько возможностей для создания чат-ботов с ИИ, в том числе компоненты ChatMessage, ChatMessages и ChatPrompt. Рекомендуется использовать класс Chat из AI SDK, оформлять сообщения вариантами и применять встроенные действия для работы с сообщениями. Компоненты полностью настраиваются: есть поддержка тем и адаптивная вёрстка.'
   role: 'user'
   id: '1'
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
 ::tip{to="/docs/components/chat/"}
-Check the **Chat** overview page for installation instructions, server setup and usage examples.
+Установка, настройка сервера и примеры использования — на обзорной странице **Chat**.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

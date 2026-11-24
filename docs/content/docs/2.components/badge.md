@@ -1,6 +1,6 @@
 ---
 title: Badge
-description: A short descriptor for a status or category.
+description: 'Короткая метка статуса или категории.'
 category: element
 keywords:
   - tag
@@ -10,7 +10,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Badge.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/badge
   - label: Nuxt UI
@@ -18,59 +18,59 @@ links:
     to: https://ui.nuxt.com/docs/components/badge
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the default slot to set the label of the Badge.
+Слот по умолчанию задаёт подпись Badge.
 
 ::component-code
 ---
 slots:
-  default: Badge
+  default: Бейдж
 ---
 ::
 
-### Label
+### Подпись {#label}
 
-Use the `label` prop to set the label of the Badge.
+Пропс `label` задаёт подпись Badge.
 
 ::component-code
 ---
 prettier: true
 props:
-  label: Badge
+  label: Бейдж
 ---
 ::
 
-Use the `use-link` prop to show underline.
+Пропс `use-link` включает подчёркивание.
 
 ::component-code
 ---
 prettier: true
 props:
-  label: Badge
+  label: Бейдж
   useLink: true
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of the Badge.
+Пропс `color` меняет цвет Badge.
 
 ::component-code
 ---
 props:
   color: 'air-primary'
 slots:
-  default: Badge
+  default: Бейдж
 ---
 ::
 
-### Inverted
+### Инверсия {#inverted}
 
-Use the `inverted` prop to invert the color of the Badge.
+Пропс `inverted` инвертирует цвет Badge.
 
 ::warning
-Only available for `air-primary*` colors
+Доступно только для цветов `air-primary*`.
 ::
 
 ::component-code
@@ -80,13 +80,13 @@ props:
   inverted: true
   color: 'air-primary'
 slots:
-  default: Badge
+  default: Бейдж
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the Badge.
+Пропс `size` меняет размер Badge.
 
 ::component-code
 ---
@@ -94,13 +94,13 @@ prettier: true
 props:
   size: xl
 slots:
-  default: Badge
+  default: Бейдж
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to show an [Icon](https://bitrix24.github.io/b24icons/icons/) inside the Badge.
+Пропс `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/) внутри Badge.
 
 ::component-code
 ---
@@ -114,11 +114,11 @@ props:
   size: md
   color: 'air-primary'
 slots:
-  default: Badge
+  default: Бейдж
 ---
 ::
 
-Use the `use-close` prop to show close icon.
+Пропс `use-close` показывает иконку закрытия.
 
 ::component-code
 ---
@@ -133,13 +133,13 @@ props:
   size: md
   color: 'air-primary'
 slots:
-  default: Badge
+  default: Бейдж
 ---
 ::
 
-### Avatar
+### Аватар {#avatar}
 
-Use the `avatar` prop to show an [Avatar](/docs/components/avatar/) inside the Badge.
+Пропс `avatar` показывает [аватар](/docs/components/avatar/) внутри Badge.
 
 ::component-code
 ---
@@ -156,20 +156,20 @@ props:
 slots:
   default: |
 
-    Badge
+    Бейдж
 ---
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

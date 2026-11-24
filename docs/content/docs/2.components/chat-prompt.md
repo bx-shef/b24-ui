@@ -1,6 +1,6 @@
 ---
 title: ChatPrompt
-description: 'An enhanced Textarea component optimized for prompt submission in AI chat interfaces.'
+description: 'Улучшенный Textarea для отправки запросов в чатах с ИИ.'
 category: chat
 links:
   - label: Textarea
@@ -14,9 +14,9 @@ links:
     to: https://ui.nuxt.com/docs/components/chat-prompt
 ---
 
-## Usage
+## Использование {#usage}
 
-The ChatPrompt component renders a `<form>` element and extends the [Textarea](/docs/components/textarea/) component so you can pass any property such as `icon`, `placeholder`, `autofocus`, etc.
+Компонент ChatPrompt отрисовывает элемент `<form>` и расширяет компонент [Textarea](/docs/components/textarea/), поэтому ему можно передать любое свойство: `icon`, `placeholder`, `autofocus` и другие.
 
 ::code-preview
 
@@ -36,7 +36,7 @@ class: 'rounded-full'
 #footer
 ::::b24-select
 ---
-placeholder: 'Select a model'
+placeholder: 'Выберите модель'
 modelValue: 'deepseek'
 size: 'sm'
 items:
@@ -58,16 +58,16 @@ items:
 ::
 
 ::note
-The ChatPrompt handles the following events:
+ChatPrompt обрабатывает такие события:
 
-- The form is submitted when the user presses :kbd{value="enter"} or when the user clicks on the submit button. Set the `submit-on-enter` prop to `false` to submit with :kbd{value="ctrl"} + :kbd{value="enter"} (or :kbd{value="cmd"} + :kbd{value="enter"} on macOS) instead, allowing :kbd{value="enter"} to insert a newline.
-- The form is not submitted while the `status` prop is `submitted` or `streaming`, so pressing :kbd{value="enter"} during a response doesn't send a second message.
-- The textarea is blurred when :kbd{value="escape"} is pressed and emits a `close` event.
+- Форма отправляется по :kbd{value="enter"} или по нажатию на кнопку отправки. Если задать `submit-on-enter` значение `false`, форма отправляется по :kbd{value="ctrl"} + :kbd{value="enter"} (или :kbd{value="cmd"} + :kbd{value="enter"} в macOS), а :kbd{value="enter"} вставляет перенос строки.
+- Пока `status` равен `submitted` или `streaming`, форма не отправляется, поэтому :kbd{value="enter"} во время ответа не отправит второе сообщение.
+- По :kbd{value="escape"} поле теряет фокус и возникает событие `close`.
 ::
 
-### Variant
+### Вариант {#variant}
 
-Use the `variant` prop to change the style of the prompt. Defaults to `outline`.
+Пропс `variant` меняет стиль поля ввода. По умолчанию — `outline`.
 
 ::component-code
 ---
@@ -79,15 +79,15 @@ props:
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
 ::tip{to="/docs/components/chat/"}
-Check the **Chat** overview page for installation instructions, server setup and usage examples.
+Установка, настройка сервера и примеры использования — на обзорной странице **Chat**.
 ::
 
-### As a starting point
+### Как отправная точка {#as-a-starting-point}
 
-You can also use it as a starting point for a chat interface.
+ChatPrompt можно взять за основу интерфейса чата.
 
 ```vue [pages/index.vue] {2,4,8-15,24,25}
 <script setup lang="ts">
@@ -100,7 +100,7 @@ const { messages, status, sendMessage } = useChat()
 async function onSubmit() {
   sendMessage({ text: input.value })
 
-  // Navigate to chat page after first message
+  // После первого сообщения переходим на страницу чата
   if (messages.value.length === 1) {
     await navigateTo('/chat')
   }
@@ -122,9 +122,9 @@ async function onSubmit() {
 </template>
 ```
 
-### Speech Recognition
+### Распознавание речи {#speech-recognition}
 
-Use composable [useSpeechRecognition](/docs/composables/use-speech-recognition/) to provide speech recognition using the [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API).
+Композабл [useSpeechRecognition](/docs/composables/use-speech-recognition/) добавляет распознавание речи на основе [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API).
 
 ::component-example
 ---
@@ -137,30 +137,30 @@ name: 'chat-prompt-speech-recognition-example'
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attributes" target="_blank"}
-This component also supports all native `<textarea>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<textarea>`.
 ::
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-### Expose
+### Доступ через ref {#expose}
 
-When accessing the component via a template ref, you can use the following:
+При обращении к компоненту через ref в шаблоне доступно:
 
-| Name | Type |
+| Имя | Тип |
 | ---- | ---- |
 | `textareaRef`{lang="ts-type"} | `Ref<HTMLTextAreaElement \| null>`{lang="ts-type"} |
 
-## Theme
+## Тема {#theme}
 
 :component-theme

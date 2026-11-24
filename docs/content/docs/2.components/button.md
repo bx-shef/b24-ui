@@ -1,6 +1,6 @@
 ---
 title: Button
-description: A button capable of linking or performing an action.
+description: 'Кнопка-ссылка или кнопка, выполняющая действие.'
 category: element
 keywords:
   - cta
@@ -10,7 +10,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Button.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/button/
   - label: Nuxt UI
@@ -18,33 +18,33 @@ links:
     to: https://ui.nuxt.com/docs/components/button
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the default slot to set the label of the Button.
+Слот по умолчанию задаёт подпись Button.
 
 ::component-code
 ---
 prettier: true
 slots:
-  default: Button
+  default: Кнопка
 ---
 ::
 
-### Label
+### Подпись {#label}
 
-Use the `label` prop to set the label of the Button.
+Пропс `label` задаёт подпись Button.
 
 ::component-code
 ---
 prettier: true
 props:
-  label: Button
+  label: Кнопка
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of the Button.
+Пропс `color` меняет цвет Button.
 
 ::component-code
 ---
@@ -52,13 +52,13 @@ prettier: true
 props:
   color: 'air-secondary-no-accent'
 slots:
-  default: Button
+  default: Кнопка
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the Button.
+Пропс `size` меняет размер Button.
 
 ::component-code
 ---
@@ -66,13 +66,13 @@ prettier: true
 props:
   size: xl
 slots:
-  default: Button
+  default: Кнопка
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to show an [Icon](https://bitrix24.github.io/b24icons/icons/) inside the Button.
+Пропс `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/) внутри Button.
 
 ::component-code
 ---
@@ -86,11 +86,11 @@ props:
   size: md
   color: 'air-primary'
 slots:
-  default: Button
+  default: Кнопка
 ---
 ::
 
-Use the `use-dropdown` prop to show trailing-icon.
+Пропс `use-dropdown` показывает иконку справа.
 
 ::component-code
 ---
@@ -105,11 +105,11 @@ props:
   size: md
   color: 'air-primary'
 slots:
-  default: Button
+  default: Кнопка
 ---
 ::
 
-The `label` as prop or slot is optional so you can use the Button as an icon-only button.
+Подпись (пропс или слот `label`) необязательна, поэтому Button может быть кнопкой только с иконкой.
 
 ::component-code
 ---
@@ -125,9 +125,9 @@ props:
 ---
 ::
 
-### Avatar
+### Аватар {#avatar}
 
-Use the `avatar` prop to show an [Avatar](/docs/components/avatar/) inside the Button.
+Пропс `avatar` показывает [аватар](/docs/components/avatar/) внутри Button.
 
 ::component-code
 ---
@@ -144,11 +144,11 @@ props:
 slots:
   default: |
 
-    Button
+    Кнопка
 ---
 ::
 
-The `label` as prop or slot is optional so you can use the Button as an avatar-only button.
+Подпись (пропс или слот `label`) необязательна, поэтому Button может быть кнопкой только с аватаром.
 
 ::component-code
 ---
@@ -165,9 +165,9 @@ props:
 ---
 ::
 
-### Link
+### Ссылка {#link}
 
-You can pass any property from the [Link](/docs/components/link/#props) component such as `to`, `target`, etc.
+Можно передать любое свойство компонента [Link](/docs/components/link/#props): `to`, `target` и другие.
 
 ::component-code
 ---
@@ -178,11 +178,11 @@ props:
   to: https://apidocs.bitrix24.com
   target: _blank
 slots:
-  default: Button
+  default: Кнопка
 ---
 ::
 
-When the Button is a link or when using the `active` prop, you can use the `active-color` props to customize the active state.
+Если Button — ссылка или задан пропс `active`, пропс `active-color` настраивает активное состояние.
 
 ::component-code
 ---
@@ -213,13 +213,13 @@ props:
 slots:
   default: |
 
-    Button
+    Кнопка
 ---
 
-Button
+Кнопка
 ::
 
-You can also use the `active-class` and `inactive-class` props to customize the active state.
+Активное состояние настраивают и пропсы `active-class` и `inactive-class`.
 
 ::component-code
 ---
@@ -229,15 +229,15 @@ props:
   activeClass: 'italic'
   inactiveClass: 'tracking-widest'
 slots:
-  default: Button
+  default: Кнопка
 ---
 
-Button
+Кнопка
 ::
 
-### Loading
+### Загрузка {#loading}
 
-Use the `loading` prop to show a loading icon and disable the Button.
+Пропс `loading` показывает иконку загрузки и отключает Button.
 
 ::component-code
 ---
@@ -246,22 +246,22 @@ props:
   loading: true
   color: 'air-primary'
 slots:
-  default: Button
+  default: Кнопка
 ---
-Button
+Кнопка
 ::
 
-Use the `loading-auto` prop to show the loading icon automatically while the `@click` promise is pending.
+Пропс `loading-auto` показывает иконку загрузки, пока выполняется промис обработчика `@click`.
 
 :component-example{name="button-loading-auto-example"}
 
-This also works with the [Form](/docs/components/form/) component.
+Это работает и с компонентом [Form](/docs/components/form/).
 
 :component-example{name="button-loading-auto-form-example"}
 
-### Loading Icon
+### Иконка загрузки {#loading-icon}
 
-Use `use-clock` or `use-wait` props to show different loading icons.
+Пропсы `use-clock` и `use-wait` показывают разные иконки загрузки.
 
 ::component-code
 ---
@@ -272,14 +272,14 @@ props:
   useClock: false
   color: 'air-primary'
 slots:
-  default: Button
+  default: Кнопка
 ---
-Button
+Кнопка
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the Button.
+Пропс `disabled` отключает Button.
 
 ::component-code
 ---
@@ -288,15 +288,15 @@ props:
   disabled: true
   color: 'air-primary'
 slots:
-  default: Button
+  default: Кнопка
 ---
 
-Button
+Кнопка
 ::
 
-### Rounded
+### Скругление {#rounded}
 
-Use the `rounded` prop to round the Button.
+Пропс `rounded` скругляет Button.
 
 ::component-code
 ---
@@ -305,15 +305,15 @@ props:
   rounded: true
   color: 'air-primary'
 slots:
-  default: Button
+  default: Кнопка
 ---
 
-Button
+Кнопка
 ::
 
-### Block
+### На всю ширину {#block}
 
-Use the `block` property to set `w-full` for the Button.
+Свойство `block` задаёт Button класс `w-full`.
 
 ::component-code
 ---
@@ -322,15 +322,15 @@ props:
   block: true
   color: 'air-primary'
 slots:
-  default: Button
+  default: Кнопка
 ---
 
-Button
+Кнопка
 ::
 
 ### NormalCase
 
-Use the `normalCase` property to set `uppercase` for the Button.
+Свойство `normalCase` включает для Button `uppercase`.
 
 ::component-code
 ---
@@ -339,30 +339,30 @@ props:
   normalCase: false
   color: 'air-primary'
 slots:
-  default: Button
+  default: Кнопка
 ---
 
-Button
+Кнопка
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes" target="_blank"}
-This component also supports all native `<button>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<button>`.
 ::
 
 ::callout{color="air-secondary-accent" icon-name="GitHubIcon" to="https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Link.vue#L13"}
-The `Button` component extends the `Link` component. Check out the source code on GitHub.
+Компонент `Button` расширяет компонент `Link`. Исходный код — на GitHub.
 ::
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

@@ -1,6 +1,6 @@
 ---
 title: Banner
-description: 'Top banner for important user messages.'
+description: 'Верхний баннер для важных сообщений пользователю.'
 category: element
 keywords:
   - announcement bar
@@ -14,24 +14,24 @@ links:
     to: https://ui.nuxt.com/docs/components/banner
 ---
 
-## Usage
+## Использование {#usage}
 
-### Title
+### Заголовок {#title}
 
-Use the `title` prop to display a title on the Banner.
+Пропс `title` показывает заголовок на Banner.
 
 ::component-code
 ---
 prettier: true
 class: '!p-0'
 props:
-  title: 'The subscription trial has ended. Subscribe to continue using all apps.'
+  title: 'Пробный период подписки закончился. Оформите подписку, чтобы продолжить работу со всеми приложениями.'
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to display an icon on the Banner.
+Пропс `icon` показывает иконку на Banner.
 
 ::component-code
 ---
@@ -44,13 +44,13 @@ cast:
   icon: 'RocketIcon'
 props:
   icon: 'RocketIcon'
-  title: 'The subscription trial has ended. Subscribe to continue using all apps.'
+  title: 'Пробный период подписки закончился. Оформите подписку, чтобы продолжить работу со всеми приложениями.'
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of the Banner.
+Пропс `color` меняет цвет Banner.
 
 ::component-code
 ---
@@ -64,16 +64,16 @@ cast:
 props:
   color: 'air-secondary-alert'
   icon: 'RocketIcon'
-  title: 'The subscription trial has ended. Subscribe to continue using all apps.'
+  title: 'Пробный период подписки закончился. Оформите подписку, чтобы продолжить работу со всеми приложениями.'
 ---
 ::
 
-### Close
+### Закрытие {#close}
 
-Use the `close` prop to display a [Button](/docs/components/button/) to dismiss the Banner. Defaults to `false`.
+Пропс `close` показывает [кнопку](/docs/components/button/), которой закрывают Banner. По умолчанию — `false`.
 
 ::tip
-A `close` event will be emitted when the close button is clicked.
+По нажатию на кнопку закрытия возникает событие `close`.
 ::
 
 ::component-example
@@ -94,16 +94,16 @@ name: 'banner-example'
 ::
 
 ::note
-When closed, `banner-${id}` will be stored in the local storage to prevent it from being displayed again. :br For the example above, `banner-example` will be stored in the local storage.
+После закрытия в локальное хранилище записывается `banner-${id}`, чтобы баннер больше не показывался. :br В примере выше это `banner-example`.
 ::
 
 ::caution
-To persist the dismissed state across page reloads, you must specify an `id` prop. Without an explicit `id`, the banner will only be hidden for the current session and will reappear on page reload.
+Чтобы закрытие сохранялось после перезагрузки страницы, укажите пропс `id`. Без явного `id` баннер скрывается только на время текущей сессии и снова появляется после перезагрузки.
 ::
 
-### Close Icon
+### Иконка закрытия {#close-icon}
 
-Use the `close-icon` prop to customize the close button [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `close-icon` задаёт [иконку](https://bitrix24.github.io/b24icons/icons/) кнопки закрытия.
 
 ::component-example
 ---
@@ -115,7 +115,7 @@ ignore:
   - title
   - closeIcon
 props:
-  title: 'The subscription trial has ended. Subscribe to continue using all apps.'
+  title: 'Пробный период подписки закончился. Оформите подписку, чтобы продолжить работу со всеми приложениями.'
   closeIcon: 'CircleCrossIcon'
 ---
 #code
@@ -136,9 +136,9 @@ import CircleCrossIcon from '@bitrix24/b24icons-vue/outline/CircleCrossIcon'
 
 ::
 
-### Actions
+### Действия {#actions}
 
-Use the `actions` prop to add some [Button](/docs/components/button/) actions to the Banner.
+Пропс `actions` добавляет в Banner действия — [кнопки](/docs/components/button/).
 
 ::component-code
 ---
@@ -155,23 +155,23 @@ externalTypes:
 cast:
   actions: 'ComponentWithIcon'
 props:
-  title: 'The subscription trial has ended. Subscribe to continue using all apps.'
+  title: 'Пробный период подписки закончился. Оформите подписку, чтобы продолжить работу со всеми приложениями.'
   actions:
-    - label: Buy a subscription
+    - label: Оформить подписку
       color: 'air-primary'
       icon: 'RocketIcon'
-    - label: Open scanner
+    - label: Открыть сканер
       color: 'air-secondary-accent-2'
 ---
 ::
 
 ::note
-The action buttons default to `color="air-secondary-no-accen"` and `size="xs"`. You can customize these values by passing them directly to each action button.
+У кнопок действий по умолчанию `color="air-secondary-no-accen"` и `size="xs"`. Эти значения можно переопределить в каждой кнопке.
 ::
 
-### Link
+### Ссылка {#link}
 
-You can pass any property from the [`<NuxtLink>`](https://nuxt.com/docs/api/components/nuxt-link) component such as `to`, `target`, `rel`, etc.
+Можно передать любое свойство компонента [`<NuxtLink>`](https://nuxt.com/docs/api/components/nuxt-link): `to`, `target`, `rel` и другие.
 
 ::component-code
 ---
@@ -184,20 +184,20 @@ ignore:
 props:
   to: 'https://apidocs.bitrix24.com/'
   target: '_blank'
-  title: 'Explore the Bitrix24 REST API'
+  title: 'Изучите REST API Битрикс24'
   color: 'air-primary'
 ---
 ::
 
 ::note
-The `NuxtLink` component will inherit all other attributes you pass to the `Banner` component.
+`NuxtLink` наследует остальные атрибуты, переданные компоненту `Banner`.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Within `app.vue`
+### В `app.vue` {#within-appvue}
 
-Use the Banner component in your `app.vue` or in a layout:
+Banner можно разместить в `app.vue` или в раскладке:
 
 ```vue [app.vue]{3-7}
 <template>
@@ -216,18 +216,18 @@ Use the Banner component in your `app.vue` or in a layout:
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

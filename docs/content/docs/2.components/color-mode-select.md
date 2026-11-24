@@ -1,6 +1,6 @@
 ---
 title: ColorModeSelect
-description: 'A Select to switch between system, dark and light mode.'
+description: 'Select для переключения между системной, тёмной и светлой темой.'
 category: color-mode
 links:
   - label: GitHub
@@ -9,7 +9,7 @@ links:
   - label: SelectMenu
     to: /docs/components/select-menu/
     iconName: Bitrix24Icon
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/color-mode
   - label: Nuxt UI
@@ -17,14 +17,14 @@ links:
     to: https://ui.nuxt.com/docs/components/color-mode-select
 ---
 
-## Usage
+## Использование {#usage}
 
-The ColorModeSelect component extends the [SelectMenu](/docs/components/select-menu/) component, so you can pass any property such as `color`, `size`, etc.
+Компонент ColorModeSelect расширяет компонент [SelectMenu](/docs/components/select-menu/), поэтому ему можно передать любое свойство: `color`, `size` и другие.
 
 :component-code{prefix="color-mode"}
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props

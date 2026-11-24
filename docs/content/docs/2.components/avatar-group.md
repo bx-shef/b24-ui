@@ -1,6 +1,6 @@
 ---
 title: AvatarGroup
-description: Pile multiple avatars into a single group.
+description: 'Складывает несколько аватаров в одну группу.'
 category: element
 keywords:
   - stacked avatars
@@ -10,7 +10,7 @@ links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/AvatarGroup.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/avatar
   - label: Nuxt UI
@@ -18,9 +18,9 @@ links:
     to: https://ui.nuxt.com/docs/components/avatar-group
 ---
 
-## Usage
+## Использование {#usage}
 
-Wrap multiple [Avatar](/docs/components/avatar/) within an AvatarGroup to stack them.
+Несколько [аватаров](/docs/components/avatar/), помещённых в AvatarGroup, складываются в стопку.
 
 ::component-code
 ---
@@ -37,9 +37,9 @@ slots:
 :b24-avatar{src="/b24ui/avatar/assistant.png" alt="Assistant Name"}
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of all the avatars.
+Пропс `size` меняет размер всех аватаров.
 
 ::component-code
 ---
@@ -58,9 +58,9 @@ slots:
 :b24-avatar{src="/b24ui/avatar/assistant.png" alt="Assistant Name" loading="lazy"}
 ::
 
-### Max
+### Максимум {#max}
 
-Use the `max` prop to limit the number of avatars displayed. The rest is displayed as an `+X` avatar.
+Пропс `max` ограничивает число видимых аватаров, остальные сворачиваются в аватар `+X`.
 
 ::component-code
 ---
@@ -79,9 +79,9 @@ slots:
 :b24-avatar{src="/b24ui/avatar/assistant.png" alt="Assistant Name" loading="lazy"}
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of all the avatars.
+Пропс `color` меняет цвет всех аватаров.
 
 ::component-code
 ---
@@ -100,46 +100,46 @@ slots:
 :b24-avatar{src="/b24ui/avatar/assistant.png" alt="Assistant Name" loading="lazy"}
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With tooltip
+### С подсказкой {#with-tooltip}
 
-Wrap each avatar with a [Tooltip](/docs/components/tooltip/) to display a tooltip on hover.
+Оберните каждый аватар в [Tooltip](/docs/components/tooltip/), чтобы показывать подсказку при наведении.
 
 :component-example{name="avatar-group-tooltip-example"}
 
-### With chip
+### С чипом {#with-chip}
 
-Wrap each avatar with a [Chip](/docs/components/chip/) to display a chip around the avatar.
+Оберните каждый аватар в [Chip](/docs/components/chip/), чтобы показать чип рядом с аватаром.
 
 :component-example{name="avatar-group-chip-example"}
 
-### With link
+### Со ссылкой {#with-link}
 
-Wrap each avatar with a [Link](/docs/components/link/) to make them clickable.
+Оберните каждый аватар в [Link](/docs/components/link/), чтобы по нему можно было кликнуть.
 
 :component-example{name="avatar-group-link-example"}
 
-### With mask
+### С маской {#with-mask}
 
-Wrap an avatar with a CSS mask to display it with a custom shape.
+CSS-маска придаёт аватару нестандартную форму.
 
 :component-example{name="avatar-group-mask-example"}
 
 ::warning
-The `chip` prop does not work correctly when using a mask. Chips may be cut depending on the mask shape.
+С маской пропс `chip` работает некорректно: в зависимости от формы маски чип может обрезаться.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme
