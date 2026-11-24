@@ -218,6 +218,8 @@ overrides:
   body-parser@>=2.0.0 <2.4.0: ^2.4.0
   brace-expansion@>=2.0.0 <2.1.7: ^2.1.7
   esbuild@>=0.27.3 <0.28.1: ^0.28.1
+  # GHSA-3g3m-2fjr-6pw4 is fixed only in 14.0.2: glob 10 and 13 (nitropack,
+  # @vercel/nft, archiver) move to 14 — build, docs:build and tests pass on it.
   glob@>=9.0.0 <=14.0.1: ^14.0.2
   hono@<4.13.16: ^4.13.16
   ip-address@<=10.7.3: ^10.7.4
@@ -233,6 +235,9 @@ overrides:
   svgo@>=4.0.0 <4.1.0: ^4.1.0
   tar@<=7.5.20: ^7.5.21
   ws@>=8.0.0 <8.21.0: ^8.21.0
+  # GHSA-mrhx-c7xc-m3w5 has no 3.x fix, so the whole tree moves to zod 4. The
+  # library's peer range stays `^3.24.0 || ^4`: consumers on zod 3 are not
+  # exercised by this repository's CI any more — an accepted gap, not a break.
   zod@<4.6.6: ^4.6.6
 
 # Advisories with no fix in a line this tree can take. Each was checked against
