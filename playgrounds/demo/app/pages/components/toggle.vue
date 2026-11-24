@@ -6,8 +6,8 @@ const colors = Object.keys(theme.variants.color)
 const sizes = Object.keys(theme.variants.size)
 
 const multipleAttrs = reactive({
-  color: ['air-secondary-no-accent'],
-  activeColor: ['air-primary'],
+  color: ['air-secondary-no-accent' as const],
+  activeColor: ['air-primary' as const],
   size: [theme.defaultVariants.size]
 })
 

@@ -13,8 +13,8 @@ const sizes = Object.keys(buttonTheme.variants.size)
 const orientations = Object.keys(theme.variants.orientation) as Array<keyof typeof theme.variants.orientation>
 
 const multipleAttrs = reactive({
-  color: ['air-secondary-no-accent'],
-  activeColor: ['air-primary'],
+  color: ['air-secondary-no-accent' as const],
+  activeColor: ['air-primary' as const],
   size: [buttonTheme.defaultVariants.size]
 })
 
