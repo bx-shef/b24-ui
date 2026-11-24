@@ -140,6 +140,15 @@ export default defineLocale<Messages>({
     drawer: {
       close: 'Жабу'
     },
+    editorEmojiMenu: {
+      label: 'Эмодзилер'
+    },
+    editorMentionMenu: {
+      label: 'Белгілеулер'
+    },
+    editorSuggestionMenu: {
+      label: 'Ұсыныстар'
+    },
     pagination: {
       first: 'Бірінші бет',
       last: 'Соңғы бет',

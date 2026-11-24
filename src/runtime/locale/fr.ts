@@ -140,6 +140,15 @@ export default defineLocale<Messages>({
     drawer: {
       close: 'Fermer'
     },
+    editorEmojiMenu: {
+      label: 'Émojis'
+    },
+    editorMentionMenu: {
+      label: 'Mentions'
+    },
+    editorSuggestionMenu: {
+      label: 'Suggestions'
+    },
     pagination: {
       first: 'Première page',
       last: 'Dernière page',

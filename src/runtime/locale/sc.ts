@@ -140,6 +140,15 @@ export default defineLocale<Messages>({
     drawer: {
       close: '关闭'
     },
+    editorEmojiMenu: {
+      label: '表情符号'
+    },
+    editorMentionMenu: {
+      label: '提及'
+    },
+    editorSuggestionMenu: {
+      label: '建议'
+    },
     pagination: {
       first: '第一页',
       last: '最后一页',

@@ -37,6 +37,7 @@ import { safeIcon } from '../utils'
 import { computed, h, onMounted, onBeforeUnmount, nextTick, toRef } from 'vue'
 import { useAppConfig } from '#imports'
 import { useEditorMenu } from '../composables/useEditorMenu'
+import { useLocale } from '../composables/useLocale'
 import { tv } from '../utils/tv'
 import B24Avatar from './Avatar.vue'
 
@@ -48,6 +49,7 @@ const props = withDefaults(defineProps<EditorMentionMenuProps<T>>(), {
 })
 
 const appConfig = useAppConfig() as EditorMentionMenu['AppConfig']
+const { t } = useLocale()
 
 const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.editorMentionMenu || {}) })({
   size: props.size
@@ -72,6 +74,7 @@ onMounted(async () => {
     options: props.options,
     suggestion: props.suggestion,
     appendTo: props.appendTo,
+    label: toRef(() => t('editorMentionMenu.label')),
     b24ui,
     onSelect: (editor, range, item) => {
       // Delete the trigger character and query text, then insert the mention

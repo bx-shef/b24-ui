@@ -6,11 +6,11 @@
 
 export default {
   slots: {
-    root: 'relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg mt-(--chat-prompt-queue-height)',
+    root: 'relative flex flex-col items-stretch gap-[2px] ps-[12px] pe-2 py-2 w-full rounded-lg isolate mt-(--chat-prompt-queue-height)',
     header: 'flex items-center gap-2',
     files: 'flex flex-wrap items-center gap-2 mt-0.5',
     queue: [
-      'absolute bottom-full inset-x-2.5 z-10',
+      'absolute bottom-full inset-x-2.5 -z-1',
       'flex flex-col px-1 overflow-hidden',
       'rounded-t-(--ui-border-radius-md)',
       'border border-b-0 border-(--ui-color-divider-default)',
