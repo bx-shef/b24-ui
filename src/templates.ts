@@ -127,7 +127,7 @@ export function getTemplates(options: ModuleOptions, nuxt?: Nuxt, resolve?: Reso
     }
   }
 
-  if (options.prose || options.mdc || options.content || (!!nuxt && (hasNuxtModule('@nuxtjs/mdc') || hasNuxtModule('@nuxt/content')))) {
+  if (options.prose !== false && (options.prose || options.mdc || options.content || (!!nuxt && (hasNuxtModule('@nuxtjs/mdc') || hasNuxtModule('@nuxt/content'))))) {
     hasProse = true
 
     const path = 'prose'

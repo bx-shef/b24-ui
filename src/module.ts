@@ -78,6 +78,7 @@ export interface ModuleOptions {
 
   /**
    * Force the import of prose components even if `@nuxtjs/mdc` or `@nuxt/content` are not installed
+   * Set to `false` to skip them even when one of these modules is installed
    * @defaultValue true
    * @see https://bitrix24.github.io/b24ui/docs/getting-started/installation/nuxt/#prose
    */
@@ -90,7 +91,7 @@ export interface ModuleOptions {
   mdc?: boolean
 
   /**
-   * Force the import of content & prose components even if `@nuxt/content` is not installed
+   * Force the import of content & prose components (unless `prose` is `false`) even if `@nuxt/content` is not installed
    * @defaultValue false
    * @see https://bitrix24.github.io/b24ui/docs/getting-started/installation/nuxt/#content
    */
@@ -148,33 +149,35 @@ export default defineNuxtModule<ModuleOptions>({
               dark: 'material-theme-palenight'
             }
           },
-          components: {
-            map: {
-              'accordion': 'ProseAccordion',
-              'accordion-item': 'ProseAccordionItem',
-              'badge': 'ProseBadge',
-              'callout': 'ProseCallout',
-              'card': 'ProseCard',
-              'card-group': 'ProseCardGroup',
-              'caution': 'ProseCaution',
-              'code-collapse': 'ProseCodeCollapse',
-              'code-group': 'ProseCodeGroup',
-              'code-icon': 'ProseCodeIcon',
-              'code-preview': 'ProseCodePreview',
-              // @todo add
-              // 'code-tree': 'ProseCodeTree',
-              'collapsible': 'ProseCollapsible',
-              'field': 'ProseField',
-              'field-group': 'ProseFieldGroup',
-              // 'icon': 'ProseIcon',
-              'kbd': 'ProseKbd',
-              'note': 'ProseNote',
-              'prompt': 'ProsePrompt',
-              'steps': 'ProseSteps',
-              'tabs': 'ProseTabs',
-              'tabs-item': 'ProseTabsItem',
-              'tip': 'ProseTip',
-              'warning': 'ProseWarning'
+          ...userUiOptions.prose !== false && {
+            components: {
+              map: {
+                'accordion': 'ProseAccordion',
+                'accordion-item': 'ProseAccordionItem',
+                'badge': 'ProseBadge',
+                'callout': 'ProseCallout',
+                'card': 'ProseCard',
+                'card-group': 'ProseCardGroup',
+                'caution': 'ProseCaution',
+                'code-collapse': 'ProseCodeCollapse',
+                'code-group': 'ProseCodeGroup',
+                'code-icon': 'ProseCodeIcon',
+                'code-preview': 'ProseCodePreview',
+                // @todo add
+                // 'code-tree': 'ProseCodeTree',
+                'collapsible': 'ProseCollapsible',
+                'field': 'ProseField',
+                'field-group': 'ProseFieldGroup',
+                // 'icon': 'ProseIcon',
+                'kbd': 'ProseKbd',
+                'note': 'ProseNote',
+                'prompt': 'ProsePrompt',
+                'steps': 'ProseSteps',
+                'tabs': 'ProseTabs',
+                'tabs-item': 'ProseTabsItem',
+                'tip': 'ProseTip',
+                'warning': 'ProseWarning'
+              }
             }
           }
         }
@@ -228,7 +231,7 @@ export default defineNuxtModule<ModuleOptions>({
       })
     }
 
-    if (options.prose || options.mdc || options.content || hasNuxtModule('@nuxtjs/mdc') || hasNuxtModule('@nuxt/content')) {
+    if (options.prose !== false && (options.prose || options.mdc || options.content || hasNuxtModule('@nuxtjs/mdc') || hasNuxtModule('@nuxt/content'))) {
       addComponentsDir({
         path: resolve('./runtime/components/prose'),
         pathPrefix: false,

@@ -128,7 +128,7 @@ export default function ComponentImportPlugin(
     [...colorModeIgnore, 'content/*.vue', 'prose/**/*.vue']
   )
 
-  const proseComponents = (options.prose || options.mdc)
+  const proseComponents = (options.prose !== false && (options.prose || options.mdc))
     ? createComponentSource(join(runtimeDir, 'components/prose'), 'Prose')
     : undefined
 
