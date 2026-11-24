@@ -1,0 +1,29 @@
+# Общий Watchtower хоста — один на все сайты в Docker, со входом в приватный ghcr.
+# Если на хосте он уже есть (другие проекты bx-shef), это не нужно: он подхватит и этот сайт по метке.
+# Без входа он молча не скачивает приватные образы, и сайты не обновляются. Обновляет только контейнеры
+# с меткой com.centurylinklabs.watchtower.enable=true (--label-enable) — чужие не трогает.
+#
+# Ставится в свой каталог (по умолчанию /home/bitrix/watchtower) рядом с .env:
+#   GHCR_USER=<логин GitHub>
+#   GHCR_TOKEN=<classic PAT только с read:packages>
+#   WATCHTOWER_API_VERSION=1.44     # Docker 25 и новее; Docker 29 старый API (1.25) не принимает
+# Запуск — make shared-watchtower.
+name: watchtower
+
+services:
+  watchtower:
+    image: containrrr/watchtower:1.7.1
+    container_name: watchtower
+    restart: unless-stopped
+    command: --label-enable --interval 300 --cleanup --include-restarting
+    environment:
+      REPO_USER: ${GHCR_USER:?set GHCR_USER in .env}
+      REPO_PASS: ${GHCR_TOKEN:?set GHCR_TOKEN in .env (classic PAT, read:packages)}
+      DOCKER_API_VERSION: ${WATCHTOWER_API_VERSION:-1.44}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

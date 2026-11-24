@@ -1,0 +1,13 @@
+# Файл читается BuildKit для deploy/docs/Dockerfile (рядом с ним), а не для остальных сборок.
+.git
+**/node_modules
+**/.nuxt
+**/.output
+**/.data
+**/.nitro
+**/.cache
+**/dist
+.component-meta
+deploy
+.github
+playgrounds/*/dist
