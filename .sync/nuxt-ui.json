@@ -3297,8 +3297,8 @@
     "84a48cb17cec964089b307f2f81ff37380de5d74": {
       "pr": "pending-merge",
       "b24ui_sha": "pending-merge",
-      "decision": "no-op",
-      "summary": "docs: allow crawlers on build assets — nothing to remove in b24ui"
+      "decision": "port",
+      "summary": "docs: allow crawlers on build assets — removed Disallow: /_nuxt/ from docs/public/robots.txt"
     },
     "8471aa71ca214f63455aea007f37624934bc0591": {
       "pr": "pending-merge",
