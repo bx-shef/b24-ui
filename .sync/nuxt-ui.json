@@ -1,7 +1,7 @@
 {
   "upstream": "nuxt/ui",
   "branch": "v4",
-  "cursor": "8cd431c1bc7e991f563f2ff381826955d25dabda",
+  "cursor": "c281170f61a200c9136bcd67aa2b50cf1195df1a",
   "_cursor_note": "cursor = last upstream commit ported into b24ui. The sync is manual by decision: one commit at a time, oldest-first, each with a `.sync/log/<sha>.md` journal and an entry in `processed`. There is no dispatcher, no porter workflow and no kill-switch — `.sync/PORTING.md` is the whole procedure. `processed` is maintained per port (backfilled #68-#72 on 2026-06-09).",
   "processed": {
     "2799fa6f2b25ce3eb15e050f3ef7c57d0d9a2fdb": {
@@ -3839,6 +3839,12 @@
       "b24ui_sha": "pending-merge",
       "decision": "n/a",
       "summary": "docs(home): отступы hero на низких экранах — n/a: компонента docs/app/components/page/PageHero.vue у форка нет (сайт-only правка апстрима)"
+    },
+    "c281170f61a200c9136bcd67aa2b50cf1195df1a": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(ChatMessages): запас высоты под последнее сообщение считается с учётом scroll-margin-top сообщения вместо paddingTop контейнера; тест"
     }
   }
 }
