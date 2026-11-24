@@ -187,7 +187,7 @@ import { useFieldGroup, FieldGroupReset } from '../composables/useFieldGroup'
 import { useComponentIcons } from '../composables/useComponentIcons'
 import { useFormField } from '../composables/useFormField'
 import { usePortal } from '../composables/usePortal'
-import { get, getDisplayValue, isArrayOfArray, looseToNumber } from '../utils'
+import { get, getDisplayValue, isArrayOfArray, looseToNumber, omitUnsafeAttrs } from '../utils'
 import { tv } from '../utils/tv'
 import icons from '../dictionary/icons'
 import B24Badge from './Badge.vue'
@@ -396,7 +396,7 @@ defineExpose({
         ref="triggerRef"
         data-slot="base"
         :class="b24ui.base({ class: [props.b24ui?.base, props.class] })"
-        v-bind="{ ...$attrs, ...ariaAttrs }"
+        v-bind="{ ...omitUnsafeAttrs($attrs), ...ariaAttrs }"
         @click="onTriggerClick(open)"
       >
         <B24Badge

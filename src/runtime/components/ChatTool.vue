@@ -105,6 +105,7 @@ import { ref, computed, watch } from 'vue'
 import { CollapsibleRoot, CollapsibleTrigger, CollapsibleContent } from 'reka-ui'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
+import { omitUnsafeAttrs } from '../utils'
 import { tv } from '../utils/tv'
 import icons from '../dictionary/icons'
 import B24Button from './Button.vue'
@@ -112,6 +113,8 @@ import B24ChatShimmer from './ChatShimmer.vue'
 import LoaderWaitIcon from '@bitrix24/b24icons-vue/animated/LoaderWaitIcon'
 import LoaderClockIcon from '@bitrix24/b24icons-vue/animated/LoaderClockIcon'
 import SpinnerIcon from '@bitrix24/b24icons-vue/specialized/SpinnerIcon'
+
+defineOptions({ inheritAttrs: false })
 
 const _props = withDefaults(defineProps<ChatToolProps>(), {
   open: undefined,
@@ -184,6 +187,7 @@ const chevronIconName = computed(() => props.chevronIcon || icons.chevronDown)
     :unmount-on-hide="props.unmountOnHide"
     data-slot="root"
     :class="b24ui.root({ class: [props.b24ui?.root, props.class] })"
+    v-bind="omitUnsafeAttrs($attrs)"
     @update:open="setOpen"
   >
     <CollapsibleTrigger as-child :disabled="!hasContent()">
