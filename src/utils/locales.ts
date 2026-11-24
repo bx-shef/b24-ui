@@ -43,7 +43,7 @@ function normalizeTag(tag: string): string {
 
 /**
  * Finds the b24ui locale for an `@nuxtjs/i18n` locale: its `language`, then its
- * `code`, then their base language (`en-US` → `en`), and finally a base
+ * `code` (each also without a script subtag, `zh-Hant-TW` → `zh-TW`), then their base language (`en-US` → `en`), and finally a base
  * language that has a single regional b24ui locale (`pt` → `br`, `hi` → `in`).
  *
  * @param locale - The `@nuxtjs/i18n` locale.
@@ -52,7 +52,11 @@ function normalizeTag(tag: string): string {
  */
 export function resolveLocaleKey(locale: I18nLocale, tags: Record<string, string>): string | undefined {
   const requested = (typeof locale === 'string' ? [locale] : [locale.language, locale.code]).filter((tag): tag is string => !!tag)
-  const candidates = [...requested, ...requested.map(tag => tag.split(/[-_]/)[0]!)].map(normalizeTag)
+  const candidates = [
+    // Each tag with and without its script subtag (`zh-Hant-TW` uses `zh-TW`)
+    ...requested.flatMap(tag => [tag, tag.replace(/[-_][a-z]{4}(?=[-_])/i, '')]),
+    ...requested.map(tag => tag.split(/[-_]/)[0]!)
+  ].map(normalizeTag)
   const entries = Object.entries(tags).map(([key, tag]) => [key, normalizeTag(tag)] as const)
 
   for (const candidate of candidates) {

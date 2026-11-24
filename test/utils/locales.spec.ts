@@ -22,9 +22,14 @@ describe('i18n plugin', () => {
     [{ code: 'en', language: 'en-GB' }, 'en'],
     [{ code: 'zh-Hant', language: 'zh-TW' }, 'tc'],
     [{ code: 'cn', language: 'zh-CN' }, 'sc'],
+    ['zh-Hant-TW', 'tc'],
+    ['zh-Hans-CN', 'sc'],
+    [{ code: 'pt', language: 'pt-Latn-BR' }, 'br'],
+    [{ code: 'pt-BR', language: 'pt-Latn' }, 'br'],
     // b24ui's short codes are not language tags: `la` is Latin, `in` is not Hindi
     ['la', undefined],
     ['zh', undefined],
+    ['zh-Hant', undefined],
     ['xx', undefined]
   ])('resolves %j to %s', (locale, key) => {
     expect(resolveLocaleKey(locale, tags)).toBe(key)
