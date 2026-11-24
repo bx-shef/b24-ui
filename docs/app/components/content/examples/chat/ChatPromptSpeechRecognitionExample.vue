@@ -7,7 +7,7 @@ const input = ref('')
 const appLocale = useLocale()
 
 function onSubmit() {
-  // Send `input.value` to your own endpoint here.
+  // Отправьте `input.value` на свой эндпоинт.
 
   stop()
   input.value = ''

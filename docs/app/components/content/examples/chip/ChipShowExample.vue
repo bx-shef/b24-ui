@@ -6,7 +6,7 @@ const color = computed(() => status.value ? { online: 'air-primary-success', awa
 
 const show = computed(() => status.value !== 'offline')
 
-// Note: This is for demonstration purposes only. Don't do this at home.
+// Примечание: только для демонстрации. Не повторяйте это в рабочем коде.
 onMounted(() => {
   setInterval(() => {
     if (status.value) {

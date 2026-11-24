@@ -9,7 +9,7 @@ const date = shallowRef(today(getLocalTimeZone()))
     <B24Calendar v-model="date" />
 
     <B24Button color="air-primary" class="justify-center" @click="date = today(getLocalTimeZone())">
-      Today
+      Сегодня
     </B24Button>
   </div>
 </template>

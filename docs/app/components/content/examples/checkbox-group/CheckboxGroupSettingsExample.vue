@@ -11,14 +11,14 @@ const value = ref<string[]>(['columns'])
 const items: CapabilityItem[] = [
   {
     value: 'columns',
-    title: 'In columns',
-    text: 'Pick this for resources that must always be visible to the manager. These are the primary resources the schedule is built around.',
+    title: 'В колонках',
+    text: 'Выберите для ресурсов, которые всегда должны быть на виду у менеджера. Это основные ресурсы, вокруг которых строится расписание.',
     href: 'https://helpdesk.bitrix24.com/'
   },
   {
     value: 'list',
-    title: 'In a secondary list',
-    text: 'Pick this for resources that are booked only in addition to a primary one. For instance, when specialists are the primary resource, equipment goes into the secondary list.',
+    title: 'В дополнительном списке',
+    text: 'Выберите для ресурсов, которые бронируются только вместе с основным. Например, если основной ресурс — специалисты, оборудование попадает в дополнительный список.',
     href: 'https://helpdesk.bitrix24.com/'
   }
 ]
@@ -47,11 +47,11 @@ const items: CapabilityItem[] = [
             class="self-start mt-1 text-(length:--ui-font-size-sm)"
             @click.stop
           >
-            Learn more
+            Подробнее
           </B24Link>
         </span>
         <Placeholder class="hidden sm:flex shrink-0 w-[120px] h-[72px] text-(length:--ui-font-size-xs) text-description">
-          Preview
+          Предпросмотр
         </Placeholder>
       </span>
     </template>

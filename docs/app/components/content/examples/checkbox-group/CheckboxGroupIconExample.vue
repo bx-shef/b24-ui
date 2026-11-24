@@ -5,9 +5,9 @@ import SunIcon from '@bitrix24/b24icons-vue/outline/SunIcon'
 import MoonIcon from '@bitrix24/b24icons-vue/outline/MoonIcon'
 
 const items: CheckboxGroupItem[] = [
-  { label: 'System', value: 'system', icon: ThemeIcon, class: 'w-24' },
-  { label: 'Light', value: 'light', icon: SunIcon, class: 'w-24' },
-  { label: 'Dark', value: 'dark', icon: MoonIcon, class: 'w-24' }
+  { label: 'Системная', value: 'system', icon: ThemeIcon, class: 'w-24' },
+  { label: 'Светлая', value: 'light', icon: SunIcon, class: 'w-24' },
+  { label: 'Тёмная', value: 'dark', icon: MoonIcon, class: 'w-24' }
 ]
 </script>
 

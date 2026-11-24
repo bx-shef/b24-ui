@@ -3,8 +3,8 @@ import type { ChatPromptQueueItem } from '@bitrix24/b24ui-nuxt'
 
 const input = ref('')
 const queue = ref<ChatPromptQueueItem[]>([
-  { text: 'Can you also add a dark mode toggle?' },
-  { text: 'And write the tests for it' }
+  { text: 'Можешь ещё добавить переключатель тёмной темы?' },
+  { text: 'И напиши для него тесты' }
 ])
 </script>
 
@@ -13,7 +13,7 @@ const queue = ref<ChatPromptQueueItem[]>([
     v-model="input"
     v-model:queue="queue"
     status="streaming"
-    placeholder="Send a message while it answers..."
+    placeholder="Отправьте сообщение, пока идёт ответ..."
     :autofocus="false"
     class="w-full"
   >

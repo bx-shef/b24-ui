@@ -5,7 +5,7 @@ const input = ref('')
 const files = ref<File[]>([])
 
 function onSubmit() {
-  // Send `input.value` and `files.value` to your own endpoint here.
+  // Отправьте `input.value` и `files.value` на свой эндпоинт.
 
   input.value = ''
   files.value = []
@@ -17,7 +17,7 @@ function onSubmit() {
     v-model="input"
     v-model:files="files"
     accept="image/*,application/pdf"
-    placeholder="Paste or drop files here..."
+    placeholder="Вставьте или перетащите файлы сюда..."
     :autofocus="false"
     class="w-full"
     @submit="onSubmit"
@@ -28,7 +28,7 @@ function onSubmit() {
         color="air-tertiary-no-accent"
         size="sm"
         class="me-auto"
-        aria-label="Attach files"
+        aria-label="Прикрепить файлы"
         @click="open"
       />
     </template>

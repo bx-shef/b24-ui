@@ -6,7 +6,7 @@ const result = ref(`$ pnpm run lint
 
 > eslint .
 
-✔ No lint errors found.
+✔ Ошибок линтера не найдено.
 `)
 
 let timer: ReturnType<typeof setTimeout> | undefined
@@ -24,7 +24,7 @@ onUnmounted(() => {
 
 <template>
   <B24ChatTool
-    :text="streaming ? 'Running lint checks' : 'Lint checks completed'"
+    :text="streaming ? 'Идёт проверка линтером' : 'Проверка линтером завершена'"
     suffix="cd, pnpm run"
     :streaming="streaming"
     :icon="TerminalIcon"

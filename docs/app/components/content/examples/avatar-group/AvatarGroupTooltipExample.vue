@@ -1,9 +1,9 @@
 <template>
   <B24AvatarGroup size="xl">
-    <B24Tooltip text="Assistant Name">
+    <B24Tooltip text="Имя помощника">
       <B24Avatar
         src="/b24ui/avatar/assistant.png"
-        alt="Assistant Name"
+        alt="Имя помощника"
         loading="lazy"
       />
     </B24Tooltip>
@@ -16,10 +16,10 @@
       />
     </B24Tooltip>
 
-    <B24Tooltip text="Employee Name">
+    <B24Tooltip text="Имя сотрудника">
       <B24Avatar
         src="/b24ui/avatar/employee.png"
-        alt="Employee Name"
+        alt="Имя сотрудника"
         loading="lazy"
       />
     </B24Tooltip>

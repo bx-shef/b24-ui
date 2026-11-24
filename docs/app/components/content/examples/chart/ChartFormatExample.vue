@@ -1,11 +1,11 @@
 <script setup lang="ts">
 const data = [
-  { month: 'January', revenue: 18600 },
-  { month: 'February', revenue: 30500 },
-  { month: 'March', revenue: 23700 },
-  { month: 'April', revenue: 27300 },
-  { month: 'May', revenue: 20900 },
-  { month: 'June', revenue: 31400 }
+  { month: 'Январь', revenue: 18600 },
+  { month: 'Февраль', revenue: 30500 },
+  { month: 'Март', revenue: 23700 },
+  { month: 'Апрель', revenue: 27300 },
+  { month: 'Май', revenue: 20900 },
+  { month: 'Июнь', revenue: 31400 }
 ]
 
 const currency = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact' })
@@ -16,8 +16,8 @@ const currency = new Intl.NumberFormat('en-US', { style: 'currency', currency: '
     type="bar"
     :data="data"
     index="month"
-    :categories="[{ key: 'revenue', label: 'Revenue' }]"
+    :categories="[{ key: 'revenue', label: 'Выручка' }]"
     :format="value => currency.format(value)"
-    aria-label="Monthly revenue"
+    aria-label="Выручка по месяцам"
   />
 </template>

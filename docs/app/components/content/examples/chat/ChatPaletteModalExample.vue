@@ -9,19 +9,19 @@ import SearchIcon from '@bitrix24/b24icons-vue/outline/SearchIcon'
 const messages = ref<ChatMessageProps[]>([{
   id: '1',
   role: 'user',
-  parts: [{ type: 'text', text: 'What is Bitrix24 UI?' }]
+  parts: [{ type: 'text', text: 'Что такое Bitrix24 UI?' }]
 }, {
   id: '2',
   role: 'assistant',
-  parts: [{ type: 'text', text: 'Bitrix24 UI is a Vue component library built on Reka UI, Tailwind CSS, and Tailwind Variants. It provides 130+ accessible components for building modern web apps.' }]
+  parts: [{ type: 'text', text: 'Bitrix24 UI — библиотека Vue-компонентов на основе Reka UI, Tailwind CSS и Tailwind Variants. В ней 130+ доступных компонентов для создания современных веб-приложений.' }]
 }])
 const input = ref('')
 
-// A static demo: nothing is sent anywhere. Replace this with a call to your own endpoint.
+// Статичная демонстрация: ничего никуда не отправляется. Замените это вызовом своего эндпоинта.
 function reply(text: string) {
   messages.value.push(
     { id: `${Date.now()}-user`, role: 'user', parts: [{ type: 'text', text }] },
-    { id: `${Date.now()}-assistant`, role: 'assistant', parts: [{ type: 'text', text: 'This demo is static, so nothing leaves the page. To get real answers, connect the prompt to your own endpoint — the Chat page shows how.' }] }
+    { id: `${Date.now()}-assistant`, role: 'assistant', parts: [{ type: 'text', text: 'Это статичная демонстрация, поэтому ничего не покидает страницу. Чтобы получать настоящие ответы, подключите поле ввода к своему эндпоинту — как это сделать, показано на странице Chat.' }] }
   )
 }
 
