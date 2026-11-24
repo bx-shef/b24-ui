@@ -1,6 +1,6 @@
 ---
 title: ProseCardGroup
-description: 'Arrange content cards into flexible grids to enhance structure and readability.'
+description: 'Карточки в гибкой сетке для структурированного и читаемого содержимого.'
 category: components
 navigation.title: CardGroup
 links:
@@ -12,9 +12,9 @@ links:
     to: https://ui.nuxt.com/docs/typography/card-group
 ---
 
-## Usage
+## Использование {#usage}
 
-Wrap your `card` components with the `card-group` component to group them together in a grid layout.
+Компонент `card-group` объединяет компоненты `card` в сетку.
 
 ::code-preview
 
@@ -22,20 +22,20 @@ Wrap your `card` components with the `card-group` component to group them togeth
 
 ::card
 ---
-title: Pricing
+title: Цены
 to: https://www.bitrix24.com/prices/
 target: _blank
 ---
-Bitrix24 plans and pricing
+Тарифы и цены Bitrix24
 ::
 
 ::card
 ---
-title: Webinars
+title: Вебинары
 to: https://www.bitrix24.com/webinars/
 target: _blank
 ---
-Our webinars cover a wide range of topics and are available for free in multiple languages.
+Наши вебинары охватывают широкий круг тем и бесплатно доступны на нескольких языках.
 ::
 
 ::card
@@ -44,7 +44,7 @@ title: Bitrix24 REST API
 to: https://apidocs.bitrix24.com/
 target: _blank
 ---
-A tool for creating integrations, automating workflows, and customizing user scenarios in Bitrix24
+Инструмент для создания интеграций, автоматизации процессов и настройки пользовательских сценариев в Bitrix24
 ::
 
 ::card
@@ -53,7 +53,7 @@ title: Bitrix24 UI-Kit
 to: https://bitrix24.github.io/b24ui/
 target: _blank
 ---
-Documentation for `@bitrix24/b24ui`.
+Документация `@bitrix24/b24ui`.
 ::
 
 :::
@@ -65,20 +65,20 @@ Documentation for `@bitrix24/b24ui`.
 
 ::card
 ---
-title: Pricing
+title: Цены
 to: https://www.bitrix24.com/prices/
 target: _blank
 ---
-Bitrix24 plans and pricing
+Тарифы и цены Bitrix24
 ::
 
 ::card
 ---
-title: Webinars
+title: Вебинары
 to: https://www.bitrix24.com/webinars/
 target: _blank
 ---
-Our webinars cover a wide range of topics and are available for free in multiple languages.
+Наши вебинары охватывают широкий круг тем и бесплатно доступны на нескольких языках.
 ::
 
 ::card
@@ -87,7 +87,7 @@ title: Bitrix24 REST API
 to: https://apidocs.bitrix24.com/
 target: _blank
 ---
-A tool for creating integrations, automating workflows, and customizing user scenarios in Bitrix24
+Инструмент для создания интеграций, автоматизации процессов и настройки пользовательских сценариев в Bitrix24
 ::
 
 ::card
@@ -96,7 +96,7 @@ title: Bitrix24 UI-Kit
 to: https://bitrix24.github.io/b24ui/
 target: _blank
 ---
-Documentation for `@bitrix24/b24ui`.
+Документация `@bitrix24/b24ui`.
 ::
 
 ::
@@ -106,14 +106,14 @@ Documentation for `@bitrix24/b24ui`.
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props{prose}
 
-### Slots
+### Слоты {#slots}
 
 :component-slots{prose}
 
-## Theme
+## Тема {#theme}
 
 :component-theme{prose}

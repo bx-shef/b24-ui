@@ -1,6 +1,6 @@
 ---
 title: ProseTabs
-description: 'Group related information into interactive tabs to improve content navigation.'
+description: 'Связанная информация во вкладках для удобной навигации по содержимому.'
 category: components
 navigation.title: Tabs
 links:
@@ -12,15 +12,15 @@ links:
     to: https://ui.nuxt.com/docs/typography/tabs
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `tabs` and `tabs-item` components to display [Tabs](/docs/components/tabs/) in your content.
+Компоненты `tabs` и `tabs-item` показывают [Tabs](/docs/components/tabs/) в содержимом.
 
 ::code-preview{class="[&>div]:*:my-0"}
 
 :::tabs{class="w-full"}
 
-:::tabs-item{label="Code"}
+:::tabs-item{label="Код"}
 
 ```mdc
 ::callout
@@ -30,7 +30,7 @@ Lorem velit voluptate ex reprehenderit ullamco et culpa.
 
 :::
 
-:::tabs-item{label="Preview"}
+:::tabs-item{label="Предпросмотр"}
 
 ::callout
 Lorem velit voluptate ex reprehenderit ullamco et culpa.
@@ -45,7 +45,7 @@ Lorem velit voluptate ex reprehenderit ullamco et culpa.
 ````mdc
 ::tabs
 
-:::tabs-item{label="Code"}
+:::tabs-item{label="Код"}
 
 ```mdc
 ::callout
@@ -55,7 +55,7 @@ Lorem velit voluptate ex reprehenderit ullamco et culpa.
 
 :::
 
-:::tabs-item{label="Preview"}
+:::tabs-item{label="Предпросмотр"}
 
 ::callout
 Lorem velit voluptate ex reprehenderit ullamco et culpa.
@@ -70,15 +70,15 @@ Lorem velit voluptate ex reprehenderit ullamco et culpa.
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props{prose}
 
-### Slots
+### Слоты {#slots}
 
 :component-slots{prose}
 
-## Theme
+## Тема {#theme}
 
 ::component-theme{prose}
 ---

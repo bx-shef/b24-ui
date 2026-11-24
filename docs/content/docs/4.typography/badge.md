@@ -1,6 +1,6 @@
 ---
 title: ProseBadge
-description: 'Present versioning information, status labels, and relevant tags within your material.'
+description: 'Версии, метки статуса и теги прямо в содержимом страницы.'
 category: components
 navigation.title: Badge
 links:
@@ -12,9 +12,9 @@ links:
     to: https://ui.nuxt.com/docs/typography/badge
 ---
 
-## Usage
+## Использование {#usage}
 
-Use markdown in the default slot of the `badge` component to display a [Badge](/docs/components/badge/) in your content.
+Markdown в слоте по умолчанию компонента `badge` показывает [Badge](/docs/components/badge/) в содержимом.
 
 ::code-preview
 
@@ -34,14 +34,14 @@ Use markdown in the default slot of the `badge` component to display a [Badge](/
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props{prose}
 
-### Slots
+### Слоты {#slots}
 
 :component-slots{prose}
 
-## Theme
+## Тема {#theme}
 
 :component-theme{prose}
