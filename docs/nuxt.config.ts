@@ -324,7 +324,15 @@ export default defineNuxtConfig({
    * @see https://nuxt.com/docs/guide/going-further/runtime-config#example
    */
   runtimeConfig: {
+    // Чат «Спросить AI» (docs/server/api/ai.post.ts). Ключ — только на сервере: NUXT_DEEPSEEK_API_KEY.
+    // Без ключа чат отключён полностью (кнопок нет, маршрут отвечает 404).
+    deepseekApiKey: '',
+    deepseekModel: 'deepseek-chat', // NUXT_DEEPSEEK_MODEL
+    deepseekBaseUrl: 'https://api.deepseek.com', // NUXT_DEEPSEEK_BASE_URL, нужен только для проверок на заглушке
     public: {
+      // Есть ли ключ у сервера в момент сборки или запуска. Предрендеренные страницы собираются без ключа,
+      // поэтому браузер перепроверяет флаг через GET /api/ai/status (useChat) — источник правды там.
+      aiChat: Boolean(process.env.NUXT_DEEPSEEK_API_KEY?.trim()),
       version: pkg.version,
       siteUrl: prodUrl,
       baseUrl,
