@@ -254,7 +254,7 @@ auditConfig:
     - GHSA-jmr9-qjv8-65gv
     - GHSA-7pqw-9j4j-h8q3
     # happy-dom 20.x: import-alias code execution, SSRF and cookie scope when
-    # parsing untrusted HTML (fixed in 21.0.4, nothing in 20.x). Test
+    # parsing untrusted HTML (fixed in 21.0.4; the cookie one, 5fpq, also in 20.14.6). Test
     # environment only (vitest), on fixtures from this repository. 21.x breaks
     # 1783 tests (proxy `__v_skip` trap) — move with @nuxt/test-utils.
     - GHSA-834v-8h66-3h79
