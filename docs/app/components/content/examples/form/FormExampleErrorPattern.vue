@@ -4,7 +4,7 @@ import type { FormSubmitEvent } from '@bitrix24/b24ui-nuxt'
 
 const schema = z.object({
   email: z.email('Некорректный email'),
-  tags: z.array(z.string().regex(/^[a-z-]+$/, 'Только строчные буквы и дефисы')).min(1, 'Please add at least one tag')
+  tags: z.array(z.string().regex(/^[a-z-]+$/, 'Только строчные буквы и дефисы')).min(1, 'Добавьте хотя бы один тег')
 })
 
 type Schema = z.output<typeof schema>

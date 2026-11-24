@@ -3,15 +3,15 @@ import * as z from 'zod'
 import type { FormSubmitEvent } from '@bitrix24/b24ui-nuxt'
 
 const schema = z.object({
-  input: z.string({ message: 'Введите ваш email' }).min(10, 'Must be at least 10 characters'),
-  inputNumber: z.number({ message: 'Введите число' }).min(10, 'Must be at least 10'),
+  input: z.string({ message: 'Введите ваш email' }).min(10, 'Не меньше 10 символов'),
+  inputNumber: z.number({ message: 'Введите число' }).min(10, 'Не меньше 10'),
   inputMenu: z.any().refine(option => option?.value === 'option-2', {
     message: 'Выберите вариант 2'
   }),
   inputMenuMultiple: z.any().refine(values => !!values?.find((option: any) => option.value === 'option-2'), {
     message: 'Вариант 2 должен быть выбран'
   }),
-  textarea: z.string({ message: 'Введите сообщение' }).min(10, 'Must be at least 10 characters'),
+  textarea: z.string({ message: 'Введите сообщение' }).min(10, 'Не меньше 10 символов'),
   select: z.string({ message: 'Выберите вариант' }).refine(value => value === 'option-2', {
     message: 'Выберите вариант 2'
   }),
@@ -42,7 +42,7 @@ const schema = z.object({
   listboxMultiple: z.any().refine(values => !!values?.find((option: any) => option.value === 'option-2'), {
     message: 'Вариант 2 должен быть выбран'
   }),
-  inputTags: z.array(z.string(), { message: 'Добавьте хотя бы один тег' }).min(1, 'Please add at least one tag'),
+  inputTags: z.array(z.string(), { message: 'Добавьте хотя бы один тег' }).min(1, 'Добавьте хотя бы один тег'),
   inputDate: z.any().refine(value => !!value, {
     message: 'Выберите дату'
   }),
@@ -52,7 +52,7 @@ const schema = z.object({
   range: z.number().min(1, 'Должно быть больше 0').max(20, 'Должно быть меньше 20'),
   rating: z.number().min(1, 'Выберите оценку'),
   pin: z.string().regex(/^\d$/, 'Должно быть цифрой').array().length(5, 'Нужно ввести все 5 цифр'),
-  file: z.file({ message: 'Загрузите файл' }).min(1, 'File is required').max(1024 * 1024, 'File must be less than 1MB').mime('image/png', 'Only PNG images are allowed')
+  file: z.file({ message: 'Загрузите файл' }).min(1, 'Загрузите файл').max(1024 * 1024, 'Файл должен быть меньше 1 МБ').mime('image/png', 'Допускаются только изображения PNG')
 })
 
 type Schema = z.input<typeof schema>
