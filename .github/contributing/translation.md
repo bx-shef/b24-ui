@@ -83,6 +83,14 @@
 | pull request, issue, commit, PR | не переводим; склоняем по-русски: «pull request'ы», «issue» |
 | semantic colors | семантические цвета |
 | nested form | вложенная форма |
+| locale | локаль |
+| shortcut / hotkey | горячая клавиша / сочетание клавиш |
+| guided tour | тур по интерфейсу |
+| spotlight | подсветка цели |
+| typography | типографика |
+| prose components | prose-компоненты (не переводим «prose») |
+| preview | предпросмотр |
+| shadow (scroll shadow) | тень прокрутки |
 
 Термина нет в таблице — выбери понятный русский вариант, добавь строку сюда в том же PR.
 
