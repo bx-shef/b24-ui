@@ -386,6 +386,17 @@ collapse: true
 ---
 ::
 
+### With agent steps
+
+Use the `#part` slot to render each step of an agent: [ChatReasoning](/docs/components/chat-reasoning/) for reasoning, [ChatTool](/docs/components/chat-tool/) for tool calls and sources, and markdown for the reply. Set the `error` prop on a failed tool call, and render its output with the prose components.
+
+::component-example
+---
+name: 'chat-messages-agent-steps-example'
+collapse: true
+---
+::
+
 ## API
 
 ### Props
