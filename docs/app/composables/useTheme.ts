@@ -115,11 +115,11 @@ export function useTheme() {
   const link = computed(() => [])
 
   const style = [
-    { innerHTML: radiusStyle, id: 'b24-ui-radius', tagPriority: 'critical' },
-    { innerHTML: blackAsPrimaryStyle, id: 'b24-ui-black-as-primary', tagPriority: 'critical' },
-    { innerHTML: fontStyle, id: 'b24-ui-font', tagPriority: 'critical' },
-    { innerHTML: customColorsStyle, id: 'chat-custom-colors', tagPriority: 'critical' },
-    { innerHTML: cssVariablesStyle, id: 'chat-css-variables', tagPriority: 'critical' }
+    { innerHTML: radiusStyle, id: 'b24-ui-radius', tagPriority: 'critical' as const },
+    { innerHTML: blackAsPrimaryStyle, id: 'b24-ui-black-as-primary', tagPriority: 'critical' as const },
+    { innerHTML: fontStyle, id: 'b24-ui-font', tagPriority: 'critical' as const },
+    { innerHTML: customColorsStyle, id: 'chat-custom-colors', tagPriority: 'critical' as const },
+    { innerHTML: cssVariablesStyle, id: 'chat-css-variables', tagPriority: 'critical' as const }
   ]
 
   const hasCSSChanges = computed(() => false)
