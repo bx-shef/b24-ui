@@ -104,7 +104,7 @@ jobs:
           # MCP: контентные инструменты ходят в SQLite-базу @nuxt/content (в образе она в /data, пишет node)
           for call in \
             '{"name":"b24-ui-search-components","arguments":{"query":"button"}}|components' \
-            '{"name":"b24-ui-get-documentation-page","arguments":{"path":"/docs/getting-started/"}}|Introduction'; do
+            '{"name":"b24-ui-get-documentation-page","arguments":{"path":"/docs/getting-started/"}}|Bitrix24 UI'; do
             out=$(mcp "{\"jsonrpc\":\"2.0\",\"id\":2,\"method\":\"tools/call\",\"params\":${call%%|*}}")
             if grep -q '"isError":true' <<<"$out" || ! grep -q '^200$' <<<"${out##*$'\n'}" || ! grep -qF -- "${call##*|}" <<<"$out"; then
               echo "/mcp/ tools/call ${call%%|*}: ошибка или нет данных: ${out:0:400}"; docker logs docs 2>&1 | tail -20; exit 1
