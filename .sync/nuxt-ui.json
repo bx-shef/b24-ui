@@ -1,7 +1,7 @@
 {
   "upstream": "nuxt/ui",
   "branch": "v4",
-  "cursor": "61cc832f587786144cac5ad2c05c4e8f3eeb9ffc",
+  "cursor": "2b7020416c40f285e0bdbc98802f0d758f778759",
   "_cursor_note": "cursor = last upstream commit ported into b24ui. The sync is manual by decision: one commit at a time, oldest-first, each with a `.sync/log/<sha>.md` journal and an entry in `processed`. There is no dispatcher, no porter workflow and no kill-switch — `.sync/PORTING.md` is the whole procedure. `processed` is maintained per port (backfilled #68-#72 on 2026-06-09).",
   "processed": {
     "2799fa6f2b25ce3eb15e050f3ef7c57d0d9a2fdb": {
@@ -3041,6 +3041,12 @@
       "b24ui_sha": "pending-merge",
       "decision": "port",
       "summary": "fix(SelectMenu): allow keyboard navigation with search input autofocus disabled"
+    },
+    "2b7020416c40f285e0bdbc98802f0d758f778759": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "perf(Button): skip the link when there is no `to` or `href`"
     }
   }
 }
