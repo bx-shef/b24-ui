@@ -15,13 +15,13 @@ type ChatMessage = UIMessage<unknown, UIDataTypes, {
 const messages: ChatMessage[] = [{
   id: '1',
   role: 'user',
-  parts: [{ type: 'text', text: 'Why does pnpm install fail in CI?' }]
+  parts: [{ type: 'text', text: 'Почему pnpm install падает в CI?' }]
 }, {
   id: '2',
   role: 'assistant',
   parts: [{
     type: 'reasoning',
-    text: 'The error mentions the lockfile, so I should compare package.json with pnpm-lock.yaml in the last commit.',
+    text: 'В ошибке упоминается lock-файл, поэтому нужно сравнить package.json и pnpm-lock.yaml в последнем коммите.',
     state: 'done'
   }, {
     type: 'tool-runCommand',
@@ -50,10 +50,10 @@ const messages: ChatMessage[] = [{
     type: 'source-url',
     sourceId: 'source-2',
     url: 'https://pnpm.io/git#lockfiles',
-    title: 'Working with Git'
+    title: 'Работа с Git'
   }, {
     type: 'text',
-    text: 'The last commit bumped a version in `package.json` without updating `pnpm-lock.yaml`, so the frozen install fails. Run `pnpm install` locally and commit the lockfile.',
+    text: 'В последнем коммите версия в `package.json` изменена, а `pnpm-lock.yaml` не обновлён, поэтому установка с замороженным lock-файлом падает. Запустите `pnpm install` локально и закоммитьте lock-файл.',
     state: 'done'
   }]
 }]
@@ -75,7 +75,7 @@ function getSources(message: ChatMessage) {
 
       <B24ChatTool
         v-else-if="part.type === 'tool-runCommand'"
-        :text="`${part.state === 'output-error' ? 'Failed to run' : 'Ran'} ${part.input?.command}`"
+        :text="`${part.state === 'output-error' ? 'Не удалось выполнить' : 'Выполнено'} ${part.input?.command}`"
         :error="part.state === 'output-error'"
         :icon="CircleCheckIcon"
       >
@@ -89,7 +89,7 @@ function getSources(message: ChatMessage) {
 
       <B24ChatTool
         v-else-if="part.type === 'source-url' && getSources(message)[0] === part"
-        :text="`Used ${getSources(message).length} sources`"
+        :text="`Использовано источников: ${getSources(message).length}`"
         :icon="EarthIcon"
       >
         <ul class="flex flex-col gap-1">

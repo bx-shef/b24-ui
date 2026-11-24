@@ -2,7 +2,7 @@
   <B24Avatar
     class="rounded-none squircle"
     src="/b24ui/avatar/employee.png"
-    alt="Employee Name"
+    alt="Имя сотрудника"
     size="3xl"
     loading="lazy"
   />

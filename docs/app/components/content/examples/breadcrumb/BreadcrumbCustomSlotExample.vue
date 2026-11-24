@@ -7,7 +7,7 @@ import LinkIcon from '@bitrix24/b24icons-vue/outline/LinkIcon'
 
 const items = [
   {
-    label: 'Home',
+    label: 'Главная',
     to: '/',
     icon: HomeIcon
   },
@@ -16,11 +16,11 @@ const items = [
     icon: MoreLIcon,
     children: [
       {
-        label: 'Documentation',
+        label: 'Документация',
         to: '/docs'
       },
       {
-        label: 'Themes'
+        label: 'Темы'
       },
       {
         label: 'GitHub'
@@ -28,7 +28,7 @@ const items = [
     ]
   },
   {
-    label: 'Components',
+    label: 'Компоненты',
     to: '/docs/components',
     icon: ProductIcon
   },

@@ -8,12 +8,12 @@ const df = new DateFormatter('en-US', { dateStyle: 'medium' })
 const tz = getLocalTimeZone()
 
 const ranges = [
-  { label: 'Last 7 days', days: 7 },
-  { label: 'Last 14 days', days: 14 },
-  { label: 'Last 30 days', days: 30 },
-  { label: 'Last 3 months', months: 3 },
-  { label: 'Last 6 months', months: 6 },
-  { label: 'Last year', years: 1 }
+  { label: 'Последние 7 дней', days: 7 },
+  { label: 'Последние 14 дней', days: 14 },
+  { label: 'Последние 30 дней', days: 30 },
+  { label: 'Последние 3 месяца', months: 3 },
+  { label: 'Последние 6 месяцев', months: 6 },
+  { label: 'Последний год', years: 1 }
 ]
 
 const initialEnd = today(tz)
@@ -24,7 +24,7 @@ const modelValue = shallowRef({
 
 const label = computed(() => {
   const { start, end } = modelValue.value
-  if (!start) return 'Pick a date'
+  if (!start) return 'Выберите дату'
   if (!end) return df.format(start.toDate(tz))
   return `${df.format(start.toDate(tz))} - ${df.format(end.toDate(tz))}`
 })

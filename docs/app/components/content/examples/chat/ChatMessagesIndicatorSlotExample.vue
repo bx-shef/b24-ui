@@ -4,7 +4,7 @@ import type { ChatMessageProps } from '@bitrix24/b24ui-nuxt'
 const messages: ChatMessageProps[] = [{
   id: '1',
   role: 'user',
-  parts: [{ type: 'text', text: 'Hello! Can you help me with something?' }]
+  parts: [{ type: 'text', text: 'Здравствуйте! Можете мне помочь?' }]
 }]
 
 const size = 4
@@ -35,10 +35,10 @@ function nextStep() {
   }
 }
 
-const statusMessages = ['Searching...', 'Reading...', 'Analyzing...', 'Thinking...']
+const statusMessages = ['Поиск...', 'Чтение...', 'Анализ...', 'Размышление...']
 const currentIndex = ref(0)
 const displayedText = ref(statusMessages[0]!)
-const chars = 'abcdefghijklmnopqrstuvwxyz'
+const chars = 'абвгдежзийклмнопрстуфхцчшщыэюя'
 
 function scramble(from: string, to: string) {
   const maxLength = Math.max(from.length, to.length)

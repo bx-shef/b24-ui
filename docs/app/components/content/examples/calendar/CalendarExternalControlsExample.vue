@@ -11,11 +11,11 @@ const date = shallowRef(new CalendarDate(2012, 4, 12))
 
     <div class="flex justify-between gap-4">
       <B24Button @click="date = date.subtract({ months: 1 })">
-        Prev
+        Назад
       </B24Button>
 
       <B24Button @click="date = date.add({ months: 1 })">
-        Next
+        Вперёд
       </B24Button>
     </div>
   </div>

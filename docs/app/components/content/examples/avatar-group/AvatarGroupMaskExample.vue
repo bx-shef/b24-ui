@@ -7,7 +7,7 @@
   >
     <B24Avatar
       src="/b24ui/avatar/assistant.png"
-      alt="Benjamin Canac"
+      alt="Имя помощника"
       loading="lazy"
       class="rounded-none squircle"
     />
@@ -20,7 +20,7 @@
 
     <B24Avatar
       src="/b24ui/avatar/employee.png"
-      alt="Employee Name"
+      alt="Имя сотрудника"
       loading="lazy"
       class="rounded-none squircle"
     />

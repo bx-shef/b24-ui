@@ -6,7 +6,7 @@ async function simulateStreaming() {
   streaming.value = true
   text.value = ''
 
-  const content = 'The user is asking about Vue components. I should explain the Composition API pattern and how it relates to their question about reactive state management. Let me think about the best way to structure this response.\n\nFirst, I need to consider the key differences between the Options API and Composition API. The Composition API was introduced in Vue 3 to address limitations of the Options API when building large-scale applications.\n\nFor reactive state management specifically, the Composition API offers ref() for primitive values and reactive() for objects.'
+  const content = 'Пользователь спрашивает про Vue-компоненты. Нужно объяснить паттерн Composition API и как он связан с вопросом о реактивном управлении состоянием. Подумаю, как лучше выстроить ответ.\n\nСначала нужно учесть ключевые отличия Options API от Composition API. Composition API появился во Vue 3, чтобы снять ограничения Options API при создании крупных приложений.\n\nДля реактивного управления состоянием Composition API предлагает ref() для примитивных значений и reactive() для объектов.'
 
   for (const char of content) {
     text.value += char

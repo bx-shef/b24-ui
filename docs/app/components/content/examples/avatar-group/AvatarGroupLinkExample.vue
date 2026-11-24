@@ -8,7 +8,7 @@
     >
       <B24Avatar
         src="/b24ui/avatar/assistant.png"
-        alt="Assistant Name"
+        alt="Имя помощника"
         loading="lazy"
       />
     </B24Link>
@@ -34,7 +34,7 @@
     >
       <B24Avatar
         src="/b24ui/avatar/employee.png"
-        alt="Employee Name"
+        alt="Имя сотрудника"
         loading="lazy"
       />
     </B24Link>
