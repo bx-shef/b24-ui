@@ -57,7 +57,7 @@ export interface CheckboxSlots {
 </script>
 
 <script setup lang="ts" generic="T = boolean">
-import { computed, useAttrs, useId } from 'vue'
+import { computed, useId } from 'vue'
 import { Primitive, CheckboxRoot, CheckboxIndicator, Label, injectCheckboxGroupRootContext } from 'reka-ui'
 import { reactivePick } from '@vueuse/core'
 import { isEqual } from 'ohash/utils'
@@ -65,6 +65,7 @@ import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
 import { useFormField } from '../composables/useFormField'
+import { getFormControlAttrs } from '../utils/attributes'
 import { tv } from '../utils/tv'
 import icons from '../dictionary/icons'
 
@@ -110,13 +111,6 @@ const maxReached = computed(() => {
 // label instead. No dictionary fallback here: an unset `icon` must render nothing.
 const labelIcon = computed(() => props.indicator === 'hidden' ? props.icon : undefined)
 
-const attrs = useAttrs()
-// Omit `data-state` to prevent conflicts with parent components (e.g. TooltipTrigger)
-const forwardedAttrs = computed(() => {
-  const { 'data-state': _, ...rest } = attrs
-  return rest
-})
-
 // eslint-disable-next-line vue/no-dupe-keys
 const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.checkbox || {}) })({
   size: size.value,
@@ -139,11 +133,11 @@ function onUpdate(value: any) {
 
 <!-- eslint-disable vue/no-template-shadow -->
 <template>
-  <Primitive :as="(!props.variant || props.variant === 'list') ? props.as : Label" data-slot="root" :class="b24ui.root({ class: [props.b24ui?.root, props.class] })">
+  <Primitive :as="(!props.variant || props.variant === 'list') ? props.as : Label" v-bind="getFormControlAttrs($attrs, 'root')" data-slot="root" :class="b24ui.root({ class: [props.b24ui?.root, props.class] })">
     <div data-slot="container" :class="b24ui.container({ class: props.b24ui?.container })">
       <CheckboxRoot
         :id="id"
-        v-bind="{ ...rootProps, ...forwardedAttrs, ...ariaAttrs }"
+        v-bind="{ ...rootProps, ...getFormControlAttrs($attrs, 'base'), ...ariaAttrs }"
         :name="name"
         :disabled="disabled"
         data-slot="base"

@@ -81,6 +81,14 @@ defineShortcuts({
             <B24Tooltip v-model:open="openState.B" :text="text.long" :kbds="['alt', 'B']">
               <B24Button label="Bottom" block />
             </B24Tooltip>
+
+            <B24Tooltip text="Read the terms before continuing.">
+              <B24Checkbox label="Accept terms" />
+            </B24Tooltip>
+
+            <B24Tooltip text="Receive occasional product updates.">
+              <B24Switch label="Email notifications" />
+            </B24Tooltip>
           </div>
         </div>
       </div>
