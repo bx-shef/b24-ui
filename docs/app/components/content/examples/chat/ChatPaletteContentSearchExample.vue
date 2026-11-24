@@ -80,13 +80,13 @@ const b24ui = {
             :user="{ side: 'left', variant: 'message', avatar: { src: '/b24ui/avatar/employee.png', loading: 'lazy' as const } }"
             :assistant="{ icon: RobotIcon }"
           >
-            <template #content="{ message }">
+            <template #content="{ message, streaming }">
               <template v-for="(part, index) in message.parts" :key="`${message.id}-${part.type}-${index}`">
                 <template v-if="part.type === 'text'">
                   <Markdown
                     v-if="message.role === 'assistant'"
                     :value="part.text"
-                    :streaming="isPartStreaming(part)"
+                    :streaming="isPartStreaming(part, streaming)"
                     :plugins="[shiki()]"
                     class="*:first:mt-0 *:last:mb-0"
                   />
