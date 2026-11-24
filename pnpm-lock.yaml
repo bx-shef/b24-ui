@@ -168,7 +168,7 @@ catalogs:
       specifier: ^3.0.88
       version: 3.0.89
     '@ai-sdk/vue':
-      specifier: ^4.0.159
+      specifier: ^4.0.165
       version: 4.0.179
     '@bitrix24/b24icons-nuxt':
       specifier: ^2.0.7
