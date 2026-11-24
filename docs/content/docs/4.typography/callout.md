@@ -25,6 +25,8 @@ hide:
 slots:
   default: This is a `callout` with full **markdown** support.
 ---
+
+This is a `callout` with full **markdown** support.
 ::
 
 ### Иконка {#icon}
@@ -45,6 +47,8 @@ hide:
 slots:
   default: This is a `callout` with an icon.
 ---
+
+This is a `callout` with an icon.
 ::
 
 ### Цвет {#color}
@@ -67,6 +71,8 @@ hide:
 slots:
   default: This is a `callout` with a custom color.
 ---
+
+This is a `callout` with a custom color.
 ::
 
 ### Ссылка {#link}
@@ -91,6 +97,8 @@ props:
 slots:
   default: Learn how to install `@bitrix24/b24ui-nux` in your project.
 ---
+
+Learn how to install `@bitrix24/b24ui-nux` in your project.
 ::
 
 ## Сокращения {#shortcuts}
