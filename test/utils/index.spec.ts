@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { extractPromptText, get, resolveIcon, set } from '../../src/runtime/utils'
+import { compare, extractPromptText, get, getDisplayValue, resolveIcon, set } from '../../src/runtime/utils'
 import icons from '../../src/runtime/dictionary/icons'
 
 function el(html: string): HTMLElement {
@@ -316,5 +316,18 @@ describe('set', () => {
     set(object, 'c.x', 3)
 
     expect(object).toEqual({ a: { x: 1 }, b: { x: 2 }, c: { x: 3 } })
+  })
+})
+
+describe('compare with null', () => {
+  it('only matches null with null', () => {
+    expect(compare({ label: 'Status' }, null as any, 'value')).toBe(false)
+    expect(compare<any>({ id: 1 }, null, (a, b) => a.id === b.id)).toBe(false)
+    expect(compare(null as any, null as any, 'value')).toBe(true)
+  })
+
+  it('does not match a label item for a null value with `by`', () => {
+    const items = [{ type: 'label', label: 'Status' }, { value: 1, label: 'One' }]
+    expect(getDisplayValue(items, null, { by: 'value', labelKey: 'label' } as any)).toBeUndefined()
   })
 })
