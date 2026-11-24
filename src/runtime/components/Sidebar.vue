@@ -359,6 +359,7 @@ const renderMenu = useLazyOverlay(() => openMobile.value || (props.menu as Modal
 
         <slot v-if="props.rail" name="rail" :state="state" :b24ui="b24ui">
           <button
+            type="button"
             data-slot="rail"
             :data-state="state"
             :aria-label="t('sidebar.toggle')"

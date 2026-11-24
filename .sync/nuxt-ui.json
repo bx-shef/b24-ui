@@ -1,7 +1,7 @@
 {
   "upstream": "nuxt/ui",
   "branch": "v4",
-  "cursor": "4629ed4ecbe3fdc3bb416bb54c7ab5d852ee6772",
+  "cursor": "523ca6d8ffd156af078db18347b69d92d86567b8",
   "_cursor_note": "cursor = last upstream commit ported into b24ui. The sync is manual by decision: one commit at a time, oldest-first, each with a `.sync/log/<sha>.md` journal and an entry in `processed`. There is no dispatcher, no porter workflow and no kill-switch — `.sync/PORTING.md` is the whole procedure. `processed` is maintained per port (backfilled #68-#72 on 2026-06-09).",
   "processed": {
     "2799fa6f2b25ce3eb15e050f3ef7c57d0d9a2fdb": {
@@ -3029,6 +3029,96 @@
       "b24ui_sha": "703c646e",
       "decision": "skip",
       "summary": "test(bench): repeat the re-render cycles 20 times — CodSpeed-only, same as 26f28e0a"
+    },
+    "21f1aac029d209b8ef1959a1317f925fd46660f9": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "n/a",
+      "summary": "docs(server): validate paths in github commits endpoint — upstream docs-site server route, fork has its own docs site"
+    },
+    "61cc832f587786144cac5ad2c05c4e8f3eeb9ffc": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(SelectMenu): allow keyboard navigation with search input autofocus disabled"
+    },
+    "2b7020416c40f285e0bdbc98802f0d758f778759": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "perf(Button): skip the link when there is no `to` or `href`"
+    },
+    "607f0e4dad7f9d601ed44173add7fa0748c1fac5": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "chore(deps): update all non-major dependencies"
+    },
+    "744da9d1150bc0d4e7ff03fb72bf549127d0dd70": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "chore(deps): update tiptap to ^3.32.0"
+    },
+    "1a4559371686320a347452fd7d08c48dc36dd29d": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(Sidebar): add missing `button` type to rail"
+    },
+    "3b0ffe5f3a93e203aed6c3b101c5ba97de64f82f": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(Table): avoid re-rendering virtualized rows on every scroll"
+    },
+    "9e2987aef5d0383889e0314968fd6c6626e8764b": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "chore(deps): update nuxt framework to ^4.6.2"
+    },
+    "2a25507232d023f641fc6b6851aba42df9f474d8": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(Chart): animate data changes"
+    },
+    "bda0b3fb8333a03a4144b4701c889c89d72fdfbc": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "perf(Button): read the link props in one pass"
+    },
+    "1d13ed46896c0f23a447f1ccd6b15b3a822284a6": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "n/a",
+      "summary": "fix(module): bundle the icons set in app config — fork has no @nuxt/icon/Iconify client bundle"
+    },
+    "3b68153a075e78e63ca88efdb4d8e0f22500c342": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "chore(deps): unpin `@nuxt/image`"
+    },
+    "6cc05eabe5c0806fdd7be078f2dacd178074d15c": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(ai): stop `isToolStreaming` on denied approvals"
+    },
+    "1ec725ba83601625e94269f226854d9ca0e806d3": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "port",
+      "summary": "fix(ChatMessage): show actions on focus and align them in RTL"
+    },
+    "523ca6d8ffd156af078db18347b69d92d86567b8": {
+      "pr": "pending-merge",
+      "b24ui_sha": "pending-merge",
+      "decision": "n/a",
+      "summary": "fix(LocaleSelect): show Tajikistan flag for the Tajik locale — fork has no Tajik locale and does not adopt new ones"
     }
   }
 }

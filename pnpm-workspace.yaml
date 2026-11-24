@@ -34,18 +34,18 @@ catalog:
   '@floating-ui/dom': ^1.8.0
   '@internationalized/date': ^3.12.4
   '@internationalized/number': ^3.6.9
-  '@nuxt/content': ^3.16.1
+  '@nuxt/content': ^3.16.2
   '@nuxt/eslint-config': ^1.17.0
-  '@nuxt/image': ^2.0.0
-  '@nuxt/kit': ^4.6.1
+  '@nuxt/image': ^2.2.0
+  '@nuxt/kit': ^4.6.2
   '@nuxt/module-builder': ^1.0.3
-  '@nuxt/schema': ^4.6.1
-  '@nuxt/test-utils': ^4.3.3
-  '@nuxtjs/mcp-toolkit': ^0.24.1
+  '@nuxt/schema': ^4.6.2
+  '@nuxt/test-utils': ^4.3.4
+  '@nuxtjs/mcp-toolkit': ^0.24.2
   '@nuxtjs/mdc': ^0.23.2
   '@octokit/rest': ^22.0.1
-  '@regle/core': ^1.29.4
-  '@regle/rules': ^1.29.4
+  '@regle/core': ^1.29.5
+  '@regle/rules': ^1.29.5
   '@shikijs/types': ^4.5.0
   '@standard-schema/spec': ^1.1.0
   '@tailwindcss/postcss': ^4.3.3
@@ -53,30 +53,30 @@ catalog:
   '@tanstack/charts': ^1.1.0
   '@tanstack/table-core': ^8.21.3
   '@tanstack/vue-table': ^8.21.3
-  '@tanstack/vue-virtual': ^3.13.40
-  '@tiptap/core': ^3.31.4
-  '@tiptap/extension-bubble-menu': ^3.31.4
-  '@tiptap/extension-code': ^3.31.4
-  '@tiptap/extension-collaboration': ^3.31.4
-  '@tiptap/extension-drag-handle': ^3.31.4
-  '@tiptap/extension-drag-handle-vue-3': ^3.31.4
-  '@tiptap/extension-emoji': ^3.31.4
-  '@tiptap/extension-floating-menu': ^3.31.4
-  '@tiptap/extension-horizontal-rule': ^3.31.4
-  '@tiptap/extension-image': ^3.31.4
-  '@tiptap/extension-mention': ^3.31.4
-  '@tiptap/extension-node-range': ^3.31.4
-  '@tiptap/extension-placeholder': ^3.31.4
-  '@tiptap/extension-text-align': ^3.31.4
-  '@tiptap/markdown': ^3.31.4
-  '@tiptap/pm': ^3.31.4
-  '@tiptap/starter-kit': ^3.31.4
-  '@tiptap/suggestion': ^3.31.4
-  '@tiptap/vue-3': ^3.31.4
+  '@tanstack/vue-virtual': ^3.13.47
+  '@tiptap/core': ^3.32.0
+  '@tiptap/extension-bubble-menu': ^3.32.0
+  '@tiptap/extension-code': ^3.32.0
+  '@tiptap/extension-collaboration': ^3.32.0
+  '@tiptap/extension-drag-handle': ^3.32.0
+  '@tiptap/extension-drag-handle-vue-3': ^3.32.0
+  '@tiptap/extension-emoji': ^3.32.0
+  '@tiptap/extension-floating-menu': ^3.32.0
+  '@tiptap/extension-horizontal-rule': ^3.32.0
+  '@tiptap/extension-image': ^3.32.0
+  '@tiptap/extension-mention': ^3.32.0
+  '@tiptap/extension-node-range': ^3.32.0
+  '@tiptap/extension-placeholder': ^3.32.0
+  '@tiptap/extension-text-align': ^3.32.0
+  '@tiptap/markdown': ^3.32.0
+  '@tiptap/pm': ^3.32.0
+  '@tiptap/starter-kit': ^3.32.0
+  '@tiptap/suggestion': ^3.32.0
+  '@tiptap/vue-3': ^3.32.0
   '@types/canvas-confetti': ^1.9.0
   '@types/node': ^25.3.0
   '@types/sortablejs': ^1.15.9
-  '@unhead/vue': ^3.4.2
+  '@unhead/vue': ^3.4.3
   '@vitejs/plugin-vue': ^6.0.10
   '@vitest/coverage-v8': 4.1.11
   '@vue/repl': ^4.7.2
@@ -84,7 +84,7 @@ catalog:
   '@vueuse/core': ^14.4.0
   '@vueuse/integrations': ^14.4.0
   '@vueuse/shared': ^14.4.0
-  ai: ^7.0.137
+  ai: ^7.0.143
   canvas-confetti: ^1.9.4
   capture-website: ^5.1.0
   citty: ^0.2.2
@@ -99,23 +99,23 @@ catalog:
   embla-carousel-fade: ^8.6.0
   embla-carousel-vue: ^8.6.0
   embla-carousel-wheel-gestures: ^8.1.0
-  eslint: ^10.12.0
-  eslint-plugin-better-tailwindcss: ^4.9.0
+  eslint: ^10.13.0
+  eslint-plugin-better-tailwindcss: ^4.9.1
   fflate: ^0.8.3
   fuse.js: ^7.5.0
   happy-dom: 20.12.0
   hookable: ^6.1.2
   jiti: ^2.7.0
-  joi: ^18.2.9
+  joi: ^18.3.0
   json5: ^2.2.3
   knitwork: ^1.3.0
   magic-string: ^1.4.3
   maska: ^3.2.2
   minimark: ^0.2.0
   mlly: ^1.8.2
-  motion-v: ^2.6.0
-  nuxt: ^4.6.1
-  nuxt-component-meta: ^0.18.0
+  motion-v: ^2.8.0
+  nuxt: ^4.6.2
+  nuxt-component-meta: ^0.19.0
   nuxt-llms: ^0.2.0
   nuxt-schema-org: ^6.2.1
   ohash: ^2.0.12
@@ -142,17 +142,17 @@ catalog:
   valibot: ^1.5.0
   vaul-vue: 0.4.1
   vite: ^8.3.4
-  vitest: ^4.1.11
+  vitest: ^4.1.12
   vitest-axe: ^0.1.0
   vitest-environment-nuxt: ^2.0.0
-  vue: ^3.5.43
+  vue: ^3.5.44
   vue-component-meta: ^3.3.13
   vue-component-type-helpers: ^3.3.13
   vue-router: ^5.4.0
   vue-tsc: ^3.3.11
   yaml: ^2.9.0
   yup: ^1.7.1
-  zod: ^4.6.5
+  zod: ^4.6.7
 
 # `playgrounds/vue` holds `@internationalized/date` at ^3.9.0 deliberately — it
 # diverges from upstream's range and was recorded as "left as-is" when
@@ -163,7 +163,7 @@ catalogs:
     '@internationalized/date': ^3.9.0
 
 overrides:
-  '@nuxt/kit': ^4.6.1
+  '@nuxt/kit': ^4.6.2
   '@bitrix24/b24ui-nuxt': workspace:*
   # nuxt 4.5.x requires vite ^8, but several peers (unplugin, unhead, vite-plugin-*)
   # still resolve vite 7 — two vite copies mean two rolldown native ABIs in one
@@ -174,11 +174,6 @@ overrides:
   # process. Keep this in step with whatever `vite` above resolves to —
   # vite 8.1.x wants ~1.1.5, vite 8.2.x wants ~1.2.1, vite 8.3.x wants ~1.2.11.
   rolldown: ~1.2.11
-  # `@nuxt/image` 2.1.0 depends on `ipx` 4.0.0-beta.1, which pulls a second sharp
-  # alongside 0.34.5 and kills the docs prerender as soon as it hits `/_ipx`.
-  # Pinned until ipx 4 is stable. `docs` only declares `^2.0.0`, so without this
-  # the next lockfile regeneration floats to 2.1.0 on its own.
-  '@nuxt/image': 2.0.0
   # tailwind-variants 3.3.x is a full internal rewrite: invoking a tv() result is
   # 18 to 103x slower than 3.2.2 (see test/bench/tv.bench.ts) and the exported
   # type constraints changed in a breaking way. This module calls `tv()` on every

@@ -90,6 +90,11 @@ export interface ChartProps<T extends ChartData = ChartData> {
    */
   tooltip?: boolean | TooltipProps
   /**
+   * Animate the chart when its data changes. Does not apply to `definition`, set `svgAnimation` on it instead.
+   * @defaultValue true
+   */
+  transition?: boolean
+  /**
    * The width of the ring in pixels. Only applies to `donut`.
    * @defaultValue 24
    */
@@ -163,6 +168,7 @@ const _props = withDefaults(defineProps<ChartProps<T>>(), {
   xAxis: true,
   yAxis: true,
   tooltip: true,
+  transition: true,
   thickness: 24,
   initialWidth: 640
 })
@@ -288,6 +294,7 @@ const donutDefinition = computed(() => {
       })
     ],
     scales: { x: null, y: null },
+    svgAnimation: props.transition,
     color: {
       scale: scaleOrdinal<string, string>()
         .domain(labels)
@@ -378,6 +385,7 @@ const generatedDefinition = computed(() => {
       legend: (props.legend ?? multiple) ? legendGuide.value : undefined
     },
     gradients: props.type === 'area' ? areaGradients.value : undefined,
+    svgAnimation: props.transition,
     focus: 'group-x',
     // The default only focuses a point within 48 pixels, which leaves dead zones between sparse x values.
     maxFocusDistance: Number.POSITIVE_INFINITY
