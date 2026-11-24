@@ -32,11 +32,19 @@ export default defineLocale<Messages>({
       next: '下一張',
       prev: '上一張'
     },
+    chatAttachment: {
+      uploading: '正在上傳',
+      error: '上傳失敗'
+    },
     chatMessages: {
       autoScroll: '捲動到底部'
     },
     chatPrompt: {
-      placeholder: '在此輸入您的訊息…'
+      placeholder: '在此輸入您的訊息…',
+      queue: '排隊中的訊息',
+      sendNow: '立即傳送',
+      edit: '編輯',
+      remove: '移除'
     },
     chatPromptSubmit: {
       label: '傳送',

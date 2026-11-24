@@ -32,11 +32,19 @@ export default defineLocale<Messages>({
       next: 'Weiter',
       prev: 'Zurück'
     },
+    chatAttachment: {
+      uploading: 'Wird hochgeladen',
+      error: 'Hochladen fehlgeschlagen'
+    },
     chatMessages: {
       autoScroll: 'Nach unten scrollen'
     },
     chatPrompt: {
-      placeholder: 'Geben Sie Ihre Nachricht hier ein…'
+      placeholder: 'Geben Sie Ihre Nachricht hier ein…',
+      queue: 'Nachrichten in der Warteschlange',
+      sendNow: 'Jetzt senden',
+      edit: 'Bearbeiten',
+      remove: 'Entfernen'
     },
     chatPromptSubmit: {
       label: 'Senden',

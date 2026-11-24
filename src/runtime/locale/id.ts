@@ -32,11 +32,19 @@ export default defineLocale<Messages>({
       next: 'Selanjutnya',
       prev: 'Sebelumnya'
     },
+    chatAttachment: {
+      uploading: 'Mengunggah',
+      error: 'Gagal mengunggah'
+    },
     chatMessages: {
       autoScroll: 'Gulir ke bawah'
     },
     chatPrompt: {
-      placeholder: 'Masukkan pesan Anda di sini…'
+      placeholder: 'Masukkan pesan Anda di sini…',
+      queue: 'Pesan dalam antrean',
+      sendNow: 'Kirim sekarang',
+      edit: 'Edit',
+      remove: 'Hapus'
     },
     chatPromptSubmit: {
       label: 'Kirim',

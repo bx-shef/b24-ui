@@ -32,11 +32,19 @@ export default defineLocale<Messages>({
       next: 'Келесі',
       prev: 'Алдыңғы'
     },
+    chatAttachment: {
+      uploading: 'Жүктелуде',
+      error: 'Жүктеу сәтсіз аяқталды'
+    },
     chatMessages: {
       autoScroll: 'Төмен айналдыру'
     },
     chatPrompt: {
-      placeholder: 'Хабарламаңызды осында енгізіңіз…'
+      placeholder: 'Хабарламаңызды осында енгізіңіз…',
+      queue: 'Кезектегі хабарламалар',
+      sendNow: 'Қазір жіберу',
+      edit: 'Өңдеу',
+      remove: 'Жою'
     },
     chatPromptSubmit: {
       label: 'Жіберу',

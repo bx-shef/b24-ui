@@ -32,11 +32,19 @@ export default defineLocale<Messages>({
       next: 'Tiếp',
       prev: 'Trước'
     },
+    chatAttachment: {
+      uploading: 'Đang tải lên',
+      error: 'Tải lên thất bại'
+    },
     chatMessages: {
       autoScroll: 'Cuộn xuống dưới'
     },
     chatPrompt: {
-      placeholder: 'Nhập tin nhắn của bạn tại đây…'
+      placeholder: 'Nhập tin nhắn của bạn tại đây…',
+      queue: 'Tin nhắn trong hàng đợi',
+      sendNow: 'Gửi ngay',
+      edit: 'Chỉnh sửa',
+      remove: 'Xóa'
     },
     chatPromptSubmit: {
       label: 'Gửi',

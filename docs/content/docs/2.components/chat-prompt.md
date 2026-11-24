@@ -79,6 +79,85 @@ props:
 ---
 ::
 
+### Файлы {#files}
+
+Директива `v-model:files` позволяет пользователю прикреплять файлы. Их можно вставить в поле или перетащить на промпт, и каждый файл показывается над полем как [ChatAttachment](/docs/components/chat-attachment/) с кнопкой удаления. Слот `#footer` получает функцию `open`, чтобы выбрать файлы кнопкой.
+
+::component-example
+---
+collapse: true
+name: 'chat-prompt-files-example'
+---
+::
+
+::tip
+Пропс `attachment` настраивает вложения, например `{ variant: 'thumbnail', size: 'xl' }`{lang="ts-type"} для превью картинок; слот `#files` позволяет отрисовать их самостоятельно.
+::
+
+::note
+Пропс `accept` ограничивает типы файлов, а `multiple` со значением `false` оставляет один файл. Форма отправляется с файлами, даже если поле пустое. Пока файл тянут над промптом, у корня стоит `data-dragging="true"`, его можно оформить через `data-[dragging=true]:`.
+::
+
+::tip
+Утилита `toFileUIParts` из `@bitrix24/b24ui-nuxt/utils/ai` превращает файлы в data URL для AI SDK, а слот `#files` компонента [ChatMessages](/docs/components/chat-messages/) выводит их в беседе.
+
+```vue
+<script setup lang="ts">
+import { useChat } from '@ai-sdk/vue'
+import { toFileUIParts } from '@bitrix24/b24ui-nuxt/utils/ai'
+
+const input = ref('')
+const files = ref<File[]>([])
+
+const { messages, status, sendMessage } = useChat()
+
+async function onSubmit() {
+  const text = input.value
+  const submitted = files.value
+
+  input.value = ''
+  files.value = []
+
+  const parts = await toFileUIParts(submitted)
+  sendMessage(text.trim() ? { text, files: parts } : { files: parts })
+}
+</script>
+
+<template>
+  <B24ChatMessages :messages="messages" :status="status">
+    <template #files="{ parts }">
+      <B24ChatAttachment
+        v-for="(part, index) in parts"
+        :key="index"
+        :name="part.filename"
+        :type="part.mediaType"
+        :url="part.url"
+      />
+    </template>
+  </B24ChatMessages>
+
+  <B24ChatPrompt v-model="input" v-model:files="files" @submit="onSubmit">
+    <B24ChatPromptSubmit :status="status" />
+  </B24ChatPrompt>
+</template>
+```
+::
+
+### Очередь {#queue} :badge{label="Soon" class="align-text-top"}
+
+Директива `v-model:queue` ставит в очередь сообщения, отправленные, пока чат в статусе `submitted` или `streaming`, вместо того чтобы игнорировать их. Очередь показывается панелью над промптом: пользователь может отправить сообщение сразу, вернуть его в поле для правки или удалить. Событие `send` срабатывает, когда сообщение выбрано для немедленной отправки, после того как оно переместилось в начало очереди.
+
+::component-example
+---
+collapse: true
+name: 'chat-prompt-queue-example'
+---
+::
+
+::tip{to="#with-queued-messages"}
+Отправка сообщений из очереди остаётся за вами, рецепт с AI SDK — в примере **С очередью сообщений**.
+::
+
 ## Примеры {#examples}
 
 ::tip{to="/docs/components/chat/"}
@@ -135,6 +214,69 @@ name: 'chat-prompt-speech-recognition-example'
 ---
 ::
 
+### С очередью сообщений {#with-queued-messages} :badge{label="Soon" class="align-text-top"}
+
+AI SDK не ставит сообщения в очередь: вызов `sendMessage` во время ответа запускает второй запрос рядом с текущим. С пропсом `status` `B24ChatPrompt` игнорирует отправку, пока чат в статусе `submitted` или `streaming`. Чтобы сохранить такие сообщения, привяжите `v-model:queue`: промпт покажет очередь панелью над собой, где пользователь может отправить сообщение сразу, изменить или удалить его, а следующее вы отправляете, когда чат снова станет `ready`.
+
+```vue
+<script setup lang="ts">
+import { ref, watch } from 'vue'
+import type { ChatPromptQueueItem } from '@bitrix24/b24ui-nuxt'
+import { useChat } from '@ai-sdk/vue'
+
+const input = ref('')
+const queue = ref<ChatPromptQueueItem[]>([])
+
+const { status, error, sendMessage, regenerate, stop } = useChat()
+
+function onSubmit() {
+  sendMessage({ text: input.value })
+  input.value = ''
+}
+
+function sendNext() {
+  const item = queue.value.shift()
+  if (item) {
+    sendMessage({ text: item.text })
+  }
+}
+
+watch(status, (value) => {
+  if (value === 'ready') {
+    sendNext()
+  }
+})
+
+// Сообщение, выбранное для немедленной отправки, стоит в начале очереди
+function onSend() {
+  if (status.value === 'submitted' || status.value === 'streaming') {
+    stop()
+  } else {
+    sendNext()
+  }
+}
+</script>
+
+<template>
+  <B24ChatPrompt
+    v-model="input"
+    v-model:queue="queue"
+    :status="status"
+    :error="error"
+    @submit="onSubmit"
+    @send="onSend"
+  >
+    <B24ChatPromptSubmit :status="status" @stop="stop()" @reload="regenerate()" />
+  </B24ChatPrompt>
+</template>
+```
+
+После `error` промпт отключается, а очередь ждёт, пока пользователь не перезапустит неудавшийся ответ. Остановка ответа сразу отправляет следующее сообщение из очереди.
+
+::note
+При подтверждении инструментов ответ, который ждёт решения пользователя, тоже имеет статус `ready`. Пропускайте `sendNext`, пока у последнего сообщения есть часть в состоянии `approval-requested`: новое сообщение оставит подтверждение без ответа.
+::
+
 ## API
 
 ### Пропсы {#props}
@@ -160,6 +302,7 @@ name: 'chat-prompt-speech-recognition-example'
 | Имя | Тип |
 | ---- | ---- |
 | `textareaRef`{lang="ts-type"} | `Ref<HTMLTextAreaElement \| null>`{lang="ts-type"} |
+| `open()`{lang="ts-type"} | `void`{lang="ts-type"} |
 
 ## Тема {#theme}
 

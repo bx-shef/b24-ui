@@ -32,11 +32,19 @@ export default defineLocale<Messages>({
       next: 'Далее',
       prev: 'Назад'
     },
+    chatAttachment: {
+      uploading: 'Загрузка',
+      error: 'Не удалось загрузить'
+    },
     chatMessages: {
       autoScroll: 'Прокрутить вниз'
     },
     chatPrompt: {
-      placeholder: 'Введите сообщение…'
+      placeholder: 'Введите сообщение…',
+      queue: 'Сообщения в очереди',
+      sendNow: 'Отправить сейчас',
+      edit: 'Редактировать',
+      remove: 'Удалить'
     },
     chatPromptSubmit: {
       label: 'Отправить',

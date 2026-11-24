@@ -19,6 +19,7 @@ Bitrix24 UI даёт набор компонентов для чат-интер�
 
 | Компонент | Описание |
 | --- | --- |
+| [ChatAttachment](/docs/components/chat-attachment/) | Файл, прикреплённый к запросу или сообщению, с состояниями загрузки. |
 | [ChatMessages](/docs/components/chat-messages/) | Прокручиваемый список сообщений с автопрокруткой и индикатором загрузки. |
 | [ChatMessage](/docs/components/chat-message/) | Отдельное сообщение с аватаром, действиями и слотами. |
 | [ChatPrompt](/docs/components/chat-prompt/) | Улучшенное многострочное поле для отправки запросов. |
@@ -467,64 +468,8 @@ function onSubmit() {
 Слот `#part` вызывается для каждой части сообщения с `part`, её `index` и `message`. Часть, которую слот не отрисовал (как текст пользователя выше), выводится по умолчанию. Чтобы отрисовать сообщение целиком самостоятельно, используйте слот `#content`.
 ::
 
-### Queued messages :badge{label="Soon" class="align-text-top"}
+### Сообщения в очереди {#queued-messages} :badge{label="Soon" class="align-text-top"}
 
-The AI SDK doesn't queue messages: calling `sendMessage` during a response starts a second request next to the current one. With `status`, `B24ChatPrompt` ignores submits while the chat is `submitted` or `streaming`. To let users send their next message anyway, leave it off, keep the text in a queue and send it once the chat is `ready` again:
-
-```vue
-<script setup lang="ts">
-import { ref, watch } from 'vue'
-import { useChat } from '@ai-sdk/vue'
-import CrossMIcon from '@bitrix24/b24icons-vue/outline/CrossMIcon'
-
-const input = ref('')
-const queue = ref<string[]>([])
-
-const { status, error, sendMessage, regenerate, stop } = useChat()
-
-function sendNext() {
-  const text = queue.value.shift()
-  if (text) {
-    sendMessage({ text })
-  }
-}
-
-function onSubmit() {
-  queue.value.push(input.value)
-  input.value = ''
-
-  if (status.value !== 'submitted' && status.value !== 'streaming') {
-    sendNext()
-  }
-}
-
-watch(status, (value) => {
-  if (value === 'ready') {
-    sendNext()
-  }
-})
-</script>
-
-<template>
-  <B24ChatPrompt v-model="input" :error="error" @submit="onSubmit">
-    <template v-if="queue.length" #header>
-      <ul class="flex flex-col gap-1 w-full">
-        <li v-for="(text, index) in queue" :key="index" class="flex items-center gap-2 text-sm text-(--ui-color-base-1)">
-          <span class="truncate flex-1">{{ text }}</span>
-          <B24Button
-            :icon="CrossMIcon"
-            color="air-tertiary-no-accent"
-            size="xs"
-            :aria-label="`Remove ${text} from queue`"
-            @click="queue.splice(index, 1)"
-          />
-        </li>
-      </ul>
-    </template>
-
-    <B24ChatPromptSubmit :status="status" @stop="stop()" @reload="regenerate()" />
-  </B24ChatPrompt>
-</template>
-```
-
-After an `error`, the prompt is disabled and the queue waits until the user reloads the failed response. Stopping the response sends the next queued message right away.
+::tip{to="/docs/components/chat-prompt/#with-queued-messages"}
+Привяжите `v-model:queue` к ChatPrompt, чтобы сохранять сообщения, отправленные во время ответа; рецепт с AI SDK — в примере **С очередью сообщений**.
+::

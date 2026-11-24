@@ -195,6 +195,7 @@ Bitrix24 UI also registers shorthand aliases for `Callout`: `::note`, `::tip`, `
 
 | Component | Purpose | Docs |
 |---|---|---|
+| `B24ChatAttachment` | File attached to a prompt or message | [chat-attachment.md](https://bitrix24.github.io/b24ui/raw/docs/components/chat-attachment.md) |
 | `B24ChatMessages` | Scrollable message list | [chat-messages.md](https://bitrix24.github.io/b24ui/raw/docs/components/chat-messages.md) |
 | `B24ChatMessage` | Individual message bubble | [chat-message.md](https://bitrix24.github.io/b24ui/raw/docs/components/chat-message.md) |
 | `B24ChatReasoning` | Collapsible AI reasoning block | [chat-reasoning.md](https://bitrix24.github.io/b24ui/raw/docs/components/chat-reasoning.md) |

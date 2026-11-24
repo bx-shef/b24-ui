@@ -25,11 +25,19 @@ export type Messages = {
     next: string
     prev: string
   }
+  chatAttachment: {
+    uploading: string
+    error: string
+  }
   chatMessages: {
     autoScroll: string
   }
   chatPrompt: {
     placeholder: string
+    queue: string
+    sendNow: string
+    edit: string
+    remove: string
   }
   chatPromptSubmit: {
     label: string

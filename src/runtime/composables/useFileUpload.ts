@@ -19,7 +19,10 @@ export interface UseFileUploadOptions {
   onReject?: (files: File[]) => void
 }
 
-function isFileAccepted(file: File, accept: string): boolean {
+/**
+ * Checks a file against an `accept` list, by MIME type (`image/png`, `image/*`) or by extension (`.pdf`).
+ */
+export function isFileAccepted(file: File, accept: string): boolean {
   const types = accept.split(',').map(type => type.trim().toLowerCase()).filter(Boolean)
   if (!types.length) {
     return true

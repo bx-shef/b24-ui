@@ -352,6 +352,145 @@ slots:
 Установка, настройка сервера и примеры использования — на обзорной странице **Chat**.
 ::
 
+### С веб-поиском {#with-web-search}
+
+Некоторые провайдеры предлагают встроенные инструменты веб-поиска: [Anthropic](https://ai-sdk.dev/providers/ai-sdk-providers/anthropic#web-search-tool), [Google](https://ai-sdk.dev/providers/ai-sdk-providers/google#google-search), [OpenAI](https://ai-sdk.dev/providers/ai-sdk-providers/openai#web-search-tool). Их вызовы приходят на клиент как части-инструменты, поэтому отрисовываются компонентом ChatTool, как любой другой инструмент.
+
+Каждый инструмент берётся из пакета своего провайдера, поэтому установите нужный: `@ai-sdk/anthropic`, `@ai-sdk/google` или `@ai-sdk/openai`.
+
+::code-group
+
+```ts [Anthropic]
+import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
+import { anthropic } from '@ai-sdk/anthropic'
+
+export default defineEventHandler(async (event) => {
+  const { messages } = await readBody(event)
+
+  const result = streamText({
+    model: 'anthropic/claude-sonnet-5.5',
+    instructions: 'You are a helpful assistant.',
+    messages: await convertToModelMessages(messages),
+    tools: {
+      web_search: anthropic.tools.webSearch_20260209({})
+    }
+  })
+
+  const stream = toUIMessageStream({ stream: result.stream })
+  return createUIMessageStreamResponse({ stream })
+})
+```
+
+```ts [Google]
+import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
+import { google } from '@ai-sdk/google'
+
+export default defineEventHandler(async (event) => {
+  const { messages } = await readBody(event)
+
+  const result = streamText({
+    model: 'google/gemini-3-flash',
+    instructions: 'You are a helpful assistant.',
+    messages: await convertToModelMessages(messages),
+    tools: {
+      google_search: google.tools.googleSearch({})
+    }
+  })
+
+  const stream = toUIMessageStream({ stream: result.stream })
+  return createUIMessageStreamResponse({ stream })
+})
+```
+
+```ts [OpenAI]
+import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
+import { openai } from '@ai-sdk/openai'
+
+export default defineEventHandler(async (event) => {
+  const { messages } = await readBody(event)
+
+  const result = streamText({
+    model: 'openai/gpt-5-nano',
+    instructions: 'You are a helpful assistant.',
+    messages: await convertToModelMessages(messages),
+    tools: {
+      web_search: openai.tools.webSearch({})
+    }
+  })
+
+  const stream = toUIMessageStream({ stream: result.stream })
+  return createUIMessageStreamResponse({ stream })
+})
+```
+
+::
+
+### С инструментами MCP {#with-mcp-tools}
+
+Пакет `@ai-sdk/mcp` даёт чат-боту инструменты сервера [Model Context Protocol (MCP)](https://ai-sdk.dev/docs/ai-sdk-core/mcp-tools): например, поиск по документации или собственные задачи перед ответом.
+
+Установите пакет MCP:
+
+::code-group{sync="pm"}
+
+```bash [pnpm]
+pnpm add @ai-sdk/mcp
+```
+
+```bash [yarn]
+yarn add @ai-sdk/mcp
+```
+
+```bash [npm]
+npm install @ai-sdk/mcp
+```
+
+```bash [bun]
+bun add @ai-sdk/mcp
+```
+
+::
+
+Затем передайте инструменты MCP в `streamText` в серверном обработчике:
+
+```ts [server/api/chat.post.ts]
+import { streamText, convertToModelMessages, isStepCount, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
+import { createMCPClient } from '@ai-sdk/mcp'
+
+export default defineEventHandler(async (event) => {
+  const { messages } = await readBody(event)
+
+  const httpClient = await createMCPClient({
+    transport: { type: 'http', url: 'https://your-app.com/mcp' }
+  })
+  try {
+    const tools = await httpClient.tools()
+
+    const result = streamText({
+      model: 'anthropic/claude-sonnet-5.5',
+      maxOutputTokens: 10000,
+      instructions: 'You are a helpful assistant. Use your tools to search for relevant information before answering questions.',
+      messages: await convertToModelMessages(messages),
+      stopWhen: isStepCount(6),
+      tools
+    })
+
+    const stream = toUIMessageStream({
+      stream: result.stream,
+      // Вызывается, когда поток закончился: завершился, упал или был остановлен
+      onEnd: async () => {
+        await httpClient.close()
+      }
+    })
+    return createUIMessageStreamResponse({ stream })
+  } catch (error) {
+    // Закрываем клиент MCP, если подготовка упала до начала потока
+    await httpClient.close()
+    throw error
+  }
+})
+```
+
 ## API
 
 ### Пропсы {#props}

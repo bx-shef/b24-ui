@@ -32,11 +32,19 @@ export default defineLocale<Messages>({
       next: 'अगला',
       prev: 'पिछला'
     },
+    chatAttachment: {
+      uploading: 'अपलोड हो रहा है',
+      error: 'अपलोड विफल रहा'
+    },
     chatMessages: {
       autoScroll: 'नीचे स्क्रॉल करें'
     },
     chatPrompt: {
-      placeholder: 'अपना संदेश यहाँ लिखें…'
+      placeholder: 'अपना संदेश यहाँ लिखें…',
+      queue: 'कतार में संदेश',
+      sendNow: 'अभी भेजें',
+      edit: 'संपादित करें',
+      remove: 'हटाएँ'
     },
     chatPromptSubmit: {
       label: 'भेजें',
