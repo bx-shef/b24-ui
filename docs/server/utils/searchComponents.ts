@@ -5,17 +5,38 @@ export interface SearchableComponent {
   keywords?: string[]
 }
 
-export function tokenize(query: string): string[] {
-  return normalizeQuery(query).split(/[^a-z0-9]+/).filter(token => token.length >= 3)
-}
-
+/**
+ * Lowercases, maps `ё` to `е` and strips Latin diacritics (`é` -> `e`).
+ * Cyrillic `й` is kept as is: decomposing it would strip the breve and turn
+ * `й` into `и`. Applied to the query and to every searched field, so both
+ * sides of a comparison are folded the same way.
+ */
 function normalizeQuery(query: string): string {
-  return query.toLowerCase().normalize('NFD').replace(/[\u0300-\u036F]/g, '').trim()
+  return query
+    .toLowerCase()
+    .replace(/ё/g, 'е')
+    .normalize('NFD')
+    .replace(/(?<![\u0400-\u04FF])[\u0300-\u036F]+/g, '')
+    .normalize('NFC')
+    .trim()
 }
 
-/** Tokens only contain `[a-z0-9]` so they are safe to inline in a regex. */
+export function tokenize(query: string): string[] {
+  return normalizeQuery(query).split(/[^\p{L}\p{N}]+/u).filter(token => token.length >= 3)
+}
+
+function escapeRegExp(text: string): string {
+  return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+/**
+ * Whole-word match. `\b` only knows ASCII word characters, so the boundary is
+ * spelled with Unicode lookarounds. Tokens come from `tokenize()` and only
+ * contain letters and digits, but they are escaped anyway so the function stays
+ * safe if it is ever called with arbitrary text.
+ */
 function matchesWord(text: string, token: string): boolean {
-  return new RegExp(`\\b${token}\\b`).test(text)
+  return new RegExp(`(?<![\\p{L}\\p{N}])${escapeRegExp(token)}(?![\\p{L}\\p{N}])`, 'u').test(text)
 }
 
 /**
@@ -31,11 +52,11 @@ export function scoreComponent(component: SearchableComponent, query: string): n
     return 0
   }
 
-  const name = (component.name ?? '').toLowerCase()
+  const name = normalizeQuery(component.name ?? '')
   const nameWords = name.replace(/-/g, ' ')
-  const title = (component.title ?? '').toLowerCase()
-  const keywords = (component.keywords ?? []).map(keyword => keyword.toLowerCase())
-  const description = (component.description ?? '').toLowerCase()
+  const title = normalizeQuery(component.title ?? '')
+  const keywords = (component.keywords ?? []).map(keyword => normalizeQuery(keyword))
+  const description = normalizeQuery(component.description ?? '')
   const searchTokens = tokenize(search)
 
   let score = 0
