@@ -6,6 +6,9 @@ keywords:
   - panel
   - box
   - container
+  - карточка
+  - панель
+  - блок
 links:
   - label: GitHub
     iconName: GitHubIcon

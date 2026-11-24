@@ -6,6 +6,9 @@ keywords:
   - validation
   - schema
   - submit
+  - форма
+  - валидация
+  - отправка формы
 links:
   - label: GitHub
     iconName: GitHubIcon

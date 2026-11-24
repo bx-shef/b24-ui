@@ -6,6 +6,8 @@ keywords:
   - cta
   - action
   - btn
+  - кнопка
+  - призыв к действию
 links:
   - label: GitHub
     iconName: GitHubIcon

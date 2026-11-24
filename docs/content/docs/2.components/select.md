@@ -5,6 +5,9 @@ category: form
 keywords:
   - dropdown
   - picker
+  - выпадающий список
+  - выбор значения
+  - селект
 links:
   - label: GitHub
     iconName: GitHubIcon

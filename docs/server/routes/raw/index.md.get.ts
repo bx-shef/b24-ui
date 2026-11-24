@@ -38,7 +38,7 @@ Bitrix24 UI is a free and open source Vue UI library powered by [Reka UI](https:
 - Tailwind CSS theming with CSS variables and Tailwind Variants
 - TypeScript support with full auto-completion
 - Server-side rendering (SSR) compatible
-- Dark mode support and 19 languages via i18n
+- Dark mode support and 20 languages via i18n
 
 ## Installation
 

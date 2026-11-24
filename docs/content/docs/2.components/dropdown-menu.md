@@ -6,6 +6,9 @@ keywords:
   - menu
   - context menu
   - actions
+  - выпадающее меню
+  - контекстное меню
+  - действия
 links:
   - label: GitHub
     iconName: GitHubIcon
