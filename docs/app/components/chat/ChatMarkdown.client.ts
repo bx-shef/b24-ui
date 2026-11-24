@@ -4,14 +4,18 @@ import shiki from '@comark/vue/plugins/shiki'
 import security from '@comark/vue/plugins/security'
 
 // Ответ модели — недоверенный текст. Атрибут `style` убираем целиком: через него можно наложить на страницу
-// произвольное оформление (перекрыть интерфейс, подгрузить внешний ресурс через `url()`).
+// произвольное оформление (перекрыть интерфейс, подгрузить внешний ресурс через `url()`). Так же `srcset`
+// (браузер грузит картинку мимо проверки `src`) и `ping` (запрос на чужой адрес при клике).
 const stripStyle = defineComarkPlugin(() => ({
   name: 'strip-style',
   post(state) {
     const visit = (node: unknown) => {
       if (!Array.isArray(node)) return
       if (typeof node[0] === 'string' && node[1] && typeof node[1] === 'object') {
-        delete (node[1] as Record<string, unknown>).style
+        const attrs = node[1] as Record<string, unknown>
+        delete attrs.style
+        delete attrs.srcset
+        delete attrs.ping
       }
       for (const child of node.slice(2)) visit(child)
     }
