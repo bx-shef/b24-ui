@@ -1,4 +1,4 @@
-import { h, ref, computed } from 'vue'
+import { h, ref, computed, readonly } from 'vue'
 import { describe, it, expect, vi } from 'vitest'
 import { axe } from 'vitest-axe'
 import { flushPromises } from '@vue/test-utils'
@@ -882,6 +882,14 @@ describe('Table', () => {
     await flushPromises()
 
     expect(wrapper.find('[data-test-th="amount"]').exists()).toBeTruthy()
+  })
+
+  it('accepts readonly data', async () => {
+    const wrapper = await mountSuspended(Table, {
+      props: { data: readonly(data) }
+    })
+
+    expect(wrapper.findAll('tbody tr')).toHaveLength(data.length)
   })
 
   it('shows the loading row instead of the empty one while loading without data', async () => {
