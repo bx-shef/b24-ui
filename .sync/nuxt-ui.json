@@ -3361,62 +3361,62 @@
       "summary": "chore(deps): pin tailwind-variants to 3.2.2 for consumers"
     },
     "8a34bc164872118fcaaa181645aaa1a4cc2753ab": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 21,
+      "b24ui_sha": "aae3a48434dda55f790bbef6931ccd6bf0223642",
       "decision": "port",
       "summary": "feat(ChatAttachment): новый компонент ChatAttachment, v-model:files в ChatPrompt, toFileUIParts, ключи локалей"
     },
     "731a20b296fbc80c2e54a2b5749ccb4d02202af8": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 21,
+      "b24ui_sha": "aae3a48434dda55f790bbef6931ccd6bf0223642",
       "decision": "no-op",
       "summary": "docs(playground): компоненты в самодельных плитках — в форке нет docs/app/components/playground"
     },
     "3ad5f5f91332ad91386a4611544a9c63739b8db5": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 21,
+      "b24ui_sha": "aae3a48434dda55f790bbef6931ccd6bf0223642",
       "decision": "port",
       "summary": "feat(ChatPrompt): очередь сообщений v-model:queue, роли иконок edit и trash"
     },
     "b465d092465ab03c7d3242e9afd0df593e735012": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 21,
+      "b24ui_sha": "aae3a48434dda55f790bbef6931ccd6bf0223642",
       "decision": "port",
       "summary": "docs: примеры очереди, моделей с рассуждением, веб-поиска и MCP — на страницы компонентов (без блога и руководств шаблонов)"
     },
     "779d9dc1aa80b2669e1e06a51cefac866251931b": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 21,
+      "b24ui_sha": "aae3a48434dda55f790bbef6931ccd6bf0223642",
       "decision": "port",
       "summary": "chore(deps): nuxt, @nuxt/kit и @nuxt/schema до ^4.6.3"
     },
     "3401ca859a264c0187a878b1ce89f97f352fe9f3": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 21,
+      "b24ui_sha": "aae3a48434dda55f790bbef6931ccd6bf0223642",
       "decision": "no-op",
       "summary": "docs(templates): правка руководства docs/content/templates/chat.md — в форке такого файла нет"
     },
     "63737025651fc3b2b064276237d4ee1123ae5d77": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 21,
+      "b24ui_sha": "aae3a48434dda55f790bbef6931ccd6bf0223642",
       "decision": "port",
       "summary": "fix(Checkbox/Switch): наведение на подпись открывает Tooltip и Popover (getFormControlAttrs)"
     },
     "259a65e2fe54af46dd60cbfbe1a55eeac7735280": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 21,
+      "b24ui_sha": "aae3a48434dda55f790bbef6931ccd6bf0223642",
       "decision": "port",
       "summary": "test(Toast): таймер закрытия не срабатывает после завершения теста"
     },
     "2f163cfb52525e9f312b82fe7c6819ac81cc87d3": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 21,
+      "b24ui_sha": "aae3a48434dda55f790bbef6931ccd6bf0223642",
       "decision": "no-op",
       "summary": "docs(templates): руководство к шаблону Dashboard — в форке нет страниц руководств"
     },
     "be37b7f17c4a6cc2a39106b0afcc4fa90feaf91f": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 21,
+      "b24ui_sha": "aae3a48434dda55f790bbef6931ccd6bf0223642",
       "decision": "port",
       "summary": "fix(module): useImage в шаблоне изображения импортируется, а не реэкспортируется из #imports"
     }
