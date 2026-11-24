@@ -39,7 +39,7 @@ defineShortcuts({
     />
 
     <template #right>
-      <B24Tooltip text="Search" :kbds="['meta', 'K']" ignore-non-keyboard-focus>
+      <B24Tooltip text="Поиск" :kbds="['meta', 'K']" ignore-non-keyboard-focus>
         <B24ContentSearchButton />
       </B24Tooltip>
 
@@ -47,7 +47,7 @@ defineShortcuts({
 
       <div class="hidden sm:flex flex-nowrap flex-row items-center justify-end gap-3">
         <B24Button
-          aria-label="Bitrix24 UI on GitHub"
+          aria-label="Bitrix24 UI на GitHub"
           :icon="GitHubIcon"
           :to="config.public.gitUrl"
           target="_blank"

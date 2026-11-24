@@ -15,42 +15,42 @@ export function useSearch() {
 
   const links = computed(() => [
     {
-      label: 'Get Started',
-      description: 'Learn how to get started with Bitrix24 UI.',
+      label: 'Начало работы',
+      description: 'Как начать работу с Bitrix24 UI.',
       icon: PlayLIcon,
       to: '/docs/getting-started/',
       active: route.path.startsWith('/docs/getting-started')
     },
     {
-      label: 'Components',
-      description: 'Explore the components available in Bitrix24 UI.',
+      label: 'Компоненты',
+      description: 'Компоненты, доступные в Bitrix24 UI.',
       icon: DeveloperResourcesIcon,
       to: '/docs/components/',
       active: route.path.startsWith('/docs/components')
     },
     {
-      label: 'Composables',
-      description: 'Learn how to use the composables available in Bitrix24 UI.',
+      label: 'Композаблы',
+      description: 'Как использовать композаблы Bitrix24 UI.',
       icon: ViewmodeCodeIcon,
       to: '/docs/composables/define-shortcuts/',
       active: route.path.startsWith('/docs/composables')
     },
     {
-      label: 'Typography',
-      description: 'Discover the typography features and customization options in Bitrix24 UI.',
+      label: 'Типографика',
+      description: 'Возможности типографики Bitrix24 UI и их настройка.',
       icon: FormattingIcon,
       to: '/docs/typography/',
       active: route.path.startsWith('/docs/typography')
     },
     {
-      label: 'Templates',
+      label: 'Шаблоны',
       icon: FormIcon,
-      description: 'Explore official templates built with Bitrix24 UI.',
+      description: 'Официальные шаблоны на Bitrix24 UI.',
       to: '/templates/'
     },
     {
       label: 'GitHub',
-      description: 'Check out the Bitrix24 UI repository and follow development on GitHub.',
+      description: 'Репозиторий Bitrix24 UI: следите за разработкой на GitHub.',
       icon: GitHubIcon,
       to: 'https://github.com/bitrix24/b24ui',
       target: '_blank'
@@ -60,7 +60,7 @@ export function useSearch() {
   const groups = computed(() => [
     {
       id: 'framework',
-      label: 'Framework',
+      label: 'Фреймворк',
       items: frameworks.value
     }
   ])

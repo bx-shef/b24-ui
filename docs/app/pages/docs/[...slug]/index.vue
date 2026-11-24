@@ -21,7 +21,7 @@ definePageMeta({
 
 const { data: page } = await useAsyncData(kebabCase(pageUrl), () => queryCollection('docs').path(pageUrl).first())
 if (!page.value) {
-  throw createError({ status: 404, statusText: 'Page not found', fatal: true })
+  throw createError({ status: 404, statusText: 'Страница не найдена', fatal: true })
 }
 
 // Update the framework if the page has different one
@@ -55,14 +55,14 @@ if (!import.meta.prerender) {
 }
 
 const title = page.value?.seo?.title ? page.value.seo.title : page.value?.navigation?.title ? page.value.navigation.title : page.value?.title
-const prefix = page.value?.path.includes('components/') || page.value?.path.includes('composables/') ? 'Vue ' : ''
-const suffix = page.value?.path.includes('components/') ? 'Component ' : page.value?.path.includes('composables/') ? 'Composable ' : ''
+const prefix = page.value?.path.includes('components/') ? 'Компонент ' : page.value?.path.includes('composables/') ? 'Композабл ' : ''
+const suffix = ''
 const description = page.value?.seo?.description ? page.value.seo.description : page.value?.description
 
 useSeoMeta({
-  titleTemplate: `${prefix}%s ${suffix}- Bitrix24 UI ${page.value?.framework === 'vue' ? ' for Vue' : ''}`,
+  titleTemplate: `${prefix}%s ${suffix}- Bitrix24 UI ${page.value?.framework === 'vue' ? ' для Vue' : ''}`,
   title,
-  ogTitle: `${prefix}${title} ${suffix}- Bitrix24 UI ${page.value?.framework === 'vue' ? ' for Vue' : ''}`,
+  ogTitle: `${prefix}${title} ${suffix}- Bitrix24 UI ${page.value?.framework === 'vue' ? ' для Vue' : ''}`,
   description,
   ogDescription: description
 })
@@ -94,13 +94,13 @@ useCanonical(computed(() => `/raw${path.value}.md`))
 const communityLinks = computed(() => [
   {
     icon: DesignIcon,
-    label: 'Edit this page',
+    label: 'Редактировать страницу',
     to: `${config.public.gitUrl}/edit/main/docs/content/${page?.value?.stem}.md`,
     target: '_blank'
   },
   {
     icon: FavoriteIcon,
-    label: 'Star on GitHub',
+    label: 'Поставить звезду на GitHub',
     to: config.public.gitUrl,
     target: '_blank'
   }
@@ -174,7 +174,7 @@ onMounted(() => {
           :b24ui="{ baseLine: 'gap-1.5' }"
         >
           <template v-if="link.avatar" #leading>
-            <B24Avatar v-bind="link.avatar" loading="lazy" size="2xs" :alt="`${link.label} avatar`" :b24ui="{ image: 'w-4.5 h-3' }" />
+            <B24Avatar v-bind="link.avatar" loading="lazy" size="2xs" :alt="`Аватар: ${link.label}`" :b24ui="{ image: 'w-4.5 h-3' }" />
           </template>
         </B24Button>
       </template>

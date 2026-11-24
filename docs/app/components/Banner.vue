@@ -5,7 +5,7 @@ import MobileSelectedIcon from '@bitrix24/b24icons-vue/outline/MobileSelectedIco
 <template>
   <B24Banner
     id="chat-reasoning-banner"
-    title="AI: New components for communication 🧐"
+    title="AI: новые компоненты для общения 🧐"
     to="/docs/components/chat-reasoning/"
     :icon="MobileSelectedIcon"
     close
