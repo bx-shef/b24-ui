@@ -46,6 +46,8 @@ env:
 
 jobs:
   watch:
+    # Следит за PR выпуска release-please; без выпусков (NPM_RELEASE) — пропуск.
+    if: vars.NPM_RELEASE == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: read
