@@ -5,6 +5,9 @@ category: navigation
 keywords:
   - pager
   - page navigation
+  - пагинация
+  - постраничная навигация
+  - переключение страниц
 links:
   - label: GitHub
     iconName: GitHubIcon

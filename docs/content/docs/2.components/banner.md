@@ -5,6 +5,9 @@ category: element
 keywords:
   - announcement bar
   - top bar
+  - баннер
+  - верхняя плашка
+  - объявление
 links:
   - label: GitHub
     iconName: GitHubIcon

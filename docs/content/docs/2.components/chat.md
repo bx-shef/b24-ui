@@ -2,6 +2,10 @@
 title: Chat
 description: 'Разработка чат-интерфейсов на основе AI: потоковые ответы, рассуждения и вызов инструментов.'
 category: chat
+keywords:
+  - AI-чат
+  - чат-интерфейс
+  - потоковый ответ
 index: true
 links:
   - label: AI SDK

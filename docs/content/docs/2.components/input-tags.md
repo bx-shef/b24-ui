@@ -5,6 +5,9 @@ category: form
 keywords:
   - chips input
   - multi value
+  - поле тегов
+  - ввод тегов
+  - несколько значений
 links:
   - label: GitHub
     iconName: GitHubIcon

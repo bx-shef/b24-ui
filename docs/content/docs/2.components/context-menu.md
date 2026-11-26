@@ -4,6 +4,9 @@ description: 'Всплывающее меню, которое открывает
 category: overlay
 keywords:
   - right click menu
+  - контекстное меню правой кнопки
+  - меню по правому клику
+  - щелчок правой кнопкой
 links:
   - label: GitHub
     iconName: GitHubIcon

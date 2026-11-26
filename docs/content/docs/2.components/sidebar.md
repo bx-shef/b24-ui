@@ -2,6 +2,10 @@
 title: Sidebar
 description: 'Сворачиваемое боковое меню с несколькими вариантами оформления.'
 category: layout
+keywords:
+  - сайдбар
+  - боковое меню
+  - сворачиваемое меню
 links:
   - label: GitHub
     iconName: GitHubIcon

@@ -2,6 +2,10 @@
 title: Footer
 description: 'Адаптивный подвал для копирайта, ссылок и дополнительной информации.'
 category: layout
+keywords:
+  - подвал
+  - нижняя часть страницы
+  - копирайт
 links:
   - label: GitHub
     iconName: GitHubIcon

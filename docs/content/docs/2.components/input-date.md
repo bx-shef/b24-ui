@@ -6,6 +6,9 @@ keywords:
   - date picker
   - datepicker
   - calendar input
+  - ввод даты
+  - поле даты
+  - дата по маске
 links:
   - label: GitHub
     iconName: GitHubIcon

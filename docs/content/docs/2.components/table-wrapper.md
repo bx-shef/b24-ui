@@ -2,6 +2,10 @@
 title: TableWrapper
 description: 'Обёртка для отображения HTML-таблицы.'
 category: data
+keywords:
+  - обёртка таблицы
+  - HTML-таблица
+  - простая таблица
 links:
   - label: GitHub
     iconName: GitHubIcon

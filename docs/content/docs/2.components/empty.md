@@ -6,6 +6,9 @@ keywords:
   - no data
   - placeholder
   - zero state
+  - пустое состояние
+  - нет данных
+  - заглушка пустого списка
 links:
   - label: GitHub
     iconName: GitHubIcon

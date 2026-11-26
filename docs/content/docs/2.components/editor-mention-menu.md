@@ -2,6 +2,10 @@
 title: EditorMentionMenu
 description: 'Меню упоминаний, которое показывает подсказки пользователей, когда в редакторе вводят символ-триггер.'
 category: editor
+keywords:
+  - меню упоминаний
+  - упомянуть пользователя
+  - подсказки пользователей
 links:
   - label: GitHub
     iconName: GitHubIcon

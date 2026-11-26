@@ -2,6 +2,10 @@
 title: ColorModeSwitch
 description: 'Switch для переключения между светлой и тёмной темой.'
 category: color-mode
+keywords:
+  - тумблер темы
+  - переключатель тёмной темы
+  - ночной режим
 links:
   - label: GitHub
     iconName: GitHubIcon

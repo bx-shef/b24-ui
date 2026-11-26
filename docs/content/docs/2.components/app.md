@@ -2,6 +2,10 @@
 title: App
 description: 'Оборачивает приложение и даёт глобальные настройки и дополнительные возможности.'
 category: layout
+keywords:
+  - обёртка приложения
+  - глобальные настройки
+  - корневой компонент
 links:
   - label: GitHub
     iconName: GitHubIcon

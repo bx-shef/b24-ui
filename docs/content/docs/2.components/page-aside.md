@@ -2,6 +2,10 @@
 title: PageAside
 description: 'Липкая боковая навигация.'
 category: page
+keywords:
+  - боковая навигация страницы
+  - липкое боковое меню
+  - правая колонка
 links:
   - label: GitHub
     iconName: GitHubIcon

@@ -5,6 +5,9 @@ category: element
 keywords:
   - disclosure
   - expand
+  - сворачиваемый блок
+  - спойлер
+  - показать и скрыть
 links:
   - label: GitHub
     iconName: GitHubIcon

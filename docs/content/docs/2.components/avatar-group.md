@@ -6,6 +6,9 @@ keywords:
   - stacked avatars
   - faces
   - members
+  - группа аватаров
+  - участники
+  - стопка аватаров
 links:
   - label: GitHub
     iconName: GitHubIcon

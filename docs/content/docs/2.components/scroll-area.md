@@ -6,6 +6,9 @@ keywords:
   - scrollbar
   - overflow
   - scrolling
+  - область прокрутки
+  - полоса прокрутки
+  - длинные списки
 links:
   - label: GitHub
     iconName: GitHubIcon

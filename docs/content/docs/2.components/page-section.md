@@ -2,6 +2,10 @@
 title: PageSection
 description: 'Адаптивная секция страницы.'
 category: page
+keywords:
+  - секция страницы
+  - раздел лендинга
+  - блок страницы
 links:
   - label: GitHub
     iconName: GitHubIcon

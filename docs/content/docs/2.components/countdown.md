@@ -2,6 +2,10 @@
 title: Countdown
 description: 'Обратный отсчёт с настраиваемыми параметрами.'
 category: element
+keywords:
+  - обратный отсчёт
+  - таймер
+  - отсчёт времени
 links:
   - label: GitHub
     iconName: GitHubIcon

@@ -2,6 +2,10 @@
 title: ChatMessages
 description: 'Список сообщений чата, рассчитанный на интеграцию с Vercel AI SDK.'
 category: chat
+keywords:
+  - список сообщений
+  - лента чата
+  - история переписки
 links:
   - label: GitHub
     iconName: GitHubIcon

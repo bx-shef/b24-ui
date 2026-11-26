@@ -2,6 +2,10 @@
 title: PageLinks
 description: 'Список ссылок для показа на странице.'
 category: page
+keywords:
+  - ссылки страницы
+  - блок ссылок
+  - полезные ссылки
 links:
   - label: GitHub
     iconName: GitHubIcon

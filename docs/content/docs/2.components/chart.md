@@ -9,6 +9,10 @@ keywords:
   - bar chart
   - area chart
   - donut chart
+  - график
+  - диаграмма
+  - линейный график
+  - столбчатая диаграмма
 links:
   - label: GitHub
     iconName: GitHubIcon

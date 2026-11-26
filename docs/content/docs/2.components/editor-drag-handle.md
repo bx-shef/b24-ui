@@ -2,6 +2,10 @@
 title: EditorDragHandle
 description: 'Ручка для перетаскивания, с помощью которой блоки редактора переупорядочивают и выделяют.'
 category: editor
+keywords:
+  - ручка блока
+  - перетаскивание блоков
+  - перенос блока редактора
 links:
   - label: GitHub
     iconName: GitHubIcon

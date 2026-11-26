@@ -2,6 +2,10 @@
 title: ChatPrompt
 description: 'Улучшенный Textarea для отправки запросов в чатах с AI.'
 category: chat
+keywords:
+  - поле запроса
+  - ввод запроса AI
+  - промпт
 links:
   - label: Textarea
     to: /docs/components/textarea/

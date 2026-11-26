@@ -6,6 +6,9 @@ keywords:
   - tickbox
   - check
   - boolean
+  - чекбокс
+  - флажок
+  - галочка
 links:
   - label: GitHub
     iconName: GitHubIcon

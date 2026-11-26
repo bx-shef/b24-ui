@@ -2,6 +2,10 @@
 title: EditorSuggestionMenu
 description: 'Меню слэш-команд, которое показывает подсказки по форматированию и действиям при вводе /.'
 category: editor
+keywords:
+  - слэш-команды
+  - меню подсказок
+  - вставка блоков
 links:
   - label: GitHub
     iconName: GitHubIcon

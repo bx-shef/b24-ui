@@ -6,6 +6,9 @@ keywords:
   - bottom sheet
   - action sheet
   - mobile sheet
+  - шторка
+  - нижняя шторка
+  - выдвижная панель снизу
 links:
   - label: GitHub
     iconName: GitHubIcon

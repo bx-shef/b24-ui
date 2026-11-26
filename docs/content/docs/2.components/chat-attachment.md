@@ -7,6 +7,9 @@ keywords:
   - file
   - upload
   - thumbnail
+  - вложение чата
+  - прикреплённый файл
+  - миниатюра файла
 links:
   - label: GitHub
     iconName: GitHubIcon

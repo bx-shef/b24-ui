@@ -2,6 +2,10 @@
 title: ColorModeButton
 description: 'Кнопка переключения между светлой и тёмной темой.'
 category: color-mode
+keywords:
+  - переключатель темы
+  - кнопка тёмной темы
+  - светлая и тёмная тема
 links:
   - label: GitHub
     iconName: GitHubIcon

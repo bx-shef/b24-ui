@@ -6,6 +6,9 @@ keywords:
   - keyboard shortcut
   - hotkey
   - keybinding
+  - клавиша
+  - горячие клавиши
+  - сочетание клавиш
 links:
   - label: GitHub
     iconName: GitHubIcon

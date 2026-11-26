@@ -6,6 +6,9 @@ keywords:
   - sheet
   - side panel
   - off-canvas
+  - боковая панель
+  - выезжающая панель
+  - панель сбоку
 links:
   - label: GitHub
     iconName: GitHubIcon

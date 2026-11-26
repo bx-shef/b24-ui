@@ -5,6 +5,9 @@ category: form
 keywords:
   - star rating
   - stars
+  - рейтинг
+  - звёзды
+  - оценка пользователя
 links:
   - label: GitHub
     iconName: GitHubIcon

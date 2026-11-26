@@ -2,6 +2,10 @@
 title: ChatPromptSubmit
 description: 'Кнопка отправки запроса в чате: сама учитывает статус.'
 category: chat
+keywords:
+  - отправка запроса
+  - кнопка отправки в чате
+  - остановка ответа
 links:
   - label: Button
     iconName: Bitrix24Icon

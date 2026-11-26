@@ -6,6 +6,9 @@ keywords:
   - number field
   - spinbutton
   - counter
+  - числовое поле
+  - ввод числа
+  - счётчик со стрелками
 links:
   - label: GitHub
     iconName: GitHubIcon

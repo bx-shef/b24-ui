@@ -5,6 +5,9 @@ category: element
 keywords:
   - profile picture
   - user image
+  - аватар
+  - фото профиля
+  - картинка пользователя
 links:
   - label: GitHub
     iconName: GitHubIcon

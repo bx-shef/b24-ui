@@ -6,6 +6,9 @@ keywords:
   - navbar
   - menubar
   - sidebar navigation
+  - навигационное меню
+  - меню навигации
+  - список ссылок
 links:
   - label: GitHub
     iconName: GitHubIcon
