@@ -77,7 +77,7 @@
 - в GitHub Actions — переменная репозитория `YANDEX_METRIKA_ID` (Settings → Secrets and variables → Actions → Variables),
   `docs-image.yml` передаёт её build-arg'ом `YANDEX_METRIKA_ID`; пусто — образ без счётчика;
 - при ручной сборке: `docker build ... --build-arg YANDEX_METRIKA_ID=12345678`;
-- смена номера — пересборка образа (workflow «Docs image», Run workflow). `NUXT_PUBLIC_YANDEX_METRIKA_ID` в `.env` сервера
+- смена номера — пересборка образа (workflow «Docs image», Run workflow — поля для номера там нет, берётся переменная репозитория). `NUXT_PUBLIC_YANDEX_METRIKA_ID` в `.env` сервера
   пробрасывается в контейнер, но действует лишь на страницы, которые рендерит сам сервер, — полагаться на него одного нельзя.
 
 Content-Security-Policy на сайте не задана, добавлять `mc.yandex.ru` не требуется; появится CSP — разрешить

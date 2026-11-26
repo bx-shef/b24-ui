@@ -12,7 +12,7 @@ import {
 const read = (path: string) => readFileSync(resolve(process.cwd(), path), 'utf-8')
 
 describe('docs metrika: counter id', () => {
-  it.each([undefined, null, '', '   ', 'abc', '123abc', '<script>', '1;alert(1)', '12 34', '-5', '1.5', '0', '٣٣', {}, []])(
+  it.each([undefined, null, '', '   ', 'abc', '123abc', '<script>', '1;alert(1)', '12 34', '-5', '1.5', '0', '٣٣', '1e3', '0x1F', '0b11', '12345678abc', 'abc12345678', 1e21, {}, []])(
     'rejects %j (no counter)',
     (raw) => {
       expect(parseMetrikaId(raw)).toBeNull()

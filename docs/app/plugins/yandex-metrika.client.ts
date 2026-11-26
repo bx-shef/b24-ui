@@ -41,17 +41,17 @@ export default defineNuxtPlugin({
     // defer: true — автоматического первого хита нет: отправляем его сами при монтировании,
     // дальше — по переходам SPA, повтор того же адреса пропускаем.
     const router = useRouter()
-    let last = location.href
-    let referer = document.referrer
+    // Якорь (#раздел) — та же страница: клики по оглавлению не считаем просмотрами.
+    const page = (href: string) => href.split('#')[0]
 
     nuxtApp.hook('app:mounted', () => {
       ym(id, 'hit', location.href, { referer: document.referrer })
-      last = location.href
-      referer = location.href
+      let last = location.href
+      let referer = location.href
 
       router.afterEach(() => {
         const url = new URL(router.resolve(router.currentRoute.value.fullPath).href, location.origin).href
-        if (url === last) {
+        if (page(url) === page(last)) {
           return
         }
         ym(id, 'hit', url, { referer })
