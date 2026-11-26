@@ -3949,26 +3949,26 @@
       "summary": "test: предзагрузка содержимого Popover, Tooltip и HoverCard в setup тестов (test/utils/overlays.ts, beforeAll в test/utils/setup.ts и test/nuxt/setup.ts), мок @vueuse/core в useScrollShadow.spec сохраняет оригинал"
     },
     "f3f08c3f53433f6599669b4d049ff48fa66fddeb": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 51,
+      "b24ui_sha": "352f0400c401f6f02591272ef06813174e875fa6",
       "decision": "skip",
       "summary": "nuxt/@nuxt/kit/@nuxt/schema остаются на ^4.6.4: nuxt 4.7.0 ломает docs:generate (голый require(\"process\") в чанке yaml@2.9.0, 156 маршрутов 500); исключение паритета в dep-parity.json"
     },
     "fa032102a4879911a52342cf0b31ed95573fc3aa": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 51,
+      "b24ui_sha": "352f0400c401f6f02591272ef06813174e875fa6",
       "decision": "n/a",
       "summary": "docs(home): ссылки на фреймворки — на главной форка такого блока нет"
     },
     "5044b394e84dde11e3d1eba5a3a13a21617f563a": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 51,
+      "b24ui_sha": "352f0400c401f6f02591272ef06813174e875fa6",
       "decision": "port",
       "summary": "ChatMessage: нижний отступ pb-8 у compact+actions только при непустом блоке actions (src/theme/chat-message.ts)"
     },
     "657697d97a83b8ebb06f05bfa9dc18b276da5d4f": {
-      "pr": "pending-merge",
-      "b24ui_sha": "pending-merge",
+      "pr": 51,
+      "b24ui_sha": "352f0400c401f6f02591272ef06813174e875fa6",
       "decision": "port",
       "summary": "docs: чат «Спросить AI» — индикатор ожидания ChatIndicator (матрица точек) + B24ChatShimmer вместо B24ChatTool"
     }
