@@ -9,7 +9,7 @@ export const DEV_REQUEST_KINDS = ['feature', 'bug', 'question'] as const
 export type DevRequestKind = typeof DEV_REQUEST_KINDS[number]
 
 /** Предел краткого описания запроса, знаков. */
-export const DEV_REQUEST_SUMMARY_MAX = 500
+export const DEV_REQUEST_SUMMARY_MAX = 1500
 
 export function isDevRequestKind(value: unknown): value is DevRequestKind {
   return typeof value === 'string' && (DEV_REQUEST_KINDS as readonly string[]).includes(value)
