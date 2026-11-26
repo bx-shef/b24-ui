@@ -3,6 +3,7 @@ import { dynamicTool, jsonSchema } from 'ai'
 import { z } from 'zod'
 import { tools as mcpToolDefinitions } from '#nuxt-mcp-toolkit/tools.mjs'
 import { truncateToolResult } from './chatGuard'
+import { requestDevelopmentTool } from './chatDevRequest'
 
 /** Инструменты MCP-сервера сайта в виде инструментов AI SDK: чат читает ту же документацию, что и внешние агенты. */
 function mcpToolsToAiTools() {
@@ -35,4 +36,4 @@ function mcpToolsToAiTools() {
   return aiTools
 }
 
-export const chatTools = mcpToolsToAiTools()
+export const chatTools = { ...mcpToolsToAiTools(), request_development: requestDevelopmentTool }
