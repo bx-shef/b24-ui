@@ -721,6 +721,15 @@ material. Reproduce its *intent* in b24ui by editing files under `src/` only.
   first whether pnpm's `auto-install-peers` makes the move a no-op for pnpm
   consumers, which was not measured.
 
+- **`PageColumns`: per-item wrapper and the `item` slot instead of `space-y`**
+  (bitrix24/b24ui#803). Upstream's theme is `columns-… gap-8 space-y-8
+  *:break-inside-avoid-column`; WebKit carries that margin over a column break
+  and leaves a column empty. b24ui wraps each slot node in
+  `<div class="item">` (`pb-8 last:pb-0`) and the theme has `base` and `item`
+  slots. When porting changes to the `page-columns` theme or component, do not
+  bring `space-y-*` or the `*:` child rules back. Guarded by
+  `test/components/PageColumns.spec.ts`.
+
 ## 3. Examples (before → after)
 
 **Prop rename + icon swap** (upstream adds a `trailingIcon`):
