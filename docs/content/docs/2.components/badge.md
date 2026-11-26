@@ -6,6 +6,9 @@ keywords:
   - tag
   - pill
   - label
+  - бейдж
+  - метка статуса
+  - значок категории
 links:
   - label: GitHub
     iconName: GitHubIcon

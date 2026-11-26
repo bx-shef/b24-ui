@@ -2,6 +2,10 @@
 title: Main
 description: 'Основной элемент содержимого, который растягивается на всю высоту окна просмотра.'
 category: layout
+keywords:
+  - основное содержимое
+  - область контента
+  - тело страницы
 links:
   - label: GitHub
     iconName: GitHubIcon

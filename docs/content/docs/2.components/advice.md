@@ -2,6 +2,10 @@
 title: Advice
 description: 'Пара строк текста и аватар'
 category: element
+keywords:
+  - совет
+  - подсказка с аватаром
+  - реплика
 links:
   - label: GitHub
     iconName: GitHubIcon

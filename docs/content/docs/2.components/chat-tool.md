@@ -2,6 +2,10 @@
 title: ChatTool
 description: 'Раскрывающийся раздел: показывает, вызван ли инструмент AI и в каком он состоянии.'
 category: chat
+keywords:
+  - вызов инструмента
+  - инструмент AI
+  - статус инструмента
 links:
   - label: GitHub
     iconName: GitHubIcon

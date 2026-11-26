@@ -2,6 +2,10 @@
 title: PageFeature
 description: 'Компонент для показа основных возможностей вашего приложения.'
 category: page
+keywords:
+  - возможности продукта
+  - преимущества
+  - список фич
 links:
   - label: GitHub
     iconName: GitHubIcon

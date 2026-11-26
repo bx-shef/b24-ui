@@ -4,6 +4,9 @@ description: 'Компонент пошагового мастера, котор
 category: navigation
 keywords:
   - wizard
+  - пошаговый мастер
+  - шаги
+  - мастер настройки
 links:
   - label: GitHub
     iconName: GitHubIcon

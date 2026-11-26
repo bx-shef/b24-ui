@@ -4,6 +4,9 @@ description: 'Небольшое окно с подробностями, кот�
 category: overlay
 keywords:
   - hint
+  - всплывающая подсказка
+  - подсказка при наведении
+  - тултип
 links:
   - label: GitHub
     iconName: GitHubIcon

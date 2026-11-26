@@ -6,6 +6,9 @@ keywords:
   - progress bar
   - loading bar
   - meter
+  - индикатор выполнения
+  - индикатор загрузки
+  - полоса прогресса
 links:
   - label: GitHub
     iconName: GitHubIcon

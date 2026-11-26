@@ -6,6 +6,9 @@ keywords:
   - otp
   - one-time password
   - verification code
+  - ввод PIN-кода
+  - код подтверждения
+  - одноразовый пароль
 links:
   - label: GitHub
     iconName: GitHubIcon

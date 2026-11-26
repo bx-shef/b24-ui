@@ -2,6 +2,10 @@
 title: ContentSurround
 description: 'Пара кнопок «Назад» и «Вперёд» для последовательной навигации по страницам.'
 category: content
+keywords:
+  - предыдущая и следующая страница
+  - кнопки назад и вперёд
+  - соседние страницы
 framework: nuxt
 links:
   - label: GitHub

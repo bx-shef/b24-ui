@@ -7,6 +7,9 @@ keywords:
   - panel group
   - split view
   - pane
+  - разделитель панелей
+  - изменение размера панелей
+  - разделённая область
 links:
   - label: GitHub
     iconName: GitHubIcon

@@ -2,6 +2,10 @@
 title: DashboardPanel
 description: 'Панель дашборда с изменяемым размером.'
 category: dashboard
+keywords:
+  - панель дашборда
+  - изменяемая панель
+  - область дашборда
 links:
   - label: GitHub
     iconName: GitHubIcon

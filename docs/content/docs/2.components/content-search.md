@@ -2,6 +2,10 @@
 title: ContentSearch
 description: 'Готовая командная палитра для вашей документации.'
 category: content
+keywords:
+  - поиск по документации
+  - поиск по контенту
+  - палитра поиска
 framework: nuxt
 links:
   - label: GitHub

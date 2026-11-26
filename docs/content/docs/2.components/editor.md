@@ -2,6 +2,10 @@
 title: Editor
 description: 'Редактор форматированного текста на базе TipTap с поддержкой Markdown, HTML и JSON.'
 category: editor
+keywords:
+  - текстовый редактор
+  - редактор форматированного текста
+  - WYSIWYG
 links:
   - label: GitHub
     iconName: GitHubIcon

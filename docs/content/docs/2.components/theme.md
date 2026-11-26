@@ -2,6 +2,10 @@
 title: Theme
 description: 'Headless-компонент для оформления дочерних компонентов темой.'
 category: layout
+keywords:
+  - тема оформления
+  - стилизация дочерних компонентов
+  - настройка внешнего вида
 links:
   - label: GitHub
     iconName: GitHubIcon

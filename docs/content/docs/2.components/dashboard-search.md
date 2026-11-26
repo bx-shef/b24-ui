@@ -2,6 +2,10 @@
 title: DashboardSearch
 description: 'Готовая командная палитра CommandPalette для вашего дашборда.'
 category: dashboard
+keywords:
+  - поиск по дашборду
+  - командная палитра дашборда
+  - глобальный поиск
 links:
   - label: GitHub
     iconName: GitHubIcon

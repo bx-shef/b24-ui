@@ -2,6 +2,10 @@
 title: DashboardSidebar
 description: 'Боковое меню дашборда с изменяемым размером и возможностью сворачивания.'
 category: dashboard
+keywords:
+  - боковое меню дашборда
+  - левое меню
+  - меню дашборда
 links:
   - label: GitHub
     iconName: GitHubIcon

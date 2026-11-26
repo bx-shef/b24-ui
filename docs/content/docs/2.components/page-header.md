@@ -2,6 +2,10 @@
 title: PageHeader
 description: 'Адаптивная шапка страницы.'
 category: page
+keywords:
+  - заголовок страницы
+  - шапка страницы
+  - заголовок раздела
 links:
   - label: GitHub
     iconName: GitHubIcon

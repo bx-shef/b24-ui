@@ -5,6 +5,9 @@ category: form
 keywords:
   - toggle
   - toggle switch
+  - переключатель
+  - тумблер
+  - включить и выключить
 links:
   - label: GitHub
     iconName: GitHubIcon

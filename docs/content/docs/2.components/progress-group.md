@@ -7,6 +7,9 @@ keywords:
   - segmented progress
   - stacked bar
   - breakdown
+  - группа индикаторов
+  - составной индикатор
+  - сегментированная шкала
 links:
   - label: GitHub
     iconName: GitHubIcon

@@ -5,6 +5,9 @@ category: element
 keywords:
   - notification dot
   - status dot
+  - чип
+  - индикатор-точка
+  - счётчик на значке
 links:
   - label: GitHub
     iconName: GitHubIcon

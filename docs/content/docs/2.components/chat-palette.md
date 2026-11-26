@@ -2,6 +2,10 @@
 title: ChatPalette
 description: 'Интерфейс чата для показа в модальном оверлее.'
 category: chat
+keywords:
+  - палитра чата
+  - чат в модальном окне
+  - AI-чат поверх страницы
 links:
   - label: GitHub
     iconName: GitHubIcon

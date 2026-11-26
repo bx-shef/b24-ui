@@ -7,6 +7,9 @@ keywords:
   - collapse
   - faq
   - expansion panel
+  - аккордеон
+  - сворачиваемые панели
+  - раскрывающийся список вопросов
 links:
   - label: GitHub
     iconName: GitHubIcon

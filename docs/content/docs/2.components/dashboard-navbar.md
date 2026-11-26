@@ -2,6 +2,10 @@
 title: DashboardNavbar
 description: 'Адаптивная навигационная панель для дашбордов.'
 category: dashboard
+keywords:
+  - навигационная панель дашборда
+  - верхняя панель дашборда
+  - шапка дашборда
 links:
   - label: GitHub
     iconName: GitHubIcon

@@ -2,6 +2,10 @@
 title: DashboardResizeHandle
 description: 'Ручка изменения размера для боковых меню и панелей.'
 category: dashboard
+keywords:
+  - ручка изменения размера
+  - граница панели
+  - растягивание панели
 links:
   - label: GitHub
     iconName: GitHubIcon

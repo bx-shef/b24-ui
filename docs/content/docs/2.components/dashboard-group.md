@@ -2,6 +2,10 @@
 title: DashboardGroup
 description: 'Контейнер дашборда с фиксированной раскладкой, управлением состоянием бокового меню и сохранением состояния интерфейса.'
 category: dashboard
+keywords:
+  - группа дашборда
+  - раскладка дашборда
+  - управление боковым меню
 links:
   - label: GitHub
     iconName: GitHubIcon

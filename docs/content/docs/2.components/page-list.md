@@ -2,6 +2,10 @@
 title: PageList
 description: 'Вертикальный список для расположения элементов содержимого друг под другом.'
 category: page
+keywords:
+  - вертикальный список
+  - список элементов страницы
+  - лента элементов
 links:
   - label: GitHub
     iconName: GitHubIcon

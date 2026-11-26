@@ -2,6 +2,10 @@
 title: DashboardSearchButton
 description: 'Готовая кнопка, которая открывает модальное окно DashboardSearch.'
 category: dashboard
+keywords:
+  - кнопка поиска по дашборду
+  - открыть поиск дашборда
+  - поиск в дашборде
 links:
   - label: GitHub
     iconName: GitHubIcon

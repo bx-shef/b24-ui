@@ -6,6 +6,9 @@ keywords:
   - time picker
   - clock
   - hour
+  - ввод времени
+  - поле времени
+  - часы и минуты
 links:
   - label: GitHub
     iconName: GitHubIcon

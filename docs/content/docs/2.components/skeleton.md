@@ -5,6 +5,9 @@ category: element
 keywords:
   - shimmer
   - ghost loader
+  - скелетон
+  - заглушка загрузки
+  - плейсхолдер
 links:
   - label: GitHub
     iconName: GitHubIcon

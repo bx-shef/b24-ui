@@ -6,6 +6,9 @@ keywords:
   - profile
   - person
   - account
+  - пользователь
+  - карточка пользователя
+  - имя и фото
 links:
   - label: GitHub
     iconName: GitHubIcon

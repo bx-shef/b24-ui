@@ -7,6 +7,9 @@ keywords:
   - datetime picker
   - time picker
   - schedule
+  - дата и время
+  - выбор даты и времени
+  - календарь со временем
 links:
   - label: GitHub
     iconName: GitHubIcon

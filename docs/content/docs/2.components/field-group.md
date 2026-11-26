@@ -7,6 +7,9 @@ keywords:
   - toggle group
   - button group
   - input group
+  - группа полей
+  - сегментированный переключатель
+  - объединение кнопок
 links:
   - label: GitHub
     iconName: GitHubIcon

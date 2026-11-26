@@ -2,6 +2,10 @@
 title: LocaleSelect
 description: 'Select для переключения между локалями.'
 category: i18n
+keywords:
+  - выбор языка
+  - переключатель языка
+  - локаль
 links:
   - label: GitHub
     iconName: GitHubIcon

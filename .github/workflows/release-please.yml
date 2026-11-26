@@ -20,6 +20,8 @@ permissions:
 
 jobs:
   release-please:
+    # Пропуск, пока не выбрано имя своего пакета npm (#9). Включить: переменная репозитория NPM_RELEASE=true.
+    if: vars.NPM_RELEASE == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write

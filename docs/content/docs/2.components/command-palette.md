@@ -7,6 +7,9 @@ keywords:
   - cmdk
   - spotlight
   - global search
+  - командная палитра
+  - быстрый поиск
+  - поиск по командам
 links:
   - label: GitHub
     iconName: GitHubIcon
