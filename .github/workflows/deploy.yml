@@ -1,7 +1,6 @@
 name: Deploy to Pages 📰
+# Сайт публикуется своим сервером (deploy/docs, docs-image.yml); GitHub Pages у форка не включены — запуск на каждый push в main падал.
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
 
 # Only the deploy job needs to write Pages or mint an OIDC token. The build job

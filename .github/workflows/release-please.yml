@@ -3,9 +3,8 @@ name: Release Please 🤖
 # Keeps a release PR open against main: version bump + CHANGELOG assembled from
 # conventional-commit subjects. Merging it creates the tag and the GitHub
 # Release, then dispatches the publish workflow against that tag.
+# Своё имя пакета npm ещё не выбрано (#9): автоматический выпуск под именем bitrix24 не запускаем; запуск — вручную.
 on:
-  push:
-    branches: [ main ]
   workflow_dispatch:
 
 # Serialize runs the way ci.yml and deploy.yml already do. A burst of merges
