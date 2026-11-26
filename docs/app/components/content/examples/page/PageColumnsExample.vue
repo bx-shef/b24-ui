@@ -28,11 +28,11 @@ const testimonials = ref([
   },
   {
     user: {
-      name: '员工姓名',
-      description: '客户关系经理',
+      name: 'Имя сотрудника',
+      description: 'Менеджер по работе с клиентами',
       avatar: {
         src: '/b24ui/avatar/employee.png',
-        alt: '员工姓名',
+        alt: 'Имя сотрудника',
         loading: 'lazy' as const
       }
     },
@@ -40,15 +40,15 @@ const testimonials = ref([
   },
   {
     user: {
-      name: '助理姓名',
-      description: '首席执行官',
+      name: 'Имя ассистента',
+      description: 'Генеральный директор',
       avatar: {
         src: '/b24ui/avatar/assistant.png',
-        alt: '助理姓名',
+        alt: 'Имя ассистента',
         loading: 'lazy' as const
       }
     },
-    quote: '借助Bitrix24强大的任务管理、分析和信息共享工具，我们为内部流程的沟通和审批创建了自动化工作流。这极大地减少了手动操作和等待时间，从而显著提升了整体工作效率。'
+    quote: 'Задачи, аналитика и общий доступ к информации в Bitrix24 помогли нам автоматизировать согласования внутри компании. Ручной работы и ожидания стало заметно меньше, а команда работает быстрее.'
   }
 ])
 </script>
