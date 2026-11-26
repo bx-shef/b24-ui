@@ -3951,8 +3951,8 @@
     "f3f08c3f53433f6599669b4d049ff48fa66fddeb": {
       "pr": "pending-merge",
       "b24ui_sha": "pending-merge",
-      "decision": "port",
-      "summary": "nuxt, @nuxt/kit, @nuxt/schema ^4.6.4 → ^4.7.0 (catalog и override в pnpm-workspace.yaml), lock обновлён"
+      "decision": "skip",
+      "summary": "nuxt/@nuxt/kit/@nuxt/schema остаются на ^4.6.4: nuxt 4.7.0 ломает docs:generate (голый require(\"process\") в чанке yaml@2.9.0, 156 маршрутов 500); исключение паритета в dep-parity.json"
     },
     "fa032102a4879911a52342cf0b31ed95573fc3aa": {
       "pr": "pending-merge",
