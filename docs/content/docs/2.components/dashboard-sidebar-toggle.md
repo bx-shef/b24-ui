@@ -2,6 +2,10 @@
 title: DashboardSidebarToggle
 description: 'Кнопка мобильного меню, которая показывает или скрывает навигацию бокового меню.'
 category: dashboard
+keywords:
+  - мобильное меню
+  - кнопка гамбургер
+  - показать боковое меню
 links:
   - label: GitHub
     iconName: GitHubIcon

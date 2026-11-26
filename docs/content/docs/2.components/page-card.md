@@ -2,6 +2,10 @@
 title: PageCard
 description: 'Готовая стилизованная карточка с заголовком, описанием и необязательной ссылкой.'
 category: page
+keywords:
+  - карточка страницы
+  - карточка с заголовком
+  - стилизованная карточка
 links:
   - label: GitHub
     iconName: GitHubIcon

@@ -6,6 +6,9 @@ keywords:
   - footer links
   - sitemap
   - columns
+  - колонки подвала
+  - ссылки подвала
+  - карта сайта
 links:
   - label: GitHub
     iconName: GitHubIcon

@@ -6,6 +6,9 @@ keywords:
   - option list
   - picker
   - selection
+  - список выбора
+  - выбираемый список
+  - список с поиском
 links:
   - label: GitHub
     iconName: GitHubIcon

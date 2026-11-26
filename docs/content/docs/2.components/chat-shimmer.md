@@ -2,6 +2,10 @@
 title: ChatShimmer
 description: 'Добавляет тексту эффект мерцающей загрузки.'
 category: chat
+keywords:
+  - мерцание текста
+  - эффект загрузки текста
+  - анимация ожидания ответа
 links:
   - label: GitHub
     iconName: GitHubIcon

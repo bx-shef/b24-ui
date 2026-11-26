@@ -2,6 +2,10 @@
 title: SidebarLayout
 description: 'Боковое меню для слайдера и вкладки сущности CRM. Выглядит стильно, современно и молодо.'
 category: deprecated
+keywords:
+  - боковое меню слайдера
+  - вкладка сущности CRM
+  - раскладка с боковым меню
 links:
   - label: GitHub
     iconName: GitHubIcon

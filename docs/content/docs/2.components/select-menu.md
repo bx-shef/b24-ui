@@ -6,6 +6,9 @@ keywords:
   - combobox
   - multi select
   - filterable select
+  - выбор с поиском
+  - выбор нескольких значений
+  - список с фильтром
 links:
   - label: GitHub
     iconName: GitHubIcon

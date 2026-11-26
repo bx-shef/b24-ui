@@ -2,6 +2,10 @@
 title: Container
 description: 'Контейнер для центрирования контента и ограничения его максимальной ширины.'
 category: layout
+keywords:
+  - контейнер
+  - центрирование содержимого
+  - максимальная ширина
 links:
   - label: GitHub
     iconName: GitHubIcon

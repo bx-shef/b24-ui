@@ -2,6 +2,10 @@
 title: PageCardGroup
 description: 'Выбираемая группа элементов PageCard. Одиночный или множественный выбор, с группировкой по категориям.'
 category: page
+keywords:
+  - группа карточек
+  - выбираемые карточки
+  - выбор карточки
 links:
   - label: GitHub
     iconName: GitHubIcon

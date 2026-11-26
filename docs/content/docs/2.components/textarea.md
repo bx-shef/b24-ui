@@ -4,6 +4,9 @@ description: 'Многострочное поле ввода текста.'
 category: form
 keywords:
   - multiline
+  - многострочное поле
+  - текстовая область
+  - поле комментария
 links:
   - label: GitHub
     iconName: GitHubIcon

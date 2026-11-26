@@ -6,6 +6,9 @@ keywords:
   - divider
   - hr
   - horizontal rule
+  - разделитель
+  - горизонтальная линия
+  - разделительная черта
 links:
   - label: GitHub
     iconName: GitHubIcon

@@ -2,6 +2,10 @@
 title: Error
 description: 'Готовый компонент ошибки с поддержкой NuxtError.'
 category: layout
+keywords:
+  - страница ошибки
+  - ошибка 404
+  - экран ошибки
 links:
   - label: GitHub
     iconName: GitHubIcon

@@ -5,6 +5,9 @@ category: form
 keywords:
   - multi select
   - checklist
+  - группа чекбоксов
+  - множественный выбор
+  - список флажков
 links:
   - label: GitHub
     iconName: GitHubIcon

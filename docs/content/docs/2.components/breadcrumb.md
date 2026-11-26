@@ -4,6 +4,9 @@ description: 'Навигация «хлебными крошками».'
 category: navigation
 keywords:
   - breadcrumbs
+  - хлебные крошки
+  - путь страницы
+  - навигационная цепочка
 links:
   - label: GitHub
     iconName: GitHubIcon

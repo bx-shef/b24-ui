@@ -6,6 +6,9 @@ keywords:
   - anchor
   - href
   - navigation
+  - ссылка
+  - гиперссылка
+  - переход по адресу
 links:
   - label: GitHub
     iconName: GitHubIcon

@@ -6,6 +6,9 @@ keywords:
   - combobox
   - typeahead
   - autosuggest
+  - автодополнение
+  - поле с подсказками
+  - комбобокс
 links:
   - label: GitHub
     iconName: GitHubIcon

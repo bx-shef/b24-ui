@@ -2,6 +2,10 @@
 title: Range
 description: 'Элемент управления для выбора числового значения в заданном диапазоне.'
 category: form
+keywords:
+  - ползунок
+  - слайдер значений
+  - диапазон значений
 links:
   - label: GitHub
     iconName: GitHubIcon

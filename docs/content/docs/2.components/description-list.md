@@ -2,6 +2,10 @@
 title: DescriptionList
 description: 'Список описаний: таблица из пар «название — значение» для полноты страницы.'
 category: data
+keywords:
+  - список описаний
+  - пары название и значение
+  - свойства объекта
 links:
   - label: GitHub
     iconName: GitHubIcon

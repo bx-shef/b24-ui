@@ -5,6 +5,9 @@ category: data
 keywords:
   - activity feed
   - history
+  - таймлайн
+  - хронология
+  - лента событий
 links:
   - label: GitHub
     iconName: GitHubIcon

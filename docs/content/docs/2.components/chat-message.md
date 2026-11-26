@@ -2,6 +2,10 @@
 title: ChatMessage
 description: 'Сообщение чата с иконкой, аватаром и кнопками действий.'
 category: chat
+keywords:
+  - сообщение чата
+  - реплика чата
+  - пузырь сообщения
 links:
   - label: GitHub
     iconName: GitHubIcon

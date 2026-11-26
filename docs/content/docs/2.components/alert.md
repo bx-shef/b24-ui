@@ -5,6 +5,9 @@ category: element
 keywords:
   - notice
   - inline notification
+  - оповещение
+  - предупреждение
+  - информационное сообщение
 links:
   - label: GitHub
     iconName: GitHubIcon

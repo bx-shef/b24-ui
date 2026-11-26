@@ -2,6 +2,10 @@
 title: PageGrid
 description: 'Адаптивная сетка для гибкой раскладки содержимого.'
 category: page
+keywords:
+  - сетка страницы
+  - адаптивная сетка
+  - раскладка плитками
 links:
   - label: GitHub
     iconName: GitHubIcon

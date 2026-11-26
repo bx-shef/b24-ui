@@ -2,6 +2,10 @@
 title: DashboardToolbar
 description: 'Дополнительная панель действий под основной навигацией дашборда.'
 category: dashboard
+keywords:
+  - панель инструментов дашборда
+  - вторая панель действий
+  - панель фильтров
 links:
   - label: GitHub
     iconName: GitHubIcon

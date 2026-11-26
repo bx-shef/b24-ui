@@ -2,6 +2,10 @@
 title: ColorModeImage
 description: 'Элемент изображения с разными источниками для светлой и тёмной темы.'
 category: color-mode
+keywords:
+  - изображение по теме
+  - картинка для тёмной темы
+  - логотип по теме
 links:
   - label: GitHub
     iconName: GitHubIcon

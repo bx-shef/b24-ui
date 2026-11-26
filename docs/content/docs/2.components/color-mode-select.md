@@ -2,6 +2,10 @@
 title: ColorModeSelect
 description: 'Select для переключения между системной, тёмной и светлой темой.'
 category: color-mode
+keywords:
+  - выбор темы
+  - системная тема
+  - список тем оформления
 links:
   - label: GitHub
     iconName: GitHubIcon

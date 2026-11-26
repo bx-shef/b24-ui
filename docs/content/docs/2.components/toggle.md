@@ -5,6 +5,9 @@ category: element
 keywords:
   - toggle button
   - pressed button
+  - кнопка-переключатель
+  - нажатая кнопка
+  - состояние нажатия
 links:
   - label: GitHub
     iconName: GitHubIcon

@@ -2,6 +2,10 @@
 title: PageBody
 description: 'Контейнер для основного содержимого страницы.'
 category: page
+keywords:
+  - основное содержимое страницы
+  - обёртка контента
+  - контент страницы
 links:
   - label: GitHub
     iconName: GitHubIcon

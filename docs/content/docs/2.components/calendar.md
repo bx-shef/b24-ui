@@ -6,6 +6,9 @@ keywords:
   - date picker
   - datepicker
   - schedule
+  - календарь
+  - выбор даты
+  - диапазон дат
 links:
   - label: GitHub
     iconName: GitHubIcon

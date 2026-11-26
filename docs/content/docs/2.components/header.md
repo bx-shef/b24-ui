@@ -2,6 +2,10 @@
 title: Header
 description: 'Шапка, которая подстраивает структуру и содержимое под размер экрана.'
 category: layout
+keywords:
+  - шапка
+  - верхняя часть сайта
+  - шапка сайта
 links:
   - label: GitHub
     iconName: GitHubIcon

@@ -5,6 +5,9 @@ category: overlay
 keywords:
   - hover card
   - flyout
+  - поповер
+  - всплывающая панель
+  - немодальное окно
 links:
   - label: GitHub
     iconName: GitHubIcon

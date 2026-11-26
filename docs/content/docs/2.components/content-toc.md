@@ -2,6 +2,10 @@
 title: ContentToc
 description: 'Закреплённое оглавление с динамической подсветкой активного раздела.'
 category: content
+keywords:
+  - оглавление
+  - содержание страницы
+  - якорные ссылки
 framework: nuxt
 links:
   - label: GitHub

@@ -5,6 +5,9 @@ category: form
 keywords:
   - field wrapper
   - form label
+  - поле формы
+  - подпись поля
+  - сообщение об ошибке поля
 links:
   - label: GitHub
     iconName: GitHubIcon

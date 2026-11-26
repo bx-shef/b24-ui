@@ -2,6 +2,10 @@
 title: ChatReasoning
 description: 'Раскрывающаяся панель с промежуточными шагами рассуждений AI.'
 category: chat
+keywords:
+  - рассуждения AI
+  - шаги размышления
+  - раскрывающиеся рассуждения
 links:
   - label: GitHub
     iconName: GitHubIcon

@@ -2,6 +2,10 @@
 title: ContentSearchButton
 description: 'Готовая кнопка, которая открывает модальное окно поиска по контенту.'
 category: content
+keywords:
+  - кнопка поиска по документации
+  - открыть поиск
+  - кнопка поиска
 framework: nuxt
 links:
   - label: GitHub

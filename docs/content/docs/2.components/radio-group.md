@@ -5,6 +5,9 @@ category: form
 keywords:
   - radio buttons
   - single choice
+  - группа переключателей
+  - радиокнопки
+  - выбор одного варианта
 links:
   - label: GitHub
     iconName: GitHubIcon

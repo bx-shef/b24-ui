@@ -6,6 +6,9 @@ keywords:
   - dropzone
   - drag and drop
   - file input
+  - загрузка файлов
+  - перетащить файл
+  - выбор файла
 links:
   - label: GitHub
     iconName: GitHubIcon

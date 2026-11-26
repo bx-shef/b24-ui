@@ -2,6 +2,10 @@
 title: EditorEmojiMenu
 description: 'Меню подсказок эмодзи, которое автоматически появляется при вводе двоеточия в редакторе.'
 category: editor
+keywords:
+  - меню эмодзи
+  - выбор смайлов
+  - подсказки эмодзи
 links:
   - label: GitHub
     iconName: GitHubIcon

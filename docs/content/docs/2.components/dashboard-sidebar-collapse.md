@@ -2,6 +2,10 @@
 title: DashboardSidebarCollapse
 description: 'Кнопка для десктопа, которая сворачивает боковое меню и освобождает место для контента.'
 category: dashboard
+keywords:
+  - свернуть боковое меню
+  - кнопка сворачивания меню
+  - компактное боковое меню
 links:
   - label: GitHub
     iconName: GitHubIcon

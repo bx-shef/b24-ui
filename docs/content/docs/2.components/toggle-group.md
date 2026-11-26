@@ -6,6 +6,9 @@ keywords:
   - segmented control
   - button group
   - toggle buttons
+  - группа кнопок-переключателей
+  - сегментированный выбор
+  - панель режимов
 links:
   - label: GitHub
     iconName: GitHubIcon

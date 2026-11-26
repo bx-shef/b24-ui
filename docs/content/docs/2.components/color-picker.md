@@ -6,6 +6,9 @@ keywords:
   - colour picker
   - swatch
   - hex
+  - выбор цвета
+  - палитра цветов
+  - пипетка
 links:
   - label: GitHub
     iconName: GitHubIcon

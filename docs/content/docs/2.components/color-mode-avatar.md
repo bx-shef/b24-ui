@@ -2,6 +2,10 @@
 title: ColorModeAvatar
 description: 'Avatar, который сам меняет изображение в зависимости от текущей темы (светлая или тёмная).'
 category: color-mode
+keywords:
+  - аватар по теме
+  - аватар для тёмной темы
+  - смена изображения по теме
 links:
   - label: GitHub
     iconName: GitHubIcon

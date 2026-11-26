@@ -2,6 +2,10 @@
 title: PageColumns
 description: 'Адаптивная многоколоночная раскладка для размещения содержимого рядом.'
 category: page
+keywords:
+  - колонки страницы
+  - многоколоночная раскладка
+  - колоночная вёрстка
 links:
   - label: GitHub
     iconName: GitHubIcon
