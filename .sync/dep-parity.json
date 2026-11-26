@@ -1,14 +1,14 @@
 {
   "$note": "Upstream's pinned versions for every dependency both trees declare in the SAME section, snapshotted at `cursor`. The sync ports deltas, which is correct per commit and lets a one-time divergence become permanent: once a version is off upstream's line, every later `chore(deps)` batch skips it, because those ports bump only where this fork already matched upstream's pre-image. `prettier` sat at ^3.8.4 against upstream's ^3.9.6 for that reason, through four ported batches, until this file was written. Section-aware on purpose: 18 packages are declared on both sides but in different sections — the whole `@tiptap/*` family is a peer `^3` upstream and a dependency `^3.29.2` here, and `ai` is a peer there and a devDependency here. Those are structural divergences, not drift, and comparing a peer range against a dependency range says nothing. They are absent from this file by construction rather than by omission. Guarded by `test/utils/dep-parity.spec.ts`. Refresh with `node .sync/dep-parity.mjs <path-to-nuxt-ui-mirror> [cursor]`, which preserves `exceptions`.",
-  "cursor": "64207da7971c6c998408c9562f12dcd73c383086",
+  "cursor": "657697d97a83b8ebb06f05bfa9dc18b276da5d4f",
   "manifests": {
     "package.json": {
       "dependencies": {
         "@floating-ui/dom": "^1.8.0",
         "@internationalized/date": "^3.12.4",
         "@internationalized/number": "^3.6.9",
-        "@nuxt/kit": "^4.6.4",
-        "@nuxt/schema": "^4.6.4",
+        "@nuxt/kit": "^4.7.0",
+        "@nuxt/schema": "^4.7.0",
         "@standard-schema/spec": "^1.1.0",
         "@tailwindcss/postcss": "^4.3.5",
         "@tailwindcss/vite": "^4.3.5",
@@ -81,7 +81,7 @@
         "eslint-plugin-better-tailwindcss": "^4.11.0",
         "happy-dom": "^20.14.6",
         "jiti": "^2.7.0",
-        "nuxt": "^4.6.4",
+        "nuxt": "^4.7.0",
         "unbuild": "^3.6.1",
         "vitest": "^5.1.1",
         "vitest-axe": "^0.1.0",
@@ -128,7 +128,7 @@
         "maska": "^3.2.2",
         "minimark": "^0.2.0",
         "motion-v": "^2.13.0",
-        "nuxt": "^4.6.4",
+        "nuxt": "^4.7.0",
         "nuxt-component-meta": "^0.19.0",
         "nuxt-llms": "^0.3.2",
         "nuxt-schema-org": "^7.0.1",
@@ -158,7 +158,7 @@
         "@tanstack/charts": "^1.5.0",
         "@tiptap/extension-emoji": "^3.33.0",
         "@tiptap/extension-text-align": "^3.33.0",
-        "nuxt": "^4.6.4",
+        "nuxt": "^4.7.0",
         "tailwindcss": "^4.3.5",
         "zod": "^4.6.7"
       },
@@ -187,10 +187,17 @@
   },
   "exceptions": {
     "docs/package.json": {
+      "nuxt": "Held at ^4.6.4 (catalog and the @nuxt/kit override in pnpm-workspace.yaml), not upstream's ^4.7.0: nuxt 4.7.0 breaks docs:generate — a bare require(\"process\") in the bundled yaml@2.9.0 prerender chunk (no __require shim) gives `require is not defined in ES module scope` and 156 routes return 500. Bisected: 8f68c0ea on 4.6.4 green, the same tree with only the nuxt bump red. Bring back to upstream's range once fixed (re-test with docs:generate). Tracked in bx-shef/b24-ui#50.",
       "nuxt-schema-org": "Held at ^6.2.1. Any bump drags nuxt-site-config 4.0.8 -> 4.2.3, which calls useModuleLogger and setupNitroRuntimeCompatibility; neither exists in @nuxt/kit@4.5.2, the newest published 4.x. Fails in dev:prepare, not at install. Upstream carries the same defect latently — their CI does not build the docs site. Revisit when @nuxt/kit exports both."
     },
     "package.json": {
-      "happy-dom": "Pinned to exactly 20.12.0, not upstream's ^20.14.0, and not a caret of our own. Every version from 20.12.1 onward turns 1450 tests and 136 snapshots red with `TypeError: 'defineProperty' on proxy: trap returned falsish for property '__v_skip'` — Vue's markRaw against a happy-dom proxy, raised from reka's Presence watcher. Bisected: 20.12.0 green, 20.12.1 red, 20.12.2 red, 20.13.0 red, 20.13.1 red, 20.14.0 red, with every other bump in nuxt/ui@ebd4adfc applied. The range was `^20.12.0` before this and worked only because the lockfile happened to hold 20.12.0 — any fresh resolution would have taken 20.14.0, so this pin closes a landmine rather than adding a restriction. Upstream ships ^20.14.0; whatever differs is on our side (reka or vitest environment) and is not fixable inside a deps port. Re-measured at nuxt/ui@69b075aa, where upstream moved to ^20.14.5: still the same TypeError, so the pin stays. Bisection to date — 20.12.0 green; 20.12.1, 20.12.2, 20.13.0, 20.13.1, 20.14.0 and 20.14.5 all red. Revisit the same way on the next deps port: unpin, install, run test/components/Accordion.spec.ts."
+      "@nuxt/kit": "Held at ^4.6.4 (catalog and the @nuxt/kit override in pnpm-workspace.yaml), not upstream's ^4.7.0: nuxt 4.7.0 breaks docs:generate — a bare require(\"process\") in the bundled yaml@2.9.0 prerender chunk (no __require shim) gives `require is not defined in ES module scope` and 156 routes return 500. Bisected: 8f68c0ea on 4.6.4 green, the same tree with only the nuxt bump red. Bring back to upstream's range once fixed (re-test with docs:generate). Tracked in bx-shef/b24-ui#50.",
+      "@nuxt/schema": "Held at ^4.6.4 (catalog and the @nuxt/kit override in pnpm-workspace.yaml), not upstream's ^4.7.0: nuxt 4.7.0 breaks docs:generate — a bare require(\"process\") in the bundled yaml@2.9.0 prerender chunk (no __require shim) gives `require is not defined in ES module scope` and 156 routes return 500. Bisected: 8f68c0ea on 4.6.4 green, the same tree with only the nuxt bump red. Bring back to upstream's range once fixed (re-test with docs:generate). Tracked in bx-shef/b24-ui#50.",
+      "happy-dom": "Pinned to exactly 20.12.0, not upstream's ^20.14.0, and not a caret of our own. Every version from 20.12.1 onward turns 1450 tests and 136 snapshots red with `TypeError: 'defineProperty' on proxy: trap returned falsish for property '__v_skip'` — Vue's markRaw against a happy-dom proxy, raised from reka's Presence watcher. Bisected: 20.12.0 green, 20.12.1 red, 20.12.2 red, 20.13.0 red, 20.13.1 red, 20.14.0 red, with every other bump in nuxt/ui@ebd4adfc applied. The range was `^20.12.0` before this and worked only because the lockfile happened to hold 20.12.0 — any fresh resolution would have taken 20.14.0, so this pin closes a landmine rather than adding a restriction. Upstream ships ^20.14.0; whatever differs is on our side (reka or vitest environment) and is not fixable inside a deps port. Re-measured at nuxt/ui@69b075aa, where upstream moved to ^20.14.5: still the same TypeError, so the pin stays. Bisection to date — 20.12.0 green; 20.12.1, 20.12.2, 20.13.0, 20.13.1, 20.14.0 and 20.14.5 all red. Revisit the same way on the next deps port: unpin, install, run test/components/Accordion.spec.ts.",
+      "nuxt": "Held at ^4.6.4 (catalog and the @nuxt/kit override in pnpm-workspace.yaml), not upstream's ^4.7.0: nuxt 4.7.0 breaks docs:generate — a bare require(\"process\") in the bundled yaml@2.9.0 prerender chunk (no __require shim) gives `require is not defined in ES module scope` and 156 routes return 500. Bisected: 8f68c0ea on 4.6.4 green, the same tree with only the nuxt bump red. Bring back to upstream's range once fixed (re-test with docs:generate). Tracked in bx-shef/b24-ui#50."
+    },
+    "playgrounds/nuxt/package.json": {
+      "nuxt": "Held at ^4.6.4 (catalog and the @nuxt/kit override in pnpm-workspace.yaml), not upstream's ^4.7.0: nuxt 4.7.0 breaks docs:generate — a bare require(\"process\") in the bundled yaml@2.9.0 prerender chunk (no __require shim) gives `require is not defined in ES module scope` and 156 routes return 500. Bisected: 8f68c0ea on 4.6.4 green, the same tree with only the nuxt bump red. Bring back to upstream's range once fixed (re-test with docs:generate). Tracked in bx-shef/b24-ui#50."
     }
   }
 }

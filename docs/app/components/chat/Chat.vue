@@ -11,7 +11,6 @@ import AiStarsIcon from '@bitrix24/b24icons-vue/outline/AiStarsIcon'
 import SearchIcon from '@bitrix24/b24icons-vue/outline/SearchIcon'
 import FileIcon from '@bitrix24/b24icons-vue/outline/FileIcon'
 import TrashcanIcon from '@bitrix24/b24icons-vue/outline/TrashcanIcon'
-import CopilotAi2Icon from '@bitrix24/b24icons-vue/main/CopilotAi2Icon'
 import type { DocsChatMessage } from '~~/server/api/ai.post'
 import { devRequestFromPart } from '~~/shared/devRequest'
 
@@ -328,7 +327,11 @@ function clearMessages() {
         </template>
 
         <template #indicator>
-          <B24ChatTool :icon="CopilotAi2Icon" text="Думаю…" streaming />
+          <div class="flex items-center gap-1.5">
+            <ChatIndicator />
+
+            <B24ChatShimmer text="Думаю…" class="text-sm" />
+          </div>
         </template>
 
         <template #part="{ part, message, streaming }">
