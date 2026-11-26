@@ -339,7 +339,10 @@ export default defineNuxtConfig({
       siteUrl: prodUrl,
       baseUrl,
       canonicalUrl,
-      gitUrl
+      gitUrl,
+      // Яндекс Метрика: только цифры (NUXT_PUBLIC_YANDEX_METRIKA_ID), пусто — без счётчика.
+      // Страницы предрендерены: значение вшивается при сборке (deploy/docs/README.md, «Счётчик Яндекс Метрики»).
+      yandexMetrikaId: ''
     }
   },
 

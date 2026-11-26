@@ -33,9 +33,12 @@ ARG SITE_URL=https://docs.example.com
 ARG CANONICAL_URL=
 ARG BASE_URL=
 ARG GIT_URL=https://github.com/bx-shef/b24-ui
+# Номер счётчика Яндекс Метрики (только цифры); пусто — без счётчика. Не секрет: он виден в коде страниц.
+ARG YANDEX_METRIKA_ID=
 ENV NUXT_PUBLIC_SITE_URL=${SITE_URL} \
     NUXT_PUBLIC_BASE_URL=${BASE_URL} \
-    NUXT_PUBLIC_GIT_URL=${GIT_URL}
+    NUXT_PUBLIC_GIT_URL=${GIT_URL} \
+    NUXT_PUBLIC_YANDEX_METRIKA_ID=${YANDEX_METRIKA_ID}
 # canonical по умолчанию равен адресу сайта
 RUN export NUXT_PUBLIC_CANONICAL_URL="${CANONICAL_URL:-$SITE_URL}" \
  && pnpm run dev:prepare \
