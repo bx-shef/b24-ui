@@ -3,10 +3,9 @@ import { resolve } from 'node:path'
 import { describe, it, expect, vi } from 'vitest'
 import {
   METRIKA_INIT_OPTIONS,
-  TERM_MAX_LENGTH,
-  buildGoalParams,
   createTracker,
-  parseMetrikaId
+  parseMetrikaId,
+  shouldLoadMetrika
 } from '../../docs/app/utils/yandex-metrika'
 
 const read = (path: string) => readFileSync(resolve(process.cwd(), path), 'utf-8')
@@ -30,34 +29,61 @@ describe('docs metrika: counter id', () => {
   })
 })
 
+describe('docs metrika: consent', () => {
+  it('loads tag.js only with an id and granted consent', () => {
+    expect(shouldLoadMetrika(12345, true)).toBe(true)
+    expect(shouldLoadMetrika(12345, false)).toBe(false)
+    expect(shouldLoadMetrika(null, true)).toBe(false)
+    expect(shouldLoadMetrika(null, false)).toBe(false)
+  })
+})
+
 describe('docs metrika: track', () => {
   it('calls nothing without a counter', () => {
     const ym = vi.fn()
-    createTracker(null, () => ym)('Search Performed', { term: 'x' })
+    createTracker(null, () => ym, () => true)('Theme Reset')
+    expect(ym).not.toHaveBeenCalled()
+  })
+
+  it('calls nothing without consent (no queue)', () => {
+    const ym = vi.fn()
+    let granted = false
+    const track = createTracker(12345, () => ym, () => granted)
+    track('Theme Changed', { setting: 'radius' })
+    expect(ym).not.toHaveBeenCalled()
+    granted = true
+    track('Theme Reset')
+    expect(ym).toHaveBeenCalledTimes(1)
+    expect(ym).toHaveBeenCalledWith(12345, 'reachGoal', 'Theme Reset')
+  })
+
+  it('does not call ym by default (consent unknown)', () => {
+    const ym = vi.fn()
+    createTracker(1, () => ym)('Theme Reset')
     expect(ym).not.toHaveBeenCalled()
   })
 
   it('does not fail while ym is not loaded', () => {
-    expect(() => createTracker(1, () => undefined)('Theme Reset')).not.toThrow()
+    expect(() => createTracker(1, () => undefined, () => true)('Theme Reset')).not.toThrow()
   })
 
   it('sends reachGoal with params', () => {
     const ym = vi.fn()
-    createTracker(12345678, () => ym)('Theme Changed', { setting: 'radius', value: 2 })
+    createTracker(12345678, () => ym, () => true)('Theme Changed', { setting: 'radius', value: 2 })
     expect(ym).toHaveBeenCalledWith(12345678, 'reachGoal', 'Theme Changed', { setting: 'radius', value: 2 })
   })
 
   it('sends a goal without params as is', () => {
     const ym = vi.fn()
-    createTracker(1, () => ym)('AI Chat Message Sent')
+    createTracker(1, () => ym, () => true)('AI Chat Message Sent')
     expect(ym).toHaveBeenCalledWith(1, 'reachGoal', 'AI Chat Message Sent')
   })
 
-  it('cuts the search term to 100 characters, by code points', () => {
-    expect((buildGoalParams({ term: 'a'.repeat(500) })!.term as string).length).toBe(TERM_MAX_LENGTH)
-    const emoji = '😀'.repeat(150)
-    expect(Array.from(buildGoalParams({ term: emoji })!.term as string)).toHaveLength(TERM_MAX_LENGTH)
-    expect(buildGoalParams({ term: 'кнопка' })).toEqual({ term: 'кнопка' })
+  it('search sends only the length, not the text', () => {
+    const search = read('docs/app/components/search/Search.vue')
+    expect(search).toContain(`track('Search Performed', { length:`)
+    expect(search).not.toMatch(/track\('Search Performed', \{ term/)
+    expect(read('docs/app/utils/yandex-metrika.ts')).not.toContain('term')
   })
 })
 
@@ -75,5 +101,13 @@ describe('docs metrika: wiring', () => {
     expect(plugin).toContain('parseMetrikaId(')
     expect(plugin).toContain(`'init'`)
     expect(read('docs/app/utils/yandex-metrika.ts')).toContain('webvisor: false')
+  })
+
+  it('plugin starts the counter only through the consent banner', () => {
+    const plugin = read('docs/app/plugins/yandex-metrika.client.ts')
+    expect(plugin).toContain('shouldLoadMetrika(')
+    expect(plugin).toContain('onAnalytics(start)')
+    expect(plugin).toContain('cookie-consent.js')
+    expect(read('docs/public/cookie-consent.js')).toContain('BxConsent')
   })
 })

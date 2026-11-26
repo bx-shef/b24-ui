@@ -38,7 +38,7 @@ watch(open, (value) => {
 
 watchDebounced(searchTerm, (term) => {
   if (term) {
-    track('Search Performed', { term })
+    track('Search Performed', { length: Array.from(term).length })
   }
 }, { debounce: 500 })
 </script>

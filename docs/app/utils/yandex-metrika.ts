@@ -4,8 +4,9 @@
 
 export const METRIKA_TAG_URL = 'https://mc.yandex.ru/metrika/tag.js'
 
-/** Предел длины поискового запроса в событии, знаков. */
-export const TERM_MAX_LENGTH = 100
+/** Адрес политики и подпись сервиса для баннера согласия (`cookie-consent.js`). */
+export const CONSENT_POLICY_URL = 'https://offer.bx-shef.by/privacy'
+export const CONSENT_SERVICES = 'Яндекс Метрику (статистика посещений)'
 
 /** Вебвизор выключен: он записывает ввод в поля (поиск, чат). */
 export const METRIKA_INIT_OPTIONS = {
@@ -36,31 +37,29 @@ export function parseMetrikaId(raw: unknown): number | null {
   return Number.isSafeInteger(id) && id > 0 ? id : null
 }
 
-/** Параметры цели: поисковый запрос обрезается до {@link TERM_MAX_LENGTH} знаков (по символам, не по байтам). */
-export function buildGoalParams(props?: TrackProps): TrackProps | undefined {
-  if (!props) {
-    return undefined
-  }
-  const params: TrackProps = { ...props }
-  if (typeof params.term === 'string') {
-    params.term = Array.from(params.term).slice(0, TERM_MAX_LENGTH).join('')
-  }
-  return params
+/**
+ * Грузить ли `tag.js` и инициализировать Метрику: есть корректный номер счётчика и дано согласие на аналитику.
+ * Без согласия (не выбрано или отказ) — нет.
+ */
+export function shouldLoadMetrika(id: number | null, consentGranted: boolean): boolean {
+  return id !== null && consentGranted === true
 }
 
-/** `track(name, props)` → `ym(id, 'reachGoal', name, params)`; без счётчика или без `ym` — ничего. */
-export function createTracker(id: number | null, getYm: () => Ym | undefined) {
+/**
+ * `track(name, props)` → `ym(id, 'reachGoal', name, props)`; без счётчика, без согласия или без `ym` — ничего
+ * (очереди нет: события до согласия не копятся).
+ */
+export function createTracker(id: number | null, getYm: () => Ym | undefined, isGranted: () => boolean = () => false) {
   return function track(name: string, props?: TrackProps): void {
-    if (id === null) {
+    if (id === null || !isGranted()) {
       return
     }
     const ym = getYm()
     if (typeof ym !== 'function') {
       return
     }
-    const params = buildGoalParams(props)
-    if (params) {
-      ym(id, 'reachGoal', name, params)
+    if (props) {
+      ym(id, 'reachGoal', name, { ...props })
     } else {
       ym(id, 'reachGoal', name)
     }
