@@ -1,6 +1,7 @@
 name: Deploy to Pages 📰
-# Сайт публикуется своим сервером (deploy/docs, docs-image.yml); GitHub Pages у форка не включены — запуск на каждый push в main падал.
 on:
+  push:
+    branches: [ main ]
   workflow_dispatch:
 
 # Only the deploy job needs to write Pages or mint an OIDC token. The build job
@@ -15,6 +16,8 @@ concurrency:
 
 jobs:
   build:
+    # Пропуск, пока у форка не включены GitHub Pages (сайт — свой сервер, deploy/docs). Включить: переменная репозитория PAGES_ENABLED=true.
+    if: vars.PAGES_ENABLED == 'true'
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read
