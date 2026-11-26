@@ -43,11 +43,11 @@ const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.pageColumn
 <template>
   <Primitive :as="props.as" :class="b24ui.base({ class: [props.b24ui?.base, props.class] })">
     <div
-      v-for="(node, index) in flattenSlot(slots.default?.())"
-      :key="node.key ?? index"
+      v-for="item in flattenSlot(slots.default?.())"
+      :key="item.key"
       :class="b24ui.item({ class: props.b24ui?.item })"
     >
-      <component :is="node" />
+      <component :is="item.node" />
     </div>
   </Primitive>
 </template>
