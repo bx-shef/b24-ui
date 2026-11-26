@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
 import { describe, it, expect } from 'vitest'
 import { devRequestInputSchema, devRequestResult, requestDevelopmentTool } from '../../docs/server/utils/chatDevRequest'
-import { DEV_REQUEST_URL, DEV_REQUEST_SUMMARY_MAX } from '../../docs/shared/devRequest'
+import { DEV_REQUEST_URL, DEV_REQUEST_SUMMARY_MAX, devRequestFromPart } from '../../docs/shared/devRequest'
 
 const read = (path: string) => readFileSync(resolve(process.cwd(), path), 'utf-8')
 
@@ -68,5 +68,26 @@ describe('docs chat: запрос на разработку', () => {
     // адрес из ответа сервера в карточку не передаётся
     expect(chat).toMatch(/<ChatDevRequest/)
     expect(chat).not.toMatch(/output\.url|:url=/)
+  })
+})
+
+describe('docs chat: карточка запроса из части сообщения', () => {
+  const output = { url: 'https://evil.example', summary: 'Нужен компонент X', kind: 'feature' }
+
+  it('готовый результат request_development — карточка без адреса', () => {
+    expect(devRequestFromPart('request_development', { state: 'output-available', output })).toEqual({ summary: 'Нужен компонент X', kind: 'feature' })
+  })
+
+  it.each(['input-streaming', 'input-available', 'output-error'])('состояние %s — карточки нет', (state) => {
+    expect(devRequestFromPart('request_development', { state, output })).toBeNull()
+  })
+
+  it('другой инструмент или пустой summary — карточки нет', () => {
+    expect(devRequestFromPart('b24-ui-search-components', { state: 'output-available', output })).toBeNull()
+    expect(devRequestFromPart('request_development', { state: 'output-available', output: { summary: '   ', kind: 'bug' } })).toBeNull()
+  })
+
+  it('неизвестный kind сводится к question', () => {
+    expect(devRequestFromPart('request_development', { state: 'output-available', output: { summary: 'x', kind: '<b>' } })?.kind).toBe('question')
   })
 })

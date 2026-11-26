@@ -13,6 +13,7 @@ import FileIcon from '@bitrix24/b24icons-vue/outline/FileIcon'
 import TrashcanIcon from '@bitrix24/b24icons-vue/outline/TrashcanIcon'
 import CopilotAi2Icon from '@bitrix24/b24icons-vue/main/CopilotAi2Icon'
 import type { DocsChatMessage } from '~~/server/api/ai.post'
+import { devRequestFromPart } from '~~/shared/devRequest'
 
 const input = ref('')
 
@@ -169,7 +170,7 @@ function getToolMessage(state: ToolState, toolName: string, input: Record<string
     'b24-ui-get-migration-guide': `${read}: руководство по миграции`,
     'b24-ui-list-examples': `${search}: примеры`,
     'b24-ui-get-example': `${read}: пример ${upperName(input.exampleName || '')}`,
-    'request_development': done ? 'Запрос на разработку подготовлен' : 'Готовлю запрос на разработку…'
+    'request_development': done ? 'Запрос на разработку подготовлен' : state === 'output-error' ? 'Не удалось подготовить запрос на разработку' : 'Готовлю запрос на разработку…'
   }[toolName] || `${search}: ${toolName}`
 }
 
@@ -198,15 +199,7 @@ function getToolIcon(part: ToolPart): IconComponent {
 
 // Результат `request_development` рисуется карточкой. Адрес формы в неё не передаётся: он константа окна.
 function devRequestOf(part: ToolPart) {
-  if (getToolName(part) !== 'request_development' || part.state !== 'output-available') {
-    return null
-  }
-  const output = part.output as { summary?: unknown, kind?: unknown } | undefined
-  if (typeof output?.summary !== 'string' || !output.summary.trim()) {
-    return null
-  }
-
-  return { summary: output.summary, kind: typeof output.kind === 'string' ? output.kind : '' }
+  return devRequestFromPart(getToolName(part), part)
 }
 
 const busy = computed(() => status.value === 'submitted' || status.value === 'streaming')
