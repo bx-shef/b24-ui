@@ -1,3 +1,4 @@
+import { nextTick } from 'vue'
 import { CONSENT_POLICY_URL, CONSENT_SERVICES, METRIKA_INIT_OPTIONS, METRIKA_TAG_URL, parseMetrikaId, shouldLoadMetrika } from '../utils/yandex-metrika'
 
 type YmFn = ((...args: unknown[]) => void) & { a?: unknown[][], l?: number }
@@ -32,7 +33,11 @@ export default defineNuxtPlugin({
     const baseUrl = config.app.baseURL.replace(/\/$/, '')
     const ym = (...args: unknown[]) => window.ym?.(...args)
     // Якорь (#раздел) — та же страница: клики по оглавлению не считаем просмотрами.
-    const page = (href: string) => href.split('#')[0]
+    // Адрес страницы без query и #якоря: в Метрику не уходят параметры адреса, якорь — та же страница.
+    const page = (href: string) => {
+      const u = new URL(href, location.origin)
+      return u.origin + u.pathname
+    }
 
     let started = false
     function start() {
@@ -59,17 +64,23 @@ export default defineNuxtPlugin({
 
       // defer: true — автоматического первого хита нет: отправляем его сами, дальше — по переходам SPA.
       router.isReady().then(() => {
-        ym(id, 'hit', location.href, { referer: document.referrer })
-        let last = location.href
-        let referer = location.href
+        let last = page(location.href)
+        let referer = last
+        ym(id, 'hit', last, { referer: document.referrer, title: document.title })
 
         router.afterEach(() => {
-          const url = new URL(router.resolve(router.currentRoute.value.fullPath).href, location.origin).href
-          if (page(url) === page(last)) {
+          const url = page(router.resolve(router.currentRoute.value.fullPath).href)
+          if (url === last) {
             return
           }
-          ym(id, 'hit', url, { referer })
-          referer = url
+          // Заголовок новой страницы появляется после рендера; согласие могли отозвать в другой вкладке.
+          nextTick(() => {
+            if (window.BxConsent?.granted() !== true) {
+              return
+            }
+            ym(id, 'hit', url, { referer, title: document.title })
+            referer = url
+          })
           last = url
         })
       })
