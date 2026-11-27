@@ -248,7 +248,7 @@ const urlSearchParams = computed(() => {
           <div
             v-else-if="resolvedComponent"
             ref="componentContainer"
-            class="flex justify-center p-4 bg-grid-example"
+            class="flex justify-center p-4 bg-grid-example vsk-preview base-mode"
             :class="[props.class, { 'dark:bg-gray-950/50 rounded-t-md': props.elevated }]"
           >
             <component :is="resolvedComponent" v-bind="{ ...componentProps, ...optionsValues }" />
