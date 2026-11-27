@@ -288,9 +288,10 @@ export default defineNuxtConfig({
         lang: 'ru'
       },
       // Класс темы до первой отрисовки (без вспышки): та же логика, что у useColorMode
-      // (ключ vueuse-color-scheme; нет выбора — системная тема)
+      // (ключ vueuse-color-scheme; нет выбора — системная тема). Сохранённый раньше edge-dark
+      // (прежняя тема по умолчанию) переписывается в dark до инициализации useColorMode.
       script: [{
-        innerHTML: '(function(){try{var s=localStorage.getItem("vueuse-color-scheme");var m=s&&s!=="auto"?s:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"edge-light");if(m==="light")m="edge-light";document.documentElement.classList.add(m)}catch(e){document.documentElement.classList.add("edge-light")}})()',
+        innerHTML: '(function(){try{var k="vueuse-color-scheme",s=localStorage.getItem(k);if(s==="edge-dark"){s="dark";localStorage.setItem(k,s)}var m=s&&s!=="auto"?s:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"edge-light");if(m==="light")m="edge-light";document.documentElement.classList.add(m)}catch(e){document.documentElement.classList.add("edge-light")}})()',
         tagPosition: 'head'
       }]
     },
