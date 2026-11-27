@@ -196,6 +196,12 @@ None of these is in version control, and none fails loudly.
    - *Repository*: `b24-ui`
    - *Workflow filename*: `npm-publish.yml` (только имя файла)
    - *Environment name*: `npm-publish`
+
+   Токен публикации есть только у job `publish` (`id-token: write`, окружение
+   `npm-publish`): он без checkout и без `pnpm install` скачивает готовый
+   tarball из job `build` (там `contents: read`, без `id-token`) и выполняет
+   `npm publish --provenance`. Поля Trusted Publisher от этого не меняются:
+   workflow и окружение те же.
    - *Allowed actions*: отметить `npm publish`, `npm dist-tag` не отмечать.
 
    Ниже, в *Publishing access* — *Require two-factor authentication and
@@ -295,7 +301,7 @@ If CI is red for something that is not a revertable commit — a flaky suite, a
 broken runner image, a playground build that only fails in `npm-publish.yml` —
 there is nothing to revert, and **there is no bypass in the pipeline**. Say it
 plainly, because the alternatives look tempting at 2am and none of them work:
-`process` declares `needs: await-ci`, so a red CI skips the publishing job
+`build` declares `needs: await-ci` (and `publish` needs `build`), so a red CI skips the publishing job
 entirely — it never queues, which means the `npm-publish` environment never asks
 anyone to approve anything. Adding required reviewers there does not open a door;
 it only ever closes one.
@@ -309,7 +315,8 @@ If neither is acceptable — a crash-class bug, CI broken for reasons nobody can
 fix quickly — the break-glass is a maintainer publishing by hand from a machine
 logged in to npm, running the same sequence `npm-publish.yml` does:
 `pnpm install --frozen-lockfile`, `pnpm run dev:prepare`, `pnpm build`, then
-`pnpm publish --no-git-checks`. `dev:prepare` is not optional — it emits
+`pnpm publish --no-git-checks` (CI does the same in `build` with `pnpm pack`,
+then `publish` uploads that tarball with `npm publish`). `dev:prepare` is not optional — it emits
 `.nuxt/b24ui.static.css`, which `package.json` lists in `files` — and without
 `--no-git-checks` the publish is refused outright from a detached checkout. It
 is deliberately ugly.

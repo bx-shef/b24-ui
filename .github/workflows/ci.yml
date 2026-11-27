@@ -62,6 +62,13 @@ jobs:
       - name: Assert every workflow install is frozen
         run: .github/scripts/assert-lockfile-frozen.py
 
+      # The job holding `id-token: write` in npm-publish.yml must run no
+      # repository or dependency code (no checkout, install, build): install
+      # scripts could otherwise mint an OIDC token and publish through the
+      # Trusted Publisher.
+      - name: Assert the publishing job runs no repository code
+        run: .github/scripts/assert-publish-split.py .github/workflows/npm-publish.yml
+
       # The workflow scripts have no other coverage: they run on a schedule and
       # hold `issues: write`. Several of the bugs three rounds of review found in
       # them shared one shape — a failure inside an `if` condition, which bash
