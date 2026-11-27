@@ -448,6 +448,14 @@ export default defineNuxtConfig({
       // Fix: "Blocked request. This host is not allowed" when using tunnels like ngrok
       allowedHosts: [...extraAllowedHosts]
     },
+    // `@nuxtjs/mdc` (parseMarkdown, MDCRenderer) is part of the SSR bundle, and Vite
+    // inlines the CommonJS `yaml` it imports. Since Nuxt 4.7 the inlined copy keeps a
+    // bare `require("process")` with no `__require` shim, so the prerender fails with
+    // `require is not defined in ES module scope` (156 routes, 500). Leaving `yaml`
+    // external lets Nitro bundle it with its own CommonJS handling instead.
+    ssr: {
+      external: ['yaml']
+    },
     optimizeDeps: {
       include: [
         'tailwindcss/colors',
