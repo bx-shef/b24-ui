@@ -25,8 +25,9 @@
 с двумя адресами. Поэтому в `docker-compose.prod.yml` этих переменных нет, а адрес задаётся при сборке:
 
 - `SITE_URL` — build-arg образа (`https://домен`, без слэша на конце); `CANONICAL_URL` по умолчанию равен ему;
-- в GitHub Actions — переменная репозитория `DOCS_SITE_URL` (Settings → Secrets and variables → Actions →
-  Variables) или поле `site_url` при ручном запуске workflow; пусто — плейсхолдер `https://docs.example.com`;
+- в GitHub Actions — `DOCS_SITE_URL` (Settings → Secrets and variables → Actions → вкладка Variables или
+  Secrets; если заданы обе, берётся переменная) или поле `site_url` при ручном запуске workflow; пусто —
+  плейсхолдер `https://docs.example.com`, образ собирается, но не публикуется;
 - `NUXT_PUBLIC_BASE_URL` (подкаталог) в образе пуст: сайт стоит в корне домена, как нужно за `nginx-proxy`.
 
 Сменили домен — задайте `DOCS_SITE_URL`, запустите workflow «Docs image» (Run workflow), на сервере
@@ -87,7 +88,7 @@
 **Номер вшивается при сборке, не при запуске.** Страницы предрендерены, и их `runtimeConfig` остаётся с номером сборки
 (как адрес сайта, «Адреса сайта»). Поэтому:
 
-- в GitHub Actions — переменная репозитория `YANDEX_METRIKA_ID` (Settings → Secrets and variables → Actions → Variables),
+- в GitHub Actions — `YANDEX_METRIKA_ID` (Settings → Secrets and variables → Actions → вкладка Variables или Secrets),
   `docs-image.yml` передаёт её build-arg'ом `YANDEX_METRIKA_ID`; пусто — образ без счётчика;
 - при ручной сборке: `docker build ... --build-arg YANDEX_METRIKA_ID=12345678`;
 - смена номера — пересборка образа (workflow «Docs image», Run workflow — поля для номера там нет, берётся переменная репозитория). `NUXT_PUBLIC_YANDEX_METRIKA_ID` в `.env` сервера
