@@ -18,7 +18,25 @@ import CloseChatIcon from '@bitrix24/b24icons-vue/outline/CloseChatIcon'
 
 const open = ref(true)
 
-const colorMode = useColorMode()
+// Тема примера локальная: общий выбор посетителя (colorMode.preference, localStorage сайта) не пишем.
+// На странице примера её ведёт страница (exampleThemeKey), в документации — класс на <html> без хранилища.
+const appConfig = useAppConfig()
+const pageTheme = inject(exampleThemeKey, null)
+const currentTheme = ref<'light' | 'dark'>('light')
+onMounted(() => {
+  currentTheme.value = document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+})
+function setTheme(mode: 'light' | 'dark') {
+  currentTheme.value = mode
+  const cls = mode === 'light' ? (appConfig.colorModeTypeLight as string) : 'dark'
+  if (pageTheme) {
+    pageTheme.value = cls
+    return
+  }
+  const root = document.documentElement
+  root.classList.remove('light', 'edge-light', 'dark', 'edge-dark')
+  root.classList.add(cls)
+}
 
 const teams = ref([
   {
@@ -143,10 +161,10 @@ const userItems = computed<DropdownMenuItem[][]>(() => (
             label: 'Светлая',
             icon: SunIcon,
             type: 'checkbox',
-            checked: colorMode.value === 'light',
+            checked: currentTheme.value === 'light',
             onUpdateChecked(checked: boolean) {
               if (checked) {
-                colorMode.preference = 'light'
+                setTheme('light')
               }
             },
             onSelect(e: Event) {
@@ -157,10 +175,10 @@ const userItems = computed<DropdownMenuItem[][]>(() => (
             label: 'Тёмная',
             icon: MoonIcon,
             type: 'checkbox',
-            checked: colorMode.value === 'dark',
+            checked: currentTheme.value === 'dark',
             onUpdateChecked(checked: boolean) {
               if (checked) {
-                colorMode.preference = 'dark'
+                setTheme('dark')
               }
             },
             onSelect(e: Event) {

@@ -48,12 +48,17 @@ export function declaredOn(tokensCss: string, selector: string, token: string): 
   return false
 }
 
-/** Обёртка превью: есть `vsk-preview` и `base-mode`. */
-export function hasPreviewClasses(source: string): boolean {
-  return [...source.matchAll(/class="([^"]*)"/g)].some((m) => {
-    const names = m[1]!.split(/\s+/)
-    return names.includes('vsk-preview') && names.includes('base-mode')
-  })
+/** Элемент, внутри которого рендерится превью (`<component :is=…>`), несёт vsk-preview и base-mode. */
+export function previewWrapperHasClasses(source: string): boolean {
+  const at = source.search(/<component\s+:is="(component|resolvedComponent)"/)
+  if (at < 0) {
+    return false
+  }
+  const open = source.lastIndexOf('<div', at)
+  const tag = source.slice(open, source.indexOf('>', source.indexOf('class=', open) + 1) + 1)
+  const m = /\sclass="([^"]*)"/.exec(tag)
+  const names = (m?.[1] ?? '').split(/\s+/)
+  return names.includes('vsk-preview') && names.includes('base-mode')
 }
 
 describe('docs: превью примеров — в цветах библиотеки', () => {
@@ -73,7 +78,7 @@ describe('docs: превью примеров — в цветах библиот
   })
 
   it.each(WRAPPERS)('обёртка превью %s несёт vsk-preview и base-mode', (file) => {
-    expect(hasPreviewClasses(read(file))).toBe(true)
+    expect(previewWrapperHasClasses(read(file))).toBe(true)
   })
 
   it('переопределения не заведены на .base-mode / .vsk-preview (иначе превью снова в цветах сайта)', () => {
@@ -82,19 +87,37 @@ describe('docs: превью примеров — в цветах библиот
     expect(layer).not.toMatch(/\.vsk-preview[^{]*\{[^}]*--ui-color-accent/)
   })
 
-  it('тема примера (?theme=) не пишет общий выбор посетителя', () => {
+  it('тема примера (?theme=) не пишет preference', () => {
     const page = read('docs/app/pages/examples/[...slug]/index.vue')
     expect(page).not.toMatch(/\.preference\s*=/)
-    expect(page).not.toMatch(/useColorMode\(/)
+  })
+
+  it('оверлеи превью уходят в контейнер base-mode', () => {
+    expect(read('docs/app/app.vue')).toMatch(/id="vsk-preview-portal"[^>]*class="base-mode"|class="base-mode"[^>]*id="vsk-preview-portal"/)
+    for (const file of WRAPPERS) {
+      expect(read(file)).toContain('providePreviewPortal()')
+    }
+  })
+
+  it('пример с переключателем темы не пишет выбор посетителя', () => {
+    const sidebar = read('docs/app/components/content/examples/sidebar/SidebarExample.vue')
+    expect(sidebar).not.toMatch(/\.preference\s*=/)
+    expect(sidebar).not.toMatch(/useColorMode\(/)
   })
 
   // Мутации: копия входных данных с одной правкой краснеет, исходные — нет.
   it('мутации краснеют', () => {
-    const noBase = read(WRAPPERS[0]!).replace(' base-mode', '')
-    expect(hasPreviewClasses(noBase)).toBe(false)
+    for (const file of WRAPPERS) {
+      const src = read(file)
+      expect(previewWrapperHasClasses(src.replace('vsk-preview base-mode', 'vsk-preview'))).toBe(false)
+      // класс «где-то в файле», но не на обёртке превью
+      expect(previewWrapperHasClasses(`${src.replace('vsk-preview base-mode', 'vsk-preview')}\n<div class="vsk-preview base-mode" />`)).toBe(false)
+    }
     const missing = light.replace(/--ui-color-accent-main-primary:/g, '--x:')
     expect(declaredOn(missing, '.base-mode', '--ui-color-accent-main-primary')).toBe(false)
-    const withLeak = `${css}\n@layer base {\n  .vsk-preview {\n    --ui-color-accent-main-primary: #4b3cd0;\n  }\n}`
-    expect(/\.vsk-preview[^{]*\{[^}]*--ui-color-accent/.test(withLeak.slice(withLeak.lastIndexOf('@layer base {')))).toBe(true)
+    const leaked = css.replace(/(@layer base \{[\s\S]*?)\.dark \{/, '$1.dark, .base-mode {')
+    expect(leaked).not.toBe(css)
+    expect(overriddenTokens(leaked)).toContain('--ui-color-accent-main-primary')
+    expect(/\.base-mode[^{]*\{[^}]*--ui-color-accent/.test(leaked.slice(leaked.indexOf('@layer base {')))).toBe(true)
   })
 })

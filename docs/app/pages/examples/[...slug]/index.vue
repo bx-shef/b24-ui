@@ -17,23 +17,27 @@ const resolvedComponent = exampleMatch ? defineAsyncComponent(exampleMatch[1] as
  * выбору, поэтому наблюдатель возвращает тему примера, пока страница открыта.
  */
 const THEME_CLASSES = ['light', 'edge-light', 'dark', 'edge-dark']
-const exampleTheme = route.query.theme
+const exampleTheme = ref<string | null>(route.query.theme
   ? (route.query.theme === 'light' ? (appConfig.colorModeTypeLight as string) : 'dark')
-  : null
+  : null)
+// Пример может сменить тему локально (SidebarExample): та же ссылка, без записи в хранилище сайта
+provide(exampleThemeKey, exampleTheme)
+
+// Оверлеи примера (Modal, Popover …) уходят в контейнер с base-mode — тоже в цветах библиотеки
+providePreviewPortal()
 
 onMounted(() => {
-  if (!exampleTheme) {
-    return
-  }
   const root = document.documentElement
   const apply = () => {
-    if (THEME_CLASSES.every(c => root.classList.contains(c) === (c === exampleTheme))) {
+    const theme = exampleTheme.value
+    if (!theme || THEME_CLASSES.every(c => root.classList.contains(c) === (c === theme))) {
       return
     }
     root.classList.remove(...THEME_CLASSES)
-    root.classList.add(exampleTheme)
+    root.classList.add(theme)
   }
   apply()
+  watch(exampleTheme, apply)
   const observer = new MutationObserver(apply)
   observer.observe(root, { attributes: true, attributeFilter: ['class'] })
   onBeforeUnmount(() => observer.disconnect())

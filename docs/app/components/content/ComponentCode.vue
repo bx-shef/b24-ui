@@ -1,5 +1,7 @@
 <!-- eslint-disable no-useless-escape -->
 <script setup lang="ts">
+// Оверлеи из превью — в контейнер с base-mode (bx-shef/b24-ui#57)
+providePreviewPortal()
 // import type { ChipProps } from '@bxshefby/b24ui-nuxt'
 import json5 from 'json5'
 import { upperFirst, camelCase, kebabCase } from 'scule'

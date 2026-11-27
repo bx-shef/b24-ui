@@ -104,6 +104,9 @@ provide('navigation', rootNavigation)
         </ClientOnly>
       </template>
     </div>
+
+    <!-- Оверлеи из превью примеров: base-mode — токены библиотеки, а не «Василька» (bx-shef/b24-ui#57) -->
+    <div id="vsk-preview-portal" class="base-mode" />
   </B24App>
 </template>
 

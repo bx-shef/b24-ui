@@ -210,6 +210,13 @@
    * 003_b24_context_light.css, .dark .base-mode в 004), поэтому и переопределённые выше, и производные от них
    * (design-filled-*, design-outline-a2-* и др., они разрешаются на объявившем элементе) берутся по
    * библиотеке, а не из наследованных значений «Василька». Локальный контекст примера (.edge-dark на корне
-   * примера) объявляет токены на своём элементе и побеждает. Сверяет test/utils/docs-preview-library-colors.spec.ts.
+   *
+   * Светлая тема превью — контекст .light (#0075ff), а не .edge-light (#1587fa): так задаёт библиотека для
+   * .base-mode, и это значение по умолчанию; карточка страницы документации тоже в .light. Тёмная — .dark (#1587fa).
+   *
+   * Оверлеи (Modal, Slideover, Popover, Tooltip, DropdownMenu…) рисуются в портал, вне обёртки превью. Поэтому
+   * ComponentExample, ComponentCode и страница примера дают компонентам portal-цель #vsk-preview-portal
+   * (provide портала B24App, composables/usePreviewPortal.ts), а в app.vue стоит этот контейнер с классом base-mode.
+   * Ограничение: оверлей с явно заданным `portal` (строка или HTMLElement) туда не попадает и остаётся в «Васильке».
    */
 }

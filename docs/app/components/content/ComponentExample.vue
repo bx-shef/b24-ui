@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// Оверлеи из превью — в контейнер с base-mode (bx-shef/b24-ui#57)
+providePreviewPortal()
 import { camelCase, upperFirst } from 'scule'
 import { hash } from 'ohash'
 import { useElementSize } from '@vueuse/core'
