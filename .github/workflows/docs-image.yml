@@ -55,6 +55,16 @@ jobs:
     outputs:
       site_ready: ${{ steps.site.outputs.ready }}
     steps:
+      # Адрес из переменной или секрета приводим к виду https://домен: без пробелов и слэша на конце, строчными,
+      # без схемы — добавляем https:// (в секрет часто кладут просто домен)
+      - name: Привести адрес сайта к виду https://домен
+        run: |
+          u=$(printf '%s' "$SITE_URL" | tr -d '[:space:]' | tr '[:upper:]' '[:lower:]')
+          u=${u%/}
+          [[ "$u" == http://* ]] && u="https://${u#http://}"
+          [[ "$u" == https://* ]] || u="https://$u"
+          echo "SITE_URL=$u" >> "$GITHUB_ENV"
+
       - name: Адрес сайта — только https://домен
         id: site
         run: |
@@ -157,6 +167,16 @@ jobs:
       contents: read
       packages: write
     steps:
+      # Адрес из переменной или секрета приводим к виду https://домен: без пробелов и слэша на конце, строчными,
+      # без схемы — добавляем https:// (в секрет часто кладут просто домен)
+      - name: Привести адрес сайта к виду https://домен
+        run: |
+          u=$(printf '%s' "$SITE_URL" | tr -d '[:space:]' | tr '[:upper:]' '[:lower:]')
+          u=${u%/}
+          [[ "$u" == http://* ]] && u="https://${u#http://}"
+          [[ "$u" == https://* ]] || u="https://$u"
+          echo "SITE_URL=$u" >> "$GITHUB_ENV"
+
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
