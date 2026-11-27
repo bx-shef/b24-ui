@@ -125,34 +125,30 @@
 }
 
 /* Окно чата «Спросить AI»: тот же акцент и шрифт, что и на сайте */
-.vsk-chat {
+@utility vsk-chat {
   font-family: var(--tai-font);
   border-image: var(--tai-iris) 1;
   border-left-width: 2px;
   border-left-style: solid;
+
+  & button[type="submit"]:not(:disabled),
+  & .vsk-chat-card a[href] {
+    background: var(--tai-iris-fill);
+    color: #fff;
+    border-color: transparent;
+    box-shadow: var(--tai-sh-fill);
+  }
+
+  & button[type="submit"]:not(:disabled):hover,
+  & .vsk-chat-card a[href]:hover {
+    filter: brightness(1.08);
+  }
 }
 
-.vsk-chat button[type="submit"]:not(:disabled),
-.vsk-chat .vsk-chat-card a[href] {
-  background: var(--tai-iris-fill);
-  color: #fff;
-  border-color: transparent;
-  box-shadow: var(--tai-sh-fill);
-}
-
-.vsk-chat button[type="submit"]:not(:disabled):hover,
-.vsk-chat .vsk-chat-card a[href]:hover {
-  filter: brightness(1.08);
-}
-
-.vsk-chat-wait {
+@utility vsk-chat-wait {
   color: var(--tai-accent);
 }
 
-.vsk-chat-card {
+@utility vsk-chat-card {
   border-color: var(--tai-accent);
-}
-
-.vsk-chat a:not([class*="btn"]):hover {
-  text-decoration-color: var(--tai-link-line);
 }
