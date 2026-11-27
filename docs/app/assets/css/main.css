@@ -26,7 +26,8 @@
  * Custom bg: the image and colour come from vasilek.css ("Vasilek" backdrop)
  */
 @layer base {
-  .edge-dark {
+  .edge-light,
+  .dark {
     --air-theme-bg-position: 0 0;
     --air-theme-bg-size: cover;
     --air-theme-bg-repeat: no-repeat;
@@ -53,6 +54,10 @@ html[data-framework="vue"] .nuxt-only {
 }
 /** endregion */
 
-.edge-dark .custom-scrollbar-transparent {
+.edge-light .custom-scrollbar-transparent {
   scrollbar-color: hsla(0, 0%, 0%, 0.21) transparent;
+}
+
+.dark .custom-scrollbar-transparent {
+  scrollbar-color: hsla(0, 0%, 100%, 0.24) transparent;
 }

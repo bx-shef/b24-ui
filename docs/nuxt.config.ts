@@ -285,9 +285,14 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/x-icon', href: `${baseUrl}/favicon.ico?v=2` }
       ],
       htmlAttrs: {
-        class: 'edge-dark',
         lang: 'ru'
-      }
+      },
+      // Класс темы до первой отрисовки (без вспышки): та же логика, что у useColorMode
+      // (ключ vueuse-color-scheme; нет выбора — системная тема)
+      script: [{
+        innerHTML: '(function(){try{var s=localStorage.getItem("vueuse-color-scheme");var m=s&&s!=="auto"?s:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"edge-light");if(m==="light")m="edge-light";document.documentElement.classList.add(m)}catch(e){document.documentElement.classList.add("edge-light")}})()',
+        tagPosition: 'head'
+      }]
     },
     rootAttrs: { 'data-vaul-drawer-wrapper': '' }
   },
