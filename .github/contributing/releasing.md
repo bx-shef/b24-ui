@@ -203,6 +203,22 @@ None of these is in version control, and none fails loudly.
    сравниваются с учётом регистра, и npm их при сохранении не проверяет:
    ошибка видна только на публикации. `repository.url` в `package.json` должен
    указывать на `bx-shef/b24-ui` — иначе npm откажет в provenance.
+
+   Токен публикации есть только у job `publish` (`id-token: write`, окружение
+   `npm-publish`): он без checkout и без `pnpm install` скачивает готовый
+   tarball из job `build` (там `contents: read`, без `id-token`) и выполняет
+   `npm publish --provenance`. Поля Trusted Publisher от этого не меняются:
+   workflow и окружение те же. В `publish` разрешён только белый список шагов
+   (`.github/scripts/assert-publish-split.py`, тексты шагов сверяются с
+   эталоном), Node закреплён точной версией с npm не ниже 11.5.1; публикует
+   только тег: имя пакета и версия внутри tarball сверяются с
+   `@bxshefby/b24ui-nuxt` и тегом.
+
+   Одобрение окружения `npm-publish` приходит после сборки, а tarball хранится
+   7 дней: если одобрили позже, запуск повторить (re-run или новый dispatch по
+   тегу). **Принятый остаточный риск:** содержимое tarball собирает `build`, где
+   выполняется код зависимостей; целостность публикуемого держится на одобрении
+   владельца окружения и на сверке имени и версии, а не на изоляции сборки.
 5. **Settings → Actions → General → Workflow permissions** → *Allow GitHub
    Actions to create and approve pull requests* (без неё release-please не
    откроет PR) и **Variables:** `NPM_RELEASE=true`.
@@ -295,7 +311,7 @@ If CI is red for something that is not a revertable commit — a flaky suite, a
 broken runner image, a playground build that only fails in `npm-publish.yml` —
 there is nothing to revert, and **there is no bypass in the pipeline**. Say it
 plainly, because the alternatives look tempting at 2am and none of them work:
-`process` declares `needs: await-ci`, so a red CI skips the publishing job
+`build` declares `needs: await-ci` (and `publish` needs `build`), so a red CI skips the publishing job
 entirely — it never queues, which means the `npm-publish` environment never asks
 anyone to approve anything. Adding required reviewers there does not open a door;
 it only ever closes one.
@@ -309,7 +325,8 @@ If neither is acceptable — a crash-class bug, CI broken for reasons nobody can
 fix quickly — the break-glass is a maintainer publishing by hand from a machine
 logged in to npm, running the same sequence `npm-publish.yml` does:
 `pnpm install --frozen-lockfile`, `pnpm run dev:prepare`, `pnpm build`, then
-`pnpm publish --no-git-checks`. `dev:prepare` is not optional — it emits
+`pnpm publish --no-git-checks` (CI does the same in `build` with `pnpm pack`,
+then `publish` uploads that tarball with `npm publish`). `dev:prepare` is not optional — it emits
 `.nuxt/b24ui.static.css`, which `package.json` lists in `files` — and without
 `--no-git-checks` the publish is refused outright from a detached checkout. It
 is deliberately ugly.
