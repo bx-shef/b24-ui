@@ -6,7 +6,8 @@ pipeline exists to leave with a person, and it is the *only* one: **there is no
 approval of the publication** (owner decision, #63, as in bx-shef/b24-js-sdk).
 Merging the release PR tags the commit and `release-please.yml` dispatches
 `npm-publish.yml` on that tag, which publishes `@bxshefby/b24ui-nuxt` to npm.
-What goes to npm is therefore decided on the release PR, before the merge: read
+Approving the release PR's held `ci` run is a click, not a decision, and the
+publication does not wait for any confirmation. What goes to npm is therefore decided on the release PR, before the merge: read
 its diff and CHANGELOG.
 
 **If the release PR is sitting at `blocked` while its `ci` check is green, that
@@ -177,16 +178,22 @@ None of these is in version control, and none fails loudly.
 есть в реестре. Поэтому руками публикуется **заглушка**, а сама 2.16.0 выходит
 из CI — с provenance и через все проверки `npm-publish.yml`.
 
-1. **Окружение `npm-publish`** (*Settings → Environments → New environment*):
+1. **Правило на теги — обязательное условие до `NPM_RELEASE=true`**
+   (*Settings → Rules → Rulesets → New tag ruleset*): цель `v*`, *Restrict
+   creations*, *Restrict updates*, *Restrict deletions*; в обход — только
+   владелец и приложение GitHub Actions (теги ставит release-please). Без
+   одобрения окружение пускает любой `v*`, а Trusted Publisher привязан лишь к
+   имени файла и окружению: кто может создать тег `v*` на своём коммите со своей
+   копией `npm-publish.yml` (без `await-ci` и `verify`) и запустить её, тот
+   публикует свой код. Сторожа на таком теге не запускаются. Пока правила нет,
+   `NPM_RELEASE=true` не ставить.
+   Рекомендуется также ruleset на ветку `main` (pull request и проверка `ci`
+   обязательны, без прямых пушей и force-push).
+2. **Окружение `npm-publish`** (*Settings → Environments → New environment*):
    *Deployment branches and tags* → *Selected branches and tags* → добавить
    `main` (ветка) и `v*` (тег); *Required reviewers* — **нет** (решение
    владельца: выпуск без одобрения, слияние release PR само публикует пакет).
-   Окружение нужно, потому что к его имени привязан Trusted Publisher; ref-правило
-   не даёт получить токен публикации с произвольной ветки.
-2. **Правило на теги** (*Settings → Rules → Rulesets → New tag ruleset*): цель
-   `v*`, *Restrict creations*, *Restrict updates*, *Restrict deletions*; в
-   обход — владелец и приложение GitHub Actions (теги ставит release-please).
-   Без одобрения это тем важнее: тег — то, с чего публикуется пакет.
+   Окружение нужно, потому что к его имени привязан Trusted Publisher.
 3. **Заглушка** — с машины, где выполнен `npm login` под владельцем scope
    `@bxshefby`, в пустом каталоге:
 
@@ -231,6 +238,13 @@ None of these is in version control, and none fails loudly.
    (б) ревью release PR и всего, что влито в `main`, перед слиянием, (в) том,
    что токен публикации есть только у job `publish` без checkout и install.
    Ждущего человека между слиянием и npm нет.
+
+   Всё это держится на том, что **право записи в репозиторий — только у
+   владельца**: любой с правом записи и правом создавать теги `v*` может
+   опубликовать свой код (см. п. 1), а `workflow_dispatch` для
+   `release-please.yml` с любой ветки запускает её копию с `contents: write` и
+   `actions: write` (условие `github.ref == 'refs/heads/main'` в job — не защита,
+   копия его уберёт). Права записи не раздавать без ruleset на теги и `main`.
 5. **Settings → Actions → General → Workflow permissions** → *Allow GitHub
    Actions to create and approve pull requests* (без неё release-please не
    откроет PR) и **Settings → Secrets and variables → Actions → Variables:**
@@ -324,6 +338,11 @@ a `feat:` and its `revert:` in the same release window both appear, and the
 release is still a minor. Reverting unreleased work therefore produces a
 changelog that announces and retracts the same feature — usually fine, but not a
 surprise you want at 2am.
+
+**If `ci` on the tag's SHA was cancelled** (the `ci` concurrency group in `main`
+cancels a run when the next push arrives), `await-ci` fails and the release stays
+unpublished: re-run `ci.yml` on that SHA, then dispatch `npm-publish.yml` on the
+tag again. `release-watchdog` reports a tag that is not on npm.
 
 If CI is red for something that is not a revertable commit — a flaky suite, a
 broken runner image, a playground build that only fails in `npm-publish.yml` —

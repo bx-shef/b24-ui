@@ -3,8 +3,9 @@ name: Release Please 🤖
 # Keeps a release PR open against main: version bump + CHANGELOG assembled from
 # conventional-commit subjects. Merging it creates the tag and the GitHub
 # Release; the `publish` job below then dispatches npm-publish.yml against that
-# tag. Merging the release PR is the only human action: nothing waits for an
-# approval (owner decision, #63).
+# tag. Merging the release PR is the only human decision: nothing waits for an
+# approval (owner decision, #63). Approving the release PR's held `ci` run is a
+# click, not a decision, and the publication does not wait for any confirmation.
 on:
   push:
     branches: [ main ]
@@ -24,7 +25,12 @@ jobs:
   release-please:
     # Выпуск @bxshefby/b24ui-nuxt включается переменной репозитория NPM_RELEASE=true
     # (Settings → Secrets and variables → Actions → Variables); см. releasing.md.
-    if: github.repository == 'bx-shef/b24-ui' && vars.NPM_RELEASE == 'true'
+    # Only from main: a workflow_dispatch from another branch would otherwise run
+    # that branch's copy of this file. (A copy can drop the condition, so this is
+    # a convenience; what actually holds is who may push — releasing.md.)
+    if: >-
+      github.repository == 'bx-shef/b24-ui' && vars.NPM_RELEASE == 'true' &&
+      github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     # No `actions: write` here: the third-party release-please-action must not
@@ -55,7 +61,9 @@ jobs:
   # two in sync.
   ci-release-pr:
     needs: release-please
-    if: needs.release-please.outputs.prs_created == 'true'
+    if: >-
+      github.repository == 'bx-shef/b24-ui' && vars.NPM_RELEASE == 'true' &&
+      needs.release-please.outputs.prs_created == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     permissions:
@@ -68,6 +76,7 @@ jobs:
         run: |
           gh workflow run ci.yml --repo "$GITHUB_REPOSITORY" --ref "$BRANCH"
 
+  # `refs/tags/` spelled out: a branch and a tag may share a name.
   # Dispatched, not workflow_call, for two reasons that both broke the
   # called design:
   #  - npm trusted publishing matches the token's top-level workflow_ref,
@@ -98,4 +107,4 @@ jobs:
           TAG: ${{ needs.release-please.outputs.tag_name }}
         run: |
           [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$ ]] || { echo "::error::unexpected tag '$TAG'"; exit 1; }
-          gh workflow run npm-publish.yml --repo "$GITHUB_REPOSITORY" --ref "$TAG"
+          gh workflow run npm-publish.yml --repo "$GITHUB_REPOSITORY" --ref "refs/tags/$TAG"

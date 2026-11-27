@@ -15,8 +15,14 @@ import sys
 import yaml
 
 REPO_GATE = "github.repository == 'bx-shef/b24-ui' && vars.NPM_RELEASE == 'true'"
-DISPATCH = 'gh workflow run npm-publish.yml --repo "$GITHUB_REPOSITORY" --ref "$TAG"'
-TAG_CHECK = r'[[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$ ]]'
+RP_IF = REPO_GATE + " && github.ref == 'refs/heads/main'"
+CI_IF = REPO_GATE + " && needs.release-please.outputs.prs_created == 'true'"
+PUB_IF = REPO_GATE + " && needs.release-please.outputs.release_created == 'true'"
+# Reference `run` bodies, compared whole (after strip()), not by substrings.
+DISPATCH_RUN = r'''[[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$ ]] || { echo "::error::unexpected tag '$TAG'"; exit 1; }
+gh workflow run npm-publish.yml --repo "$GITHUB_REPOSITORY" --ref "refs/tags/$TAG"'''
+CI_RUN = '''gh workflow run ci.yml --repo "$GITHUB_REPOSITORY" --ref "$BRANCH"'''
+JOB_FORBIDDEN = ('env', 'defaults', 'container', 'services', 'strategy', 'continue-on-error')
 
 
 def norm(x):
@@ -32,53 +38,69 @@ def main(path):
         errors.append('workflow-level permissions must be exactly {contents: read}')
 
     rp = jobs.get('release-please') or {}
-    if norm(rp.get('if', '')) != REPO_GATE:
-        errors.append(f'job `release-please` `if` must be exactly: {REPO_GATE}')
-    if 'actions' in (rp.get('permissions') or {}):
-        errors.append('job `release-please` (third-party action) must not have `actions`')
+    if norm(rp.get('if', '')) != RP_IF:
+        errors.append(f'job `release-please` `if` must be exactly: {RP_IF}')
     if (rp.get('permissions') or {}) != {'contents': 'write', 'pull-requests': 'write'}:
-        errors.append('job `release-please` permissions must be exactly {contents: write, pull-requests: write}')
+        errors.append('job `release-please` (third-party action) permissions must be exactly '
+                      '{contents: write, pull-requests: write}, no `actions`')
     outs = rp.get('outputs') or {}
-    for k in ('release_created', 'tag_name'):
+    for k in ('release_created', 'tag_name', 'prs_created', 'pr_branch'):
         if k not in outs:
             errors.append(f'job `release-please` must expose output `{k}`')
+
+    def need_rp(job, name):
+        need = job.get('needs')
+        if 'release-please' not in ([need] if isinstance(need, str) else (need or [])):
+            errors.append(f'job `{name}` must need `release-please`')
+
+    def one_step(job, name):
+        steps = job.get('steps') or []
+        if len(steps) != 1:
+            errors.append(f'job `{name}` must have exactly one step')
+            return None
+        st = steps[0]
+        if 'uses' in st or set(st) - {'name', 'env', 'run'}:
+            errors.append(f'job `{name}` step must be a plain `run` with `env` only (no checkout, no actions)')
+        return st
 
     pub = jobs.get('publish')
     if not pub:
         errors.append('job `publish` (dispatch of npm-publish.yml) is missing')
     else:
-        need = pub.get('needs')
-        if 'release-please' not in ([need] if isinstance(need, str) else (need or [])):
-            errors.append('job `publish` must need `release-please`')
-        want_if = REPO_GATE + " && needs.release-please.outputs.release_created == 'true'"
-        if norm(pub.get('if', '')) != want_if:
-            errors.append(f'job `publish` `if` must be exactly: {want_if}')
+        need_rp(pub, 'publish')
+        if norm(pub.get('if', '')) != PUB_IF:
+            errors.append(f'job `publish` `if` must be exactly: {PUB_IF}')
         if pub.get('permissions') != {'actions': 'write'}:
             errors.append('job `publish` permissions must be exactly {actions: write}')
-        steps = pub.get('steps') or []
-        if len(steps) != 1:
-            errors.append('job `publish` must have exactly one step')
-        else:
-            st = steps[0]
-            if 'uses' in st or set(st) - {'name', 'env', 'run'}:
-                errors.append('job `publish` step must be a plain `run` with `env` only (no checkout, no actions)')
-            env = st.get('env') or {}
-            if env.get('TAG') != '${{ needs.release-please.outputs.tag_name }}':
-                errors.append('dispatch must take TAG from the release tag output')
-            if set(env) != {'GH_TOKEN', 'TAG'}:
-                errors.append('dispatch env must be exactly {GH_TOKEN, TAG}')
-            run = str(st.get('run', ''))
-            if TAG_CHECK not in run:
-                errors.append('dispatch must validate TAG as vX.Y.Z before use')
-            lines = [l.strip() for l in run.strip().splitlines()]
-            if DISPATCH not in lines:
-                errors.append(f'dispatch must run exactly: {DISPATCH} (the tag, not a branch)')
-            if re.search(r'--ref\s+(?!"\$TAG")', run):
-                errors.append('every `--ref` in the dispatch job must be "$TAG"')
+        for k in JOB_FORBIDDEN:
+            if k in pub:
+                errors.append(f'job `publish` must not set `{k}`')
+        st = one_step(pub, 'publish')
+        if st:
+            if st.get('env') != {'GH_TOKEN': '${{ secrets.GITHUB_TOKEN }}',
+                                 'TAG': '${{ needs.release-please.outputs.tag_name }}'}:
+                errors.append('dispatch env must be exactly {GH_TOKEN: GITHUB_TOKEN, TAG: the release tag output}')
+            if str(st.get('run', '')).strip() != DISPATCH_RUN.strip():
+                errors.append('dispatch `run` differs from the reference in assert-release-chain.py '
+                              '(tag check + `--ref "refs/tags/$TAG"`)')
 
     ci = jobs.get('ci-release-pr')
-    if ci and ci.get('permissions') != {'actions': 'write'}:
-        errors.append('job `ci-release-pr` permissions must be exactly {actions: write}')
+    if ci:
+        need_rp(ci, 'ci-release-pr')
+        if norm(ci.get('if', '')) != CI_IF:
+            errors.append(f'job `ci-release-pr` `if` must be exactly: {CI_IF}')
+        if ci.get('permissions') != {'actions': 'write'}:
+            errors.append('job `ci-release-pr` permissions must be exactly {actions: write}')
+        for k in JOB_FORBIDDEN:
+            if k in ci:
+                errors.append(f'job `ci-release-pr` must not set `{k}`')
+        st = one_step(ci, 'ci-release-pr')
+        if st:
+            if st.get('env') != {'GH_TOKEN': '${{ secrets.GITHUB_TOKEN }}',
+                                 'BRANCH': '${{ needs.release-please.outputs.pr_branch }}'}:
+                errors.append('ci-release-pr env must be exactly {GH_TOKEN, BRANCH from outputs.pr_branch}')
+            if str(st.get('run', '')).strip() != CI_RUN:
+                errors.append('ci-release-pr `run` differs from the reference')
 
     for name, j in jobs.items():
         if name != 'release-please' and name != 'publish' and name != 'ci-release-pr':
