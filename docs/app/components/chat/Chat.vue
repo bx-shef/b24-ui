@@ -259,7 +259,7 @@ function clearMessages() {
     rail
     breakpoint="xl"
     :style="{ '--sidebar-width': '26rem' }"
-    :b24ui="{ root: 'base-mode bg-(--ui-color-gray-02) dark:bg-(--ui-color-base-black-fixed)', header: '', body: 'scrollbar-thin scrollbar-transparent custom-scrollbar-transparent', actions: 'gap-0.5' }"
+    :b24ui="{ root: 'vsk-chat base-mode bg-(--ui-color-gray-02) dark:bg-(--ui-color-base-black-fixed)', header: '', body: 'scrollbar-thin scrollbar-transparent custom-scrollbar-transparent', actions: 'gap-0.5' }"
   >
     <template #actions>
       <B24Tooltip v-if="canClear" text="Очистить беседу">
@@ -327,7 +327,7 @@ function clearMessages() {
         </template>
 
         <template #indicator>
-          <div class="flex items-center gap-1.5">
+          <div class="vsk-chat-wait flex items-center gap-1.5">
             <ChatIndicator />
 
             <B24ChatShimmer text="Думаю…" class="text-sm" />
