@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const items = ref(['CRM settings', 'My company details', 'Access permissions'])
-const value = ref('My company details')
+const items = ref(['Настройки CRM', 'Реквизиты моей компании', 'Права доступа'])
+const value = ref('Реквизиты моей компании')
 </script>
 
 <template>

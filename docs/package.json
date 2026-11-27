@@ -11,6 +11,8 @@
     "typecheck": "nuxt typecheck"
   },
   "dependencies": {
+    "@ai-sdk/deepseek": "catalog:",
+    "@ai-sdk/vue": "catalog:",
     "@comark/vue": "catalog:",
     "@nuxt/content": "catalog:",
     "@nuxt/image": "catalog:",
@@ -24,6 +26,7 @@
     "@tiptap/extension-emoji": "catalog:",
     "@tiptap/extension-text-align": "catalog:",
     "@vueuse/integrations": "catalog:",
+    "ai": "catalog:",
     "capture-website": "catalog:",
     "fflate": "catalog:",
     "joi": "catalog:",

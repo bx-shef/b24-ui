@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, afterAll, test } from 'vitest'
 import { axe } from 'vitest-axe'
+import { nextTick } from 'vue'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
 import { CalendarDate } from '@internationalized/date'
 import { renderEach } from '../component-render'
@@ -94,6 +95,29 @@ describe('Calendar', () => {
   })
 
   describe('views', () => {
+    test('keeps an uncontrolled selection after cycling through the views', async () => {
+      const wrapper = await mountSuspended(Calendar, { props: { placeholder: new CalendarDate(2025, 1, 1) } })
+
+      await wrapper.find('[data-reka-calendar-cell-trigger][data-value="2025-01-15"]').trigger('click')
+      for (let i = 0; i < 3; i++) {
+        await wrapper.find('[data-slot="heading"] button').trigger('click')
+      }
+
+      expect(wrapper.find('[data-reka-calendar-cell-trigger][data-selected]').attributes('data-value')).toBe('2025-01-15')
+    })
+
+    test('does not bring back a selection cleared by the parent after cycling through the views', async () => {
+      const wrapper = await mountSuspended(Calendar, { props: { 'placeholder': new CalendarDate(2025, 1, 1), 'onUpdate:modelValue': (value: any) => wrapper.setProps({ modelValue: value }) } })
+
+      await wrapper.find('[data-reka-calendar-cell-trigger][data-value="2025-01-15"]').trigger('click')
+      await wrapper.setProps({ modelValue: undefined })
+      for (let i = 0; i < 3; i++) {
+        await wrapper.find('[data-slot="heading"] button').trigger('click')
+      }
+
+      expect(wrapper.find('[data-reka-calendar-cell-trigger][data-selected]').exists()).toBe(false)
+    })
+
     test('heading button cycles through day, month and year views', async () => {
       const wrapper = await mountSuspended(Calendar)
 
@@ -140,6 +164,55 @@ describe('Calendar', () => {
       const root = wrapper.find('[data-slot="root"]')
       expect(root.attributes('ismonthdisabled')).toBeUndefined()
       expect(root.attributes('isyeardisabled')).toBeUndefined()
+    })
+  })
+
+  describe('focus', () => {
+    test('leaves focus moved outside by a listener', async () => {
+      const input = document.createElement('input')
+      document.body.appendChild(input)
+      const wrapper = await mountSuspended(Calendar, { props: { 'placeholder': new CalendarDate(2025, 6, 15), 'onUpdate:placeholder': () => nextTick(() => input.focus()) }, attachTo: document.body })
+
+      await wrapper.find('[data-slot="heading"] button').trigger('click')
+      const month = wrapper.find('[data-reka-month-picker-cell-trigger][data-value="2025-03-01"]')
+      ;(month.element as HTMLElement).focus()
+      await month.trigger('click')
+      await nextTick()
+
+      expect(document.activeElement).toBe(input)
+
+      wrapper.unmount()
+      input.remove()
+    })
+
+    test('keeps focus on the heading when switching views', async () => {
+      const wrapper = await mountSuspended(Calendar, { attachTo: document.body })
+
+      const heading = wrapper.find('[data-slot="heading"] button')
+      ;(heading.element as HTMLElement).focus()
+      await heading.trigger('click')
+      await nextTick()
+
+      expect(document.activeElement).toBe(wrapper.find('[data-slot="heading"] button').element)
+
+      wrapper.unmount()
+    })
+
+    test('focuses the tab stop after drilling down', async () => {
+      const wrapper = await mountSuspended(Calendar, { props: { placeholder: new CalendarDate(2025, 6, 15) }, attachTo: document.body })
+
+      for (let i = 0; i < 2; i++) {
+        await wrapper.find('[data-slot="heading"] button').trigger('click')
+      }
+      const year = wrapper.find('[data-reka-year-picker-cell-trigger][data-value^="2027"]')
+      ;(year.element as HTMLElement).focus()
+      await year.trigger('click')
+      await nextTick()
+
+      expect(document.activeElement?.getAttribute('data-value')).toBe('2027-06-01')
+      expect(document.activeElement?.getAttribute('tabindex')).toBe('0')
+
+      wrapper.unmount()
     })
   })
 

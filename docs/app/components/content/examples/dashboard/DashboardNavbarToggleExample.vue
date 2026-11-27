@@ -1,6 +1,6 @@
 <template>
   <B24DashboardNavbar
-    title="Dashboard"
+    title="Дашборд"
     :toggle="{
       color: 'air-primary',
       rounded: true

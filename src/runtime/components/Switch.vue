@@ -63,13 +63,13 @@ export interface SwitchSlots {
 </script>
 
 <script setup lang="ts" generic="T = boolean">
-import { computed, useAttrs, useId } from 'vue'
+import { computed, useId } from 'vue'
 import { Primitive, SwitchRoot, SwitchThumb, Label } from 'reka-ui'
-import { reactivePick } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
 import { useFormField } from '../composables/useFormField'
+import { getFormControlAttrs } from '../utils/attributes'
 import { tv } from '../utils/tv'
 import icons from '../dictionary/icons'
 
@@ -83,7 +83,7 @@ const props = useComponentProps<SwitchProps<T>>('switch', _props)
 
 const appConfig = useAppConfig() as Switch['AppConfig']
 
-const rootProps = useForwardProps(reactivePick(props, 'required', 'value', 'defaultValue', 'modelValue', 'trueValue', 'falseValue'), emits)
+const rootProps = useForwardProps(props, ['required', 'value', 'defaultValue', 'modelValue', 'trueValue', 'falseValue'], emits)
 
 const { id: _id, emitFormChange, emitFormInput, size: formFieldSize, color: formFieldColor, highlight: formFieldHighlight, name, disabled: formFieldDisabled, ariaAttrs } = useFormField<SwitchProps<T>>(_props)
 const id = _id.value ?? useId()
@@ -96,13 +96,6 @@ const color = computed(() => formFieldColor.value ?? props.color)
 const highlight = computed(() => formFieldHighlight.value ?? props.highlight)
 
 const disabled = computed(() => formFieldDisabled.value ?? props.disabled)
-
-const attrs = useAttrs()
-// Omit `data-state` to prevent conflicts with parent components (e.g. TooltipTrigger)
-const forwardedAttrs = computed(() => {
-  const { 'data-state': _, ...rest } = attrs
-  return rest
-})
 
 // eslint-disable-next-line vue/no-dupe-keys
 const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.switch || {}) })({
@@ -124,11 +117,11 @@ function onUpdate(value: any) {
 </script>
 
 <template>
-  <Primitive :as="props.as" data-slot="root" :class="b24ui.root({ class: [props.b24ui?.root, props.class] })">
+  <Primitive :as="props.as" v-bind="getFormControlAttrs($attrs, 'root')" data-slot="root" :class="b24ui.root({ class: [props.b24ui?.root, props.class] })">
     <div data-slot="container" :class="b24ui.container({ class: props.b24ui?.container })">
       <SwitchRoot
         :id="id"
-        v-bind="{ ...rootProps, ...forwardedAttrs, ...ariaAttrs }"
+        v-bind="{ ...rootProps, ...getFormControlAttrs($attrs, 'base'), ...ariaAttrs }"
         :name="name"
         :disabled="disabled || props.loading"
         data-slot="base"

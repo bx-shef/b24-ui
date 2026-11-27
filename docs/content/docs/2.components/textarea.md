@@ -1,14 +1,17 @@
 ---
 title: Textarea
-description: A textarea for entering multi-line text.
+description: 'Многострочное поле ввода текста.'
 category: form
 keywords:
   - multiline
+  - многострочное поле
+  - текстовая область
+  - поле комментария
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Textarea.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/textarea
   - label: Nuxt UI
@@ -16,9 +19,9 @@ links:
     to: https://ui.nuxt.com/docs/components/textarea
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `v-model` directive to control the value of the Textarea.
+Директива `v-model` управляет значением Textarea.
 
 ::component-code
 ---
@@ -32,9 +35,9 @@ props:
 ---
 ::
 
-### Rows
+### Строки {#rows}
 
-Use the `rows` prop to set the number of rows. Defaults to `3`.
+Пропс `rows` задаёт число строк. По умолчанию `3`.
 
 ::component-code
 ---
@@ -43,21 +46,21 @@ props:
 ---
 ::
 
-### Placeholder
+### Плейсхолдер {#placeholder}
 
-Use the `placeholder` prop to set a placeholder text.
+Пропс `placeholder` задаёт текст плейсхолдера.
 
 ::component-code
 ---
 prettier: true
 props:
-  placeholder: 'Type something...'
+  placeholder: 'Введите текст...'
 ---
 ::
 
-### Autoresize
+### Автоподбор высоты {#autoresize}
 
-Use the `autoresize` prop to enable autoresizing the height of the Textarea.
+Пропс `autoresize` включает автоматическое изменение высоты Textarea.
 
 ::component-code
 ---
@@ -66,12 +69,12 @@ ignore:
 external:
   - modelValue
 props:
-  modelValue: 'This is a long text that will autoresize the height of the Textarea.'
+  modelValue: 'Это длинный текст, который автоматически меняет высоту Textarea.'
   autoresize: true
 ---
 ::
 
-Use the `maxrows` prop to set the maximum number of rows when autoresizing. If set to `0`, the Textarea will grow indefinitely.
+Пропс `maxrows` задаёт максимальное число строк при автоподборе высоты. При значении `0` Textarea растёт без ограничений.
 
 ::component-code
 ---
@@ -80,15 +83,15 @@ ignore:
 external:
   - modelValue
 props:
-  modelValue: 'This is a long text that will autoresize the height of the Textarea with a maximum of 4 rows.'
+  modelValue: 'Это длинный текст, который автоматически меняет высоту Textarea, но не больше 4 строк.'
   maxrows: 4
   autoresize: true
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the ring color when the Textarea is focused.
+Пропс `color` меняет цвет кольца, когда Textarea в фокусе.
 
 ::component-code
 ---
@@ -97,16 +100,16 @@ ignore:
 props:
   color: air-primary-copilot
   highlight: true
-  placeholder: 'Type something...'
+  placeholder: 'Введите текст...'
 ---
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state. It's used internally when a validation error occurs.
+Пропс `highlight` здесь показывает состояние фокуса. Внутри компонента он включается при ошибке валидации.
 ::
 
-### Tag
-Use the `tag` property to display a [Badge](/docs/components/badge/) on top of the Textarea.
+### Тег {#tag}
+Свойство `tag` показывает [Badge](/docs/components/badge/) поверх Textarea.
 
 ::component-code
 ---
@@ -117,15 +120,15 @@ props:
   tag: note
   color: air-primary-warning
   highlight: true
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
 ---
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state. It's used internally when a validation error occurs.
+Пропс `highlight` здесь показывает состояние фокуса. Внутри компонента он включается при ошибке валидации.
 ::
 
-Use the `tagColor` property to set the color for Badge.
+Свойство `tagColor` задаёт цвет Badge.
 
 ::component-code
 ---
@@ -151,17 +154,17 @@ props:
   tag: note
   color: air-primary-warning
   highlight: true
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
 ---
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state. It's used internally when a validation error occurs.
+Пропс `highlight` здесь показывает состояние фокуса. Внутри компонента он включается при ошибке валидации.
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to show an [Icon](https://bitrix24.github.io/b24icons/icons/) inside the Textarea.
+Пропс `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/) внутри Textarea.
 
 ::component-code
 ---
@@ -173,14 +176,14 @@ cast:
   icon: 'RocketIcon'
 props:
   icon: 'RocketIcon'
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
   rows: 1
 ---
 ::
 
-### Trailing Icon
+### Иконка справа {#trailing-icon}
 
-Use the `trailing-icon` prop to set icon for trailing position.
+Пропс `trailing-icon` задаёт иконку справа.
 
 ::component-code
 ---
@@ -192,14 +195,14 @@ cast:
   trailingIcon: 'RocketIcon'
 props:
   trailingIcon: 'RocketIcon'
-  placeholder: 'Enter your email'
+  placeholder: 'Введите email'
   rows: 1
 ---
 ::
 
-### Avatar
+### Аватар {#avatar}
 
-Use the `avatar` prop to show an [Avatar](/docs/components/avatar/) inside the Textarea.
+Пропс `avatar` показывает [Avatar](/docs/components/avatar/) внутри Textarea.
 
 ::component-code
 ---
@@ -212,14 +215,14 @@ props:
   avatar:
     src: '/b24ui/avatar/employee.png'
     loading: lazy
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
   rows: 1
 ---
 ::
 
-### Loading
+### Загрузка {#loading}
 
-Use the `loading` prop to show a loading icon on the Textarea.
+Пропс `loading` показывает иконку загрузки в Textarea.
 
 ::component-code
 ---
@@ -228,14 +231,14 @@ ignore:
   - placeholder
 props:
   loading: true
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
   rows: 1
 ---
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the Textarea.
+Пропс `disabled` отключает Textarea.
 
 ::component-code
 ---
@@ -244,13 +247,13 @@ ignore:
   - placeholder
 props:
   disabled: true
-  placeholder: 'Type something...'
+  placeholder: 'Введите текст...'
 ---
 ::
 
-### No padding
+### Без отступов {#no-padding}
 
-Use the `noPadding` prop to removes padding from the Input.
+Пропс `noPadding` убирает у Textarea внутренние отступы.
 
 ::component-code
 ---
@@ -260,17 +263,17 @@ ignore:
 props:
   noPadding: true
   highlight: true
-  placeholder: 'Type something...'
+  placeholder: 'Введите текст...'
 ---
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-### No border
+### Без границы {#no-border}
 
-Use the `noBorder` prop to removes all borders (rings) from the Input.
+Пропс `noBorder` убирает у Textarea все границы (кольца).
 
 ::component-code
 ---
@@ -280,17 +283,17 @@ ignore:
 props:
   noBorder: true
   highlight: true
-  placeholder: 'Type something...'
+  placeholder: 'Введите текст...'
 ---
 ::
 
 ::note
-The `highlight` prop is used here to indicate that there is no focus state.
+Пропс `highlight` здесь показывает, что состояния фокуса нет.
 ::
 
-### Underline
+### Подчёркивание {#underline}
 
-Use the `underline` prop to removes all borders (rings) except the bottom one from the Input.
+Пропс `underline` убирает у Textarea все границы (кольца), кроме нижней.
 
 ::component-code
 ---
@@ -300,17 +303,17 @@ ignore:
 props:
   underline: true
   highlight: true
-  placeholder: 'Type something...'
+  placeholder: 'Введите текст...'
 ---
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-### Rounded
+### Скругление {#rounded}
 
-Use the `rounded` prop to round the Input.
+Пропс `rounded` скругляет Textarea.
 
 ::component-code
 ---
@@ -320,17 +323,17 @@ ignore:
 props:
   rounded: true
   highlight: true
-  placeholder: 'Type something...'
+  placeholder: 'Введите текст...'
 ---
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-### Speech Recognition
+### Распознавание речи {#speech-recognition}
 
-Use composable [useSpeechRecognition](/docs/composables/use-speech-recognition/) to provide speech recognition using the [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API).
+Композабл [useSpeechRecognition](/docs/composables/use-speech-recognition/) добавляет распознавание речи через [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API).
 
 ::component-example
 ---
@@ -339,33 +342,33 @@ name: 'use-speech-recognition-example'
 ---
 ::
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attributes" target="_blank"}
-This component also supports all native `<textarea>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<textarea>`.
 ::
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-### Expose
+### Доступ через ref {#expose}
 
-When accessing the component via a template ref, you can use the following:
+При обращении к компоненту через ref в шаблоне доступно:
 
-| Name | Type |
+| Имя | Тип |
 | ---- | ---- |
 | `textareaRef`{lang="ts-type"} | `Ref<HTMLTextAreaElement \| null>`{lang="ts-type"} |
 | `autoResize`{lang="ts-type"} | `() => void`{lang="ts-type"} |
 
-## Theme
+## Тема {#theme}
 
 :component-theme

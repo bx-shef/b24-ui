@@ -1,7 +1,11 @@
 ---
 title: DashboardSidebarCollapse
-description: 'A desktop toggle button that collapses the sidebar to provide more space for content.'
+description: 'Кнопка для десктопа, которая сворачивает боковое меню и освобождает место для контента.'
 category: dashboard
+keywords:
+  - свернуть боковое меню
+  - кнопка сворачивания меню
+  - компактное боковое меню
 links:
   - label: GitHub
     iconName: GitHubIcon
@@ -14,13 +18,13 @@ links:
     to: https://ui.nuxt.com/docs/components/dashboard-sidebar-collapse
 ---
 
-## Usage
+## Использование {#usage}
 
-The DashboardSidebarCollapse component is used to collapse/expand the [DashboardSidebar](/docs/components/dashboard-sidebar/) component **when its `collapsible` prop is set**.
+Компонент DashboardSidebarCollapse сворачивает и разворачивает [DashboardSidebar](/docs/components/dashboard-sidebar/) **при заданном пропсе `collapsible`**.
 
 :component-code
 
-It extends the [Button](/docs/components/button/) component, so you can pass any property such as `color`, `size`, etc.
+Компонент расширяет [Button](/docs/components/button/), поэтому ему можно передать любое свойство: `color`, `size` и другие.
 
 ::component-code
 ---
@@ -32,14 +36,14 @@ props:
 ::
 
 ::note
-The button defaults to `color="air-tertiary"`.
+По умолчанию у кнопки `color="air-tertiary"`.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Within `header` slot
+### В слоте `header` {#within-header-slot}
 
-You can put this component in the `header` slot of the [DashboardSidebar](/docs/components/dashboard-sidebar/) component and use the `collapsed` prop to hide the left part of the header for example:
+Компонент можно поставить в слот `header` компонента [DashboardSidebar](/docs/components/dashboard-sidebar/) и, например, скрыть левую часть шапки пропсом `collapsed`:
 
 ```vue [layouts/dashboard.vue]{4-8}
 <template>
@@ -57,9 +61,9 @@ You can put this component in the `header` slot of the [DashboardSidebar](/docs/
 </template>
 ```
 
-### Within `leading` slot
+### В слоте `leading` {#within-leading-slot}
 
-You can put this component in the `leading` slot of the [DashboardNavbar](/docs/components/dashboard-navbar/) component to display it before the title for example:
+Компонент можно поставить в слот `leading` компонента [DashboardNavbar](/docs/components/dashboard-navbar/), например чтобы показать его перед заголовком:
 
 ```vue [pages/index.vue]{11-13}
 <script setup lang="ts">
@@ -83,14 +87,14 @@ definePageMeta({
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes" target="_blank"}
-This component also supports all native `<button>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<button>`.
 ::
 
-## Theme
+## Тема {#theme}
 
 :component-theme

@@ -13,7 +13,7 @@ const groups = computed(() => [{
   id: 'ai',
   ignoreFilter: true,
   items: [{
-    label: searchTerm.value ? `Ask AI for “${searchTerm.value}”` : 'Ask AI',
+    label: searchTerm.value ? `Спросить AI: «${searchTerm.value}»` : 'Спросить AI',
     icon: RobotIcon,
     onSelect: (e: any) => {
       e.preventDefault()
@@ -30,11 +30,11 @@ const groups = computed(() => [{
 const ai = ref(false)
 const searchTerm = ref('')
 
-// A static demo: nothing is sent anywhere. Replace this with a call to your own endpoint.
+// Статичная демонстрация: ничего никуда не отправляется. Замените это вызовом своего эндпоинта.
 function reply(text: string) {
   messages.value.push(
     { id: `${Date.now()}-user`, role: 'user', parts: [{ type: 'text', text }] },
-    { id: `${Date.now()}-assistant`, role: 'assistant', parts: [{ type: 'text', text: 'This demo is static, so nothing leaves the page. To get real answers, connect the prompt to your own endpoint — the Chat page shows how.' }] }
+    { id: `${Date.now()}-assistant`, role: 'assistant', parts: [{ type: 'text', text: 'Это статичная демонстрация, поэтому ничего не покидает страницу. Чтобы получать настоящие ответы, подключите поле ввода к своему эндпоинту — как это сделать, показано на странице Chat.' }] }
   )
 }
 

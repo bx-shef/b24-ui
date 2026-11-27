@@ -4,9 +4,9 @@ import MoreMIcon from '@bitrix24/b24icons-vue/outline/MoreMIcon'
 
 <template>
   <B24FieldGroup>
-    <B24Input placeholder="Enter token" />
+    <B24Input placeholder="Введите токен" />
 
-    <B24Tooltip text="Copy to clipboard">
+    <B24Tooltip text="Копировать в буфер обмена">
       <B24Button
         :icon="MoreMIcon"
       />

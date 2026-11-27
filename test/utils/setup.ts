@@ -1,11 +1,12 @@
 import * as matchers from 'vitest-axe/matchers'
 
-import { afterEach, expect } from 'vitest'
+import { afterEach, beforeAll, expect } from 'vitest'
 import { configureAxe } from 'vitest-axe'
 import { enableAutoUnmount } from '@vue/test-utils'
 import { installConsoleGate } from './console-gate'
 import { patchWebStorage } from './patchWebStorage'
 import { patchComputedStyle } from './patchComputedStyle'
+import { preloadOverlayContent } from './overlays'
 
 // Replace Node's broken built-in `localStorage` (Node 24/25) with a working
 // in-memory Storage before any test runs. See patchWebStorage.ts for details.
@@ -35,6 +36,8 @@ configureAxe({
 })
 
 expect.extend(matchers)
+
+beforeAll(preloadOverlayContent)
 
 /**
  * Registered before the auto-unmount below, and the order is load-bearing.

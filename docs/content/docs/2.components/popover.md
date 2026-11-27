@@ -1,15 +1,18 @@
 ---
 title: Popover
-description: A non-modal popup window for showing messages or gathering user input.
+description: 'Немодальное всплывающее окно для показа сообщений или сбора данных от пользователя.'
 category: overlay
 keywords:
   - hover card
   - flyout
+  - поповер
+  - всплывающая панель
+  - немодальное окно
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Popover.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/popover
   - label: Nuxt UI
@@ -21,11 +24,11 @@ links:
     to: https://reka-ui.com/docs/components/popover
 ---
 
-## Usage
+## Использование {#usage}
 
-Use a [Button](/docs/components/button/) or any other component in the default slot of the Popover.
+Поместите в слот по умолчанию Popover [Button](/docs/components/button/) или любой другой компонент.
 
-Then, use the `#content` slot to add the content displayed when the Popover is open.
+Затем слот `#content` задаёт содержимое, которое показывается при открытии Popover.
 
 ::component-code
 ---
@@ -46,12 +49,12 @@ slots:
 :placeholder{class="size-48 m-4 inline-flex"}
 ::
 
-### Mode
+### Режим {#mode}
 
-Use the `mode` prop to change the mode of the Popover. Defaults to `click`.
+Пропс `mode` меняет режим Popover. По умолчанию `click`.
 
 ::tip
-In `hover` mode, set the `enable-touch` prop to let users toggle the Popover by tapping the trigger on touch devices, or use the `click` mode for triggers meant to be tapped.
+В режиме `hover` пропс `enable-touch` позволяет открывать и закрывать Popover касанием по триггеру на сенсорных устройствах. Для триггеров, на которые рассчитано нажатие, используйте режим `click`.
 ::
 
 ::component-code
@@ -81,12 +84,12 @@ slots:
 ::
 
 ::note
-When using the `hover` mode, the Reka UI [`HoverCard`](https://reka-ui.com/docs/components/hover-card) component is used instead of the [`Popover`](https://reka-ui.com/docs/components/popover).
+В режиме `hover` вместо [`Popover`](https://reka-ui.com/docs/components/popover) используется компонент [`HoverCard`](https://reka-ui.com/docs/components/hover-card) из Reka UI.
 ::
 
-### Delay
+### Задержка {#delay}
 
-When using the `hover` mode, you can use the `open-delay` and `close-delay` props to control the delay before the Popover is opened or closed.
+В режиме `hover` пропсы `open-delay` и `close-delay` задают задержку перед открытием и закрытием Popover.
 
 ::component-code
 ---
@@ -113,9 +116,9 @@ slots:
 :placeholder{class="size-48 m-4 inline-flex"}
 ::
 
-### Content
+### Содержимое {#content}
 
-Use the `content` prop to control how the Popover content is rendered, like its `align` or `side` for example.
+Пропс `content` управляет отрисовкой содержимого Popover: например, `align` и `side` задают выравнивание и сторону.
 
 ::component-code
 ---
@@ -151,9 +154,9 @@ slots:
 :placeholder{class="size-48 m-4 inline-flex"}
 ::
 
-### Arrow
+### Стрелка {#arrow}
 
-Use the `arrow` prop to display an arrow on the Popover.
+Пропс `arrow` показывает стрелку у Popover.
 
 ::component-code
 ---
@@ -178,9 +181,9 @@ slots:
 :placeholder{class="size-48 m-4 inline-flex"}
 ::
 
-### Modal
+### Модальный режим {#modal}
 
-Use the `modal` prop to control whether the Popover blocks interaction with outside content. Defaults to `false`.
+Пропс `modal` определяет, блокирует ли Popover взаимодействие с остальной страницей. По умолчанию `false`.
 
 ::component-code
 ---
@@ -205,12 +208,12 @@ slots:
 :placeholder{class="size-48 m-4 inline-flex"}
 ::
 
-### Dismissible
+### Закрытие по действию вне окна {#dismissible}
 
-Use the `dismissible` prop to control whether the Popover is dismissible when clicking outside of it or pressing escape. Defaults to `true`.
+Пропс `dismissible` определяет, закрывается ли Popover по клику вне его или по Esc. По умолчанию `true`.
 
 ::note
-A `close:prevent` event will be emitted when the user tries to close it.
+Когда пользователь пытается закрыть Popover, срабатывает событие `close:prevent`.
 ::
 
 ::component-example
@@ -219,11 +222,11 @@ name: 'popover-dismissible-example'
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Control open state
+### Управление открытием {#control-open-state}
 
-You can control the open state by using the `default-open` prop or the `v-model:open` directive.
+Состоянием открытия управляют пропс `default-open` или директива `v-model:open`.
 
 ::component-example
 ---
@@ -232,12 +235,12 @@ name: 'popover-open-example'
 ::
 
 ::note
-In this example, leveraging [`defineShortcuts`](/docs/composables/define-shortcuts/), you can toggle the Popover by pressing :kbd{value="O"}.
+В этом примере с помощью [`defineShortcuts`](/docs/composables/define-shortcuts/) Popover переключается по нажатию :kbd{value="O"}.
 ::
 
-### With command palette
+### С командной палитрой {#with-command-palette}
 
-You can use a [CommandPalette](/docs/components/command-palette/) component inside the Popover's content.
+Внутрь содержимого Popover можно поместить компонент [CommandPalette](/docs/components/command-palette/).
 
 ::component-example
 ---
@@ -246,9 +249,9 @@ name: 'popover-command-palette-example'
 ---
 ::
 
-### With following cursor
+### С привязкой к курсору {#with-following-cursor}
 
-You can make the Popover follow the cursor when hovering over an element using the [`reference`](https://reka-ui.com/docs/components/tooltip#trigger) prop:
+Чтобы Popover следовал за курсором при наведении на элемент, используйте пропс [`reference`](https://reka-ui.com/docs/components/tooltip#trigger):
 
 ::component-example
 ---
@@ -256,12 +259,12 @@ name: 'popover-cursor-example'
 ---
 ::
 
-### With anchor slot
+### Со слотом anchor {#with-anchor-slot}
 
-You can use the `#anchor` slot to position the Popover against a custom element.
+Слот `#anchor` позиционирует Popover относительно произвольного элемента.
 
 ::warning
-This slot only works when `mode` is `click`.
+Слот работает только при `mode`, равном `click`.
 ::
 
 ::component-example
@@ -271,9 +274,9 @@ name: 'popover-anchor-slot-example'
 ---
 ::
 
-### Entity info card
+### Карточка сведений о сущности {#entity-info-card}
 
-Real-world example: an account or deal summary shown in a hover popover, assembled from [`Card`](/docs/components/card/), [`Avatar`](/docs/components/avatar/), [`Separator`](/docs/components/separator/), [`Button`](/docs/components/button/), [`Link`](/docs/components/link/) and [`DescriptionList`](/docs/components/description-list/) — no custom styling beyond the avatar accent.
+Пример из практики: сводка по аккаунту или сделке во всплывающем окне при наведении. Собрана из [`Card`](/docs/components/card/), [`Avatar`](/docs/components/avatar/), [`Separator`](/docs/components/separator/), [`Button`](/docs/components/button/), [`Link`](/docs/components/link/) и [`DescriptionList`](/docs/components/description-list/) — без своих стилей, кроме акцента аватара.
 
 ::component-example
 ---
@@ -284,33 +287,33 @@ name: 'popover-entity-info-example'
 
 ::prompt
 ---
-description: Build an entity-info popover for any record or object.
+description: Собрать всплывающее окно со сведениями о сущности для любой записи или объекта.
 actions:
   - copy
   - cursor
   - windsurf
 class: 'w-full my-0'
 ---
-Lean on the `b24-ui-nuxt` skill (see `references/recipes/overlays.md` → "Info popover (entity summary)") to build a compact entity-info popover that sits on top of an entity name in running text. The popover should tease the underlying record: a colored avatar, the entity title, a one-line caption, a primary CTA, a separator, and a label/value list with one or two values rendered as their own component (link, badge, time).
+Опирайтесь на навык `b24-ui-nuxt` (см. `references/recipes/overlays.md` → «Info popover (entity summary)»), чтобы собрать компактное всплывающее окно со сведениями о сущности, которое открывается над названием сущности в тексте. Окно должно кратко показывать запись: цветной аватар, название сущности, одну строку подписи, главную кнопку-призыв, разделитель и список «подпись / значение», где одно-два значения отрисованы отдельными компонентами (ссылка, бейдж, время).
 
-Before writing any code, gather the missing context:
-- Which entity does the popover describe (e.g. user, account, order, ticket, project, product, event)? That decides the avatar icon and the design-token accent (`alert`, `success`, `warning`, `copilot`).
-- What's the trigger — a `B24Link` mid-paragraph (hover) or a discrete control (click)?
-- Which fields belong on the card: title, caption (a short status line such as count, stage, or role), CTA label + target, plus 2-4 label/value pairs (owner, created-at, status, category, location, etc.)?
-- Do any values need their own component (link, badge, time)? If yes, plan to use the global `#description` slot with `v-if="item.slot === '<key>'"` instead of replacing the whole `<dt>/<dd>` pair via a per-item slot.
-- Locale, dark-mode preview, and any analytics events to fire when the popover opens or the CTA is clicked.
+Перед написанием кода уточните недостающее:
+- Какую сущность описывает окно (например, пользователь, аккаунт, заказ, обращение, проект, товар, событие)? От этого зависят иконка аватара и акцент дизайн-токена (`alert`, `success`, `warning`, `copilot`).
+- Что служит триггером — `B24Link` посреди абзаца (наведение) или отдельный элемент управления (клик)?
+- Какие поля нужны на карточке: название, подпись (короткая строка статуса: число, стадия или роль), текст и цель кнопки, а также 2–4 пары «подпись / значение» (ответственный, дата создания, статус, категория, место и так далее)?
+- Нужен ли каким-то значениям свой компонент (ссылка, бейдж, время)? Если да, используйте общий слот `#description` с `v-if="item.slot === '<key>'"` вместо замены всей пары `<dt>/<dd>` слотом отдельного элемента.
+- Локаль, предпросмотр в тёмной теме и события аналитики, которые нужно отправлять при открытии окна и клике по кнопке.
 
-Once those answers are in, assemble the popover from stock components only (`B24Popover`, `B24Avatar`, `B24Button`, `B24Separator`, `B24DescriptionList`, `B24Link`) and reach for the `:b24ui` prop to:
-- pin the layout to a single column inside the narrow card and zero the row dividers,
-- match the recipe's compact rhythm (`p-6`, `gap-4.5`, `w-65`, `size="sm"` button),
-- recolor the avatar through design tokens — never inline hex values.
+Когда ответы получены, соберите окно только из стандартных компонентов (`B24Popover`, `B24Avatar`, `B24Button`, `B24Separator`, `B24DescriptionList`, `B24Link`) и с помощью пропса `:b24ui`:
+- зафиксируйте раскладку в одну колонку внутри узкой карточки и уберите разделители строк;
+- выдержите компактный ритм образца (`p-6`, `gap-4.5`, `w-65`, кнопка `size="sm"`);
+- перекрасьте аватар через дизайн-токены — никаких hex-значений в коде.
 
-Use semantic typography utilities (`text-label`, `text-description`) for the title and caption, and keep all copy in the requested locale.
+Для названия и подписи используйте семантические утилиты типографики (`text-label`, `text-description`), а все тексты оставьте на запрошенной локали.
 ::
 
-### Sales dynamics widget
+### Виджет динамики продаж {#sales-dynamics-widget}
 
-A real-world example of pairing a Popover with a stats card. The widget itself is documented on the [Card](/docs/components/card/#sales-dynamics-widget) page; here it sits inside `B24Popover` so a trigger button reveals it on demand.
+Пример из практики: Popover со статистической карточкой. Сам виджет описан на странице [Card](/docs/components/card/#sales-dynamics-widget); здесь он лежит внутри `B24Popover`, и кнопка-триггер показывает его по требованию.
 
 ::component-example
 ---
@@ -321,49 +324,49 @@ name: 'popover-sales-dynamics-example'
 
 ::prompt
 ---
-description: Wrap the Sales dynamics widget in a Popover so a trigger button or link reveals it on demand.
+description: Обернуть виджет динамики продаж в Popover, чтобы кнопка или ссылка показывала его по требованию.
 actions:
   - copy
   - cursor
   - windsurf
 class: 'w-full my-0'
 ---
-Take the Sales dynamics widget recipe (see `references/recipes/overlays.md` → "Stats widget (KPI summary)") and surface it through `B24Popover` so a button or in-line link reveals the metrics on demand — useful in dashboard rows, list cells or running text where the full card would be too heavy.
+Возьмите образец виджета «Sales dynamics» (см. `references/recipes/overlays.md` → «Stats widget (KPI summary)») и покажите его через `B24Popover`, чтобы кнопка или ссылка в тексте открывала метрики по требованию — это удобно в строках дашборда, ячейках списка и тексте, где полная карточка была бы слишком тяжёлой.
 
-Before writing any code, gather the missing context:
-- What's the trigger — a `B24Button` (discrete control, typically `mode="click"`) or a `B24Link is-action` mid-paragraph (typically `mode="hover"`)?
-- Does the popover need to follow the cursor, attach to a custom `#anchor`, or stay anchored to the trigger?
-- Should the popover stay open while the user interacts with the widget? If the widget's own `Configure` / `Feedback` buttons must work without closing, keep `dismissible` on its default (true) but ensure click handlers don't bubble to the popover root.
-- What's the data shape behind the rows (and the optional highlight row), and where does it come from — props on the page, a store, or an async fetch?
-- Locale and analytics: track popover opens and CTA clicks separately, since this is a "peek" surface, not the canonical metrics page.
+Перед написанием кода уточните недостающее:
+- Что служит триггером — `B24Button` (отдельный элемент управления, обычно `mode="click"`) или `B24Link is-action` посреди абзаца (обычно `mode="hover"`)?
+- Должно ли окно следовать за курсором, крепиться к своему `#anchor` или оставаться у триггера?
+- Должно ли окно оставаться открытым, пока пользователь работает с виджетом? Если кнопки `Configure` и `Feedback` самого виджета должны работать без закрытия, оставьте `dismissible` по умолчанию (true), но не давайте обработчикам кликов всплывать до корня окна.
+- Какова форма данных за строками (и необязательной выделенной строкой) и откуда они берутся — пропсы страницы, хранилище или асинхронный запрос?
+- Локаль и аналитика: открытия окна и клики по кнопке отслеживайте раздельно — это поверхность «заглянуть», а не основная страница метрик.
 
-Once those answers are in, assemble the popover from stock components only:
-- Strip the popover's content chrome with `:b24ui="{ content: 'p-0 bg-transparent border-0 shadow-none' }"` so the widget paints its own surface (it carries the gradient, rounded corners and shadow internally).
-- Place the trigger in the default slot (`B24Button` or `B24Link is-action` — never both in the same popover); set `mode` to match the trigger affordance.
-- Render the widget itself inside `#content` exactly as documented in the recipe — the `edge-dark` root, the purple radial gradient (`--ui-color-copilot-bg-content-3 → -2 → -1`), the `style-filled-boost` highlight row and the three `air-secondary-accent` action buttons.
-- For an inline link trigger, anchor the popover with `:content="{ side: 'bottom', sideOffset: 8 }"` so the widget hovers below the link without clipping the surrounding paragraph.
+Когда ответы получены, соберите окно только из стандартных компонентов:
+- Уберите оформление содержимого окна через `:b24ui="{ content: 'p-0 bg-transparent border-0 shadow-none' }"`, чтобы виджет рисовал свою поверхность (градиент, скруглённые углы и тень у него внутри).
+- Поместите триггер в слот по умолчанию (`B24Button` или `B24Link is-action` — не оба сразу в одном окне); `mode` выбирайте под вид триггера.
+- Сам виджет отрисуйте в `#content` ровно так, как описано в образце: корень `edge-dark`, фиолетовый радиальный градиент (`--ui-color-copilot-bg-content-3 → -2 → -1`), выделенная строка `style-filled-boost` и три кнопки действий `air-secondary-accent`.
+- Для триггера-ссылки в тексте привяжите окно через `:content="{ side: 'bottom', sideOffset: 8 }"`, чтобы виджет открывался под ссылкой и не перекрывал окружающий абзац.
 
-Keep all copy in the requested locale and surface the data through the same shape (`title`, `totalLine`, `todayLine`, `rangeLabel`, `rows`, `highlight`) used by the standalone recipe.
+Все тексты оставьте на запрошенной локали, а данные передавайте в той же форме (`title`, `totalLine`, `todayLine`, `rangeLabel`, `rows`, `highlight`), что и в самостоятельном образце.
 ::
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
 ::note
-The `close` function is only available when `mode` is set to `click` because Reka UI exposes this for [`Popover`](https://reka-ui.com/docs/components/popover#close-using-slot-props) but not for [`HoverCard`](https://reka-ui.com/docs/components/hover-card).
+Функция `close` доступна только при `mode`, равном `click`: Reka UI даёт её для [`Popover`](https://reka-ui.com/docs/components/popover#close-using-slot-props), но не для [`HoverCard`](https://reka-ui.com/docs/components/hover-card).
 ::
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

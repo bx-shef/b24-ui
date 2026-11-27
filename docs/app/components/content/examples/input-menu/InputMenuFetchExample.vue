@@ -28,7 +28,7 @@ function onOpen() {
     :loading="status === 'pending'"
     :icon="UserIcon"
     :trailing-icon="Expand1Icon"
-    placeholder="Select user"
+    placeholder="Выберите пользователя"
     @update:open="onOpen"
   >
     <template #leading="{ modelValue, b24ui }">

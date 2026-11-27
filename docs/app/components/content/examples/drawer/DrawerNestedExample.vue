@@ -1,10 +1,10 @@
 <template>
   <B24Drawer :b24ui="{ content: 'h-full' }">
-    <B24Button label="Open" use-dropdown :b24ui="{ trailingIcon: 'rotate-180' }" />
+    <B24Button label="Открыть" use-dropdown :b24ui="{ trailingIcon: 'rotate-180' }" />
 
     <template #footer>
       <B24Drawer nested :b24ui="{ content: 'h-full' }">
-        <B24Button label="Open nested" />
+        <B24Button label="Открыть вложенное" />
 
         <template #content>
           <Placeholder class="flex-1 m-4" />

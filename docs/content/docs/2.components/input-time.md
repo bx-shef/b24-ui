@@ -1,16 +1,19 @@
 ---
 title: InputTime
-description: 'A time selection input field.'
+description: 'Поле ввода для выбора времени.'
 category: form
 keywords:
   - time picker
   - clock
   - hour
+  - ввод времени
+  - поле времени
+  - часы и минуты
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/InputTime.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/input-time
   - label: Nuxt UI
@@ -26,9 +29,9 @@ links:
     to: https://reka-ui.com/docs/components/time-range-field
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `v-model` directive to control the selected time.
+Директива `v-model` управляет выбранным временем.
 
 ::component-code
 ---
@@ -43,7 +46,7 @@ props:
 ---
 ::
 
-Use the `default-value` prop to set the initial value when you do not need to control its state.
+Пропс `default-value` задаёт начальное значение, когда управлять состоянием не нужно.
 
 ::component-code
 ---
@@ -61,18 +64,18 @@ props:
 ::framework-only
 #nuxt
 :::note{to="/docs/getting-started/integrations/i18n/nuxt/#locale"}
-This component uses the `@internationalized/date` package for locale-aware formatting. The time format is determined by the `locale` prop of the App component.
+Компонент использует пакет `@internationalized/date` для форматирования с учётом локали. Формат времени определяется пропсом `locale` компонента App.
 :::
 
 #vue
 :::note{to="/docs/getting-started/integrations/i18n/vue/#locale"}
-This component uses the `@internationalized/date` package for locale-aware formatting. The time format is determined by the `locale` prop of the App component.
+Компонент использует пакет `@internationalized/date` для форматирования с учётом локали. Формат времени определяется пропсом `locale` компонента App.
 :::
 ::
 
-### Range
+### Диапазон {#range}
 
-Use the `range` prop to enable time range selection with start and end times.
+Пропс `range` включает выбор диапазона времени с началом и концом.
 
 ::component-code
 ---
@@ -94,9 +97,9 @@ props:
 ::
 
 
-### Hour Cycle
+### Формат часов {#hour-cycle}
 
-Use the `hour-cycle` prop to change the hour cycle of the InputTime. Defaults to `12`.
+Пропс `hour-cycle` меняет формат часов InputTime. По умолчанию `12`.
 
 ::component-code
 ---
@@ -113,9 +116,9 @@ props:
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of the InputTime.
+Пропс `color` меняет цвет InputTime.
 
 ::component-code
 ---
@@ -126,24 +129,24 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state. It's used internally when a validation error occurs.
+Пропс `highlight` здесь показывает состояние фокуса. Внутри компонента он включается при ошибке валидации.
 ::
 
-### Tag
+### Тег {#tag}
 
-Use the `tag` property to display a [Badge](/docs/components/badge/) on top of the InputTime.
+Свойство `tag` показывает [Badge](/docs/components/badge/) поверх InputTime.
 
 ::component-code
 ---
 prettier: true
 props:
-  tag: note
+  tag: заметка
   color: 'air-primary'
   highlight: true
 ---
 ::
 
-Use the `tagColor` property to set the color for Badge.
+Свойство `tagColor` задаёт цвет Badge.
 
 ::component-code
 ---
@@ -167,16 +170,16 @@ items:
     - air-tertiary
     - air-selection
 props:
-  tag: note
+  tag: заметка
   tagColor: air-secondary-alert
   color: 'air-primary'
   highlight: true
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the InputTime.
+Пропс `size` меняет размер InputTime.
 
 ::component-code
 ---
@@ -185,9 +188,9 @@ props:
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to show an [Icon](https://bitrix24.github.io/b24icons/icons/) inside the InputTime.
+Пропс `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/) внутри InputTime.
 
 ::component-code
 ---
@@ -200,9 +203,9 @@ props:
 ---
 ::
 
-### Separator Icon
+### Иконка разделителя {#separator-icon}
 
-Use the `separator-icon` prop to change the [Icon](https://bitrix24.github.io/b24icons/icons/) of the range separator.
+Пропс `separator-icon` меняет [иконку](https://bitrix24.github.io/b24icons/icons/) разделителя диапазона.
 
 ::component-code
 ---
@@ -217,9 +220,9 @@ props:
 ---
 ::
 
-### Avatar
+### Аватар {#avatar}
 
-Use the `avatar` prop to show an [Avatar](/docs/components/avatar/) inside the InputTime.
+Пропс `avatar` показывает [Avatar](/docs/components/avatar/) внутри InputTime.
 
 ::component-code
 ---
@@ -235,9 +238,9 @@ props:
 ---
 ::
 
-### Loading
+### Загрузка {#loading}
 
-Use the `loading` prop to show a loading icon on the InputTime.
+Пропс `loading` показывает иконку загрузки в InputTime.
 
 ::component-code
 ---
@@ -247,9 +250,9 @@ props:
 ---
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the InputTime.
+Пропс `disabled` отключает InputTime.
 
 ::component-code
 ---
@@ -258,9 +261,9 @@ props:
 ---
 ::
 
-### No padding
+### Без отступов {#no-padding}
 
-Use the `noPadding` prop to removes padding from the InputTime.
+Пропс `noPadding` убирает отступы у InputTime.
 
 ::component-code
 ---
@@ -272,12 +275,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-### No border
+### Без границы {#no-border}
 
-Use the `noBorder` prop to removes all borders (rings) from the InputTime.
+Пропс `noBorder` убирает у InputTime все границы (кольца).
 
 ::component-code
 ---
@@ -289,12 +292,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to indicate that there is no focus state.
+Пропс `highlight` здесь показывает, что состояния фокуса нет.
 ::
 
-### Underline
+### Подчёркивание {#underline}
 
-Use the `underline` prop to removes all borders (rings) except the bottom one from the InputTime.
+Пропс `underline` убирает у InputTime все границы (кольца), кроме нижней.
 
 ::component-code
 ---
@@ -306,12 +309,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-### Rounded
+### Скругление {#rounded}
 
-Use the `rounded` prop to round the InputTime.
+Пропс `rounded` скругляет InputTime.
 
 ::component-code
 ---
@@ -323,14 +326,14 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Within a FormField
+### Внутри FormField {#within-a-formfield}
 
-You can use the InputTime within a [FormField](/docs/components/form-field/) component to display a label, help text, required indicator, etc.
+InputTime можно использовать внутри компонента [FormField](/docs/components/form-field/), чтобы показывать подпись, справочный текст, признак обязательности и так далее.
 
 ::component-example
 ---
@@ -340,18 +343,18 @@ name: 'input-time-form-field-example'
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

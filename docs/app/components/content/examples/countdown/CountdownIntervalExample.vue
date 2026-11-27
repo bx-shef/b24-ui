@@ -13,6 +13,6 @@ const secondsNY = ref((newYear.getTime() - now.getTime()) / 1000)
     :seconds="secondsNY"
     :interval="100"
   >
-    <span>New Year Countdown：{{ days }} days, {{ hours }} hours, {{ minutes }} minutes, {{ seconds }}.<small>{{ Math.floor(milliseconds / 100) }}</small> seconds.</span>
+    <span>До Нового года：{{ days }} дн., {{ hours }} ч, {{ minutes }} мин, {{ seconds }}.<small>{{ Math.floor(milliseconds / 100) }}</small> с.</span>
   </B24Countdown>
 </template>

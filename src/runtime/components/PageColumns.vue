@@ -13,7 +13,7 @@ export interface PageColumnsProps {
    */
   as?: any
   class?: any
-  b24ui?: { base?: any }
+  b24ui?: PageColumns['slots']
 }
 
 export interface PageColumnsSlots {
@@ -27,21 +27,27 @@ import { Primitive } from 'reka-ui'
 import { useAppConfig } from '#imports'
 import { tv } from '../utils/tv'
 import { useComponentProps } from '../composables/useComponentProps'
+import { flattenSlot } from '../utils/vnode'
 
 const _props = defineProps<PageColumnsProps>()
-
-defineSlots<PageColumnsSlots>()
+const slots = defineSlots<PageColumnsSlots>()
 
 const props = useComponentProps('pageColumns', _props)
 
 const appConfig = useAppConfig() as PageColumns['AppConfig']
 
 // eslint-disable-next-line vue/no-dupe-keys
-const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.pageColumns || {}) }))
+const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.pageColumns || {}) })())
 </script>
 
 <template>
-  <Primitive :as="props.as" :class="b24ui({ class: [props.b24ui?.base, props.class] })">
-    <slot />
+  <Primitive :as="props.as" :class="b24ui.base({ class: [props.b24ui?.base, props.class] })">
+    <div
+      v-for="item in flattenSlot(slots.default?.())"
+      :key="item.key"
+      :class="b24ui.item({ class: props.b24ui?.item })"
+    >
+      <component :is="item.node" />
+    </div>
   </Primitive>
 </template>

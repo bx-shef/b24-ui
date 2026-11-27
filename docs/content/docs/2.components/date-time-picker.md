@@ -1,26 +1,29 @@
 ---
 title: DateTimePicker
-description: 'A date and time selector: a calendar that hands over to an hour and minute grid, with presets beside it.'
+description: 'Выбор даты и времени: календарь, после которого открывается сетка часов и минут, с готовыми значениями рядом.'
 category: form
 keywords:
   - date picker
   - datetime picker
   - time picker
   - schedule
+  - дата и время
+  - выбор даты и времени
+  - календарь со временем
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/DateTimePicker.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/date-time-picker
 ---
 
-## Usage
+## Использование {#usage}
 
-Bind the selected value with `v-model`. It is a `CalendarDateTime` or a `ZonedDateTime` from [`@internationalized/date`](https://react-spectrum.adobe.com/internationalized/date/index.html), the same types [Calendar](/docs/components/calendar/) and [InputDate](/docs/components/input-date/) use.
+Значение привязывается через `v-model`. Это `CalendarDateTime` или `ZonedDateTime` из [`@internationalized/date`](https://react-spectrum.adobe.com/internationalized/date/index.html) — те же типы, что используют [Calendar](/docs/components/calendar/) и [InputDate](/docs/components/input-date/).
 
-Picking a date moves to the time step; picking a minute closes the picker.
+Выбор даты переходит к выбору времени, выбор минуты закрывает окно.
 
 ::component-example
 ---
@@ -28,9 +31,9 @@ name: 'date-time-picker-basic-example'
 ---
 ::
 
-### Date only
+### Только дата {#date-only}
 
-Use `date-only` when the time is not part of the answer. The time step is dropped and the value stays a `CalendarDate`, so it carries no time at all rather than a time of midnight.
+Пропс `date-only` нужен, когда время не требуется. Шаг выбора времени пропускается, а значение остаётся `CalendarDate`, то есть времени в нём нет вовсе — это не полночь.
 
 ::component-example
 ---
@@ -38,11 +41,11 @@ name: 'date-time-picker-date-only-example'
 ---
 ::
 
-### Presets
+### Готовые значения {#presets}
 
-A preset column sits beside the calendar with today, tomorrow, the end of the week, a week out and the end of the month. Pass `presets` to replace the list, or `hide-presets` to drop the column.
+Рядом с календарём стоит столбец готовых значений: сегодня, завтра, конец недели, через неделю и конец месяца. Пропс `presets` заменяет список, а `hide-presets` убирает столбец.
 
-A preset's `value` may be a function, which is resolved when the list renders — so a relative preset stays correct however long the page has been open.
+Значение `value` готового варианта может быть функцией, которая вычисляется при отрисовке списка, поэтому относительные варианты остаются верными, сколько бы страница ни была открыта.
 
 ::component-example
 ---
@@ -50,9 +53,9 @@ name: 'date-time-picker-custom-presets-example'
 ---
 ::
 
-### Minute step
+### Шаг минут {#minute-step}
 
-Use `minute-step` to change how many minutes the grid moves by. It is clamped to 1…30, and a value that is not a finite number falls back to `5`.
+Пропс `minute-step` меняет шаг сетки минут. Значение ограничивается диапазоном 1…30, а если это не конечное число, берётся `5`.
 
 ::component-code
 ---
@@ -65,15 +68,15 @@ items:
     - 30
 props:
   minuteStep: 15
-  placeholder: 'Pick a date and time'
+  placeholder: 'Выберите дату и время'
 ---
 ::
 
-### Clock
+### 12- и 24-часовой формат {#clock}
 
-The grid always runs `00`–`23`, so under a locale that prefers a 12-hour clock the
-trigger would say `2:30 PM` beside a cell marked `14`. Use `hour12` to settle it.
-Omit the prop to follow the locale.
+Сетка часов всегда идёт от `00` до `23`, поэтому при локали с 12-часовым форматом
+триггер показал бы `2:30 PM` рядом с ячейкой `14`. Пропс `hour12` это согласует.
+Если пропс не задан, формат берётся из локали.
 
 ::component-code
 ---
@@ -91,13 +94,13 @@ items:
 props:
   hour12: false
   modelValue: [2024, 10, 6, 14, 30]
-  placeholder: 'Pick a date and time'
+  placeholder: 'Выберите дату и время'
 ---
 ::
 
-### Custom trigger
+### Свой триггер {#custom-trigger}
 
-The `#default` slot replaces the trigger. It receives the open state, the value and the formatted value.
+Слот `#default` заменяет триггер. Он получает состояние открытия, значение и отформатированное значение.
 
 ::component-example
 ---
@@ -105,7 +108,7 @@ name: 'date-time-picker-custom-trigger-example'
 ---
 ::
 
-### Inside a FormField
+### Внутри FormField {#inside-a-formfield}
 
 ::component-example
 ---
@@ -115,18 +118,18 @@ name: 'date-time-picker-form-field-example'
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

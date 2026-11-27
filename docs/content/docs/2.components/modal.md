@@ -1,17 +1,20 @@
 ---
 title: Modal
-description: A popup window for showing messages or gathering user input.
+description: 'Всплывающее окно для показа сообщений или получения данных от пользователя.'
 category: overlay
 keywords:
   - dialog
   - popup
   - confirm
   - alert dialog
+  - модальное окно
+  - диалог
+  - всплывающее окно
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Modal.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/modal
   - label: Nuxt UI
@@ -23,11 +26,11 @@ links:
     to: https://reka-ui.com/docs/components/dialog
 ---
 
-## Usage
+## Использование {#usage}
 
-Use a [Button](/docs/components/button/) or any other component in the default slot of the Modal.
+Поместите в слот по умолчанию Modal [Button](/docs/components/button/) или любой другой компонент.
 
-Then, use the `#content` slot to add the content displayed when the Modal is open.
+Затем слот `#content` задаёт содержимое, которое показывается при открытом Modal.
 
 ::component-code
 ---
@@ -35,49 +38,49 @@ prettier: true
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   content: |
 
     <Placeholder class="h-48" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #content
 :placeholder{class="h-48"}
 ::
 
-You can also use the `#header`{lang="ts-type"}, `#body`{lang="ts-type"} and `#footer`{lang="ts-type"} slots to customize the Modal's content.
+Слоты `#header`{lang="ts-type"}, `#body`{lang="ts-type"} и `#footer`{lang="ts-type"} позволяют настроить содержимое Modal.
 
-### Title
+### Заголовок {#title}
 
-Use the `title` prop to set the title of the Modal's header.
+Пропс `title` задаёт заголовок в шапке Modal.
 
 ::component-code
 ---
 prettier: true
 props:
-  title: 'Modal with title'
+  title: 'Модальное окно с заголовком'
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   body: |
 
     <Placeholder class="h-48" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #body
 :placeholder{class="h-48"}
 ::
 
-### Description
+### Описание {#description}
 
-Use the `description` prop to set the description of the Modal's header.
+Пропс `description` задаёт описание в шапке Modal.
 
 ::component-code
 ---
@@ -85,29 +88,29 @@ prettier: true
 ignore:
   - title
 props:
-  title: 'Modal with description'
+  title: 'Модальное окно с описанием'
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   body: |
 
     <Placeholder class="h-48" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #body
 :placeholder{class="h-48"}
 ::
 
-### Close
+### Закрытие {#close}
 
-Use the `close` prop to customize or hide the close button (with `false` value) displayed in the Modal's header.
+Пропс `close` настраивает кнопку закрытия в шапке Modal или скрывает её (значение `false`).
 
-You can pass any property from the [Button](/docs/components/button/) component to customize it.
+Можно передать любое свойство компонента [Button](/docs/components/button/).
 
 ::component-code
 ---
@@ -116,33 +119,33 @@ ignore:
   - title
   - close.color
 props:
-  title: 'Modal with close button'
+  title: 'Модальное окно с кнопкой закрытия'
   close:
     color: air-secondary-accent-2
     class: 'rounded-full'
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   body: |
 
     <Placeholder class="h-48" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #body
 :placeholder{class="h-48"}
 ::
 
 ::tip
-The close button is not displayed if the `#content` slot is used as it's a part of the header.
+Кнопка закрытия не показывается, если используется слот `#content`: она входит в шапку.
 ::
 
-### Close Icon
+### Иконка закрытия {#close-icon}
 
-Use the `close-icon` prop to customize the close button [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `close-icon` меняет [иконку](https://bitrix24.github.io/b24icons/icons/) кнопки закрытия.
 
 ::component-code
 ---
@@ -153,27 +156,27 @@ ignore:
 cast:
   closeIcon: 'RocketIcon'
 props:
-  title: 'Modal with close button'
+  title: 'Модальное окно с кнопкой закрытия'
   closeIcon: 'RocketIcon'
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   body: |
 
     <Placeholder class="h-48" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #body
 :placeholder{class="h-48"}
 ::
 
-### Transition
+### Анимация {#transition}
 
-Use the `transition` prop to control whether the Modal is animated or not. Defaults to `true`.
+Пропс `transition` определяет, анимируется ли Modal. По умолчанию `true`.
 
 ::component-code
 ---
@@ -182,26 +185,26 @@ ignore:
   - title
 props:
   transition: false
-  title: 'Modal without transition'
+  title: 'Модальное окно без анимации'
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   body: |
 
     <Placeholder class="h-48" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #body
 :placeholder{class="h-48"}
 ::
 
-### Overlay
+### Оверлей {#overlay}
 
-Use the `overlay` prop to control whether the Modal has an overlay or not. Defaults to `true`.
+Пропс `overlay` определяет, есть ли у Modal оверлей. По умолчанию `true`.
 
 ::component-code
 ---
@@ -210,32 +213,32 @@ ignore:
   - title
 props:
   overlay: false
-  title: 'Modal without overlay'
+  title: 'Модальное окно без оверлея'
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   body: |
 
     <Placeholder class="h-48" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #body
 :placeholder{class="h-48"}
 ::
 
-### Overlay blur
+### Размытие оверлея {#overlay-blur}
 
-If you want to disable background blur, you should use the `overlayBlur` prop.
+Чтобы отключить размытие фона, используйте пропс `overlayBlur`.
 
-The `overlayBlur` prop has 3 options:
+У пропса `overlayBlur` три значения:
 
-- `auto`: (default) when the user has **not requested** [reduced motion](https://tailwindcss.com/docs/hover-focus-and-other-states#prefers-reduced-motion)
-- `on`: always use blur
-- `off`: do not use blur
+- `auto`: (по умолчанию) когда пользователь **не запрашивал** [уменьшение анимации](https://tailwindcss.com/docs/hover-focus-and-other-states#prefers-reduced-motion)
+- `on`: размытие всегда включено
+- `off`: размытия нет
 
 ::component-code
 ---
@@ -251,29 +254,29 @@ items:
 props:
   overlay: true
   overlayBlur: 'auto'
-  title: 'Overlay blur'
+  title: 'Размытие оверлея'
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   body: |
 
     <Placeholder class="h-48" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #body
 :placeholder{class="h-48"}
 ::
 
-### Modal
+### Модальный режим {#modal}
 
-Use the `modal` prop to control whether the Modal blocks interaction with outside content. Defaults to `true`.
+Пропс `modal` определяет, блокирует ли Modal взаимодействие с содержимым вне окна. По умолчанию `true`.
 
 ::note
-When `modal` is set to `false`, the overlay is automatically disabled and outside content becomes interactive.
+При `modal` равном `false` оверлей отключается автоматически, а содержимое вне окна остаётся интерактивным.
 ::
 
 ::component-code
@@ -283,33 +286,33 @@ ignore:
   - title
 props:
   modal: false
-  title: 'Modal interactive'
+  title: 'Интерактивное модальное окно'
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   body: |
 
     <Placeholder class="h-48" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #body
 :placeholder{class="h-48"}
 ::
 
-### Dismissible
+### Закрытие по действию вне окна {#dismissible}
 
-Use the `dismissible` prop to control whether the Modal is dismissible when clicking outside of it or pressing escape. Defaults to `true`.
+Пропс `dismissible` определяет, закрывается ли Modal щелчком вне окна или нажатием Escape. По умолчанию `true`.
 
 ::note
-A `close:prevent` event will be emitted when the user tries to close it.
+При попытке закрыть окно генерируется событие `close:prevent`.
 ::
 
 ::tip
-You can combine `modal: false` with `dismissible: false` to make the Modal's background interactive without closing it.
+Сочетание `modal: false` и `dismissible: false` делает фон интерактивным, не закрывая Modal.
 ::
 
 ::component-code
@@ -320,29 +323,29 @@ ignore:
 props:
   dismissible: false
   modal: true
-  title: 'Modal non-dismissible'
+  title: 'Модальное окно без закрытия по щелчку вне окна'
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   body: |
 
     <Placeholder class="h-48" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #body
 :placeholder{class="h-48"}
 ::
 
-### Scrollable
+### Прокрутка {#scrollable}
 
-Use the `scrollable` prop to make the Modal's content scrollable within the overlay.
+Пропс `scrollable` делает содержимое Modal прокручиваемым внутри оверлея.
 
 ::warning
-As the overlay is needed for scrolling, `modal: false` is not compatible and `overlay: false` only removes the background.
+Для прокрутки нужен оверлей, поэтому `modal: false` не подходит, а `overlay: false` убирает только фон.
 ::
 
 ::component-code
@@ -353,30 +356,30 @@ ignore:
 props:
   scrollable: true
   overlay: true
-  title: 'Modal scrollable'
+  title: 'Прокручиваемое модальное окно'
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   body: |
 
     <Placeholder class="h-full" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #body
 :placeholder{class="h-screen"}
 ::
 
 ::caution
-There's a [known issue](https://reka-ui.com/docs/components/dialog#scrollable-overlay) where clicking on the scrollbar may unintentionally close the dialog on some operating systems.
+Есть [известная проблема](https://reka-ui.com/docs/components/dialog#scrollable-overlay): в некоторых операционных системах щелчок по полосе прокрутки может случайно закрыть диалог.
 ::
 
-### Fullscreen
+### Во весь экран {#fullscreen}
 
-Use the `fullscreen` prop to make the Modal fullscreen.
+Пропс `fullscreen` разворачивает Modal на весь экран.
 
 ::component-code
 ---
@@ -386,26 +389,26 @@ ignore:
   - fullscreen
 props:
   fullscreen: true
-  title: 'Modal fullscreen'
+  title: 'Модальное окно во весь экран'
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   body: |
 
     <Placeholder class="h-full" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #body
 :placeholder{class="h-full"}
 ::
 
-### Unmount
+### Выгрузка содержимого {#unmount}
 
-Use the `unmount-on-hide` prop to prevent the Modal's content from being unmounted when it is closed. Defaults to `true`.
+Пропс `unmount-on-hide` управляет выгрузкой содержимого Modal при закрытии. По умолчанию `true`.
 
 ::component-code
 ---
@@ -414,36 +417,36 @@ ignore:
   - title
 props:
   unmountOnHide: false
-  title: 'Modal'
+  title: 'Модальное окно'
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
   body: |
 
     <Placeholder class="h-48" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 
 #body
 :placeholder{class="h-48"}
 ::
 
 ::note
-You can inspect the DOM to see the Modal's content being rendered even while it is closed.
+В DOM видно, что содержимое Modal отрисовано, даже пока окно закрыто.
 ::
 
 ::tip
-When the `portal` prop is set to `false`, the content is also rendered on the server. This is useful to render an open Modal during SSR without a flash on page load, or to expose its content for SEO.
+Если пропс `portal` равен `false`, содержимое отрисовывается и на сервере. Это полезно, чтобы отрисовать открытый Modal при SSR без мигания при загрузке страницы, или чтобы открыть содержимое для SEO.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Control open state
+### Управление открытием {#control-open-state}
 
-You can control the open state by using the `default-open` prop or the `v-model:open` directive.
+Состоянием открытия управляют пропс `default-open` или директива `v-model:open`.
 
 ::component-example
 ---
@@ -452,22 +455,22 @@ name: 'modal-open-example'
 ::
 
 ::note
-In this example, leveraging [`defineShortcuts`](/docs/composables/define-shortcuts/), you can toggle the Modal by pressing :kbd{value="O"}.
+В этом примере с помощью [`defineShortcuts`](/docs/composables/define-shortcuts/) Modal переключается по нажатию :kbd{value="O"}.
 ::
 
 ::tip
-This lets you move the trigger outside of the Modal or remove it entirely.
+Так можно вынести триггер за пределы Modal или убрать его совсем.
 ::
 
-### Programmatic usage
+### Программное использование {#programmatic-usage}
 
-You can use the [`useOverlay`](/docs/composables/use-overlay/) composable to open a Modal programmatically.
+Открыть Modal программно позволяет композабл [`useOverlay`](/docs/composables/use-overlay/).
 
 ::warning
-Make sure to wrap your app with the [`App`](/docs/components/app/) component which uses the [`OverlayProvider`](https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/OverlayProvider.vue) component.
+Оберните приложение в компонент [`App`](/docs/components/app/), который использует компонент [`OverlayProvider`](https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/OverlayProvider.vue).
 ::
 
-First, create a modal component that will be opened programmatically:
+Сначала создайте компонент модального окна, которое будет открываться программно:
 
 ::component-example
 ---
@@ -478,10 +481,10 @@ preview: false
 ::
 
 ::note
-We are emitting a `close` event when the modal is closed or dismissed here. You can emit any data through the `close` event, and that data becomes the resolved value of `open()`. The event must be emitted for the promise to resolve.
+Здесь при закрытии или отклонении окна генерируется событие `close`. Через него можно передать любые данные: они станут результатом `open()`. Событие нужно сгенерировать, иначе промис не завершится.
 ::
 
-Then, use it in your app:
+Затем используйте его в приложении:
 
 ::component-example
 ---
@@ -490,12 +493,12 @@ name: 'modal-programmatic-example'
 ::
 
 ::tip
-You can close the modal within the modal component by emitting `emit('close')`.
+Закрыть модальное окно изнутри компонента можно вызовом `emit('close')`.
 ::
 
-### Nested modals
+### Вложенные окна {#nested-modals}
 
-You can nest modals within each other.
+Модальные окна можно вкладывать друг в друга.
 
 ::component-example
 ---
@@ -503,9 +506,9 @@ name: 'modal-nested-example'
 ---
 ::
 
-### With footer slot
+### Со слотом footer {#with-footer-slot}
 
-Use the `#footer` slot to add content after the Modal's body.
+Слот `#footer` добавляет содержимое после тела Modal.
 
 ::component-example
 ---
@@ -513,9 +516,9 @@ name: 'modal-footer-slot-example'
 ---
 ::
 
-### Marketing / promo composition
+### Промо-композиция {#marketing-promo-composition}
 
-Compose a promo/upgrade modal from existing components — no new component needed. The body uses a responsive 2-column flex (heading + description on the left, a feature card on the right), the footer pairs a primary CTA with a tertiary "remind me later" action. The decorative background is a Tailwind gradient utility passed through `b24ui.body`.
+Промо-окно или окно апгрейда собирается из существующих компонентов, новый компонент не нужен. Тело использует адаптивный flex в две колонки (заголовок и описание слева, карточка возможностей справа), а в футере основной призыв к действию сочетается с третичным действием «напомнить позже». Декоративный фон — градиентная утилита Tailwind, переданная через `b24ui.body`.
 
 ::component-example
 ---
@@ -526,33 +529,33 @@ name: 'modal-marketing-example'
 
 ::prompt
 ---
-description: Build a marketing / promo modal for any business or app.
+description: Собрать маркетинговое (промо) модальное окно для любого бизнеса или приложения.
 actions:
   - copy
   - cursor
   - windsurf
 class: 'w-full my-0'
 ---
-You are helping me build a marketing / promo modal in an app that uses `@bitrix24/b24ui-nuxt`. Load the `b24-ui-nuxt` skill and follow the **Marketing / promo modal** recipe in `skills/b24-ui-nuxt/references/recipes/overlays.md`.
+Вы помогаете мне собрать маркетинговое (промо) модальное окно в приложении на `@bitrix24/b24ui-nuxt`. Загрузите навык `b24-ui-nuxt` и следуйте рецепту **Marketing / promo modal** из `skills/b24-ui-nuxt/references/recipes/overlays.md`.
 
-Goal: a focused, single-purpose modal for any marketing activity — trial ending, plan upsell, seasonal offer, feature launch, re-engagement campaign — with one primary CTA and one dismiss action, that nudges the user without blocking the main workflow.
+Цель: сфокусированное модальное окно с одной задачей для любой маркетинговой активности (окончание пробного периода, допродажа тарифа, сезонное предложение, запуск функции, кампания по возврату пользователей), с одним основным призывом к действию и одним действием закрытия, которое подталкивает пользователя, не блокируя основной рабочий процесс.
 
-Before writing any code, ask me clarifying questions about:
-- the activity itself — what is being promoted (offer, plan, feature, event), the value proposition in one sentence, and any quantified benefit worth highlighting;
-- the audience — which user segment, role, or lifecycle stage the modal targets;
-- the trigger and re-show cadence — page load, route guard, dismiss-aware banner, scheduled campaign window;
-- the primary action — where the CTA leads (in-app flow, deep link, external page) and any permissions or feature flags required;
-- the dismiss action — its copy, whether it just closes or snoozes for N days, and whether ESC / overlay click also dismiss;
-- copy and locale — tone, language, and whether i18n keys are required from day one;
-- analytics — which events to fire (`promo_shown`, `promo_dismissed`, `promo_clicked`) and which user roles count;
-- constraints — accessibility, dark-mode preview, mobile viewport priority.
+Прежде чем писать код, задайте мне уточняющие вопросы о:
+- самой активности: что продвигается (предложение, тариф, функция, событие), ценностное предложение в одном предложении и количественная выгода, которую стоит подчеркнуть;
+- аудитории: какой сегмент пользователей, роль или этап жизненного цикла;
+- триггере и частоте повторного показа: загрузка страницы, route guard, баннер с учётом закрытия, окно запланированной кампании;
+- основном действии: куда ведёт призыв (сценарий в приложении, глубокая ссылка, внешняя страница) и какие права или feature flags нужны;
+- действии закрытия: его текст, просто закрывает оно окно или откладывает на N дней, закрывают ли окно ESC и щелчок по оверлею;
+- тексте и локали: тон, язык и нужны ли ключи i18n с самого начала;
+- аналитике: какие события отправлять (`promo_shown`, `promo_dismissed`, `promo_clicked`) и какие роли пользователей учитывать;
+- ограничениях: доступность, предпросмотр в тёмной теме, приоритет мобильного экрана.
 
-Once we agree on those, compose the modal from existing b24ui components only (do not introduce a new component), paint the brand boost gradient on `b24ui.content`, pin the CTA row to the bottom of the body, and keep any side card as a short teaser of headline benefits — not a feature matrix.
+Когда договоримся, собирайте окно только из существующих компонентов b24ui (новый компонент не вводите), нанесите брендовый градиент boost на `b24ui.content`, прижмите ряд с призывом к действию к низу тела окна, а боковую карточку оставьте коротким тизером главных преимуществ, а не матрицей возможностей.
 ::
 
-### Sales dynamics widget
+### Виджет динамики продаж {#sales-dynamics-widget}
 
-A real-world example of surfacing a stats card behind a Modal. The widget itself is documented on the [Card](/docs/components/card/#sales-dynamics-widget) page; here it sits inside `B24Modal` so a trigger button opens it as a focused overlay — handy when the page chrome is busy and the dashboard needs a peek surface without a navigation jump.
+Практический пример: карточка статистики за Modal. Сам виджет описан на странице [Card](/docs/components/card/#sales-dynamics-widget); здесь он находится внутри `B24Modal`, и кнопка-триггер открывает его как сфокусированный оверлей. Это удобно, когда интерфейс страницы перегружен, а дашборду нужно окно быстрого просмотра без перехода по навигации.
 
 ::component-example
 ---
@@ -563,35 +566,35 @@ name: 'modal-sales-dynamics-example'
 
 ::prompt
 ---
-description: Wrap the Sales dynamics widget in a Modal so a trigger button opens it as a focused overlay.
+description: Обернуть виджет динамики продаж в Modal, чтобы кнопка-триггер открывала его как сфокусированный оверлей.
 actions:
   - copy
   - cursor
   - windsurf
 class: 'w-full my-0'
 ---
-Take the Sales dynamics widget recipe (see `references/recipes/overlays.md` → "Stats widget (KPI summary)") and surface it through `B24Modal` so a button or in-page link opens the metrics as a focused overlay — useful when the surrounding dashboard is too busy to host the full card inline.
+Возьмите рецепт виджета динамики продаж (см. `references/recipes/overlays.md` → «Stats widget (KPI summary)») и выведите его через `B24Modal`, чтобы кнопка или ссылка на странице открывала метрики как сфокусированный оверлей. Это полезно, когда дашборд вокруг слишком загружен, чтобы показывать полную карточку на месте.
 
-Before writing any code, gather the missing context:
-- What's the trigger — a `B24Button` (discrete control), a `B24Link is-action` mid-paragraph, or a programmatic open via `useOverlay`?
-- Should the modal be dismissible by ESC / overlay click, or only via the widget's own actions (in which case `:dismissible="false"`)?
-- Does the modal need to block the page (default `modal: true`) or float as a non-modal overlay (`modal: false`) so the user can still scroll the dashboard behind it?
-- Should the widget's own `Configure` / `Feedback` buttons close the modal, navigate away, or stay open while triggering side-effects?
-- What's the data shape behind the rows (and the optional highlight row), and where does it come from — props on the page, a store, or an async fetch fired only when the modal opens?
-- Locale and analytics: track modal opens and CTA clicks separately, since this is a "peek" surface, not the canonical metrics page.
+Прежде чем писать код, выясните недостающее:
+- Что служит триггером: `B24Button` (отдельный элемент), `B24Link is-action` посреди абзаца или программное открытие через `useOverlay`?
+- Должно ли окно закрываться по ESC и щелчку по оверлею или только действиями самого виджета (тогда `:dismissible="false"`)?
+- Должно ли окно блокировать страницу (по умолчанию `modal: true`) или плавать как немодальный оверлей (`modal: false`), чтобы пользователь мог прокручивать дашборд позади него?
+- Должны ли кнопки `Configure` / `Feedback` самого виджета закрывать окно, уводить со страницы или оставлять его открытым, запуская побочные эффекты?
+- Какова форма данных за строками (и необязательной выделенной строкой) и откуда они берутся: пропсы страницы, хранилище или асинхронный запрос, который срабатывает только при открытии окна?
+- Локаль и аналитика: открытия окна и щелчки по призыву к действию отслеживайте отдельно, поскольку это поверхность «быстрого просмотра», а не основная страница метрик.
 
-Once those answers are in, assemble the modal from stock components only:
-- Strip the modal's content chrome with `:b24ui="{ content: 'sm:max-w-md bg-transparent shadow-none border-0', body: 'p-0' }"` so the widget paints its own surface (it carries the gradient, rounded corners and shadow internally).
-- Disable the built-in close (`:close="false"`) so the X doesn't clash with the widget's header — the modal is dismissed by ESC, overlay click, or one of the widget's footer buttons.
-- Place the trigger in the default slot (`B24Button` or `B24Link is-action` — never both in the same modal) and put the widget itself inside `#body`.
-- Render the widget exactly as documented in the recipe — the `edge-dark` root, the purple radial gradient (`--ui-color-copilot-bg-content-3 → -2 → -1`), the `style-filled-boost` highlight row and the three `air-secondary-accent` action buttons.
+Когда ответы получены, собирайте окно только из штатных компонентов:
+- Уберите оформление содержимого окна через `:b24ui="{ content: 'sm:max-w-md bg-transparent shadow-none border-0', body: 'p-0' }"`, чтобы виджет рисовал собственную поверхность (градиент, скругления и тень он несёт внутри).
+- Отключите встроенное закрытие (`:close="false"`), чтобы крестик не конфликтовал с шапкой виджета: окно закрывается по ESC, щелчку по оверлею или одной из кнопок футера виджета.
+- Триггер поместите в слот по умолчанию (`B24Button` или `B24Link is-action`, но не оба сразу в одном окне), а сам виджет — в `#body`.
+- Отрисуйте виджет в точности как в рецепте: корень `edge-dark`, фиолетовый радиальный градиент (`--ui-color-copilot-bg-content-3 → -2 → -1`), выделенная строка `style-filled-boost` и три кнопки действий `air-secondary-accent`.
 
-Keep all copy in the requested locale and surface the data through the same shape (`title`, `totalLine`, `todayLine`, `rangeLabel`, `rows`, `highlight`) used by the standalone recipe.
+Весь текст оформляйте на запрошенном языке и отдавайте данные в той же форме (`title`, `totalLine`, `todayLine`, `rangeLabel`, `rows`, `highlight`), что и в самостоятельном рецепте.
 ::
 
-### With command palette
+### С командной палитрой {#with-command-palette}
 
-You can use a [CommandPalette](/docs/components/command-palette/) component inside the Modal's content.
+Компонент [CommandPalette](/docs/components/command-palette/) можно использовать внутри содержимого Modal.
 
 ::component-example
 ---
@@ -601,36 +604,29 @@ name: 'modal-command-palette-example'
 ::
 
 ::note
-This example uses `useLazyFetch` with `immediate: false` to only fetch data when the Modal opens.
+В примере `useLazyFetch` вызывается с `immediate: false`, поэтому данные запрашиваются только при открытии Modal.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Accessibility :badge{label="2.14+" class="align-text-top"}
+## Доступность :badge{label="2.14+" class="align-text-top"} {#accessibility}
 
-On open, focus is moved off the trigger for one tick before the dialog's focus
-trap takes over. This works around a [reka-ui timing
-bug](https://github.com/unovue/reka-ui/issues/1280) that otherwise makes the
-browser refuse `aria-hidden` and log *"Blocked aria-hidden on an element
-because its descendant retained focus"*.
+При открытии фокус на один такт снимается с триггера, после чего его перехватывает ловушка фокуса диалога. Так обходится [ошибка тайминга в reka-ui](https://github.com/unovue/reka-ui/issues/1280), из-за которой браузер отказывается применять `aria-hidden` и пишет в журнал *«Blocked aria-hidden on an element because its descendant retained focus»*.
 
-Focus returns to whatever was focused before opening, including when you open
-the component programmatically rather than through its trigger slot. Screen
-readers that announce focus changes eagerly — VoiceOver in particular — may
-briefly announce the page title before the dialog title.
+Фокус возвращается туда, где он был до открытия, в том числе когда компонент открыт программно, а не через слот триггера. Скринридеры, которые сразу озвучивают смену фокуса (в первую очередь VoiceOver), могут на мгновение произнести заголовок страницы раньше заголовка диалога.
 
-## Theme
+## Тема {#theme}
 
 :component-theme

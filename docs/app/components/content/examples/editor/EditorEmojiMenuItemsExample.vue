@@ -2,9 +2,9 @@
 import type { EditorEmojiMenuItem } from '@bitrix24/b24ui-nuxt'
 import { Emoji } from '@tiptap/extension-emoji'
 
-const value = ref(`Type : to see a custom emoji set.
+const value = ref(`Введите :, чтобы увидеть собственный набор эмодзи.
 
-You can also install the \`@tiptap/extension-emoji\` extension to use a comprehensive set with over 1800 emojis.`)
+Можно также установить расширение \`@tiptap/extension-emoji\` и пользоваться полным набором из более чем 1800 эмодзи.`)
 
 const items: EditorEmojiMenuItem[] = [
   {
@@ -64,7 +64,7 @@ const items: EditorEmojiMenuItem[] = [
     v-model="value"
     :extensions="[Emoji]"
     content-type="markdown"
-    placeholder="Type : to add emojis..."
+    placeholder="Введите : для добавления эмодзи..."
     class="w-full min-h-26"
   >
     <B24EditorEmojiMenu :editor="editor" :items="items" />

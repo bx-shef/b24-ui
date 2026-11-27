@@ -9,8 +9,8 @@ const props = withDefaults(defineProps<{
   padding: 8
 })
 
-// Only real elements can be measured: a centered step anchors to a virtual element,
-// which `ResizeObserver` and `MutationObserver` reject.
+// Измерять можно только настоящие элементы: шаг по центру привязывается к виртуальному элементу,
+// который `ResizeObserver` и `MutationObserver` отвергают.
 const target = computed(() => {
   const el = props.tour.reference.value
   return el && el instanceof Element ? el as HTMLElement : null
@@ -19,12 +19,12 @@ const target = computed(() => {
 const { top, left, width: targetWidth, height: targetHeight } = useElementBounding(target)
 const { width, height } = useWindowSize()
 
-// The target's own corner radius, so the theme radius carries over. Read once per step, not per frame.
+// Собственный радиус скругления цели, чтобы радиус темы сохранялся. Читается раз за шаг, а не на каждый кадр.
 const targetRadius = computed(() => target.value ? Number.parseFloat(getComputedStyle(target.value).borderTopLeftRadius) || 0 : 0)
 
-// The box is physical even in RTL, hence `left: 0` + `translate` on the ring below.
+// Рамка физическая даже в RTL, поэтому ниже у кольца `left: 0` и `translate`.
 const hole = computed(() => {
-  // A target removed from the DOM would measure as an empty box at the origin.
+  // Цель, удалённая из DOM, измерялась бы как пустая рамка в начале координат.
   if (!target.value?.isConnected) {
     return null
   }
@@ -32,13 +32,13 @@ const hole = computed(() => {
   const p = props.padding
   const w = targetWidth.value + p * 2
   const h = targetHeight.value + p * 2
-  // Concentric corners: a rounded target gets its radius plus the padding, a square one stays square.
+  // Концентрические углы: у скруглённой цели радиус плюс отступ, у квадратной — прямые углы.
   const r = targetRadius.value > 0 ? targetRadius.value + p : 0
   return { x: left.value - p, y: top.value - p, w, h, r: Math.min(r, w / 2, h / 2) }
 })
 
-// Full-viewport backdrop minus a rounded cutout. `clip-path` also clips hit testing,
-// so the target stays clickable while the rest of the page is blocked.
+// Подложка на весь экран со скруглённым вырезом. `clip-path` обрезает и проверку попаданий,
+// поэтому цель остаётся кликабельной, пока остальная страница заблокирована.
 const clipPath = computed(() => {
   if (!hole.value) {
     return undefined

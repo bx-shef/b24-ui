@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { refDebounced } from '@vueuse/core'
 
-const value = ref(`# Async Mention Menu
+const value = ref(`# Асинхронное меню упоминаний
 
-Type @ to mention someone. Results are fetched from an API as you type.`)
+Введите @, чтобы упомянуть пользователя. Результаты загружаются из API по мере набора.`)
 
 const searchTerm = ref('')
 const searchTermDebounced = refDebounced(searchTerm, 200)
@@ -17,7 +17,7 @@ const { data: items } = useLazyFetch('https://dummyjson.com/users/search?limit=1
   server: false
 })
 
-// SSR-safe function to append menus to body (avoids z-index issues in docs)
+// Безопасная для SSR функция, добавляющая меню в body (чтобы не было проблем с z-index в документации)
 const appendToBody = import.meta.client ? () => document.body : undefined
 </script>
 
@@ -26,7 +26,7 @@ const appendToBody = import.meta.client ? () => document.body : undefined
     v-slot="{ editor }"
     v-model="value"
     content-type="markdown"
-    placeholder="Type @ to mention..."
+    placeholder="Введите @ для упоминания..."
     class="w-full min-h-21"
   >
     <B24EditorMentionMenu

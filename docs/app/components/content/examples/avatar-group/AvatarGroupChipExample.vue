@@ -2,7 +2,7 @@
   <B24AvatarGroup size="xl">
     <B24Avatar
       src="/b24ui/avatar/assistant.png"
-      alt="Assistant Name"
+      alt="Имя помощника"
       loading="lazy"
       :chip="{ inset: true, color: 'air-primary-success', position: 'top-left' }"
     />
@@ -16,7 +16,7 @@
 
     <B24Avatar
       src="/b24ui/avatar/employee.png"
-      alt="Employee Name"
+      alt="Имя сотрудника"
       loading="lazy"
       :chip="{ inset: true, color: 'air-primary-alert' }"
     />

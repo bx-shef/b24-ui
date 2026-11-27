@@ -13,26 +13,26 @@ const groups = [
     id: 'actions',
     items: [
       {
-        label: 'Add new file',
-        suffix: 'Create a new file in the current directory',
+        label: 'Добавить новый файл',
+        suffix: 'Создать новый файл в текущей папке',
         icon: FileUploadIcon,
         kbds: ['meta', 'I']
       },
       {
-        label: 'Add new folder',
-        suffix: 'Create a new folder in the current directory',
+        label: 'Добавить новую папку',
+        suffix: 'Создать новую папку в текущей папке',
         icon: FolderPlusIcon,
         kbds: ['meta', 'F']
       },
       {
-        label: 'Search files',
-        suffix: 'Search across all files in the project',
+        label: 'Найти файлы',
+        suffix: 'Поиск по всем файлам проекта',
         icon: CrmSearchIcon,
         kbds: ['meta', 'P']
       },
       {
-        label: 'Settings',
-        suffix: 'Open application settings',
+        label: 'Настройки',
+        suffix: 'Открыть настройки приложения',
         icon: SettingsLIcon,
         kbds: ['meta', ',']
       }
@@ -40,7 +40,7 @@ const groups = [
   },
   {
     id: 'recent',
-    label: 'Recent',
+    label: 'Недавние',
     items: [
       {
         label: 'project.vue',
@@ -68,13 +68,13 @@ const groups = [
       <div class="flex items-center justify-between gap-2">
         <Bitrix24Icon class="size-5 text-label ms-1" />
         <div class="flex items-center gap-1">
-          <B24Button label="Open Command" size="sm">
+          <B24Button label="Открыть команды" size="sm">
             <template #trailing>
               <B24Kbd value="enter" size="sm" />
             </template>
           </B24Button>
           <B24Separator orientation="vertical" class="h-4" />
-          <B24Button label="Actions" size="sm">
+          <B24Button label="Действия" size="sm">
             <template #trailing>
               <B24Kbd value="meta" size="sm" />
               <B24Kbd value="k" size="sm" />

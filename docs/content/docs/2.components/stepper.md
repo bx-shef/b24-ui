@@ -1,14 +1,17 @@
 ---
 title: Stepper
-description: A stepper component to visualize progress in a multistep workflow.
+description: 'Компонент пошагового мастера, который показывает прогресс в многошаговом процессе.'
 category: navigation
 keywords:
   - wizard
+  - пошаговый мастер
+  - шаги
+  - мастер настройки
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Stepper.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/stepper
   - label: Nuxt UI
@@ -16,9 +19,9 @@ links:
     to: https://ui.nuxt.com/docs/components/stepper
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the Stepper component to display a list of items in a stepper.
+Stepper показывает список элементов в виде пошагового мастера.
 
 ::component-code
 ---
@@ -34,19 +37,19 @@ externalTypes:
   - StepperItem[]
 props:
   items:
-    - title: 'Address'
-      description: 'Add your address here'
-    - title: 'Shipping'
-      description: 'Set your preferred shipping method'
-    - title: 'Checkout'
-      description: 'Confirm your order'
+    - title: 'Адрес'
+      description: 'Укажите здесь свой адрес'
+    - title: 'Доставка'
+      description: 'Выберите способ доставки'
+    - title: 'Оформление'
+      description: 'Подтвердите заказ'
   class: 'w-full'
 ---
 ::
 
-### Items
+### Элементы {#items}
 
-Use the `items` prop as an array of objects with the following properties:
+Пропс `items` — массив объектов со свойствами:
 
 - `title?: string`{lang="ts-type"}
 - `description?: string`{lang="ts-type"}
@@ -69,23 +72,23 @@ externalTypes:
   - StepperItem[]
 props:
   items:
-    - title: 'Address'
-      description: 'Add your address here'
-    - title: 'Shipping'
-      description: 'Set your preferred shipping method'
-    - title: 'Checkout'
-      description: 'Confirm your order'
+    - title: 'Адрес'
+      description: 'Укажите здесь свой адрес'
+    - title: 'Доставка'
+      description: 'Выберите способ доставки'
+    - title: 'Оформление'
+      description: 'Подтвердите заказ'
   class: 'w-full'
 ---
 ::
 
 ::note
-Click on the items to navigate through the steps.
+Щёлкайте по элементам, чтобы переходить между шагами.
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of the Stepper.
+Пропс `color` меняет цвет Stepper.
 
 ::component-code
 ---
@@ -100,19 +103,19 @@ externalTypes:
 props:
   color: air-primary-alert
   items:
-    - title: 'Address'
-      description: 'Add your address here'
-    - title: 'Shipping'
-      description: 'Set your preferred shipping method'
-    - title: 'Checkout'
-      description: 'Confirm your order'
+    - title: 'Адрес'
+      description: 'Укажите здесь свой адрес'
+    - title: 'Доставка'
+      description: 'Выберите способ доставки'
+    - title: 'Оформление'
+      description: 'Подтвердите заказ'
   class: 'w-full'
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the Stepper.
+Пропс `size` меняет размер Stepper.
 
 ::component-code
 ---
@@ -127,19 +130,19 @@ externalTypes:
 props:
   size: xl
   items:
-    - title: 'Address'
-      description: 'Add your address here'
-    - title: 'Shipping'
-      description: 'Set your preferred shipping method'
-    - title: 'Checkout'
-      description: 'Confirm your order'
+    - title: 'Адрес'
+      description: 'Укажите здесь свой адрес'
+    - title: 'Доставка'
+      description: 'Выберите способ доставки'
+    - title: 'Оформление'
+      description: 'Подтвердите заказ'
   class: 'w-full'
 ---
 ::
 
-### Orientation
+### Ориентация {#orientation}
 
-Use the `orientation` prop to change the orientation of the Stepper. Defaults to `horizontal`.
+Пропс `orientation` меняет ориентацию Stepper. По умолчанию `horizontal`.
 
 ::component-code
 ---
@@ -154,19 +157,19 @@ externalTypes:
 props:
   orientation: vertical
   items:
-    - title: 'Address'
-      description: 'Add your address here'
-    - title: 'Shipping'
-      description: 'Set your preferred shipping method'
-    - title: 'Checkout'
-      description: 'Confirm your order'
+    - title: 'Адрес'
+      description: 'Укажите здесь свой адрес'
+    - title: 'Доставка'
+      description: 'Выберите способ доставки'
+    - title: 'Оформление'
+      description: 'Подтвердите заказ'
   class: 'w-full'
 ---
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable navigation through the steps.
+Пропс `disabled` отключает переходы между шагами.
 
 ::component-code
 ---
@@ -181,72 +184,72 @@ externalTypes:
 props:
   disabled: true
   items:
-    - title: 'Address'
-      description: 'Add your address here'
-    - title: 'Shipping'
-      description: 'Set your preferred shipping method'
-    - title: 'Checkout'
-      description: 'Confirm your order'
+    - title: 'Адрес'
+      description: 'Укажите здесь свой адрес'
+    - title: 'Доставка'
+      description: 'Выберите способ доставки'
+    - title: 'Оформление'
+      description: 'Подтвердите заказ'
 ---
 ::
 
 ::note{to="#with-controls"}
-This can be useful when you want to force navigation with controls.
+Это удобно, когда переходить между шагами нужно только с помощью кнопок управления.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With controls
+### С кнопками управления {#with-controls}
 
-You can add additional controls for the stepper using buttons.
+Кнопки добавляют Stepper дополнительное управление.
 
 :component-example{name="stepper-with-controls-example"}
 
-### Control active item
+### Управление активным элементом {#control-active-item}
 
-You can control the active item by using the `default-value` prop or the `v-model` directive with the `value` of the item. If no `value` is provided, it defaults to the index.
+Активным элементом управляют пропс `default-value` или директива `v-model` со значением `value` элемента. Если `value` не задан, берётся индекс.
 
 :component-example{name="stepper-model-value-example"}
 
 ::tip
-Use the `value-key` prop to change the key used to match items when a `v-model` or `default-value` is provided.
+Пропс `value-key` меняет ключ, по которому элементы сопоставляются с `v-model` или `default-value`.
 
-The value is matched against `value-key` on each item, whatever its type. A number keeps its positional meaning when the item at that position carries no `value-key` — so plain arrays keep working by index — and falls back to a position when it matches no item. Out-of-range numbers select nothing.
+Значение сопоставляется с `value-key` каждого элемента независимо от его типа. Число сохраняет позиционный смысл, если у элемента на этой позиции нет `value-key` (поэтому обычные массивы по-прежнему работают по индексу), и превращается в позицию, если ни один элемент не совпал. Числа вне диапазона не выбирают ничего.
 ::
 
-### With content slot
+### Со слотом content {#with-content-slot}
 
-Use the `#content` slot to customize the content of each item.
+Слот `#content` настраивает содержимое каждого элемента.
 
 :component-example{name="stepper-content-slot-example"}
 
-### With custom slot
+### С собственным слотом {#with-custom-slot}
 
-Use the `slot` property to customize a specific item.
+Свойство `slot` настраивает отдельный элемент.
 
-You will have access to the following slots:
+Вам будут доступны слоты:
 
 - `#{{ item.slot }}`{lang="ts-type"}
 
 :component-example{name="stepper-custom-slot-example"}
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-### Expose
+### Доступ через ref {#expose}
 
-You can access the typed component instance using [`useTemplateRef`](https://vuejs.org/api/composition-api-helpers.html#usetemplateref).
+Типизированный экземпляр компонента доступен через [`useTemplateRef`](https://vuejs.org/api/composition-api-helpers.html#usetemplateref).
 
 ```vue
 <script setup lang="ts">
@@ -258,15 +261,15 @@ const stepper = useTemplateRef('stepper')
 </template>
 ```
 
-This will give you access to the following:
+Он даёт доступ к следующему:
 
-| Name | Type |
+| Имя | Тип |
 | ---- | ---- |
 | `next`{lang="ts-type"}    | `() => void`{lang="ts-type"}   |
 | `prev`{lang="ts-type"}    | `() => void`{lang="ts-type"}   |
 | `hasNext`{lang="ts-type"} | `Ref<boolean>`{lang="ts-type"} |
 | `hasPrev`{lang="ts-type"} | `Ref<boolean>`{lang="ts-type"} |
 
-## Theme
+## Тема {#theme}
 
 :component-theme

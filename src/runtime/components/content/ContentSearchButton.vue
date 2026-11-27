@@ -117,7 +117,7 @@ const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.contentSea
       </template>
 
       <template #trailing="{ b24ui: b24uiProxy }">
-        <div data-slot="trailing" :class="b24ui.trailing({ class: props.b24ui?.trailing })">
+        <span data-slot="trailing" :class="b24ui.trailing({ class: props.b24ui?.trailing })">
           <slot name="trailing" :b24ui="b24uiProxy">
             <template v-if="props.kbds?.length">
               <B24Kbd
@@ -127,7 +127,7 @@ const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.contentSea
               />
             </template>
           </slot>
-        </div>
+        </span>
       </template>
     </B24Button>
   </DefineButtonTemplate>

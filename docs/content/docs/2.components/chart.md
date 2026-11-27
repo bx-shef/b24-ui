@@ -1,6 +1,6 @@
 ---
 title: Chart
-description: Plots data as lines, areas, bars or a donut, rendered as SVG on the server.
+description: 'Строит данные линиями, областями, столбцами или кольцом; SVG отрисовывается на сервере.'
 category: data
 navigation.badge: New
 keywords:
@@ -9,11 +9,15 @@ keywords:
   - bar chart
   - area chart
   - donut chart
+  - график
+  - диаграмма
+  - линейный график
+  - столбчатая диаграмма
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Chart.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/chart
   - label: Nuxt UI
@@ -23,14 +27,14 @@ links:
     avatar:
       src: https://github.com/tanstack.png
       loading: lazy
-    to: https://tanstack.com/charts/latest
+    to: https://tanstack.com/charts/v1
 ---
 
-## Usage :badge{label="2.15+" class="align-text-top"}
+## Использование :badge{label="2.15+" class="align-text-top"} {#usage}
 
-The Chart component is built on top of [TanStack Charts](https://tanstack.com/charts/latest) and renders an SVG on the server.
+Компонент Chart построен на [TanStack Charts](https://tanstack.com/charts/v1) и отрисовывает SVG на сервере.
 
-TanStack Charts is an optional peer dependency, install it first:
+TanStack Charts — необязательная peer-зависимость, сначала установите её:
 
 ::code-group{sync="pm"}
 
@@ -52,9 +56,9 @@ bun add @tanstack/charts
 
 ::
 
-### Data
+### Данные {#data}
 
-Use the `data` prop to pass an array of objects, the `index` prop to set the key used for the x axis and the `categories` prop to set the series, each with the `key` of its values and an optional `label` and `color`.
+Пропс `data` принимает массив объектов, пропс `index` задаёт ключ для оси X, а пропс `categories` — ряды: у каждого есть `key` со значениями и необязательные `label` и `color`.
 
 ::component-code
 ---
@@ -75,47 +79,47 @@ props:
   aspectRatio: 2.77
   initialWidth: 832
   data:
-    - month: January
+    - month: Январь
       desktop: 186
       mobile: 80
-    - month: February
+    - month: Февраль
       desktop: 305
       mobile: 200
-    - month: March
+    - month: Март
       desktop: 237
       mobile: 120
-    - month: April
+    - month: Апрель
       desktop: 73
       mobile: 190
-    - month: May
+    - month: Май
       desktop: 209
       mobile: 130
-    - month: June
+    - month: Июнь
       desktop: 214
       mobile: 140
   index: month
   categories:
     - key: desktop
-      label: Desktop
+      label: Компьютер
     - key: mobile
-      label: Mobile
+      label: Телефон
 ---
 ::
 
 ::note
-You can also pass categories as strings, like `['desktop', 'mobile']`, when they read well as names.
+Категории можно передать и строками, например `['desktop', 'mobile']`, если они хорошо читаются как названия.
 ::
 
 ::tip
-Use the `aria-label` prop to name the chart for assistive technologies.
+Пропс `aria-label` задаёт название графика для вспомогательных технологий.
 ::
 
-### Type
+### Тип {#type}
 
-Use the `type` prop to change the type of chart. Defaults to `line`.
+Пропс `type` меняет тип графика. По умолчанию — `line`.
 
 ::note
-With `donut`, each row of `data` is a slice. The `index` sets its label and the first key of `categories` its value.
+При `donut` каждая строка `data` — отдельный сектор. `index` задаёт его подпись, а первый ключ `categories` — значение.
 ::
 
 ::component-code
@@ -144,39 +148,39 @@ props:
   initialWidth: 832
   type: donut
   data:
-    - month: January
+    - month: Январь
       desktop: 186
       mobile: 80
-    - month: February
+    - month: Февраль
       desktop: 305
       mobile: 200
-    - month: March
+    - month: Март
       desktop: 237
       mobile: 120
-    - month: April
+    - month: Апрель
       desktop: 73
       mobile: 190
-    - month: May
+    - month: Май
       desktop: 209
       mobile: 130
-    - month: June
+    - month: Июнь
       desktop: 214
       mobile: 140
   index: month
   categories:
     - key: desktop
-      label: Desktop
+      label: Компьютер
     - key: mobile
-      label: Mobile
+      label: Телефон
 ---
 ::
 
-### Stacked
+### С накоплением {#stacked}
 
-Use the `stacked` prop to stack the series on top of each other.
+Пропс `stacked` складывает ряды друг на друга.
 
 ::warning
-This prop only works when `type` is `area` or `bar`.
+Пропс работает только при `type` равном `area` или `bar`.
 ::
 
 ::component-code
@@ -200,39 +204,39 @@ props:
   type: bar
   stacked: true
   data:
-    - month: January
+    - month: Январь
       desktop: 186
       mobile: 80
-    - month: February
+    - month: Февраль
       desktop: 305
       mobile: 200
-    - month: March
+    - month: Март
       desktop: 237
       mobile: 120
-    - month: April
+    - month: Апрель
       desktop: 73
       mobile: 190
-    - month: May
+    - month: Май
       desktop: 209
       mobile: 130
-    - month: June
+    - month: Июнь
       desktop: 214
       mobile: 140
   index: month
   categories:
     - key: desktop
-      label: Desktop
+      label: Компьютер
     - key: mobile
-      label: Mobile
+      label: Телефон
 ---
 ::
 
-### Curve
+### Кривая {#curve}
 
-Use the `curve` prop to change the shape of the line between values. Defaults to `linear`.
+Пропс `curve` меняет форму линии между значениями. По умолчанию — `linear`.
 
 ::warning
-This prop only works when `type` is `line` or `area`.
+Пропс работает только при `type` равном `line` или `area`.
 ::
 
 ::component-code
@@ -261,39 +265,39 @@ props:
   type: line
   curve: monotone
   data:
-    - month: January
+    - month: Январь
       desktop: 186
       mobile: 80
-    - month: February
+    - month: Февраль
       desktop: 305
       mobile: 200
-    - month: March
+    - month: Март
       desktop: 237
       mobile: 120
-    - month: April
+    - month: Апрель
       desktop: 73
       mobile: 190
-    - month: May
+    - month: Май
       desktop: 209
       mobile: 130
-    - month: June
+    - month: Июнь
       desktop: 214
       mobile: 140
   index: month
   categories:
     - key: desktop
-      label: Desktop
+      label: Компьютер
     - key: mobile
-      label: Mobile
+      label: Телефон
 ---
 ::
 
-### Colors
+### Цвета {#colors}
 
-Use the `colors` prop to set the color of each series with `air-*` colors (`air-primary`, `air-primary-success`, `air-primary-alert`, `air-primary-warning`, `air-primary-copilot`, `air-secondary-no-accent`) or any CSS color.
+Пропс `colors` задаёт цвет каждого ряда: цветами `air-*` (`air-primary`, `air-primary-success`, `air-primary-alert`, `air-primary-warning`, `air-primary-copilot`, `air-secondary-no-accent`) или любым CSS-цветом.
 
 ::note
-The colors follow the `categories` order, or the `data` order with `donut`. A `color` set on a category takes precedence. When there are more series than colors, they repeat as lighter tints.
+Цвета назначаются в порядке `categories`, а при `donut` — в порядке `data`. `color`, заданный у категории, приоритетнее. Если рядов больше, чем цветов, цвета повторяются в более светлых оттенках.
 ::
 
 ::component-code
@@ -319,43 +323,43 @@ props:
     - air-primary-success
     - '#8b5cf6'
   data:
-    - month: January
+    - month: Январь
       desktop: 186
       mobile: 80
-    - month: February
+    - month: Февраль
       desktop: 305
       mobile: 200
-    - month: March
+    - month: Март
       desktop: 237
       mobile: 120
-    - month: April
+    - month: Апрель
       desktop: 73
       mobile: 190
-    - month: May
+    - month: Май
       desktop: 209
       mobile: 130
-    - month: June
+    - month: Июнь
       desktop: 214
       mobile: 140
   index: month
   categories:
     - key: desktop
-      label: Desktop
+      label: Компьютер
     - key: mobile
-      label: Mobile
+      label: Телефон
 ---
 ::
 
 ::tip{to="/docs/getting-started/theme/css-variables/#chart"}
-The colors default to the `--b24ui-chart-*` CSS variables, which you can customize in your `main.css` file.
+По умолчанию цвета берутся из CSS-переменных `--b24ui-chart-*`, которые можно переопределить в файле `main.css`.
 ::
 
-### Points
+### Точки {#points}
 
-Use the `points` prop to draw a dot at each value.
+Пропс `points` рисует точку у каждого значения.
 
 ::warning
-This prop only works when `type` is `line`.
+Пропс работает только при `type` равном `line`.
 ::
 
 ::component-code
@@ -378,36 +382,36 @@ props:
   initialWidth: 832
   points: true
   data:
-    - month: January
+    - month: Январь
       desktop: 186
       mobile: 80
-    - month: February
+    - month: Февраль
       desktop: 305
       mobile: 200
-    - month: March
+    - month: Март
       desktop: 237
       mobile: 120
-    - month: April
+    - month: Апрель
       desktop: 73
       mobile: 190
-    - month: May
+    - month: Май
       desktop: 209
       mobile: 130
-    - month: June
+    - month: Июнь
       desktop: 214
       mobile: 140
   index: month
   categories:
     - key: desktop
-      label: Desktop
+      label: Компьютер
     - key: mobile
-      label: Mobile
+      label: Телефон
 ---
 ::
 
-### Grid
+### Сетка {#grid}
 
-Use the `grid` prop to toggle the horizontal grid lines. Defaults to `true`.
+Пропс `grid` включает и выключает горизонтальные линии сетки. По умолчанию — `true`.
 
 ::component-code
 ---
@@ -429,36 +433,36 @@ props:
   initialWidth: 832
   grid: false
   data:
-    - month: January
+    - month: Январь
       desktop: 186
       mobile: 80
-    - month: February
+    - month: Февраль
       desktop: 305
       mobile: 200
-    - month: March
+    - month: Март
       desktop: 237
       mobile: 120
-    - month: April
+    - month: Апрель
       desktop: 73
       mobile: 190
-    - month: May
+    - month: Май
       desktop: 209
       mobile: 130
-    - month: June
+    - month: Июнь
       desktop: 214
       mobile: 140
   index: month
   categories:
     - key: desktop
-      label: Desktop
+      label: Компьютер
     - key: mobile
-      label: Mobile
+      label: Телефон
 ---
 ::
 
-### Axis
+### Оси {#axis}
 
-Use the `x-axis` and `y-axis` props to toggle each axis. Both default to `true`.
+Пропсы `x-axis` и `y-axis` включают и выключают каждую ось. По умолчанию оба — `true`.
 
 ::component-code
 ---
@@ -481,36 +485,36 @@ props:
   xAxis: false
   yAxis: false
   data:
-    - month: January
+    - month: Январь
       desktop: 186
       mobile: 80
-    - month: February
+    - month: Февраль
       desktop: 305
       mobile: 200
-    - month: March
+    - month: Март
       desktop: 237
       mobile: 120
-    - month: April
+    - month: Апрель
       desktop: 73
       mobile: 190
-    - month: May
+    - month: Май
       desktop: 209
       mobile: 130
-    - month: June
+    - month: Июнь
       desktop: 214
       mobile: 140
   index: month
   categories:
     - key: desktop
-      label: Desktop
+      label: Компьютер
     - key: mobile
-      label: Mobile
+      label: Телефон
 ---
 ::
 
-### Axis labels
+### Подписи осей {#axis-labels}
 
-Use the `x-label` and `y-label` props to display a title along each axis.
+Пропсы `x-label` и `y-label` показывают заголовок вдоль каждой оси.
 
 ::component-code
 ---
@@ -530,42 +534,42 @@ hide:
 props:
   aspectRatio: 2.77
   initialWidth: 832
-  xLabel: Month
-  yLabel: Visitors
+  xLabel: Месяц
+  yLabel: Посетители
   data:
-    - month: January
+    - month: Январь
       desktop: 186
       mobile: 80
-    - month: February
+    - month: Февраль
       desktop: 305
       mobile: 200
-    - month: March
+    - month: Март
       desktop: 237
       mobile: 120
-    - month: April
+    - month: Апрель
       desktop: 73
       mobile: 190
-    - month: May
+    - month: Май
       desktop: 209
       mobile: 130
-    - month: June
+    - month: Июнь
       desktop: 214
       mobile: 140
   index: month
   categories:
     - key: desktop
-      label: Desktop
+      label: Компьютер
     - key: mobile
-      label: Mobile
+      label: Телефон
 ---
 ::
 
-### Legend
+### Легенда {#legend}
 
-Use the `legend` prop to toggle the legend.
+Пропс `legend` включает и выключает легенду.
 
 ::note
-The legend is displayed by default when there is more than one category, or more than one slice with `donut`.
+По умолчанию легенда видна, если категорий больше одной (или секторов больше одного при `donut`).
 ::
 
 ::component-code
@@ -588,39 +592,39 @@ props:
   initialWidth: 832
   legend: false
   data:
-    - month: January
+    - month: Январь
       desktop: 186
       mobile: 80
-    - month: February
+    - month: Февраль
       desktop: 305
       mobile: 200
-    - month: March
+    - month: Март
       desktop: 237
       mobile: 120
-    - month: April
+    - month: Апрель
       desktop: 73
       mobile: 190
-    - month: May
+    - month: Май
       desktop: 209
       mobile: 130
-    - month: June
+    - month: Июнь
       desktop: 214
       mobile: 140
   index: month
   categories:
     - key: desktop
-      label: Desktop
+      label: Компьютер
     - key: mobile
-      label: Mobile
+      label: Телефон
 ---
 ::
 
-### Tooltip
+### Подсказка {#tooltip}
 
-Use the `tooltip` prop to customize or hide the [Tooltip](/docs/components/tooltip) displayed on the focused values. Defaults to `true`.
+Пропс `tooltip` настраивает или скрывает [подсказку](/docs/components/tooltip), которая показывается у выбранных значений. По умолчанию — `true`.
 
 ::tip{to="#with-tooltip-slot"}
-You can also use the `#tooltip` slot to replace its content.
+Содержимое подсказки заменяет слот `#tooltip`.
 ::
 
 ::component-code
@@ -647,39 +651,39 @@ props:
   initialWidth: 832
   tooltip: false
   data:
-    - month: January
+    - month: Январь
       desktop: 186
       mobile: 80
-    - month: February
+    - month: Февраль
       desktop: 305
       mobile: 200
-    - month: March
+    - month: Март
       desktop: 237
       mobile: 120
-    - month: April
+    - month: Апрель
       desktop: 73
       mobile: 190
-    - month: May
+    - month: Май
       desktop: 209
       mobile: 130
-    - month: June
+    - month: Июнь
       desktop: 214
       mobile: 140
   index: month
   categories:
     - key: desktop
-      label: Desktop
+      label: Компьютер
     - key: mobile
-      label: Mobile
+      label: Телефон
 ---
 ::
 
-### Thickness
+### Толщина {#thickness}
 
-Use the `thickness` prop to set the width of the ring in pixels. Defaults to `24`.
+Пропс `thickness` задаёт толщину кольца в пикселях. По умолчанию — `24`.
 
 ::warning
-This prop only works when `type` is `donut`.
+Пропс работает только при `type` равном `donut`.
 ::
 
 ::component-code
@@ -703,43 +707,43 @@ props:
   type: donut
   thickness: 12
   data:
-    - month: January
+    - month: Январь
       desktop: 186
       mobile: 80
-    - month: February
+    - month: Февраль
       desktop: 305
       mobile: 200
-    - month: March
+    - month: Март
       desktop: 237
       mobile: 120
-    - month: April
+    - month: Апрель
       desktop: 73
       mobile: 190
-    - month: May
+    - month: Май
       desktop: 209
       mobile: 130
-    - month: June
+    - month: Июнь
       desktop: 214
       mobile: 140
   index: month
   categories:
     - key: desktop
-      label: Desktop
+      label: Компьютер
     - key: mobile
-      label: Mobile
+      label: Телефон
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `height` prop to set the height of the chart in pixels. Defaults to `300`.
+Пропс `height` задаёт высоту графика в пикселях. По умолчанию — `300`.
 
 ::tip
-The chart follows the width of its container. Use the `aspect-ratio` prop to derive the height from the width, or the `width` prop to set a fixed width.
+График занимает всю ширину контейнера. Пропс `aspect-ratio` выводит высоту из ширины, а пропс `width` задаёт фиксированную ширину.
 ::
 
 ::note
-With a fixed height, the chart fades in once its container is measured. With `aspect-ratio`, the chart rendered on the server is displayed right away.
+При фиксированной высоте график плавно появляется после измерения контейнера. При `aspect-ratio` сразу показывается график, отрисованный на сервере.
 ::
 
 ::component-code
@@ -757,38 +761,38 @@ externalTypes:
 props:
   height: 200
   data:
-    - month: January
+    - month: Январь
       desktop: 186
       mobile: 80
-    - month: February
+    - month: Февраль
       desktop: 305
       mobile: 200
-    - month: March
+    - month: Март
       desktop: 237
       mobile: 120
-    - month: April
+    - month: Апрель
       desktop: 73
       mobile: 190
-    - month: May
+    - month: Май
       desktop: 209
       mobile: 130
-    - month: June
+    - month: Июнь
       desktop: 214
       mobile: 140
   index: month
   categories:
     - key: desktop
-      label: Desktop
+      label: Компьютер
     - key: mobile
-      label: Mobile
+      label: Телефон
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With formatted values
+### С форматированием значений {#with-formatted-values}
 
-Use the `format` prop to format the values on the y axis and in the tooltip.
+Пропс `format` форматирует значения на оси Y и в подсказке.
 
 ::component-example
 ---
@@ -797,12 +801,12 @@ name: 'chart-format-example'
 ---
 ::
 
-### With a chart definition
+### С готовым описанием графика {#with-a-chart-definition}
 
-Use the `definition` prop to pass a complete [TanStack Charts definition](https://tanstack.com/charts/latest/docs/concepts/chart-definitions) when the other props are not enough.
+Если остальных пропсов не хватает, пропс `definition` принимает готовое [описание графика TanStack Charts](https://tanstack.com/charts/v1/docs/concepts/chart-definitions).
 
-::note{to="https://tanstack.com/charts/latest" target="_blank"}
-A definition from the TanStack Charts examples renders as is, with the tooltip and the responsive sizing applied.
+::note{to="https://tanstack.com/charts/v1" target="_blank"}
+Описание из примеров TanStack Charts отрисовывается как есть, с подсказкой и адаптивным размером.
 ::
 
 ::component-example
@@ -813,20 +817,20 @@ name: 'chart-definition-example'
 ::
 
 ::tip{to="/docs/getting-started/theme/css-variables/#chart"}
-Series without an explicit color use the `--b24ui-chart-*` CSS variables. Colors set in the definition are kept.
+Ряды без явного цвета берут цвет из CSS-переменных `--b24ui-chart-*`. Цвета, заданные в описании, сохраняются.
 ::
 
 ::caution
-When the definition brings its own `tooltip`, it is displayed in place of the `tooltip` prop.
+Если в описании есть собственный `tooltip`, он показывается вместо пропса `tooltip`.
 ::
 
 ::warning
-Examples importing `d3-*` packages need them installed in your project.
+Примерам, которые импортируют пакеты `d3-*`, нужны эти пакеты в вашем проекте.
 ::
 
-### With center slot
+### Со слотом center {#with-center-slot}
 
-Use the `#center` slot to display content in the middle of a `donut` chart.
+Слот `#center` показывает содержимое в центре кольцевого графика `donut`.
 
 ::component-example
 ---
@@ -835,9 +839,9 @@ name: 'chart-center-slot-example'
 ---
 ::
 
-### With tooltip slot
+### Со слотом tooltip {#with-tooltip-slot}
 
-Use the `#tooltip` slot to replace the tooltip content. It receives the `title`, the `rows` with their `label`, `value` and `color`, and the focused `points`.
+Слот `#tooltip` заменяет содержимое подсказки. Он получает `title`, `rows` с их `label`, `value` и `color`, а также выбранные `points`.
 
 ::component-example
 ---
@@ -848,22 +852,22 @@ name: 'chart-tooltip-slot-example'
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme
 
-## Changelog
+## История изменений {#changelog}
 
 :component-changelog

@@ -1,16 +1,19 @@
 ---
 title: DropdownMenu
-description: A contextual menu for actions triggered by clicking an element.
+description: 'Контекстное меню действий, которое открывается по щелчку на элементе.'
 category: overlay
 keywords:
   - menu
   - context menu
   - actions
+  - выпадающее меню
+  - контекстное меню
+  - действия
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/DropdownMenu.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/dropdown-menu
   - label: Nuxt UI
@@ -22,9 +25,9 @@ links:
     to: https://reka-ui.com/docs/components/dropdown-menu
 ---
 
-## Usage
+## Использование {#usage}
 
-Use a [Button](/docs/components/button/) or any other component in the default slot of the DropdownMenu.
+Поместите в слот по умолчанию DropdownMenu компонент [Button](/docs/components/button/) или любой другой.
 
 ::component-code
 ---
@@ -44,15 +47,15 @@ props:
           src: 'https://github.com/bitrix24.png'
           loading: lazy
         type: label
-    - - label: Profile
-      - label: Billing
-      - label: Settings
+    - - label: Профиль
+      - label: Оплата
+      - label: Настройки
         kbds:
           - ','
-      - label: Keyboard shortcuts
-    - - label: Team
+      - label: Горячие клавиши
+    - - label: Команда
         filter:
-          placeholder: 'Search members...'
+          placeholder: 'Найти участника...'
         children:
           - - label: Bitrix24
               avatar:
@@ -62,27 +65,27 @@ props:
               avatar:
                 src: 'https://github.com/bitrix-tools.png'
                 loading: lazy
-      - label: Invite users
+      - label: Пригласить пользователей
         children:
-          - - label: Email
-            - label: Message
-          - - label: More
+          - - label: Почта
+            - label: Сообщение
+          - - label: Ещё
               children:
-                - label: Import from Slack
-                - label: Import from Trello
-                - label: Import from Asana
-      - label: New team
+                - label: Импорт из Slack
+                - label: Импорт из Trello
+                - label: Импорт из Asana
+      - label: Новая команда
         kbds:
           - meta
           - n
     - - label: GitHub
         to: 'https://github.com/bitrix24/b24ui'
         target: _blank
-      - label: Support
+      - label: Поддержка
         to: '/docs/components/dropdown-menu/'
       - label: API
         disabled: true
-    - - label: Logout
+    - - label: Выйти
         color: air-primary-alert
         kbds:
           - shift
@@ -91,15 +94,15 @@ props:
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 ::
 
-### Items
+### Элементы {#items}
 
-Use the `items` prop as an array of objects with the following properties:
+Пропс `items` — массив объектов со свойствами:
 
 - `label?: string`{lang="ts-type"}
 - `icon?: IconComponent`{lang="ts-type"}
@@ -119,7 +122,7 @@ Use the `items` prop as an array of objects with the following properties:
 - `class?: any`{lang="ts-type"}
 - `b24ui?: { item?: ClassNameValue, label?: ClassNameValue, separator?: ClassNameValue, itemLeadingIcon?: ClassNameValue, itemLeadingAvatarSize?: ClassNameValue, itemLeadingAvatar?: ClassNameValue, itemLabel?: ClassNameValue, itemLabelExternalIcon?: ClassNameValue, itemTrailing?: ClassNameValue, itemTrailingIcon?: ClassNameValue, itemTrailingKbds?: ClassNameValue, itemTrailingKbdsSize?: ClassNameValue }`{lang="ts-type"}
 
-You can pass any property from the [Link](/docs/components/link/#props) component such as `to`, `target`, etc.
+Можно передать любое свойство компонента [Link](/docs/components/link/#props): `to`, `target` и другие.
 
 ::component-code
 ---
@@ -139,34 +142,34 @@ props:
           src: 'https://github.com/bitrix24.png'
           loading: lazy
         type: label
-    - - label: Profile
-      - label: Billing
-      - label: Settings
+    - - label: Профиль
+      - label: Оплата
+      - label: Настройки
         kbds:
           - ','
-      - label: Keyboard shortcuts
-    - - label: Team
-      - label: Invite users
+      - label: Горячие клавиши
+    - - label: Команда
+      - label: Пригласить пользователей
         children:
-          - - label: Email
-            - label: Message
-          - - label: More
+          - - label: Почта
+            - label: Сообщение
+          - - label: Ещё
               children:
-                - label: Import from Slack
-                - label: Import from Trello
-                - label: Import from Asana
-      - label: New team
+                - label: Импорт из Slack
+                - label: Импорт из Trello
+                - label: Импорт из Asana
+      - label: Новая команда
         kbds:
           - meta
           - n
     - - label: GitHub
         to: 'https://github.com/bitrix24/b24ui'
         target: _blank
-      - label: Support
+      - label: Поддержка
         to: '/docs/components/dropdown-menu/'
       - label: API
         disabled: true
-    - - label: Logout
+    - - label: Выйти
         kbds:
           - shift
           - meta
@@ -174,23 +177,23 @@ props:
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 ::
 
 ::note
-You can also pass an array of arrays to the `items` prop to create separated groups of items.
+Чтобы получить отдельные группы элементов, передайте в `items` массив массивов.
 ::
 
 ::tip
-Each item can take a `children` array of objects with the same properties as the `items` prop to create a nested menu which can be controlled using the `open`, `defaultOpen` and `content` properties.
+Чтобы создать вложенное меню, элемент может содержать массив `children` с такими же свойствами, как у `items`. Вложенным меню можно управлять через свойства `open`, `defaultOpen` и `content`.
 ::
 
-### Content
+### Содержимое {#content}
 
-Use the `content` prop to control how the DropdownMenu content is rendered, like its `align` or `side` for example.
+Пропс `content` управляет отрисовкой содержимого DropdownMenu: например, его `align` или `side`.
 
 ::component-code
 ---
@@ -215,9 +218,9 @@ items:
     - bottom
 props:
   items:
-    - label: Profile
-    - label: Billing
-    - label: Settings
+    - label: Профиль
+    - label: Оплата
+    - label: Настройки
   content:
     align: start
     side: bottom
@@ -225,25 +228,25 @@ props:
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 ::
 
-### Filter
+### Фильтр {#filter}
 
-Use the `filter` prop to display a filter input inside the DropdownMenu. Defaults to `false`.
+Пропс `filter` показывает внутри DropdownMenu поле фильтра. По умолчанию `false`.
 
 ::note{to="#with-ignore-filter"}
-Use the `ignore-filter` prop to disable the internal search and use your own search logic.
+Пропс `ignore-filter` отключает встроенный поиск, и вы используете свою логику поиска.
 ::
 
 ::note{to="#with-filter-fields"}
-Use the `filter-fields` prop to specify which fields to filter by. By default, it uses the `labelKey` prop.
+Пропс `filter-fields` задаёт поля, по которым идёт фильтрация. По умолчанию используется пропс `labelKey`.
 ::
 
-You can pass any property from the [Input](/docs/components/input/) component to customize it.
+Поле фильтра можно настроить любым свойством компонента [Input](/docs/components/input/).
 
 ::component-code
 ---
@@ -260,12 +263,12 @@ externalTypes:
   - DropdownMenuItem[]
 props:
   items:
-    - label: Profile
-    - label: Billing
-    - label: Settings
-    - label: Team
-    - label: Invite users
-    - label: New team
+    - label: Профиль
+    - label: Оплата
+    - label: Настройки
+    - label: Команда
+    - label: Пригласить пользователей
+    - label: Новая команда
   filter: true
   content:
     align: start
@@ -274,19 +277,19 @@ props:
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 ::
 
 ::tip{to="#with-filter-items"}
-You can also enable the filter on specific sub-menus using the `filter` field on items with `children`.
+Фильтр можно включить и в отдельных вложенных меню: для этого используйте поле `filter` у элементов с `children`.
 ::
 
-### Arrow
+### Стрелка {#arrow}
 
-Use the `arrow` prop to display an arrow on the DropdownMenu.
+Пропс `arrow` показывает у DropdownMenu стрелку.
 
 ::component-code
 ---
@@ -303,21 +306,21 @@ externalTypes:
 props:
   arrow: true
   items:
-    - label: Profile
-    - label: Billing
-    - label: Settings
+    - label: Профиль
+    - label: Оплата
+    - label: Настройки
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 ::
 
-### Modal
+### Модальный режим {#modal}
 
-Use the `modal` prop to control whether the DropdownMenu blocks interaction with outside content. Defaults to `true`.
+Пропс `modal` определяет, блокирует ли DropdownMenu взаимодействие с контентом вне меню. По умолчанию `true`.
 
 ::component-code
 ---
@@ -333,23 +336,23 @@ externalTypes:
 props:
   modal: false
   items:
-    - label: Profile
-    - label: Billing
-    - label: Settings
+    - label: Профиль
+    - label: Оплата
+    - label: Настройки
   b24ui:
     content: 'w-48'
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the DropdownMenu.
+Пропс `disabled` отключает DropdownMenu.
 
 ::component-code
 ---
@@ -365,25 +368,25 @@ externalTypes:
 props:
   disabled: true
   items:
-    - label: Profile
-    - label: Billing
-    - label: Settings
+    - label: Профиль
+    - label: Оплата
+    - label: Настройки
   b24ui:
     content: 'w-48'
 slots:
   default: |
 
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 ---
 
-:b24-button{label="Open"}
+:b24-button{label="Открыть"}
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With checkbox items
+### С чекбоксами {#with-checkbox-items}
 
-You can use the `type` property with `checkbox` and use the `checked` / `onUpdateChecked` properties to control the checked state of the item.
+Свойство `type` со значением `checkbox` вместе со свойствами `checked` и `onUpdateChecked` управляет отмеченным состоянием элемента.
 
 ::component-example
 ---
@@ -393,12 +396,12 @@ name: 'dropdown-menu-checkbox-items-example'
 ::
 
 ::note
-To ensure reactivity for the `checked` state of items, it's recommended to wrap your `items` array inside a `computed`.
+Чтобы состояние `checked` у элементов было реактивным, оберните массив `items` в `computed`.
 ::
 
-### With color items
+### С цветом {#with-color-items}
 
-You can use the `color` property to highlight certain items with a color.
+Свойство `color` выделяет отдельные элементы цветом.
 
 ::component-example
 ---
@@ -407,9 +410,9 @@ name: 'dropdown-menu-color-items-example'
 ---
 ::
 
-### With filter items
+### С фильтром во вложенных меню {#with-filter-items}
 
-You can use the `filter` property on items with `children` to display a filter input inside the sub-menu.
+Свойство `filter` у элементов с `children` показывает поле фильтра внутри вложенного меню.
 
 ::component-example
 ---
@@ -418,9 +421,9 @@ name: 'dropdown-menu-filter-items-example'
 ---
 ::
 
-### Control open state
+### Управление состоянием открытия {#control-open-state}
 
-You can control the open state by using the `default-open` prop or the `v-model:open` directive.
+Состоянием открытия управляют пропс `default-open` или директива `v-model:open`.
 
 ::component-example
 ---
@@ -430,14 +433,14 @@ name: 'dropdown-menu-open-example'
 ::
 
 ::note
-In this example, leveraging [`defineShortcuts`](/docs/composables/define-shortcuts/), you can toggle the DropdownMenu by pressing :kbd{value="O"}.
+В этом примере с помощью [`defineShortcuts`](/docs/composables/define-shortcuts/) DropdownMenu открывается и закрывается клавишей :kbd{value="O"}.
 ::
 
-### With custom slot
+### Свой слот {#with-custom-slot}
 
-Use the `slot` property to customize a specific item.
+Свойство `slot` настраивает отдельный элемент.
 
-You will have access to the following slots:
+Вам будут доступны слоты:
 
 - `#{{ item.slot }}`{lang="ts-type"}
 - `#{{ item.slot }}-leading`{lang="ts-type"}
@@ -452,12 +455,12 @@ name: 'dropdown-menu-custom-slot-example'
 ::
 
 ::tip{to="#slots"}
-You can also use the `#item`, `#item-leading`, `#item-label` and `#item-trailing` slots to customize all items.
+Слоты `#item`, `#item-leading`, `#item-label` и `#item-trailing` настраивают сразу все элементы.
 ::
 
-### With switch in items
+### С переключателем в элементах {#with-switch-in-items}
 
-You can use the `slot` property with a `#{{ slot }}-trailing` slot to render a [Switch](/docs/components/switch/) inside an item.
+Свойство `slot` со слотом `#{{ slot }}-trailing` показывает внутри элемента [Switch](/docs/components/switch/).
 
 ::component-example
 ---
@@ -466,9 +469,9 @@ name: 'dropdown-menu-switch-items-example'
 ---
 ::
 
-### With ignore filter
+### Игнорирование фильтра {#with-ignore-filter}
 
-When using the `filter` prop or the `filter` field on items with `children`, you can set the `ignore-filter` prop to `true` to disable the internal search and use your own search logic.
+Если используется пропс `filter` или поле `filter` у элементов с `children`, пропс `ignore-filter` со значением `true` отключает встроенный поиск, и вы используете свою логику поиска.
 
 ::component-example
 ---
@@ -478,12 +481,12 @@ name: 'dropdown-menu-ignore-filter-example'
 ::
 
 ::note
-This example uses [`refDebounced`](https://vueuse.org/shared/refDebounced/#refdebounced) to debounce the API calls. The fetch is deferred with `immediate: false` so no request is made until the menu opens.
+В этом примере [`refDebounced`](https://vueuse.org/shared/refDebounced/#refdebounced) откладывает вызовы API. Загрузка отложена через `immediate: false`, поэтому пока меню не открыто, запросов нет.
 ::
 
-### With filter fields
+### Поля фильтра {#with-filter-fields}
 
-When using the `filter` prop or the `filter` field on items with `children`, you can set the `filter-fields` prop with an array of fields to filter on. Defaults to `[labelKey]`.
+Если используется пропс `filter` или поле `filter` у элементов с `children`, пропс `filter-fields` задаёт массив полей, по которым идёт фильтрация. По умолчанию `[labelKey]`.
 
 ::component-example
 ---
@@ -492,9 +495,9 @@ name: 'dropdown-menu-filter-fields-example'
 ---
 ::
 
-### With trigger content width
+### Ширина содержимого по триггеру {#with-trigger-content-width}
 
-You can expand the content to the full width of its button by adding the `w-(--reka-dropdown-menu-trigger-width)` class on the `b24ui.content` and adding the `min-w-(--reka-dropdown-menu-trigger-width) w-(--reka-dropdown-menu-trigger-width)` class `b24ui.viewport` slot.
+Чтобы растянуть содержимое на всю ширину кнопки, добавьте класс `w-(--reka-dropdown-menu-trigger-width)` в `b24ui.content`, а классы `min-w-(--reka-dropdown-menu-trigger-width) w-(--reka-dropdown-menu-trigger-width)` — в слот `b24ui.viewport`.
 
 ::component-example
 ---
@@ -503,9 +506,9 @@ name: 'dropdown-menu-content-width-example'
 ---
 ::
 
-### Extract shortcuts
+### Извлечение сочетаний клавиш {#extract-shortcuts}
 
-Use the [extractShortcuts](/docs/composables/extract-shortcuts/) utility to automatically define shortcuts from menu items with a `kbds` property. It recursively extracts shortcuts and returns an object compatible with [defineShortcuts](/docs/composables/define-shortcuts/).
+Утилита [extractShortcuts](/docs/composables/extract-shortcuts/) автоматически определяет сочетания клавиш из элементов меню со свойством `kbds`. Она обходит меню рекурсивно и возвращает объект, совместимый с [defineShortcuts](/docs/composables/define-shortcuts/).
 ```vue
 <script setup lang="ts">
 import type { DropdownMenuItem } from '@bitrix24/b24ui-nuxt'
@@ -538,23 +541,23 @@ defineShortcuts(extractShortcuts(items))
 ```
 
 ::note
-In this example, :kbd{value="meta"} :kbd{value="E" class="ms-px"}, :kbd{value="meta"} :kbd{value="I" class="ms-px"} and :kbd{value="meta"} :kbd{value="N" class="ms-px"} would trigger the `select` function of the corresponding item.
+В этом примере сочетания :kbd{value="meta"} :kbd{value="E" class="ms-px"}, :kbd{value="meta"} :kbd{value="I" class="ms-px"} и :kbd{value="meta"} :kbd{value="N" class="ms-px"} вызывают функцию `select` соответствующего элемента.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

@@ -2,7 +2,7 @@
   "skills": [
     {
       "name": "b24-ui-nuxt",
-      "description": "Build UIs with @bitrix24/b24ui-nuxt v2 — 130+ accessible Vue components with Tailwind CSS theming. Use when creating interfaces, building forms, or composing layouts for a Bitrix24 application.",
+      "description": "Создание интерфейсов на @bitrix24/b24ui-nuxt v2 — 130+ доступных компонентов Vue с темами на Tailwind CSS. Используйте при создании интерфейсов, форм и раскладок страниц для приложения Bitrix24.",
       "files": [
         "SKILL.md",
         "references/components.md",

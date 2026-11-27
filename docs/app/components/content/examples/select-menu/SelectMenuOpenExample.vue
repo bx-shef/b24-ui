@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const open = ref(false)
-const items = ref(['CRM settings', 'My company details', 'Access permissions'])
-const value = ref('My company details')
+const items = ref(['Настройки CRM', 'Реквизиты моей компании', 'Права доступа'])
+const value = ref('Реквизиты моей компании')
 
 defineShortcuts({
   o: () => open.value = !open.value

@@ -8,25 +8,25 @@ import MoreMIcon from '@bitrix24/b24icons-vue/outline/MoreMIcon'
 
 const items: DropdownMenuItem[] = [
   {
-    label: 'My account',
+    label: 'Мой аккаунт',
     avatar: { src: '/b24ui/avatar/employee.png', loading: 'lazy' as const }
   },
   {
-    label: 'Profile',
+    label: 'Профиль',
     icon: PersonIcon,
     children: [
       {
-        label: 'Billing',
+        label: 'Оплата',
         icon: CreditDebitCardIcon
       },
       {
-        label: 'Settings',
+        label: 'Настройки',
         icon: Settings2Icon
       }
     ]
   },
   {
-    label: 'New team',
+    label: 'Новая команда',
     icon: CirclePlusIcon
   }
 ]
@@ -34,7 +34,7 @@ const items: DropdownMenuItem[] = [
 
 <template>
   <B24FieldGroup>
-    <B24Button label="Settings" />
+    <B24Button label="Настройки" />
 
     <B24DropdownMenu :items="items" :content="{ align: 'end' }">
       <B24Button

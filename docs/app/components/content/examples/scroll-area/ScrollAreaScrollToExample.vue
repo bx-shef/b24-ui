@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const items = computed(() => Array.from({ length: 1000 }, (_, i) => ({
   id: i + 1,
-  title: `Item ${i + 1}`
+  title: `Элемент ${i + 1}`
 })))
 
 const scrollArea = useTemplateRef('scrollArea')
@@ -43,15 +43,15 @@ function scrollToItem(index: number) {
 
     <B24FieldGroup size="sm" class="px-4 py-3 border-t border-muted w-full">
       <B24Button
-        label="Top"
+        label="Сверху"
         @click="scrollToTop"
       />
       <B24Button
-        label="Bottom"
+        label="Снизу"
         @click="scrollToBottom"
       />
       <B24Button
-        :label="`Go to ${targetIndex || 500}`"
+        :label="`Перейти к ${targetIndex || 500}`"
         @click="scrollToItem(targetIndex || 500)"
       />
     </B24FieldGroup>

@@ -4,13 +4,13 @@ const emit = defineEmits<{ close: [] }>()
 
 <template>
   <B24Modal
-    title="Welcome 👋"
-    description="This modal was opened programmatically with useOverlay."
+    title="Добро пожаловать 👋"
+    description="Это модальное окно открыто программно через useOverlay."
     :close="{ onClick: () => emit('close') }"
     :b24ui="{ footer: 'justify-end' }"
   >
     <template #footer>
-      <B24Button label="Close" @click="emit('close')" />
+      <B24Button label="Закрыть" @click="emit('close')" />
     </template>
   </B24Modal>
 </template>

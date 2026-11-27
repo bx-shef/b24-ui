@@ -1,14 +1,17 @@
 ---
 title: Breadcrumb
-description: A breadcrumb navigation component.
+description: 'Навигация «хлебными крошками».'
 category: navigation
 keywords:
   - breadcrumbs
+  - хлебные крошки
+  - путь страницы
+  - навигационная цепочка
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Breadcrumb.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/breadcrumb
   - label: Nuxt UI
@@ -16,9 +19,9 @@ links:
     to: https://ui.nuxt.com/docs/components/breadcrumb
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the Breadcrumb component to show the current page's location in your site's hierarchy.
+Компонент Breadcrumb показывает положение текущей страницы в иерархии сайта.
 
 ::component-code
 ---
@@ -31,18 +34,18 @@ externalTypes:
   - BreadcrumbItem[]
 props:
   items:
-    - label: 'Docs'
+    - label: 'Документация'
       to: '/docs'
-    - label: 'Components'
+    - label: 'Компоненты'
       to: '/docs/components'
-    - label: 'Breadcrumb'
+    - label: 'Хлебные крошки'
       to: '/docs/components/breadcrumb'
 ---
 ::
 
-### Items
+### Элементы {#items}
 
-Use the `items` prop as an array of objects with the following properties:
+Пропс `items` — массив объектов со свойствами:
 
 - `label?: string`{lang="ts-type"}
 - [`icon?: IconComponent`{lang="ts-type"}](#with-custom-slot)
@@ -51,7 +54,7 @@ Use the `items` prop as an array of objects with the following properties:
 - `class?: any`{lang="ts-type"}
 - `b24ui?: { item?: ClassNameValue, link?: ClassNameValue, linkLeadingIcon?: ClassNameValue, linkLeadingAvatar?: ClassNameValue, linkLabel?: ClassNameValue, separator?: ClassNameValue, separatorIcon?: ClassNameValue }`{lang="ts-type"}
 
-You can pass any property from the [Link](/docs/components/link/#props) component such as `to`, `target`, etc.
+Можно передать любое свойство компонента [Link](/docs/components/link/#props): `to`, `target` и другие.
 
 ::component-code
 ---
@@ -63,22 +66,22 @@ externalTypes:
   - BreadcrumbItem[]
 props:
   items:
-    - label: 'Docs'
+    - label: 'Документация'
       to: '/docs'
-    - label: 'Components'
+    - label: 'Компоненты'
       to: '/docs/components'
-    - label: 'Breadcrumb'
+    - label: 'Хлебные крошки'
       to: '/docs/components/breadcrumb'
 ---
 ::
 
 ::note
-A `span` is rendered instead of a link when the `to` property is not defined.
+Если свойство `to` не задано, вместо ссылки отрисовывается `span`.
 ::
 
-### Separator Icon
+### Иконка-разделитель {#separator-icon}
 
-Use the `separator-icon` prop to customize the [Icon](https://bitrix24.github.io/b24icons/icons/) between each item.
+Пропс `separator-icon` задаёт [иконку](https://bitrix24.github.io/b24icons/icons/) между элементами.
 
 ::component-code
 ---
@@ -94,18 +97,18 @@ cast:
 props:
   separatorIcon: 'RocketIcon'
   items:
-    - label: 'Docs'
+    - label: 'Документация'
       to: '/docs'
-    - label: 'Components'
+    - label: 'Компоненты'
       to: '/docs/components'
-    - label: 'Breadcrumb'
+    - label: 'Хлебные крошки'
       to: '/docs/components/breadcrumb'
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of the active Breadcrumb.
+Пропс `color` меняет цвет активного элемента Breadcrumb.
 
 ::component-code
 ---
@@ -118,28 +121,28 @@ externalTypes:
 props:
   color: 'air-primary-alert'
   items:
-    - label: 'Docs'
+    - label: 'Документация'
       to: '/docs'
-    - label: 'Components'
+    - label: 'Компоненты'
       to: '/docs/components'
-    - label: 'Breadcrumb'
+    - label: 'Хлебные крошки'
       to: '/docs/components/breadcrumb'
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With separator slot
+### Со слотом separator {#with-separator-slot}
 
-Use the `#separator` slot to customize the separator between each item.
+Слот `#separator` настраивает разделитель между элементами.
 
 :component-example{name="breadcrumb-separator-slot-example"}
 
-### With custom slot
+### С пользовательским слотом {#with-custom-slot}
 
-Use the `slot` property to customize a specific item.
+Свойство `slot` настраивает конкретный элемент.
 
-You will have access to the following slots:
+Доступны слоты:
 
 - `#{{ item.slot }}`{lang="ts-type"}
 - `#{{ item.slot }}-leading`{lang="ts-type"}
@@ -149,19 +152,19 @@ You will have access to the following slots:
 :component-example{name="breadcrumb-custom-slot-example"}
 
 ::tip{to="#slots"}
-You can also use the `#item`, `#item-leading`, `#item-label` and `#item-trailing` slots to customize all items.
+Слоты `#item`, `#item-leading`, `#item-label` и `#item-trailing` настраивают сразу все элементы.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

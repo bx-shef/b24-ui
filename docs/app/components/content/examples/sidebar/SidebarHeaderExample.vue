@@ -9,17 +9,17 @@ const open = ref(true)
 
 const items: NavigationMenuItem[] = [
   {
-    label: 'Home',
+    label: 'Главная',
     icon: HomeIcon,
     active: true
   },
   {
-    label: 'Inbox',
+    label: 'Входящие',
     icon: MailIcon,
     badge: '4'
   },
   {
-    label: 'Contacts',
+    label: 'Контакты',
     icon: ContactIcon
   }
 ]
@@ -27,12 +27,12 @@ const items: NavigationMenuItem[] = [
 
 <template>
   <div class="flex flex-col flex-1">
-    <B24Header title="Title" toggle-side="left" :b24ui="{ container: 'px-4!' }">
+    <B24Header title="Заголовок" toggle-side="left" :b24ui="{ container: 'px-4!' }">
       <template #toggle>
         <B24Button
           :icon="HamburgerMenuIcon"
           color="air-tertiary"
-          aria-label="Toggle sidebar"
+          aria-label="Переключить боковое меню"
           @click="open = !open"
         />
       </template>

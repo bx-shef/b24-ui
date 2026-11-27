@@ -1,17 +1,20 @@
 ---
 title: ProgressGroup
-description: One progress bar carrying several values at once, each drawn as its own coloured part.
+description: 'Один индикатор выполнения, который несёт сразу несколько значений, каждое в виде отдельного цветного сегмента.'
 category: element
 keywords:
   - meter group
   - segmented progress
   - stacked bar
   - breakdown
+  - группа индикаторов
+  - составной индикатор
+  - сегментированная шкала
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/ProgressGroup.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/progress-group
   - label: Nuxt UI
@@ -19,9 +22,9 @@ links:
     to: https://ui.nuxt.com/docs/components/progress-group
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the ProgressGroup component to display multiple values as segments of a single progress bar.
+ProgressGroup показывает несколько значений как сегменты одного индикатора выполнения.
 
 ::component-code
 ---
@@ -37,25 +40,25 @@ externalTypes:
 props:
   max: 128
   items:
-    - label: 'System'
+    - label: 'Система'
       value: 24
       color: 'air-secondary'
-    - label: 'Apps'
+    - label: 'Приложения'
       value: 8
       color: 'air-primary-alert'
-    - label: 'Documents'
+    - label: 'Документы'
       value: 12
       color: 'air-primary-warning'
-    - label: 'Multimedia'
+    - label: 'Мультимедиа'
       value: 42
       color: 'air-primary-success'
   class: 'w-96'
 ---
 ::
 
-### Items
+### Элементы {#items}
 
-Use the `items` prop as an array of objects with the following properties:
+Пропс `items` — массив объектов со свойствами:
 
 - `label?: string`{lang="ts-type"}
 - `icon?: IconComponent`{lang="ts-type"}
@@ -77,13 +80,13 @@ externalTypes:
   - ProgressGroupItem[]
 props:
   items:
-    - label: 'Compute'
+    - label: 'Вычисления'
       value: 42
       color: 'air-primary'
-    - label: 'Storage'
+    - label: 'Хранилище'
       value: 18
       color: 'air-secondary'
-    - label: 'Bandwidth'
+    - label: 'Пропускная способность'
       value: 9
       color: 'air-primary-warning'
   class: 'w-96'
@@ -91,12 +94,12 @@ props:
 ::
 
 ::note
-Items without an `icon` get a coloured dot in the list instead.
+Элементы без `icon` получают в списке цветную точку.
 ::
 
-### Max
+### Максимум {#max}
 
-Use the `max` prop to set the value all items add up to. Defaults to `100`.
+Пропс `max` задаёт значение, которое составляют все элементы вместе. По умолчанию `100`.
 
 ::component-code
 ---
@@ -111,21 +114,21 @@ externalTypes:
 props:
   max: 128
   items:
-    - label: 'System'
+    - label: 'Система'
       value: 24
-    - label: 'Apps'
+    - label: 'Приложения'
       value: 8
   class: 'w-96'
 ---
 ::
 
 ::note
-A `max` that is not a positive number falls back to `100`, so the segments keep their proportions instead of collapsing.
+Если `max` не положительное число, используется `100`, и сегменты сохраняют пропорции, а не схлопываются.
 ::
 
-### Status
+### Статус {#status}
 
-Use the `status` prop to display the summed progress value.
+Пропс `status` показывает суммарное значение прогресса.
 
 ::component-code
 ---
@@ -141,10 +144,10 @@ props:
   max: 128
   status: true
   items:
-    - label: 'System'
+    - label: 'Система'
       value: 24
       color: 'air-secondary'
-    - label: 'Apps'
+    - label: 'Приложения'
       value: 8
       color: 'air-primary-alert'
   class: 'w-96'
@@ -152,12 +155,12 @@ props:
 ::
 
 ::tip
-The status tracks the end of the bar, use `:b24ui="{ status: 'w-full' }"` to make it span the full width instead.
+Статус следует за концом полосы; чтобы растянуть его на всю ширину, используйте `:b24ui="{ status: 'w-full' }"`.
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to set the colour every item falls back to.
+Пропс `color` задаёт цвет, который берут элементы без своего цвета.
 
 ::component-code
 ---
@@ -173,17 +176,17 @@ props:
   color: 'air-secondary'
   max: 128
   items:
-    - label: 'System'
+    - label: 'Система'
       value: 24
-    - label: 'Apps'
+    - label: 'Приложения'
       value: 8
   class: 'w-96'
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the thickness of the bar.
+Пропс `size` меняет толщину полосы.
 
 ::component-code
 ---
@@ -199,17 +202,17 @@ props:
   size: 'lg'
   max: 128
   items:
-    - label: 'System'
+    - label: 'Система'
       value: 24
-    - label: 'Apps'
+    - label: 'Приложения'
       value: 8
   class: 'w-96'
 ---
 ::
 
-### Orientation
+### Ориентация {#orientation}
 
-Use the `orientation` prop to change the direction of the bar. Defaults to `horizontal`.
+Пропс `orientation` меняет направление полосы. По умолчанию `horizontal`.
 
 ::component-code
 ---
@@ -225,19 +228,19 @@ props:
   orientation: 'vertical'
   max: 128
   items:
-    - label: 'System'
+    - label: 'Система'
       value: 24
-    - label: 'Apps'
+    - label: 'Приложения'
       value: 8
   class: 'h-96'
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With status slot
+### Со слотом status {#with-status-slot}
 
-Use the `status` slot to replace the summed value with your own content.
+Слот `status` заменяет суммарное значение вашим содержимым.
 
 ::component-example
 ---
@@ -246,9 +249,9 @@ name: 'progress-group-status-example'
 ---
 ::
 
-### With item slots
+### Со слотами элементов {#with-item-slots}
 
-Use the `item-label` and `item-trailing` slots to change what the legend shows for every item.
+Слоты `item-label` и `item-trailing` меняют то, что легенда показывает для каждого элемента.
 
 ::component-example
 ---
@@ -257,20 +260,20 @@ name: 'progress-group-item-example'
 ---
 ::
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme
 
-## Changelog
+## История изменений {#changelog}
 
 :component-changelog

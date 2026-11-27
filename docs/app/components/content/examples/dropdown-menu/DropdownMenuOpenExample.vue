@@ -13,14 +13,14 @@ defineShortcuts({
 
 const items: DropdownMenuItem[] = [
   {
-    label: 'Profile',
+    label: 'Профиль',
     icon: UserIcon,
     slot: 'profile' as const
   }, {
-    label: 'Billing',
+    label: 'Оплата',
     icon: PaymentIcon
   }, {
-    label: 'Settings',
+    label: 'Настройки',
     icon: Settings3Icon
   }
 ]
@@ -28,6 +28,6 @@ const items: DropdownMenuItem[] = [
 
 <template>
   <B24DropdownMenu v-model:open="open" :items="items" :b24ui="{ content: 'w-50', viewport: 'w-50' }">
-    <B24Button label="Open" :icon="HamburgerMenuIcon" />
+    <B24Button label="Открыть" :icon="HamburgerMenuIcon" />
   </B24DropdownMenu>
 </template>

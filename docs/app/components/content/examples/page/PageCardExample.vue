@@ -5,13 +5,13 @@ import CopilotIcon from '@bitrix24/b24icons-vue/outline/CopilotIcon'
 <template>
   <B24PageCard
     class="w-96"
-    title="Online workspace for the whole team"
-    description="Through its wide variety of communication and collaboration tools, Bitrix24 enables teams to work efficiently and smoothly wherever they are – at home, in the office, or on the go."
+    title="Онлайн-пространство для всей команды"
+    description="Благодаря широкому набору инструментов для общения и совместной работы Bitrix24 помогает командам работать эффективно и слаженно где угодно — дома, в офисе или в дороге."
     :icon="CopilotIcon"
   >
     <img
       src="/b24ui/assets/demo/communications-main.png.webp"
-      alt="Online workspace for the whole team"
+      alt="Онлайн-пространство для всей команды"
       class="w-full"
     >
   </B24PageCard>

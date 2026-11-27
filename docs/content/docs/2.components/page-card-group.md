@@ -1,19 +1,23 @@
 ---
 title: PageCardGroup
-description: 'A selectable group of PageCard items. Single or multi-select with optional grouping by category.'
+description: 'Выбираемая группа элементов PageCard. Одиночный или множественный выбор, с группировкой по категориям.'
 category: page
+keywords:
+  - группа карточек
+  - выбираемые карточки
+  - выбор карточки
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/PageCardGroup.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/page-card-group
 ---
 
-## Usage
+## Использование {#usage}
 
-`PageCardGroup` renders a responsive grid of selectable [PageCard](/docs/components/page-card/) items. The selected card gets a highlighted ring and a corner badge. Items can be grouped into category sections.
+`PageCardGroup` отрисовывает адаптивную сетку выбираемых элементов [PageCard](/docs/components/page-card/). У выбранной карточки подсвечивается кольцо и появляется значок в углу. Элементы можно группировать по разделам-категориям.
 
 ::component-example
 ---
@@ -23,61 +27,61 @@ class: 'p-8'
 ::
 
 ::tip
-Use `PageCardGroup` for picking one option (or several) out of a small set of presented choices. For plain checkbox/radio lists prefer [CheckboxGroup](/docs/components/checkbox-group/) or [RadioGroup](/docs/components/radio-group/).
+`PageCardGroup` подходит для выбора одного или нескольких вариантов из небольшого набора. Для обычных списков чекбоксов и переключателей лучше использовать [CheckboxGroup](/docs/components/checkbox-group/) или [RadioGroup](/docs/components/radio-group/).
 ::
 
-### Items
+### Элементы {#items}
 
-Pass an array of objects via the `items` prop. Each item supports `label`, `description`, `icon`, `value`, `disabled` and an optional `category` for grouping. Customize the field names with `value-key`, `label-key`, `description-key`, `icon-key`, `category-key`.
+Передайте массив объектов через пропс `items`. У каждого элемента можно задать `label`, `description`, `icon`, `value`, `disabled` и необязательную `category` для группировки. Имена полей настраиваются пропсами `value-key`, `label-key`, `description-key`, `icon-key`, `category-key`.
 
-### Multiple
+### Множественный выбор {#multiple}
 
-Set the `multiple` prop to switch to multi-select mode. The `v-model` binds to an array of values.
+Пропс `multiple` включает режим множественного выбора. `v-model` привязывается к массиву значений.
 
 ```vue
 <B24PageCardGroup v-model="picks" :items="items" multiple />
 ```
 
-### Columns
+### Колонки {#columns}
 
-Use the `columns` prop (`'1'`, `'2'`, `'3'`, `'4'`) to set the maximum number of columns on desktop. The grid is always responsive — 1 column on mobile, 2 on tablet, then up to `columns` on `lg+`.
+Пропс `columns` (`'1'`, `'2'`, `'3'`, `'4'`) задаёт максимальное число колонок на десктопе. Сетка всегда адаптивная: 1 колонка на мобильных, 2 на планшете, затем до `columns` начиная с `lg`.
 
-### Size
+### Размер {#size}
 
-Use the `size` prop (`'sm'`, `'md'`, `'lg'`) to scale the icon circle, the inner icon, the inner gap, and the title/description font sizes. Defaults to `'md'`. The corner badge size is derived from `size` unless `badge-size` is set explicitly.
+Пропс `size` (`'sm'`, `'md'`, `'lg'`) масштабирует круг с иконкой, саму иконку, внутренний отступ и размеры шрифта заголовка и описания. По умолчанию `'md'`. Размер значка в углу берётся из `size`, если явно не задан `badge-size`.
 
-### Variant
+### Вариант {#variant}
 
-The `variant` prop is forwarded to each inner [PageCard](/docs/components/page-card/) and controls its base style. See PageCard variants for the full list.
+Пропс `variant` передаётся каждому вложенному [PageCard](/docs/components/page-card/) и определяет его базовый стиль. Полный список вариантов — на странице PageCard.
 
-### Color
+### Цвет {#color}
 
-The `color` prop is the umbrella accent — it drives both the highlighted border on the selected card and the corner badge color. Defaults to `air-primary-success`.
+Пропс `color` — общий акцент: он определяет и цвет рамки выбранной карточки, и цвет значка в углу. По умолчанию `air-primary-success`.
 
 ```vue
 <B24PageCardGroup v-model="value" :items="items" color="air-primary" />
 ```
 
-### Highlight color
+### Цвет выделения {#highlight-color}
 
-Override the umbrella `color` for the card border only with `highlight-color`. Falls back to `color` when not set.
+Пропс `highlight-color` переопределяет общий `color` только для рамки карточки. Если не задан, берётся `color`.
 
-### Badge color
+### Цвет значка {#badge-color}
 
-Override the umbrella `color` for the corner [Badge](/docs/components/badge/) only with `badge-color`. Falls back to `color` when not set.
+Пропс `badge-color` переопределяет общий `color` только для значка [Badge](/docs/components/badge/) в углу. Если не задан, берётся `color`.
 
-### Badge size
+### Размер значка {#badge-size}
 
-Override the badge size derived from `size` with `badge-size`.
+Пропс `badge-size` переопределяет размер значка, который выводится из `size`.
 
-### Icon vs Avatar
+### Иконка и аватар {#icon-vs-avatar}
 
-Each item picks one of two leading visuals:
+Каждый элемент выбирает один из двух вариантов ведущего изображения:
 
-- `icon` field — plain icon, no circle. Theme controls size via `leadingIcon`. Use this for compact, non-decorated lists.
-- `avatar` field — [B24Avatar](/docs/components/avatar/) with full color control (`color`, `src`, `chip`, `icon`). Avatar size is derived from the group `size` (`sm` → `lg`, `md` → `xl`, `lg` → `2xl`) and the avatar's `alt` falls back to the item's `label`.
+- Поле `icon` — обычная иконка без круга. Размер задаёт тема через `leadingIcon`. Подходит для компактных списков без украшений.
+- Поле `avatar` — [B24Avatar](/docs/components/avatar/) с полным управлением цветом (`color`, `src`, `chip`, `icon`). Размер аватара выводится из `size` группы (`sm` → `lg`, `md` → `xl`, `lg` → `2xl`), а `alt` аватара по умолчанию берётся из `label` элемента.
 
-`icon` wins when both are set on the same item — the plain icon renders and `avatar` is ignored. Pick one per item:
+Если у одного элемента заданы оба поля, побеждает `icon`: отрисовывается обычная иконка, а `avatar` игнорируется. Выбирайте одно на элемент:
 
 ```ts
 // shows the icon via B24Avatar (color circle around the icon)
@@ -87,48 +91,48 @@ Each item picks one of two leading visuals:
 { icon: FeedbackIcon, avatar: { color: 'air-primary-warning' }, label: 'Feedback' }
 ```
 
-Set a group-level Avatar default that every avatar-mode item inherits:
+Аватар по умолчанию на уровне группы наследуют все элементы в режиме аватара:
 
 ```vue
 <B24PageCardGroup v-model="value" :items="items" :avatar="{ color: 'air-secondary' }" />
 ```
 
-Per-item `avatar` config merges on top of the group default:
+Настройки `avatar` у отдельного элемента накладываются поверх значения группы:
 
 :component-example{name="page-card-group-avatar-example"}
 
-The `avatar` field accepts the full [B24Avatar](/docs/components/avatar/) API — same hook drives `src` (photo), `chip`, or a different `icon` per item.
+Поле `avatar` принимает весь API [B24Avatar](/docs/components/avatar/): тот же приём задаёт `src` (фото), `chip` или другую `icon` у каждого элемента.
 
-### Category grouping
+### Группировка по категориям {#category-grouping}
 
-When items contain a `category` field (or another field set via `category-key`), the group renders one section per category with a heading above each grid. Pass `category-key=""` to disable grouping.
+Если у элементов есть поле `category` (или другое поле, заданное через `category-key`), группа отрисовывает по разделу на категорию с заголовком над каждой сеткой. Чтобы отключить группировку, передайте `category-key=""`.
 
-## Prompt
+## Промпт {#prompt}
 
 ::prompt
 ---
-description: Render a payment-methods picker on the settings page.
+description: Отрисовать выбор способов оплаты на странице настроек.
 actions:
   - copy
   - cursor
   - windsurf
 class: 'w-full my-0'
 ---
-On a settings page, render the list of payment methods as a grid of cards. Each card carries an icon and a short description. The user can enable several methods at once.
+На странице настроек отрисуйте список способов оплаты как сетку карточек. На каждой карточке иконка и короткое описание. Пользователь может включить сразу несколько способов.
 
-Requirements:
-- Use `B24PageCardGroup` with `multiple` and bind `v-model` to a `ref<string[]>`
-- Each item exposes `value`, `label`, `description` and `icon` (an icon component imported from `@bitrix24/b24icons-vue`)
-- Keep the umbrella accent in sync — set `color` on the group instead of `highlight-color` / `badge-color` separately
-- Wrap the group in `B24FormField` with a label so it integrates with the surrounding settings form
-- Pick a sensible `size` (`md` by default) and `columns` (`2` or `3`) for the layout
+Требования:
+- Используйте `B24PageCardGroup` с `multiple` и привяжите `v-model` к `ref<string[]>`
+- У каждого элемента есть `value`, `label`, `description` и `icon` (компонент иконки, импортированный из `@bitrix24/b24icons-vue`)
+- Держите общий акцент согласованным: задайте `color` на группе, а не `highlight-color` и `badge-color` по отдельности
+- Оберните группу в `B24FormField` с подписью, чтобы она встроилась в окружающую форму настроек
+- Подберите подходящие `size` (по умолчанию `md`) и `columns` (`2` или `3`) для раскладки
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Click / change handler
+### Обработчик щелчка и изменения {#click-change-handler}
 
-Listen to the `change` event to react to user selections. The event fires after `v-model` updates and receives the native `change` event.
+Подпишитесь на событие `change`, чтобы реагировать на выбор пользователя. Событие срабатывает после обновления `v-model` и получает нативное событие `change`.
 
 ```vue
 <script setup lang="ts">
@@ -143,9 +147,9 @@ function onChange(event: Event) {
 </template>
 ```
 
-### Disable an item
+### Отключение элемента {#disable-an-item}
 
-Set `disabled: true` on an individual item to lock it out without removing it from the grid.
+Свойство `disabled: true` у отдельного элемента блокирует его, не убирая из сетки.
 
 ```ts
 const items = [
@@ -154,9 +158,9 @@ const items = [
 ]
 ```
 
-### Custom badge
+### Свой значок {#custom-badge}
 
-Override the corner badge through the `badge` slot. Receives `{ item, selected }`.
+Значок в углу переопределяется слотом `badge`. Слот получает `{ item, selected }`.
 
 ```vue
 <B24PageCardGroup v-model="value" :items="items">
@@ -166,9 +170,9 @@ Override the corner badge through the `badge` slot. Receives `{ item, selected }
 </B24PageCardGroup>
 ```
 
-### Custom leading icon
+### Своя ведущая иконка {#custom-leading-icon}
 
-The leading slot is an escape hatch for cases where the built-in [B24Avatar](/docs/components/avatar/) (driven by the `avatar` prop / item `avatar` field) isn't flexible enough. Override the icon circle through the `leading` slot — receives `{ item, selected }`.
+Ведущий слот — запасной выход для случаев, когда встроенного [B24Avatar](/docs/components/avatar/) (управляется пропсом `avatar` и полем `avatar` элемента) недостаточно. Круг с иконкой переопределяется слотом `leading`, который получает `{ item, selected }`.
 
 ```vue
 <B24PageCardGroup v-model="value" :items="items">
@@ -182,9 +186,9 @@ The leading slot is an escape hatch for cases where the built-in [B24Avatar](/do
 </B24PageCardGroup>
 ```
 
-### Custom category label
+### Своя подпись категории {#custom-category-label}
 
-Override category headings through the `categoryLabel` slot. Receives `{ category, items }`.
+Заголовки категорий переопределяются слотом `categoryLabel`. Слот получает `{ category, items }`.
 
 ```vue
 <B24PageCardGroup v-model="value" :items="items">
@@ -198,14 +202,14 @@ Override category headings through the `categoryLabel` slot. Receives `{ categor
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

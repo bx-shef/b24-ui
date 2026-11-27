@@ -1,12 +1,16 @@
 ---
 title: ColorModeImage
-description: 'An image element with a different source for light and dark mode.'
+description: 'Элемент изображения с разными источниками для светлой и тёмной темы.'
 category: color-mode
+keywords:
+  - изображение по теме
+  - картинка для тёмной темы
+  - логотип по теме
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/color-mode/ColorModeImage.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/color-mode
   - label: Nuxt UI
@@ -14,9 +18,12 @@ links:
     to: https://ui.nuxt.com/docs/components/color-mode-image
 ---
 
-## Usage
+## Использование {#usage}
 
-The ColorModeImage component uses the `<NuxtImg>` component when [`@nuxt/image`](https://github.com/nuxt/image) is installed, falling back to `img` otherwise.
+::framework-only
+#nuxt
+Если установлен [`@nuxt/image`](/docs/getting-started/integrations/image), ColorModeImage использует компонент `<NuxtImg>`, иначе — обычный `img`.
+::
 
 ::component-code{prefix="color-mode"}
 ---
@@ -35,15 +42,15 @@ props:
 ::
 
 ::note
-Switch between light and dark mode to see the different images: :b24-color-mode-select{size="sm"}
+Переключайте светлую и тёмную тему, чтобы увидеть разные изображения: :b24-color-mode-select{size="sm"}
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes" target="_blank"}
-This component also supports all native `<img>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<img>`.
 ::

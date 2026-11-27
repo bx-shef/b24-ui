@@ -25,7 +25,7 @@ onBeforeMount(() => {
 <template>
   <B24Banner
     :id="id"
-    :title="title || 'This is a closable banner'"
+    :title="title || 'Это баннер, который можно закрыть'"
     :color="color"
     class="light"
     :close-icon="closeIcon ? CircleCrossIcon : undefined"

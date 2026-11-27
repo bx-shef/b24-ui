@@ -3,8 +3,8 @@ import * as v from 'valibot'
 import type { FormSubmitEvent } from '@bitrix24/b24ui-nuxt'
 
 const schema = v.object({
-  email: v.pipe(v.string(), v.email('Invalid email')),
-  password: v.pipe(v.string(), v.minLength(8, 'Must be at least 8 characters'))
+  email: v.pipe(v.string(), v.email('Некорректный email')),
+  password: v.pipe(v.string(), v.minLength(8, 'Минимум 8 символов'))
 })
 
 type Schema = v.InferOutput<typeof schema>
@@ -16,7 +16,7 @@ const state = reactive({
 
 const toast = useToast()
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  toast.add({ title: 'Success', description: 'The form has been submitted.', color: 'air-primary-success' })
+  toast.add({ title: 'Успешно', description: 'Форма отправлена.', color: 'air-primary-success' })
   console.log(event.data)
 }
 </script>
@@ -27,12 +27,12 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       <B24Input v-model="state.email" />
     </B24FormField>
 
-    <B24FormField label="Password" name="password">
+    <B24FormField label="Пароль" name="password">
       <B24Input v-model="state.password" type="password" />
     </B24FormField>
 
     <B24Button color="air-primary" type="submit">
-      Submit
+      Отправить
     </B24Button>
   </B24Form>
 </template>

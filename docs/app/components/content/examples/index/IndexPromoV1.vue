@@ -33,13 +33,13 @@ const actionColor = () => {
 
 const onClick = () => {
   toast.add({
-    title: 'Deal on Hold: Attention Required',
-    description: 'Let\'s signal the manager that the deal is not moving.',
+    title: 'Сделка на паузе: нужно внимание',
+    description: 'Сообщим менеджеру, что сделка не двигается.',
     color: colorMain.value,
     icon: RocketIcon,
     actions: [{
       icon: Refresh9Icon,
-      label: 'Click Me',
+      label: 'Нажми меня',
       color: colorMain.value,
       onClick: (e) => {
         e?.stopPropagation()
@@ -69,27 +69,27 @@ defineShortcuts({
       :avatar="{ src: `${config.public.baseUrl}/avatar/assistant.png`, loading: 'lazy' }"
     >
       <div class="font-(--ui-font-weight-bold)">
-        Deal on Hold: Attention Required
+        Сделка на паузе: нужно внимание
       </div>
       <div class="mb-2">
-        Let's signal the manager that the deal is not moving.
+        Сообщим менеджеру, что сделка не двигается.
       </div>
       <B24Separator
         :icon="Bitrix24Icon"
       />
-      <B24Switch v-model="isShowAdvice" :color="colorMain" label="Switch Me" />
+      <B24Switch v-model="isShowAdvice" :color="colorMain" label="Переключи меня" />
     </B24Advice>
     <div
       v-else
     >
       <B24Tooltip
-        text="Change color by hot key"
+        text="Смена цвета по горячей клавише"
         :kbds="['shift', 'a']"
         :delay-duration="0"
       >
         <B24Button
           :color="colorMain"
-          label="Click Me"
+          label="Нажми меня"
           :icon="RocketIcon"
           use-clock
           loading-auto

@@ -14,7 +14,7 @@ defineShortcuts({
   <B24Input
     ref="input"
     :icon="CrmSearchIcon"
-    placeholder="Search..."
+    placeholder="Поиск..."
   >
     <template #trailing>
       <B24Kbd value="/" />

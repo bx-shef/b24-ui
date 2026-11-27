@@ -9,21 +9,21 @@ import PencilDrawIcon from '@bitrix24/b24icons-vue/actions/PencilDrawIcon'
 const items: DropdownMenuItem[][] = [
   [
     {
-      label: 'View',
+      label: 'Просмотр',
       icon: OpenedEyeIcon
     },
     {
-      label: 'Copy',
+      label: 'Копировать',
       icon: CopyPlatesIcon
     },
     {
-      label: 'Edit',
+      label: 'Изменить',
       icon: PencilDrawIcon
     }
   ],
   [
     {
-      label: 'Delete',
+      label: 'Удалить',
       color: 'air-primary-alert' as const,
       icon: TrashBinIcon
     }
@@ -33,6 +33,6 @@ const items: DropdownMenuItem[][] = [
 
 <template>
   <B24DropdownMenu :items="items" :b24ui="{ content: 'w-48', viewport: 'w-48' }">
-    <B24Button label="Open" :icon="HamburgerMenuIcon" />
+    <B24Button label="Открыть" :icon="HamburgerMenuIcon" />
   </B24DropdownMenu>
 </template>

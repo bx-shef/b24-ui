@@ -7,7 +7,7 @@ const schema = object({
   email: nonempty(string()),
   password: refine(string(), 'Password', (value) => {
     if (value.length >= 8) return true
-    return 'Must be at least 8 characters'
+    return 'Минимум 8 символов'
   })
 })
 
@@ -29,12 +29,12 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       <B24Input v-model="state.email" />
     </B24FormField>
 
-    <B24FormField label="Password" name="password">
+    <B24FormField label="Пароль" name="password">
       <B24Input v-model="state.password" type="password" />
     </B24FormField>
 
     <B24Button color="air-primary" type="submit">
-      Submit
+      Отправить
     </B24Button>
   </B24Form>
 </template>

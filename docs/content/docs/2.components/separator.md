@@ -1,16 +1,19 @@
 ---
 title: Separator
-description: Divides content in a horizontal or vertical manner.
+description: 'Разделяет содержимое по горизонтали или вертикали.'
 category: element
 keywords:
   - divider
   - hr
   - horizontal rule
+  - разделитель
+  - горизонтальная линия
+  - разделительная черта
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Separator.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/separator
   - label: Nuxt UI
@@ -22,9 +25,9 @@ links:
     to: https://reka-ui.com/docs/components/separator
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the Separator component as-is to separate content.
+Separator без настроек просто разделяет содержимое.
 
 ::component-code
 ---
@@ -33,9 +36,9 @@ class: 'p-8'
 ---
 ::
 
-### Orientation
+### Ориентация {#orientation}
 
-Use the `orientation` prop to change the orientation of the Separator. Defaults to `horizontal`.
+Пропс `orientation` меняет ориентацию Separator. По умолчанию `horizontal`.
 
 ::component-code
 ---
@@ -50,9 +53,9 @@ props:
 ---
 ::
 
-### Label
+### Подпись {#label}
 
-Use the `label` prop to display a label in the middle of the Separator.
+Пропс `label` показывает подпись посередине Separator.
 
 ::component-code
 ---
@@ -64,9 +67,9 @@ props:
 ---
 ::
 
-### Position
+### Положение {#position}
 
-Use the `position` prop to change the position of the content of the Separator. Defaults to `center`.
+Пропс `position` меняет положение содержимого Separator. По умолчанию `center`.
 
 ::component-code
 ---
@@ -75,13 +78,13 @@ ignore:
 class: 'p-8'
 props:
   position: start
-  label: 'Hello World'
+  label: 'Привет, мир'
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to display an [Icon](https://bitrix24.github.io/b24icons/icons/) in the middle of the Separator.
+Пропс `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/) посередине Separator.
 
 ::component-code
 ---
@@ -97,9 +100,9 @@ props:
 ---
 ::
 
-### Avatar
+### Аватар {#avatar}
 
-Use the `avatar` prop to display an [Avatar](/docs/components/avatar/) in the middle of the Separator.
+Пропс `avatar` показывает [Avatar](/docs/components/avatar/) посередине Separator.
 
 ::component-code
 ---
@@ -116,9 +119,9 @@ props:
 ---
 ::
 
-### Accent
+### Акцент {#accent}
 
-Use the `accent` prop to change the variant of the Separator. Defaults to `default`.
+Пропс `accent` меняет вариант Separator. По умолчанию `default`.
 
 ::component-code
 ---
@@ -131,9 +134,9 @@ props:
 ---
 ::
 
-### Type
+### Тип {#type}
 
-Use the `type` prop to change the type of the Separator. Defaults to `solid`.
+Пропс `type` меняет тип Separator. По умолчанию `solid`.
 
 ::component-code
 ---
@@ -147,9 +150,9 @@ props:
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the Separator. Defaults to `thin`.
+Пропс `size` меняет размер Separator. По умолчанию `thin`.
 
 ::component-code
 ---
@@ -161,16 +164,16 @@ props:
 ---
 ::
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

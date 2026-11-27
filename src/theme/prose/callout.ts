@@ -19,6 +19,8 @@ export default {
       // @memo use style-filled-black-inverted
       '[&_code]:text-(length:--ui-font-size-sm)/(--ui-font-line-height-sm)',
       '[&>div]:my-2.5',
+      '[&>[data-slot=icon]+p]:inline [&>[data-slot=icon]+[data-slot=externalIcon]+p]:inline',
+      '[&>[data-slot=icon]+p+*]:mt-5 [&>[data-slot=icon]+[data-slot=externalIcon]+p+*]:mt-5',
       '[&_ul]:my-2.5 [&_ul]:ps-3 [&_ul]:marker:text-(--b24ui-color)',
       '[&_ol]:my-2.5 [&_ol]:ps-3 [&_ol]:marker:text-(--b24ui-color)',
       '[&>h1]:text-(--b24ui-color)',

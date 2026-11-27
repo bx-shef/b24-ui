@@ -27,10 +27,10 @@ const onCountdownEnd = () => {
       class="text-white dark:text-white text-xl leading-none"
       @end="onCountdownEnd"
     >
-      Fetch again {{ totalSeconds }} sec. later
+      Повторный запрос через {{ totalSeconds }} с
     </B24Countdown>
     <span v-else>
-      Fetch Verification Code
+      Получить код подтверждения
     </span>
   </B24Button>
 </template>

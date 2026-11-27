@@ -4,21 +4,21 @@ import TagIcon from '@bitrix24/b24icons-vue/outline/TagIcon'
 
 const items = ref([
   {
-    label: 'bug',
+    label: 'Ошибка',
     value: 'bug',
     chip: {
       color: 'air-primary-alert'
     }
   },
   {
-    label: 'feature',
+    label: 'Функция',
     value: 'feature',
     chip: {
       color: 'air-primary-success'
     }
   },
   {
-    label: 'enhancement',
+    label: 'Улучшение',
     value: 'enhancement',
     chip: {
       color: 'air-primary'
@@ -33,14 +33,14 @@ const label = ref([])
   <B24Popover :content="{ side: 'right', align: 'start' }">
     <B24Button
       :icon="TagIcon"
-      label="Select labels"
+      label="Выберите метки"
     />
 
     <template #content>
       <B24CommandPalette
         v-model="label"
         :multiple="true"
-        placeholder="Search labels..."
+        placeholder="Найдите метки..."
         :groups="[{ id: 'labels', items }]"
         :b24ui="{ input: '[&>input]:h-8 [&>input]:text-sm' }"
       />

@@ -1,7 +1,11 @@
 ---
 title: DashboardPanel
-description: 'A resizable panel component for dashboards.'
+description: 'Панель дашборда с изменяемым размером.'
 category: dashboard
+keywords:
+  - панель дашборда
+  - изменяемая панель
+  - область дашборда
 links:
   - label: GitHub
     iconName: GitHubIcon
@@ -11,11 +15,11 @@ links:
     to: https://ui.nuxt.com/docs/components/dashboard-panel
 ---
 
-## Usage
+## Использование {#usage}
 
-The DashboardPanel component is used to display a panel. Its state (size, collapsed, etc.) will be saved based on the `storage` and `storage-key` props you provide to the [DashboardGroup](/docs/components/dashboard-group/#props) component.
+Компонент DashboardPanel показывает панель. Её состояние (размер, свёрнутость и другое) сохраняется по пропсам `storage` и `storage-key` компонента [DashboardGroup](/docs/components/dashboard-group/#props).
 
-Use it inside the default slot of the [DashboardGroup](/docs/components/dashboard-group/) component, you can put multiple panels next to each other:
+Используйте его в слоте по умолчанию компонента [DashboardGroup](/docs/components/dashboard-group/): рядом можно поставить несколько панелей:
 
 ```vue [pages/index.vue]{8,10}
 <script setup lang="ts">
@@ -32,14 +36,14 @@ definePageMeta({
 ```
 
 ::caution
-It is recommended to set an `id` when using multiple panels in different pages to avoid conflicts.
+Если панели стоят на разных страницах, задайте каждой `id`, чтобы они не конфликтовали.
 ::
 
 ::warning
-This component does not have a single root element when using the `resizable` prop, so wrap it in a container (e.g. `<div class="flex flex-1">`) if you use page transitions or require a single root for layout.
+С пропсом `resizable` у компонента нет единого корневого элемента, поэтому при переходах между страницами или если нужен единый корень для раскладки, оберните его в контейнер (например, `<div class="flex flex-1">`).
 ::
 
-Use the `header`, `body` and `footer` slots to customize the panel or the default slot if you don't want a scrollable body with padding.
+Слоты `header`, `body` и `footer` настраивают панель. Если не нужно тело с прокруткой и отступами, используйте слот по умолчанию.
 
 ::component-example
 ---
@@ -55,15 +59,15 @@ props:
 ::
 
 ::note
-Most of the time, you will use the [`DashboardNavbar`](/docs/components/dashboard-navbar/) component in the `header` slot.
+Чаще всего в слоте `header` используют компонент [`DashboardNavbar`](/docs/components/dashboard-navbar/).
 ::
 
-### Resizable
+### Изменяемый размер {#resizable}
 
-Use the `resizable` prop to make the panel resizable.
+Пропс `resizable` делает размер панели изменяемым.
 
 ::note
-The dragging, the remembered size and the collapse behaviour all come from the `useResizable` composable, which is exported if you need a resizable region of your own:
+Перетаскивание, запоминание размера и сворачивание обеспечивает композабл `useResizable`. Он экспортируется, если вам нужна собственная область с изменяемым размером:
 
 ```ts
 const { el, size, isDragging, isCollapsed, onMouseDown, onTouchStart, onDoubleClick, collapse } = useResizable('my-panel', {
@@ -77,11 +81,11 @@ const { el, size, isDragging, isCollapsed, onMouseDown, onTouchStart, onDoubleCl
 })
 ```
 
-Bind `el` to the element being sized and the handlers to your handle. The first argument is the storage key, so give each region its own — two regions sharing a key share a width.
+Привяжите `el` к элементу, размер которого меняется, а обработчики — к своей ручке. Первый аргумент — ключ хранилища, поэтому у каждой области он должен быть свой: две области с одним ключом делят одну ширину.
 ::
 
 ::warning
-Four defaults are worth setting explicitly, because they are not what the prop names suggest. `unit` is `'px'`{lang="ts-type"}, so bare `minSize`/`maxSize` numbers are pixels, not percentages. `defaultSize` is `0`{lang="ts-type"}. `collapsible` is `false`{lang="ts-type"} in the composable, so `collapse()`{lang="ts"} and `isCollapsed` do nothing until you turn it on. And `storage` is `'cookie'`{lang="ts-type"}, which relies on `useCookie` — outside Nuxt that is a stub and nothing persists, so use `'local'`{lang="ts-type"} in a plain Vue app.
+Четыре значения по умолчанию стоит задать явно, потому что они не такие, как подсказывают названия пропсов. `unit` равен `'px'`{lang="ts-type"}, поэтому `minSize` и `maxSize` без единиц — это пиксели, а не проценты. `defaultSize` равен `0`{lang="ts-type"}. `collapsible` в композабле равен `false`{lang="ts-type"}, поэтому `collapse()`{lang="ts"} и `isCollapsed` ничего не делают, пока вы его не включите. А `storage` равен `'cookie'`{lang="ts-type"} и опирается на `useCookie`: вне Nuxt это заглушка, и ничего не сохраняется, поэтому в обычном Vue-приложении используйте `'local'`{lang="ts-type"}.
 ::
 
 ::component-code
@@ -106,9 +110,9 @@ class: '!p-0 !justify-start'
 :placeholder{class="ms-2 mt-4 h-96"}
 ::
 
-### Size
+### Размер {#size}
 
-Use the `min-size`, `max-size` and `default-size` props to customize the size of the panel.
+Пропсы `min-size`, `max-size` и `default-size` задают размеры панели.
 
 ::component-code
 ---
@@ -135,19 +139,19 @@ class: '!p-0 !justify-start'
 ::
 
 ::tip{to="/docs/components/dashboard-group/#props"}
-Sizes are calculated as percentages by default. You can change this using the `unit` prop on the `DashboardGroup` component.
+По умолчанию размеры считаются в процентах. Единицу меняет пропс `unit` компонента `DashboardGroup`.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

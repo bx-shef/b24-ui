@@ -117,7 +117,7 @@ const columns: TableColumn<Payment>[] = [{
   cell: ({ row }) => `#${row.getValue('id')}`
 }, {
   accessorKey: 'date',
-  header: 'Date',
+  header: 'Дата',
   cell: ({ row }) => {
     return new Date(row.getValue('date')).toLocaleString('en-US', {
       day: 'numeric',
@@ -133,7 +133,7 @@ const columns: TableColumn<Payment>[] = [{
   header: 'Email'
 }, {
   accessorKey: 'amount',
-  header: 'Amount',
+  header: 'Сумма',
   meta: {
     class: {
       th: 'text-end',
@@ -171,7 +171,7 @@ const globalFilter = ref('')
       <B24Input
         v-model="globalFilter"
         class="max-w-[300px]"
-        placeholder="Filter..."
+        placeholder="Фильтр..."
       />
     </template>
     <B24Table

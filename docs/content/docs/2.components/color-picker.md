@@ -1,16 +1,19 @@
 ---
 title: ColorPicker
-description: A color picker component.
+description: 'Компонент выбора цвета.'
 category: form
 keywords:
   - colour picker
   - swatch
   - hex
+  - выбор цвета
+  - палитра цветов
+  - пипетка
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/ColorPicker.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/color-picker
   - label: Nuxt UI
@@ -18,9 +21,9 @@ links:
     to: https://ui.nuxt.com/docs/components/color-picker
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `v-model` directive to control the value of the ColorPicker.
+Директива `v-model` управляет значением ColorPicker.
 
 ::component-code
 ---
@@ -34,7 +37,7 @@ props:
 ---
 ::
 
-Use the `default-value` prop to set the initial value when you do not need to control its state.
+Пропс `default-value` задаёт начальное значение, если состоянием управлять не нужно.
 
 ::component-code
 ---
@@ -46,9 +49,9 @@ props:
 ---
 ::
 
-### RGB Format
+### Формат RGB {#rgb-format}
 
-Use the `format` prop to set `rgb` value of the ColorPicker.
+Пропс `format` со значением `rgb` задаёт значение ColorPicker в формате RGB.
 
 ::component-code
 ---
@@ -64,9 +67,9 @@ props:
 ---
 ::
 
-### HSL Format
+### Формат HSL {#hsl-format}
 
-Use the `format` prop to set `hsl` value of the ColorPicker.
+Пропс `format` со значением `hsl` задаёт значение ColorPicker в формате HSL.
 
 ::component-code
 ---
@@ -82,9 +85,9 @@ props:
 ---
 ::
 
-### CMYK Format
+### Формат CMYK {#cmyk-format}
 
-Use the `format` prop to set `cmyk` value of the ColorPicker.
+Пропс `format` со значением `cmyk` задаёт значение ColorPicker в формате CMYK.
 
 ::component-code
 ---
@@ -100,9 +103,9 @@ props:
 ---
 ::
 
-### CIELab Format
+### Формат CIELab {#cielab-format}
 
-Use the `format` prop to set `lab` value of the ColorPicker.
+Пропс `format` со значением `lab` задаёт значение ColorPicker в формате CIELab.
 
 ::component-code
 ---
@@ -118,9 +121,9 @@ props:
 ---
 ::
 
-### Throttle
+### Троттлинг {#throttle}
 
-Use the `throttle` prop to set the throttle value of the ColorPicker.
+Пропс `throttle` задаёт частоту обновления значения ColorPicker.
 
 ::component-code
 ---
@@ -135,9 +138,9 @@ props:
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to set the size of the ColorPicker.
+Пропс `size` задаёт размер ColorPicker.
 
 ::component-code
 ---
@@ -147,9 +150,9 @@ props:
 ---
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the ColorPicker.
+Пропс `disabled` отключает ColorPicker.
 
 ::component-code
 ---
@@ -159,11 +162,11 @@ props:
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### As a color chooser
+### Выбор цвета в выпадающем окне {#as-a-color-chooser}
 
-Use a [Button](/docs/components/button/) and a [Popover](/docs/components/popover/) component to create a color chooser.
+Чтобы собрать выбор цвета, используйте компоненты [Button](/docs/components/button/) и [Popover](/docs/components/popover/).
 
 ::component-example
 ---
@@ -173,14 +176,14 @@ name: 'color-picker-chooser-example'
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

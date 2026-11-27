@@ -32,11 +32,19 @@ export default defineLocale<Messages>({
       next: '次へ',
       prev: '前へ'
     },
+    chatAttachment: {
+      uploading: 'アップロード中',
+      error: 'アップロードに失敗しました'
+    },
     chatMessages: {
       autoScroll: '一番下までスクロール'
     },
     chatPrompt: {
-      placeholder: 'メッセージを入力してください…'
+      placeholder: 'メッセージを入力してください…',
+      queue: 'キュー内のメッセージ',
+      sendNow: '今すぐ送信',
+      edit: '編集',
+      remove: '削除'
     },
     chatPromptSubmit: {
       label: '送信',
@@ -132,6 +140,15 @@ export default defineLocale<Messages>({
     drawer: {
       close: '閉じる'
     },
+    editorEmojiMenu: {
+      label: '絵文字'
+    },
+    editorMentionMenu: {
+      label: 'メンション'
+    },
+    editorSuggestionMenu: {
+      label: '候補'
+    },
     pagination: {
       first: '最初のページ',
       last: '最後のページ',
@@ -145,11 +162,13 @@ export default defineLocale<Messages>({
     prose: {
       codeCollapse: {
         closeText: '隠す',
+        label: '{name}を{text}',
         name: 'コード',
         openText: '表示'
       },
       collapsible: {
         closeText: '隠す',
+        label: '{name}を{text}',
         name: 'プロパティ',
         openText: '表示'
       },

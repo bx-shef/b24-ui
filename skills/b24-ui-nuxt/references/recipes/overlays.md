@@ -1,15 +1,15 @@
-# Overlays
+# Оверлеи
 
-Patterns for modals, slideovers, drawers, and command palettes.
+Приёмы для модальных окон, боковых панелей, Drawer и командных палитр.
 
-## Confirmation dialog
+## Диалог подтверждения
 
 ```vue
 <script setup lang="ts">
 const isOpen = ref(false)
 
 function confirmDelete() {
-  // perform delete
+  // выполнить удаление
   isOpen.value = false
 }
 </script>
@@ -26,9 +26,9 @@ function confirmDelete() {
 </template>
 ```
 
-## Programmatic confirmation (useOverlay)
+## Программное подтверждение (useOverlay)
 
-Reusable pattern — no template state needed at the call site.
+Переиспользуемый приём: в месте вызова не нужно состояние в шаблоне.
 
 ```vue [components/ConfirmModal.vue]
 <script setup lang="ts">
@@ -53,7 +53,7 @@ const emit = defineEmits<{
 ```
 
 ```ts
-// Usage anywhere
+// Использование в любом месте
 const overlay = useOverlay()
 const confirm = overlay.create(ConfirmModal)
 
@@ -64,14 +64,14 @@ async function deleteItem(item) {
   })
 
   if (await instance.result) {
-    // user confirmed
+    // пользователь подтвердил
   }
 }
 ```
 
-## Marketing / promo modal
+## Маркетинговое / промо-окно
 
-Promo or upgrade modals (trial expiring, plan upsell) compose from existing components — **do not create a custom modal**. The pattern: hide the default header (`title=""`, `description=""`), disable the built-in close (`:close="false"`) and place a custom close icon inside the body, lay the body out as a responsive 2-column flex (pitch + actions on the left, feature card on the right). Skip `#footer` and put both action buttons inline in the left column. Decorative background is an explicit Tailwind gradient on `b24ui.body`.
+Промо-окна и окна повышения тарифа (заканчивается пробный период, предложение тарифа) собираются из существующих компонентов — **не создавайте собственное модальное окно**. Приём такой: скройте стандартную шапку (`title=""`, `description=""`), отключите встроенное закрытие (`:close="false"`) и поместите свою иконку закрытия в тело, а тело разложите адаптивным flex в две колонки (предложение и действия слева, карточка с возможностями справа). `#footer` не нужен: обе кнопки действий стоят в левой колонке. Декоративный фон — явный градиент Tailwind в `b24ui.body`.
 
 ```vue
 <script setup lang="ts">
@@ -161,20 +161,20 @@ const benefits: NavigationMenuItem[] = [
 </template>
 ```
 
-Rules:
-- **CTA is `air-primary`** (Bitrix24 is moving away from green CTAs).
-- **Put the gradient on `b24ui.content`, not `b24ui.body`** — when `scrollable: true` the contentWrapper drops `overflow-hidden`, so a body-level bg overflows the rounded corners. The `content` slot owns the rounded radius (`rounded-[calc(var(--ui-border-radius-2xl)+2px)]`), so its own background-image gets clipped naturally — corners stay rounded.
-- **Reuse the brand boost gradient tokens** for the bg — `--ui-color-design-filled-boost-bg-gradient-{1,2,3}` (the same radial gradient the `air-boost` Button paints). The CSS variables are defined identically in light and dark themes, so a single `bg-[radial-gradient(...)]` covers both modes — no `dark:` variant needed. Don't fall back to generic Tailwind palette colors here; promo surfaces should look intentionally branded.
-- **Disable the default close icon** with `:close="false"` and place a custom `CrossMIcon` button absolutely inside the body. Match the standard close size with `size="md"` + `[--ui-btn-height:24px]` (the same CSS variable Modal's theme sets on its built-in close).
-- **Width**: extend the modal slightly (`sm:max-w-[788px]`) so the 2-column layout breathes; the right card sits at `md:w-80` so the heading row never wraps.
-- **Pin the action row to the bottom**: make the left column a `flex flex-col` and give the buttons row `mt-auto`. Combined with `md:flex-row` on the parent (which stretches both columns to equal height), this aligns the CTA with the bottom edge of the right card.
-- **Action buttons live in `#body`, not `#footer`** — keeps the CTA next to the pitch text, with `Upgrade to Pro` first and the close-bound `Remind me later` to its right.
-- **Add `scrollable`** so long pitches/feature lists don't overflow the viewport on small screens. Note: `scrollable` is incompatible with `modal: false` (it relies on the overlay scroll container).
-- **Reuse `B24NavigationMenu` (vertical) for benefit lists** — keep the list short (≈ 2 items); the right card is a teaser, not a feature matrix.
-- **Don't put the heading in `title`** — promo headings are large and free-form; keeping them inside `#body` lets you control typography. Add `whitespace-nowrap` on the right card's header title (and `shrink-0` on the badge) so "Pro" never wraps.
-- **Force white text** on the left column (`text-white` on the wrapper, `text-white/85` for the description, plus `text-white underline` on the link) — the boost gradient is bright enough that the default semantic text tokens become invisible.
+Правила:
+- **Призыв к действию — `air-primary`** (Bitrix24 отходит от зелёных кнопок).
+- **Градиент кладите в `b24ui.content`, а не в `b24ui.body`** — при `scrollable: true` у contentWrapper пропадает `overflow-hidden`, и фон на уровне body выходит за скруглённые углы. Скругление задаёт слот `content` (`rounded-[calc(var(--ui-border-radius-2xl)+2px)]`), поэтому его собственный background-image обрезается естественно, и углы остаются скруглёнными.
+- **Используйте фирменные токены градиента boost** для фона — `--ui-color-design-filled-boost-bg-gradient-{1,2,3}` (тот же радиальный градиент, которым закрашена кнопка `air-boost`). CSS-переменные одинаково определены в светлой и тёмной темах, поэтому одного `bg-[radial-gradient(...)]` хватает для обеих — вариант `dark:` не нужен. Не переходите на обычные цвета палитры Tailwind: промо-поверхности должны выглядеть осознанно фирменными.
+- **Отключите стандартную иконку закрытия** через `:close="false"` и поместите свою кнопку с `CrossMIcon` абсолютным позиционированием внутри тела. Размер, как у стандартной кнопки закрытия, даёт `size="md"` и `[--ui-btn-height:24px]` (та же CSS-переменная, которую тема Modal задаёт встроенной кнопке закрытия).
+- **Ширина**: немного расширьте окно (`sm:max-w-[788px]`), чтобы две колонки не были тесными; правая карточка имеет `md:w-80`, чтобы строка заголовка не переносилась.
+- **Прижмите ряд действий к низу**: сделайте левую колонку `flex flex-col` и дайте ряду кнопок `mt-auto`. Вместе с `md:flex-row` у родителя (он растягивает обе колонки до одной высоты) кнопка оказывается на уровне нижнего края правой карточки.
+- **Кнопки действий — в `#body`, а не в `#footer`**: призыв к действию остаётся рядом с текстом предложения, сначала `Upgrade to Pro`, правее — закрывающая окно `Remind me later`.
+- **Добавьте `scrollable`**, чтобы длинное предложение и списки возможностей не выходили за экран на малых размерах. Учтите: `scrollable` несовместим с `modal: false` (он опирается на прокручиваемый контейнер оверлея).
+- **Для списка преимуществ берите вертикальный `B24NavigationMenu`** и держите список коротким (около 2 пунктов): правая карточка — анонс, а не таблица возможностей.
+- **Не кладите заголовок в `title`**: промо-заголовки крупные и свободной формы, внутри `#body` вы управляете типографикой. Добавьте `whitespace-nowrap` заголовку в шапке правой карточки (и `shrink-0` бейджу), чтобы «Pro» не переносилось.
+- **Задайте белый текст** в левой колонке (`text-white` на обёртке, `text-white/85` для описания, `text-white underline` для ссылки): градиент boost настолько яркий, что семантические токены текста по умолчанию становятся невидимыми.
 
-## Form in a slideover
+## Форма в боковой панели
 
 ```vue
 <script setup lang="ts">
@@ -191,7 +191,7 @@ type Schema = z.output<typeof schema>
 const state = reactive<Partial<Schema>>({})
 
 function onSave() {
-  // save user
+  // сохранить пользователя
   isOpen.value = false
 }
 </script>
@@ -219,7 +219,7 @@ function onSave() {
 </template>
 ```
 
-## Command palette
+## Командная палитра
 
 ```vue
 <script setup lang="ts">
@@ -263,7 +263,7 @@ const groups = [{
 </template>
 ```
 
-## Drawer (bottom sheet)
+## Drawer (нижняя шторка)
 
 ```vue
 <script setup lang="ts">
@@ -290,11 +290,11 @@ const isOpen = ref(false)
 </template>
 ```
 
-## Info popover (entity summary)
+## Информационный поповер (краткие сведения о сущности)
 
-Show an at-a-glance summary of a CRM entity (account, deal, contact, lead) when the user hovers or clicks its name — without navigating away. Assembled entirely from stock components: `B24Popover` + `B24Avatar` + `B24Button` + `B24Separator` + `B24DescriptionList` + `B24Link`. No custom CSS beyond the avatar accent color.
+Показывает краткую сводку о сущности CRM (компания, сделка, контакт, лид) при наведении или нажатии на её название — без перехода со страницы. Собирается целиком из стандартных компонентов: `B24Popover`, `B24Avatar`, `B24Button`, `B24Separator`, `B24DescriptionList` и `B24Link`. Своего CSS нет, кроме акцентного цвета аватара.
 
-Use `mode="hover"` for read-only summaries (most common in lists/feeds), `mode="click"` when the popover contains links the user is expected to interact with.
+`mode="hover"` — для сводок только для чтения (чаще всего в списках и лентах), `mode="click"` — когда в поповере есть ссылки, с которыми пользователь должен взаимодействовать.
 
 ```vue
 <script setup lang="ts">
@@ -353,19 +353,19 @@ const items = [
 </template>
 ```
 
-Notes on the layout:
+Замечания по раскладке:
 
-- The popover's content padding is reset with `:b24ui="{ content: 'p-0' }"` so the inner `flex flex-col gap-4.5` (with `p-6`) controls spacing — keeps the example free of header-border overrides.
-- The avatar is recolored through its `:b24ui` slot using design tokens (`--ui-color-design-filled-alert-*`) — swap to `success`, `warning`, or `copilot` tokens to match the entity type.
-- The fixed `w-65` keeps the card compact at every breakpoint. Title and caption use `truncate` + `min-w-0` so long entity names don't break the layout.
-- `B24DescriptionList` switches to a two-column grid at `sm:` by default and draws a top border before each item. Inside a narrow popover both behaviours hurt readability, so the layout is pinned to a single column and all `border-t` rules are zeroed out via the `b24ui` prop. The container's default `mt` is dropped (`mt-0`) since the parent `gap-4.5` already supplies the gap below the separator. Label wrappers (`<dt>`) lose all vertical padding (`py-0`), description wrappers (`<dd>`) get only `pb-2.5` — so a label sits flush against its value and each row contributes a single 2.5 unit of breathing room between items. The very last `<dd>` zeroes that padding back out (`last:pb-0 sm:last:pb-0`) so the popover doesn't carry a stray gap below the final value.
-- The `#owner` slot would replace the whole `<dt>/<dd>` pair (and lose the "Account manager" label). Tagging the owner item with `slot: 'owner' as const` and overriding the global `#description` slot with a `v-if="item.slot === 'owner'"` keeps the default label rendering and only swaps the value for a `B24Link`. The `as const` + `satisfies DescriptionListItem[]` pattern is what lets `item.slot` narrow to the literal `'owner'` inside the template.
+- Отступы содержимого поповера сброшены через `:b24ui="{ content: 'p-0' }"`, поэтому интервалами управляет внутренний `flex flex-col gap-4.5` (с `p-6`) — в примере не нужно переопределять границы шапки.
+- Аватар перекрашен через свой слот `:b24ui` с дизайн-токенами (`--ui-color-design-filled-alert-*`): замените их на токены `success`, `warning` или `copilot` под тип сущности.
+- Фиксированная ширина `w-65` сохраняет карточку компактной на любой контрольной точке. Заголовок и подпись используют `truncate` и `min-w-0`, чтобы длинные названия сущностей не ломали раскладку.
+- `B24DescriptionList` по умолчанию с `sm:` переходит на сетку из двух колонок и рисует верхнюю границу перед каждым элементом. В узком поповере оба поведения мешают чтению, поэтому раскладка зафиксирована в одну колонку, а все правила `border-t` обнулены через пропс `b24ui`. Отступ `mt` контейнера убран (`mt-0`): промежуток под разделителем уже даёт родительский `gap-4.5`. У обёрток подписей (`<dt>`) нет вертикальных отступов (`py-0`), у обёрток описаний (`<dd>`) только `pb-2.5` — подпись вплотную к значению, а между строками остаётся одно «дыхание» в 2,5 единицы. У самого последнего `<dd>` этот отступ снова обнулён (`last:pb-0 sm:last:pb-0`), чтобы под последним значением в поповере не было лишнего промежутка.
+- Слот `#owner` заменил бы всю пару `<dt>/<dd>` (и подпись «Account manager» пропала бы). Если пометить элемент владельца `slot: 'owner' as const` и переопределить общий слот `#description` с `v-if="item.slot === 'owner'"`, подпись отрисуется как обычно, а заменится только значение — на `B24Link`. Связка `as const` и `satisfies DescriptionListItem[]` позволяет сузить `item.slot` до литерала `'owner'` внутри шаблона.
 
-## Stats widget (KPI summary)
+## Виджет статистики (сводка KPI)
 
-A compact dashboard widget summarising a few metrics with one highlighted KPI row at the bottom. Built from stock components only — `B24Card` (forced into the `edge-dark` context with a purple radial gradient on the root slot), `B24Button` (`air-secondary-accent`), `B24Tooltip` and a small CSS grid for the rows. The highlighted row reuses the global `.style-filled-boost` utility so the boost token set (bg gradient, stroke, content color) drives that row's surface.
+Компактный виджет дашборда с несколькими метриками и одной выделенной строкой KPI внизу. Собран только из стандартных компонентов: `B24Card` (принудительно в контексте `edge-dark` с фиолетовым радиальным градиентом в корневом слоте), `B24Button` (`air-secondary-accent`), `B24Tooltip` и небольшая CSS-сетка для строк. Выделенная строка использует глобальную утилиту `.style-filled-boost`, поэтому её поверхность задаёт набор токенов boost (градиент фона, обводка, цвет содержимого).
 
-Drop it inside any popover (`B24Popover` content), a modal (`B24Modal` body — strip the modal chrome with `:b24ui="{ content: 'sm:max-w-md bg-transparent shadow-none border-0', body: 'p-0' }"` and `:close="false"`), or render it inline on a dashboard panel — the widget is self-contained.
+Его можно поместить в любой поповер (содержимое `B24Popover`), в модальное окно (тело `B24Modal` — уберите оформление окна через `:b24ui="{ content: 'sm:max-w-md bg-transparent shadow-none border-0', body: 'p-0' }"` и `:close="false"`) или вывести прямо на панели дашборда: виджет самодостаточен.
 
 ```vue
 <script setup lang="ts">
@@ -446,11 +446,11 @@ const highlight = {
 </template>
 ```
 
-Notes on the layout:
+Замечания по раскладке:
 
-- The card is pinned to `edge-dark` on the root slot so the `--ui-color-copilot-bg-content-*` tokens always resolve to the dark-theme purples, even when the surrounding page renders in light mode. Without `edge-dark`, those tokens are not defined and the gradient falls back to `unset`.
-- The radial gradient on `b24ui.root` uses the same `110.42% 110.42% at -10.42% 31.25%` geometry as the boost gradient elsewhere in the design system, only with the purple `copilot-bg-content-{3,2,1}` stops (light → dark from top-left outward). Swap the stops for `--ui-color-design-filled-warning-bg-gradient-*` or another sibling trio to recolor the surface without changing the geometry.
-- The highlighted KPI row uses the global `.style-filled-boost` utility from `008_ui_global.css`. The class wires up the boost background gradient (orange → pink → purple), the boost stroke and the boost content (text/icon) CSS vars. Apply `text-(--ui-color-design-filled-boost-content)` explicitly so the row's text picks up the boost content colour (the `.style-filled-boost` class only declares the var, it doesn't apply `color`).
-- The non-highlighted rows sit on `bg-white/5` — a translucent overlay over the gradient. It keeps the rows readable without inventing new tokens.
-- The grid template `1fr_auto_auto` keeps the metric label flexible while the two numeric columns stay end-aligned and proportional — `text-end` rather than `text-right`, so the digits follow the reading direction and sit on the left under RTL. For more than ~4 rows, consider `B24Table` instead — this pattern is for compact summaries, not data lists.
-- The pill button in the header and the two footer buttons all use `color="air-secondary-accent"` for a consistent translucent action surface on the purple background. The pill picks up its rounded silhouette from `rounded`; pair `:trailing-icon` with a domain-appropriate icon (`RepeatIcon`, `Calendar1Icon`, `FlipchartIcon`).
+- Карточка закреплена за `edge-dark` в корневом слоте, поэтому токены `--ui-color-copilot-bg-content-*` всегда принимают фиолетовые значения тёмной темы, даже если страница вокруг отрисована в светлой. Без `edge-dark` эти токены не определены, и градиент сбрасывается в `unset`.
+- Радиальный градиент в `b24ui.root` имеет ту же геометрию `110.42% 110.42% at -10.42% 31.25%`, что и градиент boost в остальной дизайн-системе, только с фиолетовыми опорными цветами `copilot-bg-content-{3,2,1}` (от светлого к тёмному от верхнего левого угла). Чтобы перекрасить поверхность, не меняя геометрию, подставьте `--ui-color-design-filled-warning-bg-gradient-*` или другую тройку.
+- Выделенная строка KPI использует глобальную утилиту `.style-filled-boost` из `008_ui_global.css`. Класс подключает градиент фона boost (оранжевый, розовый, фиолетовый), обводку boost и CSS-переменные цвета содержимого boost (текст и иконки). Явно добавьте `text-(--ui-color-design-filled-boost-content)`, чтобы текст строки получил цвет содержимого boost: класс `.style-filled-boost` лишь объявляет переменную и `color` не применяет.
+- Невыделенные строки лежат на `bg-white/5` — полупрозрачной подложке поверх градиента. Строки остаются читаемыми, а новые токены вводить не нужно.
+- Шаблон сетки `1fr_auto_auto` оставляет подпись метрики гибкой, а две числовые колонки выровнены по концу и пропорциональны: `text-end`, а не `text-right`, поэтому цифры следуют направлению чтения и при RTL оказываются слева. Если строк больше четырёх, подумайте о `B24Table`: этот приём для компактных сводок, а не для списков данных.
+- Кнопка-«таблетка» в шапке и две кнопки в подвале используют `color="air-secondary-accent"` — единую полупрозрачную поверхность действий на фиолетовом фоне. Скруглённый силуэт кнопке даёт `rounded`; для `:trailing-icon` берите иконку, подходящую по смыслу (`RepeatIcon`, `Calendar1Icon`, `FlipchartIcon`).

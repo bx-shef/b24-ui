@@ -5,7 +5,7 @@ const time = shallowRef(new Time(12, 30, 0))
 </script>
 
 <template>
-  <B24FormField label="Time" help="Specify the time" required>
+  <B24FormField label="Время" help="Укажите время" required>
     <B24InputTime v-model="time" />
   </B24FormField>
 </template>

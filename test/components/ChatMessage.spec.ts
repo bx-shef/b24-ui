@@ -41,6 +41,20 @@ describe('ChatMessage', () => {
     ['with actions slot', { props, slots: { actions: () => 'Actions slot' } }]
   ])
 
+  it('pads a compact message only when its actions block renders', async () => {
+    const selector = '[&:has(>[data-slot=body]>[data-slot=actions]:not(:empty))]:pb-8'
+    const withActions = await mountSuspended(defineComponent({
+      setup() {
+        return () => h(TooltipProvider, () => h(ChatMessage, { ...props, compact: true, actions: [{ icon: Cross30Icon, label: 'Copy' }] }))
+      }
+    }))
+    const container = withActions.find('[data-slot="container"]').classes()
+
+    // Padding comes from the :has() selector only, never as a bare pb-8 on every compact message
+    expect(container).toContain(selector)
+    expect(container).not.toContain('pb-8')
+  })
+
   it('passes accessibility tests', async () => {
     const wrapper = await mountSuspended(ChatMessage, {
       props

@@ -1,17 +1,20 @@
 ---
 title: Accordion
-description: This is a stacked set of collapsible panels
+description: 'Набор сворачиваемых панелей, расположенных друг под другом'
 category: data
 keywords:
   - disclosure
   - collapse
   - faq
   - expansion panel
+  - аккордеон
+  - сворачиваемые панели
+  - раскрывающийся список вопросов
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Accordion.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/accordion
   - label: Nuxt UI
@@ -23,9 +26,9 @@ links:
     to: https://reka-ui.com/docs/components/accordion
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the Accordion component to display a list of collapsible items.
+Компонент Accordion показывает список сворачиваемых элементов.
 
 ::component-code
 ---
@@ -43,18 +46,18 @@ props:
   defaultValue: '0'
   class: 'px-4 max-w-[512px]'
   items:
-    - label: 'Getting started with Bitrix24'
-      content: 'Bitrix24 is an online service that offers useful tools for your company. This includes chats and calls, tasks and projects, CRM, and AI-powered assistant.'
-    - label: 'Main features of Bitrix24'
-      content: 'Bitrix24 is an online service that has all the tools for company operation and business management.'
-    - label: 'Bitrix24 Cloud plans'
-      content: 'Bitrix24 is an online service for business management and work automation. It contains tools for companies of all sizes and industries. Bitrix24 has several plans with different sets of tools that are suitable for different types of business.'
+    - label: 'Начало работы с Битрикс24'
+      content: 'Битрикс24 — онлайн-сервис с полезными инструментами для компании: чаты и звонки, задачи и проекты, CRM и помощник на основе AI.'
+    - label: 'Основные возможности Битрикс24'
+      content: 'Битрикс24 — онлайн-сервис со всеми инструментами для работы компании и управления бизнесом.'
+    - label: 'Тарифы облачного Битрикс24'
+      content: 'Битрикс24 — онлайн-сервис для управления бизнесом и автоматизации работы. В нём есть инструменты для компаний любого размера и отрасли. Тарифы отличаются набором инструментов и подходят для разных видов бизнеса.'
 ---
 ::
 
-### Items
+### Элементы {#items}
 
-Use the `items` prop as an array of objects with the following properties:
+Пропс `items` — массив объектов со свойствами:
 
 - `label?: string`{lang="ts-type"}
 - `icon?: IconComponent`{lang="ts-type"}
@@ -79,18 +82,18 @@ hide:
 props:
   class: 'px-4'
   items:
-    - label: 'Getting started with Bitrix24'
-      content: 'Bitrix24 is an online service that offers useful tools for your company. This includes chats and calls, tasks and projects, CRM, and AI-powered assistant.'
-    - label: 'Main features of Bitrix24'
-      content: 'Bitrix24 is an online service that has all the tools for company operation and business management.'
-    - label: 'Bitrix24 Cloud plans'
-      content: 'Bitrix24 is an online service for business management and work automation. It contains tools for companies of all sizes and industries. Bitrix24 has several plans with different sets of tools that are suitable for different types of business.'
+    - label: 'Начало работы с Битрикс24'
+      content: 'Битрикс24 — онлайн-сервис с полезными инструментами для компании: чаты и звонки, задачи и проекты, CRM и помощник на основе AI.'
+    - label: 'Основные возможности Битрикс24'
+      content: 'Битрикс24 — онлайн-сервис со всеми инструментами для работы компании и управления бизнесом.'
+    - label: 'Тарифы облачного Битрикс24'
+      content: 'Битрикс24 — онлайн-сервис для управления бизнесом и автоматизации работы. В нём есть инструменты для компаний любого размера и отрасли. Тарифы отличаются набором инструментов и подходят для разных видов бизнеса.'
 ---
 ::
 
-### Multiple
+### Несколько элементов {#multiple}
 
-Set the `type` prop to `multiple` to allow multiple items to be active at the same time. Defaults to `single`.
+Значение `multiple` у пропса `type` позволяет раскрывать несколько элементов одновременно. По умолчанию — `single`.
 
 ::component-code
 ---
@@ -107,18 +110,18 @@ props:
   class: 'px-4'
   type: 'multiple'
   items:
-    - label: 'Getting started with Bitrix24'
-      content: 'Bitrix24 is an online service that offers useful tools for your company. This includes chats and calls, tasks and projects, CRM, and AI-powered assistant.'
-    - label: 'Main features of Bitrix24'
-      content: 'Bitrix24 is an online service that has all the tools for company operation and business management.'
-    - label: 'Bitrix24 Cloud plans'
-      content: 'Bitrix24 is an online service for business management and work automation. It contains tools for companies of all sizes and industries. Bitrix24 has several plans with different sets of tools that are suitable for different types of business.'
+    - label: 'Начало работы с Битрикс24'
+      content: 'Битрикс24 — онлайн-сервис с полезными инструментами для компании: чаты и звонки, задачи и проекты, CRM и помощник на основе AI.'
+    - label: 'Основные возможности Битрикс24'
+      content: 'Битрикс24 — онлайн-сервис со всеми инструментами для работы компании и управления бизнесом.'
+    - label: 'Тарифы облачного Битрикс24'
+      content: 'Битрикс24 — онлайн-сервис для управления бизнесом и автоматизации работы. В нём есть инструменты для компаний любого размера и отрасли. Тарифы отличаются набором инструментов и подходят для разных видов бизнеса.'
 ---
 ::
 
-### Collapsible
+### Сворачивание {#collapsible}
 
-When `type` is `single`, you can set the `collapsible` prop to `false` to prevent the active item from collapsing.
+При `type` равном `single` пропс `collapsible` со значением `false` не даёт свернуть активный элемент.
 
 ::component-code
 ---
@@ -135,18 +138,18 @@ props:
   class: 'px-4'
   collapsible: false
   items:
-    - label: 'Getting started with Bitrix24'
-      content: 'Bitrix24 is an online service that offers useful tools for your company. This includes chats and calls, tasks and projects, CRM, and AI-powered assistant.'
-    - label: 'Main features of Bitrix24'
-      content: 'Bitrix24 is an online service that has all the tools for company operation and business management.'
-    - label: 'Bitrix24 Cloud plans'
-      content: 'Bitrix24 is an online service for business management and work automation. It contains tools for companies of all sizes and industries. Bitrix24 has several plans with different sets of tools that are suitable for different types of business.'
+    - label: 'Начало работы с Битрикс24'
+      content: 'Битрикс24 — онлайн-сервис с полезными инструментами для компании: чаты и звонки, задачи и проекты, CRM и помощник на основе AI.'
+    - label: 'Основные возможности Битрикс24'
+      content: 'Битрикс24 — онлайн-сервис со всеми инструментами для работы компании и управления бизнесом.'
+    - label: 'Тарифы облачного Битрикс24'
+      content: 'Битрикс24 — онлайн-сервис для управления бизнесом и автоматизации работы. В нём есть инструменты для компаний любого размера и отрасли. Тарифы отличаются набором инструментов и подходят для разных видов бизнеса.'
 ---
 ::
 
-### Unmount
+### Размонтирование {#unmount}
 
-Use the `unmount-on-hide` prop to prevent the content from being unmounted when the accordion is collapsed. Defaults to `true`.
+Пропс `unmount-on-hide` управляет тем, размонтируется ли содержимое при сворачивании. По умолчанию — `true`.
 
 ::component-code
 ---
@@ -162,24 +165,24 @@ props:
   class: 'px-4'
   unmountOnHide: false
   items:
-    - label: 'Getting started with Bitrix24'
-      content: 'Bitrix24 is an online service that offers useful tools for your company. This includes chats and calls, tasks and projects, CRM, and AI-powered assistant.'
-    - label: 'Main features of Bitrix24'
-      content: 'Bitrix24 is an online service that has all the tools for company operation and business management.'
-    - label: 'Bitrix24 Cloud plans'
-      content: 'Bitrix24 is an online service for business management and work automation. It contains tools for companies of all sizes and industries. Bitrix24 has several plans with different sets of tools that are suitable for different types of business.'
+    - label: 'Начало работы с Битрикс24'
+      content: 'Битрикс24 — онлайн-сервис с полезными инструментами для компании: чаты и звонки, задачи и проекты, CRM и помощник на основе AI.'
+    - label: 'Основные возможности Битрикс24'
+      content: 'Битрикс24 — онлайн-сервис со всеми инструментами для работы компании и управления бизнесом.'
+    - label: 'Тарифы облачного Битрикс24'
+      content: 'Битрикс24 — онлайн-сервис для управления бизнесом и автоматизации работы. В нём есть инструменты для компаний любого размера и отрасли. Тарифы отличаются набором инструментов и подходят для разных видов бизнеса.'
 ---
 ::
 
 ::note
-You can inspect the DOM to see each item's content being rendered.
+Содержимое каждого элемента видно в DOM, если открыть инструменты разработчика.
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` property to disable the Accordion.
+Свойство `disabled` отключает весь Accordion.
 
-You can also disable a specific item by using the `disabled` property in the item object.
+Отдельный элемент отключается свойством `disabled` в объекте элемента.
 
 ::component-code
 ---
@@ -195,21 +198,21 @@ props:
   class: 'px-4'
   disabled: true
   items:
-    - label: 'Getting started with Bitrix24'
-      content: 'Bitrix24 is an online service that offers useful tools for your company. This includes chats and calls, tasks and projects, CRM, and AI-powered assistant.'
-    - label: 'Main features of Bitrix24'
-      content: 'Bitrix24 is an online service that has all the tools for company operation and business management.'
-    - label: 'Bitrix24 Cloud plans'
-      content: 'Bitrix24 is an online service for business management and work automation. It contains tools for companies of all sizes and industries. Bitrix24 has several plans with different sets of tools that are suitable for different types of business.'
+    - label: 'Начало работы с Битрикс24'
+      content: 'Битрикс24 — онлайн-сервис с полезными инструментами для компании: чаты и звонки, задачи и проекты, CRM и помощник на основе AI.'
+    - label: 'Основные возможности Битрикс24'
+      content: 'Битрикс24 — онлайн-сервис со всеми инструментами для работы компании и управления бизнесом.'
+    - label: 'Тарифы облачного Битрикс24'
+      content: 'Битрикс24 — онлайн-сервис для управления бизнесом и автоматизации работы. В нём есть инструменты для компаний любого размера и отрасли. Тарифы отличаются набором инструментов и подходят для разных видов бизнеса.'
 ---
 ::
 
-### Trailing Icon
+### Иконка справа {#trailing-icon}
 
-Use the `trailing-icon` prop to customize the trailing [Icon](https://bitrix24.github.io/b24icons/icons/) of each item.
+Пропс `trailing-icon` задаёт [иконку](https://bitrix24.github.io/b24icons/icons/) справа у каждого элемента.
 
 ::tip
-You can also set an icon for a specific item by using the `trailingIcon` property in the item object.
+Иконку отдельного элемента можно задать свойством `trailingIcon` в объекте элемента.
 ::
 
 ::component-code
@@ -229,20 +232,20 @@ props:
   class: 'px-4'
   trailingIcon: 'RocketIcon'
   items:
-    - label: 'Icons'
-      content: 'You have nothing to do, @nuxt/icon will handle it automatically.'
-    - label: 'Colors'
-      content: 'Choose a primary and a neutral color from your Tailwind CSS theme.'
-    - label: 'Components'
-      content: 'You can customize components by using the `class` / `b24ui` props or in your `app/app.config.ts`.'
+    - label: 'Иконки'
+      content: 'Ничего делать не нужно: @nuxt/icon подключит иконки автоматически.'
+    - label: 'Цвета'
+      content: 'Выберите основной и нейтральный цвета из темы Tailwind CSS.'
+    - label: 'Компоненты'
+      content: 'Компоненты настраиваются пропсами `class` / `b24ui` или в `app/app.config.ts`.'
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Control active item(s)
+### Управление активными элементами {#control-active-items}
 
-You can control the active item by using the `default-value` prop or the `v-model` directive with the `value` of the item. If no `value` is provided, it defaults to the index **as a string**.
+Активным элементом управляют пропс `default-value` или директива `v-model` со значением `value` элемента. Если `value` не задан, берётся индекс **в виде строки**.
 
 ::component-example
 ---
@@ -253,16 +256,16 @@ props:
 ::
 
 ::tip
-Use the `value-key` prop to change the key used to match items when a `v-model` or `default-value` is provided.
+Пропс `value-key` меняет ключ, по которому элементы сопоставляются при `v-model` или `default-value`.
 ::
 
 ::caution
-When `type="multiple"`, ensure to pass an array to the `default-value` prop or the `v-model` directive.
+При `type="multiple"` в `default-value` или `v-model` передавайте массив.
 ::
 
-### With drag and drop
+### С перетаскиванием {#with-drag-and-drop}
 
-Use the [`useSortable`](https://vueuse.org/integrations/useSortable/) composable from [`@vueuse/integrations`](https://vueuse.org/integrations/README.html) to enable drag and drop functionality on the Accordion. This integration wraps [Sortable.js](https://sortablejs.github.io/Sortable/) to provide a seamless drag and drop experience.
+Композабл [`useSortable`](https://vueuse.org/integrations/useSortable/) из [`@vueuse/integrations`](https://vueuse.org/integrations/README.html) добавляет Accordion перетаскивание. Он оборачивает [Sortable.js](https://sortablejs.github.io/Sortable/).
 
 ::component-example
 ---
@@ -270,9 +273,9 @@ name: 'accordion-drag-and-drop-example'
 ---
 ::
 
-### With body slot
+### Со слотом body {#with-body-slot}
 
-Use the `#body` slot to customize the body of each item.
+Слот `#body` настраивает тело каждого элемента.
 
 ::component-example
 ---
@@ -283,12 +286,12 @@ props:
 ::
 
 ::tip
-The `#body` slot includes some pre-defined styles, use the [`#content` slot](#with-content-slot) if you want to start from scratch.
+У слота `#body` есть готовые стили. Чтобы начать с нуля, используйте [слот `#content`](#with-content-slot).
 ::
 
-### With content slot
+### Со слотом content {#with-content-slot}
 
-Use the `#content` slot to customize the content of each item.
+Слот `#content` настраивает содержимое каждого элемента.
 
 ::component-example
 ---
@@ -298,11 +301,11 @@ props:
 ---
 ::
 
-### With custom slot
+### С пользовательским слотом {#with-custom-slot}
 
-Use the `slot` property to customize a specific item.
+Свойство `slot` настраивает конкретный элемент.
 
-You will have access to the following slots:
+Доступны слоты:
 
 - `#{{ item.slot }}`{lang="ts-type"}
 - `#{{ item.slot }}-body`{lang="ts-type"}
@@ -315,9 +318,9 @@ props:
 ---
 ::
 
-### With markdown content
+### С Markdown-содержимым {#with-markdown-content}
 
-You can use the [MDC](https://github.com/nuxt-modules/mdc?tab=readme-ov-file#mdc) component from `@nuxtjs/mdc` to render markdown in the accordion items.
+Компонент [MDC](https://github.com/nuxt-modules/mdc?tab=readme-ov-file#mdc) из `@nuxtjs/mdc` отрисовывает Markdown внутри элементов.
 
 ::component-example
 ---
@@ -329,18 +332,18 @@ class: 'px-8'
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

@@ -1,12 +1,16 @@
 ---
 title: Error
-description: 'A pre-built error component with NuxtError support.'
+description: 'Готовый компонент ошибки с поддержкой NuxtError.'
 category: layout
+keywords:
+  - страница ошибки
+  - ошибка 404
+  - экран ошибки
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Error.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/404
   - label: Nuxt UI
@@ -14,18 +18,18 @@ links:
     to: https://ui.nuxt.com/docs/components/error
 ---
 
-## Usage
+## Использование {#usage}
 
-The Error component renders a `<main>` element that works together with the [SidebarLayout](/docs/components/sidebar-layout/) component to create a full-height layout that extends to the viewport's available height.
+Компонент Error отрисовывает элемент `<main>`, который вместе с компонентом [SidebarLayout](/docs/components/sidebar-layout/) создаёт раскладку на всю доступную высоту окна.
 
-### Error
+### Ошибка {#error}
 
-Use the `error` prop to display an error message.
+Пропс `error` показывает сообщение об ошибке.
 
 ::framework-only
 #nuxt
 ::note{to="https://nuxt.com/docs/guide/directory-structure/error" target="_blank"}
-In most cases, you will receive the `error` prop in your `error.vue` file.
+Чаще всего пропс `error` приходит в файл `error.vue`.
 ::
 ::
 
@@ -36,20 +40,20 @@ hide:
 prettier: true
 props:
   error:
-    statusCode: 404
-    statusMessage: 'Page not found'
-    message: 'The page you are looking for does not exist.'
+    status: 404
+    statusText: 'Страница не найдена'
+    message: 'Страницы, которую вы ищете, не существует.'
   class: '!min-h-96'
 ---
 ::
 
 ::tip
-The status message is rendered as an `h1` by default. Use the `as` prop with an object to change it, for example `:as="{ statusMessage: 'h2' }"`{lang="ts-type"}. You can also set the root element this way: `:as="{ root: 'div', statusMessage: 'h2' }"`{lang="ts-type"}.
+По умолчанию сообщение о статусе отрисовывается как `h1`. Чтобы изменить тег, передайте в пропс `as` объект: например, `:as="{ statusMessage: 'h2' }"`{lang="ts-type"}. Так же можно задать корневой элемент: `:as="{ root: 'div', statusMessage: 'h2' }"`{lang="ts-type"}.
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to display an icon above the status code.
+Пропс `icon` показывает иконку над кодом статуса.
 
 ::component-code
 ---
@@ -61,22 +65,22 @@ ignore:
 cast:
   icon: 'RocketIcon'
 ignore:
-  - error.statusCode
-  - error.statusMessage
+  - error.status
+  - error.statusText
   - error.message
 props:
   icon: 'RocketIcon'
   error:
-    statusCode: 404
-    statusMessage: 'Page not found'
-    message: 'The page you are looking for does not exist.'
+    status: 404
+    statusText: 'Страница не найдена'
+    message: 'Страницы, которую вы ищете, не существует.'
   class: '!min-h-96'
 ---
 ::
 
-### Avatar
+### Аватар {#avatar}
 
-Use the `avatar` prop to display an [Avatar](/docs/components/avatar/) above the status code (used only when `icon` is not set).
+Пропс `avatar` показывает [аватар](/docs/components/avatar/) над кодом статуса (используется, только если не задан `icon`).
 
 ::component-code
 ---
@@ -85,23 +89,23 @@ hide:
   - class
 ignore:
   - avatar.src
-  - error.statusCode
-  - error.statusMessage
+  - error.status
+  - error.statusText
   - error.message
 props:
   avatar:
     src: 'https://github.com/bitrix24.png'
   error:
-    statusCode: 404
-    statusMessage: 'Page not found'
-    message: 'The page you are looking for does not exist.'
+    status: 404
+    statusText: 'Страница не найдена'
+    message: 'Страницы, которую вы ищете, не существует.'
   class: '!min-h-96'
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to tint the inner [Avatar](/docs/components/avatar/). An explicit `avatar.color` overrides this default.
+Пропс `color` окрашивает вложенный [аватар](/docs/components/avatar/). Явно заданный `avatar.color` перекрывает это значение по умолчанию.
 
 ::component-code
 ---
@@ -110,8 +114,8 @@ hide:
   - class
 ignore:
   - avatar.src
-  - error.statusCode
-  - error.statusMessage
+  - error.status
+  - error.statusText
   - error.message
 items:
   color:
@@ -137,14 +141,14 @@ props:
   avatar:
     src: 'https://github.com/bitrix24.png'
   error:
-    statusCode: 404
-    statusMessage: 'Page not found'
-    message: 'The page you are looking for does not exist.'
+    status: 404
+    statusText: 'Страница не найдена'
+    message: 'Страницы, которую вы ищете, не существует.'
   class: '!min-h-96'
 ---
 ::
 
-Use the `#leading` slot to display a custom element, such as a logo.
+Слот `#leading` показывает свой элемент, например логотип.
 
 ::component-code
 ---
@@ -152,14 +156,14 @@ hide:
   - class
 prettier: true
 ignore:
-  - error.statusCode
-  - error.statusMessage
+  - error.status
+  - error.statusText
   - error.message
 props:
   error:
-    statusCode: 404
-    statusMessage: 'Page not found'
-    message: 'The page you are looking for does not exist.'
+    status: 404
+    statusText: 'Страница не найдена'
+    message: 'Страницы, которую вы ищете, не существует.'
   class: '!min-h-96'
 slots:
   leading: |
@@ -170,11 +174,11 @@ slots:
 :img{src="https://github.com/bitrix24.png" alt="Bitrix24" class="size-10 rounded-full"}
 ::
 
-### Clear
+### Кнопка очистки {#clear}
 
-Use the `clear` prop to customize or hide the clear button (with `false` value).
+Пропс `clear` настраивает кнопку очистки или скрывает её (значение `false`).
 
-You can pass any property from the [Button](/docs/components/button/) component to customize it.
+Кнопку можно настроить любым свойством компонента [Button](/docs/components/button/).
 
 ::component-code
 ---
@@ -182,8 +186,8 @@ prettier: true
 hide:
   - class
 ignore:
-  - error.statusCode
-  - error.statusMessage
+  - error.status
+  - error.statusText
   - error.message
   - clear.color
   - clear.size
@@ -198,16 +202,16 @@ props:
     icon: 'RocketIcon'
     class: 'rounded-full'
   error:
-    statusCode: 404
-    statusMessage: 'Page not found'
-    message: 'The page you are looking for does not exist.'
+    status: 404
+    statusText: 'Страница не найдена'
+    message: 'Страницы, которую вы ищете, не существует.'
   class: '!min-h-96'
 ---
 ::
 
-### Redirect
+### Перенаправление {#redirect}
 
-Use the `redirect` prop to redirect the user to a different page when the clear button is clicked. Defaults to `/`.
+Пропс `redirect` перенаправляет пользователя на другую страницу при нажатии на кнопку очистки. По умолчанию `/`.
 
 ::component-code
 ---
@@ -215,24 +219,24 @@ prettier: true
 hide:
   - class
 ignore:
-  - error.statusCode
-  - error.statusMessage
+  - error.status
+  - error.statusText
   - error.message
 props:
   redirect: '/docs/getting-started/'
   error:
-    statusCode: 404
-    statusMessage: 'Page not found'
-    message: 'The page you are looking for does not exist.'
+    status: 404
+    statusText: 'Страница не найдена'
+    message: 'Страницы, которую вы ищете, не существует.'
   class: '!min-h-96'
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Within `error.vue`
+### В `error.vue` {#within-errorvue}
 
-Use the Error component in your `error.vue`:
+Используйте компонент Error в `error.vue`:
 
 ```vue [error.vue]{13}
 <script setup lang="ts">
@@ -255,11 +259,11 @@ const props = defineProps<{
 ```
 
 ::tip
-You might want to replicate the code of your `app.vue` inside your `error.vue` file to have the same layout and features, here is an example: <https://github.com/bitrix24/b24ui/blob/main/docs/app/error.vue>
+Чтобы раскладка и возможности совпадали, можно повторить код `app.vue` в файле `error.vue`. Пример: <https://github.com/bitrix24/b24ui/blob/main/docs/app/error.vue>
 ::
 
 ::note
-You can read more about how to handle errors in the [Nuxt documentation](https://nuxt.com/docs/getting-started/error-handling#error-page), but when using `nuxt generate` it is recommended to add `fatal: true` inside your `createError` call to make sure the error page is displayed:
+Подробнее об обработке ошибок — в [документации Nuxt](https://nuxt.com/docs/getting-started/error-handling#error-page). При использовании `nuxt generate` рекомендуем добавить `fatal: true` в вызов `createError`, чтобы страница ошибки точно отобразилась:
 
 ```vue [pages/\[...slug\\].vue]
 <script setup lang="ts">
@@ -267,7 +271,7 @@ const route = useRoute()
 
 const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
 if (!page.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+  throw createError({ status: 404, statusText: 'Page not found', fatal: true })
 }
 </script>
 ```
@@ -276,14 +280,14 @@ if (!page.value) {
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

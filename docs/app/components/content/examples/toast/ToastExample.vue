@@ -9,13 +9,13 @@ function addToCalendar() {
   const formattedDate = eventDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
 
   toast.add({
-    title: 'Event added to calendar',
-    description: `This event is scheduled for ${formattedDate}.`,
+    title: 'Событие добавлено в календарь',
+    description: `Это событие запланировано на ${formattedDate}.`,
     icon: CalendarWithSlotsIcon
   })
 }
 </script>
 
 <template>
-  <B24Button label="Add to calendar" :icon="PlusLIcon" @click="addToCalendar" />
+  <B24Button label="Добавить в календарь" :icon="PlusLIcon" @click="addToCalendar" />
 </template>

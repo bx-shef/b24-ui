@@ -1,11 +1,11 @@
 ---
 title: useConfetti
-description: Performant confetti animation in the browser
+description: Производительная анимация конфетти в браузере
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/composables/useConfetti.ts
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/confetti
   - label: canvas-confetti
@@ -13,9 +13,9 @@ links:
     to: https://github.com/catdad/canvas-confetti
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the auto-imported `useConfetti` composable to programmatically control `canvas-confetti`.
+Автоимпортируемый композабл `useConfetti` управляет `canvas-confetti` из кода.
 
 ```vue
 <script setup lang="ts">
@@ -23,17 +23,17 @@ const confetti = useConfetti()
 </script>
 ```
 
-- The `useConfetti` composable is created using `createSharedComposable`, ensuring that the same `canvas-confetti` is shared across your entire application.
+- `useConfetti` создан через `createSharedComposable`, поэтому один и тот же `canvas-confetti` используется во всём приложении.
 
 ::caution
-Since canvas-confetti works with the DOM, make sure your code only runs on the client.
+`canvas-confetti` работает с DOM, поэтому код должен выполняться только на клиенте.
 ::
 
 ## API
 
 `fire(options?: confetti.Options) => Promise<undefined> | null`{lang="ts-type"}
 
-Fire some confetti.
+Запускает конфетти.
 
 ```vue
 <script setup lang="ts">
@@ -47,9 +47,9 @@ function fireConfetti(): void {
 
 `create(canvas?: HTMLCanvasElement, options?: GlobalOptions) => CreateTypes`{lang="ts-type"}
 
-This method creates an instance of the confetti function that uses a custom canvas.
+Создаёт экземпляр функции конфетти, который рисует на заданном canvas.
 
-Use if you need to specify your own parameters for confetti.
+Нужен, когда требуется передать свои параметры конфетти.
 
 ```vue
 <script setup lang="ts">
@@ -66,7 +66,7 @@ function fireConfettiWithOptions(): void {
 </script>
 ```
 
-Or like this. Specify your own Canvas.
+Либо так — со своим canvas.
 
 ```vue {4,8,17}
 <script setup lang="ts">
@@ -90,11 +90,11 @@ function fireAtPlace(): void {
 </template>
 ```
 
-## Example
+## Пример {#example}
 
-Here's a complete example of how to use the `useConfetti` composable:
+Полные примеры использования композабла `useConfetti`:
 
-### Simple use
+### Простое использование {#simple-use}
 
 ::component-example
 ---
@@ -103,7 +103,7 @@ name: 'use-confetti-example'
 ---
 ::
 
-### With some options
+### С параметрами {#with-some-options}
 
 ::component-example
 ---
@@ -112,7 +112,7 @@ name: 'use-confetti-some-options-example'
 ---
 ::
 
-### At custom place
+### В заданном месте {#at-custom-place}
 
 ::component-example
 ---

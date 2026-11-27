@@ -32,11 +32,19 @@ export default defineLocale<Messages>({
       next: 'Weiter',
       prev: 'Zurück'
     },
+    chatAttachment: {
+      uploading: 'Wird hochgeladen',
+      error: 'Hochladen fehlgeschlagen'
+    },
     chatMessages: {
       autoScroll: 'Nach unten scrollen'
     },
     chatPrompt: {
-      placeholder: 'Geben Sie Ihre Nachricht hier ein…'
+      placeholder: 'Geben Sie Ihre Nachricht hier ein…',
+      queue: 'Nachrichten in der Warteschlange',
+      sendNow: 'Jetzt senden',
+      edit: 'Bearbeiten',
+      remove: 'Entfernen'
     },
     chatPromptSubmit: {
       label: 'Senden',
@@ -61,7 +69,7 @@ export default defineLocale<Messages>({
     contentSearch: {
       links: 'Ergebnisse',
       search: 'Ergebnisse',
-      theme: 'Thema'
+      theme: 'Design'
     },
     contentSearchButton: {
       label: 'Suchen…'
@@ -87,7 +95,7 @@ export default defineLocale<Messages>({
       search: 'Suchen…'
     },
     dashboardSearch: {
-      theme: 'Thema'
+      theme: 'Design'
     },
     dashboardSearchButton: {
       label: 'Suchen…'
@@ -132,6 +140,15 @@ export default defineLocale<Messages>({
     drawer: {
       close: 'Schließen'
     },
+    editorEmojiMenu: {
+      label: 'Emojis'
+    },
+    editorMentionMenu: {
+      label: 'Erwähnungen'
+    },
+    editorSuggestionMenu: {
+      label: 'Vorschläge'
+    },
     pagination: {
       first: 'Erste Seite',
       last: 'Letzte Seite',
@@ -144,14 +161,16 @@ export default defineLocale<Messages>({
     },
     prose: {
       codeCollapse: {
-        closeText: 'Ausblenden',
+        closeText: 'ausblenden',
+        label: '{name} {text}',
         name: 'Code',
-        openText: 'Einblenden'
+        openText: 'einblenden'
       },
       collapsible: {
-        closeText: 'Ausblenden',
+        closeText: 'ausblenden',
+        label: '{name} {text}',
         name: 'Eigenschaften',
-        openText: 'Einblenden'
+        openText: 'einblenden'
       },
       pre: {
         copy: 'Code in die Zwischenablage kopieren'

@@ -70,7 +70,7 @@ import { Primitive } from 'reka-ui'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useLocale } from '../composables/useLocale'
-import { get } from '../utils'
+import { get, safeIcon } from '../utils'
 import { tv } from '../utils/tv'
 import { pickLinkProps } from '../utils/link'
 import icons from '../dictionary/icons'
@@ -126,8 +126,8 @@ const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.breadcrumb
                   :b24ui="b24ui"
                 >
                   <Component
-                    :is="item.icon"
-                    v-if="item.icon"
+                    :is="safeIcon(item.icon)"
+                    v-if="safeIcon(item.icon)"
                     data-slot="linkLeadingIcon"
                     :class="b24ui.linkLeadingIcon({ class: [props.b24ui?.linkLeadingIcon, item.b24ui?.linkLeadingIcon], active: item.active ?? (index === props.items!.length - 1) })"
                   />

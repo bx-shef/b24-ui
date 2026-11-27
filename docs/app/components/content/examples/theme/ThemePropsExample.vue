@@ -11,10 +11,10 @@ import AiStarsIcon from '@bitrix24/b24icons-vue/outline/AiStarsIcon'
     }"
   >
     <div class="flex items-center gap-2">
-      <B24Tooltip text="Inherits delayDuration from theme">
-        <B24Button label="Hover me" />
+      <B24Tooltip text="Наследует delayDuration из темы">
+        <B24Button label="Наведите на меня" />
       </B24Tooltip>
-      <B24Button label="With icon" :icon="RocketIcon" />
+      <B24Button label="С иконкой" :icon="RocketIcon" />
       <B24Button :icon="AiStarsIcon" square />
     </div>
   </B24Theme>

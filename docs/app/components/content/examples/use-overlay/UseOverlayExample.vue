@@ -7,5 +7,5 @@ const modal = overlay.create(LazyUseOverlayModalExample)
 </script>
 
 <template>
-  <B24Button label="Open modal" @click="modal.open()" />
+  <B24Button label="Открыть модальное окно" @click="modal.open()" />
 </template>

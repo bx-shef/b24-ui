@@ -32,11 +32,19 @@ export default defineLocale<Messages>({
       next: 'अगला',
       prev: 'पिछला'
     },
+    chatAttachment: {
+      uploading: 'अपलोड हो रहा है',
+      error: 'अपलोड विफल रहा'
+    },
     chatMessages: {
       autoScroll: 'नीचे स्क्रॉल करें'
     },
     chatPrompt: {
-      placeholder: 'अपना संदेश यहाँ लिखें…'
+      placeholder: 'अपना संदेश यहाँ लिखें…',
+      queue: 'कतार में संदेश',
+      sendNow: 'अभी भेजें',
+      edit: 'संपादित करें',
+      remove: 'हटाएँ'
     },
     chatPromptSubmit: {
       label: 'भेजें',
@@ -132,6 +140,15 @@ export default defineLocale<Messages>({
     drawer: {
       close: 'बंद करें'
     },
+    editorEmojiMenu: {
+      label: 'इमोजी'
+    },
+    editorMentionMenu: {
+      label: 'उल्लेख'
+    },
+    editorSuggestionMenu: {
+      label: 'सुझाव'
+    },
     pagination: {
       first: 'पहला पृष्ठ',
       last: 'अंतिम पृष्ठ',
@@ -145,11 +162,13 @@ export default defineLocale<Messages>({
     prose: {
       codeCollapse: {
         closeText: 'छुपाएँ',
+        label: '{name} {text}',
         name: 'कोड',
         openText: 'दिखाएँ'
       },
       collapsible: {
         closeText: 'छुपाएँ',
+        label: '{name} {text}',
         name: 'गुण',
         openText: 'दिखाएँ'
       },

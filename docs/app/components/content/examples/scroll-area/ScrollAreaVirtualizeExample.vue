@@ -5,8 +5,8 @@ defineProps<{
 
 const items = computed(() => Array.from({ length: 1000 }, (_, i) => ({
   id: i + 1,
-  title: `Item ${i + 1}`,
-  description: `Description for item ${i + 1}`
+  title: `Элемент ${i + 1}`,
+  description: `Описание элемента ${i + 1}`
 })))
 </script>
 

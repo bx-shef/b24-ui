@@ -1,14 +1,17 @@
 ---
 title: Tooltip
-description: A small window that shows details when you move your mouse over an item.
+description: 'Небольшое окно с подробностями, которое появляется при наведении мыши на элемент.'
 category: overlay
 keywords:
   - hint
+  - всплывающая подсказка
+  - подсказка при наведении
+  - тултип
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Tooltip.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/tooltip
   - label: Nuxt UI
@@ -20,9 +23,9 @@ links:
     to: https://reka-ui.com/docs/components/tooltip
 ---
 
-## Usage
+## Использование {#usage}
 
-Use a [Button](/docs/components/button/) or any other component in the default slot of the Tooltip.
+Поместите в слот по умолчанию Tooltip [Button](/docs/components/button/) или любой другой компонент.
 
 ::component-code
 ---
@@ -30,7 +33,7 @@ prettier: true
 ignore:
   - text
 props:
-  text: 'Open on GitHub'
+  text: 'Открыть на GitHub'
 slots:
   default: |
 
@@ -41,22 +44,22 @@ slots:
 ::
 
 ::warning
-Make sure to wrap your app with the [`App`](/docs/components/app/) component which uses the [`TooltipProvider`](https://reka-ui.com/docs/components/tooltip#provider) component from Reka UI.
+Оберните приложение в компонент [`App`](/docs/components/app/): он использует компонент [`TooltipProvider`](https://reka-ui.com/docs/components/tooltip#provider) из Reka UI.
 ::
 
 ::tip{to="/docs/components/app/#props"}
-You can check the `App` component `tooltip` prop to see how to configure the Tooltip globally.
+Пропс `tooltip` компонента `App` показывает, как настроить Tooltip глобально.
 ::
 
-### Text
+### Текст {#text}
 
-Use the `text` prop to set the content of the Tooltip.
+Пропс `text` задаёт содержимое Tooltip.
 
 ::component-code
 ---
 prettier: true
 props:
-  text: 'Open on GitHub'
+  text: 'Открыть на GitHub'
 slots:
   default: |
 
@@ -66,9 +69,9 @@ slots:
 :b24-button{label="Open"}
 ::
 
-### Kbds
+### Клавиши {#kbds}
 
-Use the `kbds` prop to render [Kbd](/docs/components/kbd/) components in the Tooltip.
+Пропс `kbds` отрисовывает в Tooltip компоненты [Kbd](/docs/components/kbd/).
 
 ::component-code
 ---
@@ -77,7 +80,7 @@ ignore:
   - text
   - kbds
 props:
-  text: 'Open on GitHub'
+  text: 'Открыть на GitHub'
   kbds:
     - meta
     - G
@@ -91,12 +94,12 @@ slots:
 ::
 
 ::tip
-You can use special keys like `meta` that displays as `⌘` on macOS and `Ctrl` on other platforms.
+Можно использовать специальные клавиши, например `meta`: на macOS она отображается как `⌘`, на остальных платформах как `Ctrl`.
 ::
 
-### Delay
+### Задержка {#delay}
 
-Use the `delay-duration` prop to change the delay before the Tooltip appears. For example, you can make it appear instantly by setting it to `0`.
+Пропс `delay-duration` меняет задержку перед появлением Tooltip. Например, значение `0` показывает его сразу.
 
 ::component-code
 ---
@@ -105,7 +108,7 @@ ignore:
   - text
 props:
   delayDuration: 0
-  text: 'Open on GitHub'
+  text: 'Открыть на GitHub'
 slots:
   default: |
 
@@ -116,15 +119,15 @@ slots:
 ::
 
 ::tip
-This can be configured globally through the `tooltip.delayDuration` option in the [`App`](/docs/components/app/) component.
+Глобально это настраивается опцией `tooltip.delayDuration` в компоненте [`App`](/docs/components/app/).
 ::
 
-### Content
+### Содержимое {#content}
 
-Use the `content` prop to control how the Tooltip content is rendered, like its `align` or `side` for example.
+Пропс `content` управляет отрисовкой содержимого Tooltip, например его `align` или `side`.
 
 ::tip
-This can be configured globally through the `tooltip.content` option in the [`App`](/docs/components/app/) component.
+Глобально это настраивается опцией `tooltip.content` в компоненте [`App`](/docs/components/app/).
 ::
 
 ::component-code
@@ -147,7 +150,7 @@ props:
     align: center
     side: bottom
     sideOffset: 8
-  text: 'Open on GitHub'
+  text: 'Открыть на GitHub'
 slots:
   default: |
 
@@ -157,9 +160,9 @@ slots:
 :b24-button{label="Open"}
 ::
 
-### Arrow
+### Стрелка {#arrow}
 
-Use the `arrow` prop to display an arrow on the Tooltip.
+Пропс `arrow` показывает стрелку у Tooltip.
 
 ::component-code
 ---
@@ -168,7 +171,7 @@ ignore:
   - text
 props:
   arrow: true
-  text: 'Open on GitHub'
+  text: 'Открыть на GitHub'
 slots:
   default: |
 
@@ -178,9 +181,9 @@ slots:
 :b24-button{label="Open"}
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the Tooltip.
+Пропс `disabled` отключает Tooltip.
 
 ::component-code
 ---
@@ -189,7 +192,7 @@ ignore:
   - text
 props:
   disabled: true
-  text: 'Open on GitHub'
+  text: 'Открыть на GitHub'
 slots:
   default: |
 
@@ -199,11 +202,11 @@ slots:
 :b24-button{label="Open"}
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Control open state
+### Управление открытием {#control-open-state}
 
-You can control the open state by using the `default-open` prop or the `v-model:open` directive.
+Состоянием открытия управляют пропс `default-open` или директива `v-model:open`.
 
 ::component-example
 ---
@@ -212,12 +215,12 @@ name: 'tooltip-open-example'
 ::
 
 ::note
-In this example, leveraging [`defineShortcuts`](/docs/composables/define-shortcuts/), you can toggle the Tooltip by pressing :kbd{value="O"}.
+В этом примере с помощью [`defineShortcuts`](/docs/composables/define-shortcuts/) Tooltip переключается по нажатию :kbd{value="O"}.
 ::
 
-### With following cursor
+### С привязкой к курсору {#with-following-cursor}
 
-You can make the Tooltip follow the cursor when hovering over an element using the [`reference`](https://reka-ui.com/docs/components/tooltip#trigger) prop:
+Чтобы Tooltip следовал за курсором при наведении на элемент, используйте пропс [`reference`](https://reka-ui.com/docs/components/tooltip#trigger):
 
 ::component-example
 ---
@@ -225,9 +228,9 @@ name: 'tooltip-cursor-example'
 ---
 ::
 
-### Help Icon
+### Иконка справки {#help-icon}
 
-You can use the [Icon](https://bitrix24.github.io/b24icons/icons/) and the Tooltip.
+Tooltip можно сочетать с [иконкой](https://bitrix24.github.io/b24icons/icons/).
 
 ::component-example
 ---
@@ -235,20 +238,20 @@ name: 'tooltip-help-icon-example'
 ---
 ::
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

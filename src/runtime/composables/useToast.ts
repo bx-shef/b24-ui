@@ -3,6 +3,7 @@ import { ref, nextTick, inject } from 'vue'
 import { useState } from '#imports'
 import type { ToastEmits, ToastProps } from '../components/Toast.vue'
 import type { EmitsToProps } from '../types/utils'
+import icons from '../dictionary/icons'
 
 /**
  * How many toasts `Toaster` keeps on screen at once, provided by `Toaster`
@@ -20,6 +21,23 @@ export interface Toast extends Omit<ToastProps, 'defaultOpen'>, EmitsToProps<Toa
   _updated?: boolean
   /** @internal */
   _animatedAt?: number
+}
+
+export type ToastPromiseState = string | Omit<Partial<Toast>, 'id'>
+
+export interface ToastPromiseOptions<T> {
+  /**
+   * The toast displayed while the promise is pending. It shows the `loading` icon of the dictionary and stays open until the promise settles.
+   */
+  loading?: string | Partial<Toast>
+  /**
+   * The toast displayed when the promise resolves. The toast closes when omitted.
+   */
+  success?: ToastPromiseState | ((data: T) => ToastPromiseState)
+  /**
+   * The toast displayed when the promise rejects. The toast closes when omitted.
+   */
+  error?: ToastPromiseState | ((error: unknown) => ToastPromiseState)
 }
 
 /**
@@ -42,7 +60,7 @@ const ANIMATION_DURATION = 300
  * Requires a `<B24Toaster />` in the tree — without one the toasts accumulate
  * and nothing renders them.
  *
- * @returns The live `toasts` list plus `add`, `update`, `remove` and `clear`.
+ * @returns The live `toasts` list plus `add`, `update`, `remove`, `clear` and `promise`.
  *   `add` returns the toast it created, whose `id` is what `update` and
  *   `remove` take.
  *
@@ -90,7 +108,12 @@ export function useToast() {
     while (queue.length > 0) {
       await nextTick()
 
-      const toast = queue.shift()!
+      // `promise()` can drop a queued toast while this waits for the next tick.
+      const toast = queue.shift()
+      if (!toast) {
+        break
+      }
+
       const maxValue = max?.value ?? 5
       if (maxValue <= 0) {
         if (toasts.value.length) {
@@ -178,11 +201,70 @@ export function useToast() {
     toasts.value = []
   }
 
+  function promise<T>(promise: Promise<T>, options: ToastPromiseOptions<T>): Promise<T> {
+    const loading = resolveState(options.loading)
+    const toast = add({
+      icon: icons.loading,
+      duration: 0,
+      ...loading
+    })
+
+    function close() {
+      // The toast is still waiting in the queue when the promise settles in the same tick.
+      const index = queue.findIndex(t => t.id === toast.id)
+      if (index !== -1) {
+        queue.splice(index, 1)
+      } else {
+        remove(toast.id)
+      }
+    }
+
+    function settle(state: ToastPromiseOptions<T>['success' | 'error'], value: any) {
+      if (state === undefined) {
+        close()
+        return
+      }
+
+      let resolved: Partial<Toast>
+      try {
+        resolved = resolveState(typeof state === 'function' ? state(value) : state)
+      } catch (error) {
+        // Don't leave the loading toast open forever, the error still surfaces as an unhandled rejection.
+        close()
+        throw error
+      }
+
+      // Reset what the loading state set, a field the settled state doesn't pass would otherwise keep its loading value.
+      const reset = Object.fromEntries(Object.keys(loading).filter(key => key !== 'id' && key !== 'open').map(key => [key, undefined]))
+      const body = { ...reset, icon: undefined, duration: undefined, b24ui: loading.b24ui, ...resolved }
+
+      const queued = queue.find(t => t.id === toast.id)
+      if (queued) {
+        Object.assign(queued, body)
+        return
+      }
+
+      // Skip a toast that was dismissed while loading.
+      if (toasts.value.find(t => t.id === toast.id)?.open) {
+        update(toast.id, body)
+      }
+    }
+
+    promise.then(value => settle(options.success, value), error => settle(options.error, error))
+
+    return promise
+  }
+
   return {
     toasts,
     add,
     update,
     remove,
-    clear
+    clear,
+    promise
   }
+}
+
+function resolveState(state?: ToastPromiseState): Partial<Toast> {
+  return typeof state === 'string' ? { title: state } : { ...state }
 }

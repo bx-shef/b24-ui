@@ -1,16 +1,19 @@
 ---
 title: ScrollArea
-description: A flexible scrollable viewport component that implements virtualization to handle large datasets with optimal performance.
+description: 'Гибкая прокручиваемая область с виртуализацией для работы с большими наборами данных при высокой производительности.'
 category: data
 keywords:
   - scrollbar
   - overflow
   - scrolling
+  - область прокрутки
+  - полоса прокрутки
+  - длинные списки
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/ScrollArea.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/scroll-area
   - label: Nuxt UI
@@ -20,12 +23,12 @@ links:
     avatar:
       src: https://github.com/tanstack.png
       loading: lazy
-    to: https://tanstack.com/virtual/latest
+    to: https://tanstack.com/virtual/v3
 ---
 
-## Usage
+## Использование {#usage}
 
-The ScrollArea component creates scrollable containers with optional virtualization for large lists.
+ScrollArea создаёт прокручиваемые контейнеры с необязательной виртуализацией для больших списков.
 
 ::component-example
 ---
@@ -36,9 +39,9 @@ class: '!p-0'
 ---
 ::
 
-### Items
+### Элементы {#items}
 
-Use the `items` prop as an array and render each item using the default slot:
+Пропс `items` — массив; каждый элемент отрисовывается через слот по умолчанию:
 
 ::component-example
 ---
@@ -50,12 +53,12 @@ class: '!p-0'
 ::
 
 ::tip{to="#with-default-slot"}
-You can also use the default slot without the `items` prop to render custom scrollable content directly.
+Слот по умолчанию можно использовать и без пропса `items`, чтобы напрямую отрисовать произвольное прокручиваемое содержимое.
 ::
 
-### Orientation
+### Ориентация {#orientation}
 
-Use the `orientation` prop to change the scroll direction. Defaults to `vertical`.
+Пропс `orientation` меняет направление прокрутки. По умолчанию `vertical`.
 
 ::component-example
 ---
@@ -73,16 +76,16 @@ options:
 ---
 ::
 
-### Virtualize
+### Виртуализация {#virtualize}
 
-Use the `virtualize` prop to render only the items currently in view, significantly boosting performance when working with large datasets.
+Пропс `virtualize` отрисовывает только те элементы, которые сейчас на экране, и заметно ускоряет работу с большими наборами данных.
 
 ::note
-When virtualization is **enabled**, customize spacing via the `virtualize` prop options like `gap`, `paddingStart`, and `paddingEnd`. Otherwise, use the `b24ui` prop to apply classes like `gap p-4` on the `viewport` slot.
+При **включённой** виртуализации отступы настраиваются опциями пропса `virtualize`: `gap`, `paddingStart` и `paddingEnd`. Без виртуализации применяйте пропс `b24ui`, например классы `gap p-4` для слота `viewport`.
 ::
 
 ::tip
-If all your items have the **same height**, set `skipMeasurement` to `true` in the `virtualize` prop to skip per-item DOM measurement and rely on `estimateSize` instead. This significantly improves performance for large uniform lists.
+Если у всех элементов **одинаковая высота**, задайте в пропсе `virtualize` значение `skipMeasurement: true`: компонент перестанет измерять каждый элемент в DOM и будет опираться на `estimateSize`. Это заметно ускоряет большие однородные списки.
 ::
 
 ::component-example
@@ -101,9 +104,9 @@ options:
 ---
 ::
 
-### Shadow
+### Тень прокрутки {#shadow}
 
-Use the `shadow` prop to display fade shadows on the scrollable edges, indicating that more content is available in the scroll direction. The fade automatically follows the `orientation` and only appears when the content overflows.
+Пропс `shadow` показывает затухающую тень на краях прокрутки и подсказывает, что в этом направлении есть ещё содержимое. Тень следует за `orientation` и появляется, только когда содержимое не помещается.
 
 ::component-example
 ---
@@ -113,14 +116,14 @@ name: 'scroll-area-shadow-example'
 ::
 
 ::tip
-Pass an object to the `shadow` prop to configure the fade size, e.g. `:shadow="{ size: 48 }"`.
+Объект в пропсе `shadow` настраивает размер затухания, например `:shadow="{ size: 48 }"`.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### As masonry layout
+### Раскладка masonry {#as-masonry-layout}
 
-Use the `virtualize` prop with `lanes`, `gap`, and `estimateSize` options to create Pinterest-style masonry layouts with variable height items.
+Пропс `virtualize` с опциями `lanes`, `gap` и `estimateSize` строит раскладки masonry в стиле Pinterest с элементами разной высоты.
 
 ::component-example
 ---
@@ -147,12 +150,12 @@ options:
 ::
 
 ::tip
-For optimal performance, set `estimateSize` close to your average item height. Increasing `overscan` improves scrolling smoothness but renders more off-screen items.
+Для лучшей производительности задайте `estimateSize` близким к средней высоте элемента. Больший `overscan` делает прокрутку плавнее, но отрисовывает больше элементов за пределами экрана.
 ::
 
-### With responsive lanes
+### С адаптивным числом колонок {#with-responsive-lanes}
 
-You can use the [`useWindowSize`](https://vueuse.org/core/useWindowSize/) (for viewport-based) or [`useElementSize`](https://vueuse.org/core/useElementSize/) (for container-based) composables to make the `lanes` reactive.
+Чтобы сделать `lanes` реактивным, используйте композаблы [`useWindowSize`](https://vueuse.org/core/useWindowSize/) (по области просмотра) или [`useElementSize`](https://vueuse.org/core/useElementSize/) (по контейнеру).
 
 ::component-example
 ---
@@ -163,9 +166,9 @@ class: '!p-0'
 ---
 ::
 
-### With external scroll element :badge{label="New" class="align-text-top"}
+### С внешним элементом прокрутки :badge{label="New" class="align-text-top"} {#with-external-scroll-element}
 
-Pass a `getScrollElement` function in the `virtualize` prop to virtualize against an ancestor scroll container instead of the component's own viewport. Set `scrollMargin` to the list's offset from the scroll element's start (e.g. the height of the content above it).
+Передайте в пропс `virtualize` функцию `getScrollElement`, чтобы виртуализировать относительно прокручиваемого предка, а не собственной области компонента. `scrollMargin` задаёт смещение списка от начала элемента прокрутки (например, высоту содержимого над ним).
 
 ::component-example
 ---
@@ -185,16 +188,16 @@ options:
 ::
 
 ::note
-Because the container owns the scroll, the header's "Top"/"Start" button scrolls it directly with `container.scrollTo`.
+Контейнер сам управляет прокруткой, поэтому кнопка «Top»/«Start» в шапке прокручивает его напрямую через `container.scrollTo`.
 ::
 
 ::caution
-The `shadow` prop has no effect in this mode, since the root no longer owns the scroll. Apply your own fade to the scroll container instead.
+В этом режиме пропс `shadow` не действует, потому что корневой элемент больше не управляет прокруткой. Добавьте затухание на прокручиваемый контейнер самостоятельно.
 ::
 
-### With programmatic scroll
+### С программной прокруткой {#with-programmatic-scroll}
 
-You can use the exposed `virtualizer` to programmatically control scroll position.
+Через доступный `virtualizer` положением прокрутки можно управлять программно.
 
 ::component-example
 ---
@@ -205,9 +208,9 @@ class: '!p-0'
 ---
 ::
 
-### With infinite scroll
+### С бесконечной прокруткой {#with-infinite-scroll}
 
-You can use the [`useInfiniteScroll`](https://vueuse.org/core/useInfiniteScroll/) composable to load more data as the user scrolls.
+Композабл [`useInfiniteScroll`](https://vueuse.org/core/useInfiniteScroll/) подгружает данные по мере прокрутки.
 
 ::component-example
 ---
@@ -220,12 +223,12 @@ class: '!p-0'
 ::
 
 ::note
-This example uses `useLazyFetch` with `server: false` to fetch data on the client without blocking the initial render. The loading state checks for both `pending` and `idle` status to display a loading indicator before and during the fetch. Additional pages are loaded as the user scrolls.
+В примере `useLazyFetch` с `server: false` загружает данные на клиенте, не блокируя первую отрисовку. Состояние загрузки проверяет и `pending`, и `idle`, чтобы индикатор показывался и до запроса, и во время него. Новые страницы подгружаются по мере прокрутки.
 ::
 
-### With default slot
+### Со слотом по умолчанию {#with-default-slot}
 
-You can use the default slot without the `items` prop to render custom scrollable content directly.
+Слот по умолчанию можно использовать без пропса `items`, чтобы напрямую отрисовать произвольное прокручиваемое содержимое.
 
 ::component-example
 ---
@@ -234,29 +237,29 @@ class: '!p-0'
 ---
 ::
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-### Expose
+### Доступ через ref {#expose}
 
-You can access the typed component instance using [`useTemplateRef`](https://vuejs.org/api/composition-api-helpers.html#usetemplateref).
+Типизированный экземпляр компонента доступен через [`useTemplateRef`](https://vuejs.org/api/composition-api-helpers.html#usetemplateref).
 
 ```vue
 <script setup lang="ts">
 const scrollArea = useTemplateRef('scrollArea')
 
-// Scroll to a specific item
+// Прокрутить к нужному элементу
 function scrollToItem(index: number) {
   scrollArea.value?.virtualizer?.scrollToIndex(index, { align: 'center' })
 }
@@ -267,13 +270,13 @@ function scrollToItem(index: number) {
 </template>
 ```
 
-This will give you access to the following:
+Он даёт доступ к следующему:
 
-| Name | Type | Description |
+| Имя | Тип | Описание |
 | ---- | ---- | ----------- |
-| `$el`{lang="ts-type"} | `HTMLElement`{lang="ts-type"} | The root element of the component. |
-| `virtualizer`{lang="ts-type"} | `Ref<Virtualizer> \| undefined`{lang="ts-type"} | The [TanStack Virtual](https://tanstack.com/virtual/latest/docs/api/virtualizer) virtualizer instance (`undefined` if virtualization is disabled). |
+| `$el`{lang="ts-type"} | `HTMLElement`{lang="ts-type"} | Корневой элемент компонента. |
+| `virtualizer`{lang="ts-type"} | `Ref<Virtualizer> \| undefined`{lang="ts-type"} | Экземпляр виртуализатора [TanStack Virtual](https://tanstack.com/virtual/v3/docs/api/virtualizer) (`undefined`, если виртуализация отключена). |
 
-## Theme
+## Тема {#theme}
 
 :component-theme

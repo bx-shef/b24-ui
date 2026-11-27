@@ -28,15 +28,23 @@ export default defineLocale<Messages>({
     },
     carousel: {
       dots: 'Выберите слайд для отображения',
-      goto: 'Перейти к {slide}',
+      goto: 'Перейти к слайду {slide}',
       next: 'Далее',
       prev: 'Назад'
+    },
+    chatAttachment: {
+      uploading: 'Загрузка',
+      error: 'Не удалось загрузить'
     },
     chatMessages: {
       autoScroll: 'Прокрутить вниз'
     },
     chatPrompt: {
-      placeholder: 'Введите сообщение…'
+      placeholder: 'Введите сообщение…',
+      queue: 'Сообщения в очереди',
+      sendNow: 'Отправить сейчас',
+      edit: 'Редактировать',
+      remove: 'Удалить'
     },
     chatPromptSubmit: {
       label: 'Отправить',
@@ -132,6 +140,15 @@ export default defineLocale<Messages>({
     drawer: {
       close: 'Закрыть'
     },
+    editorEmojiMenu: {
+      label: 'Эмодзи'
+    },
+    editorMentionMenu: {
+      label: 'Упоминания'
+    },
+    editorSuggestionMenu: {
+      label: 'Предложения'
+    },
     pagination: {
       first: 'Первая страница',
       last: 'Последняя страница',
@@ -145,11 +162,13 @@ export default defineLocale<Messages>({
     prose: {
       codeCollapse: {
         closeText: 'Скрыть',
+        label: '{text} {name}',
         name: 'код',
         openText: 'Показать'
       },
       collapsible: {
         closeText: 'Скрыть',
+        label: '{text} {name}',
         name: 'свойства',
         openText: 'Показать'
       },

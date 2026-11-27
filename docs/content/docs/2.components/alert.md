@@ -1,15 +1,18 @@
 ---
 title: Alert
-description: An alert designed to capture the user's attention.
+description: 'Оповещение, которое привлекает внимание пользователя.'
 category: element
 keywords:
   - notice
   - inline notification
+  - оповещение
+  - предупреждение
+  - информационное сообщение
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Alert.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/alert
   - label: Nuxt UI
@@ -17,36 +20,36 @@ links:
     to: https://ui.nuxt.com/docs/components/alert
 ---
 
-## Usage
+## Использование {#usage}
 
-### Title
+### Заголовок {#title}
 
-Use the `title` prop to set the title of the Alert.
-
-::component-code
----
-prettier: true
-props:
-  title: Heads up!
----
-::
-
-### Description
-
-Use the `description` prop to set the description of the Alert.
+Пропс `title` задаёт заголовок Alert.
 
 ::component-code
 ---
 prettier: true
 props:
-  title: Heads up!
-  description: We will immediately notify the manager that the deal is not progressing.
+  title: Внимание!
 ---
 ::
 
-### Icon
+### Описание {#description}
 
-Use the `icon` prop to show an [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `description` задаёт описание Alert.
+
+::component-code
+---
+prettier: true
+props:
+  title: Внимание!
+  description: Мы сразу сообщим менеджеру, что сделка не продвигается.
+---
+::
+
+### Иконка {#icon}
+
+Пропс `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/).
 
 ::component-code
 ---
@@ -59,14 +62,14 @@ cast:
   icon: 'RocketIcon'
 props:
   icon: 'RocketIcon'
-  title: Heads up!
-  description: We will immediately notify the manager that the deal is not progressing.
+  title: Внимание!
+  description: Мы сразу сообщим менеджеру, что сделка не продвигается.
 ---
 ::
 
-### Avatar
+### Аватар {#avatar}
 
-Use the `avatar` prop to show an [Avatar](/docs/components/avatar/).
+Пропс `avatar` показывает [аватар](/docs/components/avatar/).
 
 ::component-code
 ---
@@ -81,14 +84,14 @@ props:
   avatar.src: '/b24ui/avatar/employee.png'
   avatar.size: 'xs'
   avatar.loading: 'lazy'
-  title: Heads up!
-  description: We will immediately notify the manager that the deal is not progressing.
+  title: Внимание!
+  description: Мы сразу сообщим менеджеру, что сделка не продвигается.
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of the Alert.
+Пропс `color` меняет цвет Alert.
 
 ::component-code
 ---
@@ -102,19 +105,19 @@ cast:
   icon: 'RocketIcon'
 props:
   color: 'air-primary'
-  title: Heads up!
-  description: We will immediately notify the manager that the deal is not progressing.
+  title: Внимание!
+  description: Мы сразу сообщим менеджеру, что сделка не продвигается.
   icon: 'RocketIcon'
   close: true
 ---
 ::
 
-### Inverted
+### Инверсия {#inverted}
 
-Use the `inverted` prop to invert the color of the Alert.
+Пропс `inverted` инвертирует цвет Alert.
 
 ::warning
-Only available for `air-primary*` colors
+Доступно только для цветов `air-primary*`.
 ::
 
 ::component-code
@@ -130,16 +133,16 @@ cast:
 props:
   inverted: true
   color: 'air-primary'
-  title: Heads up!
-  description: We will immediately notify the manager that the deal is not progressing.
+  title: Внимание!
+  description: Мы сразу сообщим менеджеру, что сделка не продвигается.
   icon: 'RocketIcon'
   close: true
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the Alert.
+Пропс `size` меняет размер Alert.
 
 ::component-code
 ---
@@ -152,18 +155,18 @@ cast:
   icon: 'RocketIcon'
 props:
   size: 'md'
-  title: Heads up!
-  description: We will immediately notify the manager that the deal is not progressing.
+  title: Внимание!
+  description: Мы сразу сообщим менеджеру, что сделка не продвигается.
   icon: 'RocketIcon'
 ---
 ::
 
-### Close
+### Закрытие {#close}
 
-Use the `close` prop to display a [Button](/docs/components/button/) to dismiss the Alert.
+Пропс `close` показывает [кнопку](/docs/components/button/), которой закрывают Alert.
 
 ::tip
-An `update:open` event will be emitted when the close button is clicked.
+По нажатию на кнопку закрытия возникает событие `update:open`.
 ::
 
 ::component-code
@@ -176,12 +179,12 @@ ignore:
   - color
 props:
   close: true
-  title: Heads up!
-  description: We will immediately notify the manager that the deal is not progressing.
+  title: Внимание!
+  description: Мы сразу сообщим менеджеру, что сделка не продвигается.
 ---
 ::
 
-You can pass any property from the [Button](/docs/components/button/) component to customize it.
+Для настройки кнопки передайте любое свойство компонента [Button](/docs/components/button/).
 
 ::component-code
 ---
@@ -192,17 +195,17 @@ ignore:
   - close.color
   - color
 props:
-  title: Heads up!
-  description: We will immediately notify the manager that the deal is not progressing.
+  title: Внимание!
+  description: Мы сразу сообщим менеджеру, что сделка не продвигается.
   close:
     color: 'air-secondary-accent-2'
     class: 'rounded-full'
 ---
 ::
 
-### Actions
+### Действия {#actions}
 
-Use the `actions` prop to add some [Button](/docs/components/button/) actions to the Alert.
+Пропс `actions` добавляет в Alert действия — [кнопки](/docs/components/button/).
 
 ::component-code
 ---
@@ -213,18 +216,18 @@ ignore:
   - actions
   - color
 props:
-  title: Heads up!
-  description: We will immediately notify the manager that the deal is not progressing.
+  title: Внимание!
+  description: Мы сразу сообщим менеджеру, что сделка не продвигается.
   actions:
-    - label: Action 1
-    - label: Action 2
+    - label: Действие 1
+    - label: Действие 2
       color: 'air-primary'
 ---
 ::
 
-### Orientation
+### Ориентация {#orientation}
 
-Use the `orientation` prop to change the orientation of the Alert.
+Пропс `orientation` меняет ориентацию Alert.
 
 ::component-code
 ---
@@ -234,30 +237,30 @@ ignore:
   - actions
   - color
 props:
-  title: Heads up!
-  description: We will immediately notify the manager that the deal is not progressing.
+  title: Внимание!
+  description: Мы сразу сообщим менеджеру, что сделка не продвигается.
   orientation: horizontal
   actions:
-    - label: Action 1
-    - label: Action 2
+    - label: Действие 1
+    - label: Действие 2
       color: 'air-primary'
 ---
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

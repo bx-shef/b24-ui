@@ -39,7 +39,7 @@ function onOpen() {
     ignore-filter
     :icon="UserIcon"
     :trailing-icon="Expand1Icon"
-    placeholder="Select user"
+    placeholder="Выберите пользователя"
     class="w-48"
     @update:open="onOpen"
   >

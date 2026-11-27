@@ -24,7 +24,7 @@ function onOpen() {
     :loading="status === 'pending'"
     label-key="name"
     :search-input="{ icon: CrmSearchIcon }"
-    placeholder="Select country"
+    placeholder="Выберите страну"
     @update:open="onOpen"
   >
     <template #leading="{ modelValue, b24ui }">

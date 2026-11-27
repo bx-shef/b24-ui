@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const heights = [320, 480, 640, 800]
 
-// Pseudo-random height selection with longer cycle to avoid alignment patterns
+// Псевдослучайный выбор высоты с длинным циклом, чтобы не было повторяющихся узоров
 function getHeight(index: number) {
   const seed = (index * 11 + 7) % 17
   return heights[seed % heights.length]!
@@ -12,7 +12,7 @@ const items = Array.from({ length: 1000 }).map((_, index) => {
 
   return {
     id: index,
-    title: `Item ${index + 1}`,
+    title: `Элемент ${index + 1}`,
     src: `https://placehold.co/640x${height}?text=${index}`,
     width: 640,
     height

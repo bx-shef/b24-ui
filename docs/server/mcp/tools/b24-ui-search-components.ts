@@ -15,7 +15,7 @@ export default defineMcpTool({
   },
   inputSchema: {
     category: z.string().optional().describe('Exact category: layout, form, element, navigation, data, overlay, dashboard, page, chat, content, editor, color-mode, i18n or deprecated'),
-    search: z.string().optional().describe('Search term to filter components by name, description, or intent (alternate names like "segmented control" are matched)')
+    search: z.string().max(200).optional().describe('Search term to filter components by name, description, or intent (alternate names like "segmented control" are matched)')
   },
   inputExamples: [
     { category: 'layout' },

@@ -2,7 +2,7 @@
 
 > Последняя сверка: 2026-11-24
 
-Правила для людей и ИИ-агентов, которые переводят `docs/content/`, `skills/`, README и тексты сайта документации. Перевод полный: английский текст заменяется русским, двуязычной версии нет.
+Правила для людей и AI-агентов, которые переводят `docs/content/`, `skills/`, README и тексты сайта документации. Перевод полный: английский текст заменяется русским, двуязычной версии нет.
 
 ## Что переводим
 
@@ -76,13 +76,77 @@
 | programmatic overlay | программный оверлей |
 | breakpoint | контрольная точка |
 | design token | дизайн-токен |
-| skill (ИИ-агента) | навык |
+| skill (AI-агента) | навык |
 | breadcrumb | хлебные крошки |
 | layout | раскладка |
 | tree-shaking | tree-shaking (не переводим) |
 | pull request, issue, commit, PR | не переводим; склоняем по-русски: «pull request'ы», «issue» |
 | semantic colors | семантические цвета |
 | nested form | вложенная форма |
+| locale | локаль |
+| shortcut / hotkey | горячая клавиша / сочетание клавиш |
+| guided tour | тур по интерфейсу |
+| spotlight | подсветка цели |
+| typography | типографика |
+| prose components | prose-компоненты (не переводим «prose») |
+| preview | предпросмотр |
+| shadow (scroll shadow) | тень прокрутки |
+| AI (в тексте), AI chat | AI, AI-чат — не «ИИ» (так во всех продуктах семейства) |
+| badge | бейдж |
+| chip | чип |
+| avatar | аватар |
+| accordion | аккордеон |
+| chevron | шеврон |
+| shimmer | мерцание |
+| streaming (ответ AI) | поток (потоковый ответ) |
+| reasoning (AI) | рассуждения |
+| tool call (AI) | вызов инструмента |
+| inverted | инверсия |
+| indeterminate (чекбокс) | неопределённое состояние |
+| rounded | скругление |
+| stacked (график) | с накоплением |
+| donut (график) | кольцевой график `donut` |
+| dashboard | дашборд |
+| sidebar (DashboardSidebar) | боковое меню (не «боковая панель»: так называем slideover) |
+| navbar | навигационная панель |
+| toolbar | панель инструментов |
+| command palette | командная палитра |
+| table of contents | оглавление |
+| resize handle | ручка изменения размера |
+| drag handle | ручка перетаскивания |
+| drawer | Drawer (имя компонента не переводим); «шторка» — только в пояснениях |
+| mention | упоминание |
+| suggestion menu | меню подсказок |
+| slash command | слэш-команда |
+| handler (редактор) | обработчик |
+| empty state | пустое состояние |
+| preset (DateTimePicker) | готовое значение |
+| throttle | троттлинг |
+| footer | подвал |
+| header (Header) | шапка |
+| hint (FormField) | подсказка (текст рядом с подписью); `help` — справка |
+| tag (InputTags, `tag`) | тег |
+| sticky | липкий |
+| floating label | плавающая подпись |
+| autocomplete | автодополнение |
+| virtualization | виртуализация |
+| transfer list | список переноса |
+| viewport (NavigationMenu) | область просмотра |
+| unmount | выгрузка (содержимого) |
+| highlight (рамка, акцент) | выделение |
+| dismissible | закрытие по действию вне окна |
+| fullscreen | во весь экран |
+| bento (раскладка) | bento (не переводим) |
+| promo / marketing modal | промо-окно / маркетинговое окно |
+| thumb (Range) | бегунок |
+| pinned (строки, столбцы) | закреплённый |
+| zebra (строки таблицы) | зебра |
+| rail (Sidebar) | рейка |
+| stepper | пошаговый мастер |
+| timeline | хронология (компонент `Timeline` не переводим) |
+| masonry (раскладка) | masonry (не переводим) |
+| splitter | Splitter (имя компонента не переводим) |
+| status (Progress) | статус |
 
 Термина нет в таблице — выбери понятный русский вариант, добавь строку сюда в том же PR.
 

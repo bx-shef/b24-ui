@@ -1,7 +1,11 @@
 ---
 title: Page
-description: 'A page grid divided into three columns: left sidebar, main content area, and right sidebar.'
+description: 'Сетка страницы из трёх колонок: левая боковая панель, область основного содержимого и правая боковая панель.'
 category: page
+keywords:
+  - страница из трёх колонок
+  - раскладка страницы
+  - макет страницы
 links:
   - label: GitHub
     iconName: GitHubIcon
@@ -11,9 +15,9 @@ links:
     to: https://ui.nuxt.com/docs/components/page
 ---
 
-## Usage
+## Использование {#usage}
 
-The Page component helps you create layouts with optional left and right columns. It's perfect for building documentation sites and other content-focused pages.
+Компонент Page помогает создавать раскладки с необязательными левой и правой колонками. Он подходит для сайтов документации и других страниц, ориентированных на содержимое.
 
 ```vue {2,6}
 <template>
@@ -26,18 +30,18 @@ The Page component helps you create layouts with optional left and right columns
 ```
 
 ::tip
-The page will display as a centered single column layout if no slots are specified.
+Если слоты не заданы, страница отображается как центрированная одноколоночная раскладка.
 ::
 
-## Examples
+## Примеры {#examples}
 
 ::note
-While these examples use [Nuxt Content](https://content.nuxt.com), the components can be integrated with any content management system.
+В примерах используется [Nuxt Content](https://content.nuxt.com), но компоненты можно подключить к любой системе управления контентом.
 ::
 
-### Within a layout
+### В раскладке {#within-a-layout}
 
-Use the Page component in a layout with the `left` slot to display a navigation:
+Используйте Page в раскладке со слотом `left`, чтобы показать навигацию:
 
 ```vue [layouts/docs.vue] {9-17}
 <script setup lang="ts">
@@ -64,12 +68,12 @@ const navigation = inject<Ref<NavigationMenuItem[]>>('navigation')
 ```
 
 ::note
-In this example, we use the [`NavigationMenu`](/docs/components/navigation-menu/) component to display the navigation injected in `app.vue`.
+В этом примере навигацию, переданную в `app.vue`, показывает компонент [`NavigationMenu`](/docs/components/navigation-menu/).
 ::
 
-### Within a page
+### На странице {#within-a-page}
 
-Use the Page component in a page with the `right` slot to display a table of contents:
+Используйте Page на странице со слотом `right`, чтобы показать оглавление:
 
 ```vue [pages/\[...slug\\].vue]{29-31}
 <script setup lang="ts">
@@ -108,19 +112,19 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => {
 ```
 
 ::note
-In this example, we use the `ContentToc` component to display the table of contents.
+В этом примере оглавление показывает компонент `ContentToc`.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

@@ -1,14 +1,17 @@
 ---
 title: ContextMenu
-description: A pop-up menu that appears upon right-clicking an element to present relevant actions.
+description: 'Всплывающее меню, которое открывается по правому щелчку на элементе и показывает доступные действия.'
 category: overlay
 keywords:
   - right click menu
+  - контекстное меню правой кнопки
+  - меню по правому клику
+  - щелчок правой кнопкой
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/ContextMenu.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/context-menu
   - label: Nuxt UI
@@ -20,9 +23,9 @@ links:
     to: https://reka-ui.com/docs/components/context-menu
 ---
 
-## Usage
+## Использование {#usage}
 
-Use anything you like in the default slot of the ContextMenu, and right-click on it to display the menu.
+Поместите в слот по умолчанию ContextMenu любой контент и щёлкните по нему правой кнопкой, чтобы открыть меню.
 
 ::component-code
 ---
@@ -36,44 +39,44 @@ externalTypes:
   - ContextMenuItem[][]
 props:
   items:
-    - - label: Appearance
+    - - label: Оформление
         children:
-          - label: System
-          - label: Light
-          - label: Dark
-    - - label: Show Sidebar
+          - label: Системная
+          - label: Светлая
+          - label: Тёмная
+    - - label: Показать боковую панель
         kbds:
           - meta
           - s
-      - label: Show Toolbar
+      - label: Показать панель инструментов
         kbds:
           - shift
           - meta
           - d
-      - label: Collapse Pinned Tabs
+      - label: Свернуть закреплённые вкладки
         disabled: true
-    - - label: Refresh the Page
-      - label: Clear Cookies and Refresh
-      - label: Clear Cache and Refresh
+    - - label: Обновить страницу
+      - label: Очистить cookie и обновить
+      - label: Очистить кэш и обновить
       - type: separator
-      - label: Developer
+      - label: Разработчик
         children:
-          - - label: View Source
+          - - label: Исходный код
               kbds:
                 - meta
                 - shift
                 - u
-            - label: Developer Tools
+            - label: Инструменты разработчика
               kbds:
                 - option
                 - meta
                 - i
-            - label: Inspect Elements
+            - label: Просмотр кода элемента
               kbds:
                 - option
                 - meta
                 - c
-          - - label: JavaScript Console
+          - - label: Консоль JavaScript
               kbds:
                 - option
                 - meta
@@ -82,16 +85,16 @@ slots:
   default: |
 
     <div class="flex items-center justify-center rounded-md border border-dashed border-(--ui-color-design-outline-na-stroke) bg-default text-(length:--ui-font-size-sm) aspect-video w-72">
-      Right click here
+      Щёлкните правой кнопкой здесь
     </div>
 ---
 
-:div{class="flex items-center justify-center rounded-md border border-dashed border-(--ui-color-design-outline-na-stroke) bg-default text-(length:--ui-font-size-sm) aspect-video w-72"}[Right click here]
+:div{class="flex items-center justify-center rounded-md border border-dashed border-(--ui-color-design-outline-na-stroke) bg-default text-(length:--ui-font-size-sm) aspect-video w-72"}[Щёлкните правой кнопкой здесь]
 ::
 
-### Items
+### Элементы {#items}
 
-Use the `items` prop as an array of objects with the following properties:
+Пропс `items` — массив объектов со свойствами:
 
 - `label?: string`{lang="ts-type"}
 - `icon?: IconComponent`{lang="ts-type"}
@@ -108,7 +111,7 @@ Use the `items` prop as an array of objects with the following properties:
 - `class?: any`{lang="ts-type"}
 - `b24ui?: { item?: ClassNameValue, label?: ClassNameValue, separator?: ClassNameValue, itemLeadingIcon?: ClassNameValue, itemLeadingAvatarSize?: ClassNameValue, itemLeadingAvatar?: ClassNameValue, itemLabel?: ClassNameValue, itemLabelExternalIcon?: ClassNameValue, itemTrailing?: ClassNameValue, itemTrailingIcon?: ClassNameValue, itemTrailingKbds?: ClassNameValue, itemTrailingKbdsSize?: ClassNameValue }`{lang="ts-type"}
 
-You can pass any property from the [Link](/docs/components/link/#props) component such as `to`, `target`, etc.
+Можно передать любое свойство компонента [Link](/docs/components/link/#props): `to`, `target` и другие.
 
 ::component-code
 ---
@@ -123,44 +126,44 @@ externalTypes:
   - ContextMenuItem[][]
 props:
   items:
-    - - label: Appearance
+    - - label: Оформление
         children:
-          - label: System
-          - label: Light
-          - label: Dark
-    - - label: Show Sidebar
+          - label: Системная
+          - label: Светлая
+          - label: Тёмная
+    - - label: Показать боковую панель
         kbds:
           - meta
           - s
-      - label: Show Toolbar
+      - label: Показать панель инструментов
         kbds:
           - shift
           - meta
           - d
-      - label: Collapse Pinned Tabs
+      - label: Свернуть закреплённые вкладки
         disabled: true
-    - - label: Refresh the Page
-      - label: Clear Cookies and Refresh
-      - label: Clear Cache and Refresh
+    - - label: Обновить страницу
+      - label: Очистить cookie и обновить
+      - label: Очистить кэш и обновить
       - type: separator
-      - label: Developer
+      - label: Разработчик
         children:
-          - - label: View Source
+          - - label: Исходный код
               kbds:
                 - meta
                 - shift
                 - u
-            - label: Developer Tools
+            - label: Инструменты разработчика
               kbds:
                 - option
                 - meta
                 - i
-            - label: Inspect Elements
+            - label: Просмотр кода элемента
               kbds:
                 - option
                 - meta
                 - c
-          - - label: JavaScript Console
+          - - label: Консоль JavaScript
               kbds:
                 - option
                 - meta
@@ -169,24 +172,24 @@ slots:
   default: |
 
     <div class="flex items-center justify-center rounded-md border border-dashed border-(--ui-color-design-outline-na-stroke) text-(length:--ui-font-size-sm) bg-default aspect-video w-72">
-      Right click here
+      Щёлкните правой кнопкой здесь
     </div>
 ---
 
-:div{class="flex items-center justify-center rounded-md border border-dashed border-(--ui-color-design-outline-na-stroke) text-(length:--ui-font-size-sm) bg-default aspect-video w-72"}[Right click here]
+:div{class="flex items-center justify-center rounded-md border border-dashed border-(--ui-color-design-outline-na-stroke) text-(length:--ui-font-size-sm) bg-default aspect-video w-72"}[Щёлкните правой кнопкой здесь]
 ::
 
 ::note
-You can also pass an array of arrays to the `items` prop to create separated groups of items.
+Чтобы получить отдельные группы элементов, передайте в `items` массив массивов.
 ::
 
 ::tip
-Each item can take a `children` array of objects with the same properties as the `items` prop to create a nested menu which can be controlled using the `open`, `defaultOpen` and `content` properties.
+Чтобы создать вложенное меню, элемент может содержать массив `children` с такими же свойствами, как у `items`. Вложенным меню можно управлять через свойства `open`, `defaultOpen` и `content`.
 ::
 
-### Modal
+### Модальный режим {#modal}
 
-Use the `modal` prop to control whether the ContextMenu blocks interaction with outside content. Defaults to `true`.
+Пропс `modal` определяет, блокирует ли ContextMenu взаимодействие с контентом вне меню. По умолчанию `true`.
 
 ::component-code
 ---
@@ -201,25 +204,25 @@ externalTypes:
 props:
   modal: false
   items:
-    - label: System
-    - label: Light
-    - label: Dark
+    - label: Системная
+    - label: Светлая
+    - label: Тёмная
   b24ui:
     content: 'w-48'
 slots:
   default: |
 
     <div class="flex items-center justify-center rounded-md border border-dashed border-(--ui-color-design-outline-na-stroke) text-(length:--ui-font-size-sm) bg-default aspect-video w-72">
-      Right click here
+      Щёлкните правой кнопкой здесь
     </div>
 ---
 
-:div{class="flex items-center justify-center rounded-md border border-dashed border-(--ui-color-design-outline-na-stroke) text-(length:--ui-font-size-sm) bg-default aspect-video w-72"}[Right click here]
+:div{class="flex items-center justify-center rounded-md border border-dashed border-(--ui-color-design-outline-na-stroke) text-(length:--ui-font-size-sm) bg-default aspect-video w-72"}[Щёлкните правой кнопкой здесь]
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the ContextMenu.
+Пропс `disabled` отключает ContextMenu.
 
 ::component-code
 ---
@@ -235,25 +238,25 @@ externalTypes:
 props:
   disabled: true
   items:
-    - label: System
-    - label: Light
-    - label: Dark
+    - label: Системная
+    - label: Светлая
+    - label: Тёмная
 slots:
   default: |
 
     <div class="flex items-center justify-center rounded-md border border-dashed border-(--ui-color-design-outline-na-stroke) text-(length:--ui-font-size-sm) bg-default aspect-video w-72">
-      Right click here
+      Щёлкните правой кнопкой здесь
     </div>
 ---
 
-:div{class="flex items-center justify-center rounded-md border border-dashed border-(--ui-color-design-outline-na-stroke) text-(length:--ui-font-size-sm) bg-default aspect-video w-72"}[Right click here]
+:div{class="flex items-center justify-center rounded-md border border-dashed border-(--ui-color-design-outline-na-stroke) text-(length:--ui-font-size-sm) bg-default aspect-video w-72"}[Щёлкните правой кнопкой здесь]
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With checkbox items
+### С чекбоксами {#with-checkbox-items}
 
-You can use the `type` property with `checkbox` and use the `checked` / `onUpdateChecked` properties to control the checked state of the item.
+Свойство `type` со значением `checkbox` вместе со свойствами `checked` и `onUpdateChecked` управляет отмеченным состоянием элемента.
 
 ::component-example
 ---
@@ -263,12 +266,12 @@ name: 'context-menu-checkbox-items-example'
 ::
 
 ::note
-To ensure reactivity for the `checked` state of items, it's recommended to wrap your `items` array inside a `computed`.
+Чтобы состояние `checked` у элементов было реактивным, оберните массив `items` в `computed`.
 ::
 
-### With color items
+### С цветом {#with-color-items}
 
-You can use the `color` property to highlight certain items with a color.
+Свойство `color` выделяет отдельные элементы цветом.
 
 ::component-example
 ---
@@ -277,9 +280,9 @@ collapse: true
 ---
 ::
 
-### Control open state :badge{label="2.15+" class="align-text-top"}
+### Управление состоянием открытия :badge{label="2.15+" class="align-text-top"} {#control-open-state}
 
-You can control the open state by using the `v-model:open` directive. When opened programmatically, the menu is anchored to the trigger instead of the cursor.
+Состоянием открытия управляет директива `v-model:open`. Если меню открыто программно, оно привязывается к триггеру, а не к курсору.
 
 ::component-example
 ---
@@ -289,14 +292,14 @@ name: 'context-menu-open-example'
 ::
 
 ::note
-In this example, leveraging [`defineShortcuts`](/docs/composables/define-shortcuts/), you can toggle the ContextMenu by pressing :kbd{value="O"}.
+В этом примере с помощью [`defineShortcuts`](/docs/composables/define-shortcuts/) ContextMenu переключается клавишей :kbd{value="O"}.
 ::
 
-### With custom slot
+### Свой слот {#with-custom-slot}
 
-Use the `slot` property to customize a specific item.
+Свойство `slot` настраивает отдельный элемент.
 
-You will have access to the following slots:
+Вам будут доступны слоты:
 
 - `#{{ item.slot }}`{lang="ts-type"}
 - `#{{ item.slot }}-leading`{lang="ts-type"}
@@ -311,12 +314,12 @@ collapse: true
 ::
 
 ::tip{to="#slots"}
-You can also use the `#item`, `#item-leading`, `#item-label` and `#item-trailing` slots to customize all items.
+Слоты `#item`, `#item-leading`, `#item-label` и `#item-trailing` настраивают сразу все элементы.
 ::
 
-### Extract shortcuts
+### Извлечение сочетаний клавиш {#extract-shortcuts}
 
-Use the [extractShortcuts](/docs/composables/extract-shortcuts/) utility to automatically define shortcuts from menu items with a `kbds` property. It recursively extracts shortcuts and returns an object compatible with [defineShortcuts](/docs/composables/define-shortcuts/).
+Утилита [extractShortcuts](/docs/composables/extract-shortcuts/) автоматически определяет сочетания клавиш из элементов меню со свойством `kbds`. Она обходит меню рекурсивно и возвращает объект, совместимый с [defineShortcuts](/docs/composables/define-shortcuts/).
 
 ```vue
 <script setup lang="ts">
@@ -379,23 +382,23 @@ defineShortcuts(extractShortcuts(items))
 ```
 
 ::note
-In this example, :kbd{value="meta"} :kbd{value="S" class="ms-px"}, :kbd{value="shift"} :kbd{value="meta" class="ms-px"} :kbd{value="D" class="ms-px"}, :kbd{value="option"} :kbd{value="meta" class="ms-px"} :kbd{value="U" class="ms-px"}, :kbd{value="option"} :kbd{value="meta" class="ms-px"} :kbd{value="I" class="ms-px"}, :kbd{value="option"} :kbd{value="meta" class="ms-px"} :kbd{value="C" class="ms-px"} and :kbd{value="option"} :kbd{value="meta" class="ms-px"} :kbd{value="J" class="ms-px"} would trigger the `select` function of the corresponding item.
+В этом примере сочетания :kbd{value="meta"} :kbd{value="S" class="ms-px"}, :kbd{value="shift"} :kbd{value="meta" class="ms-px"} :kbd{value="D" class="ms-px"}, :kbd{value="option"} :kbd{value="meta" class="ms-px"} :kbd{value="U" class="ms-px"}, :kbd{value="option"} :kbd{value="meta" class="ms-px"} :kbd{value="I" class="ms-px"}, :kbd{value="option"} :kbd{value="meta" class="ms-px"} :kbd{value="C" class="ms-px"} и :kbd{value="option"} :kbd{value="meta" class="ms-px"} :kbd{value="J" class="ms-px"} вызывают функцию `select` соответствующего элемента.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

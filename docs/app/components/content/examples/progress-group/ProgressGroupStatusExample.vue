@@ -8,10 +8,10 @@ import PlayCircleIcon from '@bitrix24/b24icons-vue/main/PlayCircleIcon'
 const max = 128
 
 const items: ProgressGroupItem[] = [
-  { label: 'System', value: 24, color: 'air-secondary', icon: SettingsIcon },
-  { label: 'Apps', value: 8, color: 'air-primary-alert', icon: AppsIcon },
-  { label: 'Documents', value: 12, color: 'air-primary-warning', icon: FileIcon },
-  { label: 'Multimedia', value: 42, color: 'air-primary-success', icon: PlayCircleIcon }
+  { label: 'Системная', value: 24, color: 'air-secondary', icon: SettingsIcon },
+  { label: 'Приложения', value: 8, color: 'air-primary-alert', icon: AppsIcon },
+  { label: 'Документы', value: 12, color: 'air-primary-warning', icon: FileIcon },
+  { label: 'Мультимедиа', value: 42, color: 'air-primary-success', icon: PlayCircleIcon }
 ]
 
 const used = items.reduce((total, item) => total + (item.value ?? 0), 0)

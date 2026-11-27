@@ -12,7 +12,7 @@ const form = useTemplateRef('form')
 
 const toast = useToast()
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  toast.add({ title: 'Success', description: 'The form has been submitted.', color: 'air-primary-success' })
+  toast.add({ title: 'Успешно', description: 'Форма отправлена.', color: 'air-primary-success' })
   console.log(event.data)
 }
 </script>
@@ -24,13 +24,13 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
         <B24Input v-model="state.email" type="email" required class="w-full" />
       </B24FormField>
 
-      <B24FormField label="Age" name="age">
+      <B24FormField label="Возраст" name="age">
         <B24InputNumber v-model="state.age" :min="18" :max="100" required class="w-full" />
       </B24FormField>
     </B24Form>
 
     <B24Button color="air-primary" @click="form?.submit()">
-      Submit
+      Отправить
     </B24Button>
   </div>
 </template>

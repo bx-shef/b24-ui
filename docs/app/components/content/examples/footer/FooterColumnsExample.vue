@@ -4,10 +4,10 @@ import GitHubIcon from '@bitrix24/b24icons-vue/social/GitHubIcon'
 
 const columns: FooterColumn[] = [
   {
-    label: 'Community',
+    label: 'Сообщество',
     children: [
       {
-        label: 'Bitrix24 on GitHub',
+        label: 'Bitrix24 на GitHub',
         to: 'https://github.com/bitrix24',
         icon: GitHubIcon,
         target: '_blank'
@@ -15,7 +15,7 @@ const columns: FooterColumn[] = [
     ]
   },
   {
-    label: 'Solutions',
+    label: 'Решения',
     children: [
       {
         label: 'Bitrix24 JsSdk',
@@ -23,7 +23,7 @@ const columns: FooterColumn[] = [
         target: '_blank'
       },
       {
-        label: 'Bitrix24 Icons',
+        label: 'Иконки Bitrix24',
         to: 'https://bitrix24.github.io/b24icons/',
         target: '_blank'
       },
@@ -40,10 +40,10 @@ const columns: FooterColumn[] = [
 <template>
   <B24FooterColumns :columns="columns">
     <template #right>
-      <B24FormField name="email" label="Subscribe to our newsletter" size="lg">
+      <B24FormField name="email" label="Подписаться на нашу рассылку" size="lg">
         <B24Input type="email" class="w-full">
           <template #trailing>
-            <B24Button type="submit" size="xs" label="Subscribe" />
+            <B24Button type="submit" size="xs" label="Подписаться" />
           </template>
         </B24Input>
       </B24FormField>

@@ -10,7 +10,7 @@ export default defineCachedEventHandler(async (event) => {
   const page = await queryCollection(event, 'index').first() as any
 
   const title = page?.title || 'Bitrix24 UI'
-  const description = page?.description || 'A comprehensive Vue UI component library (Nuxt optional) with 130+ accessible, Tailwind CSS components for building modern web applications.'
+  const description = page?.description || 'Полная библиотека UI-компонентов для Vue (Nuxt по желанию): 130+ доступных компонентов на Tailwind CSS для создания современных веб-приложений.'
 
   const frontmatter = [
     '---',
@@ -29,38 +29,38 @@ export default defineCachedEventHandler(async (event) => {
 
 ${description}
 
-## About
+## О библиотеке
 
-Bitrix24 UI is a free and open source Vue UI library powered by [Reka UI](https://reka-ui.com/) and [Tailwind CSS](https://tailwindcss.com/). It works with both Nuxt and plain Vue applications.
+Bitrix24 UI — бесплатная библиотека UI-компонентов для Vue с открытым исходным кодом на основе [Reka UI](https://reka-ui.com/) и [Tailwind CSS](https://tailwindcss.com/). Работает и с Nuxt, и с обычными Vue-приложениями.
 
-- 130+ accessible, production-ready components
-- Built on Reka UI (WAI-ARIA compliant primitives)
-- Tailwind CSS theming with CSS variables and Tailwind Variants
-- TypeScript support with full auto-completion
-- Server-side rendering (SSR) compatible
-- Dark mode support and 19 languages via i18n
+- 130+ доступных компонентов, готовых к использованию в продакшене
+- Основа — Reka UI (примитивы, соответствующие WAI-ARIA)
+- Темы на Tailwind CSS: CSS-переменные и Tailwind Variants
+- Поддержка TypeScript с полным автодополнением
+- Совместимость с серверным рендерингом (SSR)
+- Тёмная тема и 20 языков через i18n
 
-## Installation
+## Установка
 
 - Nuxt: <${DOMAIN}/raw/docs/getting-started/installation/nuxt.md>
 - Vue: <${DOMAIN}/raw/docs/getting-started/installation/vue.md>
 
-## Explore
+## Разделы
 
-- Documentation: <${DOMAIN}/raw/docs/getting-started.md>
-- Components: <${DOMAIN}/raw/docs/components.md>
-- Composables: <${DOMAIN}/raw/docs/composables/define-shortcuts.md>
-- Typography: <${DOMAIN}/raw/docs/typography.md>
-- Sitemap: (XML): <${DOMAIN}/sitemap.xml>
-- Sitemap (Markdown): <${DOMAIN}/sitemap.md>
-- LLMs index: <${DOMAIN}/llms.txt>
-- Full LLMs documentation: <${DOMAIN}/llms-full.txt>
+- Документация: <${DOMAIN}/raw/docs/getting-started.md>
+- Компоненты: <${DOMAIN}/raw/docs/components.md>
+- Композаблы: <${DOMAIN}/raw/docs/composables/define-shortcuts.md>
+- Типографика: <${DOMAIN}/raw/docs/typography.md>
+- Карта сайта (XML): <${DOMAIN}/sitemap.xml>
+- Карта сайта (Markdown): <${DOMAIN}/sitemap.md>
+- Индекс для LLM: <${DOMAIN}/llms.txt>
+- Полная документация для LLM: <${DOMAIN}/llms-full.txt>
 
-## Links
+## Ссылки
 
-- Website: <${DOMAIN}>
+- Сайт: <${DOMAIN}>
 - GitHub: <https://github.com/bitrix24/b24ui>
-- Community: <https://t.me/b24_dev>
+- Сообщество: <https://t.me/b24_dev>
 `
 
   setResponseHeader(event, 'Content-Type', 'text/markdown; charset=utf-8')

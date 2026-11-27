@@ -1,9 +1,21 @@
 <script setup lang="ts">
 import GitHubIcon from '@bitrix24/b24icons-vue/social/GitHubIcon'
+import AiStarsIcon from '@bitrix24/b24icons-vue/outline/AiStarsIcon'
 
 const route = useRoute()
 const { desktopLinks } = useHeader()
 const config = useRuntimeConfig()
+
+// Кнопка есть, только если на сервере включён чат (задан ключ DeepSeek)
+const { enabled: chatEnabled, open: chatOpen } = useChat()
+const { track } = useAnalytics()
+
+function toggleChat() {
+  if (!chatOpen.value) {
+    track('AI Chat Opened', { source: 'header' })
+  }
+  chatOpen.value = !chatOpen.value
+}
 
 // region ColorMode ////
 const colorMode = useColorMode()
@@ -39,15 +51,24 @@ defineShortcuts({
     />
 
     <template #right>
-      <B24Tooltip text="Search" :kbds="['meta', 'K']" ignore-non-keyboard-focus>
+      <B24Tooltip text="Поиск" :kbds="['meta', 'K']" ignore-non-keyboard-focus>
         <B24ContentSearchButton />
+      </B24Tooltip>
+
+      <B24Tooltip v-if="chatEnabled" text="Спросить AI" :kbds="['meta', 'I']" ignore-non-keyboard-focus>
+        <B24Button
+          color="air-selection"
+          :icon="AiStarsIcon"
+          aria-label="Спросить AI"
+          @click="toggleChat"
+        />
       </B24Tooltip>
 
       <B24ColorModeButton />
 
       <div class="hidden sm:flex flex-nowrap flex-row items-center justify-end gap-3">
         <B24Button
-          aria-label="Bitrix24 UI on GitHub"
+          aria-label="Bitrix24 UI на GitHub"
           :icon="GitHubIcon"
           :to="config.public.gitUrl"
           target="_blank"

@@ -120,7 +120,7 @@ export default {
       compact: true,
       actions: true,
       class: {
-        container: 'pb-8'
+        container: '[&:has(>[data-slot=body]>[data-slot=actions]:not(:empty))]:pb-8'
       }
     },
     {

@@ -1,6 +1,6 @@
 ---
 title: ProseCodeGroup
-description: 'Use a tabbed layout to present multiple code snippets for a clearer view.'
+description: 'Несколько фрагментов кода во вкладках для наглядности.'
 category: components
 navigation.title: CodeGroup
 links:
@@ -12,9 +12,9 @@ links:
     to: https://ui.nuxt.com/docs/typography/code-group
 ---
 
-## Usage
+## Использование {#usage}
 
-Wrap your code blocks around a `code-group` component to group them together in tabs.
+Компонент `code-group` объединяет блоки кода во вкладки.
 
 ::code-preview{class="[&>div]:*:my-0 [&>div]:*:w-full"}
 
@@ -65,19 +65,19 @@ bun add @bitrix24/b24ui-nuxt
 ::
 
 ::note{to="/docs/typography/code/#code-blocks"}
-Like the `ProsePre` component, the `CodeGroup` handles filenames, icons and copy button.
+Как и компонент `ProsePre`, `CodeGroup` показывает имена файлов, иконки и кнопку копирования.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props{prose}
 
-### Slots
+### Слоты {#slots}
 
 :component-slots{prose}
 
-## Theme
+## Тема {#theme}
 
 :component-theme{prose}

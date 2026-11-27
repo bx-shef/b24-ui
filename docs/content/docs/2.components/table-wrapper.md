@@ -1,21 +1,25 @@
 ---
 title: TableWrapper
-description: Wrapper for displaying a html table
+description: 'Обёртка для отображения HTML-таблицы.'
 category: data
+keywords:
+  - обёртка таблицы
+  - HTML-таблица
+  - простая таблица
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/TableWrapper.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/table-wrapper
 ---
 
-## Usage
+## Использование {#usage}
 
-TableWrapper is a wrapper for an HTML table that allows flexible control over its appearance.
+TableWrapper — обёртка над HTML-таблицей, которая даёт гибкий контроль над её внешним видом.
 
-You are free to style the table as you wish.
+Таблицу можно оформлять как угодно.
 
 ::component-example
 ---
@@ -24,9 +28,9 @@ name: 'table-wrapper-example'
 ---
 ::
 
-### Size
+### Размер {#size}
 
-By using the `size` property, you can adjust the size of the table.
+Свойство `size` меняет размер таблицы.
 
 ::component-example
 ---
@@ -35,13 +39,13 @@ name: 'table-wrapper-size-example'
 ---
 ::
 
-### Border and background
+### Граница и фон {#border-and-background}
 
-To display the table border, use the `bordered` property.
+Свойство `bordered` показывает границу таблицы.
 
-The background is set separately using the `class`. For example, for a white background: `class="bg-white"`.
+Фон задаётся отдельно через `class`. Например, белый фон: `class="bg-white"`.
 
-Or you can use the [Card](/docs/components/card/) component to set the background.
+Фон можно задать и с помощью компонента [Card](/docs/components/card/).
 
 ::component-example
 ---
@@ -50,9 +54,9 @@ name: 'table-wrapper-border-background-example'
 ---
 ::
 
-### Rounded
+### Скругление {#rounded}
 
-To round the corners, use the `rounded` parameter.
+Параметр `rounded` скругляет углы.
 
 ::component-example
 ---
@@ -61,13 +65,13 @@ name: 'table-wrapper-rounded-example'
 ---
 ::
 
-### Zebra
+### Зебра {#zebra}
 
-If you need alternating rows, use the `zebra` property.
+Свойство `zebra` чередует цвета строк.
 
-To highlight table rows, use the class of the `tr` tag.
+Чтобы выделить строки таблицы, используйте класс тега `tr`.
 
-To highlight a row when hovering the cursor, use something like `hover:bg-red-500` in the `tr` tag class.
+Чтобы выделять строку при наведении курсора, добавьте в класс тега `tr` что-нибудь вроде `hover:bg-red-500`.
 
 ::component-example
 ---
@@ -76,9 +80,9 @@ name: 'table-wrapper-zebra-example'
 ---
 ::
 
-### Row hover
+### Подсветка строки при наведении {#row-hover}
 
-For automatic row highlighting on hover, use the `rowHover` property.
+Свойство `rowHover` автоматически подсвечивает строку при наведении.
 
 ::component-example
 ---
@@ -87,11 +91,11 @@ name: 'table-wrapper-hover-example'
 ---
 ::
 
-### Pinned rows
+### Закреплённые строки {#pinned-rows}
 
-Rows can be pinned using the `pinRows` property.
+Строки закрепляются свойством `pinRows`.
 
-Define the pinned-row using `<thead>...</thead>` or `<tfoot>...</tfoot>`.
+Закреплённую строку задайте тегом `<thead>...</thead>` или `<tfoot>...</tfoot>`.
 
 ::component-example
 ---
@@ -100,11 +104,11 @@ name: 'table-wrapper-pin-rows-example'
 ---
 ::
 
-### Pinned columns
+### Закреплённые колонки {#pinned-columns}
 
-To pin columns, use the `pinCols` property.
+Свойство `pinCols` закрепляет колонки.
 
-Define the columns using `<th>...</th>`.
+Колонки задайте тегом `<th>...</th>`.
 
 ::component-example
 ---
@@ -113,12 +117,12 @@ name: 'table-wrapper-pin-cols-example'
 ---
 ::
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-## Theme
+## Тема {#theme}
 
 :component-theme

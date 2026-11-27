@@ -1,6 +1,6 @@
 ---
 title: ProseCollapsible
-description: 'Smooth content toggle with expand and collapse effects.'
+description: 'Блок содержимого, который плавно сворачивается и разворачивается.'
 category: components
 navigation.title: Collapsible
 links:
@@ -12,15 +12,15 @@ links:
     to: https://ui.nuxt.com/docs/typography/collapsible
 ---
 
-## Usage
+## Использование {#usage}
 
-Wrap your content with the `collapsible` component to display a [Collapsible](/docs/components/collapsible/) in your content.
+Компонент `collapsible` показывает [Collapsible](/docs/components/collapsible/) в содержимом.
 
 ::code-preview{class="[&>div]:*:w-full [&>div]:*:my-0"}
 
 ::collapsible
 
-| Prop    | Default   | Type                     |
+| Пропс   | По умолчанию | Тип                   |
 |---------|-----------|--------------------------|
 | `name`  |           | `string`{lang="ts-type"} |
 | `size`  | `md`      | `string`{lang="ts-type"} |
@@ -33,7 +33,7 @@ Wrap your content with the `collapsible` component to display a [Collapsible](/d
 ```mdc
 ::collapsible
 
-| Prop    | Default   | Type                     |
+| Пропс   | По умолчанию | Тип                   |
 |---------|-----------|--------------------------|
 | `name`  |           | `string`{lang="ts-type"} |
 | `size`  | `md`      | `string`{lang="ts-type"} |
@@ -46,14 +46,14 @@ Wrap your content with the `collapsible` component to display a [Collapsible](/d
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props{prose}
 
-### Slots
+### Слоты {#slots}
 
 :component-slots{prose}
 
-## Theme
+## Тема {#theme}
 
 :component-theme{prose}

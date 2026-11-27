@@ -6,7 +6,7 @@ const value = shallowRef<DateValue | undefined>()
 </script>
 
 <template>
-  <B24FormField label="Due date" hint="Shown to everyone on the deal" class="w-full">
-    <B24DateTimePicker v-model="value" placeholder="Not set" />
+  <B24FormField label="Срок" hint="Видно всем, кто работает со сделкой" class="w-full">
+    <B24DateTimePicker v-model="value" placeholder="Не задано" />
   </B24FormField>
 </template>

@@ -25,11 +25,19 @@ export type Messages = {
     next: string
     prev: string
   }
+  chatAttachment: {
+    uploading: string
+    error: string
+  }
   chatMessages: {
     autoScroll: string
   }
   chatPrompt: {
     placeholder: string
+    queue: string
+    sendNow: string
+    edit: string
+    remove: string
   }
   chatPromptSubmit: {
     label: string
@@ -135,6 +143,15 @@ export type Messages = {
   drawer: {
     close: string
   }
+  editorEmojiMenu: {
+    label: string
+  }
+  editorMentionMenu: {
+    label: string
+  }
+  editorSuggestionMenu: {
+    label: string
+  }
   pagination: {
     first: string
     last: string
@@ -148,11 +165,13 @@ export type Messages = {
   prose: {
     codeCollapse: {
       closeText: string
+      label: string
       name: string
       openText: string
     }
     collapsible: {
       closeText: string
+      label: string
       name: string
       openText: string
     }

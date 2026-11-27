@@ -44,6 +44,7 @@ export interface ThemeDefaults {
   // changelogVersion?: Partial<ComponentTypes.ChangelogVersionProps>
   // changelogVersions?: Partial<ComponentTypes.ChangelogVersionsProps>
   chart?: Partial<ComponentTypes.ChartProps>
+  chatAttachment?: Partial<ComponentTypes.ChatAttachmentProps>
   chatMessage?: Partial<ComponentTypes.ChatMessageProps>
   chatMessages?: Partial<ComponentTypes.ChatMessagesProps>
   chatPalette?: Partial<ComponentTypes.ChatPaletteProps>
@@ -179,6 +180,8 @@ export interface ThemeDefaults {
   timeline?: Partial<ComponentTypes.TimelineProps>
   toast?: Partial<ComponentTypes.ToastProps>
   toaster?: Partial<ComponentTypes.ToasterProps>
+  toggle?: Partial<ComponentTypes.ToggleProps>
+  toggleGroup?: Partial<ComponentTypes.ToggleGroupProps>
   tooltip?: Partial<ComponentTypes.TooltipProps>
   // tree?: Partial<ComponentTypes.TreeProps>
   user?: Partial<ComponentTypes.UserProps>

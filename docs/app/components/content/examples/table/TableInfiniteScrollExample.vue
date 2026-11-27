@@ -37,12 +37,12 @@ const columns: TableColumn<User>[] = [
   },
   {
     accessorKey: 'image',
-    header: 'Avatar',
+    header: 'Аватар',
     cell: ({ row }) => h(B24Avatar, { src: row.original.image, loading: 'lazy' })
   },
   {
     accessorKey: 'firstName',
-    header: 'First name'
+    header: 'Имя'
   },
   {
     accessorKey: 'email',
@@ -50,7 +50,7 @@ const columns: TableColumn<User>[] = [
   },
   {
     accessorKey: 'username',
-    header: 'Username'
+    header: 'Имя пользователя'
   }
 ]
 

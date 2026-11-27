@@ -21,9 +21,9 @@ export default defineLocale<Messages>({
       label: '事件日期',
       monthPicker: '月份选择器',
       nextMonth: '下个月',
-      nextYear: '明年',
+      nextYear: '下一年',
       prevMonth: '上个月',
-      prevYear: '去年',
+      prevYear: '上一年',
       yearPicker: '年份选择器'
     },
     carousel: {
@@ -32,11 +32,19 @@ export default defineLocale<Messages>({
       next: '下一步',
       prev: '上一步'
     },
+    chatAttachment: {
+      uploading: '正在上传',
+      error: '上传失败'
+    },
     chatMessages: {
       autoScroll: '滚动到底部'
     },
     chatPrompt: {
-      placeholder: '在此输入消息…'
+      placeholder: '在此输入消息…',
+      queue: '排队中的消息',
+      sendNow: '立即发送',
+      edit: '编辑',
+      remove: '移除'
     },
     chatPromptSubmit: {
       label: '发送',
@@ -132,6 +140,15 @@ export default defineLocale<Messages>({
     drawer: {
       close: '关闭'
     },
+    editorEmojiMenu: {
+      label: '表情符号'
+    },
+    editorMentionMenu: {
+      label: '提及'
+    },
+    editorSuggestionMenu: {
+      label: '建议'
+    },
     pagination: {
       first: '第一页',
       last: '最后一页',
@@ -145,11 +162,13 @@ export default defineLocale<Messages>({
     prose: {
       codeCollapse: {
         closeText: '隐藏',
+        label: '{text}{name}',
         name: '代码',
         openText: '显示'
       },
       collapsible: {
         closeText: '隐藏',
+        label: '{text}{name}',
         name: '属性',
         openText: '显示'
       },

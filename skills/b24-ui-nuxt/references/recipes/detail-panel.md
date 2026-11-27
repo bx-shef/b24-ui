@@ -1,26 +1,26 @@
-# Detail Panel (Info Sidebar)
+# Панель сведений (информационное боковое меню)
 
-Composes a Bitrix24-style entity detail side panel from standard components.
-Use when building info sidebars that display entity metadata, settings, and content sections alongside a main view.
+Собирает боковую панель сведений о сущности в стиле Bitrix24 из стандартных компонентов.
+Применяйте, когда нужна информационная боковая панель с метаданными сущности, настройками и разделами содержимого рядом с основным видом.
 
-## When to use this pattern
+## Когда применять
 
-- Chat channel / group info sidebar (members, sound settings, media, tasks)
-- CRM record detail panel (contact info, activity, linked deals)
-- Any "about this item" sidebar with togglable settings and grouped content sections
+- Боковая панель сведений о канале или группе чата (участники, настройки звука, медиа, задачи)
+- Панель карточки записи CRM (контакты, активность, связанные сделки)
+- Любая панель «об этом элементе» с переключаемыми настройками и сгруппированными разделами
 
-## Key decisions
+## Ключевые решения
 
-| Need | Solution |
+| Задача | Решение |
 |---|---|
-| Square channel/entity avatar | `B24Avatar` with `:b24ui="{ root: 'rounded-xl' }"` overrides `rounded-full` |
-| Members row with overflow | `B24AvatarGroup :max="N"` — add one extra child to show the `+1` counter |
-| Toggle + icon row (a11y) | `B24Switch label="..."` + `b24ui` override for icon-left layout |
-| Numeric counter badge | `B24Badge square` on the right of an info row |
-| Section empty state | `B24Empty color="air-tertiary" :b24ui="{ root: 'ring-0 rounded-none' }"` |
-| Section dividers | `divide-y divide-default` on the `B24Card` body via `b24ui` prop |
+| Квадратный аватар канала или сущности | `B24Avatar` with `:b24ui="{ root: 'rounded-xl' }"` переопределяет `rounded-full` |
+| Строка участников с переполнением | `B24AvatarGroup :max="N"` — добавьте один лишний дочерний элемент, чтобы показать счётчик `+1` |
+| Строка с переключателем и иконкой (доступность) | `B24Switch label="..."` + переопределение `b24ui` для иконки слева |
+| Числовой бейдж-счётчик | `B24Badge square` справа в информационной строке |
+| Пустое состояние раздела | `B24Empty color="air-tertiary" :b24ui="{ root: 'ring-0 rounded-none' }"` |
+| Разделители разделов | `divide-y divide-default` в теле `B24Card` через пропс `b24ui` |
 
-## Full example
+## Полный пример
 
 ```vue
 <script setup lang="ts">
@@ -40,12 +40,12 @@ const autoDeleteEnabled = ref(false)
 </script>
 
 <template>
-  <!-- max-w-xs (320px) is typical for a collapsed detail sidebar -->
+  <!-- max-w-xs (320px) — обычная ширина свёрнутой панели сведений -->
   <B24Card
     class="w-full max-w-xs overflow-hidden"
     :b24ui="{ body: 'p-0 flex flex-col gap-0 divide-y divide-default' }"
   >
-    <!-- Header: square avatar + name + member group -->
+    <!-- Шапка: квадратный аватар, название и группа участников -->
     <div class="flex flex-col items-center gap-3 px-4 py-6 text-center">
       <B24Avatar
         src="/avatar/employee.png"
@@ -62,7 +62,7 @@ const autoDeleteEnabled = ref(false)
         </p>
       </div>
 
-      <!-- :max="4" with 5 children intentionally shows the +1 overflow counter -->
+      <!-- :max="4" при 5 дочерних элементах намеренно показывает счётчик переполнения +1 -->
       <div class="flex items-center gap-2">
         <B24AvatarGroup :max="4" size="xs">
           <B24Avatar src="/avatar/employee.png" alt="John Doe" />
@@ -75,7 +75,7 @@ const autoDeleteEnabled = ref(false)
       </div>
     </div>
 
-    <!-- Toggle rows: icon outside, B24Switch label prop links toggle to text for a11y -->
+    <!-- Строки с переключателями: иконка снаружи, пропс label у B24Switch связывает переключатель с текстом для доступности -->
     <div class="py-1">
       <div class="flex items-center gap-3 px-4 py-2.5">
         <BellIcon class="size-5 shrink-0 text-description" aria-hidden="true" />
@@ -100,7 +100,7 @@ const autoDeleteEnabled = ref(false)
             }"
           />
         </div>
-        <!-- invisible spacer (size-5 + gap-3) aligns description under the label -->
+        <!-- невидимая распорка (size-5 + gap-3) выравнивает описание под подписью -->
         <div class="flex gap-3">
           <span class="size-5 shrink-0" />
           <p class="text-xs text-dimmed mt-1">
@@ -110,7 +110,7 @@ const autoDeleteEnabled = ref(false)
       </div>
     </div>
 
-    <!-- Info rows: icon + label + optional badge counter -->
+    <!-- Информационные строки: иконка, подпись и необязательный бейдж-счётчик -->
     <div class="py-1">
       <div class="flex items-center gap-3 px-4 py-2.5">
         <UserGroupIcon class="size-5 shrink-0 text-description" aria-hidden="true" />
@@ -128,7 +128,7 @@ const autoDeleteEnabled = ref(false)
       </div>
     </div>
 
-    <!-- Content sections: heading + optional action + B24Empty for empty state -->
+    <!-- Разделы содержимого: заголовок, необязательное действие и B24Empty для пустого состояния -->
     <div class="py-2">
       <h3 class="px-4 py-1 text-xs text-description font-semibold">Media & Files</h3>
       <B24Empty
@@ -171,10 +171,10 @@ const autoDeleteEnabled = ref(false)
 </template>
 ```
 
-## Toggle row layout explained
+## Как устроена строка с переключателем
 
-`B24Switch` with `label` prop creates a proper `<label for="...">` linked to the toggle.
-The `b24ui` override reverses the flex order so the toggle appears on the right:
+`B24Switch` с пропсом `label` создаёт настоящий `<label for="...">`, связанный с переключателем.
+Переопределение `b24ui` меняет порядок во flex на обратный, и переключатель оказывается справа:
 
 ```vue
 <B24Switch
@@ -187,17 +187,17 @@ The `b24ui` override reverses the flex order so the toggle appears on the right:
 />
 ```
 
-- `flex-row-reverse` — toggle goes right, label goes left
-- `justify-between` — spreads toggle and label to opposite ends
-- `wrapper: 'ms-0'` — removes the default `ms-2` start margin
+- `flex-row-reverse` — переключатель справа, подпись слева
+- `justify-between` — разводит переключатель и подпись по краям
+- `wrapper: 'ms-0'` — убирает отступ `ms-2` в начале, заданный по умолчанию
 
-## Sub-label alignment
+## Выравнивание описания под подписью
 
-To align a description line under the label (not under the icon), use an invisible spacer matching the icon width:
+Чтобы выровнять строку описания под подписью (а не под иконкой), поставьте невидимую распорку шириной с иконку:
 
 ```vue
 <div class="flex gap-3">
-  <span class="size-5 shrink-0" /> <!-- matches icon size -->
+  <span class="size-5 shrink-0" /> <!-- по размеру иконки -->
   <p class="text-xs text-dimmed mt-1">Description text</p>
 </div>
 ```

@@ -9,7 +9,7 @@ defineShortcuts({
 <template>
   <B24Collapsible v-model:open="open" class="flex flex-col gap-2 w-48">
     <B24Button
-      label="Open"
+      label="Открыть"
       block
       use-dropdown
     />

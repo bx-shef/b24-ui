@@ -1,33 +1,37 @@
 ---
 title: Advice
-description: A couple of lines of text and an avatar
+description: 'Пара строк текста и аватар'
 category: element
+keywords:
+  - совет
+  - подсказка с аватаром
+  - реплика
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Advice.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/advice
 ---
 
-## Usage
+## Использование {#usage}
 
-### Description
+### Описание {#description}
 
-Use the `description` prop to set the description of the Advice.
+Пропс `description` задаёт описание Advice.
 
 ::component-code
 ---
 prettier: true
 props:
-  description: Let's signal the manager that the deal is not moving, the manager does not call the client back and does not respond to his messages. Let's assign a task to the manager on behalf of the manager
+  description: Сообщим руководителю, что сделка не движется: менеджер не перезванивает клиенту и не отвечает на его сообщения. Поставим менеджеру задачу от имени руководителя
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to show an [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/).
 
 ::component-code
 ---
@@ -39,13 +43,13 @@ cast:
   icon: 'RocketIcon'
 props:
   icon: 'RocketIcon'
-  description: Let's signal the manager that the deal is not moving, the manager does not call the client back and does not respond to his messages. Let's assign a task to the manager on behalf of the manager
+  description: Сообщим руководителю, что сделка не движется: менеджер не перезванивает клиенту и не отвечает на его сообщения. Поставим менеджеру задачу от имени руководителя
 ---
 ::
 
-### Avatar
+### Аватар {#avatar}
 
-Use the `avatar` prop to show an [Avatar](/docs/components/avatar/).
+Пропс `avatar` показывает [аватар](/docs/components/avatar/).
 
 ::component-code
 ---
@@ -58,13 +62,13 @@ props:
   avatar:
     src: '/b24ui/avatar/employee.png'
     loading: lazy
-  description: Let's signal the manager that the deal is not moving, the manager does not call the client back and does not respond to his messages. Let's assign a task to the manager on behalf of the manager
+  description: Сообщим руководителю, что сделка не движется: менеджер не перезванивает клиенту и не отвечает на его сообщения. Поставим менеджеру задачу от имени руководителя
 ---
 ::
 
-### Angle
+### Угол {#angle}
 
-Use the `angle` prop to change the color the position of the corner.
+Пропс `angle` меняет положение уголка.
 
 ::component-code
 ---
@@ -78,13 +82,13 @@ props:
   avatar:
     src: '/b24ui/avatar/employee.png'
     loading: lazy
-  description: Let's signal the manager that the deal is not moving, the manager does not call the client back and does not respond to his messages. Let's assign a task to the manager on behalf of the manager
+  description: Сообщим руководителю, что сделка не движется: менеджер не перезванивает клиенту и не отвечает на его сообщения. Поставим менеджеру задачу от имени руководителя
 ---
 ::
 
-### With custom slot
+### С пользовательским слотом {#with-custom-slot}
 
-Use the slot property to customize a description.
+Слот позволяет настроить описание.
 
 ::component-example
 ---
@@ -97,14 +101,14 @@ collapse: true
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

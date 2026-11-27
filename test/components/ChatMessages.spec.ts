@@ -216,9 +216,9 @@ describe('ChatMessages', () => {
   })
 
   it.each([
-    ['without', undefined, 'absolute'],
-    ['with', () => 'Prompt', 'sticky']
-  ])('positions the auto scroll button %s a footer', async (_, footer, position) => {
+    ['without', undefined, 'root'],
+    ['with', () => 'Prompt', 'footer']
+  ])('positions the auto scroll button %s a footer', async (_, footer, parent) => {
     const Parent = defineComponent({
       setup() {
         return () => h('div', { style: 'overflow-y: auto' }, [h(ChatMessages, { ...props, shouldScrollToBottom: false }, footer ? { footer } : {})])
@@ -233,9 +233,11 @@ describe('ChatMessages', () => {
     wrapper.element.dispatchEvent(new Event('scroll'))
     await nextTick()
 
-    const viewport = wrapper.find('[data-slot="viewport"]').classes()
-    expect(viewport).toContain(position)
-    expect(viewport.includes('top-[78%]')).toBe(position === 'absolute')
+    const viewport = wrapper.find('[data-slot="viewport"]')
+    expect(viewport.classes()).toContain('absolute')
+    expect(viewport.classes().includes('top-[78%]')).toBe(parent === 'root')
+    // Out of the list's flow with a footer, so it doesn't add a gap while it shows
+    expect(viewport.element.parentElement?.dataset.slot).toBe(parent)
 
     wrapper.unmount()
   })
@@ -264,6 +266,43 @@ describe('ChatMessages', () => {
     expect(scrollIntoView).not.toHaveBeenCalled()
 
     scrollIntoView.mockRestore()
+    wrapper.unmount()
+  })
+
+  it('measures the room and scrolls on the frame after a submit', async () => {
+    const messages = shallowRef([props.messages[1]!, { ...props.messages[0]!, id: 'm-user' }])
+    const status = ref<'ready' | 'submitted'>('ready')
+    const Parent = defineComponent({
+      setup() {
+        // The top padding scrolls out of view, the room depends on the message's scroll margin instead
+        return () => h('div', { style: 'overflow-y: auto; padding-top: 16px' }, [h(ChatMessages, { messages: messages.value, status: status.value, shouldScrollToBottom: false }, { footer: () => 'Prompt' })])
+      }
+    })
+
+    const wrapper = await mountSuspended(Parent, { attachTo: document.body })
+    vi.spyOn(wrapper.element, 'getBoundingClientRect').mockReturnValue({ top: 0, height: 500 } as DOMRect)
+    const scrollTo = vi.fn()
+    wrapper.element.scrollTo = scrollTo
+    const footer = wrapper.find('[data-slot="footer"]').element
+    const footerHeight = vi.spyOn(footer as HTMLElement, 'offsetHeight', 'get').mockReturnValue(200)
+    for (const article of wrapper.findAll('article')) {
+      (article.element as HTMLElement).style.scrollMarginTop = '24px'
+      vi.spyOn(article.element as HTMLElement, 'offsetHeight', 'get').mockReturnValue(50)
+    }
+
+    status.value = 'submitted'
+    await nextTick()
+    await nextTick()
+    expect(scrollTo).not.toHaveBeenCalled()
+
+    // The prompt shrinks once cleared, after the submit
+    footerHeight.mockReturnValue(100)
+    await new Promise(resolve => requestAnimationFrame(resolve))
+    await nextTick()
+
+    expect((wrapper.find('[role="log"]').element as HTMLElement).style.getPropertyValue('--last-message-height')).toBe('326px')
+    expect(scrollTo).toHaveBeenCalledOnce()
+
     wrapper.unmount()
   })
 

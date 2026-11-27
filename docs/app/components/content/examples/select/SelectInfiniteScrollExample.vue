@@ -54,7 +54,7 @@ onMounted(() => {
 <template>
   <B24Select
     ref="select"
-    placeholder="Select user"
+    placeholder="Выберите пользователя"
     :items="users"
     @update:open="onOpen"
   />

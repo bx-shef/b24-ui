@@ -7,19 +7,19 @@ import UserIcon from '@bitrix24/b24icons-vue/common-b24/UserIcon'
 
 const items: TabsItem[] = [
   {
-    label: 'Home',
+    label: 'Главная',
     icon: HomePageIcon
   },
   {
-    label: 'Activity',
+    label: 'Активность',
     icon: ActivityIcon
   },
   {
-    label: 'Settings',
+    label: 'Настройки',
     icon: SettingsIcon
   },
   {
-    label: 'Profile',
+    label: 'Профиль',
     icon: UserIcon
   }
 ]

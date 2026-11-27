@@ -1,16 +1,19 @@
 ---
 title: InputMenu
-description: An input field with live autocomplete suggestions.
+description: 'Поле ввода с подсказками автодополнения в реальном времени.'
 category: form
 keywords:
   - combobox
   - typeahead
   - autosuggest
+  - автодополнение
+  - поле с подсказками
+  - комбобокс
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/InputMenu.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/input-menu
   - label: Nuxt UI
@@ -26,9 +29,9 @@ links:
     to: https://reka-ui.com/docs/components/autocomplete
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `v-model` directive to control the value of the InputMenu or the `default-value` prop to set the initial value when you do not need to control its state.
+Директива `v-model` управляет значением InputMenu, а пропс `default-value` задаёт начальное значение, когда управлять состоянием не нужно.
 
 ::component-code
 ---
@@ -50,16 +53,16 @@ props:
 ::
 
 ::tip
-Use this over an [`Input`](/docs/components/input/) to take advantage of Reka UI's [`Combobox`](https://reka-ui.com/docs/components/combobox) component that offers autocomplete capabilities.
+Используйте его вместо [`Input`](/docs/components/input/), чтобы получить возможности автодополнения компонента [`Combobox`](https://reka-ui.com/docs/components/combobox) из Reka UI.
 ::
 
 ::note
-This component is similar to the [`SelectMenu`](/docs/components/select-menu/) but it's using an Input instead of a Select.
+Компонент похож на [`SelectMenu`](/docs/components/select-menu/), но использует Input вместо Select.
 ::
 
-### Items
+### Элементы {#items}
 
-Use the `items` prop as an array of strings, numbers or booleans:
+Пропс `items` принимает массив строк, чисел или булевых значений:
 
 ::component-code
 ---
@@ -80,7 +83,7 @@ props:
 ---
 ::
 
-You can also pass an array of objects with the following properties:
+Можно передать и массив объектов со свойствами:
 
 - `label?: string`{lang="ts-type"}
 - [`value?: string`{lang="ts-type"}](#value-key)
@@ -115,8 +118,8 @@ props:
 ---
 ::
 
-You can also pass an array of arrays to the `items` prop.
-Use the element type `separator` as a separator.
+В пропс `items` можно передать и массив массивов.
+Тип элемента `separator` задаёт разделитель.
 
 ::component-code
 ---
@@ -144,9 +147,9 @@ props:
 ---
 ::
 
-### Value Key
+### Ключ значения {#value-key}
 
-You can choose to bind a single property of the object rather than the whole object by using the `value-key` prop. Defaults to `undefined`.
+Пропс `value-key` позволяет привязать одно свойство объекта вместо всего объекта. По умолчанию `undefined`.
 
 ::component-code
 ---
@@ -176,12 +179,16 @@ props:
 ::
 
 ::tip
-Use the `by` prop to compare objects by a field instead of reference when the `model-value` is an object.
+Пропс `by` сравнивает объекты по полю, а не по ссылке, когда `model-value` — объект.
 ::
 
-### Multiple
+::note
+Слоты `#leading`, `#default` и `#trailing` получают выбранный элемент как `item`, поэтому остальные его свойства доступны, даже когда `model-value` хранит только ключ.
+::
 
-Use the `multiple` prop to allow multiple selections, the selected items will be displayed as tags.
+### Множественный выбор {#multiple}
+
+Пропс `multiple` разрешает выбрать несколько элементов; выбранные элементы показываются как теги.
 
 ::component-code
 ---
@@ -207,12 +214,12 @@ props:
 ::
 
 ::caution
-Ensure to pass an array to the `default-value` prop or the `v-model` directive.
+В `default-value` или `v-model` нужно передать массив.
 ::
 
-### Delete Icon
+### Иконка удаления {#delete-icon}
 
-With `multiple`, use the `delete-icon` prop to customize the delete [Icon](https://bitrix24.github.io/b24icons/icons/) in the tags.
+С `multiple` пропс `delete-icon` меняет [иконку](https://bitrix24.github.io/b24icons/icons/) удаления в тегах.
 
 ::component-code
 ---
@@ -241,9 +248,9 @@ props:
 ---
 ::
 
-### Placeholder
+### Плейсхолдер {#placeholder}
 
-Use the `placeholder` prop to set a placeholder text.
+Пропс `placeholder` задаёт текст плейсхолдера.
 
 ::component-code
 ---
@@ -253,7 +260,7 @@ ignore:
 external:
   - items
 props:
-  placeholder: 'Select status'
+  placeholder: 'Выберите статус'
   items:
     - Backlog
     - Todo
@@ -262,9 +269,9 @@ props:
 ---
 ::
 
-### Autocomplete
+### Автодополнение {#autocomplete}
 
-Use the `mode` prop set to `autocomplete` to turn the InputMenu into a free-form text input with suggestions. The `modelValue` becomes the input text (`string`) instead of a selected item.
+Пропс `mode` со значением `autocomplete` превращает InputMenu в поле свободного ввода с подсказками. `modelValue` становится введённым текстом (`string`), а не выбранным элементом.
 
 ::component-example
 ---
@@ -273,16 +280,16 @@ name: 'input-menu-autocomplete-example'
 ::
 
 ::caution
-When `mode` is `autocomplete`, `multiple`, `by`, `resetSearchTermOnSelect` and `resetModelValueOnClear` are not applicable.
+При `mode` равном `autocomplete` пропсы `multiple`, `by`, `resetSearchTermOnSelect` и `resetModelValueOnClear` не применяются.
 ::
 
 ::tip
-Use the `content.hideWhenEmpty` prop to hide the menu when there are no matching suggestions.
+Пропс `content.hideWhenEmpty` скрывает меню, когда подходящих подсказок нет.
 ::
 
-### Content
+### Содержимое {#content}
 
-Use the `content` prop to control how the InputMenu content is rendered, like its `align` or `side` for example.
+Пропс `content` управляет отрисовкой содержимого InputMenu, например его `align` или `side`.
 
 ::component-code
 ---
@@ -317,9 +324,9 @@ props:
 ---
 ::
 
-### Arrow
+### Стрелка {#arrow}
 
-Use the `arrow` prop to display an arrow on the InputMenu.
+Пропс `arrow` показывает стрелку у InputMenu.
 
 ::component-code
 ---
@@ -342,9 +349,9 @@ props:
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the ring color when the InputMenu is focused.
+Пропс `color` меняет цвет кольца, когда InputMenu в фокусе.
 
 ::component-code
 ---
@@ -368,12 +375,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state. It's used internally when a validation error occurs.
+Пропс `highlight` здесь показывает состояние фокуса. Внутри компонента он включается при ошибке валидации.
 ::
 
-### Tag
+### Тег {#tag}
 
-Use the `tag` property to display a [Badge](/docs/components/badge/) on top of the Input.
+Свойство `tag` показывает [Badge](/docs/components/badge/) поверх Input.
 
 ::component-code
 ---
@@ -387,7 +394,7 @@ external:
   - modelValue
 props:
   modelValue: 'Backlog'
-  tag: note
+  tag: заметка
   color: air-primary-warning
   highlight: true
   placeholder: 'Search...'
@@ -400,10 +407,10 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state. It's used internally when a validation error occurs.
+Пропс `highlight` здесь показывает состояние фокуса. Внутри компонента он включается при ошибке валидации.
 ::
 
-Use the `tagColor` property to set the color for Badge.
+Свойство `tagColor` задаёт цвет Badge.
 
 ::component-code
 ---
@@ -431,7 +438,7 @@ items:
     - air-selection
 props:
   modelValue: 'Backlog'
-  tag: note
+  tag: заметка
   tagColor: air-secondary-alert
   color: air-primary-warning
   highlight: true
@@ -445,12 +452,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state. It's used internally when a validation error occurs.
+Пропс `highlight` здесь показывает состояние фокуса. Внутри компонента он включается при ошибке валидации.
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the InputMenu.
+Пропс `size` меняет размер InputMenu.
 
 ::component-code
 ---
@@ -472,9 +479,9 @@ props:
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to show an [Icon](https://bitrix24.github.io/b24icons/icons/) inside the InputMenu.
+Пропс `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/) внутри InputMenu.
 
 ::component-code
 ---
@@ -500,9 +507,9 @@ props:
 ---
 ::
 
-### Trailing Icon
+### Иконка справа {#trailing-icon}
 
-Use the `trailing-icon` prop to customize the trailing [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `trailing-icon` меняет [иконку](https://bitrix24.github.io/b24icons/icons/) справа.
 
 ::component-code
 ---
@@ -528,9 +535,9 @@ props:
 ---
 ::
 
-### Selected Icon
+### Иконка выбранного элемента {#selected-icon}
 
-Use the `selected-icon` prop to customize the [Icon](https://bitrix24.github.io/b24icons/icons/) when an item is selected.
+Пропс `selected-icon` меняет [иконку](https://bitrix24.github.io/b24icons/icons/) выбранного элемента.
 
 ::component-code
 ---
@@ -556,9 +563,9 @@ props:
 ---
 ::
 
-### Clear
+### Очистка {#clear}
 
-Use the `clear` prop to display a clear button when a value is selected.
+Пропс `clear` показывает кнопку очистки, когда выбрано значение.
 
 ::component-code
 ---
@@ -584,9 +591,9 @@ props:
 ---
 ::
 
-### Clear Icon
+### Иконка очистки {#clear-icon}
 
-Use the `clear-icon` prop to customize the clear button [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `clear-icon` меняет [иконку](https://bitrix24.github.io/b24icons/icons/) кнопки очистки.
 
 ::component-code
 ---
@@ -616,9 +623,9 @@ props:
 ---
 ::
 
-### Avatar
+### Аватар {#avatar}
 
-Use the `avatar` prop to show an [Avatar](/docs/components/avatar/) inside the InputMenu.
+Пропс `avatar` показывает [Avatar](/docs/components/avatar/) внутри InputMenu.
 
 ::component-code
 ---
@@ -644,9 +651,9 @@ props:
 ---
 ::
 
-### Loading
+### Загрузка {#loading}
 
-Use the `loading` prop to show a loading icon on the InputMenu.
+Пропс `loading` показывает иконку загрузки в InputMenu.
 
 ::component-code
 ---
@@ -668,9 +675,9 @@ props:
 ---
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the InputMenu.
+Пропс `disabled` отключает InputMenu.
 
 ::component-code
 ---
@@ -682,7 +689,7 @@ external:
   - items
 props:
   disabled: true
-  placeholder: 'Select status'
+  placeholder: 'Выберите статус'
   items:
     - Backlog
     - Todo
@@ -691,9 +698,9 @@ props:
 ---
 ::
 
-### No border
+### Без границы {#no-border}
 
-Use the `noBorder` prop to removes all borders (rings) from the InputMenu.
+Пропс `noBorder` убирает у InputMenu все границы (кольца).
 
 ::component-code
 ---
@@ -706,7 +713,7 @@ external:
 props:
   noBorder: true
   highlight: true
-  placeholder: 'Select status'
+  placeholder: 'Выберите статус'
   items:
     - Backlog
     - Todo
@@ -716,12 +723,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to indicate that there is no focus state.
+Пропс `highlight` здесь показывает, что состояния фокуса нет.
 ::
 
-### Underline
+### Подчёркивание {#underline}
 
-Use the `underline` prop to removes all borders (rings) except the bottom one from the InputMenu.
+Пропс `underline` убирает у InputMenu все границы (кольца), кроме нижней.
 
 ::component-code
 ---
@@ -734,7 +741,7 @@ external:
 props:
   underline: true
   highlight: true
-  placeholder: 'Select status'
+  placeholder: 'Выберите статус'
   items:
     - Backlog
     - Todo
@@ -744,12 +751,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-### Rounded
+### Скругление {#rounded}
 
-Use the `rounded` prop to round the InputMenu.
+Пропс `rounded` скругляет InputMenu.
 
 ::component-code
 ---
@@ -762,7 +769,7 @@ external:
 props:
   rounded: true
   highlight: true
-  placeholder: 'Select status'
+  placeholder: 'Выберите статус'
   items:
     - Backlog
     - Todo
@@ -772,14 +779,14 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With items type
+### С типом элемента {#with-items-type}
 
-You can use the `type` property with `separator` to display a separator between items or `label` to display a label.
+Свойство `type` со значением `separator` показывает разделитель между элементами, а со значением `label` — подпись.
 
 ::component-code
 ---
@@ -814,12 +821,12 @@ props:
 ::
 
 ::note
-When using `label` items as group headings, pass an array of arrays so a label gets filtered out together with its group when searching.
+Если `label` используется как заголовок группы, передайте массив массивов: тогда при поиске подпись исчезает вместе со своей группой.
 ::
 
-### With colors items
+### С цветными элементами {#with-colors-items}
 
-You can use the `color` property to change the color of items.
+Свойство `color` меняет цвет элементов.
 
 ::component-example
 ---
@@ -828,9 +835,9 @@ name: 'input-menu-items-color-example'
 ---
 ::
 
-### With icon in items
+### С иконкой в элементах {#with-icon-in-items}
 
-You can use the `icon` property to display an [Icon](https://bitrix24.github.io/b24icons/icons/) inside the items.
+Свойство `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/) внутри элементов.
 
 ::component-example
 ---
@@ -840,12 +847,12 @@ name: 'input-menu-items-icon-example'
 ::
 
 ::tip
-You can also use the `#leading` slot to display the selected icon.
+Слот `#leading` позволяет показать иконку выбранного элемента.
 ::
 
-### With avatar in items
+### С аватаром в элементах {#with-avatar-in-items}
 
-You can use the `avatar` property to display an [Avatar](/docs/components/avatar/) inside the items.
+Свойство `avatar` показывает [Avatar](/docs/components/avatar/) внутри элементов.
 
 ::component-example
 ---
@@ -855,12 +862,12 @@ name: 'input-menu-items-avatar-example'
 ::
 
 ::tip
-You can also use the `#leading` slot to display the selected avatar.
+Слот `#leading` позволяет показать аватар выбранного элемента.
 ::
 
-### With chip in items
+### С чипом в элементах {#with-chip-in-items}
 
-You can use the `chip` property to display a [Chip](/docs/components/chip/) inside the items.
+Свойство `chip` показывает [Chip](/docs/components/chip/) внутри элементов.
 
 ::component-example
 ---
@@ -870,12 +877,12 @@ name: 'input-menu-items-chip-example'
 ::
 
 ::note
-In this example, the `#leading` slot is used to display the selected chip.
+В этом примере слот `#leading` показывает выбранный чип.
 ::
 
-### Control open state
+### Управление открытием {#control-open-state}
 
-You can control the open state by using the `default-open` prop or the `v-model:open` directive.
+Состоянием открытия управляют пропс `default-open` или директива `v-model:open`.
 
 ::component-example
 ---
@@ -884,12 +891,12 @@ name: 'input-menu-open-example'
 ::
 
 ::note
-In this example, leveraging [`defineShortcuts`](/docs/composables/define-shortcuts/), you can toggle the InputMenu by pressing :kbd{value="O"}.
+В этом примере с помощью [`defineShortcuts`](/docs/composables/define-shortcuts/) InputMenu переключается по нажатию :kbd{value="O"}.
 ::
 
-### Control open state on focus
+### Открытие при фокусе {#control-open-state-on-focus}
 
-You can use the `open-on-focus` or `open-on-click` props to open the menu when the input is focused or clicked.
+Пропсы `open-on-focus` и `open-on-click` открывают меню, когда поле получает фокус или по нему щёлкают.
 
 ::component-example
 ---
@@ -897,9 +904,9 @@ name: 'input-menu-open-focus-example'
 ---
 ::
 
-### Control search term
+### Управление поисковым запросом {#control-search-term}
 
-Use the `v-model:search-term` directive to control the search term.
+Директива `v-model:search-term` управляет поисковым запросом.
 
 ::component-example
 ---
@@ -907,9 +914,9 @@ name: 'input-menu-search-term-example'
 ---
 ::
 
-### With rotating icon
+### С вращающейся иконкой {#with-rotating-icon}
 
-Here is an example with a rotating icon that indicates the open state of the InputMenu.
+Пример с вращающейся иконкой, которая показывает состояние открытия InputMenu.
 
 ::component-example
 ---
@@ -917,9 +924,9 @@ name: 'input-menu-icon-example'
 ---
 ::
 
-### With floating label :badge{label="2.15+" class="align-text-top"}
+### С плавающей подписью :badge{label="2.15+" class="align-text-top"} {#with-floating-label}
 
-You can use the `#default` slot to add a floating label to the InputMenu.
+Слот `#default` позволяет добавить InputMenu плавающую подпись.
 
 ::component-example
 ---
@@ -927,9 +934,9 @@ name: 'input-menu-floating-label-example'
 ---
 ::
 
-### With create item
+### С созданием элемента {#with-create-item}
 
-Use the `create-item` prop to enable users to add custom values that aren't in the predefined options.
+Пропс `create-item` позволяет пользователям добавлять собственные значения, которых нет в готовых вариантах.
 
 ::component-example
 ---
@@ -939,16 +946,16 @@ name: 'input-menu-create-item-example'
 ::
 
 ::note
-The create option shows when no match is found by default. Set it to `always` to show it even when similar values exist.
+По умолчанию пункт создания показывается, когда совпадений нет. Значение `always` показывает его, даже если есть похожие значения.
 ::
 
 ::tip{to="#emits"}
-Use the `@create` event to handle the creation of the item. You will receive the event and the item as arguments.
+Событие `@create` обрабатывает создание элемента. В обработчик придут событие и элемент.
 ::
 
-### With fetched items
+### С загружаемыми элементами {#with-fetched-items}
 
-You can fetch items from an API and use them in the InputMenu.
+Элементы можно загружать из API и использовать в InputMenu.
 
 ::component-example
 ---
@@ -958,12 +965,12 @@ name: 'input-menu-fetch-example'
 ::
 
 ::note
-This example uses `useLazyFetch` with `immediate: false` to only fetch data when the menu opens, avoiding unnecessary API calls on page load.
+В примере `useLazyFetch` вызывается с `immediate: false`, поэтому данные запрашиваются только при открытии меню, а лишних запросов к API при загрузке страницы нет.
 ::
 
-### With ignore filter
+### С отключённым фильтром {#with-ignore-filter}
 
-Set the `ignore-filter` prop to `true` to disable the internal search and use your own search logic.
+Пропс `ignore-filter` со значением `true` отключает внутренний поиск, и вы можете использовать собственную логику поиска.
 
 ::component-example
 ---
@@ -973,12 +980,12 @@ name: 'input-menu-ignore-filter-example'
 ::
 
 ::note
-This example uses [`refDebounced`](https://vueuse.org/shared/refDebounced/#refdebounced) to debounce the API calls. The fetch is deferred with `immediate: false` so no request is made until the menu opens.
+В примере запросы к API откладываются через [`refDebounced`](https://vueuse.org/shared/refDebounced/#refdebounced). Загрузка отложена через `immediate: false`, поэтому запрос не отправляется, пока меню не откроется.
 ::
 
-### With filter fields
+### С полями фильтрации {#with-filter-fields}
 
-Use the `filter-fields` prop with an array of fields to filter on. Defaults to `[labelKey]`.
+Пропс `filter-fields` принимает массив полей, по которым выполняется фильтрация. По умолчанию `[labelKey]`.
 
 ::component-example
 ---
@@ -988,15 +995,15 @@ name: 'input-menu-filter-fields-example'
 ::
 
 ::note
-This example uses `useLazyFetch` with `immediate: false` to only fetch data when the menu opens, avoiding unnecessary API calls on page load.
+В примере `useLazyFetch` вызывается с `immediate: false`, поэтому данные запрашиваются только при открытии меню, а лишних запросов к API при загрузке страницы нет.
 ::
 
-### With virtualization
+### С виртуализацией {#with-virtualization}
 
-Use the `virtualize` prop to enable virtualization for large lists as a boolean or an object with options like `{ estimateSize: 32, overscan: 12 }`.
+Пропс `virtualize` включает виртуализацию для больших списков: булево значение или объект с параметрами вроде `{ estimateSize: 32, overscan: 12 }`.
 
 ::warning{to="https://github.com/unovue/reka-ui/issues/1885" target="_blank"}
-When enabled, all groups are flattened into a single list due to a limitation of Reka UI.
+При включении все группы объединяются в один список из-за ограничения Reka UI.
 ::
 
 ::component-example
@@ -1006,9 +1013,9 @@ name: 'input-menu-virtualize-example'
 ---
 ::
 
-### With infinite scroll
+### С бесконечной прокруткой {#with-infinite-scroll}
 
-You can use the [`useInfiniteScroll`](https://vueuse.org/core/useInfiniteScroll/) composable to load more data as the user scrolls.
+Композабл [`useInfiniteScroll`](https://vueuse.org/core/useInfiniteScroll/) подгружает данные по мере прокрутки.
 
 ::component-example
 ---
@@ -1023,12 +1030,12 @@ name: 'input-menu-infinite-scroll-example'
 ::
 
 ::note
-This example uses `useLazyFetch` with `immediate: false` so data is only loaded as the user scrolls.
+В примере `useLazyFetch` вызывается с `immediate: false`, поэтому данные загружаются только по мере прокрутки.
 ::
 
-### With full content width
+### С содержимым на всю ширину {#with-full-content-width}
 
-You can expand the content to the full width of its items by adding the `min-w-fit` class on the `b24ui.content`,`b24ui.item` and `b24ui.viewport` slots.
+Чтобы содержимое занимало всю ширину своих элементов, добавьте класс `min-w-fit` в слоты `b24ui.content`, `b24ui.item` и `b24ui.viewport`.
 
 ::component-example
 ---
@@ -1037,9 +1044,9 @@ collapse: true
 ---
 ::
 
-### As a country picker
+### Как выбор страны {#as-a-country-picker}
 
-You can use the InputMenu as a country picker with lazy loading. Countries are only fetched when the menu is first opened.
+InputMenu можно использовать как выбор страны с ленивой загрузкой. Страны загружаются только при первом открытии меню.
 
 ::component-example
 ---
@@ -1049,36 +1056,36 @@ name: 'input-menu-countries-example'
 ::
 
 ::note
-This example uses `useLazyFetch` with `immediate: false` to only load countries when the menu is first opened.
+В примере `useLazyFetch` вызывается с `immediate: false`, поэтому страны загружаются только при первом открытии меню.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attributes" target="_blank"}
-This component also supports all native `<input>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<input>`.
 ::
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-### Expose
+### Доступ через ref {#expose}
 
-When accessing the component via a template ref, you can use the following:
+При обращении к компоненту через ref в шаблоне доступно:
 
-| Name | Type |
+| Имя | Тип |
 | ---- | ---- |
 | `inputRef`{lang="ts-type"} | `Ref<HTMLInputElement \| null>`{lang="ts-type"} |
 | `viewportRef`{lang="ts-type"} | `Ref<HTMLDivElement \| null>`{lang="ts-type"} |
 
-## Theme
+## Тема {#theme}
 
 :component-theme

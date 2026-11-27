@@ -1,6 +1,6 @@
 ---
 title: ProseKbd
-description: 'Show all available hotkeys with their properly formatted keys.'
+description: 'Горячие клавиши в правильном формате.'
 category: components
 navigation.title: Kbd
 links:
@@ -12,9 +12,9 @@ links:
     to: https://ui.nuxt.com/docs/typography/kbd
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `kbd` component to display a [Kbd](/docs/components/kbd/) in your content.
+Компонент `kbd` показывает [Kbd](/docs/components/kbd/) в содержимом.
 
 ::code-preview{class="[&>div]:*:my-0"}
 :kbd{value="meta"} :kbd{value="K"}
@@ -29,14 +29,14 @@ Use the `kbd` component to display a [Kbd](/docs/components/kbd/) in your conten
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props{prose}
 
-### Slots
+### Слоты {#slots}
 
 :component-slots{prose}
 
-## Theme
+## Тема {#theme}
 
 :component-theme{prose}

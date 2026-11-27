@@ -1,7 +1,11 @@
 ---
 title: ColorModeSwitch
-description: 'A Switch to toggle between light and dark mode.'
+description: 'Switch для переключения между светлой и тёмной темой.'
 category: color-mode
+keywords:
+  - тумблер темы
+  - переключатель тёмной темы
+  - ночной режим
 links:
   - label: GitHub
     iconName: GitHubIcon
@@ -9,7 +13,7 @@ links:
   - label: Switch
     to: /docs/components/switch/
     iconName: Bitrix24Icon
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/color-mode
   - label: Nuxt UI
@@ -17,14 +21,14 @@ links:
     to: https://ui.nuxt.com/docs/components/color-mode-switch
 ---
 
-## Usage
+## Использование {#usage}
 
-The ColorModeSwitch component extends the [Switch](/docs/components/switch/) component, so you can pass any property such as `color`, `size`, etc.
+Компонент ColorModeSwitch расширяет компонент [Switch](/docs/components/switch/), поэтому ему можно передать любое свойство: `color`, `size` и другие.
 
 :component-code{prefix="color-mode"}
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props

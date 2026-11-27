@@ -32,6 +32,12 @@ services:
       LETSENCRYPT_HOST: ${DOMAIN}
       LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL:-}
       # Адреса сайта (canonical, sitemap, llms.txt) вшиты в образ при сборке и рантаймом не меняются — README.md, «Адреса сайта».
+      # Чат «Спросить AI» (DeepSeek). Ключ — из .env, пусто — чат скрыт. README.md, «Чат «Спросить AI»».
+      NUXT_DEEPSEEK_API_KEY: ${NUXT_DEEPSEEK_API_KEY:-}
+      NUXT_DEEPSEEK_MODEL: ${NUXT_DEEPSEEK_MODEL:-deepseek-chat}
+      # Счётчик Яндекс Метрики: номер из .env, пусто — без счётчика. Действует только на страницы, которые рендерит
+      # сервер; предрендеренные получают номер при сборке образа (build-arg YANDEX_METRIKA_ID). README.md, «Счётчик Яндекс Метрики».
+      NUXT_PUBLIC_YANDEX_METRIKA_ID: ${NUXT_PUBLIC_YANDEX_METRIKA_ID:-}
     restart: unless-stopped
     # Сайт публичный (с MCP): без лишних прав и с потолком ресурсов. Замер: ~150 МБ и 11 потоков под нагрузкой.
     mem_limit: 1g

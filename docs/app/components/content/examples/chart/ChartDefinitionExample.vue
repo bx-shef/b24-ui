@@ -4,12 +4,12 @@ import { scaleLinear } from '@tanstack/charts/scales/linear'
 import { scalePoint } from '@tanstack/charts/scales/point'
 
 const data = [
-  { month: 'January', revenue: 186 },
-  { month: 'February', revenue: 305 },
-  { month: 'March', revenue: 237 },
-  { month: 'April', revenue: 273 },
-  { month: 'May', revenue: 209 },
-  { month: 'June', revenue: 314 }
+  { month: 'Январь', revenue: 186 },
+  { month: 'Февраль', revenue: 305 },
+  { month: 'Март', revenue: 237 },
+  { month: 'Апрель', revenue: 273 },
+  { month: 'Май', revenue: 209 },
+  { month: 'Июнь', revenue: 314 }
 ]
 
 const definition = defineChart({
@@ -19,11 +19,11 @@ const definition = defineChart({
   ],
   scales: {
     x: { scale: () => scalePoint<string>().padding(0.2) },
-    y: { scale: scaleLinear, nice: true, grid: true, axis: { label: 'Revenue' } }
+    y: { scale: scaleLinear, nice: true, grid: true, axis: { label: 'Выручка' } }
   }
 })
 </script>
 
 <template>
-  <B24Chart :definition="definition" aria-label="Revenue against target" />
+  <B24Chart :definition="definition" aria-label="Выручка и целевой показатель" />
 </template>

@@ -18,17 +18,17 @@ const nested: SplitterItem[] = [
   <div class="w-full h-96">
     <B24Splitter id="splitter-nested-example" :items="items">
       <template #left>
-        Left
+        Слева
       </template>
 
       <template #right>
         <B24Splitter id="splitter-nested-example-inner" orientation="vertical" :items="nested">
           <template #top>
-            Top
+            Сверху
           </template>
 
           <template #bottom>
-            Bottom
+            Снизу
           </template>
         </B24Splitter>
       </template>

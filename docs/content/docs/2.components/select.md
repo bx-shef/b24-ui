@@ -1,15 +1,18 @@
 ---
 title: Select
-description: A selection field to pick from various options.
+description: 'Поле выбора одного значения из набора вариантов.'
 category: form
 keywords:
   - dropdown
   - picker
+  - выпадающий список
+  - выбор значения
+  - селект
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Select.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/select
   - label: Nuxt UI
@@ -21,9 +24,9 @@ links:
     to: https://reka-ui.com/docs/components/select
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `v-model` directive to control the value of the Select or the `default-value` prop to set the initial value when you do not need to control its state.
+Директива `v-model` управляет значением Select, а пропс `default-value` задаёт начальное значение, когда управлять состоянием не нужно.
 
 ::component-code
 ---
@@ -48,9 +51,9 @@ props:
 ---
 ::
 
-### Items
+### Элементы {#items}
 
-Use the `items` prop as an array of strings, numbers or booleans:
+Пропс `items` принимает массив строк, чисел или булевых значений:
 
 ::component-code
 ---
@@ -73,7 +76,7 @@ props:
 ---
 ::
 
-You can also pass an array of objects with the following properties:
+Можно передать и массив объектов со свойствами:
 
 - `label?: string`{lang="ts-type"}
 - [`value?: string`{lang="ts-type"}](#value-key)
@@ -113,11 +116,11 @@ props:
 ::
 
 ::caution
-When using objects, you need to reference the `value` property of the object in the `v-model` directive or the `default-value` prop.
+При использовании объектов в директиве `v-model` или пропсе `default-value` нужно указывать свойство `value` объекта.
 ::
 
-You can also pass an array of arrays to the `items` prop.
-Use the element type `separator` as a separator.
+В пропс `items` можно передать и массив массивов.
+Тип элемента `separator` задаёт разделитель.
 
 ::component-code
 ---
@@ -147,9 +150,9 @@ props:
 ---
 ::
 
-### Value Key
+### Ключ значения {#value-key}
 
-You can change the property that is used to set the value by using the `value-key` prop. Defaults to `value`.
+Свойство, из которого берётся значение, меняется пропсом `value-key`. По умолчанию `value`.
 
 ::component-code
 ---
@@ -180,9 +183,13 @@ props:
 ---
 ::
 
-### Multiple
+::tip
+Слоты `#leading`, `#default` и `#trailing` получают выбранный элемент как `item`, поэтому остальные его свойства доступны, даже когда `model-value` хранит только ключ.
+::
 
-Use the `multiple` prop to allow multiple selections, the selected items will be separated by a comma in the trigger.
+### Множественный выбор {#multiple}
+
+Пропс `multiple` разрешает выбрать несколько элементов; выбранные элементы показываются в триггере через запятую.
 
 ::component-code
 ---
@@ -210,12 +217,12 @@ props:
 ::
 
 ::caution
-Ensure to pass an array to the `default-value` prop or the `v-model` directive.
+В `default-value` или `v-model` нужно передать массив.
 ::
 
-### Placeholder
+### Плейсхолдер {#placeholder}
 
-Use the `placeholder` prop to set a placeholder text.
+Пропс `placeholder` задаёт текст плейсхолдера.
 
 ::component-code
 ---
@@ -226,7 +233,7 @@ ignore:
 external:
   - items
 props:
-  placeholder: 'Select status'
+  placeholder: 'Выберите статус'
   items:
     - Backlog
     - Todo
@@ -236,9 +243,9 @@ props:
 ---
 ::
 
-### Content
+### Содержимое {#content}
 
-Use the `content` prop to control how the Select content is rendered, like its `align` or `side` for example.
+Пропс `content` управляет отрисовкой содержимого Select, например его `align` или `side`.
 
 ::component-code
 ---
@@ -276,12 +283,12 @@ props:
 ::
 
 ::note
-These options only apply when `content.position` is `popper` (default).
+Эти параметры действуют, только когда `content.position` равен `popper` (по умолчанию).
 ::
 
-### Position
+### Позиция {#position}
 
-Use the `content.position` prop to control how the Select content is positioned relative to the trigger. Defaults to `popper`, which positions the content like other popovers. Set it to `item-aligned` to align the content with the selected item (similar to a native macOS menu).
+Пропс `content.position` определяет, как содержимое Select позиционируется относительно триггера. По умолчанию `popper`: содержимое позиционируется как у остальных всплывающих окон. Значение `item-aligned` выравнивает содержимое по выбранному элементу (как в нативном меню macOS).
 
 ::component-code
 ---
@@ -310,9 +317,9 @@ props:
 ---
 ::
 
-### Arrow
+### Стрелка {#arrow}
 
-Use the `arrow` prop to display an arrow on the Select.
+Пропс `arrow` показывает стрелку у Select.
 
 ::component-code
 ---
@@ -337,9 +344,9 @@ props:
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the ring color when the Select is focused.
+Пропс `color` меняет цвет кольца, когда Select в фокусе.
 
 ::component-code
 ---
@@ -365,12 +372,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state. It's used internally when a validation error occurs.
+Пропс `highlight` здесь показывает состояние фокуса. Внутри компонента он включается при ошибке валидации.
 ::
 
-### Tag
+### Тег {#tag}
 
-Use the `tag` property to display a [Badge](/docs/components/badge/) on top of the Select.
+Свойство `tag` показывает [Badge](/docs/components/badge/) поверх Select.
 
 ::component-code
 ---
@@ -388,7 +395,7 @@ props:
   tag: note
   color: air-primary-warning
   highlight: true
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
   items:
     - Backlog
     - Todo
@@ -399,10 +406,10 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state. It's used internally when a validation error occurs.
+Пропс `highlight` здесь показывает состояние фокуса. Внутри компонента он включается при ошибке валидации.
 ::
 
-Use the `tagColor` property to set the color for Badge.
+Свойство `tagColor` задаёт цвет Badge.
 
 ::component-code
 ---
@@ -435,7 +442,7 @@ props:
   tagColor: air-secondary-alert
   color: air-primary-warning
   highlight: true
-  placeholder: 'Search...'
+  placeholder: 'Поиск...'
   items:
     - Backlog
     - Todo
@@ -446,12 +453,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state. It's used internally when a validation error occurs.
+Пропс `highlight` здесь показывает состояние фокуса. Внутри компонента он включается при ошибке валидации.
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the Select.
+Пропс `size` меняет размер Select.
 
 ::component-code
 ---
@@ -475,9 +482,9 @@ props:
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to show an [Icon](https://bitrix24.github.io/b24icons/icons/) inside the Select.
+Пропс `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/) внутри Select.
 
 ::component-code
 ---
@@ -505,9 +512,9 @@ props:
 ---
 ::
 
-### Trailing Icon
+### Иконка справа {#trailing-icon}
 
-Use the `trailing-icon` prop to customize the trailing [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `trailing-icon` меняет [иконку](https://bitrix24.github.io/b24icons/icons/) справа.
 
 ::component-code
 ---
@@ -535,9 +542,9 @@ props:
 ---
 ::
 
-### Selected Icon
+### Иконка выбранного элемента {#selected-icon}
 
-Use the `selected-icon` prop to customize the [Icon](https://bitrix24.github.io/b24icons/icons/) when an item is selected.
+Пропс `selected-icon` меняет [иконку](https://bitrix24.github.io/b24icons/icons/) выбранного элемента.
 
 ::component-code
 ---
@@ -565,9 +572,9 @@ props:
 ---
 ::
 
-### Avatar
+### Аватар {#avatar}
 
-Use the `avatar` prop to show an [Avatar](/docs/components/avatar/) inside the Select.
+Пропс `avatar` показывает [Avatar](/docs/components/avatar/) внутри Select.
 
 ::component-code
 ---
@@ -595,9 +602,9 @@ props:
 ---
 ::
 
-### Loading
+### Загрузка {#loading}
 
-Use the `loading` prop to show a loading icon on the Select.
+Пропс `loading` показывает иконку загрузки в Select.
 
 ::component-code
 ---
@@ -621,9 +628,9 @@ props:
 ---
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the Select.
+Пропс `disabled` отключает Select.
 
 ::component-code
 ---
@@ -636,7 +643,7 @@ external:
   - items
 props:
   disabled: true
-  placeholder: 'Select status'
+  placeholder: 'Выберите статус'
   items:
     - Backlog
     - Todo
@@ -646,9 +653,9 @@ props:
 ---
 ::
 
-### No padding
+### Без отступов {#no-padding}
 
-Use the `noPadding` prop to removes padding from the Select.
+Пропс `noPadding` убирает у Select внутренние отступы.
 
 ::component-code
 ---
@@ -662,7 +669,7 @@ external:
 props:
   noPadding: true
   highlight: true
-  placeholder: 'Select status'
+  placeholder: 'Выберите статус'
   items:
     - Backlog
     - Todo
@@ -673,12 +680,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-### No border
+### Без границы {#no-border}
 
-Use the `noBorder` prop to removes all borders (rings) from the Select.
+Пропс `noBorder` убирает у Select все границы (кольца).
 
 ::component-code
 ---
@@ -692,7 +699,7 @@ external:
 props:
   noBorder: true
   highlight: true
-  placeholder: 'Select status'
+  placeholder: 'Выберите статус'
   items:
     - Backlog
     - Todo
@@ -703,12 +710,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to indicate that there is no focus state.
+Пропс `highlight` здесь показывает, что состояния фокуса нет.
 ::
 
-### Underline
+### Подчёркивание {#underline}
 
-Use the `underline` prop to removes all borders (rings) except the bottom one from the Select.
+Пропс `underline` убирает у Select все границы (кольца), кроме нижней.
 
 ::component-code
 ---
@@ -722,7 +729,7 @@ external:
 props:
   underline: true
   highlight: true
-  placeholder: 'Select status'
+  placeholder: 'Выберите статус'
   items:
     - Backlog
     - Todo
@@ -733,12 +740,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-### Rounded
+### Скругление {#rounded}
 
-Use the `rounded` prop to round the Select.
+Пропс `rounded` скругляет Select.
 
 ::component-code
 ---
@@ -752,7 +759,7 @@ external:
 props:
   rounded: true
   highlight: true
-  placeholder: 'Select status'
+  placeholder: 'Выберите статус'
   items:
     - Backlog
     - Todo
@@ -763,14 +770,14 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With items type
+### С типом элемента {#with-items-type}
 
-You can use the `type` property with `separator` to display a separator between items or `label` to display a label.
+Свойство `type` со значением `separator` показывает разделитель между элементами, а со значением `label` — подпись.
 
 ::component-code
 ---
@@ -806,9 +813,9 @@ props:
 ---
 ::
 
-### With colors items
+### С цветными элементами {#with-colors-items}
 
-You can use the `color` property to change the color of items.
+Свойство `color` меняет цвет элементов.
 
 ::component-example
 ---
@@ -817,9 +824,9 @@ name: 'select-items-color-example'
 ---
 ::
 
-### With icon in items
+### С иконкой в элементах {#with-icon-in-items}
 
-You can use the `icon` property to display an [Icon](https://bitrix24.github.io/b24icons/icons/) inside the items.
+Свойство `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/) внутри элементов.
 
 ::component-example
 ---
@@ -829,16 +836,16 @@ name: 'select-items-icon-example'
 ::
 
 ::note
-In this example, the icon is computed from the `value` property of the selected item.
+В этом примере иконка вычисляется из свойства `value` выбранного элемента.
 ::
 
 ::tip
-You can also use the `#leading` slot to display the selected icon.
+Слот `#leading` и его проп `item` позволяют показать иконку выбранного элемента.
 ::
 
-### With avatar in items
+### С аватаром в элементах {#with-avatar-in-items}
 
-You can use the `avatar` property to display an [Avatar](/docs/components/avatar/) inside the items.
+Свойство `avatar` показывает [Avatar](/docs/components/avatar/) внутри элементов.
 
 ::component-example
 ---
@@ -848,16 +855,16 @@ name: 'select-items-avatar-example'
 ::
 
 ::note
-In this example, the avatar is computed from the `value` property of the selected item.
+В этом примере аватар вычисляется из свойства `value` выбранного элемента.
 ::
 
 ::tip
-You can also use the `#leading` slot to display the selected avatar.
+Слот `#leading` и его проп `item` позволяют показать аватар выбранного элемента.
 ::
 
-### With chip in items
+### С чипом в элементах {#with-chip-in-items}
 
-You can use the `chip` property to display a [Chip](/docs/components/chip/) inside the items.
+Свойство `chip` показывает [Chip](/docs/components/chip/) внутри элементов.
 
 ::component-example
 ---
@@ -867,12 +874,12 @@ name: 'select-items-chip-example'
 ::
 
 ::note
-In this example, the `#leading` slot is used to display the selected chip.
+В этом примере слот `#leading` берёт чип выбранного элемента из его пропа `item`.
 ::
 
-### Control open state
+### Управление открытием {#control-open-state}
 
-You can control the open state by using the `default-open` prop or the `v-model:open` directive.
+Состоянием открытия управляют пропс `default-open` или директива `v-model:open`.
 
 ::component-example
 ---
@@ -881,12 +888,12 @@ name: 'select-open-example'
 ::
 
 ::note
-In this example, leveraging [`defineShortcuts`](/docs/composables/define-shortcuts/), you can toggle the Select by pressing :kbd{value="O"}.
+В этом примере с помощью [`defineShortcuts`](/docs/composables/define-shortcuts/) Select переключается по нажатию :kbd{value="O"}.
 ::
 
-### With rotating icon
+### С вращающейся иконкой {#with-rotating-icon}
 
-Here is an example with a rotating icon that indicates the open state of the Select.
+Пример с вращающейся иконкой, которая показывает состояние открытия Select.
 
 ::component-example
 ---
@@ -894,9 +901,9 @@ name: 'select-icon-example'
 ---
 ::
 
-### With fetched items
+### С загружаемыми элементами {#with-fetched-items}
 
-You can fetch items from an API and use them in the Select.
+Элементы можно загружать из API и использовать в Select.
 
 ::component-example
 ---
@@ -906,12 +913,12 @@ collapse: true
 ::
 
 ::note
-This example uses `useLazyFetch` with `immediate: false` to only fetch data when the menu opens, avoiding unnecessary API calls on page load.
+В примере `useLazyFetch` вызывается с `immediate: false`, поэтому данные запрашиваются только при открытии меню, а лишних запросов к API при загрузке страницы нет.
 ::
 
-### With infinite scroll
+### С бесконечной прокруткой {#with-infinite-scroll}
 
-You can use the [`useInfiniteScroll`](https://vueuse.org/core/useInfiniteScroll/) composable to load more data as the user scrolls.
+Композабл [`useInfiniteScroll`](https://vueuse.org/core/useInfiniteScroll/) подгружает данные по мере прокрутки.
 
 ::component-example
 ---
@@ -926,12 +933,12 @@ name: 'select-infinite-scroll-example'
 ::
 
 ::note
-This example uses `useLazyFetch` with `immediate: false` so data is only loaded as the user scrolls.
+В примере `useLazyFetch` вызывается с `immediate: false`, поэтому данные загружаются только по мере прокрутки.
 ::
 
-### With full content width
+### С содержимым на всю ширину {#with-full-content-width}
 
-You can expand the content to the full width of its items by adding the `b24ui.content`,`b24ui.item` and `b24ui.viewport` slots.
+Чтобы содержимое занимало всю ширину своих элементов, настройте слоты `b24ui.content`, `b24ui.item` и `b24ui.viewport`.
 
 ::component-example
 ---
@@ -940,33 +947,33 @@ collapse: true
 ---
 ::
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes" target="_blank"}
-This component also supports all native `<button>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<button>`.
 ::
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-### Expose
+### Доступ через ref {#expose}
 
-When accessing the component via a template ref, you can use the following:
+При обращении к компоненту через ref в шаблоне доступно:
 
-| Name | Type |
+| Имя | Тип |
 | ---- | ---- |
 | `triggerRef`{lang="ts-type"} | `Ref<HTMLButtonElement \| null>`{lang="ts-type"} |
 | `viewportRef`{lang="ts-type"} | `Ref<HTMLDivElement \| null>`{lang="ts-type"} |
 
-## Theme
+## Тема {#theme}
 
 :component-theme

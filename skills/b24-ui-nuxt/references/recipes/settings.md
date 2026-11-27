@@ -1,26 +1,26 @@
-# Settings layouts
+# Раскладки настроек
 
-Patterns for showing user-facing settings — single choice, multiple toggles, capability flags. Pick the right component first; only reach for a custom layout when each option truly needs an image, link or multi-line explanation.
+Приёмы показа пользовательских настроек — единственный выбор, несколько переключателей, флаги возможностей. Сначала подберите подходящий компонент и берите собственную раскладку, только когда каждому варианту действительно нужны картинка, ссылка или многострочное пояснение.
 
-## Decision matrix
+## Матрица выбора
 
-| Choice                                   | Each option needs              | Use                                                    |
+| Выбор                                    | Каждому варианту нужны         | Использовать                                           |
 |------------------------------------------|--------------------------------|--------------------------------------------------------|
-| Pick **one** of 2–4 short labels         | A label                        | `B24RadioGroup` (`variant="list"`)                     |
-| Pick **one** with a short description    | Label + 1 sentence             | `B24RadioGroup` (`variant="card"`)                     |
-| Pick **one** that needs an icon + sentence | Label + icon + description   | `B24PageCardGroup` — see [card-pickers](./card-pickers.md) |
-| Pick **one** that needs a preview image, longer text and a "Learn more" link | Title + description + link + image | `B24RadioGroup` `variant="card"` + `#label` slot (this recipe) |
-| Toggle **several** features              | Label                          | `B24CheckboxGroup` (`variant="list"`) or many `B24Switch` |
-| Toggle several that need rich previews   | Title + description + link + image | `B24CheckboxGroup` `variant="card"` + `#label` slot (this recipe) |
-| Single boolean (on/off)                  | One thing                      | `B24Switch`                                            |
+| Выбрать **один** из 2–4 коротких вариантов | Подпись                      | `B24RadioGroup` (`variant="list"`)                     |
+| Выбрать **один** с коротким описанием    | Подпись и одно предложение     | `B24RadioGroup` (`variant="card"`)                     |
+| Выбрать **один**, нужны иконка и предложение | Подпись, иконка, описание | `B24PageCardGroup` — см. [card-pickers](./card-pickers.md) |
+| Выбрать **один**, нужны картинка предпросмотра, текст подлиннее и ссылка «Подробнее» | Заголовок, описание, ссылка, картинка | `B24RadioGroup` `variant="card"` + слот `#label` (этот рецепт) |
+| Включить **несколько** возможностей      | Подпись                        | `B24CheckboxGroup` (`variant="list"`) или несколько `B24Switch` |
+| Включить несколько, нужны богатые предпросмотры | Заголовок, описание, ссылка, картинка | `B24CheckboxGroup` `variant="card"` + слот `#label` (этот рецепт) |
+| Один флаг (вкл/выкл)                     | Одно значение                  | `B24Switch`                                            |
 
-If your options each need an icon-in-a-circle + description and you want a tidy grid, prefer `B24PageCardGroup` — see [card-pickers](./card-pickers.md). This recipe is for the heavier case where the option deserves a full preview image and an inline link to documentation.
+Если каждому варианту нужны иконка в круге и описание и вы хотите аккуратную сетку, берите `B24PageCardGroup` — см. [card-pickers](./card-pickers.md). Этот рецепт — для более тяжёлого случая, когда варианту нужны полноценная картинка предпросмотра и ссылка на документацию.
 
-## Rich card with preview, description and link (single choice)
+## Расширенная карточка с предпросмотром, описанием и ссылкой (один вариант)
 
-Use `variant="card"` and override the `#label` slot. The slot renders inside a `<span>`, so you can put any phrasing-content layout there — flex columns, links, images, etc. — without HTML parsing surprises.
+Задайте `variant="card"` и переопределите слот `#label`. Слот отрисовывается внутри `<span>`, поэтому в него можно класть любую раскладку из фразового содержимого — flex-колонки, ссылки, картинки и т. п. — без сюрпризов разбора HTML.
 
-For strict typing of `item.*` in the slot, declare a local interface and use it as the array type — passing the broad `RadioGroupItem[]` widens user-defined fields to `any` (loses autocomplete).
+Чтобы типизировать `item.*` в слоте строго, объявите локальный интерфейс и используйте его как тип массива: общий `RadioGroupItem[]` расширяет пользовательские поля до `any` (пропадает автодополнение).
 
 ```vue
 <script setup lang="ts">
@@ -75,7 +75,7 @@ const items: LayoutItem[] = [
             class="self-start mt-1 text-(length:--ui-font-size-sm)"
             @click.stop
           >
-            Learn more
+            Подробнее
           </B24Link>
         </span>
         <img
@@ -89,9 +89,9 @@ const items: LayoutItem[] = [
 </template>
 ```
 
-## Same recipe for multi-select
+## Тот же рецепт для множественного выбора
 
-Swap the component for `B24CheckboxGroup` and bind `v-model` to an array. The slot markup, item shape, image, link — all stay identical.
+Замените компонент на `B24CheckboxGroup` и привяжите `v-model` к массиву. Разметка слота, форма элементов, картинка и ссылка остаются теми же.
 
 ```vue
 <script setup lang="ts">
@@ -134,7 +134,7 @@ const items: CapabilityItem[] = [
             class="self-start mt-1 text-(length:--ui-font-size-sm)"
             @click.stop
           >
-            Learn more
+            Подробнее
           </B24Link>
         </span>
         <img
@@ -148,21 +148,21 @@ const items: CapabilityItem[] = [
 </template>
 ```
 
-## Implementation notes
+## Замечания по реализации
 
-- **Why `<span>` everywhere inside the slot.** The library renders the label slot as `<span>` for `card` and `table` variants (and as `<label>` for `list`). Nest spans with `class="block"` or `flex` inside it — that stays in HTML5 phrasing content. Block elements like `<div>` are tolerated by browsers but technically violate phrasing-content; prefer span if you have a choice.
-- **Strict typing for slot props.** Declaring `const items: RadioGroupItem[] = [...]` widens user-defined fields (`title`, `preview`, `href`, …) to `any` via the `[key: string]: any` index in the public item type. Declare a local interface as in the examples to keep autocomplete and type-checking on the slot's `item`.
-- **Don't pass a `description` field.** `B24RadioGroup` / `B24CheckboxGroup` auto-render `item.description` as a separate paragraph. If you also override `#label` you'll get duplicate text. Name your field anything else (`text`, `summary`, `body`).
-- **`@click.stop` on the inline link.** The whole card is wrapped in `<label>` for the `card` variant — clicking inside selects the option. Without `@click.stop`, opening the "Learn more" link will also toggle the radio/checkbox.
-- **Validate `item.href` if it comes from an untrusted source** (CMS, API, user input). Allow only `http(s):` or relative paths; reject `javascript:` / `data:` URIs and open redirects before binding to `B24Link :to`. The library does not sanitize URLs — that's the caller's responsibility. Same applies to `item.preview` when it points at external images (consider a CSP `img-src` policy).
-- **`target="_blank"` is safe.** `B24Link` adds `rel="noopener noreferrer"` automatically for external targets, so no tabnabbing.
-- **Responsiveness.** Hide the preview on small screens with `hidden sm:block` so the text gets the full width on mobile. The radio/checkbox itself stays at the start because `card` variant uses `items-start`.
-- **No artwork yet?** Drop a `<Placeholder>` (the in-house diagonal-hatch SVG component, available in `docs/` and both playgrounds) in place of `<img>` while the design is in flight — same `w-[120px] h-[72px]` box, zero binary assets to ship.
-- **Stay on semantic colors.** Use semantic utilities like `text-description` for secondary text and `ring-(--ui-color-base-5)` for hairlines — never raw Tailwind palette colors. If a numeric `--ui-color-base-N` token is the only thing that fits, double-check there isn't a named semantic class (`text-description`, `text-title`, …) that maps to the same intent.
-- **Form integration.** Both groups honour `useFormField`, so wrap them in `B24FormField` for label + error display when used inside `B24Form`. See [forms](../guidelines/forms.md).
+- **Почему внутри слота везде `<span>`.** Библиотека отрисовывает слот подписи как `<span>` для вариантов `card` и `table` (и как `<label>` для `list`). Вкладывайте в него `span` с `class="block"` или `flex` — это остаётся фразовым содержимым HTML5. Блочные элементы вроде `<div>` браузеры терпят, но формально они нарушают требования к фразовому содержимому; при возможности берите span.
+- **Строгая типизация пропсов слота.** Запись `const items: RadioGroupItem[] = [...]` расширяет пользовательские поля (`title`, `preview`, `href` и т. д.) до `any` через индекс `[key: string]: any` в публичном типе элемента. Объявите локальный интерфейс, как в примерах, чтобы у `item` в слоте сохранились автодополнение и проверка типов.
+- **Не передавайте поле `description`.** `B24RadioGroup` / `B24CheckboxGroup` сами отрисовывают `item.description` отдельным абзацем. Если вы ещё и переопределяете `#label`, текст задвоится. Назовите поле иначе (`text`, `summary`, `body`).
+- **`@click.stop` на ссылке внутри карточки.** В варианте `card` вся карточка обёрнута в `<label>`, и нажатие внутри выбирает вариант. Без `@click.stop` переход по ссылке «Подробнее» заодно переключит radio или checkbox.
+- **Проверяйте `item.href`, если он приходит из недоверенного источника** (CMS, API, ввод пользователя). Разрешайте только `http(s):` и относительные пути; до привязки к `B24Link :to` отклоняйте URI `javascript:` и `data:` и открытые редиректы. Библиотека URL не очищает — это забота вызывающего. То же касается `item.preview`, если он указывает на внешние картинки (подумайте о политике CSP `img-src`).
+- **`target="_blank"` безопасен.** `B24Link` сам добавляет `rel="noopener noreferrer"` для внешних ссылок, поэтому tabnabbing не грозит.
+- **Адаптивность.** На маленьких экранах скрывайте предпросмотр через `hidden sm:block`, чтобы текст занимал всю ширину на мобильных. Сам radio или checkbox остаётся в начале, потому что вариант `card` использует `items-start`.
+- **Картинок ещё нет?** Пока дизайн в работе, поставьте вместо `<img>` компонент `<Placeholder>` (собственный SVG-компонент с диагональной штриховкой, есть в `docs/` и обеих песочницах) — тот же блок `w-[120px] h-[72px]`, ни одного бинарного файла не нужно.
+- **Оставайтесь на семантических цветах.** Для второстепенного текста берите семантические утилиты вроде `text-description`, для тонких линий — `ring-(--ui-color-base-5)`, и никогда не цвета палитры Tailwind. Если подходит только числовой токен `--ui-color-base-N`, проверьте, нет ли именованного семантического класса (`text-description`, `text-title`, …) с тем же смыслом.
+- **Интеграция с формой.** Обе группы учитывают `useFormField`, поэтому внутри `B24Form` оборачивайте их в `B24FormField` для подписи и ошибки. См. [формы](../guidelines/forms.md).
 
-## When NOT to use this pattern
+## Когда этот приём не нужен
 
-- **Two binary toggles.** Use two `B24Switch` controls, not a `card` `B24CheckboxGroup` with rich content.
-- **Many options (5+) with similar weight.** A grid of `B24PageCardGroup` cards reads better than a tall stack of dense card rows. See [card-pickers](./card-pickers.md).
-- **The options don't need explanation.** Plain `variant="list"` is faster to scan.
+- **Два бинарных переключателя.** Берите два `B24Switch`, а не `B24CheckboxGroup` в варианте `card` с богатым содержимым.
+- **Много вариантов (5 и больше) равного веса.** Сетка карточек `B24PageCardGroup` читается лучше, чем длинная стопка плотных строк-карточек. См. [card-pickers](./card-pickers.md).
+- **Вариантам не нужны пояснения.** Обычный `variant="list"` быстрее просматривать.

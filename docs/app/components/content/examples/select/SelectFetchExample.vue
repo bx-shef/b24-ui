@@ -15,10 +15,6 @@ const { data: users, status, execute } = await useLazyFetch('https://jsonplaceho
   immediate: false
 })
 
-function getUserAvatar(value: string) {
-  return users.value?.find(user => user.value === value)?.avatar || {}
-}
-
 function onOpen() {
   if (!users.value?.length) {
     execute()
@@ -32,15 +28,15 @@ function onOpen() {
     :loading="status === 'pending'"
     :icon="UserIcon"
     :trailing-icon="Expand1Icon"
-    placeholder="Select user"
+    placeholder="Выберите пользователя"
     value-key="value"
     class="w-48"
     @update:open="onOpen"
   >
-    <template #leading="{ modelValue, b24ui }">
+    <template #leading="{ item, b24ui }">
       <B24Avatar
-        v-if="modelValue"
-        v-bind="getUserAvatar(modelValue)"
+        v-if="item"
+        v-bind="item.avatar"
         :size="(b24ui.leadingAvatarSize() as AvatarProps['size'])"
         :class="b24ui.leadingAvatar()"
       />

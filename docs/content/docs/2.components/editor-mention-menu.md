@@ -1,12 +1,16 @@
 ---
 title: EditorMentionMenu
-description: A mention menu that displays user suggestions when a trigger character is typed in the editor.
+description: 'Меню упоминаний, которое показывает подсказки пользователей, когда в редакторе вводят символ-триггер.'
 category: editor
+keywords:
+  - меню упоминаний
+  - упомянуть пользователя
+  - подсказки пользователей
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/EditorMentionMenu.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/editor
   - label: Nuxt UI
@@ -14,16 +18,16 @@ links:
     to: https://ui.nuxt.com/docs/components/editor-mention-menu
 ---
 
-## Usage
+## Использование {#usage}
 
-The EditorMentionMenu component displays a menu of user suggestions when typing a trigger character (defaults to `@`) in the editor and inserts the selected mention using the `@tiptap/extension-mention` package. The trigger character is also used as the prefix when rendering the inserted mention.
+Компонент EditorMentionMenu показывает меню подсказок пользователей, когда в редакторе вводят символ-триггер (по умолчанию `@`), и вставляет выбранное упоминание через пакет `@tiptap/extension-mention`. Символ-триггер также служит префиксом вставленного упоминания.
 
 ::note
-It uses the `useEditorMenu` composable built on top of TipTap's [Suggestion](https://tiptap.dev/docs/editor/api/utilities/suggestion) utility to filter items as you type and support keyboard navigation (arrow keys, enter to select, escape to close).
+Он использует композабл `useEditorMenu` на основе утилиты [Suggestion](https://tiptap.dev/docs/editor/api/utilities/suggestion) из TipTap: элементы фильтруются по мере ввода, а по меню можно перемещаться с клавиатуры (стрелки, Enter для выбора, Escape для закрытия).
 ::
 
 ::caution
-It must be used inside an [Editor](/docs/components/editor/) component's default slot to have access to the editor instance.
+Компонент нужно использовать в слоте по умолчанию компонента [Editor](/docs/components/editor/), чтобы получить доступ к экземпляру редактора.
 ::
 
 ::component-example
@@ -36,12 +40,12 @@ class: 'p-8'
 ::
 
 ::callout{to="https://tiptap.dev/docs/editor/extensions/nodes/mention" target="_blank"}
-Learn more about the Mention extension in the TipTap documentation.
+Подробнее о расширении Mention — в документации TipTap.
 ::
 
-### Items
+### Элементы {#items}
 
-Use the `items` prop as an array of objects with the following properties:
+Пропс `items` — массив объектов со свойствами:
 
 - `label: string`{lang="ts-type"}
 - `avatar?: AvatarProps`{lang="ts-type"}
@@ -59,12 +63,12 @@ class: 'p-8'
 ::
 
 ::note
-You can also pass an array of arrays to the `items` prop to create separated groups of items.
+Чтобы получить отдельные группы элементов, передайте в `items` массив массивов.
 ::
 
-### Char
+### Символ {#char}
 
-Use the `char` prop to change the trigger character. Defaults to `@`{lang="ts-type"}. The trigger character is also used as the prefix when rendering the inserted mention (e.g. `#channel` instead of `@channel`).
+Пропс `char` меняет символ-триггер. По умолчанию `@`{lang="ts-type"}. Символ-триггер также служит префиксом вставленного упоминания (например, `#channel` вместо `@channel`).
 
 ```vue
 <template>
@@ -75,7 +79,7 @@ Use the `char` prop to change the trigger character. Defaults to `@`{lang="ts-ty
 ```
 
 ::note
-You can use multiple `EditorMentionMenu` components on the same editor with different `char` and `plugin-key` props to support different mention types.
+В одном редакторе можно использовать несколько компонентов `EditorMentionMenu` с разными пропсами `char` и `plugin-key`, чтобы поддержать разные типы упоминаний.
 
 ```vue
 <template>
@@ -87,11 +91,11 @@ You can use multiple `EditorMentionMenu` components on the same editor with diff
 ```
 ::
 
-### Suggestion
+### Подсказка {#suggestion}
 
-Use the `suggestion` prop to customize TipTap's [Suggestion matching behavior](https://tiptap.dev/docs/editor/api/utilities/suggestion#settings).
+Пропс `suggestion` настраивает [поведение сопоставления Suggestion](https://tiptap.dev/docs/editor/api/utilities/suggestion#settings) из TipTap.
 
-This is useful when the trigger character should open directly after other characters instead of requiring the default whitespace prefix.
+Это нужно, если меню должно открываться сразу после других символов, а не только после пробела, как по умолчанию.
 
 ```vue
 <template>
@@ -108,9 +112,9 @@ This is useful when the trigger character should open directly after other chara
 </template>
 ```
 
-### Options
+### Параметры {#options}
 
-Use the `options` prop to customize the positioning behavior using [Floating UI options](https://floating-ui.com/docs/computeposition#options).
+Пропс `options` настраивает позиционирование с помощью [параметров Floating UI](https://floating-ui.com/docs/computeposition#options).
 
 ```vue
 <template>
@@ -127,11 +131,11 @@ Use the `options` prop to customize the positioning behavior using [Floating UI 
 </template>
 ```
 
-## Examples
+## Примеры {#examples}
 
-### With ignore filter
+### Игнорирование фильтра {#with-ignore-filter}
 
-You can set the `ignore-filter` prop to `true` to disable the internal search and use your own search logic. Use `v-model:search-term` to access the current search term and fetch items from an API.
+Пропс `ignore-filter` со значением `true` отключает встроенный поиск, и вы используете свою логику поиска. Директива `v-model:search-term` даёт доступ к текущему запросу, по которому можно получать элементы из API.
 
 ::component-example
 ---
@@ -143,15 +147,15 @@ class: 'p-8'
 ::
 
 ::note
-This example uses [`refDebounced`](https://vueuse.org/shared/refDebounced/) to debounce the API calls.
+В этом примере [`refDebounced`](https://vueuse.org/shared/refDebounced/) откладывает вызовы API.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-## Theme
+## Тема {#theme}
 
 :component-theme

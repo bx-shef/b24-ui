@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { data: page } = await useAsyncData('showcase', () => queryCollection('showcase').first())
 if (!page.value) {
-  throw createError({ status: 404, statusText: 'Page not found', fatal: true })
+  throw createError({ status: 404, statusText: 'Страница не найдена', fatal: true })
 }
 
 useSeoMeta({
@@ -28,8 +28,8 @@ useCanonical()
     >
       <B24Alert
         color="air-primary-warning"
-        title="We are still updating this page"
-        description="Some data may be missing here — we will complete it shortly."
+        title="Страница ещё обновляется"
+        description="Часть данных пока отсутствует — скоро мы всё допишем."
       />
     </B24Card>
   </B24Container>

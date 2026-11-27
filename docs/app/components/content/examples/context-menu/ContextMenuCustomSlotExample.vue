@@ -6,14 +6,14 @@ const loading = ref(true)
 
 const items = [
   {
-    label: 'Refresh the Page',
+    label: 'Обновить страницу',
     slot: 'refresh' as const
   },
   {
-    label: 'Clear Cookies and Refresh'
+    label: 'Очистить cookie и обновить'
   },
   {
-    label: 'Clear Cache and Refresh'
+    label: 'Очистить кэш и обновить'
   }
 ] satisfies ContextMenuItem[]
 </script>
@@ -21,11 +21,11 @@ const items = [
 <template>
   <B24ContextMenu :items="items">
     <div class="flex items-center justify-center rounded-md border border-dashed border-(--ui-color-design-outline-na-stroke) text-legend text-(length:--ui-font-size-sm) bg-default aspect-video w-72">
-      Right click here
+      Нажмите правой кнопкой мыши
     </div>
 
     <template #refresh-label>
-      {{ loading ? 'Refreshing...' : 'Refresh the Page' }}
+      {{ loading ? 'Обновление...' : 'Обновить страницу' }}
     </template>
 
     <template #refresh-trailing>

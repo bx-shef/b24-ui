@@ -8,7 +8,7 @@ defineShortcuts({
 
 <template>
   <B24Modal v-model:open="open">
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
     <template #content>
       <Placeholder class="h-48" />

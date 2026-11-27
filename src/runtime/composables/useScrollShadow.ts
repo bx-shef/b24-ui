@@ -1,6 +1,6 @@
 import type { CSSProperties, MaybeRef, MaybeRefOrGetter } from 'vue'
 import { computed, toValue } from 'vue'
-import { useScroll } from '@vueuse/core'
+import { useResizeObserver, useScroll } from '@vueuse/core'
 
 export interface UseScrollShadowOptions {
   /**
@@ -34,7 +34,10 @@ export interface UseScrollShadowOptions {
  *   caller wants to decide for itself.
  */
 export function useScrollShadow(element: MaybeRef<HTMLElement | null | undefined>, options: UseScrollShadowOptions = {}) {
-  const { arrivedState } = useScroll(element)
+  const { arrivedState, measure } = useScroll(element)
+
+  // A scroll event is the only thing that updates `arrivedState`, so a resize that adds or removes overflow would leave the shadows stale
+  useResizeObserver(element, () => measure())
 
   const style = computed<CSSProperties | undefined>(() => {
     const el = toValue(element)

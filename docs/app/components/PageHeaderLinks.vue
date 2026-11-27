@@ -15,23 +15,23 @@ const { track } = useAnalytics()
 const mdPath = computed(() => `${withoutTrailingSlash(`${config.public.siteUrl}${config.public.baseUrl}/raw${route.path}`)}.md`)
 
 // @see docs/app/pages/docs/[...slug]/index.vue:164
-const aiPrompt = computed(() => `I'm looking at this Bitrix24 UI documentation: ${mdPath.value}\nHelp me understand how to use it. Be ready to explain concepts, give examples, or help debug based on it.`)
+const aiPrompt = computed(() => `Я читаю документацию Bitrix24 UI: ${mdPath.value}\nПомоги разобраться, как ею пользоваться. Будь готов объяснять понятия, приводить примеры и помогать с отладкой на её основе.`)
 
 const items = [
   {
-    label: 'Copy Markdown link',
+    label: 'Скопировать ссылку на Markdown',
     avatar: { icon: LinkIcon },
     onSelect() {
       track('Page Action', { action: 'Copy Markdown Link', page: route.path })
       copy(mdPath.value)
       toast.add({
-        title: 'Copied to clipboard',
+        title: 'Скопировано в буфер обмена',
         icon: CircleCheckIcon
       })
     }
   },
   {
-    label: 'View as Markdown',
+    label: 'Открыть как Markdown',
     avatar: { icon: MarkdownIcon },
     target: '_blank',
     to: `${withoutTrailingSlash(`${config.public.baseUrl}/raw${route.path}`)}.md`,
@@ -40,7 +40,7 @@ const items = [
     }
   },
   {
-    label: 'Open in ChatGPT',
+    label: 'Открыть в ChatGPT',
     avatar: { src: `${config.public.baseUrl}/avatar/openai.svg` },
     target: '_blank',
     to: `https://chatgpt.com/?prompt=${encodeURIComponent(aiPrompt.value)}`,
@@ -49,7 +49,7 @@ const items = [
     }
   },
   {
-    label: 'Open in Claude',
+    label: 'Открыть в Claude',
     avatar: { src: `${config.public.baseUrl}/avatar/anthropic.svg` },
     target: '_blank',
     to: `https://claude.ai/new?q=${encodeURIComponent(aiPrompt.value)}`,
@@ -69,7 +69,7 @@ async function copyPage() {
   <B24FieldGroup no-split size="sm">
     <B24Button
       color="air-secondary-accent"
-      label="Copy page"
+      label="Скопировать страницу"
       :icon="copied ? CircleCheckIcon : CopyIcon"
       :b24ui="{
         leadingIcon: [copied ? 'text-(--ui-color-accent-main-success)' : 'text-(--ui-btn-color)']

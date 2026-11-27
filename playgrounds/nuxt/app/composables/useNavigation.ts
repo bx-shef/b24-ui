@@ -22,6 +22,7 @@ const components = [
   'card',
   // 'carousel',
   'chart',
+  'chat-attachment',
   'chat-message',
   'chat-reasoning',
   'chat-shimmer',
@@ -100,6 +101,8 @@ const components = [
   'theme',
   'timeline',
   'toast',
+  'toggle',
+  'toggle-group',
   'tooltip',
   // 'tree',
   'user'

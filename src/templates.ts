@@ -2,7 +2,7 @@ import { fileURLToPath } from 'node:url'
 import { camelCase, kebabCase } from 'scule'
 import { genExport } from 'knitwork'
 // import colors from 'tailwindcss/colors'
-import { addTemplate, addTypeTemplate, hasNuxtModule, logger, updateTemplates, getLayerDirectories } from '@nuxt/kit'
+import { addTemplate, addTypeTemplate, hasNuxtModule, logger, getLayerDirectories } from '@nuxt/kit'
 import type { Nuxt, NuxtTemplate, NuxtTypeTemplate } from '@nuxt/schema'
 import type { Resolver } from '@nuxt/kit'
 import type { ModuleOptions } from './module'
@@ -17,16 +17,14 @@ import * as themeContent from './theme/content'
 export const prefixedClasses = ['absolute', 'dark:block', 'dark:hidden', 'dark:inline-block', 'focus:outline-none', 'hidden', 'in-[.ui-macos]:hidden', 'in-[.ui-macos]:inline', 'inset-0', 'lg:block', 'lg:flex', 'lg:hidden', 'peer', 'sm:block']
 
 /**
- * Name of the generated CSS template, shared by the site that registers it and
- * the dev watcher that refreshes it. These were two independent string
- * literals and drifted: the watcher kept upstream nuxt/ui's `ui.css` while the
- * template had been renamed to `b24ui.css`, so the filter silently matched
- * nothing. One constant is what stops that recurring.
+ * Name of the generated CSS template. The registration site and the tests read
+ * it from here: upstream nuxt/ui's `ui.css` is not ours, and a second literal
+ * spelling of the name is how the two halves of a feature drifted apart before.
  */
 export const CSS_TEMPLATE_FILENAME = 'b24ui.css'
 
-/** The predicate the dev watcher passes to `updateTemplates`. */
-export const isCssTemplate = (template: { filename?: string }) => template.filename === CSS_TEMPLATE_FILENAME
+/** Source files whose contents can change which components are detected as used. */
+export const COMPONENT_DETECTION_WATCH_RE = new RegExp(`\\.(?:${COMPONENT_DETECTION_EXTENSIONS.join('|')})$`)
 
 /**
  * Builds every template this module registers — per-component themes, the
@@ -52,6 +50,8 @@ export function getTemplates(options: ModuleOptions, nuxt?: Nuxt, resolve?: Reso
       templates.push({
         filename: `b24ui/${path ? path + '/' : ''}${kebabCase(component)}.ts`,
         write: true,
+        // Built from the module options alone, so Nuxt can skip it when a file is edited
+        dependsOn: [],
         getContents: async () => {
           const template = (theme as any)[component]
           let result = typeof template === 'function' ? template(options) : template
@@ -127,7 +127,7 @@ export function getTemplates(options: ModuleOptions, nuxt?: Nuxt, resolve?: Reso
     }
   }
 
-  if (options.prose || options.mdc || options.content || (!!nuxt && (hasNuxtModule('@nuxtjs/mdc') || hasNuxtModule('@nuxt/content')))) {
+  if (options.prose !== false && (options.prose || options.mdc || options.content || (!!nuxt && (hasNuxtModule('@nuxtjs/mdc') || hasNuxtModule('@nuxt/content'))))) {
     hasProse = true
 
     const path = 'prose'
@@ -137,6 +137,7 @@ export function getTemplates(options: ModuleOptions, nuxt?: Nuxt, resolve?: Reso
     templates.push({
       filename: `b24ui/${path}/index.ts`,
       write: true,
+      dependsOn: [],
       getContents: () => Object.keys(themeProse).map(component => `export { default as ${component} } from './${kebabCase(component)}'`).join('\n')
     })
   }
@@ -254,6 +255,11 @@ export function getTemplates(options: ModuleOptions, nuxt?: Nuxt, resolve?: Reso
   templates.push({
     filename: CSS_TEMPLATE_FILENAME,
     write: true,
+    // With component detection, the sources depend on the contents of the layer files
+    // `detectUsedComponents` scans. Otherwise only on options and which layers exist.
+    dependsOn: options.experimental?.componentDetection && nuxt
+      ? ({ path }) => COMPONENT_DETECTION_WATCH_RE.test(path) && getLayerDirectories(nuxt).some(layer => path.startsWith(layer.app))
+      : [],
     getContents: async () => {
       const sources = await generateSources()
       const prefix = options.theme?.prefix ? `${options.theme.prefix}:` : ''
@@ -290,12 +296,14 @@ ${themeBlocks}`
   templates.push({
     filename: 'b24ui.static.css',
     write: true,
+    dependsOn: [],
     getContents: () => themeBlocks
   })
 
   templates.push({
     filename: 'b24ui/index.ts',
     write: true,
+    dependsOn: [],
     getContents: () => [
       ...Object.keys(theme).map(component => `export { default as ${component} } from './${kebabCase(component)}'`),
       ...(hasContent ? Object.keys(themeContent).map(component => `export { default as ${component} } from './content/${kebabCase(component)}'`) : []),
@@ -306,6 +314,7 @@ ${themeBlocks}`
   // FIXME: `typeof colors[number]` should include all colors from the theme
   templates.push({
     filename: 'types/b24ui.d.ts',
+    dependsOn: [],
     getContents: () => {
       return `import * as b24ui from '#build/b24ui'
 import type { TVConfig, DeepRequired } from '@bitrix24/b24ui-nuxt'
@@ -339,38 +348,21 @@ export {}
   templates.push({
     filename: 'b24ui-image-component.ts',
     write: true,
+    // `app.components` only changes when a file is added or removed
+    dependsOn: [],
     getContents: ({ app }) => {
       const image = app?.components?.find(c => c.pascalName === 'NuxtImg' && !/nuxt(?:-nightly)?\/dist\/app/.test(c.filePath))
 
-      return image ? genExport(image.filePath, [{ name: image.export, as: 'default' }]) : 'export default "img"'
+      return [
+        image ? genExport(image.filePath, [{ name: image.export, as: 'default' }]) : 'export default "img"',
+        // an import, not a re-export: the imports plugin only rewrites `import ... from '#imports'`,
+        // a re-export would bundle every side-effectful module behind `#imports`
+        !!nuxt && hasNuxtModule('@nuxt/image', nuxt) ? `import { useImage } from '#imports'\nexport { useImage }` : 'export const useImage = undefined as undefined | (() => { options: { provider?: string } })'
+      ].join('\n')
     }
   })
 
   return templates
-}
-
-/** Source files whose contents can change which components are detected as used. */
-export const COMPONENT_DETECTION_WATCH_RE = new RegExp(`\\.(?:${COMPONENT_DETECTION_EXTENSIONS.join('|')})$`)
-
-/**
- * Re-runs component detection during `nuxt dev` when a source file changes,
- * so a component used for the first time mid-session gets its `@source` entry
- * without a dev-server restart.
- *
- * A filter that selects zero templates is a successful call — which is how
- * this shipped filtering on `ui.css` (see `CSS_TEMPLATE_FILENAME`) with no
- * signal at all. Split out of `addTemplates` and given an injectable `update`
- * purely so a test can assert the predicate that actually reaches
- * `updateTemplates` selects a template that really exists; asserting
- * `isCssTemplate` against `getTemplates()` on its own would still pass if this
- * call site went back to a hardcoded literal.
- */
-export function watchForComponentDetection(nuxt: Nuxt, update: typeof updateTemplates = updateTemplates) {
-  nuxt.hook('builder:watch', async (_, path) => {
-    if (COMPONENT_DETECTION_WATCH_RE.test(path)) {
-      await update({ filter: isCssTemplate })
-    }
-  })
 }
 
 export function addTemplates(options: ModuleOptions, nuxt: Nuxt, resolve: Resolver['resolve']) {
@@ -386,8 +378,4 @@ export function addTemplates(options: ModuleOptions, nuxt: Nuxt, resolve: Resolv
   nuxt.hook('prepare:types', ({ references }) => {
     references.push({ path: resolve('./runtime/types/app.config.d.ts') })
   })
-
-  if (options.experimental?.componentDetection && nuxt.options.dev) {
-    watchForComponentDetection(nuxt)
-  }
 }

@@ -5,11 +5,11 @@ import Shield2ContourIcon from '@bitrix24/b24icons-vue/main/Shield2ContourIcon'
 
 const items: TabsItem[] = [
   {
-    label: 'Account',
+    label: 'Аккаунт',
     icon: UserIcon
   },
   {
-    label: 'Password',
+    label: 'Пароль',
     icon: Shield2ContourIcon
   }
 ]

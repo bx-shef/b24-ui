@@ -32,11 +32,19 @@ export default defineLocale<Messages>({
       next: '下一張',
       prev: '上一張'
     },
+    chatAttachment: {
+      uploading: '正在上傳',
+      error: '上傳失敗'
+    },
     chatMessages: {
       autoScroll: '捲動到底部'
     },
     chatPrompt: {
-      placeholder: '在此輸入您的訊息…'
+      placeholder: '在此輸入您的訊息…',
+      queue: '排隊中的訊息',
+      sendNow: '立即傳送',
+      edit: '編輯',
+      remove: '移除'
     },
     chatPromptSubmit: {
       label: '傳送',
@@ -132,6 +140,15 @@ export default defineLocale<Messages>({
     drawer: {
       close: '關閉'
     },
+    editorEmojiMenu: {
+      label: '表情符號'
+    },
+    editorMentionMenu: {
+      label: '提及'
+    },
+    editorSuggestionMenu: {
+      label: '建議'
+    },
     pagination: {
       first: '第一頁',
       last: '最後一頁',
@@ -145,11 +162,13 @@ export default defineLocale<Messages>({
     prose: {
       codeCollapse: {
         closeText: '隱藏',
+        label: '{text}{name}',
         name: '程式碼',
         openText: '顯示'
       },
       collapsible: {
         closeText: '隱藏',
+        label: '{text}{name}',
         name: '屬性',
         openText: '顯示'
       },

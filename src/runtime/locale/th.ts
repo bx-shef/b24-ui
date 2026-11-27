@@ -32,11 +32,19 @@ export default defineLocale<Messages>({
       next: 'ถัดไป',
       prev: 'ก่อนหน้า'
     },
+    chatAttachment: {
+      uploading: 'กำลังอัปโหลด',
+      error: 'อัปโหลดไม่สำเร็จ'
+    },
     chatMessages: {
       autoScroll: 'เลื่อนลงล่างสุด'
     },
     chatPrompt: {
-      placeholder: 'พิมพ์ข้อความของคุณที่นี่…'
+      placeholder: 'พิมพ์ข้อความของคุณที่นี่…',
+      queue: 'ข้อความที่รอคิว',
+      sendNow: 'ส่งเลย',
+      edit: 'แก้ไข',
+      remove: 'ลบ'
     },
     chatPromptSubmit: {
       label: 'ส่ง',
@@ -132,6 +140,15 @@ export default defineLocale<Messages>({
     drawer: {
       close: 'ปิด'
     },
+    editorEmojiMenu: {
+      label: 'อีโมจิ'
+    },
+    editorMentionMenu: {
+      label: 'การกล่าวถึง'
+    },
+    editorSuggestionMenu: {
+      label: 'คำแนะนำ'
+    },
     pagination: {
       first: 'หน้าแรก',
       last: 'หน้าสุดท้าย',
@@ -145,11 +162,13 @@ export default defineLocale<Messages>({
     prose: {
       codeCollapse: {
         closeText: 'ซ่อน',
+        label: '{text} {name}',
         name: 'โค้ด',
         openText: 'แสดง'
       },
       collapsible: {
         closeText: 'ซ่อน',
+        label: '{text} {name}',
         name: 'คุณสมบัติ',
         openText: 'แสดง'
       },

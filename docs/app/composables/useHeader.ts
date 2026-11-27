@@ -32,42 +32,42 @@ const _useHeader = () => {
 
   const desktopLinks = computed<NavigationMenuItem[]>(() => [
     {
-      label: 'Docs',
+      label: 'Документация',
       to: '/docs/getting-started/',
       active: route.path.startsWith('/docs/getting-started')
     },
     {
-      label: 'Templates',
+      label: 'Шаблоны',
       to: '/templates/'
     },
     {
-      label: 'Resources',
+      label: 'Ресурсы',
       type: 'trigger',
       children: [
         {
           label: 'B24 JsSdk',
-          description: 'for using Bitrix24 REST API in applications',
+          description: 'для работы с REST API Bitrix24 в приложениях',
           icon: DeveloperResourcesIcon,
           to: 'https://bitrix24.github.io/b24jssdk/',
           target: '_blank'
         },
         {
           label: 'B24 Icons',
-          description: 'Design your applications in the Bitrix24 style.',
+          description: 'Оформляйте приложения в стиле Bitrix24.',
           icon: BarcodeIcon,
           to: 'https://bitrix24.github.io/b24icons/',
           target: '_blank'
         },
         {
-          label: 'Community',
-          description: 'Bitrix24 UI on Telegram',
+          label: 'Сообщество',
+          description: 'Bitrix24 UI в Telegram',
           icon: EarthIcon,
           to: tgLink.value,
           target: '_blank'
         },
         {
           label: 'REST API',
-          description: 'Bitrix24 REST API and Marketplace Applications',
+          description: 'REST API Bitrix24 и приложения Маркета',
           icon: Bitrix24Icon,
           to: b24DocsLink.value,
           target: '_blank'
@@ -78,31 +78,31 @@ const _useHeader = () => {
 
   const mobileLinks = computed<NavigationMenuItem[]>(() => [
     {
-      label: 'Get Started',
+      label: 'Начало работы',
       to: '/docs/getting-started/',
       icon: PlayLIcon,
       active: route.path.startsWith('/docs/getting-started')
     },
     {
-      label: 'Components',
+      label: 'Компоненты',
       to: '/docs/components/',
       icon: DeveloperResourcesIcon,
       active: route.path.startsWith('/docs/components')
     },
     {
-      label: 'Composables',
+      label: 'Композаблы',
       to: '/docs/composables/',
       icon: ViewmodeCodeIcon,
       active: route.path.startsWith('/docs/composables')
     },
     {
-      label: 'Typography',
+      label: 'Типографика',
       to: '/docs/typography/',
       icon: FormattingIcon,
       active: route.path.startsWith('/docs/typography')
     },
     {
-      label: 'Templates',
+      label: 'Шаблоны',
       to: '/templates/',
       icon: FormIcon
     },

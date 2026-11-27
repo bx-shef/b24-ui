@@ -1,15 +1,18 @@
 ---
 title: Collapsible
-description: A collapsible component for showing or hiding its content.
+description: 'Сворачиваемый компонент: показывает или скрывает своё содержимое.'
 category: element
 keywords:
   - disclosure
   - expand
+  - сворачиваемый блок
+  - спойлер
+  - показать и скрыть
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Collapsible.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/collapsible
   - label: Nuxt UI
@@ -21,11 +24,11 @@ links:
     to: https://reka-ui.com/docs/components/collapsible
 ---
 
-## Usage
+## Использование {#usage}
 
-Use a [Button](/docs/components/button/) or any other component in the default slot of the Collapsible.
+В слоте по умолчанию Collapsible разместите [Button](/docs/components/button/) или любой другой компонент.
 
-Then, use the `#content` slot to add the content displayed when the Collapsible is open.
+Содержимое, которое видно в раскрытом состоянии, добавьте в слот `#content`.
 
 ::component-code
 ---
@@ -37,22 +40,22 @@ props:
 slots:
   default: |
 
-    <B24Button label="Open" block use-dropdown />
+    <B24Button label="Открыть" block use-dropdown />
 
   content: |
 
     <Placeholder class="h-48" />
 ---
 
-:b24-button{label="Open" block use-dropdown}
+:b24-button{label="Открыть" block use-dropdown}
 
 #content
 :placeholder{class="h-48"}
 ::
 
-### Unmount
+### Размонтирование {#unmount}
 
-Use the `unmount-on-hide` prop to prevent the content from being unmounted when the Collapsible is collapsed. Defaults to `true`.
+Пропс `unmount-on-hide` управляет тем, размонтируется ли содержимое при сворачивании Collapsible. По умолчанию — `true`.
 
 ::component-code
 ---
@@ -65,26 +68,26 @@ props:
 slots:
   default: |
 
-    <B24Button label="Open" block use-dropdown />
+    <B24Button label="Открыть" block use-dropdown />
 
   content: |
 
     <Placeholder class="h-48" />
 ---
 
-:b24-button{label="Open" block use-dropdown}
+:b24-button{label="Открыть" block use-dropdown}
 
 #content
 :placeholder{class="h-48"}
 ::
 
 ::note
-You can inspect the DOM to see the content being rendered.
+Содержимое видно в DOM, если открыть инструменты разработчика.
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the Collapsible.
+Пропс `disabled` отключает Collapsible.
 
 ::component-code
 ---
@@ -97,24 +100,24 @@ props:
 slots:
   default: |
 
-    <B24Button label="Open" block use-dropdown />
+    <B24Button label="Открыть" block use-dropdown />
 
   content: |
 
     <Placeholder class="h-48" />
 ---
 
-:b24-button{label="Open" block use-dropdown}
+:b24-button{label="Открыть" block use-dropdown}
 
 #content
 :placeholder{class="h-48"}
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Control open state
+### Управление состоянием {#control-open-state}
 
-You can control the open state by using the `default-open` prop or the `v-model:open` directive.
+Раскрытием управляют пропс `default-open` или директива `v-model:open`.
 
 ::component-example
 ---
@@ -123,16 +126,16 @@ name: 'collapsible-open-example'
 ::
 
 ::note
-In this example, leveraging [`defineShortcuts`](/docs/composables/define-shortcuts/), you can toggle the Collapsible by pressing :kbd{value="O"}.
+В этом примере с помощью [`defineShortcuts`](/docs/composables/define-shortcuts/) Collapsible переключается по нажатию :kbd{value="O"}.
 ::
 
 ::tip
-This lets you move the trigger outside of the Collapsible or remove it entirely.
+Так триггер можно вынести за пределы Collapsible или убрать совсем.
 ::
 
-### With rotating icon
+### С вращающейся иконкой {#with-rotating-icon}
 
-Here is an example with a rotating icon in the Button that indicates the open state of the Collapsible.
+Пример с вращающейся иконкой в Button, которая показывает, раскрыт ли Collapsible.
 
 ::component-example
 ---
@@ -142,18 +145,18 @@ name: 'collapsible-icon-example'
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

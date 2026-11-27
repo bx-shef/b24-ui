@@ -13,6 +13,8 @@ permissions:
 
 jobs:
   await-ci:
+    # Пропуск, пока не выбрано имя своего пакета npm (#9). Включить: NPM_RELEASE=true.
+    if: vars.NPM_RELEASE == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: read

@@ -14,15 +14,15 @@ const items: SplitterItem[] = [
   <div class="w-full h-96">
     <B24Splitter id="splitter-example" :items="items">
       <template #left>
-        Left
+        Слева
       </template>
 
       <template #main>
-        Main
+        Основная часть
       </template>
 
       <template #right>
-        Right
+        Справа
       </template>
     </B24Splitter>
   </div>

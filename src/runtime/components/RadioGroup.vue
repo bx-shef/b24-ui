@@ -99,12 +99,11 @@ export interface RadioGroupSlots<T extends RadioGroupItem[] = RadioGroupItem[]> 
 <script setup lang="ts" generic="T extends RadioGroupItem[], VK extends GetItemKeys<T> = 'value'">
 import { computed, useId } from 'vue'
 import { RadioGroupRoot, RadioGroupItem as RRadioGroupItem, RadioGroupIndicator, Label } from 'reka-ui'
-import { reactivePick } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
 import { useFormField } from '../composables/useFormField'
-import { get } from '../utils'
+import { get, safeIcon } from '../utils'
 import { tv } from '../utils/tv'
 
 const _props = withDefaults(defineProps<RadioGroupProps<T, VK>>(), {
@@ -120,7 +119,7 @@ const props = useComponentProps<RadioGroupProps<T, VK>>('radioGroup', _props)
 
 const appConfig = useAppConfig() as RadioGroup['AppConfig']
 
-const rootProps = useForwardProps(reactivePick(props, 'as', 'loop', 'required'), emits)
+const rootProps = useForwardProps(props, ['as', 'loop', 'required'], emits)
 
 const { emitFormChange, emitFormInput, color: formFieldColor, name, size: formFieldSize, highlight: formFieldHighlight, id: _id, disabled: formFieldDisabled, ariaAttrs } = useFormField<RadioGroupProps<T>>(_props, { bind: false })
 const id = _id.value ?? useId()
@@ -239,11 +238,11 @@ function onUpdate(value: any) {
         </div>
 
         <div
-          v-if="labelIcon(item) || (item.label || !!slots.label) || (item.description || !!slots.description)"
+          v-if="safeIcon(labelIcon(item)) || (item.label || !!slots.label) || (item.description || !!slots.description)"
           data-slot="wrapper"
           :class="b24ui.wrapper({ class: [props.b24ui?.wrapper, item.b24ui?.wrapper] })"
         >
-          <Component :is="labelIcon(item)" v-if="labelIcon(item)" data-slot="icon" :class="b24ui.icon({ class: [props.b24ui?.icon, item.b24ui?.icon] })" />
+          <Component :is="safeIcon(labelIcon(item))" v-if="safeIcon(labelIcon(item))" data-slot="icon" :class="b24ui.icon({ class: [props.b24ui?.icon, item.b24ui?.icon] })" />
           <component
             :is="props.variant === 'list' ? Label : 'span'"
             v-if="item.label || !!slots.label"

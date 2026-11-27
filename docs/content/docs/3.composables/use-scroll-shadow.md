@@ -1,11 +1,11 @@
 ---
 title: useScrollShadow
-description: 'A composable function to apply scroll shadow effects to any scrollable element.'
+description: 'Композабл для добавления теней прокрутки любому прокручиваемому элементу.'
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the auto-imported `useScrollShadow` composable to apply fade shadows on the edges of a scrollable element, indicating that more content is available in the scroll direction.
+Автоимпортируемый композабл `useScrollShadow` добавляет затухающие тени по краям прокручиваемого элемента — они показывают, что в этом направлении есть ещё содержимое.
 
 ::component-example
 ---
@@ -13,62 +13,62 @@ name: 'use-scroll-shadow-example'
 ---
 ::
 
-- Uses CSS `mask-image` to fade content at the edges rather than overlay elements, so it works on any background.
-- Automatically detects whether the element is overflowing and only applies shadows when needed.
-- Supports both vertical and horizontal orientations.
+- Содержимое по краям затухает с помощью CSS `mask-image`, а не накладываемых элементов, поэтому эффект работает на любом фоне.
+- Композабл сам определяет, переполнен ли элемент, и добавляет тени только при необходимости.
+- Поддерживаются вертикальная и горизонтальная ориентации.
 
 ## API
 
 `useScrollShadow(element, options?)`{lang="ts-type"}
 
-### Parameters
+### Параметры {#parameters}
 
 ::field-group
 
 ::field{name="element" type="MaybeRef<HTMLElement | null | undefined>" required}
-A template ref or reactive reference to the scrollable element.
+Ссылка (template ref) или реактивная ссылка на прокручиваемый элемент.
 ::
 
 ::field{name="options" type="UseScrollShadowOptions"}
-Configuration options for the scroll shadow.
+Настройки тени прокрутки.
 
     ::collapsible
 
       ::field-group
         ::field{name="size" type="MaybeRefOrGetter<number>" default="24"}
-        The shadow size in pixels.
+        Размер тени в пикселях.
         ::
 
         ::field{name="orientation" type="MaybeRefOrGetter<'vertical' | 'horizontal'>" default="'vertical'"}
-        The scroll direction to apply shadows.
+        Направление прокрутки, для которого добавляются тени.
         ::
       ::
     ::
 ::
 ::
 
-### Return
+### Возвращаемое значение {#return}
 
 ::field-group
 
 ::field{name="style" type="ComputedRef<CSSProperties | undefined>"}
-A reactive style object to bind on the scrollable element with `:style`. Contains `maskImage` when shadows are active, `undefined` otherwise.
+Реактивный объект стилей, который привязывается к прокручиваемому элементу через `:style`. Содержит `maskImage`, когда тени активны, и `undefined` в остальных случаях.
 ::
 
 ::field{name="isOverflowing" type="ComputedRef<boolean>"}
-Whether the element's content overflows its visible area.
+Выходит ли содержимое элемента за пределы видимой области.
 ::
 
 ::field{name="arrivedState" type="{ top: boolean, bottom: boolean, left: boolean, right: boolean }"}
-Reactive scroll arrival state from [`useScroll`](https://vueuse.org/core/useScroll/).
+Реактивное состояние достижения краёв прокрутки из [`useScroll`](https://vueuse.org/core/useScroll/).
 ::
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Horizontal
+### Горизонтальная прокрутка {#horizontal}
 
-Use the `orientation` option for horizontally scrollable containers:
+Для контейнеров с горизонтальной прокруткой используйте опцию `orientation`:
 
 ```vue
 <script setup lang="ts">
@@ -79,14 +79,14 @@ const { style } = useScrollShadow(el, { orientation: 'horizontal' })
 
 <template>
   <div ref="el" class="overflow-x-auto whitespace-nowrap" :style="style">
-    <!-- Horizontally scrollable content -->
+    <!-- Содержимое с горизонтальной прокруткой -->
   </div>
 </template>
 ```
 
-### Custom size
+### Свой размер {#custom-size}
 
-Use the `size` option to change the shadow size in pixels:
+Опция `size` меняет размер тени в пикселях:
 
 ```vue
 <script setup lang="ts">
@@ -97,7 +97,7 @@ const { style } = useScrollShadow(el, { size: 48 })
 
 <template>
   <div ref="el" class="max-h-[300px] overflow-y-auto" :style="style">
-    <!-- Scrollable content -->
+    <!-- Прокручиваемое содержимое -->
   </div>
 </template>
 ```

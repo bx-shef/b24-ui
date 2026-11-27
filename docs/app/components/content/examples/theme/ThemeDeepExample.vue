@@ -11,7 +11,7 @@ import MyButton from './MyButton.vue'
     }"
   >
     <B24Card :b24ui="{ body: 'flex items-center gap-2 sm:flex-row flex-col' }">
-      <B24Button label="Direct child" />
+      <B24Button label="Прямой потомок" />
       <MyButton />
     </B24Card>
   </B24Theme>

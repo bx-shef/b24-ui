@@ -1,15 +1,18 @@
 ---
 title: Chip
-description: An indicator that shows either a number or a state.
+description: 'Индикатор: число или состояние.'
 category: element
 keywords:
   - notification dot
   - status dot
+  - чип
+  - индикатор-точка
+  - счётчик на значке
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Chip.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/chip
   - label: Nuxt UI
@@ -17,9 +20,9 @@ links:
     to: https://ui.nuxt.com/docs/components/chip
 ---
 
-## Usage
+## Использование {#usage}
 
-Wrap any component with a Chip to display an indicator.
+Оберните любой компонент в Chip, чтобы показать индикатор.
 
 ::component-code
 ---
@@ -27,14 +30,14 @@ prettier: true
 slots:
   default: |
 
-    <B24Button color="air-secondary-no-accent" label="Button" />
+    <B24Button color="air-secondary-no-accent" label="Кнопка" />
 ---
-:b24-button{color="air-secondary-no-accent" label="Button"}
+:b24-button{color="air-secondary-no-accent" label="Кнопка"}
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of the Chip.
+Пропс `color` меняет цвет Chip.
 
 ::component-code
 ---
@@ -44,17 +47,17 @@ props:
 slots:
   default: |
 
-    <B24Button color="air-secondary-no-accent" label="Button" />
+    <B24Button color="air-secondary-no-accent" label="Кнопка" />
 ---
-:b24-button{color="air-secondary-no-accent" label="Button"}
+:b24-button{color="air-secondary-no-accent" label="Кнопка"}
 ::
 
-### Inverted
+### Инверсия {#inverted}
 
-Use the `inverted` prop to invert the color of the Chip.
+Пропс `inverted` инвертирует цвет Chip.
 
 ::warning
-Only available for `air-primary*` colors
+Доступно только для цветов `air-primary*`.
 ::
 
 ::component-code
@@ -66,14 +69,14 @@ props:
 slots:
   default: |
 
-    <B24Button color="air-secondary-no-accent" label="Button" />
+    <B24Button color="air-secondary-no-accent" label="Кнопка" />
 ---
-:b24-button{color="air-secondary-no-accent" label="Button"}
+:b24-button{color="air-secondary-no-accent" label="Кнопка"}
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the Chip.
+Пропс `size` меняет размер Chip.
 
 ::component-code
 ---
@@ -83,14 +86,14 @@ props:
 slots:
   default: |
 
-    <B24Button color="air-secondary-no-accent" label="Button" />
+    <B24Button color="air-secondary-no-accent" label="Кнопка" />
 ---
-:b24-button{color="air-secondary-no-accent" label="Button"}
+:b24-button{color="air-secondary-no-accent" label="Кнопка"}
 ::
 
-### Text
+### Текст {#text}
 
-Use the `text` prop to set the text of the Chip.
+Пропс `text` задаёт текст Chip.
 
 ::component-code
 ---
@@ -101,14 +104,14 @@ props:
 slots:
   default: |
 
-    <B24Button color="air-secondary-no-accent" label="Button" />
+    <B24Button color="air-secondary-no-accent" label="Кнопка" />
 ---
-:b24-button{color="air-secondary-no-accent" label="Button"}
+:b24-button{color="air-secondary-no-accent" label="Кнопка"}
 ::
 
-### Hide zero
+### Скрыть ноль {#hide-zero}
 
-Use the `hideZero` prop to hide the text if it is equal `0`.
+Пропс `hideZero` скрывает текст, если он равен `0`.
 
 ::component-code
 ---
@@ -120,14 +123,14 @@ props:
 slots:
   default: |
 
-    <B24Button color="air-secondary-no-accent" label="Button" />
+    <B24Button color="air-secondary-no-accent" label="Кнопка" />
 ---
-:b24-button{color="air-secondary-no-accent" label="Button"}
+:b24-button{color="air-secondary-no-accent" label="Кнопка"}
 ::
 
-### Trailing Icon
+### Иконка справа {#trailing-icon}
 
-Use the `trailing-icon` prop to customize the trailing [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `trailing-icon` задаёт [иконку](https://bitrix24.github.io/b24icons/icons/) справа.
 
 ::component-code
 ---
@@ -144,14 +147,14 @@ props:
 slots:
   default: |
 
-    <B24Button color="air-secondary-no-accent" label="Button" />
+    <B24Button color="air-secondary-no-accent" label="Кнопка" />
 ---
-:b24-button{color="air-secondary-no-accent" label="Button"}
+:b24-button{color="air-secondary-no-accent" label="Кнопка"}
 ::
 
-### Position
+### Положение {#position}
 
-Use the `position` prop to change the position of the Chip.
+Пропс `position` меняет положение Chip.
 
 ::component-code
 ---
@@ -161,14 +164,14 @@ props:
 slots:
   default: |
 
-    <B24Button color="air-secondary-no-accent" label="Button" />
+    <B24Button color="air-secondary-no-accent" label="Кнопка" />
 ---
-:b24-button{color="air-secondary-no-accent" label="Button"}
+:b24-button{color="air-secondary-no-accent" label="Кнопка"}
 ::
 
-### Inset
+### Внутри компонента {#inset}
 
-Use the `inset` prop to display the Chip inside the component. This is useful when dealing with rounded components.
+Пропс `inset` показывает Chip внутри компонента. Это удобно для скруглённых компонентов.
 
 ::component-code
 ---
@@ -183,9 +186,9 @@ slots:
 :b24-avatar{src="/b24ui/avatar/employee.png" loading="lazy"}
 ::
 
-### Standalone
+### Отдельный индикатор {#standalone}
 
-Use the `standalone` prop alongside the `inset` prop to display the Chip inline.
+Пропс `standalone` вместе с пропсом `inset` показывает Chip в строке.
 
 ::component-code
 ---
@@ -196,35 +199,35 @@ props:
 ::
 
 ::note
-It's used this way in the [`CommandPalette`](/docs/components/command-palette/), [`InputMenu`](/docs/components/input-menu/), [`Select`](/docs/components/select/) or [`SelectMenu`](/docs/components/select-menu/) components for example.
+Так он используется, например, в компонентах [`CommandPalette`](/docs/components/command-palette/), [`InputMenu`](/docs/components/input-menu/), [`Select`](/docs/components/select/) и [`SelectMenu`](/docs/components/select-menu/).
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Control visibility
+### Управление видимостью {#control-visibility}
 
-You can control the visibility of the Chip using the `show` prop.
+Видимостью Chip управляет пропс `show`.
 
 :component-example{name="chip-show-example"}
 
 ::note
-In this example, the Chip has a color per status and is displayed when the status is not `offline`.
+В этом примере у каждого статуса свой цвет Chip, а показывается он, когда статус не `offline`.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

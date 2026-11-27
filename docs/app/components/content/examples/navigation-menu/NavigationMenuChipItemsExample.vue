@@ -8,61 +8,61 @@ import Settings5Icon from '@bitrix24/b24icons-vue/editor/Settings5Icon'
 
 const items: NavigationMenuItem[] = [
   {
-    label: 'Sales Pipeline',
+    label: 'Воронка продаж',
     icon: ConnectionIcon,
     chip: { color: 'air-primary-alert' },
     children: [
       {
-        label: 'Lead Generation',
-        description: 'Initial contact with potential clients'
+        label: 'Привлечение лидов',
+        description: 'Первичный контакт с потенциальными клиентами'
       },
       {
-        label: 'Lead Qualification',
-        description: 'Client potential assessment'
+        label: 'Квалификация лидов',
+        description: 'Оценка потенциала клиента'
       },
       {
-        label: 'Negotiations',
-        description: 'Deal terms discussion',
+        label: 'Переговоры',
+        description: 'Обсуждение условий сделки',
         chip: { color: 'air-primary-alert' },
         icon: MicrophoneOnIcon
       }
     ]
   },
   {
-    label: 'Sales Analytics',
+    label: 'Аналитика продаж',
     icon: CrmMapIcon,
     chip: { color: 'air-primary', text: 3 },
     children: [
       {
-        label: 'Sales Reports',
+        label: 'Отчёты по продажам',
         icon: CrmMapIcon,
         active: true,
         chip: { text: 1 }
       },
       {
-        label: 'Key Metrics',
+        label: 'Ключевые показатели',
         icon: Settings5Icon,
         chip: { color: 'air-primary-copilot', text: 2 }
       },
       {
-        label: 'CRM Integration'
+        label: 'Интеграция с CRM'
       }
     ]
   },
   {
-    label: 'Resources',
+    label: 'Ресурсы',
     icon: Info1Icon,
     chip: true,
     children: [
       {
-        label: 'Support',
+        label: 'Поддержка',
         icon: Info1Icon,
         disabled: true,
         to: 'https://helpdesk.bitrix24.com/',
         target: '_blank'
       },
       {
-        label: 'RestApi Integration'
+        label: 'Интеграция с REST API'
       }
     ]
   }

@@ -30,7 +30,7 @@ function onOpen() {
     :items="users"
     :icon="UserIcon"
     :trailing-icon="Expand1Icon"
-    placeholder="Select user"
+    placeholder="Выберите пользователя"
     value-key="value"
     :b24ui="{ content: 'min-w-fit', viewport: 'min-w-fit', item: 'min-w-fit' }"
     class="w-48"

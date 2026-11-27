@@ -140,7 +140,6 @@ export type DropdownMenuSlots<
 import { computed, toRef } from 'vue'
 import { defu } from 'defu'
 import { DropdownMenuRoot, DropdownMenuTrigger, DropdownMenuArrow } from 'reka-ui'
-import { reactivePick } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
@@ -166,7 +165,7 @@ const props = useComponentProps<DropdownMenuProps<T>>('dropdownMenu', _props)
 
 const appConfig = useAppConfig() as DropdownMenu['AppConfig']
 
-const rootProps = useForwardProps(reactivePick(props, 'defaultOpen', 'open', 'modal'), emits)
+const rootProps = useForwardProps(props, ['defaultOpen', 'open', 'modal'], emits)
 const contentProps = toRef(() => defu(props.content, { side: 'bottom', align: 'center', sideOffset: 8, collisionPadding: 8 }) as DropdownMenuContentProps)
 const arrowProps = toRef(() => defu(typeof props.arrow === 'boolean' ? {} : props.arrow, { width: 20, height: 10 }) as DropdownMenuArrowProps)
 const getProxySlots = () => omit(slots, ['default'])
