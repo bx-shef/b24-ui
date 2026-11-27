@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { EditorSuggestionMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { EditorSuggestionMenuItem } from '@bxshefby/b24ui-nuxt'
 import TextIcon from '@bitrix24/b24icons-vue/outline/TextIcon'
 import BulletedListIcon from '@bitrix24/b24icons-vue/outline/BulletedListIcon'
 import NumberedListIcon from '@bitrix24/b24icons-vue/outline/NumberedListIcon'

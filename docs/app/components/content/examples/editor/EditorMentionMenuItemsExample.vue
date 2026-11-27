@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { EditorMentionMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { EditorMentionMenuItem } from '@bxshefby/b24ui-nuxt'
 
 const value = ref(`Введите @, чтобы упомянуть пользователя.
 

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import theme from '#build/b24ui/navigation-menu'
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import Placeholder from '../../components/Placeholder.vue'
 import ConnectionIcon from '@bitrix24/b24icons-vue/actions/ConnectionIcon'
 import GitHubIcon from '@bitrix24/b24icons-vue/social/GitHubIcon'

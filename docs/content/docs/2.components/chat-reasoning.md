@@ -77,7 +77,7 @@ props:
 ::
 
 ::tip
-Утилита `isPartStreaming` из `@bitrix24/b24ui-nuxt/utils/ai` определяет, идёт ли сейчас поток для части с рассуждениями. Передайте ей слот-пропс `streaming` компонента [ChatMessages](/docs/components/chat-messages/#slots), чтобы она остановилась вместе с чатом.
+Утилита `isPartStreaming` из `@bxshefby/b24ui-nuxt/utils/ai` определяет, идёт ли сейчас поток для части с рассуждениями. Передайте ей слот-пропс `streaming` компонента [ChatMessages](/docs/components/chat-messages/#slots), чтобы она остановилась вместе с чатом.
 ::
 
 ### Мерцание {#shimmer}

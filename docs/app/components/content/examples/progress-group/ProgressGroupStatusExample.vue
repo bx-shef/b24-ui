@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ProgressGroupItem } from '@bitrix24/b24ui-nuxt'
+import type { ProgressGroupItem } from '@bxshefby/b24ui-nuxt'
 import SettingsIcon from '@bitrix24/b24icons-vue/main/SettingsIcon'
 import AppsIcon from '@bitrix24/b24icons-vue/outline/AppsIcon'
 import FileIcon from '@bitrix24/b24icons-vue/main/FileIcon'

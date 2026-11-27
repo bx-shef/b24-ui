@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ChatPromptQueueItem } from '@bitrix24/b24ui-nuxt'
+import type { ChatPromptQueueItem } from '@bxshefby/b24ui-nuxt'
 
 const input = ref('')
 const queue = ref<ChatPromptQueueItem[]>([

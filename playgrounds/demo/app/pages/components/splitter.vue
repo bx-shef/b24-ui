@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import theme from '#build/b24ui/splitter'
-import type { SplitterItem } from '@bitrix24/b24ui-nuxt'
+import type { SplitterItem } from '@bxshefby/b24ui-nuxt'
 
 const orientations = Object.keys(theme.variants.orientation) as Array<keyof typeof theme.variants.orientation>
 

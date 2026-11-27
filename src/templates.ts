@@ -317,7 +317,7 @@ ${themeBlocks}`
     dependsOn: [],
     getContents: () => {
       return `import * as b24ui from '#build/b24ui'
-import type { TVConfig, DeepRequired } from '@bitrix24/b24ui-nuxt'
+import type { TVConfig, DeepRequired } from '#b24ui/types'
 import type { defaultConfig } from 'tailwind-variants'
 
 type AppConfigUI = {

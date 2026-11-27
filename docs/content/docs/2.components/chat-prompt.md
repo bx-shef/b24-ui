@@ -103,12 +103,12 @@ name: 'chat-prompt-files-example'
 ::
 
 ::tip
-Утилита `toFileUIParts` из `@bitrix24/b24ui-nuxt/utils/ai` превращает файлы в data URL для AI SDK, а слот `#files` компонента [ChatMessages](/docs/components/chat-messages/) выводит их в беседе.
+Утилита `toFileUIParts` из `@bxshefby/b24ui-nuxt/utils/ai` превращает файлы в data URL для AI SDK, а слот `#files` компонента [ChatMessages](/docs/components/chat-messages/) выводит их в беседе.
 
 ```vue
 <script setup lang="ts">
 import { useChat } from '@ai-sdk/vue'
-import { toFileUIParts } from '@bitrix24/b24ui-nuxt/utils/ai'
+import { toFileUIParts } from '@bxshefby/b24ui-nuxt/utils/ai'
 
 const input = ref('')
 const files = ref<File[]>([])
@@ -225,7 +225,7 @@ AI SDK не ставит сообщения в очередь: вызов `sendM
 ```vue
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import type { ChatPromptQueueItem } from '@bitrix24/b24ui-nuxt'
+import type { ChatPromptQueueItem } from '@bxshefby/b24ui-nuxt'
 import { useChat } from '@ai-sdk/vue'
 
 const input = ref('')

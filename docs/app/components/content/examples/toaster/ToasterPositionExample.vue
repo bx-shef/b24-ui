@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ToasterProps } from '@bitrix24/b24ui-nuxt'
+import type { ToasterProps } from '@bxshefby/b24ui-nuxt'
 import theme from '#build/b24ui/toaster'
 
 const positions = Object.keys(theme.variants.position)

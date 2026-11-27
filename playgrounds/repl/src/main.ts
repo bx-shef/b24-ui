@@ -1,7 +1,7 @@
 import './main.css'
 
 import { createApp } from 'vue'
-import b24UiPlugin from '@bitrix24/b24ui-nuxt/vue-plugin'
+import b24UiPlugin from '@bxshefby/b24ui-nuxt/vue-plugin'
 import App from './App.vue'
 
 const app = createApp(App)

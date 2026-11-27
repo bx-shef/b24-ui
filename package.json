@@ -1,13 +1,19 @@
 {
-  "name": "@bitrix24/b24ui-nuxt",
+  "name": "@bxshefby/b24ui-nuxt",
   "description": "Bitrix24 UI Kit for building REST-API web applications with Nuxt & Vue",
   "version": "2.15.0",
   "packageManager": "pnpm@12.21.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bitrix24/b24ui.git"
+    "url": "git+https://github.com/bx-shef/b24-ui.git"
   },
-  "homepage": "https://bitrix24.github.io/b24ui/",
+  "homepage": "https://github.com/bx-shef/b24-ui#readme",
+  "bugs": {
+    "url": "https://github.com/bx-shef/b24-ui/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "engines": {
     "node": "^20.19.0 || >=22.12.0"

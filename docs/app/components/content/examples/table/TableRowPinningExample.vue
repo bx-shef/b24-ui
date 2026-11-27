@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { h, resolveComponent } from 'vue'
-import type { TableColumn } from '@bitrix24/b24ui-nuxt'
+import type { TableColumn } from '@bxshefby/b24ui-nuxt'
 import type { RowPinningState } from '@tanstack/table-core'
 import FavoriteIcon from '@bitrix24/b24icons-vue/outline/FavoriteIcon'
 import FavoriteSolidIcon from '@bitrix24/b24icons-vue/solid/FavoriteIcon'

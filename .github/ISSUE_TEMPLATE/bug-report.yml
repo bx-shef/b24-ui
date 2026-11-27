@@ -62,8 +62,8 @@ body:
   - type: input
     id: version
     attributes:
-      label: "`@bitrix24/b24ui-nuxt` version"
-      description: From your lockfile, not from memory — `pnpm why @bitrix24/b24ui-nuxt` prints it.
+      label: "`@bxshefby/b24ui-nuxt` version"
+      description: From your lockfile, not from memory — `pnpm why @bxshefby/b24ui-nuxt` prints it.
       placeholder: 2.12.0
     validations:
       required: true

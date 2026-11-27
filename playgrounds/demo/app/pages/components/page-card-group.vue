@@ -9,7 +9,7 @@ import DocumentStreamIcon from '@bitrix24/b24icons-vue/main/DocumentStreamIcon'
 import CartWithCursorIcon from '@bitrix24/b24icons-vue/main/CartWithCursorIcon'
 import CreditDebitCardIcon from '@bitrix24/b24icons-vue/main/CreditDebitCardIcon'
 import PictureIcon from '@bitrix24/b24icons-vue/main/PictureIcon'
-import type { PageCardGroupItem, AvatarProps } from '@bitrix24/b24ui-nuxt'
+import type { PageCardGroupItem, AvatarProps } from '@bxshefby/b24ui-nuxt'
 
 type AvatarColor = keyof typeof avatarTheme.variants.color
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DropdownMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { DropdownMenuItem } from '@bxshefby/b24ui-nuxt'
 import HamburgerMenuIcon from '@bitrix24/b24icons-vue/outline/HamburgerMenuIcon'
 import Bookmark2Icon from '@bitrix24/b24icons-vue/outline/Bookmark2Icon'
 import ClockWithArrowIcon from '@bitrix24/b24icons-vue/main/ClockWithArrowIcon'

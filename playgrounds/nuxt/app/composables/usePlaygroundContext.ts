@@ -1,4 +1,4 @@
-import type { CardProps } from '@bitrix24/b24ui-nuxt'
+import type { CardProps } from '@bxshefby/b24ui-nuxt'
 import { computed, inject, provide, ref, type ComputedRef, type InjectionKey, type Ref } from 'vue'
 
 /**

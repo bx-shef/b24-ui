@@ -1,7 +1,7 @@
 import './main.css'
 import type { App } from 'vue'
 import { defineComponent, h } from 'vue'
-import basePlugin from '@bitrix24/b24ui-nuxt/vue-plugin'
+import basePlugin from '@bxshefby/b24ui-nuxt/vue-plugin'
 
 const NuxtLink = defineComponent({
   name: 'NuxtLink',

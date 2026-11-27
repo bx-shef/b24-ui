@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FooterColumn } from '@bitrix24/b24ui-nuxt'
+import type { FooterColumn } from '@bxshefby/b24ui-nuxt'
 import GitHubIcon from '@bitrix24/b24icons-vue/social/GitHubIcon'
 
 const columns: FooterColumn[] = [

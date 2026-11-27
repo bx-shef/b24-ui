@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import theme from '#build/b24ui/badge'
 import InfoIcon from '@bitrix24/b24icons-vue/button/InfoIcon'
-import type { ToastProps } from '@bitrix24/b24ui-nuxt'
+import type { ToastProps } from '@bxshefby/b24ui-nuxt'
 
 const toast = useToast()
 

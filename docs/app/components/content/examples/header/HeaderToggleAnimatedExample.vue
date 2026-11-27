@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { VariantType } from 'motion-v'
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import { motion } from 'motion-v'
 import GitHubIcon from '@bitrix24/b24icons-vue/social/GitHubIcon'
 

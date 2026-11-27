@@ -1,4 +1,4 @@
-import type { Direction, ToasterProps } from '@bitrix24/b24ui-nuxt'
+import type { Direction, ToasterProps } from '@bxshefby/b24ui-nuxt'
 
 export default defineAppConfig({
   dir: 'ltr' as Direction,

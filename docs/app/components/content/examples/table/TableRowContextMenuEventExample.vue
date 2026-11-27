@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { h, resolveComponent } from 'vue'
-import type { ContextMenuItem, TableColumn, TableRow } from '@bitrix24/b24ui-nuxt'
+import type { ContextMenuItem, TableColumn, TableRow } from '@bxshefby/b24ui-nuxt'
 import { useClipboard } from '@vueuse/core'
 import CircleCheckIcon from '@bitrix24/b24icons-vue/outline/CircleCheckIcon'
 

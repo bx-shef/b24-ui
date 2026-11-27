@@ -2,7 +2,7 @@
 import { shallowRef } from 'vue'
 import type { DateValue } from '@internationalized/date'
 import { getLocalTimeZone, today } from '@internationalized/date'
-import type { DateTimePickerPreset } from '@bitrix24/b24ui-nuxt'
+import type { DateTimePickerPreset } from '@bxshefby/b24ui-nuxt'
 
 const value = shallowRef<DateValue | undefined>()
 

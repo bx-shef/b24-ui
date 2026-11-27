@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import theme from '#build/b24ui/radio-group'
-import type { RadioGroupItem } from '@bitrix24/b24ui-nuxt'
+import type { RadioGroupItem } from '@bxshefby/b24ui-nuxt'
 import ThemeIcon from '@bitrix24/b24icons-vue/outline/ThemeIcon'
 import SunIcon from '@bitrix24/b24icons-vue/outline/SunIcon'
 import MoonIcon from '@bitrix24/b24icons-vue/outline/MoonIcon'

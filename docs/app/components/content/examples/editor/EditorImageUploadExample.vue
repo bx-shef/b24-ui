@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { EditorCustomHandlers, EditorToolbarItem } from '@bitrix24/b24ui-nuxt'
+import type { EditorCustomHandlers, EditorToolbarItem } from '@bxshefby/b24ui-nuxt'
 import type { Editor } from '@tiptap/vue-3'
 import { ImageUpload } from './EditorImageUploadExtension'
 import HeaderIcon from '@bitrix24/b24icons-vue/editor/HeaderIcon'

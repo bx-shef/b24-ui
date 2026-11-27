@@ -1,7 +1,7 @@
 import type { ContentNavigationItem } from '@nuxt/content'
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import { findPageChildren, findPageBreadcrumb } from '@nuxt/content/utils'
-import { mapContentNavigation } from '@bitrix24/b24ui-nuxt/utils/content'
+import { mapContentNavigation } from '@bxshefby/b24ui-nuxt/utils/content'
 import { withTrailingSlash } from 'ufo' // withoutTrailingSlash
 import ALetterIcon from '@bitrix24/b24icons-vue/outline/ALetterIcon'
 import LayersIcon from '@bitrix24/b24icons-vue/outline/LayersIcon'

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ContextMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { ContextMenuItem } from '@bxshefby/b24ui-nuxt'
 import SpinnerIcon from '@bitrix24/b24icons-vue/specialized/SpinnerIcon'
 
 const loading = ref(true)

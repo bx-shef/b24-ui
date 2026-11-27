@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ContextMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { ContextMenuItem } from '@bxshefby/b24ui-nuxt'
 
 const showSidebar = ref(true)
 const showToolbar = ref(false)

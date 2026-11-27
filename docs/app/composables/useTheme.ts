@@ -131,7 +131,7 @@ export function useTheme() {
 
     const lines = [
       '@import "tailwindcss";',
-      '@import "@bitrix24/b24ui-nuxt";'
+      '@import "@bxshefby/b24ui-nuxt";'
     ]
 
     return lines.join('\n')
@@ -155,7 +155,7 @@ export function useTheme() {
       return [
         'import { defineConfig } from \'vite\'',
         'import vue from \'@vitejs/plugin-vue\'',
-        'import bitrix24UIPluginVite from \'@bitrix24/b24ui-nuxt/vite\'',
+        'import bitrix24UIPluginVite from \'@bxshefby/b24ui-nuxt/vite\'',
         '',
         `export default defineConfig({`,
         '  plugins: [',

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import UserGroupIcon from '@bitrix24/b24icons-vue/common-b24/UserGroupIcon'
-import type { DescriptionListItem } from '@bitrix24/b24ui-nuxt'
+import type { DescriptionListItem } from '@bxshefby/b24ui-nuxt'
 
 const items = [
   { label: 'Менеджер аккаунта', description: 'Пример владельца', slot: 'owner' as const },

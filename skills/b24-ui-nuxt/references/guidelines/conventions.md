@@ -4,12 +4,12 @@
 
 ## Подключение модуля Content
 
-Если используется `@nuxt/content`, он **должен** стоять после `@bitrix24/b24ui-nuxt` в массиве `modules`, иначе prose-компоненты будут недоступны:
+Если используется `@nuxt/content`, он **должен** стоять после `@bxshefby/b24ui-nuxt` в массиве `modules`, иначе prose-компоненты будут недоступны:
 
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
-  modules: ['@bitrix24/b24ui-nuxt', '@nuxt/content']
+  modules: ['@bxshefby/b24ui-nuxt', '@nuxt/content']
 })
 ```
 
@@ -18,7 +18,7 @@ export default defineNuxtConfig({
 ```css
 /* app/assets/css/main.css */
 @import "tailwindcss";
-@import "@bitrix24/b24ui-nuxt";
+@import "@bxshefby/b24ui-nuxt";
 
 @source "../../../content/**/*";
 ```
@@ -222,7 +222,7 @@ Bitrix24 UI поставляется с 20 локалями. Локаль зад
 
 ```vue
 <script setup lang="ts">
-import { fr } from '@bitrix24/b24ui-nuxt/locale'
+import { fr } from '@bxshefby/b24ui-nuxt/locale'
 </script>
 
 <template>
@@ -237,7 +237,7 @@ import { fr } from '@bitrix24/b24ui-nuxt/locale'
 `extendLocale` импортируется автоматически. Можно переопределить отдельные сообщения или `code` (влияет на формат даты и времени в Calendar, InputDate, InputTime):
 
 ```ts
-import { en } from '@bitrix24/b24ui-nuxt/locale'
+import { en } from '@bxshefby/b24ui-nuxt/locale'
 
 const locale = extendLocale(en, {
   code: 'en-AU',
@@ -250,7 +250,7 @@ const locale = extendLocale(en, {
 #### Собственная локаль с нуля
 
 ```ts
-import type { Messages } from '@bitrix24/b24ui-nuxt'
+import type { Messages } from '@bxshefby/b24ui-nuxt'
 
 const locale = defineLocale<Messages>({
   name: 'My locale',
@@ -267,7 +267,7 @@ const locale = defineLocale<Messages>({
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
-  modules: ['@bitrix24/b24ui-nuxt', '@nuxtjs/i18n'],
+  modules: ['@bxshefby/b24ui-nuxt', '@nuxtjs/i18n'],
   i18n: {
     locales: [
       { code: 'en', language: 'en', name: 'English' },
@@ -294,7 +294,7 @@ useHead(() => ({
 </template>
 ```
 
-Если установлен `@nuxtjs/i18n`, `B24App` следует текущей локали i18n и включает в сборку только локали Bitrix24 UI, совпадающие с `i18n.locales`: сопоставляются `language` (или `code`) каждой записи и языковой тег локали, поэтому задавайте `language`, если `code` не является тегом. Не используйте `import * as locales from '@bitrix24/b24ui-nuxt/locale'`: он добавит в сборку все локали. `dir` каждой локали (`'ltr'` или `'rtl'`) задаёт направление текста во всех компонентах; чтобы передать `lang` и `dir` в элемент `<html>`, используйте `useLocaleHead`.
+Если установлен `@nuxtjs/i18n`, `B24App` следует текущей локали i18n и включает в сборку только локали Bitrix24 UI, совпадающие с `i18n.locales`: сопоставляются `language` (или `code`) каждой записи и языковой тег локали, поэтому задавайте `language`, если `code` не является тегом. Не используйте `import * as locales from '@bxshefby/b24ui-nuxt/locale'`: он добавит в сборку все локали. `dir` каждой локали (`'ltr'` или `'rtl'`) задаёт направление текста во всех компонентах; чтобы передать `lang` и `dir` в элемент `<html>`, используйте `useLocaleHead`.
 
 ## Цветовая схема
 

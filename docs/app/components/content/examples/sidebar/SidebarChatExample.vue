@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { ChatMessageProps } from '@bitrix24/b24ui-nuxt'
-import { isPartStreaming } from '@bitrix24/b24ui-nuxt/utils/ai'
+import type { ChatMessageProps } from '@bxshefby/b24ui-nuxt'
+import { isPartStreaming } from '@bxshefby/b24ui-nuxt/utils/ai'
 import { Markdown } from '@comark/vue'
 import shiki from '@comark/vue/plugins/shiki'
 import OpenChatIcon from '@bitrix24/b24icons-vue/outline/OpenChatIcon'

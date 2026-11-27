@@ -16,19 +16,19 @@ Bitrix24 UI Kit — библиотека для создания веб-прил
 ## Установка
 
 ```bash [pnpm]
-pnpm add @bitrix24/b24ui-nuxt @bitrix24/b24icons-vue tailwindcss
+pnpm add @bxshefby/b24ui-nuxt @bitrix24/b24icons-vue tailwindcss
 ```
 
 ```bash [yarn]
-yarn add @bitrix24/b24ui-nuxt @bitrix24/b24icons-vue tailwindcss
+yarn add @bxshefby/b24ui-nuxt @bitrix24/b24icons-vue tailwindcss
 ```
 
 ```bash [npm]
-npm install @bitrix24/b24ui-nuxt @bitrix24/b24icons-vue tailwindcss
+npm install @bxshefby/b24ui-nuxt @bitrix24/b24icons-vue tailwindcss
 ```
 
 ```bash [bun]
-bun add @bitrix24/b24ui-nuxt @bitrix24/b24icons-vue tailwindcss
+bun add @bxshefby/b24ui-nuxt @bitrix24/b24icons-vue tailwindcss
 ```
 
 ### Nuxt
@@ -37,7 +37,7 @@ bun add @bitrix24/b24ui-nuxt @bitrix24/b24icons-vue tailwindcss
 
 ```ts [nuxt.config.ts]
 export default defineNuxtConfig({
-  modules: ['@bitrix24/b24ui-nuxt'],
+  modules: ['@bxshefby/b24ui-nuxt'],
   css: ['~/assets/css/main.css']
 })
 ```
@@ -46,7 +46,7 @@ export default defineNuxtConfig({
 
 ```css [app/assets/css/main.css]
 @import "tailwindcss";
-@import "@bitrix24/b24ui-nuxt";
+@import "@bxshefby/b24ui-nuxt";
 ```
 
 Подробнее — в [руководстве по установке](https://bitrix24.github.io/b24ui/docs/getting-started/installation/nuxt/).
@@ -58,7 +58,7 @@ export default defineNuxtConfig({
 ```ts [vite.config.ts]
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import bitrix24UIPluginVite from '@bitrix24/b24ui-nuxt/vite'
+import bitrix24UIPluginVite from '@bxshefby/b24ui-nuxt/vite'
 
 export default defineConfig({
   plugins: [
@@ -75,7 +75,7 @@ import './assets/css/main.css'
 
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
-import b24UiPlugin from '@bitrix24/b24ui-nuxt/vue-plugin'
+import b24UiPlugin from '@bxshefby/b24ui-nuxt/vue-plugin'
 import App from './App.vue'
 
 const app = createApp(App)
@@ -95,7 +95,7 @@ app.mount('#app')
 
 ```css [src/assets/css/main.css]
 @import "tailwindcss";
-@import "@bitrix24/b24ui-nuxt";
+@import "@bxshefby/b24ui-nuxt";
 ```
 
 Подробнее — в [руководстве по установке](https://bitrix24.github.io/b24ui/docs/getting-started/installation/vue/).
@@ -121,11 +121,11 @@ app.mount('#app')
 - [vueuse/vueuse](https://github.com/vueuse/vueuse)
 
 <!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/v/@bitrix24/b24ui-nuxt.svg?style=flat&colorA=020420&colorB=2fc6f6
-[npm-version-href]: https://www.npmjs.com/package/@bitrix24/b24ui-nuxt
+[npm-version-src]: https://img.shields.io/npm/v/@bxshefby/b24ui-nuxt.svg?style=flat&colorA=020420&colorB=2fc6f6
+[npm-version-href]: https://www.npmjs.com/package/@bxshefby/b24ui-nuxt
 
-[npm-downloads-src]: https://img.shields.io/npm/dm/@bitrix24/b24ui-nuxt.svg?style=flat&colorA=020420&colorB=2fc6f6
-[npm-downloads-href]: https://npm.chart.dev/@bitrix24/b24ui-nuxt
+[npm-downloads-src]: https://img.shields.io/npm/dm/@bxshefby/b24ui-nuxt.svg?style=flat&colorA=020420&colorB=2fc6f6
+[npm-downloads-href]: https://npm.chart.dev/@bxshefby/b24ui-nuxt
 
 [license-src]: https://img.shields.io/github/license/bitrix24/b24ui.svg?style=flat&colorA=020420&colorB=2fc6f6
 [license-href]: https://github.com/bitrix24/b24ui/blob/main/LICENSE

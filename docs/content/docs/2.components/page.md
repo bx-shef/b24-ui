@@ -45,7 +45,7 @@ links:
 
 ```vue [layouts/docs.vue] {9-17}
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 
 const navigation = inject<Ref<NavigationMenuItem[]>>('navigation')
 </script>

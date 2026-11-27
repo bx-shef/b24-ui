@@ -9,7 +9,7 @@ import MockSidebarLayoutSideFooter from '../../components/MockSidebarLayoutSideF
 import MockContentLongString from '../../components/MockContentLongString.vue'
 import MockContentLongText from '../../components/MockContentLongText.vue'
 import MockContentUploadFile from '../../components/MockContentUploadFile.vue'
-import B24Slideover from '@bitrix24/b24ui-nuxt/components/Slideover.vue'
+import B24Slideover from '@bxshefby/b24ui-nuxt/components/Slideover.vue'
 import BusinesProcessStagesIcon from '@bitrix24/b24icons-vue/outline/BusinesProcessStagesIcon'
 import TrendUpIcon from '@bitrix24/b24icons-vue/outline/TrendUpIcon'
 import TrendDownIcon from '@bitrix24/b24icons-vue/outline/TrendDownIcon'

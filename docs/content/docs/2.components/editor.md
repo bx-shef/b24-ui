@@ -48,11 +48,11 @@ export default defineNuxtConfig({
   vite: {
     optimizeDeps: {
       include: [
-        '@bitrix24/b24ui-nuxt > prosemirror-state',
-        '@bitrix24/b24ui-nuxt > prosemirror-transform',
-        '@bitrix24/b24ui-nuxt > prosemirror-model',
-        '@bitrix24/b24ui-nuxt > prosemirror-view',
-        '@bitrix24/b24ui-nuxt > prosemirror-gapcursor'
+        '@bxshefby/b24ui-nuxt > prosemirror-state',
+        '@bxshefby/b24ui-nuxt > prosemirror-transform',
+        '@bxshefby/b24ui-nuxt > prosemirror-model',
+        '@bxshefby/b24ui-nuxt > prosemirror-view',
+        '@bxshefby/b24ui-nuxt > prosemirror-gapcursor'
       ]
     }
   }
@@ -295,7 +295,7 @@ const value = ref('<h1>Hello World</h1>\n')
 
 ```vue
 <script setup lang="ts">
-import type { EditorToolbarItem } from '@bitrix24/b24ui-nuxt'
+import type { EditorToolbarItem } from '@bxshefby/b24ui-nuxt'
 import BoldIcon from '@bitrix24/b24icons-vue/outline/BoldIcon'
 import ItalicIcon from '@bitrix24/b24icons-vue/outline/ItalicIcon'
 import AlignLeftIcon from '@bitrix24/b24icons-vue/outline/AlignLeftIcon'
@@ -352,7 +352,7 @@ interface EditorHandler {
 ```vue
 <script setup lang="ts">
 import type { Editor } from '@tiptap/vue-3'
-import type { EditorCustomHandlers, EditorToolbarItem } from '@bitrix24/b24ui-nuxt'
+import type { EditorCustomHandlers, EditorToolbarItem } from '@bxshefby/b24ui-nuxt'
 import BoldIcon from '@bitrix24/b24icons-vue/outline/BoldIcon'
 import TextColorIcon from '@bitrix24/b24icons-vue/editor/TextColorIcon'
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CommandPaletteItem } from '@bitrix24/b24ui-nuxt'
+import type { CommandPaletteItem } from '@bxshefby/b24ui-nuxt'
 import TagIcon from '@bitrix24/b24icons-vue/outline/TagIcon'
 
 const items = ref([

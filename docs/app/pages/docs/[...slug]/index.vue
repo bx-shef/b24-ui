@@ -3,7 +3,7 @@ import type { ContentNavigationItem } from '@nuxt/content'
 import { withTrailingSlash, joinURL } from 'ufo' // withoutTrailingSlash
 import { kebabCase } from 'scule'
 import { useColorMode } from '#b24ui/composables/color-mode/useColorMode'
-import { resolveIcon } from '@bitrix24/b24ui-nuxt/utils'
+import { resolveIcon } from '@bxshefby/b24ui-nuxt/utils'
 import DesignIcon from '@bitrix24/b24icons-vue/outline/DesignIcon'
 import FavoriteIcon from '@bitrix24/b24icons-vue/outline/FavoriteIcon'
 import MoreMIcon from '@bitrix24/b24icons-vue/outline/MoreMIcon'

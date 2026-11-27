@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { resolveComponent } from 'vue'
-import type { TableColumn } from '@bitrix24/b24ui-nuxt'
+import type { TableColumn } from '@bxshefby/b24ui-nuxt'
 import { getGroupedRowModel } from '@tanstack/vue-table'
 import type { GroupingOptions } from '@tanstack/vue-table'
 import MinusLIcon from '@bitrix24/b24icons-vue/outline/MinusLIcon'

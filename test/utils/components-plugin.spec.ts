@@ -25,16 +25,25 @@ describe('bitrix24:b24ui:components', () => {
   })
 
   it('overrides explicit package imports', () => {
-    expect(resolveId('@bitrix24/b24ui-nuxt/components/Link.vue', '/app/src/App.tsx')).toBe(join(runtimeDir, 'vue/overrides/vue-router/Link.vue'))
-    expect(resolveId('@bitrix24/b24ui-nuxt/runtime/components/Link.vue', '/app/src/App.tsx')).toBe(join(runtimeDir, 'vue/overrides/vue-router/Link.vue'))
-    expect(resolveId('@bitrix24/b24ui-nuxt/components/color-mode/ColorModeSwitch.vue', '/app/src/App.tsx', { colorMode: true })).toBe(join(runtimeDir, 'vue/components/color-mode/ColorModeSwitch.vue'))
+    expect(resolveId('@bxshefby/b24ui-nuxt/components/Link.vue', '/app/src/App.tsx')).toBe(join(runtimeDir, 'vue/overrides/vue-router/Link.vue'))
+    expect(resolveId('@bxshefby/b24ui-nuxt/runtime/components/Link.vue', '/app/src/App.tsx')).toBe(join(runtimeDir, 'vue/overrides/vue-router/Link.vue'))
+    expect(resolveId('@bxshefby/b24ui-nuxt/components/color-mode/ColorModeSwitch.vue', '/app/src/App.tsx', { colorMode: true })).toBe(join(runtimeDir, 'vue/components/color-mode/ColorModeSwitch.vue'))
   })
 
   it('overrides absolute path imports', () => {
     expect(resolveId(join(runtimeDir, 'components/Link.vue'), '/app/src/App.tsx')).toBe(join(runtimeDir, 'vue/overrides/vue-router/Link.vue'))
-    expect(resolveId('/app/node_modules/@bitrix24/b24ui-nuxt/dist/runtime/components/Link.vue', '/app/src/App.tsx')).toBe(join(runtimeDir, 'vue/overrides/vue-router/Link.vue'))
-    expect(resolveId('C:\\app\\node_modules\\@bitrix24\\b24ui-nuxt\\dist\\runtime\\components\\Link.vue', 'C:/app/src/App.tsx')).toBe(join(runtimeDir, 'vue/overrides/vue-router/Link.vue'))
+    expect(resolveId('/app/node_modules/@bxshefby/b24ui-nuxt/dist/runtime/components/Link.vue', '/app/src/App.tsx')).toBe(join(runtimeDir, 'vue/overrides/vue-router/Link.vue'))
+    expect(resolveId('C:\\app\\node_modules\\@bxshefby\\b24ui-nuxt\\dist\\runtime\\components\\Link.vue', 'C:/app/src/App.tsx')).toBe(join(runtimeDir, 'vue/overrides/vue-router/Link.vue'))
     expect(resolveId(join(runtimeDir, 'components/Button.vue'), '/app/src/App.tsx')).toBeUndefined()
+  })
+
+  // An app that installs this package through an npm alias
+  // (`"@bitrix24/b24ui-nuxt": "npm:@bxshefby/b24ui-nuxt@…"`) keeps importing the
+  // old specifier. See `src/utils/package-names.ts`.
+  it('overrides imports under the pre-fork package name', () => {
+    expect(resolveId('@bitrix24/b24ui-nuxt/components/Link.vue', '/app/src/App.tsx')).toBe(join(runtimeDir, 'vue/overrides/vue-router/Link.vue'))
+    expect(resolveId('/app/node_modules/@bitrix24/b24ui-nuxt/dist/runtime/components/Link.vue', '/app/src/App.tsx')).toBe(join(runtimeDir, 'vue/overrides/vue-router/Link.vue'))
+    expect(resolveId('@other/b24ui-nuxt/components/Link.vue', '/app/src/App.tsx')).toBeUndefined()
   })
 
   // Upstream checks `../Icon.vue` from `prose/Icon.vue`; with `Link` standing in
@@ -53,7 +62,7 @@ describe('bitrix24:b24ui:components', () => {
   // match it. A component with no override at all (`Button.vue`) would pass
   // either way and proves nothing.
   it('leaves other package imports alone', () => {
-    expect(resolveId('@bitrix24/b24ui-nuxt/components/prose/Link.vue', '/app/src/App.tsx')).toBeUndefined()
+    expect(resolveId('@bxshefby/b24ui-nuxt/components/prose/Link.vue', '/app/src/App.tsx')).toBeUndefined()
     expect(resolveId('some-other-lib/components/Link.vue', '/app/src/App.tsx')).toBeUndefined()
   })
 
@@ -62,13 +71,13 @@ describe('bitrix24:b24ui:components', () => {
   // component shaped like this — its inertia override dir and its default one
   // hold the same names.
   it('resolves an override that only one router mode declares', () => {
-    expect(resolveId('@bitrix24/b24ui-nuxt/components/LinkBase.vue', '/app/src/App.tsx', { router: 'inertia' })).toBe(join(runtimeDir, 'vue/overrides/inertia/LinkBase.vue'))
-    expect(resolveId('@bitrix24/b24ui-nuxt/components/LinkBase.vue', '/app/src/App.tsx')).toBeUndefined()
+    expect(resolveId('@bxshefby/b24ui-nuxt/components/LinkBase.vue', '/app/src/App.tsx', { router: 'inertia' })).toBe(join(runtimeDir, 'vue/overrides/inertia/LinkBase.vue'))
+    expect(resolveId('@bxshefby/b24ui-nuxt/components/LinkBase.vue', '/app/src/App.tsx')).toBeUndefined()
   })
 
   // `colorMode: false` ignores `color-mode/**/*.vue` when the source is built,
   // so the override must not be found — the app gets the plain component.
   it('does not override color-mode components when colorMode is off', () => {
-    expect(resolveId('@bitrix24/b24ui-nuxt/components/color-mode/ColorModeSwitch.vue', '/app/src/App.tsx')).toBeUndefined()
+    expect(resolveId('@bxshefby/b24ui-nuxt/components/color-mode/ColorModeSwitch.vue', '/app/src/App.tsx')).toBeUndefined()
   })
 })

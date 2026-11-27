@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { UseTourReturn } from '@bitrix24/b24ui-nuxt/composables'
+import type { UseTourReturn } from '@bxshefby/b24ui-nuxt/composables'
 import { useElementBounding, useWindowSize } from '@vueuse/core'
 
 const props = withDefaults(defineProps<{

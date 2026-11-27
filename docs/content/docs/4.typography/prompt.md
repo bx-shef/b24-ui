@@ -66,7 +66,7 @@ props:
     Add a color mode toggle to my Nuxt app.
 
     Requirements:
-    - Use `useColorMode` from `'@bitrix24/b24ui-nuxt/composables` to manage the current mode
+    - Use `useColorMode` from `'@bxshefby/b24ui-nuxt/composables` to manage the current mode
     - Render a `B24Button` with `color="air-tertiary"` that cycles between `light`, `dark`, and `system` on click
     - Update the button icon dynamically: `SunIconAir` for light, `MoonIconAir` for dark, `ScreenIcon` for system
     - Add a tooltip using `B24Tooltip` that shows the current active mode

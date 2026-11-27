@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DescriptionListItem } from '@bitrix24/b24ui-nuxt'
+import type { DescriptionListItem } from '@bxshefby/b24ui-nuxt'
 import DownloadDoubleIcon from '@bitrix24/b24icons-vue/actions/DownloadDoubleIcon'
 import PersonIcon from '@bitrix24/b24icons-vue/main/PersonIcon'
 import Calendar1Icon from '@bitrix24/b24icons-vue/main/Calendar1Icon'

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ToastProps } from '@bitrix24/b24ui-nuxt'
+import type { ToastProps } from '@bxshefby/b24ui-nuxt'
 import CopilotAiIcon from '@bitrix24/b24icons-vue/main/CopilotAiIcon'
 
 const props = defineProps<{

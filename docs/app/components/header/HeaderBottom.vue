@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import type { ContentNavigationItem } from '@nuxt/content'
-import { mapContentNavigation } from '@bitrix24/b24ui-nuxt/utils/content'
+import { mapContentNavigation } from '@bxshefby/b24ui-nuxt/utils/content'
 import { withTrailingSlash } from 'ufo'
 
 const route = useRoute()

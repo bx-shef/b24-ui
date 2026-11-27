@@ -21,19 +21,19 @@ links:
 :::code-group
 
 ```bash [pnpm]
-pnpm add @bitrix24/b24ui-nuxt
+pnpm add @bxshefby/b24ui-nuxt
 ```
 
 ```bash [yarn]
-yarn add @bitrix24/b24ui-nuxt
+yarn add @bxshefby/b24ui-nuxt
 ```
 
 ```bash [npm]
-npm install @bitrix24/b24ui-nuxt
+npm install @bxshefby/b24ui-nuxt
 ```
 
 ```bash [bun]
-bun add @bitrix24/b24ui-nuxt
+bun add @bxshefby/b24ui-nuxt
 ```
 
 :::
@@ -44,19 +44,19 @@ bun add @bitrix24/b24ui-nuxt
 ::code-group
 
 ```bash [pnpm]
-pnpm add @bitrix24/b24ui-nuxt
+pnpm add @bxshefby/b24ui-nuxt
 ```
 
 ```bash [yarn]
-yarn add @bitrix24/b24ui-nuxt
+yarn add @bxshefby/b24ui-nuxt
 ```
 
 ```bash [npm]
-npm install @bitrix24/b24ui-nuxt
+npm install @bxshefby/b24ui-nuxt
 ```
 
 ```bash [bun]
-bun add @bitrix24/b24ui-nuxt
+bun add @bxshefby/b24ui-nuxt
 ```
 
 ::

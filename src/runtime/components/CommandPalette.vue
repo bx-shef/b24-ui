@@ -364,7 +364,7 @@ function isFilterIgnored(group: G) {
 
 const items = computed(() => groups.value?.filter((group) => {
   if (!group.id) {
-    console.warn(`[@bitrix24/b24ui-nuxt] CommandPalette group is missing an \`id\` property`)
+    console.warn(`[@bxshefby/b24ui-nuxt] CommandPalette group is missing an \`id\` property`)
     return false
   }
   if (isFilterIgnored(group)) {

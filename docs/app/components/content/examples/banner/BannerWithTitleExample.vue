@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { BannerProps } from '@bitrix24/b24ui-nuxt'
+import type { BannerProps } from '@bxshefby/b24ui-nuxt'
 import CircleCrossIcon from '@bitrix24/b24icons-vue/outline/CircleCrossIcon'
 
 const { id = 'example' } = defineProps<{

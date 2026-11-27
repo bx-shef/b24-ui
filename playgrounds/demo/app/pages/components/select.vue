@@ -2,7 +2,7 @@
 /**
  * @see playground/app/pages/components/select-menu.vue
  */
-import type { SelectItem, SelectProps, AvatarProps } from '@bitrix24/b24ui-nuxt'
+import type { SelectItem, SelectProps, AvatarProps } from '@bxshefby/b24ui-nuxt'
 import theme from '#build/b24ui/select'
 import type { IUser } from '~/types'
 import Expand1Icon from '@bitrix24/b24icons-vue/actions/Expand1Icon'

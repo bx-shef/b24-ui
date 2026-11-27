@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ChatMessageProps } from '@bitrix24/b24ui-nuxt'
+import type { ChatMessageProps } from '@bxshefby/b24ui-nuxt'
 
 const messages: ChatMessageProps[] = [{
   id: '1',

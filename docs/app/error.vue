@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { NuxtError } from '#app'
 import type { ContentNavigationItem } from '@nuxt/content'
-import { ru } from '@bitrix24/b24ui-nuxt/locale'
+import { ru } from '@bxshefby/b24ui-nuxt/locale'
 
 const props = defineProps<{
   error: NuxtError

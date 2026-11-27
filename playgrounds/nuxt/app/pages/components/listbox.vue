@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ListboxItem } from '@bitrix24/b24ui-nuxt'
+import type { ListboxItem } from '@bxshefby/b24ui-nuxt'
 import theme from '#build/b24ui/listbox'
 
 const colors = Object.keys(theme.variants.color) as Array<keyof typeof theme.variants.color>

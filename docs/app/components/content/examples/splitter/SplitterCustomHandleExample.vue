@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { SplitterItem } from '@bitrix24/b24ui-nuxt'
+import type { SplitterItem } from '@bxshefby/b24ui-nuxt'
 
 const panel = 'items-center justify-center text-description font-(--ui-font-weight-medium)'
 

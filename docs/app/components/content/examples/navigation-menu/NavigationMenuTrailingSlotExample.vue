@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { NavigationMenuItem, DropdownMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem, DropdownMenuItem } from '@bxshefby/b24ui-nuxt'
 import FolderIcon from '@bitrix24/b24icons-vue/outline/FolderIcon'
 import BookOpenIcon from '@bitrix24/b24icons-vue/crm/BookOpenIcon'
 import Share1Icon from '@bitrix24/b24icons-vue/main/Share1Icon'

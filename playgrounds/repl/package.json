@@ -9,7 +9,7 @@
     "build": "pnpm bundle && vite build"
   },
   "dependencies": {
-    "@bitrix24/b24ui-nuxt": "catalog:",
+    "@bxshefby/b24ui-nuxt": "catalog:",
     "@vue/repl": "catalog:",
     "tailwindcss": "catalog:",
     "vue": "catalog:"

@@ -44,8 +44,8 @@ file or the `npm-publish` environment, update npm to match in the same change.
 
 That binding is also what produces the release's **provenance attestation**.
 npm attaches one by itself when the publish authenticates through OIDC, which
-is why 2.12.0 has one although nothing here asked for it. Check a shipped
-release with `npm view @bitrix24/b24ui-nuxt@<version> dist.attestations`.
+is why `@bitrix24/b24ui-nuxt` 2.12.0, published by the parent project, has one although nothing here asked for it. Check a shipped
+release with `npm view @bxshefby/b24ui-nuxt@<version> dist.attestations`.
 
 The publish passes `--provenance` regardless, and it is worth being precise
 about what that does and does not buy, because the obvious reading is wrong.
@@ -157,6 +157,57 @@ None of these is in version control, and none fails loudly.
 - **Settings → Labels → `severity:crash`.** This one gates nothing in the release
   path; it only arms the watchdog's 48-hour threshold, and it fails silently when
   absent. See [What is watched automatically](#what-is-watched-automatically).
+
+## Первый выпуск `@bxshefby/b24ui-nuxt`
+
+Пакет выпускается как `@bxshefby/b24ui-nuxt`; первая версия — **2.16.0**, следом
+за `@bitrix24/b24ui-nuxt` 2.15.0. Версию задаёт `"release-as": "2.16.0"` в
+`release-please-config.json`: тегов прошлых выпусков в этом репозитории нет, и
+без неё версию вычислила бы история коммитов от `bootstrap-sha`.
+
+Доверенную публикацию (OIDC) npmjs.com настраивает только у пакета, который
+уже есть в реестре, поэтому 2.16.0 публикуется один раз руками:
+
+1. **Settings → Secrets and variables → Actions → Variables:** `NPM_RELEASE=true`.
+   Пока переменной нет, `release-please.yml`, `npm-publish.yml` и
+   `release-watchdog.yml` пропускаются.
+2. **Выпуск 2.16.0.** release-please открывает PR `chore(main): release 2.16.0`;
+   одобрить его задержанный `ci` и смержить, как обычно. Тег `v2.16.0` и GitHub
+   Release появятся, а запуск `npm-publish.yml` упадёт на входе в npm — пакета
+   ещё нет, доверенной публикации тоже. Это ожидаемо.
+3. **Публикация руками** с машины, где выполнен `npm login` под владельцем
+   scope `@bxshefby`:
+
+   ```sh
+   git clone https://github.com/bx-shef/b24-ui && cd b24-ui
+   git checkout v2.16.0
+   pnpm install --frozen-lockfile
+   pnpm run dev:prepare
+   pnpm build
+   pnpm publish --access public --no-git-checks
+   ```
+
+   `pnpm`, а не `npm`: только pnpm раскрывает `catalog:` в зависимостях.
+   Проверка — `npm view @bxshefby/b24ui-nuxt@2.16.0 version`.
+4. **Trusted Publisher.** npmjs.com → пакет `@bxshefby/b24ui-nuxt` → Settings →
+   Trusted Publisher → GitHub Actions:
+   - *Organization or user*: `bx-shef`
+   - *Repository*: `b24-ui`
+   - *Workflow filename*: `npm-publish.yml` (только имя файла)
+   - *Environment name*: `npm-publish` (его объявляет `npm-publish.yml`)
+   - *Allowed actions*: отметить `npm publish`.
+
+   Поля сравниваются с учётом регистра, и npm их при сохранении не проверяет:
+   ошибка видна только на следующей публикации. Новая связка истекает, если в
+   течение двух суток не было ни одной публикации через неё, поэтому её
+   заводят прямо перед мержем следующего release PR; истёкшую удаляют и
+   создают заново. `repository.url` в `package.json` должен указывать на
+   `bx-shef/b24-ui` — иначе npm откажет в provenance.
+5. **Убрать `release-as`** из `release-please-config.json` отдельным PR сразу
+   после выпуска 2.16.0: дальше версию снова считают коммиты.
+6. По желанию: Settings → Publishing access → *Require two-factor
+   authentication and disallow tokens* — публикация через OIDC продолжит
+   работать, токены — нет.
 
 ## How the version is chosen
 

@@ -45,7 +45,7 @@ run() {
     return 1
   fi
   ( cd "$dir" || exit 1
-    printf '{"name":"@bitrix24/b24ui-nuxt"}' > package.json
+    printf '{"name":"@bxshefby/b24ui-nuxt"}' > package.json
     # The reporting script consumes findings.md rather than producing it.
     case "$script" in
       watchdog-report.sh)

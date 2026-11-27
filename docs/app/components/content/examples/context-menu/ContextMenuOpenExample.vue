@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ContextMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { ContextMenuItem } from '@bxshefby/b24ui-nuxt'
 import UserIcon from '@bitrix24/b24icons-vue/common-b24/UserIcon'
 import PaymentIcon from '@bitrix24/b24icons-vue/outline/PaymentIcon'
 import Settings3Icon from '@bitrix24/b24icons-vue/actions/Settings3Icon'

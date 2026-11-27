@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ContextMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { ContextMenuItem } from '@bxshefby/b24ui-nuxt'
 import OpenedEyeIcon from '@bitrix24/b24icons-vue/main/OpenedEyeIcon'
 import TrashBinIcon from '@bitrix24/b24icons-vue/main/TrashBinIcon'
 import CopyPlatesIcon from '@bitrix24/b24icons-vue/actions/CopyPlatesIcon'

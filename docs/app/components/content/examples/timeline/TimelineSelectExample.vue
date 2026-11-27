@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TimelineItem } from '@bitrix24/b24ui-nuxt'
+import type { TimelineItem } from '@bxshefby/b24ui-nuxt'
 import RocketIcon from '@bitrix24/b24icons-vue/main/RocketIcon'
 import SignIcon from '@bitrix24/b24icons-vue/main/SignIcon'
 import MoreMIcon from '@bitrix24/b24icons-vue/outline/MoreMIcon'

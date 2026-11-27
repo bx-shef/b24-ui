@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ProgressGroupItem } from '@bitrix24/b24ui-nuxt'
+import type { ProgressGroupItem } from '@bxshefby/b24ui-nuxt'
 
 const items: ProgressGroupItem[] = [
   { label: 'Системная', value: 24, color: 'air-secondary' },

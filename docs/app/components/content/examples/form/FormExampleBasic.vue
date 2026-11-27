@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FormError, FormSubmitEvent } from '@bitrix24/b24ui-nuxt'
+import type { FormError, FormSubmitEvent } from '@bxshefby/b24ui-nuxt'
 
 const state = reactive({
   email: undefined,

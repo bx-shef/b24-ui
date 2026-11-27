@@ -22,7 +22,7 @@ links:
 
 ```css [app/assets/css/main.css]
 @import "tailwindcss";
-@import "@bitrix24/b24ui-nuxt";
+@import "@bxshefby/b24ui-nuxt";
 
 @theme static {
   --font-sans: 'Public Sans', sans-serif;
@@ -42,7 +42,7 @@ links:
 
 ```css [app/assets/css/main.css]
 @import "tailwindcss";
-@import "@bitrix24/b24ui-nuxt";
+@import "@bxshefby/b24ui-nuxt";
 
 @theme static {
   --font-sans: 'Public Sans', sans-serif;

@@ -34,7 +34,7 @@ export interface ModuleOptions {
   /**
    * Version reported through `appConfig.version` and rendered into the
    * `<meta name="b24ui">` tag.
-   * @defaultValue the installed `@bitrix24/b24ui-nuxt` version
+   * @defaultValue the installed `@bxshefby/b24ui-nuxt` version
    */
   version?: string
   /**

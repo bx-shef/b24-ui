@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import HomeIcon from '@bitrix24/b24icons-vue/outline/HomeIcon'
 import PlayIcon from '@bitrix24/b24icons-vue/common-service/PlayIcon'
 import CompassIcon from '@bitrix24/b24icons-vue/main/CompassIcon'

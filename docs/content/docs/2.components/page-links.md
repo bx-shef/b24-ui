@@ -88,7 +88,7 @@ props:
 
 ```vue [pages/\[...slug\\].vue]{50-54}
 <script setup lang="ts">
-import type { PageLink } from '@bitrix24/b24ui-nuxt'
+import type { PageLink } from '@bxshefby/b24ui-nuxt'
 import DocumentSignIcon from '@bitrix24/b24icons-vue/main/DocumentSignIcon'
 import AiStarsIcon from '@bitrix24/b24icons-vue/outline/AiStarsIcon'
 import RocketIcon from '@bitrix24/b24icons-vue/outline/RocketIcon'

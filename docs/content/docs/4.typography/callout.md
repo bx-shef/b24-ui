@@ -95,10 +95,10 @@ props:
   color: air-primary
   class: 'w-full my-0'
 slots:
-  default: Узнайте, как установить `@bitrix24/b24ui-nuxt` в проект.
+  default: Узнайте, как установить `@bxshefby/b24ui-nuxt` в проект.
 ---
 
-Узнайте, как установить `@bitrix24/b24ui-nuxt` в проект.
+Узнайте, как установить `@bxshefby/b24ui-nuxt` в проект.
 ::
 
 ## Сокращения {#shortcuts}

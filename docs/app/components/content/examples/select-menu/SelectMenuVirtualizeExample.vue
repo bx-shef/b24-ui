@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { SelectMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { SelectMenuItem } from '@bxshefby/b24ui-nuxt'
 
 const items: SelectMenuItem[] = Array(1000).fill(0).map((_, i) => ({
   label: `item-${i}`,

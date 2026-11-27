@@ -97,7 +97,7 @@ props:
 ::
 
 ::tip
-Утилита `isToolStreaming` из `@bitrix24/b24ui-nuxt/utils/ai` определяет, выполняется ли ещё часть с вызовом инструмента. Передайте ей слот-пропс `streaming` компонента [ChatMessages](/docs/components/chat-messages/#slots), чтобы она остановилась вместе с чатом.
+Утилита `isToolStreaming` из `@bxshefby/b24ui-nuxt/utils/ai` определяет, выполняется ли ещё часть с вызовом инструмента. Передайте ей слот-пропс `streaming` компонента [ChatMessages](/docs/components/chat-messages/#slots), чтобы она остановилась вместе с чатом.
 ::
 
 ### Мерцание {#shimmer}

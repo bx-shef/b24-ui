@@ -13,7 +13,7 @@
 // Two applications, because b24ui ships two distributions and they fail
 // differently:
 //
-//   * `test/smoke/fixture` — a Nuxt app consuming `@bitrix24/b24ui-nuxt`
+//   * `test/smoke/fixture` — a Nuxt app consuming `@bxshefby/b24ui-nuxt`
 //     through the workspace link, so module registration, the runtime plugins
 //     and SSR all run. Also where the `platform` plugin's server branch is
 //     asserted: it reads `user-agent` off the request, which no unit test can

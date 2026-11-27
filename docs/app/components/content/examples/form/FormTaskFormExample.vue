@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { EditorToolbarItem, IconComponent } from '@bitrix24/b24ui-nuxt'
+import type { EditorToolbarItem, IconComponent } from '@bxshefby/b24ui-nuxt'
 import { CalendarDate } from '@internationalized/date'
 import FileUploadIcon from '@bitrix24/b24icons-vue/main/FileUploadIcon'
 import GoToLIcon from '@bitrix24/b24icons-vue/outline/GoToLIcon'

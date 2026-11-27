@@ -28,7 +28,7 @@
         "./node_modules/.b24ui-nuxt/b24ui/*"
       ],
       "#imports": [
-        "./node_modules/@bitrix24/b24ui-nuxt/dist/runtime/vue/stubs/vue-router"
+        "./node_modules/@bxshefby/b24ui-nuxt/dist/runtime/vue/stubs/vue-router"
       ]
     }
   },
