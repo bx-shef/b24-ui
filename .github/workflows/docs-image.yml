@@ -58,7 +58,18 @@ jobs:
       - name: Адрес сайта — только https://домен
         id: site
         run: |
-          [[ "$SITE_URL" =~ ^https://[a-z0-9.-]+$ ]] || { echo "SITE_URL='$SITE_URL': нужен вид https://домен без слэша, пути и порта"; exit 1; }
+          # Значение из секрета в логе скрыто (***) — поэтому подсказка говорит, что именно не так, не печатая адрес
+          if ! [[ "$SITE_URL" =~ ^https://[a-z0-9.-]+$ ]]; then
+            hint=""
+            [[ "$SITE_URL" == https://* ]] || hint+=" нет https://;"
+            [[ "$SITE_URL" == */ ]] && hint+=" слэш на конце;"
+            [[ "$SITE_URL" =~ [A-Z] ]] && hint+=" заглавные буквы;"
+            [[ "$SITE_URL" =~ [[:space:]] ]] && hint+=" пробел или перевод строки;"
+            [[ "${SITE_URL#https://}" == */* ]] && hint+=" путь после домена;"
+            [[ "$SITE_URL" =~ :[0-9]+$ ]] && hint+=" порт;"
+            echo "::error::DOCS_SITE_URL: нужен вид https://домен — без слэша на конце, пути и порта, строчными.${hint}"
+            exit 1
+          fi
           [[ "$YANDEX_METRIKA_ID" =~ ^[0-9]*$ ]] || { echo "YANDEX_METRIKA_ID: только цифры или пусто"; exit 1; }
           if [[ "$SITE_URL" == "https://docs.example.com" ]]; then echo "ready=false" >> "$GITHUB_OUTPUT"; else echo "ready=true" >> "$GITHUB_OUTPUT"; fi
           echo "Счётчик Метрики: $([[ -n "$YANDEX_METRIKA_ID" ]] && echo задан || echo нет)"
