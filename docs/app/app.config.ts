@@ -7,6 +7,6 @@ export default defineAppConfig({
   },
   b24ui: {},
   colorMode: true,
-  colorModeInitialValue: 'edge-dark' as const, // edge-dark | edge-light | light
-  colorModeTypeLight: 'edge-dark' as const // edge-dark | edge-light | light
+  colorModeInitialValue: 'auto' as const, // системная тема; выбор хранится в localStorage
+  colorModeTypeLight: 'edge-light' as const // светлая тема сайта: .edge-light с подложкой «Василька»
 })
