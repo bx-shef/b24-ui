@@ -258,6 +258,8 @@ const prodUrl = process?.env.NUXT_PUBLIC_SITE_URL ?? ''
 const baseUrl = process?.env.NUXT_PUBLIC_BASE_URL ?? ''
 const canonicalUrl = process?.env.NUXT_PUBLIC_CANONICAL_URL ?? ''
 const gitUrl = process?.env.NUXT_PUBLIC_GIT_URL ?? ''
+// Превью ссылок: абсолютный адрес (мессенджеры не разворачивают относительный); исходник — docs/og/og.html
+const ogImageUrl = `${prodUrl}${baseUrl}/og-image.jpg`
 
 export default defineNuxtConfig({
   modules: [
@@ -282,6 +284,14 @@ export default defineNuxtConfig({
     baseURL: `${baseUrl}/`,
     buildAssetsDir: '/_nuxt/',
     head: {
+      meta: [
+        { property: 'og:image', content: ogImageUrl },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
+        { property: 'og:image:alt', content: 'Bitrix24 UI — Vue-компоненты для приложений Битрикс24' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:image', content: ogImageUrl }
+      ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: `${baseUrl}/favicon.ico?v=2` }
       ],
