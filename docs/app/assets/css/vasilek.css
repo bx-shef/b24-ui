@@ -2,9 +2,11 @@
  * «Василёк» — оформление сайта документации (bx-shef/b24-ui#8).
  * Источник стиля: toolsai-assistant docs/design/v2 («Ледяной неон», токены --tai-*) и iris.css.
  * Только сайт: токены и правила не попадают в пакет и в темы компонентов (air-* — продукт Битрикс24).
- * Светлая тема — :root, тёмная — .dark (класс ставит useColorMode). У сайта на <html> всегда
- * стоит .edge-dark (docs/nuxt.config.ts), поэтому фон-подложка — для обеих тем тёмная,
- * «светлая» глубже и ярче, «тёмная» — графит с лёгким переливом.
+ * Две настоящие темы. Класс на <html> ставит useColorMode (app.config.ts: по умолчанию «system»,
+ * светлая — .edge-light, тёмная — .dark; выбор хранится в localStorage, до отрисовки класс
+ * выставляет встроенный скрипт из nuxt.config.ts). Токены: светлые — :root, тёмные — .dark;
+ * значения и контраст — по toolsai-assistant docs/design/v2 (tokens.css, spec.md 1.6).
+ * Подложка: светлая #FBFAFD с лёгким переливом, тёмная #121118 с переливом.
  */
 
 /* Inter Tight — локально, OFL 1.1 (assets/fonts/OFL.txt), без Google Fonts. */
@@ -38,19 +40,22 @@
   --tai-link-line: #2f86e0;
   --tai-focus: #4b3cd0;
   --tai-sh-fill: 0 3px 8px -4px rgb(91 71 232 / 50%);
+  --tai-text-2: #45454c;
   --tai-sh-mark: 0 6px 16px -6px rgb(63 169 255 / 55%);
 
   --tai-font: 'Inter Tight', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
   /* Подложка страницы: единый SVG (cover + fixed работают для одного слоя) */
-  --vsk-bg-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1000' preserveAspectRatio='xMidYMid slice'%3E%3Cdefs%3E%3CradialGradient id='a' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='1100'%3E%3Cstop stop-color='%236E5BFF' stop-opacity='.75'/%3E%3Cstop offset='1' stop-color='%236E5BFF' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='b' gradientUnits='userSpaceOnUse' cx='1600' cy='250' r='1000'%3E%3Cstop stop-color='%233FA9FF' stop-opacity='.6'/%3E%3Cstop offset='1' stop-color='%233FA9FF' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='c' gradientUnits='userSpaceOnUse' cx='560' cy='1000' r='900'%3E%3Cstop stop-color='%237CFFE4' stop-opacity='.25'/%3E%3Cstop offset='1' stop-color='%237CFFE4' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='1600' height='1000' fill='%231B1760'/%3E%3Crect width='1600' height='1000' fill='url(%23a)'/%3E%3Crect width='1600' height='1000' fill='url(%23b)'/%3E%3Crect width='1600' height='1000' fill='url(%23c)'/%3E%3C/svg%3E");
-  --vsk-bg-color: #1b1760;
+  --vsk-bg-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 1000' preserveAspectRatio='xMidYMid slice'%3E%3Cdefs%3E%3CradialGradient id='a' gradientUnits='userSpaceOnUse' cx='0' cy='0' r='1100'%3E%3Cstop stop-color='%23E4DEFF'/%3E%3Cstop offset='1' stop-color='%23E4DEFF' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='b' gradientUnits='userSpaceOnUse' cx='1600' cy='300' r='1000'%3E%3Cstop stop-color='%23D9EDFF'/%3E%3Cstop offset='1' stop-color='%23D9EDFF' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='c' gradientUnits='userSpaceOnUse' cx='480' cy='1000' r='900'%3E%3Cstop stop-color='%23DAFBF3'/%3E%3Cstop offset='1' stop-color='%23DAFBF3' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='1600' height='1000' fill='%23FBFAFD'/%3E%3Crect width='1600' height='1000' fill='url(%23a)'/%3E%3Crect width='1600' height='1000' fill='url(%23b)'/%3E%3Crect width='1600' height='1000' fill='url(%23c)'/%3E%3C/svg%3E");
+  --vsk-bg-color: #fbfafd;
 }
 
 .dark {
   --tai-iris-text: linear-gradient(90deg, #a9a0ff, #7cc6ff 50%, #8cffe8);
   --tai-accent: #a9b4ff;
   --tai-accent-hover: #c3cbff;
+  --tai-sh-fill: 0 3px 8px -4px rgb(0 0 0 / 60%);
+  --tai-text-2: #c9c7d4;
   --tai-link-line: #7cc6ff;
   --tai-focus: #a9b4ff;
 
@@ -58,8 +63,9 @@
   --vsk-bg-color: #121118;
 }
 
-/* Подложка вместо dawn-harmony: те же переменные темы, что читает библиотека */
-.edge-dark {
+/* Подложка вместо фона темы: те же переменные, что читает библиотека */
+.edge-light,
+.dark {
   --air-theme-bg-image: var(--vsk-bg-image);
   --air-theme-bg-image-blurred: var(--vsk-bg-image);
   --air-theme-bg-color: var(--vsk-bg-color);
@@ -81,8 +87,8 @@
 
 /* Акценты сайта: перелив — на заголовке героя, главной кнопке и линии подвала; текст остаётся сплошным */
 @utility vsk-gradient-text {
-  color: #a9a0ff; /* запасной, если нет background-clip: text */
-  background: var(--tai-iris-text-on-dark);
+  color: var(--tai-accent); /* запасной, если нет background-clip: text */
+  background: var(--tai-iris-text);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -151,4 +157,43 @@
 
 @utility vsk-chat-card {
   border-color: var(--tai-accent);
+}
+
+/*
+ * Акценты библиотеки на сайте (как на сайте b24-js-sdk): компоненты берут цвет из своих токенов
+ * --ui-color-*, здесь они переопределены для каждой темы, сами компоненты не правятся.
+ */
+@layer base {
+  .light,
+  .edge-light {
+    --ui-color-accent-main-primary: #4b3cd0;
+    --ui-color-accent-main-primary-alt: #3e30b8;
+    --ui-color-accent-main-link: #4b3cd0;
+    --ui-color-accent-main-link-underline: #4b3cd04d;
+    --ui-color-copilot-accent-primary: #4b3cd0;
+    --ui-color-accent-soft-element-violet: #efedff;
+  }
+
+  .dark {
+    --ui-color-accent-main-primary: #4b3cd0;
+    --ui-color-accent-main-primary-alt: #5a4be0;
+    --ui-color-accent-main-link: #a9b4ff;
+    --ui-color-accent-main-link-underline: #a9b4ff4d;
+    --ui-color-copilot-accent-primary: #a9b4ff;
+    --ui-color-accent-soft-element-violet: #2a2466;
+    --ui-color-copilot-bg-content-3: #2a2466;
+
+    /* Текст и значки акцентных контурных и «простых» кнопок: #4B3CD0 на тёмном — 2,6:1, берём #A9B4FF (9,5:1) */
+    --ui-color-design-outline-a2-content: #a9b4ff;
+    --ui-color-design-outline-a2-content-icon: #a9b4ff;
+    --ui-color-design-outline-a2-content-chevron: #a9b4ff;
+    --ui-color-design-outline-content-icon-alt: #a9b4ff;
+    --ui-color-design-plain-a-content: #a9b4ff;
+    --ui-color-design-plain-a-content-icon: #a9b4ff;
+    --ui-color-design-plain-a-content-chevron: #a9b4ff;
+  }
+
+  ::selection {
+    background: rgb(110 91 255 / 0.25);
+  }
 }
