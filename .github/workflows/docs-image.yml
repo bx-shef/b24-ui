@@ -39,9 +39,11 @@ concurrency:
   # отменяем только проверки PR: публикацию из main вытеснять нельзя
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
+# Значения — из переменных репозитория или из секретов с тем же именем (так их заводит соседний сайт
+# bx-shef/b24-js-sdk); переменная главнее. Оба значения публичные: адрес и номер счётчика видны на сайте.
 env:
-  SITE_URL: ${{ inputs.site_url || vars.DOCS_SITE_URL || 'https://docs.example.com' }}
-  YANDEX_METRIKA_ID: ${{ vars.YANDEX_METRIKA_ID }}
+  SITE_URL: ${{ inputs.site_url || vars.DOCS_SITE_URL || secrets.DOCS_SITE_URL || 'https://docs.example.com' }}
+  YANDEX_METRIKA_ID: ${{ vars.YANDEX_METRIKA_ID || secrets.YANDEX_METRIKA_ID }}
 
 jobs:
   check:
@@ -49,11 +51,38 @@ jobs:
     timeout-minutes: 45
     permissions:
       contents: read
+    # `if` задачи не видит секретов — решение «есть настоящий домен» передаём выходом
+    outputs:
+      site_ready: ${{ steps.site.outputs.ready }}
     steps:
-      - name: Адрес сайта — только https://домен
+      # Адрес из переменной или секрета приводим к виду https://домен: без пробелов и слэша на конце, строчными,
+      # без схемы — добавляем https:// (в секрет часто кладут просто домен)
+      - name: Привести адрес сайта к виду https://домен
         run: |
-          [[ "$SITE_URL" =~ ^https://[a-z0-9.-]+$ ]] || { echo "SITE_URL='$SITE_URL': нужен вид https://домен без слэша, пути и порта"; exit 1; }
+          u=$(printf '%s' "$SITE_URL" | tr -d '[:space:]' | tr '[:upper:]' '[:lower:]')
+          u=${u%/}
+          [[ "$u" == http://* ]] && u="https://${u#http://}"
+          [[ "$u" == https://* ]] || u="https://$u"
+          echo "SITE_URL=$u" >> "$GITHUB_ENV"
+
+      - name: Адрес сайта — только https://домен
+        id: site
+        run: |
+          # Значение из секрета в логе скрыто (***) — поэтому подсказка говорит, что именно не так, не печатая адрес
+          if ! [[ "$SITE_URL" =~ ^https://[a-z0-9.-]+$ ]]; then
+            hint=""
+            [[ "$SITE_URL" == https://* ]] || hint+=" нет https://;"
+            [[ "$SITE_URL" == */ ]] && hint+=" слэш на конце;"
+            [[ "$SITE_URL" =~ [A-Z] ]] && hint+=" заглавные буквы;"
+            [[ "$SITE_URL" =~ [[:space:]] ]] && hint+=" пробел или перевод строки;"
+            [[ "${SITE_URL#https://}" == */* ]] && hint+=" путь после домена;"
+            [[ "$SITE_URL" =~ :[0-9]+$ ]] && hint+=" порт;"
+            echo "::error::DOCS_SITE_URL: нужен вид https://домен — без слэша на конце, пути и порта, строчными.${hint}"
+            exit 1
+          fi
           [[ "$YANDEX_METRIKA_ID" =~ ^[0-9]*$ ]] || { echo "YANDEX_METRIKA_ID: только цифры или пусто"; exit 1; }
+          if [[ "$SITE_URL" == "https://docs.example.com" ]]; then echo "ready=false" >> "$GITHUB_OUTPUT"; else echo "ready=true" >> "$GITHUB_OUTPUT"; fi
+          echo "Счётчик Метрики: $([[ -n "$YANDEX_METRIKA_ID" ]] && echo задан || echo нет)"
 
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -131,13 +160,23 @@ jobs:
   # доменом (адрес вшит в статику при сборке). Слои берёт из кэша задачи check — пересборки нет.
   publish:
     needs: check
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && !endsWith(inputs.site_url || vars.DOCS_SITE_URL || 'https://docs.example.com', '//docs.example.com')
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && needs.check.outputs.site_ready == 'true'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     permissions:
       contents: read
       packages: write
     steps:
+      # Адрес из переменной или секрета приводим к виду https://домен: без пробелов и слэша на конце, строчными,
+      # без схемы — добавляем https:// (в секрет часто кладут просто домен)
+      - name: Привести адрес сайта к виду https://домен
+        run: |
+          u=$(printf '%s' "$SITE_URL" | tr -d '[:space:]' | tr '[:upper:]' '[:lower:]')
+          u=${u%/}
+          [[ "$u" == http://* ]] && u="https://${u#http://}"
+          [[ "$u" == https://* ]] || u="https://$u"
+          echo "SITE_URL=$u" >> "$GITHUB_ENV"
+
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
