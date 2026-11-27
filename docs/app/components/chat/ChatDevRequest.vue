@@ -30,7 +30,7 @@ function openForm() {
 </script>
 
 <template>
-  <B24Card variant="outline" class="my-2" :b24ui="{ body: 'p-3 flex flex-col gap-3' }">
+  <B24Card variant="outline" class="vsk-chat-card my-2" :b24ui="{ body: 'p-3 flex flex-col gap-3' }">
     <p class="text-sm font-medium">
       Запрос на разработку
     </p>

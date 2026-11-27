@@ -1,5 +1,6 @@
 @import "tailwindcss" theme(static) source(none);
 @import "@bitrix24/b24ui-nuxt";
+@import "./vasilek.css";
 
 /*
  * Scoped to what the docs render: the site itself, and the library source that
@@ -22,17 +23,14 @@
 }
 
 /*
- * Custom bg
+ * Custom bg: the image and colour come from vasilek.css ("Vasilek" backdrop)
  */
 @layer base {
   .edge-dark {
-    --air-theme-bg-image: url(../bg/dawn-harmony-blurred.webp);
-    --air-theme-bg-image-blurred: url(../bg/dawn-harmony-blurred-blurred.webp);
     --air-theme-bg-position: 0 0;
     --air-theme-bg-size: cover;
     --air-theme-bg-repeat: no-repeat;
     --air-theme-bg-attachment: fixed;
-    --air-theme-bg-color: #325ab3;
   }
 }
 

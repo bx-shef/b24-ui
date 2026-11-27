@@ -6,6 +6,7 @@ import { ru } from '@bitrix24/b24ui-nuxt/locale'
 const route = useRoute()
 const appConfig = useAppConfig()
 const { style, link } = useTheme()
+const base = useRuntimeConfig().app.baseURL.replace(/\/$/, '')
 
 const { enabled: chatEnabled, open: chatOpen } = useChat()
 // Панель чата (AI SDK и её интерфейс) монтируется при первом открытии: обычный просмотр документации
@@ -41,7 +42,12 @@ useHead({
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' }
   ],
-  link,
+  link: [
+    ...link.value,
+    { rel: 'icon', type: 'image/svg+xml', href: `${base}/favicon.svg` },
+    { rel: 'icon', type: 'image/png', sizes: '32x32', href: `${base}/favicon-32.png` },
+    { rel: 'apple-touch-icon', href: `${base}/apple-touch-icon.png` }
+  ],
   style
 })
 
