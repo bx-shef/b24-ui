@@ -3951,8 +3951,8 @@
     "f3f08c3f53433f6599669b4d049ff48fa66fddeb": {
       "pr": 51,
       "b24ui_sha": "352f0400c401f6f02591272ef06813174e875fa6",
-      "decision": "skip",
-      "summary": "nuxt/@nuxt/kit/@nuxt/schema остаются на ^4.6.4: nuxt 4.7.0 ломает docs:generate (голый require(\"process\") в чанке yaml@2.9.0, 156 маршрутов 500); исключение паритета в dep-parity.json"
+      "decision": "port",
+      "summary": "nuxt/@nuxt/kit/@nuxt/schema подняты до ^4.7.0 (catalog и override @nuxt/kit); docs:generate держит vite.ssr.external: ['yaml'] (inlined yaml без шима __require ломал prerender), override nitropack ^2.14.0 по требованию nuxt 4.7; исключение паритета снято (bx-shef/b24-ui#50)"
     },
     "fa032102a4879911a52342cf0b31ed95573fc3aa": {
       "pr": 51,
