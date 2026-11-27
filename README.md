@@ -104,13 +104,13 @@ app.mount('#app')
 
 Спасибо, что хотите помочь Bitrix24 UI. Вот несколько способов принять участие:
 
-- **Безопасность**: нашли уязвимость? [Сообщите о ней приватно](https://github.com/bitrix24/b24ui/security/advisories/new), а не через формы ниже. Что считается уязвимостью, сказано в [SECURITY.md](https://github.com/bitrix24/b24ui/blob/main/SECURITY.md).
-- **Сообщения об ошибках**: [создайте отчёт об ошибке](https://github.com/bitrix24/b24ui/issues/new?template=bug-report.yml). В форме просят воспроизведение — от этого поля зависит, можно ли что-то сделать по отчёту; см. [как сообщить об ошибке](https://github.com/bitrix24/b24ui/blob/main/CONTRIBUTING.md#reporting-a-bug).
-- **Предложения**: [создайте запрос на новую возможность](https://github.com/bitrix24/b24ui/issues/new?template=feature-request.yml). Есть идеи, как улучшить Bitrix24 UI? Мы будем рады их услышать.
-- **Код**: [CONTRIBUTING.md](https://github.com/bitrix24/b24ui/blob/main/CONTRIBUTING.md) — путеводитель: настройка окружения, подробные руководства и то, чего CI ждёт от pull request. Как запустить репозиторий, описано в [руководстве по участию](https://bitrix24.github.io/b24ui/docs/getting-started/contribution/) на сайте документации.
+- **Безопасность**: нашли уязвимость? [Сообщите о ней приватно](https://github.com/bx-shef/b24-ui/security/advisories/new), а не через формы ниже. Что считается уязвимостью, сказано в [SECURITY.md](https://github.com/bx-shef/b24-ui/blob/main/SECURITY.md).
+- **Сообщения об ошибках**: [создайте отчёт об ошибке](https://github.com/bx-shef/b24-ui/issues/new?template=bug-report.yml). В форме просят воспроизведение — от этого поля зависит, можно ли что-то сделать по отчёту; см. [как сообщить об ошибке](https://github.com/bx-shef/b24-ui/blob/main/CONTRIBUTING.md#reporting-a-bug).
+- **Предложения**: [создайте запрос на новую возможность](https://github.com/bx-shef/b24-ui/issues/new?template=feature-request.yml). Есть идеи, как улучшить Bitrix24 UI? Мы будем рады их услышать.
+- **Код**: [CONTRIBUTING.md](https://github.com/bx-shef/b24-ui/blob/main/CONTRIBUTING.md) — путеводитель: настройка окружения, подробные руководства и то, чего CI ждёт от pull request. Как запустить репозиторий, описано в [руководстве по участию](https://bitrix24.github.io/b24ui/docs/getting-started/contribution/) на сайте документации.
 
 > [!TIP]
-> Правила участия для AI-ассистентов лежат в [`AGENTS.md`](https://github.com/bitrix24/b24ui/blob/main/AGENTS.md). Файл подхватывают все AI-агенты для программирования, и он подсказывает им устройство компонентов, приёмы темизации, соглашения о тестах и правила документации.
+> Правила участия для AI-ассистентов лежат в [`AGENTS.md`](https://github.com/bx-shef/b24-ui/blob/main/AGENTS.md). Файл подхватывают все AI-агенты для программирования, и он подсказывает им устройство компонентов, приёмы темизации, соглашения о тестах и правила документации.
 
 ## Благодарности
 
@@ -127,8 +127,8 @@ app.mount('#app')
 [npm-downloads-src]: https://img.shields.io/npm/dm/@bxshefby/b24ui-nuxt.svg?style=flat&colorA=020420&colorB=2fc6f6
 [npm-downloads-href]: https://npm.chart.dev/@bxshefby/b24ui-nuxt
 
-[license-src]: https://img.shields.io/github/license/bitrix24/b24ui.svg?style=flat&colorA=020420&colorB=2fc6f6
-[license-href]: https://github.com/bitrix24/b24ui/blob/main/LICENSE
+[license-src]: https://img.shields.io/github/license/bx-shef/b24-ui.svg?style=flat&colorA=020420&colorB=2fc6f6
+[license-href]: https://github.com/bx-shef/b24-ui/blob/main/LICENSE
 
 [b24ui-src]: https://img.shields.io/badge/Bitrix24%20-UI%20Kit-2fc6f6?labelColor=020420
 [b24ui-href]: https://apidocs.bitrix24.com/

@@ -1,7 +1,8 @@
 # Releasing
 
-Releases are automated up to two human actions, in this order: **approve the
-release PR's held CI run, then merge it.** The merge is the decision this
+Releases are automated up to three human actions, in this order: **approve the
+release PR's held CI run, merge it, then approve the publish run in the
+`npm-publish` environment** (check that its ref is a `v*` tag on `main`). The merge is the decision this
 pipeline exists to leave with a person. The approval is not a decision at all —
 it is a click GitHub requires and nothing announces.
 
@@ -162,52 +163,56 @@ None of these is in version control, and none fails loudly.
 
 Пакет выпускается как `@bxshefby/b24ui-nuxt`; первая версия — **2.16.0**, следом
 за `@bitrix24/b24ui-nuxt` 2.15.0. Версию задаёт `"release-as": "2.16.0"` в
-`release-please-config.json`: тегов прошлых выпусков в этом репозитории нет, и
-без неё версию вычислила бы история коммитов от `bootstrap-sha`.
+`release-please-config.json`; `bootstrap-sha` — коммит `chore(main): release
+2.15.0` (`9d98b4a9`): тегов прошлых выпусков в этом репозитории нет, и без него
+журнал 2.16.0 повторил бы историю родителя.
 
-Доверенную публикацию (OIDC) npmjs.com настраивает только у пакета, который
-уже есть в реестре, поэтому 2.16.0 публикуется один раз руками:
+Доверенную публикацию (OIDC) npmjs.com настраивает только у пакета, который уже
+есть в реестре. Поэтому руками публикуется **заглушка**, а сама 2.16.0 выходит
+из CI — с provenance и через все проверки `npm-publish.yml`.
 
-1. **Settings → Secrets and variables → Actions → Variables:** `NPM_RELEASE=true`.
-   Пока переменной нет, `release-please.yml`, `npm-publish.yml` и
-   `release-watchdog.yml` пропускаются.
-2. **Выпуск 2.16.0.** release-please открывает PR `chore(main): release 2.16.0`;
-   одобрить его задержанный `ci` и смержить, как обычно. Тег `v2.16.0` и GitHub
-   Release появятся, а запуск `npm-publish.yml` упадёт на входе в npm — пакета
-   ещё нет, доверенной публикации тоже. Это ожидаемо.
-3. **Публикация руками** с машины, где выполнен `npm login` под владельцем
-   scope `@bxshefby`:
+1. **Окружение `npm-publish`** (*Settings → Environments → New environment*):
+   *Required reviewers* — владелец, *Prevent self-review* выключить;
+   *Deployment branches and tags* → *Selected* → тег `v*` (публикация всегда
+   идёт с ref тега). npm принимает токен только из этого окружения — без него
+   публиковать мог бы любой с правом записи, подменив `npm-publish.yml` в своей
+   ветке. Одобряя запуск, проверьте, что ref — тег `v*`, а его коммит есть в
+   `main`.
+2. **Правило на теги** (*Settings → Rules → Rulesets → New tag ruleset*): цель
+   `v*`, *Restrict creations*, *Restrict updates*, *Restrict deletions*; в
+   обход — владелец и приложение GitHub Actions (теги ставит release-please).
+3. **Заглушка** — с машины, где выполнен `npm login` под владельцем scope
+   `@bxshefby`, в пустом каталоге:
 
    ```sh
-   git clone https://github.com/bx-shef/b24-ui && cd b24-ui
-   git checkout v2.16.0
-   pnpm install --frozen-lockfile
-   pnpm run dev:prepare
-   pnpm build
-   pnpm publish --access public --no-git-checks
+   echo '{"name":"@bxshefby/b24ui-nuxt","version":"0.0.0-reserve","description":"Reserved name; use ^2.16.0","license":"MIT","repository":{"type":"git","url":"git+https://github.com/bx-shef/b24-ui.git"}}' > package.json
+   npm publish --access public --tag reserve
+   npm deprecate @bxshefby/b24ui-nuxt@0.0.0-reserve "Заглушка имени — используйте @bxshefby/b24ui-nuxt@^2.16.0"
    ```
 
-   `pnpm`, а не `npm`: только pnpm раскрывает `catalog:` в зависимостях.
-   Проверка — `npm view @bxshefby/b24ui-nuxt@2.16.0 version`.
 4. **Trusted Publisher.** npmjs.com → пакет `@bxshefby/b24ui-nuxt` → Settings →
    Trusted Publisher → GitHub Actions:
    - *Organization or user*: `bx-shef`
    - *Repository*: `b24-ui`
    - *Workflow filename*: `npm-publish.yml` (только имя файла)
-   - *Environment name*: `npm-publish` (его объявляет `npm-publish.yml`)
-   - *Allowed actions*: отметить `npm publish`.
+   - *Environment name*: `npm-publish`
+   - *Allowed actions*: отметить `npm publish`, `npm dist-tag` не отмечать.
 
-   Поля сравниваются с учётом регистра, и npm их при сохранении не проверяет:
-   ошибка видна только на следующей публикации. Новая связка истекает, если в
-   течение двух суток не было ни одной публикации через неё, поэтому её
-   заводят прямо перед мержем следующего release PR; истёкшую удаляют и
-   создают заново. `repository.url` в `package.json` должен указывать на
-   `bx-shef/b24-ui` — иначе npm откажет в provenance.
-5. **Убрать `release-as`** из `release-please-config.json` отдельным PR сразу
+   Ниже, в *Publishing access* — *Require two-factor authentication and
+   disallow bypass 2fa tokens*: доверенной публикации это не мешает. Поля
+   сравниваются с учётом регистра, и npm их при сохранении не проверяет:
+   ошибка видна только на публикации. `repository.url` в `package.json` должен
+   указывать на `bx-shef/b24-ui` — иначе npm откажет в provenance.
+5. **Settings → Actions → General → Workflow permissions** → *Allow GitHub
+   Actions to create and approve pull requests* (без неё release-please не
+   откроет PR) и **Variables:** `NPM_RELEASE=true`.
+6. **Выпуск 2.16.0.** release-please открывает PR `chore(main): release
+   2.16.0`; одобрить его задержанный `ci` и смержить. Запуск `npm-publish.yml`
+   по тегу `v2.16.0` ждёт одобрения в окружении `npm-publish` — одобрить.
+   Проверка — `npm view @bxshefby/b24ui-nuxt@2.16.0 version`, у версии на
+   npmjs.com — значок provenance.
+7. **Убрать `release-as`** из `release-please-config.json` отдельным PR сразу
    после выпуска 2.16.0: дальше версию снова считают коммиты.
-6. По желанию: Settings → Publishing access → *Require two-factor
-   authentication and disallow tokens* — публикация через OIDC продолжит
-   работать, токены — нет.
 
 ## How the version is chosen
 

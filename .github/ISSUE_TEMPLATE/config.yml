@@ -4,13 +4,13 @@
 blank_issues_enabled: true
 contact_links:
   - name: Report a security vulnerability
-    url: https://github.com/bitrix24/b24ui/security/advisories/new
+    url: https://github.com/bx-shef/b24-ui/security/advisories/new
     about: Privately, not through these forms. Everything here is public.
   - name: Documentation
     url: https://bitrix24.github.io/b24ui/
     about: Component reference, theming, and the getting-started guides.
   - name: Contributing
-    url: https://github.com/bitrix24/b24ui/blob/main/CONTRIBUTING.md
+    url: https://github.com/bx-shef/b24-ui/blob/main/CONTRIBUTING.md
     about: How to set the repository up, and where each guide lives.
   - name: Bitrix24 REST API
     url: https://apidocs.bitrix24.com/
