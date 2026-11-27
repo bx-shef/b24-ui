@@ -196,12 +196,6 @@ None of these is in version control, and none fails loudly.
    - *Repository*: `b24-ui`
    - *Workflow filename*: `npm-publish.yml` (только имя файла)
    - *Environment name*: `npm-publish`
-
-   Токен публикации есть только у job `publish` (`id-token: write`, окружение
-   `npm-publish`): он без checkout и без `pnpm install` скачивает готовый
-   tarball из job `build` (там `contents: read`, без `id-token`) и выполняет
-   `npm publish --provenance`. Поля Trusted Publisher от этого не меняются:
-   workflow и окружение те же.
    - *Allowed actions*: отметить `npm publish`, `npm dist-tag` не отмечать.
 
    Ниже, в *Publishing access* — *Require two-factor authentication and
@@ -209,6 +203,22 @@ None of these is in version control, and none fails loudly.
    сравниваются с учётом регистра, и npm их при сохранении не проверяет:
    ошибка видна только на публикации. `repository.url` в `package.json` должен
    указывать на `bx-shef/b24-ui` — иначе npm откажет в provenance.
+
+   Токен публикации есть только у job `publish` (`id-token: write`, окружение
+   `npm-publish`): он без checkout и без `pnpm install` скачивает готовый
+   tarball из job `build` (там `contents: read`, без `id-token`) и выполняет
+   `npm publish --provenance`. Поля Trusted Publisher от этого не меняются:
+   workflow и окружение те же. В `publish` разрешён только белый список шагов
+   (`.github/scripts/assert-publish-split.py`, тексты шагов сверяются с
+   эталоном), Node закреплён точной версией с npm не ниже 11.5.1; публикует
+   только тег: имя пакета и версия внутри tarball сверяются с
+   `@bxshefby/b24ui-nuxt` и тегом.
+
+   Одобрение окружения `npm-publish` приходит после сборки, а tarball хранится
+   7 дней: если одобрили позже, запуск повторить (re-run или новый dispatch по
+   тегу). **Принятый остаточный риск:** содержимое tarball собирает `build`, где
+   выполняется код зависимостей; целостность публикуемого держится на одобрении
+   владельца окружения и на сверке имени и версии, а не на изоляции сборки.
 5. **Settings → Actions → General → Workflow permissions** → *Allow GitHub
    Actions to create and approve pull requests* (без неё release-please не
    откроет PR) и **Variables:** `NPM_RELEASE=true`.
