@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { h, resolveComponent } from 'vue'
-import type { TableColumn } from '@bitrix24/b24ui-nuxt'
+import type { TableColumn } from '@bxshefby/b24ui-nuxt'
 import MinusLIcon from '@bitrix24/b24icons-vue/outline/MinusLIcon'
 import PlusLIcon from '@bitrix24/b24icons-vue/outline/PlusLIcon'
 

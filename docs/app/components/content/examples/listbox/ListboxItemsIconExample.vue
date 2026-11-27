@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ListboxItem } from '@bitrix24/b24ui-nuxt'
+import type { ListboxItem } from '@bxshefby/b24ui-nuxt'
 import CircleCheckIcon from '@bitrix24/b24icons-vue/outline/CircleCheckIcon'
 import CirclePlusIcon from '@bitrix24/b24icons-vue/outline/CirclePlusIcon'
 import InfoCircleIcon from '@bitrix24/b24icons-vue/outline/InfoCircleIcon'

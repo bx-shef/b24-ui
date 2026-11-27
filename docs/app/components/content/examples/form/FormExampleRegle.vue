@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FormSubmitEvent } from '@bitrix24/b24ui-nuxt'
+import type { FormSubmitEvent } from '@bxshefby/b24ui-nuxt'
 import { useRegle, type InferInput } from '@regle/core'
 import { required, email, minLength, withMessage } from '@regle/rules'
 

@@ -16,7 +16,7 @@ links:
 
 ```vue
 <script setup lang="ts">
-import { en } from '@bitrix24/b24ui-nuxt/locale'
+import { en } from '@bxshefby/b24ui-nuxt/locale'
 
 const locale = extendLocale(en, {
   locale: 'en-AU',
@@ -55,7 +55,7 @@ const locale = extendLocale(en, {
 ::field-group
 
   ::field{name="locale" type="Locale<M>" required}
-  Базовая локаль, которую расширяем. Импортируется из `@bitrix24/b24ui-nuxt/locale`.
+  Базовая локаль, которую расширяем. Импортируется из `@bxshefby/b24ui-nuxt/locale`.
   ::
 
   ::field{name="options" type="Partial<DefineLocaleOptions<DeepPartial<M>>>" required}
@@ -97,7 +97,7 @@ const locale = extendLocale(en, {
 
 ```vue
 <script setup lang="ts">
-import { en } from '@bitrix24/b24ui-nuxt/locale'
+import { en } from '@bxshefby/b24ui-nuxt/locale'
 
 const locale = extendLocale(en, {
   name: 'English (Australia)',

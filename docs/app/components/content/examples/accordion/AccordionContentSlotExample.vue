@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AccordionItem } from '@bitrix24/b24ui-nuxt'
+import type { AccordionItem } from '@bxshefby/b24ui-nuxt'
 import SmartActivityIcon from '@bitrix24/b24icons-vue/outline/SmartActivityIcon'
 import FeedbackIcon from '@bitrix24/b24icons-vue/outline/FeedbackIcon'
 import RocketIcon from '@bitrix24/b24icons-vue/outline/RocketIcon'

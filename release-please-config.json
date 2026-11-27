@@ -1,10 +1,11 @@
 {
   "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
-  "bootstrap-sha": "ae76be290fcb272d642618cfcceb66bb098825fb",
+  "bootstrap-sha": "9d98b4a9581c38c3c180aa68ca89189bf1d57555",
   "include-component-in-tag": false,
   "packages": {
     ".": {
       "release-type": "node",
+      "release-as": "2.16.0",
       "changelog-sections": [
         { "type": "feat", "section": "Features" },
         { "type": "feature", "section": "Features" },

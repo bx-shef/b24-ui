@@ -41,7 +41,7 @@ links:
 
 ### Локали {#locales}
 
-Пропс `locales` принимает массив локалей из `@bitrix24/b24ui-nuxt/locale`.
+Пропс `locales` принимает массив локалей из `@bxshefby/b24ui-nuxt/locale`.
 
 ::component-example
 ---
@@ -53,7 +53,7 @@ name: 'locale-select-example'
 
 ```vue
 <script setup lang="ts">
-import { en, es, ru, tr, ar } from '@bitrix24/b24ui-nuxt/locale'
+import { en, es, ru, tr, ar } from '@bxshefby/b24ui-nuxt/locale'
 
 const locale = ref('en')
 </script>
@@ -72,7 +72,7 @@ const locale = ref('en')
 
 ```vue
 <script setup lang="ts">
-import { de, en, fr } from '@bitrix24/b24ui-nuxt/locale'
+import { de, en, fr } from '@bxshefby/b24ui-nuxt/locale'
 
 const { locale, setLocale } = useI18n()
 </script>
@@ -95,7 +95,7 @@ const { locale, setLocale } = useI18n()
 ```vue
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
-import { de, en } from '@bitrix24/b24ui-nuxt/locale'
+import { de, en } from '@bxshefby/b24ui-nuxt/locale'
 
 const { locale, setLocale } = useI18n()
 </script>

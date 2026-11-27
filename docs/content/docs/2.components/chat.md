@@ -407,7 +407,7 @@ export default defineEventHandler(async (event) => {
 <script setup lang="ts">
 import { isReasoningUIPart, isTextUIPart, isToolUIPart, getToolName } from 'ai'
 import { useChat } from '@ai-sdk/vue'
-import { isPartStreaming, isToolStreaming } from '@bitrix24/b24ui-nuxt/utils/ai'
+import { isPartStreaming, isToolStreaming } from '@bxshefby/b24ui-nuxt/utils/ai'
 
 const input = ref('')
 

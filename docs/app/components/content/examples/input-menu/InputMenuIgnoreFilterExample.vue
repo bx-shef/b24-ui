@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AvatarProps } from '@bitrix24/b24ui-nuxt'
+import type { AvatarProps } from '@bxshefby/b24ui-nuxt'
 import { refDebounced } from '@vueuse/core'
 import UserIcon from '@bitrix24/b24icons-vue/common-b24/UserIcon'
 import Expand1Icon from '@bitrix24/b24icons-vue/actions/Expand1Icon'

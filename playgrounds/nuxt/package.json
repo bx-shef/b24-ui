@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@bitrix24/b24ui-nuxt-playground",
+  "name": "@bxshefby/b24ui-nuxt-playground",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -14,7 +14,7 @@
     "@comark/vue": "catalog:",
     "@internationalized/date": "catalog:",
     "@nuxt/content": "catalog:",
-    "@bitrix24/b24ui-nuxt": "catalog:",
+    "@bxshefby/b24ui-nuxt": "catalog:",
     "@bitrix24/b24icons-nuxt": "catalog:",
     "@bitrix24/b24icons-vue": "catalog:",
     "@tanstack/charts": "catalog:",

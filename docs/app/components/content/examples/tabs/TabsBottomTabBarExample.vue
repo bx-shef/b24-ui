@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TabsItem } from '@bitrix24/b24ui-nuxt'
+import type { TabsItem } from '@bxshefby/b24ui-nuxt'
 import HomePageIcon from '@bitrix24/b24icons-vue/main/HomePageIcon'
 import ActivityIcon from '@bitrix24/b24icons-vue/main/ActivityIcon'
 import SettingsIcon from '@bitrix24/b24icons-vue/main/SettingsIcon'

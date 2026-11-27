@@ -26,7 +26,7 @@ export default function AppConfigPlugin(_options: Bitrix24UIOptions, appConfig: 
           test: {
             server: {
               deps: {
-                inline: ['@bitrix24/b24ui']
+                inline: ['@bxshefby/b24ui', '@bitrix24/b24ui']
               }
             }
           }

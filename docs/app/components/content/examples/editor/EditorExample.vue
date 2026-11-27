@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { EditorCustomHandlers, EditorToolbarItem, EditorSuggestionMenuItem, EditorMentionMenuItem, EditorEmojiMenuItem, DropdownMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { EditorCustomHandlers, EditorToolbarItem, EditorSuggestionMenuItem, EditorMentionMenuItem, EditorEmojiMenuItem, DropdownMenuItem } from '@bxshefby/b24ui-nuxt'
 import type { Editor, JSONContent } from '@tiptap/vue-3'
 import { upperFirst } from 'scule'
-import { mapEditorItems } from '@bitrix24/b24ui-nuxt/utils/editor'
+import { mapEditorItems } from '@bxshefby/b24ui-nuxt/utils/editor'
 import { Emoji, gitHubEmojis } from '@tiptap/extension-emoji'
 import { TextAlign } from '@tiptap/extension-text-align'
 import { CodeBlockShiki } from 'tiptap-extension-code-block-shiki'

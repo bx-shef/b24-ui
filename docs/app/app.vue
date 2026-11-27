@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { ContentNavigationItem } from '@nuxt/content'
-import type { ToasterProps } from '@bitrix24/b24ui-nuxt'
-import { ru } from '@bitrix24/b24ui-nuxt/locale'
+import type { ToasterProps } from '@bxshefby/b24ui-nuxt'
+import { ru } from '@bxshefby/b24ui-nuxt/locale'
 
 const route = useRoute()
 const appConfig = useAppConfig()

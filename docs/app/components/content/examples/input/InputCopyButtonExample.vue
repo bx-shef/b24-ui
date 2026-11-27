@@ -4,7 +4,7 @@ import CircleCheckIcon from '@bitrix24/b24icons-vue/outline/CircleCheckIcon'
 
 import { useClipboard } from '@vueuse/core'
 
-const value = ref('npx nuxt module add @bitrix24/b24ui-nuxt')
+const value = ref('npx nuxt module add @bxshefby/b24ui-nuxt')
 
 const { copy, copied } = useClipboard()
 </script>

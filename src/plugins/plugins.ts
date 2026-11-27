@@ -6,6 +6,7 @@ import { globSync } from 'tinyglobby'
 import type { UnpluginOptions } from 'unplugin'
 import { runtimeDir, runtimeUrl } from '../unplugin'
 import type { Bitrix24UIOptions } from '../unplugin'
+import { PACKAGE_NAMES } from '../utils/package-names'
 
 /**
  * This plugin provides the necessary transforms to allow loading the
@@ -29,7 +30,7 @@ export default function PluginsPlugin(options: Bitrix24UIOptions) {
     name: 'bitrix24:b24ui:plugins',
     enforce: 'pre',
     resolveId(id) {
-      if (id === '@bitrix24/b24ui-nuxt/vue-plugin') {
+      if (PACKAGE_NAMES.some(name => id === `${name}/vue-plugin`)) {
         return 'virtual:bitrix24-ui-plugins'
       }
     },
@@ -72,7 +73,7 @@ ${proseImports.map(c => `    app.component('${c.name}', ${c.name})`).join('\n')}
           // Opt-out Bitrix24 UI from Vite's pre-bundling,
           // as we need Vite's pipeline to resolve imports like `#imports`
           optimizeDeps: {
-            exclude: ['@bitrix24/b24ui-nuxt']
+            exclude: [...PACKAGE_NAMES]
           }
         }
       }

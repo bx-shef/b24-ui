@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ButtonProps } from '@bitrix24/b24ui-nuxt'
+import type { ButtonProps } from '@bxshefby/b24ui-nuxt'
 import theme from '#build/b24ui/alert'
 import SignIcon from '@bitrix24/b24icons-vue/main/SignIcon'
 import MoreMIcon from '@bitrix24/b24icons-vue/outline/MoreMIcon'

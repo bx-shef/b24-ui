@@ -2,7 +2,7 @@ import './assets/css/main.css'
 
 import { createApp, ref } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
-import b24UiPlugin from '@bitrix24/b24ui-nuxt/vue-plugin'
+import b24UiPlugin from '@bxshefby/b24ui-nuxt/vue-plugin'
 
 import App from './app.vue'
 

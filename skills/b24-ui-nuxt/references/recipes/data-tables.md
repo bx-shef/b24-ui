@@ -6,7 +6,7 @@
 
 ```vue
 <script setup lang="ts">
-import type { TableColumn } from '@bitrix24/b24ui-nuxt'
+import type { TableColumn } from '@bxshefby/b24ui-nuxt'
 
 const data = ref([
   { name: 'Alice', email: 'alice@example.com', role: 'Admin' },
@@ -34,7 +34,7 @@ const columns: TableColumn<typeof data.value[number]>[] = [{
 
 ```vue
 <script setup lang="ts">
-import type { TableColumn } from '@bitrix24/b24ui-nuxt'
+import type { TableColumn } from '@bxshefby/b24ui-nuxt'
 import TrashBinIcon from '@bitrix24/b24icons-vue/main/TrashBinIcon'
 import PencilDrawIcon from '@bitrix24/b24icons-vue/actions/PencilDrawIcon'
 import MenuIcon from '@bitrix24/b24icons-vue/main/MenuIcon'

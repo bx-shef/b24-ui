@@ -1,6 +1,6 @@
 <script lang="ts">
 import type { ClassValue } from 'tailwind-variants'
-import type { CardProps } from '@bitrix24/b24ui-nuxt'
+import type { CardProps } from '@bxshefby/b24ui-nuxt'
 
 export type MatrixValue<V> = V extends readonly (infer U)[] ? U : V
 

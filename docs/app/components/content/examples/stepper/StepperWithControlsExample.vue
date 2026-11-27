@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { StepperItem } from '@bitrix24/b24ui-nuxt'
+import type { StepperItem } from '@bxshefby/b24ui-nuxt'
 import ArrowLeftLIcon from '@bitrix24/b24icons-vue/outline/ArrowLeftLIcon'
 import ArrowRightLIcon from '@bitrix24/b24icons-vue/outline/ArrowRightLIcon'
 import LocationIcon from '@bitrix24/b24icons-vue/outline/LocationIcon'

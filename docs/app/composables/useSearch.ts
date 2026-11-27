@@ -1,4 +1,4 @@
-import type { ContentSearchLink } from '@bitrix24/b24ui-nuxt'
+import type { ContentSearchLink } from '@bxshefby/b24ui-nuxt'
 import PlayLIcon from '@bitrix24/b24icons-vue/outline/PlayLIcon'
 import DeveloperResourcesIcon from '@bitrix24/b24icons-vue/outline/DeveloperResourcesIcon'
 import ViewmodeCodeIcon from '@bitrix24/b24icons-vue/editor/ViewmodeCodeIcon'

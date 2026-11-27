@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as z from 'zod'
-import type { FormSubmitEvent } from '@bitrix24/b24ui-nuxt'
+import type { FormSubmitEvent } from '@bxshefby/b24ui-nuxt'
 import SettingsIcon from '@bitrix24/b24icons-vue/outline/SettingsIcon'
 import CalendarIcon from '@bitrix24/b24icons-vue/outline/CalendarIcon'
 import CirclePlusIcon from '@bitrix24/b24icons-vue/main/CirclePlusIcon'

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import * as locales from '@bitrix24/b24ui-nuxt/locale'
+import * as locales from '@bxshefby/b24ui-nuxt/locale'
 
 const props = withDefaults(defineProps<{
   default?: string

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { CheckboxGroupItem } from '@bitrix24/b24ui-nuxt'
+import type { CheckboxGroupItem } from '@bxshefby/b24ui-nuxt'
 import ThemeIcon from '@bitrix24/b24icons-vue/outline/ThemeIcon'
 import SunIcon from '@bitrix24/b24icons-vue/outline/SunIcon'
 import MoonIcon from '@bitrix24/b24icons-vue/outline/MoonIcon'

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import theme from '#build/b24ui/countdown'
-import B24Countdown from '@bitrix24/b24ui-nuxt/components/Countdown.vue'
+import B24Countdown from '@bxshefby/b24ui-nuxt/components/Countdown.vue'
 import ExampleGrid from '../../components/ExampleGrid.vue'
 import ExampleCard from '../../components/ExampleCard.vue'
 import ExampleCardSubTitle from '../../components/ExampleCardSubTitle.vue'

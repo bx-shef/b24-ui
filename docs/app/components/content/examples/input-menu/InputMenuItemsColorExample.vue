@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { InputMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { InputMenuItem } from '@bxshefby/b24ui-nuxt'
 import SettingsIcon from '@bitrix24/b24icons-vue/main/SettingsIcon'
 import MyPlanIcon from '@bitrix24/b24icons-vue/main/MyPlanIcon'
 import Shield2DefendedIcon from '@bitrix24/b24icons-vue/main/Shield2DefendedIcon'

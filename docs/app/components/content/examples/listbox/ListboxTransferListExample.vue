@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ListboxItem } from '@bitrix24/b24ui-nuxt'
+import type { ListboxItem } from '@bxshefby/b24ui-nuxt'
 import Location1Icon from '@bitrix24/b24icons-vue/main/Location1Icon'
 import ChevronLeftLIcon from '@bitrix24/b24icons-vue/outline/ChevronLeftLIcon'
 import ChevronRightLIcon from '@bitrix24/b24icons-vue/outline/ChevronRightLIcon'

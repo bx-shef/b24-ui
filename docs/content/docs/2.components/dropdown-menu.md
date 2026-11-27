@@ -511,7 +511,7 @@ name: 'dropdown-menu-content-width-example'
 Утилита [extractShortcuts](/docs/composables/extract-shortcuts/) автоматически определяет сочетания клавиш из элементов меню со свойством `kbds`. Она обходит меню рекурсивно и возвращает объект, совместимый с [defineShortcuts](/docs/composables/define-shortcuts/).
 ```vue
 <script setup lang="ts">
-import type { DropdownMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { DropdownMenuItem } from '@bxshefby/b24ui-nuxt'
 
 const items: DropdownMenuItem[] = [{
   label: 'Invite users',

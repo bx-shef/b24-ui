@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { object, string } from 'yup'
 import type { InferType } from 'yup'
-import type { FormSubmitEvent } from '@bitrix24/b24ui-nuxt'
+import type { FormSubmitEvent } from '@bxshefby/b24ui-nuxt'
 
 const schema = object({
   email: string().email('Некорректный email').required('Обязательное поле'),

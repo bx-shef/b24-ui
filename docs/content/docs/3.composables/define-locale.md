@@ -16,7 +16,7 @@ links:
 
 ```vue
 <script setup lang="ts">
-import type { Messages } from '@bitrix24/b24ui-nuxt'
+import type { Messages } from '@bxshefby/b24ui-nuxt'
 
 const locale = defineLocale<Messages>({
   name: 'My custom locale',
@@ -74,7 +74,7 @@ const locale = defineLocale<Messages>({
         ::
   
         ::field{name="messages" type="M" required}
-        Объект с переводами. Для типобезопасности используйте тип `Messages` из `@bitrix24/b24ui-nuxt`.
+        Объект с переводами. Для типобезопасности используйте тип `Messages` из `@bxshefby/b24ui-nuxt`.
         ::
       ::
     ::
@@ -89,7 +89,7 @@ const locale = defineLocale<Messages>({
 
 ```vue
 <script setup lang="ts">
-import type { Messages } from '@bitrix24/b24ui-nuxt'
+import type { Messages } from '@bxshefby/b24ui-nuxt'
 
 const locale = defineLocale<Messages>({
   name: 'Español',

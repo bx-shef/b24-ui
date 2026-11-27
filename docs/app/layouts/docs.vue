@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ContentNavigationItem } from '@nuxt/content'
-import { useFilter } from '@bitrix24/b24ui-nuxt/composables'
+import { useFilter } from '@bxshefby/b24ui-nuxt/composables'
 
 const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
 

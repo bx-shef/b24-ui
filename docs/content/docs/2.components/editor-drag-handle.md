@@ -96,7 +96,7 @@ class: 'p-8'
 ::
 
 ::note
-В этом примере утилита `mapEditorItems` из `@bitrix24/b24ui-nuxt/utils/editor` сопоставляет виды обработчиков (`duplicate`, `delete`, `moveUp` и другие) с командами редактора и сама управляет состоянием.
+В этом примере утилита `mapEditorItems` из `@bxshefby/b24ui-nuxt/utils/editor` сопоставляет виды обработчиков (`duplicate`, `delete`, `moveUp` и другие) с командами редактора и сама управляет состоянием.
 ::
 
 ### С меню подсказок {#with-suggestion-menu}

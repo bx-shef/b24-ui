@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Editor } from '@tiptap/vue-3'
-import type { EditorToolbarItem } from '@bitrix24/b24ui-nuxt'
+import type { EditorToolbarItem } from '@bxshefby/b24ui-nuxt'
 import DownloadIcon from '@bitrix24/b24icons-vue/outline/DownloadIcon'
 import TrashcanIcon from '@bitrix24/b24icons-vue/outline/TrashcanIcon'
 

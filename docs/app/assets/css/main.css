@@ -1,5 +1,5 @@
 @import "tailwindcss" theme(static) source(none);
-@import "@bitrix24/b24ui-nuxt";
+@import "@bxshefby/b24ui-nuxt";
 @import "./vasilek.css";
 
 /*

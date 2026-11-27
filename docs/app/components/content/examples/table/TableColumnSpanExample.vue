@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TableColumn } from '@bitrix24/b24ui-nuxt'
+import type { TableColumn } from '@bxshefby/b24ui-nuxt'
 import type { Cell } from '@tanstack/vue-table'
 
 type Product = {

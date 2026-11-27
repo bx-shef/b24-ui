@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { object, string, nonempty, refine } from 'superstruct'
 import type { Infer } from 'superstruct'
-import type { FormSubmitEvent } from '@bitrix24/b24ui-nuxt'
+import type { FormSubmitEvent } from '@bxshefby/b24ui-nuxt'
 
 const schema = object({
   email: nonempty(string()),

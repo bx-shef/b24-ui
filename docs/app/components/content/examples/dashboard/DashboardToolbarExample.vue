@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import InfoCircleIcon from '@bitrix24/b24icons-vue/outline/InfoCircleIcon'
 import UserIcon from '@bitrix24/b24icons-vue/common-b24/UserIcon'
 import UserGroupIcon from '@bitrix24/b24icons-vue/common-b24/UserGroupIcon'

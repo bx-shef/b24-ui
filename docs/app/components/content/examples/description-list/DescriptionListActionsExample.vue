@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DescriptionListItem, ButtonProps } from '@bitrix24/b24ui-nuxt'
+import type { DescriptionListItem, ButtonProps } from '@bxshefby/b24ui-nuxt'
 import SignIcon from '@bitrix24/b24icons-vue/main/SignIcon'
 import DotsIcon from '@bitrix24/b24icons-vue/button/DotsIcon'
 

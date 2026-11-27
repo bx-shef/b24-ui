@@ -31,7 +31,7 @@ Rules for preparing the community release announcement in Telegram. The final me
 4. `Под капотом:` — one line naming the major dependency version bumps (Nuxt, Vite, reka-ui, Tiptap) plus one memorable detail (migration, `-N packages`, dropped stack). Omit if the release is dependency-quiet.
 5. Install command:
    ```bash
-   pnpm add @bitrix24/b24ui-nuxt@latest
+   pnpm add @bxshefby/b24ui-nuxt@latest
    ```
 6. `📋 Полный список изменений — CHANGELOG` (link to `/blob/main/CHANGELOG.md`).
 7. AI hint block (see §5).
@@ -57,11 +57,11 @@ Rules for preparing the community release announcement in Telegram. The final me
 - The prompt is a single sentence and carries **two links**: the release notes for the shipped version, and `llms.txt`. Template — substitute the version in both places:
 
   ```
-  Изучи, что нового в @bitrix24/b24ui-nuxt X.Y.Z — https://github.com/bitrix24/b24ui/releases/tag/vX.Y.Z — и применяй новые возможности в моём проекте, опираясь на документацию Bitrix24 UI: https://bitrix24.github.io/b24ui/llms.txt
+  Изучи, что нового в @bxshefby/b24ui-nuxt X.Y.Z — https://github.com/bx-shef/b24-ui/releases/tag/vX.Y.Z — и применяй новые возможности в моём проекте, опираясь на документацию Bitrix24 UI: https://bitrix24.github.io/b24ui/llms.txt
   ```
 
 - It is written in **Russian**, unlike the code in the post: it is a line the reader reads and copies, so it follows the body. The docs it points at are English either way.
-- The package name is **`@bitrix24/b24ui-nuxt`** — that is what is published and what the post's own `pnpm add` line installs. `@bitrix24/b24ui` does not exist on the registry.
+- The package name is **`@bxshefby/b24ui-nuxt`** — that is what is published and what the post's own `pnpm add` line installs. `@bxshefby/b24ui` does not exist on the registry, and `@bitrix24/b24ui-nuxt` is the parent project's package, not this one.
 - The release-notes link is **pinned to the tag**, not `blob/main/CHANGELOG.md` — this holds for the `Полный список изменений` line in the body too. An old post must keep pointing at its own release, not at whatever shipped since.
 - Heading for the block:
 
@@ -134,10 +134,10 @@ Rules for preparing the community release announcement in Telegram. The final me
 🛠 Под капотом: **Nuxt X.Y.Z**, **Vite vN**, **reka-ui vX.Y.Z**, **Tiptap X.Y** <+ one memorable detail>.
 
 ```bash
-pnpm add @bitrix24/b24ui-nuxt@latest
+pnpm add @bxshefby/b24ui-nuxt@latest
 ```
 
-📋 Полный список изменений — [CHANGELOG](https://github.com/bitrix24/b24ui/releases/tag/vX.Y.Z).
+📋 Полный список изменений — [CHANGELOG](https://github.com/bx-shef/b24-ui/releases/tag/vX.Y.Z).
 
 🔐 Для вашего ИИ — готовый промпт:
 ```

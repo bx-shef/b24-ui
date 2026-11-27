@@ -2,7 +2,7 @@
 import TelephonyHandset1Icon from '@bitrix24/b24icons-vue/main/TelephonyHandset1Icon'
 import MailIcon from '@bitrix24/b24icons-vue/main/MailIcon'
 import FeedbackIcon from '@bitrix24/b24icons-vue/main/FeedbackIcon'
-import type { PageCardGroupItem } from '@bitrix24/b24ui-nuxt'
+import type { PageCardGroupItem } from '@bxshefby/b24ui-nuxt'
 
 const items: PageCardGroupItem[] = [
   {

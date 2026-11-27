@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FileUploadItem } from '@bitrix24/b24ui-nuxt'
+import type { FileUploadItem } from '@bxshefby/b24ui-nuxt'
 
 const files = ref<FileUploadItem[]>([{
   name: 'bitrix24.png',

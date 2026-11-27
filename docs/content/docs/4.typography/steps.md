@@ -25,7 +25,7 @@ links:
 
 ```ts [nuxt.config.ts]
 export default defineNuxtConfig({
-  modules: ['@bitrix24/b24ui-nuxt']
+  modules: ['@bxshefby/b24ui-nuxt']
 })
 ```
 
@@ -52,7 +52,7 @@ npm run dev
 
 ```ts [nuxt.config.ts]
 export default defineNuxtConfig({
-  modules: ['@bitrix24/b24ui-nuxt']
+  modules: ['@bxshefby/b24ui-nuxt']
 })
 ```
 

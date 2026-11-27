@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue'
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import ArrowRightLIcon from '@bitrix24/b24icons-vue/outline/ArrowRightLIcon'
 import CircleCheckIcon from '@bitrix24/b24icons-vue/main/CircleCheckIcon'
 import MockContentLongString from '../../components/MockContentLongString.vue'

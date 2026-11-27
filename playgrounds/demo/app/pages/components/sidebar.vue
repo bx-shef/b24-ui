@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ChatMessageProps, NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { ChatMessageProps, NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import theme from '#build/b24ui/sidebar'
 import HomeIcon from '@bitrix24/b24icons-vue/outline/HomeIcon'
 import MessagesIcon from '@bitrix24/b24icons-vue/outline/MessagesIcon'

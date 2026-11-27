@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { BreadcrumbItem } from '@bitrix24/b24ui-nuxt'
+import type { BreadcrumbItem } from '@bxshefby/b24ui-nuxt'
 import MoreLIcon from '@bitrix24/b24icons-vue/outline/MoreLIcon'
 import HomeIcon from '@bitrix24/b24icons-vue/outline/HomeIcon'
 import ProductIcon from '@bitrix24/b24icons-vue/outline/ProductIcon'

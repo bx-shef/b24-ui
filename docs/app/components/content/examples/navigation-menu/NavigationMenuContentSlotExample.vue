@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import ConnectionIcon from '@bitrix24/b24icons-vue/actions/ConnectionIcon'
 import MicrophoneOnIcon from '@bitrix24/b24icons-vue/main/MicrophoneOnIcon'
 import GitHubIcon from '@bitrix24/b24icons-vue/social/GitHubIcon'

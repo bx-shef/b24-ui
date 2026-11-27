@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { UserProps } from '@bitrix24/b24ui-nuxt'
+import type { UserProps } from '@bxshefby/b24ui-nuxt'
 import AddProductIcon from '@bitrix24/b24icons-vue/outline/AddProductIcon'
 
 const members: UserProps[] = [

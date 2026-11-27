@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DescriptionListItem } from '@bitrix24/b24ui-nuxt'
+import type { DescriptionListItem } from '@bxshefby/b24ui-nuxt'
 
 const items = ref([
   {

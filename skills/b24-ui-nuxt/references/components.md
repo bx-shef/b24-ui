@@ -162,7 +162,7 @@
 
 ## Prose — функциональные компоненты
 
-Prose-компоненты, специфичные для Bitrix24 UI. В markdown-файлах они используются **без префикса `Prose`** (например, `::callout`, `::steps`). В Vue на них ссылаются как `ProseCallout`, `ProseSteps` и т. д. Comark подставляет их автоматически, когда установлен `@bitrix24/b24ui-nuxt`.
+Prose-компоненты, специфичные для Bitrix24 UI. В markdown-файлах они используются **без префикса `Prose`** (например, `::callout`, `::steps`). В Vue на них ссылаются как `ProseCallout`, `ProseSteps` и т. д. Comark подставляет их автоматически, когда установлен `@bxshefby/b24ui-nuxt`.
 
 Bitrix24 UI также регистрирует краткие псевдонимы для `Callout`: `::note`, `::tip`, `::warning`, `::caution` (с готовыми `color` и `icon`).
 

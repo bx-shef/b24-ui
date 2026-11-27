@@ -4,7 +4,7 @@ const extraAllowedHosts = (process?.env.NUXT_ALLOWED_HOSTS?.split(',').map((s: s
 
 export default defineNuxtConfig({
   modules: [
-    '@bitrix24/b24ui-nuxt',
+    '@bxshefby/b24ui-nuxt',
     '@bitrix24/b24icons-nuxt'
   ],
 

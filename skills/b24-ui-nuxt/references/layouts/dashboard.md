@@ -31,7 +31,7 @@ B24App
 
 ```vue [layouts/dashboard.vue]
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import HomeIcon from '@bitrix24/b24icons-vue/outline/HomeIcon'
 import MessagesIcon from '@bitrix24/b24icons-vue/outline/MessagesIcon'
 import GroupIcon from '@bitrix24/b24icons-vue/outline/GroupIcon'

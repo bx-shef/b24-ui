@@ -14,6 +14,7 @@ const pages = [
   '/docs/getting-started/installation/nuxt/',
   '/docs/getting-started/installation/vue/',
   '/docs/getting-started/migration/',
+  '/docs/getting-started/package/',
   '/docs/getting-started/contribution/',
   '/docs/getting-started/theme/design-system/',
   '/docs/getting-started/theme/css-variables/',
@@ -261,7 +262,7 @@ const gitUrl = process?.env.NUXT_PUBLIC_GIT_URL ?? ''
 export default defineNuxtConfig({
   modules: [
     '../src/module',
-    // '@bitrix24/b24ui-nuxt',
+    // '@bxshefby/b24ui-nuxt',
     '@nuxt/content',
     // '@nuxt/image',
     '@nuxtjs/mcp-toolkit',

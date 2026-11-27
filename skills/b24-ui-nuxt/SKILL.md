@@ -1,6 +1,6 @@
 ---
 name: b24-ui-nuxt
-description: Создание интерфейсов на @bitrix24/b24ui-nuxt v2 — 130+ доступных компонентов Vue с темами на Tailwind CSS. Используйте при создании интерфейсов, форм и раскладок страниц для приложения Bitrix24.
+description: Создание интерфейсов на @bxshefby/b24ui-nuxt v2 — 130+ доступных компонентов Vue с темами на Tailwind CSS. Используйте при создании интерфейсов, форм и раскладок страниц для приложения Bitrix24.
 ---
 
 # Bitrix24 UI
@@ -74,13 +74,13 @@ description: Создание интерфейсов на @bitrix24/b24ui-nuxt v
 ### Nuxt
 
 ```bash
-pnpm add @bitrix24/b24ui-nuxt @bitrix24/b24icons-vue tailwindcss
+pnpm add @bxshefby/b24ui-nuxt @bitrix24/b24icons-vue tailwindcss
 ```
 
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
-  modules: ['@bitrix24/b24ui-nuxt'],
+  modules: ['@bxshefby/b24ui-nuxt'],
   css: ['~/assets/css/main.css']
 })
 ```
@@ -88,7 +88,7 @@ export default defineNuxtConfig({
 ```css
 /* app/assets/css/main.css */
 @import "tailwindcss";
-@import "@bitrix24/b24ui-nuxt";
+@import "@bxshefby/b24ui-nuxt";
 ```
 
 ```vue
@@ -103,14 +103,14 @@ export default defineNuxtConfig({
 ### Vue (Vite)
 
 ```bash
-pnpm add @bitrix24/b24ui-nuxt @bitrix24/b24icons-vue tailwindcss
+pnpm add @bxshefby/b24ui-nuxt @bitrix24/b24icons-vue tailwindcss
 ```
 
 ```ts
 // vite.config.ts
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import bitrix24UIPluginVite from '@bitrix24/b24ui-nuxt/vite'
+import bitrix24UIPluginVite from '@bxshefby/b24ui-nuxt/vite'
 
 export default defineConfig({
   plugins: [
@@ -125,7 +125,7 @@ export default defineConfig({
 import './assets/main.css'
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
-import b24UiPlugin from '@bitrix24/b24ui-nuxt/vue-plugin'
+import b24UiPlugin from '@bxshefby/b24ui-nuxt/vue-plugin'
 import App from './App.vue'
 
 const app = createApp(App)
@@ -142,7 +142,7 @@ app.mount('#app')
 ```css
 /* src/assets/css/main.css */
 @import "tailwindcss";
-@import "@bitrix24/b24ui-nuxt";
+@import "@bxshefby/b24ui-nuxt";
 ```
 
 ```vue

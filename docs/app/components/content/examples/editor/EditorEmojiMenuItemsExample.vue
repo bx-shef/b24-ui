@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { EditorEmojiMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { EditorEmojiMenuItem } from '@bxshefby/b24ui-nuxt'
 import { Emoji } from '@tiptap/extension-emoji'
 
 const value = ref(`Введите :, чтобы увидеть собственный набор эмодзи.

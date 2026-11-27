@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // import { joinURL } from 'ufo'
 import { navigateTo } from '#imports'
-import { resolveIcon } from '@bitrix24/b24ui-nuxt/utils'
+import { resolveIcon } from '@bxshefby/b24ui-nuxt/utils'
 
 const { data: page } = await useAsyncData('index', () => queryCollection('index').first())
 if (!page.value) {

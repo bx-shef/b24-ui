@@ -16,7 +16,7 @@
     "@comark/vue": "catalog:",
     "@nuxt/content": "catalog:",
     "@nuxt/image": "catalog:",
-    "@bitrix24/b24ui-nuxt": "catalog:",
+    "@bxshefby/b24ui-nuxt": "catalog:",
     "@nuxtjs/mcp-toolkit": "catalog:",
     "@nuxtjs/mdc": "catalog:",
     "@octokit/rest": "catalog:",

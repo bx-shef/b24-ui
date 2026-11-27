@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { EditorToolbarItem } from '@bitrix24/b24ui-nuxt'
+import type { EditorToolbarItem } from '@bxshefby/b24ui-nuxt'
 import EditorLinkPopover from './EditorLinkPopover.vue'
 import BoldIcon from '@bitrix24/b24icons-vue/outline/BoldIcon'
 import ItalicIcon from '@bitrix24/b24icons-vue/outline/ItalicIcon'

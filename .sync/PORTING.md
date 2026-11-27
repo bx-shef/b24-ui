@@ -34,6 +34,23 @@ material. Reproduce its *intent* in b24ui by editing files under `src/` only.
 | color token (`primary`, `neutral`, …) | `air-*` system — see [`color-map.json`](./color-map.json) |
 | theme object | corresponding `src/theme/<component>.ts` |
 | component `Slider` | `Range` — the one renamed component; see below |
+| package name `@nuxt/ui` / `@bitrix24/b24ui-nuxt` in docs, examples, skills, README, playgrounds, CLI templates, tests | `@bxshefby/b24ui-nuxt` (subpaths too: `@bxshefby/b24ui-nuxt/locale`, `/vite`, `/vue-plugin`) — see below |
+
+> **Package name — `@bxshefby/b24ui-nuxt`.** This fork publishes under its own
+> npm scope; `@bitrix24/b24ui-nuxt` is the parent project's package (bitrix24
+> owns that scope), and `@nuxt/ui` is upstream's. Text carried over by a port —
+> install commands, `modules: [...]`, `@import "…"`, `import type … from '…'`,
+> skill descriptions — takes `@bxshefby/b24ui-nuxt`. Do **not** rename the icon
+> packages `@bitrix24/b24icons-*` (not ours), the module `configKey` `b24ui`, or
+> the aliases `#b24ui` / `#build/b24ui`. Build-side matching of the package by
+> name (`src/plugins/*`) goes through `PACKAGE_NAMES` in
+> `src/utils/package-names.ts`, which accepts the old spelling for apps that
+> install the package through an npm alias; the generated
+> `.nuxt/types/b24ui.d.ts` imports from `#b24ui/types` for the same reason,
+> where upstream names `@nuxt/ui`. `test/utils/package-name.spec.ts` fails on
+> `@bitrix24/b24ui-nuxt` anywhere a reader copies from, except the migration
+> chapter (`docs/content/docs/1.getting-started/3.package.md`); `CHANGELOG.md`
+> and `.sync/` are history and keep the names they were written with.
 
 > **Component names — one rename, and it is not discoverable by searching.**
 > Upstream's `Slider` is `Range` here: same `Pick<SliderRootProps, 'name' |

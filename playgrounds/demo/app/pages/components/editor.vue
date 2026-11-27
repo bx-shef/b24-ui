@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { upperFirst } from 'scule'
-import type { EditorToolbarItem, EditorMentionMenuItem, EditorEmojiMenuItem, DropdownMenuItem, EditorSuggestionMenuItem, EditorCustomHandlers } from '@bitrix24/b24ui-nuxt'
+import type { EditorToolbarItem, EditorMentionMenuItem, EditorEmojiMenuItem, DropdownMenuItem, EditorSuggestionMenuItem, EditorCustomHandlers } from '@bxshefby/b24ui-nuxt'
 import type { JSONContent } from '@tiptap/vue-3'
-import { mapEditorItems } from '@bitrix24/b24ui-nuxt/utils/editor'
+import { mapEditorItems } from '@bxshefby/b24ui-nuxt/utils/editor'
 import { Emoji, gitHubEmojis } from '@tiptap/extension-emoji'
 import { TextAlign } from '@tiptap/extension-text-align'
 import { ImageUpload } from '../../components/editor/EditorImageUploadExtension'
@@ -64,7 +64,7 @@ Bitrix24 UI combines the best of modern web development
 Install Bitrix24 UI in your project with the following command:
 
 \`\`\`
-npx nuxi@latest module add @bitrix24/b24ui-nuxt
+npx nuxi@latest module add @bxshefby/b24ui-nuxt
 \`\`\`
 
 > *Bitrix24 UI is designed to be intuitive and easy to use, whether you're building a simple landing page or a complex application.*

@@ -7,6 +7,7 @@ import type { Options as ComponentsOptions } from 'unplugin-vue-components/types
 import type { Bitrix24UIOptions } from '../unplugin'
 import { runtimeDir } from '../unplugin'
 import { resolveRouterMode } from '../utils/router'
+import { PACKAGE_NAMES } from '../utils/package-names'
 
 interface ComponentSource {
   has: (name: string) => boolean
@@ -75,7 +76,7 @@ export default function ComponentImportPlugin(
     name: 'bitrix24:b24ui:components',
     enforce: 'pre',
     resolveId(id, importer) {
-      // Explicit imports must resolve to the override too, by specifier (`@bitrix24/b24ui-nuxt/components/Link.vue`)
+      // Explicit imports must resolve to the override too, by specifier (`@bxshefby/b24ui-nuxt/components/Link.vue`, or `@bitrix24/b24ui-nuxt/…` through an npm alias)
       // or by absolute path, which is also what an alias hands over once Vite has replaced it.
       const normalizedId = normalize(id)
       const packagePath = normalizedId.match(PACKAGE_IMPORT_RE)?.[1]
@@ -136,7 +137,7 @@ export default function ComponentImportPlugin(
   const filteredSources = allSources.filter((s): s is ComponentSource => !!s)
 
   const packagesToScan = [
-    '@bitrix24/b24ui-nuxt',
+    ...PACKAGE_NAMES,
     '@compodium/examples',
     ...(Array.isArray(options.scanPackages) ? options.scanPackages : [])
   ]
@@ -168,4 +169,4 @@ export default function ComponentImportPlugin(
 }
 
 const RELATIVE_IMPORT_RE = /^\.{1,2}\//
-const PACKAGE_IMPORT_RE = /(?:^|\/node_modules\/)@bitrix24\/b24ui-nuxt\/(?:dist\/)?(?:runtime\/)?components\/(.+\.vue)$/
+const PACKAGE_IMPORT_RE = /(?:^|\/node_modules\/)@(?:bxshefby|bitrix24)\/b24ui-nuxt\/(?:dist\/)?(?:runtime\/)?components\/(.+\.vue)$/

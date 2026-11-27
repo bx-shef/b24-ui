@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as z from 'zod'
-import type { FormSubmitEvent } from '@bitrix24/b24ui-nuxt'
+import type { FormSubmitEvent } from '@bxshefby/b24ui-nuxt'
 
 const schema = z.object({
   input: z.string({ message: 'Введите ваш email' }).min(10, 'Не меньше 10 символов'),

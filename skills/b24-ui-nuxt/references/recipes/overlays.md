@@ -75,7 +75,7 @@ async function deleteItem(item) {
 
 ```vue
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import ArrowRightLIcon from '@bitrix24/b24icons-vue/outline/ArrowRightLIcon'
 import CircleCheckIcon from '@bitrix24/b24icons-vue/main/CircleCheckIcon'
 
@@ -299,7 +299,7 @@ const isOpen = ref(false)
 ```vue
 <script setup lang="ts">
 import UserGroupIcon from '@bitrix24/b24icons-vue/common-b24/UserGroupIcon'
-import type { DescriptionListItem } from '@bitrix24/b24ui-nuxt'
+import type { DescriptionListItem } from '@bxshefby/b24ui-nuxt'
 
 const items = [
   { label: 'Account manager', description: 'Sample owner', slot: 'owner' as const },

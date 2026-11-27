@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AvatarProps, TableColumn } from '@bitrix24/b24ui-nuxt'
+import type { AvatarProps, TableColumn } from '@bxshefby/b24ui-nuxt'
 
 const B24Avatar = resolveComponent('B24Avatar')
 

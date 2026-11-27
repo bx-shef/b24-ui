@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { upperFirst } from 'scule'
-import type { DropdownMenuItem } from '@bitrix24/b24ui-nuxt'
-import { mapEditorItems } from '@bitrix24/b24ui-nuxt/utils/editor'
+import type { DropdownMenuItem } from '@bxshefby/b24ui-nuxt'
+import { mapEditorItems } from '@bxshefby/b24ui-nuxt/utils/editor'
 import type { Editor, JSONContent } from '@tiptap/vue-3'
 import DragLIcon from '@bitrix24/b24icons-vue/outline/DragLIcon'
 import RepeatIcon from '@bitrix24/b24icons-vue/outline/RepeatIcon'

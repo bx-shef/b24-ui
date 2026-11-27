@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TableColumn, DropdownMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { TableColumn, DropdownMenuItem } from '@bxshefby/b24ui-nuxt'
 import { useClipboard } from '@vueuse/core'
 import CircleCheckIcon from '@bitrix24/b24icons-vue/outline/CircleCheckIcon'
 import MenuIcon from '@bitrix24/b24icons-vue/main/MenuIcon'

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { SelectItem, ChipProps } from '@bitrix24/b24ui-nuxt'
+import type { SelectItem, ChipProps } from '@bxshefby/b24ui-nuxt'
 
 const items = ref([
   {

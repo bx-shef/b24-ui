@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { StepperItem } from '@bitrix24/b24ui-nuxt'
+import type { StepperItem } from '@bxshefby/b24ui-nuxt'
 import { onMounted, ref } from 'vue'
 import LocationIcon from '@bitrix24/b24icons-vue/outline/LocationIcon'
 import DeliveryIcon from '@bitrix24/b24icons-vue/outline/DeliveryIcon'

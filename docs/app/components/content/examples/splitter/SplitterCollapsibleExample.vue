@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { SplitterItem } from '@bitrix24/b24ui-nuxt'
+import type { SplitterItem } from '@bxshefby/b24ui-nuxt'
 import CloseChatIcon from '@bitrix24/b24icons-vue/outline/CloseChatIcon'
 import OpenChatIcon from '@bitrix24/b24icons-vue/outline/OpenChatIcon'
 
