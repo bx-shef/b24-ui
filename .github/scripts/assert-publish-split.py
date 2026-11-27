@@ -68,6 +68,13 @@ EXPECTED_JOB_ENV = {
     'REF_NAME': '${{ github.ref_name }}',
 }
 EXPECTED_JOB_ENV_KEYS = set(EXPECTED_JOB_ENV)
+REPO_GATE = "github.repository == 'bx-shef/b24-ui' && vars.NPM_RELEASE == 'true'"
+# Whitespace-normalised `if:` of the jobs that gate publishing (the repository,
+# the NPM_RELEASE switch, and a tag for the first job; no approval is involved).
+EXPECTED_IF = {
+    'await-ci': REPO_GATE + " && startsWith(github.ref, 'refs/tags/v')",
+    'publish': REPO_GATE + " && needs.build.outputs.skip == 'false'",
+}
 JOB_PERMISSIONS = {
     'await-ci': {'contents': 'read', 'actions': 'read'},
     'build': {'contents': 'read'},
@@ -156,6 +163,17 @@ def main(path: str) -> int:
             errors.append(f'job `{name}` permissions must be exactly {JOB_PERMISSIONS[name]}')
         if name not in JOB_PERMISSIONS and perms is not None:
             errors.append(f'unexpected job `{name}` with its own permissions')
+
+    for name, want in EXPECTED_IF.items():
+        got = ' '.join(str((jobs.get(name) or {}).get('if', '')).split())
+        if got != want:
+            errors.append(f'job `{name}` `if` must be exactly: {want}')
+
+    # Only a dispatch may start a publish: a `release` event (hand-made release)
+    # or a push must not reach npm now that no reviewer stands in between.
+    triggers = wf.get('on', wf.get(True))
+    if not isinstance(triggers, dict) or set(triggers) != {'workflow_dispatch'}:
+        errors.append('npm-publish.yml must be triggered by `workflow_dispatch` only')
 
     if 'publish' not in jobs:
         errors.append('job `publish` is missing')
