@@ -86,6 +86,12 @@ case_ "verify step skipped off-tag (if:)"       flagged "s = s.replace('        
 case_ "verify tag check removed"                flagged "s = s.replace('if [ \"\$REF_TYPE\" != \"tag\" ]', 'if false', 1)"
 case_ "verify package name check removed"       flagged "s = s.replace('\"\$name\" != \"@bxshefby/b24ui-nuxt\"', 'false')"
 
+case_ "repository condition removed from publish" flagged "s = s.replace(\"github.repository == 'bx-shef/b24-ui' && vars.NPM_RELEASE == 'true' &&\\n      needs.build\", 'vars.NPM_RELEASE == \\'true\\' &&\\n      needs.build')"
+case_ "NPM_RELEASE switch removed from await-ci" flagged "s = s.replace(\" && vars.NPM_RELEASE == 'true' &&\\n      startsWith\", ' &&\\n      startsWith')"
+case_ "await-ci runs off a branch (tag condition removed)" flagged "s = s.replace(\" &&\\n      startsWith(github.ref, 'refs/tags/v')\", '')"
+case_ "release event trigger back"              flagged "s = s.replace('on:\\n  workflow_dispatch:', 'on:\\n  release:\\n    types: [ published ]\\n  workflow_dispatch:')"
+case_ "push trigger added"                      flagged "s = s.replace('on:\\n  workflow_dispatch:', 'on:\\n  push:\\n    branches: [ main ]\\n  workflow_dispatch:')"
+
 echo
 echo "$pass passed, $fail failed"
 [ "$fail" -eq 0 ]

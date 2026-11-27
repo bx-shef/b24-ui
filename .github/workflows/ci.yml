@@ -69,6 +69,11 @@ jobs:
       - name: Assert the publishing job runs no repository code
         run: .github/scripts/assert-publish-split.py .github/workflows/npm-publish.yml
 
+      # Merging the release PR publishes with no approval in between: the chain
+      # must dispatch npm-publish.yml on the tag, for this repository only.
+      - name: Assert the release chain dispatches on the tag
+        run: .github/scripts/assert-release-chain.py .github/workflows/release-please.yml
+
       # The workflow scripts have no other coverage: they run on a schedule and
       # hold `issues: write`. Several of the bugs three rounds of review found in
       # them shared one shape — a failure inside an `if` condition, which bash
