@@ -61,7 +61,13 @@ RUN_PUBLISH = r'''npm publish "dist-tarball/$TARBALL" --provenance --access publ
 # Step keys other than these (`if`, `env`, `working-directory`,
 # `continue-on-error`, `timeout-minutes`...) change what or whether a step runs.
 STEP_KEYS = {'name', 'id', 'uses', 'with', 'run', 'shell'}
-EXPECTED_JOB_ENV_KEYS = {'TARBALL', 'REF_TYPE', 'REF_NAME'}
+# Values too, not only names: `REF_TYPE: tag` would switch off the tag-only check in `verify`.
+EXPECTED_JOB_ENV = {
+    'TARBALL': '${{ needs.build.outputs.tarball }}',
+    'REF_TYPE': '${{ github.ref_type }}',
+    'REF_NAME': '${{ github.ref_name }}',
+}
+EXPECTED_JOB_ENV_KEYS = set(EXPECTED_JOB_ENV)
 JOB_PERMISSIONS = {
     'await-ci': {'contents': 'read', 'actions': 'read'},
     'build': {'contents': 'read'},
@@ -76,8 +82,10 @@ def check_publish(job, errors):
     if job.get('environment') != 'npm-publish':
         errors.append('job `publish` must run in the `npm-publish` environment')
     env = job.get('env')
-    if not isinstance(env, dict) or set(env) != EXPECTED_JOB_ENV_KEYS:
-        errors.append(f'job `publish` env must be exactly {sorted(EXPECTED_JOB_ENV_KEYS)}')
+    if not isinstance(env, dict) or env != EXPECTED_JOB_ENV:
+        errors.append(f'job `publish` env must be exactly {EXPECTED_JOB_ENV}')
+    if job.get('runs-on') != 'ubuntu-latest':
+        errors.append('job `publish` must run on `ubuntu-latest` (a GitHub-hosted runner)')
     for key in ('container', 'services', 'defaults', 'strategy', 'continue-on-error'):
         if key in job:
             errors.append(f'job `publish` must not set `{key}`')

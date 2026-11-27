@@ -46,6 +46,9 @@ PUBLISH_HEAD="    environment: npm-publish"
 STEPS_HEAD="      - name: Download the tarball"
 
 case_ "the real workflow"                       ok      ''
+case_ "REF_TYPE hard-coded to tag"               flagged "import re; s = re.sub(r'REF_TYPE: .*', 'REF_TYPE: tag', s)"
+case_ "REF_NAME hard-coded"                      flagged "import re; s = re.sub(r'REF_NAME: .*', 'REF_NAME: v2.16.0', s)"
+case_ "publish on a self-hosted runner"          flagged "import re; s = re.sub(r'(skip == .false.\\n    runs-on: )ubuntu-latest', r'\\1self-hosted', s)"
 case_ "pnpm install in publish"                 flagged "s = s.replace('$STEPS_HEAD', '      - run: pnpm install --frozen-lockfile\n$STEPS_HEAD')"
 case_ "pnpm build in publish"                   flagged "s = s.replace('$STEPS_HEAD', '      - run: pnpm build\n$STEPS_HEAD')"
 case_ "npm ci in publish"                       flagged "s = s.replace('$STEPS_HEAD', '      - run: npm ci\n$STEPS_HEAD')"
