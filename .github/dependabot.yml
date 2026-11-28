@@ -11,20 +11,24 @@ version: 2
 # does fire, fires faster than anyone serves it. Grouping keeps the backlog at
 # exactly one perpetually-rebased PR rather than a growing pile.
 #
-# Deliberately github-actions only. npm updates are not skipped because they
-# would be harmless — 64 runtime `dependencies` do reach consumers through their
-# package manager. They are skipped because this repository tracks nuxt/ui and
-# takes dependency bumps as ports of upstream's own (see `.sync/`), so a second
-# stream of npm PRs here would compete with that pipeline rather than add to it.
-# Security-only alerts are a separate repository setting and are unaffected.
+# npm: no version updates, only a title format for security updates. This
+# repository tracks nuxt/ui and takes dependency bumps as ports of upstream's own
+# (see `.sync/`), so a second stream of version PRs would compete with that
+# pipeline. `open-pull-requests-limit: 0` switches version updates off; Dependabot
+# security updates (a repository setting) still open PRs, and this entry is what
+# gives them a conventional-commit title. Without it they are titled
+# "Bump x from a to b", which the required `title` check rejects, so the PR could
+# never merge. Runtime dependencies are filed as `fix(deps)` (a consumer gets the
+# patch), dev dependencies as `chore(deps)`. `reka-ui` and `vaul-vue` are
+# exact-pinned to upstream's versions and move only through a port.
 #
-# Revisit when that stops being true. That pipeline is deliberately manual —
-# there is no dispatcher and no schedule, so nothing fails loudly when it goes
-# quiet. The condition to watch is therefore the only observable one: if
-# `cursor` in `.sync/nuxt-ui.json` has not advanced in a month while nuxt/ui@v4
-# has moved, npm updates have no other route in and this file should grow an
-# `npm` ecosystem as a backstop. A decision that depends on someone else doing
-# something needs to say what happens when they stop.
+# Revisit the version-updates part when the sync stops being the route for bumps.
+# That pipeline is deliberately manual — there is no dispatcher and no schedule,
+# so nothing fails loudly when it goes quiet. The condition to watch is the only
+# observable one: if `cursor` in `.sync/nuxt-ui.json` has not advanced in a month
+# while nuxt/ui@v4 has moved, raise the limit above 0 as a backstop. A decision
+# that depends on someone else doing something needs to say what happens when
+# they stop.
 updates:
   - package-ecosystem: github-actions
     directory: /
@@ -40,3 +44,16 @@ updates:
       github-actions:
         patterns:
           - '*'
+
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 0
+    commit-message:
+      prefix: fix
+      prefix-development: chore
+      include: scope
+    ignore:
+      - dependency-name: reka-ui
+      - dependency-name: vaul-vue
