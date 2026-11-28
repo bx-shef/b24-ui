@@ -136,7 +136,7 @@ function sandbox(conf: string, renew: string) {
   const confPath = join(proxy, 'conf.d/default.conf')
   const run = (file = path, extra: Record<string, string> = {}) => spawnSync('bash', [file], {
     encoding: 'utf-8',
-    stdin: 'ignore',
+    stdio: ['ignore', 'pipe', 'pipe'],
     env: {
       PATH: `${bin}:${process.env.PATH}`,
       HOME: root,
