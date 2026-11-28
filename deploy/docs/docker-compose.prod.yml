@@ -1,4 +1,4 @@
-# Продакшн: сайт документации Bitrix24 UI за обратным прокси с TLS (README.md, «Сервер»). Требует на хосте:
+# Продакшн: сайт документации Bitrix24 UI за обратным прокси с TLS (README.md, «Сервер bx-shef» и «Другой сервер»). Требует на хосте:
 #   - docker-сеть proxy-net и обратный прокси nginx-proxy + acme-companion в ней
 #     (если нет — proxy.compose.yml, install.sh ставит его сам);
 #   - .env рядом с этим файлом (шаблон — .env.example);

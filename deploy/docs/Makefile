@@ -1,5 +1,5 @@
 # Сайт документации Bitrix24 UI. Makefile каталога на сервере, где лежат docker-compose.prod.yml,
-# этот Makefile и .env (README.md, «Сервер»). Образ из ghcr.io за обратным прокси с TLS в сети proxy-net.
+# этот Makefile и .env (README.md, «Сервер bx-shef» и «Другой сервер»). Образ из ghcr.io за обратным прокси с TLS в сети proxy-net.
 
 .DEFAULT_GOAL := help
 .PHONY: help build-local prod-up prod-down prod-pull prod-redeploy logs ps health doctor shared-watchtower watchtower-logs
