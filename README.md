@@ -4,7 +4,6 @@
 
 <p align="center">
   <a href="https://b24-ui.bx-shef.by/"><img src="https://img.shields.io/badge/Bitrix24-UI%20Kit-2fc6f6?style=flat&labelColor=121118" alt="Bitrix24 UI Kit"></a>
-  <a href="https://github.com/bx-shef/b24-ui/releases"><img src="https://img.shields.io/github/v/release/bx-shef/b24-ui?style=flat&labelColor=121118&color=4B3CD0" alt="Версия"></a>
   <a href="https://github.com/bx-shef/b24-ui/blob/main/LICENSE"><img src="https://img.shields.io/github/license/bx-shef/b24-ui?style=flat&labelColor=121118&color=4B3CD0" alt="Лицензия"></a>
 </p>
 
