@@ -45,17 +45,23 @@ const _useHeader = () => {
       type: 'trigger',
       children: [
         {
-          label: 'B24 JsSdk',
+          label: 'Bitrix24 UI',
+          description: 'Vue-компоненты для приложений Битрикс24',
+          icon: FormIcon,
+          to: '/'
+        },
+        {
+          label: 'B24 JS SDK',
           description: 'для работы с REST API Bitrix24 в приложениях',
           icon: DeveloperResourcesIcon,
-          to: 'https://bitrix24.github.io/b24jssdk/',
+          to: 'https://b24-js-sdk.bx-shef.by/',
           target: '_blank'
         },
         {
           label: 'B24 Icons',
           description: 'Оформляйте приложения в стиле Bitrix24.',
           icon: BarcodeIcon,
-          to: 'https://bitrix24.github.io/b24icons/',
+          to: 'https://b24-icons.bx-shef.by/',
           target: '_blank'
         },
         {
@@ -107,8 +113,20 @@ const _useHeader = () => {
       icon: FormIcon
     },
     {
+      label: 'B24 JS SDK',
+      to: 'https://b24-js-sdk.bx-shef.by/',
+      icon: DeveloperResourcesIcon,
+      target: '_blank'
+    },
+    {
+      label: 'B24 Icons',
+      to: 'https://b24-icons.bx-shef.by/',
+      icon: BarcodeIcon,
+      target: '_blank'
+    },
+    {
       label: 'GitHub',
-      to: 'https://github.com/bitrix24/b24ui',
+      to: 'https://github.com/bx-shef/b24-ui',
       icon: GitHubIcon,
       target: '_blank',
       b24ui: {
