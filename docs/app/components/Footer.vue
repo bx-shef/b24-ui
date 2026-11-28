@@ -15,7 +15,7 @@ const { b24DocsLink, tgLink } = useHeader()
       <div class="flex items-center gap-2">
         <Cornflower class="size-5" />
         <ProseP small accent="less">
-          Copyright © 2024 — настоящее время, Bitrix24
+          © 2026 ООО «БэИксШефБай»
         </ProseP>
       </div>
     </template>
@@ -46,7 +46,7 @@ const { b24DocsLink, tgLink } = useHeader()
     </template>
 
     <NuxtLink :to="config.public.gitUrl" target="_blank" class="vsk-link text-legend text-(length:--ui-font-size-sm)">
-      Опубликовано под лицензией MIT.
+      Основано на Bitrix24 UI и Nuxt UI. Опубликовано под лицензией MIT.
     </NuxtLink>
   </B24Footer>
 </template>
