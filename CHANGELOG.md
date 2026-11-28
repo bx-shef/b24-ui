@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.16.1](https://github.com/bx-shef/b24-ui/compare/v2.16.0...v2.16.1) (2026-11-28)
+
+
+### Bug Fixes
+
+* **release:** npm publish — путь к архиву с ./ ([#96](https://github.com/bx-shef/b24-ui/issues/96)) ([a89e2ea](https://github.com/bx-shef/b24-ui/commit/a89e2ea3d51bfbc54aa4d4d0f7b31139bc956a52))
+
 ## [2.16.0](https://github.com/bx-shef/b24-ui/compare/v2.15.0...v2.16.0) (2026-11-28)
 
 
