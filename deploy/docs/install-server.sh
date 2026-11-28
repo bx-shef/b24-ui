@@ -14,8 +14,10 @@
 #   5. блок :443 (proxy_buffering off — ответы чата идут потоком; X-Forwarded-For для лимита чата) и лимит /mcp/;
 #   6. домен — в DOMAINS скрипта продления;
 #   7. проверка снаружи.
-# Перед первой правкой default.conf кладёт копию в /home/bitrix/b24-proxy/.backup-default.conf.<время>
-# и при любом сбое дальше возвращает её (nginx -t перед каждым reload).
+# Свои блоки в default.conf обёрнуты маркерами `# >>> b24-ui-docs <домен> <имя>` … `# <<< …`: по ним скрипт
+# находит уже добавленное (идемпотентность) и при сбое удаляет только блоки, добавленные в этот запуск, —
+# чужие правки файла остаются. Копия всего файла (.backup-default.conf.<время>) — страховка для ручного
+# восстановления, автоматически поверх файла не кладётся. nginx -t — перед каждым reload.
 #
 # Тома b24-ui_html и b24-ui_certs принадлежат прокси. У сайта свой проект compose (b24-ui-docs) без томов,
 # поэтому его up/down их не задевает. НИКОГДА не запускайте `docker compose down -v` и `docker volume rm` для них.
@@ -25,6 +27,7 @@
 # Необязательные переменные: DOMAIN, NUXT_DEEPSEEK_API_KEY (без вопроса), NUXT_DEEPSEEK_MODEL,
 # LETSENCRYPT_EMAIL, B24_DIR, B24_PROXY_DIR, SKIP_DNS_CHECK=1.
 set -Eeuo pipefail
+umask 077   # всё, что создаёт скрипт (.env с ключом, копии, журнал), — только владельцу
 
 D=${DOMAIN:-b24-ui.bx-shef.by}
 [[ $D =~ ^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)+$ ]] || { echo "!! недопустимый DOMAIN: $D"; exit 1; }
@@ -35,10 +38,17 @@ DIR=${B24_DIR:-/home/bitrix/b24-ui-docs}
 P=${B24_PROXY_DIR:-/home/bitrix/b24-proxy}
 CONF=$P/conf.d/default.conf
 RENEW=$P/renew-certs.sh
+short=${D%.bx-shef.by}
 STAMP=$(date +%F-%H%M%S)
 CERT_VOL=b24-ui_certs
 HTML_VOL=b24-ui_html
 LE_VOL=b24_letsencrypt
+
+MODEL=${NUXT_DEEPSEEK_MODEL:-deepseek-chat}
+[[ $MODEL =~ ^[A-Za-z0-9._:-]+$ ]] || { echo "!! недопустимая NUXT_DEEPSEEK_MODEL: допустимы буквы, цифры, . _ : -"; exit 1; }
+if [ -n "${LETSENCRYPT_EMAIL:-}" ]; then
+  [[ $LETSENCRYPT_EMAIL =~ ^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$ ]] || { echo "!! недопустимый LETSENCRYPT_EMAIL"; exit 1; }
+fi
 
 echo "== 1. Проверки"
 command -v docker >/dev/null 2>&1 || { echo "!! нет docker"; exit 1; }
@@ -50,6 +60,13 @@ done
 docker inspect proxy >/dev/null 2>&1 || { echo "!! нет контейнера proxy"; exit 1; }
 [ -f "$CONF" ] || { echo "!! нет $CONF"; exit 1; }
 docker network inspect proxy-net >/dev/null 2>&1 || { echo "!! нет сети proxy-net"; exit 1; }
+
+# Продление проверяем ДО любых правок: иначе после выпуска сертификата пришлось бы падать на последнем шаге.
+if [ "${SKIP_RENEW:-}" != 1 ]; then
+  [ -f "$RENEW" ] || { echo "!! нет $RENEW — продление не настроено. Добавьте $D в него вручную и запустите с SKIP_RENEW=1"; exit 1; }
+  [[ $D == *.bx-shef.by ]] || { echo "!! $D не на .bx-shef.by: renew-certs.sh ведёт короткие имена доменов bx-shef.by. Добавьте домен в продление вручную и запустите с SKIP_RENEW=1"; exit 1; }
+  [ "$(grep -cE '^DOMAINS="[^"]*"$' "$RENEW")" = 1 ] || { echo "!! в $RENEW нет ровно одной строки вида DOMAINS=\"a b c\" — формат неожиданный. Добавьте $short в список вручную и запустите с SKIP_RENEW=1"; exit 1; }
+fi
 
 # Контейнер с нашим именем должен быть нашим (проект compose b24-ui-docs): чужой не трогаем.
 if docker inspect "$NAME" >/dev/null 2>&1; then
@@ -72,26 +89,54 @@ if ! certs_ok && [ "${SKIP_DNS_CHECK:-}" != 1 ]; then
 fi
 
 reload() { docker exec proxy nginx -t && docker exec proxy nginx -s reload; }
-# Общий конфиг nginx: копия перед первой правкой; при любом сбое дальше — вернуть её. Иначе следующий
-# reload чужого деплоя или продления сертификатов упадёт на нашем блоке и заденет все сайты.
+# Свои блоки default.conf — между маркерами. has_block — идемпотентность, add_block — дописать (копия файла
+# перед первой правкой), remove_block — убрать только свой блок (файл читается заново: чужие правки остаются).
+mark_b() { printf '# >>> b24-ui-docs %s %s' "$D" "$1"; }
+mark_e() { printf '# <<< b24-ui-docs %s %s' "$D" "$1"; }
+has_block() { grep -qxF "$(mark_b "$1")" "$CONF"; }
 CONF_BACKUP=""
-edit_conf() {
+ADDED=()   # блоки, добавленные в этот запуск и ещё не подтверждённые рабочим :443
+add_block() {
+  local name=$1
   if [ -z "$CONF_BACKUP" ]; then CONF_BACKUP="$P/.backup-default.conf.$STAMP"; cp "$CONF" "$CONF_BACKUP"; fi
-  cat >> "$CONF"
+  { printf '\n'; mark_b "$name"; printf '\n'; cat; mark_e "$name"; printf '\n'; } >> "$CONF"
+  ADDED+=("$name")
+}
+remove_block() {
+  local name=$1 tmp
+  grep -qxF "$(mark_e "$name")" "$CONF" || return 0
+  tmp=$(mktemp "$P/.conf-edit.XXXXXX")
+  awk -v b="$(mark_b "$name")" -v e="$(mark_e "$name")" '$0 == b { skip = 1; next } $0 == e { skip = 0; next } !skip { print }' "$CONF" > "$tmp"
+  cat "$tmp" > "$CONF"; rm -f "$tmp"
 }
 rollback() {
-  if [ -n "$CONF_BACKUP" ] && ! cmp -s "$CONF" "$CONF_BACKUP"; then
-    cp "$CONF_BACKUP" "$CONF"
-    docker exec proxy nginx -s reload || true
-    echo "!! сбой — default.conf возвращён к $CONF_BACKUP"
+  local n
+  [ "${#ADDED[@]}" -gt 0 ] || return 0
+  for n in "${ADDED[@]}"; do remove_block "$n"; done
+  echo "!! сбой — убраны только блоки, добавленные этим запуском: ${ADDED[*]}"
+  if docker exec proxy nginx -t >/dev/null 2>&1; then
+    docker exec proxy nginx -s reload >/dev/null 2>&1 || true
+  else
+    echo "!! nginx -t не проходит и после отката — проверьте $CONF; копия файла до правок: ${CONF_BACKUP:-нет}"
   fi
 }
-trap 'rc=$?; [ "$rc" -eq 0 ] || rollback' EXIT
+cleanup() {
+  local rc=$?
+  rm -f "$DIR/.env.new" "$DIR/docker-compose.yml.new" 2>/dev/null || true
+  [ "$rc" -eq 0 ] || rollback
+}
+trap cleanup EXIT
+
+# Блок для домена без наших маркеров — чужой: не дописываем второй server на тот же домен.
+if ! has_block 80 && grep -qF "server_name $D;" "$CONF"; then
+  echo "!! в $CONF уже есть server_name $D без маркеров b24-ui-docs — разберитесь вручную"; exit 1
+fi
 
 echo "== 2. Настройки сайта ($DIR)"
 mkdir -p "$DIR"
+chmod 700 "$DIR"
 cd "$DIR"
-( umask 077; [ -f .env ] || : > .env )
+[ -f .env ] || : > .env
 chmod 600 .env
 env_get() { grep -E "^$1=" .env | tail -1 | cut -d= -f2- || true; }
 # Значение → строка KEY= в .env (awk: в ключе бывают «/», «&», «|»). Не меняет остальные строки.
@@ -108,7 +153,7 @@ env_set() {
 env_default() { [ -n "$(grep -E "^$1=" .env || true)" ] || env_set "$1" "$2"; }
 
 env_set DOMAIN "$D"
-env_default NUXT_DEEPSEEK_MODEL "${NUXT_DEEPSEEK_MODEL:-deepseek-chat}"
+env_default NUXT_DEEPSEEK_MODEL "$MODEL"
 [ -z "${LETSENCRYPT_EMAIL:-}" ] || env_set LETSENCRYPT_EMAIL "$LETSENCRYPT_EMAIL"
 env_default NUXT_DEEPSEEK_API_KEY ""
 KEY=${NUXT_DEEPSEEK_API_KEY:-}
@@ -182,10 +227,8 @@ docker exec proxy wget -qO /dev/null "http://$NAME:3000/llms.txt" || { echo "!! 
 echo "сайт отвечает в proxy-net"
 
 echo "== 4. Сертификат"
-if ! grep -qF "server_name $D;" "$CONF"; then
-  edit_conf <<EOF
-
-# $D -> $NAME:3000 (install-server.sh)
+if ! has_block 80; then
+  add_block 80 <<EOF
 server {
     server_name $D;
     access_log /var/log/nginx/access.log vhost;
@@ -224,13 +267,13 @@ fi
 
 echo "== 5. HTTPS"
 # Лимит запросов к MCP (POST /mcp/ дороже статики): зона на уровне http, ключ только для /mcp… (для остальных путей пуст).
-if ! grep -qF 'b24ui_mcp_key' "$CONF"; then
-  edit_conf <<'EOF'
-
-# Лимит /mcp/ сайта b24-ui (install-server.sh): 30 запросов в минуту с адреса, всплеск 20
-map $request_uri $b24ui_mcp_key {
+# Ключ — $uri (уже нормализован: /./mcp, //mcp и %2e не обходят правило), а не $request_uri.
+if ! has_block limits && ! grep -qF 'b24ui_mcp_key' "$CONF"; then
+  add_block limits <<'EOF'
+# Лимит /mcp/ сайта b24-ui: 30 запросов в минуту с адреса, всплеск 20
+map $uri $b24ui_mcp_key {
     default "";
-    ~^/mcp(/|\?|$) $binary_remote_addr;
+    ~^/mcp(/|$) $binary_remote_addr;
 }
 limit_req_zone $b24ui_mcp_key zone=b24ui_mcp:10m rate=30r/m;
 EOF
@@ -244,9 +287,8 @@ else
   echo "(в default.conf нет resolver — proxy_pass без переменной: nginx не стартует, пока $NAME не в сети)"
   PASS="        proxy_pass http://$NAME:3000;"
 fi
-if ! grep -qF "ssl_certificate /etc/nginx/certs/$D.crt;" "$CONF"; then
-  edit_conf <<EOF
-
+if ! has_block 443; then
+  add_block 443 <<EOF
 server {
     server_name $D;
     access_log /var/log/nginx/access.log vhost;
@@ -274,17 +316,25 @@ $PASS
 EOF
   reload
 fi
+# Сайт по HTTPS работает: дальнейшие сбои (продление, проверка снаружи) блоки не откатывают.
+ADDED=()
+CONF_BACKUP=""
 
 echo "== 6. Продление сертификата"
-[ -f "$RENEW" ] || { echo "!! нет $RENEW — добавьте $D в продление вручную"; exit 1; }
-short=${D%.bx-shef.by}
 in_list() { grep -qE "^DOMAINS=\"([^\"]* )?$short( [^\"]*)?\"" "$RENEW"; }
-if ! in_list; then
-  cp "$RENEW" "$P/.backup-renew-certs.sh.$STAMP"
-  sed -i "s/^DOMAINS=\"/DOMAINS=\"$short /" "$RENEW"
-  in_list || { echo "!! не удалось добавить $short в DOMAINS в $RENEW — добавьте вручную"; exit 1; }
+if [ "${SKIP_RENEW:-}" = 1 ]; then
+  echo "продление пропущено (SKIP_RENEW=1): добавьте $D в список $RENEW сами"
+elif in_list; then
+  grep '^DOMAINS=' "$RENEW"
+else
+  # Формат проверен в шаге 1: ровно одна строка DOMAINS="…". Правим только её.
+  if cp "$RENEW" "$P/.backup-renew-certs.sh.$STAMP" && sed -i "0,/^DOMAINS=\"/s//DOMAINS=\"$short /" "$RENEW" && in_list; then
+    grep '^DOMAINS=' "$RENEW"
+  else
+    echo "!! сайт работает, но $short не попал в DOMAINS ($RENEW) — сертификат не будет продлеваться."
+    echo "   Вручную: sed -i 's/^DOMAINS=\"/DOMAINS=\"$short /' $RENEW"
+  fi
 fi
-grep '^DOMAINS=' "$RENEW"
 
 echo "== 7. Проверка снаружи"
 code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 15 "https://$D/llms.txt" || true)
