@@ -3477,8 +3477,8 @@
     "200b0bfb7a5666c870742f3f43c83cf09234aed9": {
       "pr": 28,
       "b24ui_sha": "3dfc1611323437298fa0c2b3c3848d6a6d5fb886",
-      "decision": "skip",
-      "summary": "feat(module): @nuxt/ui/eslint — правила завязаны на палитру Nuxt UI, перенос с адаптацией под токены b24ui отдельной задачей #25"
+      "decision": "port",
+      "summary": "feat(module): @nuxt/ui/eslint — поздний порт (#25): конфигурация и опция модуля под токены b24ui (text-description, bg-elevated, border-default, фирменные alert/warning/success/primary/ai), без colors и псевдонимов палитр"
     },
     "5ca1d18544a5f7cc92515ff381a153e3876a069e": {
       "pr": 28,

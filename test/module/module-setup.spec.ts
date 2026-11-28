@@ -1,6 +1,7 @@
+import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { describe, it, expect } from 'vitest'
-import { loadNuxt } from '@nuxt/kit'
+import { describe, it, expect, vi, afterEach } from 'vitest'
+import { loadNuxt, logger } from '@nuxt/kit'
 import { version as packageVersion } from '../../package.json'
 
 /**
@@ -80,5 +81,81 @@ describe('module setup()', () => {
     // `tailwind-variants` types `twMergeConfig` as a tailwind-merge config union that
     // `DeepRequired` flattens without `prefix`, hence the narrow cast.
     expect((b24ui?.tv?.twMergeConfig as { prefix?: string } | undefined)?.prefix).toBe('smoke')
+  })
+})
+
+/**
+ * The `eslint` option (#25): the module hands `@bxshefby/b24ui-nuxt/eslint` to
+ * `@nuxt/eslint` through its `eslint:config:addons` hook.
+ *
+ * `@nuxt/eslint` is not a dependency of this repository, so an inline module of
+ * that name stands in for it: `hasNuxtModule('@nuxt/eslint')` is the only thing
+ * the option asks of it. The hook is called here the way `@nuxt/eslint` calls
+ * it, with the list it collects add-ons in.
+ */
+describe('module `eslint` option (#25)', () => {
+  const eslintCwd = fileURLToPath(new URL('./fixture-eslint', import.meta.url))
+  const css = join(eslintCwd, 'main.css')
+
+  afterEach(() => {
+    vi.restoreAllMocks()
+  })
+
+  async function addons(overrides: Record<string, unknown> = {}, from = eslintCwd) {
+    const warn = vi.spyOn(logger, 'warn').mockImplementation(() => {})
+    // The workspace is the fixture itself: the repository's own `eslint.config.mjs` registers
+    // `eslint-plugin-better-tailwindcss`, and a workspace resolving to the repository root counts as having its own setup
+    const nuxt = await loadNuxt({ cwd: from, dev: false, overrides: { workspaceDir: from, css: [css], ...overrides } })
+    try {
+      const collected: { name: string, getConfigs: () => { imports: { from: string, name: string, as: string }[], configs: string[] } }[] = []
+      await nuxt.callHook('eslint:config:addons' as any, collected as any)
+      return { collected, warnings: warn.mock.calls.map(args => String(args[0])) }
+    } finally {
+      await nuxt.close()
+    }
+  }
+
+  it('adds nothing unless asked to', { timeout: 60_000 }, async () => {
+    const { collected, warnings } = await addons()
+
+    expect(collected).toEqual([])
+    expect(warnings.filter(w => w.includes('`eslint`'))).toEqual([])
+  })
+
+  it('registers the config with the stylesheet that imports Tailwind CSS', { timeout: 60_000 }, async () => {
+    const { collected } = await addons({ b24ui: { eslint: true } })
+
+    expect(collected).toHaveLength(1)
+    const { imports, configs } = collected[0]!.getConfigs()
+    expect(imports).toEqual([{ from: expect.stringMatching(/^file:\/\/.*\/eslint\.mjs$/), name: 'default', as: 'b24ui' }])
+    expect(configs).toEqual([`...b24ui(${JSON.stringify({ entryPoint: css })})`])
+  })
+
+  it('passes the options through and lets `entryPoint` win over `css`', { timeout: 60_000 }, async () => {
+    const { collected } = await addons({ b24ui: { eslint: { entryPoint: css, ignore: ['^hook$'], rules: { 'no-palette-colors': 'error' } } }, css: [join(eslintCwd, 'plain.css')] })
+
+    expect(collected[0]!.getConfigs().configs).toEqual([`...b24ui(${JSON.stringify({ entryPoint: css, ignore: ['^hook$'], rules: { 'no-palette-colors': 'error' } })})`])
+  })
+
+  it('warns and skips when `@nuxt/eslint` is missing', { timeout: 60_000 }, async () => {
+    // The plain fixture installs nothing but this module
+    const { collected, warnings } = await addons({ b24ui: { eslint: true } }, cwd)
+
+    expect(collected).toEqual([])
+    expect(warnings).toContainEqual(expect.stringContaining('needs the `@nuxt/eslint` module'))
+  })
+
+  it('warns and skips when no stylesheet imports Tailwind CSS', { timeout: 60_000 }, async () => {
+    const { collected, warnings } = await addons({ b24ui: { eslint: true }, css: [join(eslintCwd, 'plain.css')] })
+
+    expect(collected).toEqual([])
+    expect(warnings).toContainEqual(expect.stringContaining('needs a stylesheet in `css`'))
+  })
+
+  it('leaves an `eslint.config` that registers the plugin alone', { timeout: 60_000 }, async () => {
+    const { collected, warnings } = await addons({ b24ui: { eslint: true }, workspaceDir: process.cwd() })
+
+    expect(collected).toEqual([])
+    expect(warnings).toContainEqual(expect.stringContaining('already registers `eslint-plugin-better-tailwindcss`'))
   })
 })
