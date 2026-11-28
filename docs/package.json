@@ -17,6 +17,7 @@
     "@nuxt/content": "catalog:",
     "@nuxt/image": "catalog:",
     "@bxshefby/b24ui-nuxt": "catalog:",
+    "@bxshefby/icons-json": "catalog:",
     "@nuxtjs/mcp-toolkit": "catalog:",
     "@nuxtjs/mdc": "catalog:",
     "@octokit/rest": "catalog:",
