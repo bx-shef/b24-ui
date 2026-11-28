@@ -230,6 +230,16 @@ overrides:
   glob@>=9.0.0 <=14.0.1: ^14.0.2
   hono@<4.13.16: ^4.13.16
   ip-address@<=10.7.3: ^10.7.4
+  # GHSA-g3hv-75wg-m249: minimatch 7-10 ReDoS, fixed in 11.0.1. eslint-plugin-import-x
+  # 4.18.1+ accepts minimatch 11 (4.17.x broke on the `makeRe` export), so it is
+  # raised here — @nuxt/eslint-config only asks for ^4.x — and the remaining 10.x
+  # users (typescript-estree, editorconfig, readdir-glob) follow the override.
+  eslint-plugin-import-x: ^4.18.1
+  minimatch@>=7.0.0 <11.0.1: ^11.0.1
+  # GHSA-7pqw-9j4j-h8q3, GHSA-jmr9-qjv8-65gv: extract-zip <=2.0.1 came with @puppeteer/browsers 2.x
+  # (puppeteer 24); puppeteer 25 uses @puppeteer/browsers 3 without extract-zip.
+  # capture-website 5.1.0 declares `puppeteer ^24.27.0`, hence the override.
+  puppeteer: ^25.19.0
   js-yaml@>=4.0.0 <4.3.2: ^4.3.2
   js-yaml@>=5.0.0 <5.4.1: ^5.4.1
   node-forge@<=1.4.2: ^1.4.3
@@ -252,12 +262,6 @@ overrides:
 # stale entry hides a real fix. `pnpm audit` in ci.yml fails on anything else.
 auditConfig:
   ignoreGhsas:
-    # extract-zip <=2.0.1, no patched release. Reached only through puppeteer
-    # (docs > capture-website), which unpacks the Chrome download from Google's
-    # CDN at docs build time; no archive from users is ever extracted — as long
-    # as PUPPETEER_DOWNLOAD_BASE_URL is never pointed at an untrusted host.
-    - GHSA-jmr9-qjv8-65gv
-    - GHSA-7pqw-9j4j-h8q3
     # happy-dom 20.x: import-alias code execution, SSRF and cookie scope when
     # parsing untrusted HTML (fixed in 21.0.4; the cookie one, 5fpq, also in 20.14.6). Test
     # environment only (vitest), on fixtures from this repository. 21.x breaks
@@ -265,10 +269,6 @@ auditConfig:
     - GHSA-834v-8h66-3h79
     - GHSA-c8p4-j97h-3vg8
     - GHSA-5fpq-26gf-qwcr
-    # minimatch 7–10: ReDoS on crafted brace patterns, fixed only in 11, which
-    # breaks eslint-plugin-import-x (`makeRe` export). Lint tooling only, on this
-    # repository's own globs.
-    - GHSA-g3hv-75wg-m249
 
 allowBuilds:
   # `docs` no longer needs this one — it runs @nuxt/content on the `native`
