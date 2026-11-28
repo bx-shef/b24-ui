@@ -39,4 +39,4 @@ Allow: /
 User-agent: DeepSeekBot
 Allow: /
 
-Sitemap: https://bitrix24.github.io/b24ui/sitemap.xml
+Sitemap: https://b24-ui.bx-shef.by/sitemap.xml
