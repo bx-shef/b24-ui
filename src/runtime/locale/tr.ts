@@ -178,6 +178,7 @@ export default defineLocale<Messages>({
       },
       prompt: {
         copy: 'Komut istemini kopyala',
+        copied: 'Kopyalandı',
         openIn: '{name} ile aç'
       }
     },

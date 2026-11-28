@@ -178,6 +178,7 @@ export default defineLocale<Messages>({
       },
       prompt: {
         copy: 'Copia prompt',
+        copied: 'Copiato',
         openIn: 'Apri in {name}'
       }
     },

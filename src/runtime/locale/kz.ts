@@ -178,6 +178,7 @@ export default defineLocale<Messages>({
       },
       prompt: {
         copy: 'Нұсқауды көшіру',
+        copied: 'Көшірілді',
         openIn: '{name} ішінде ашу'
       }
     },

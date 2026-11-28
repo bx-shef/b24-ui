@@ -178,6 +178,7 @@ export default defineLocale<Messages>({
       },
       prompt: {
         copy: 'प्रॉम्प्ट कॉपी करें',
+        copied: 'कॉपी किया गया',
         openIn: '{name} में खोलें'
       }
     },

@@ -178,6 +178,7 @@ export default defineLocale<Messages>({
       },
       prompt: {
         copy: 'プロンプトをコピー',
+        copied: 'コピーしました',
         openIn: '{name} で開く'
       }
     },

@@ -178,6 +178,7 @@ export default defineLocale<Messages>({
       },
       prompt: {
         copy: 'คัดลอกพรอมต์',
+        copied: 'คัดลอกแล้ว',
         openIn: 'เปิดใน{name}'
       }
     },

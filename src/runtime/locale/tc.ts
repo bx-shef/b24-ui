@@ -178,6 +178,7 @@ export default defineLocale<Messages>({
       },
       prompt: {
         copy: '複製提示詞',
+        copied: '已複製',
         openIn: '在 {name} 中開啟'
       }
     },

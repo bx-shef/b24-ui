@@ -34,7 +34,7 @@ export interface ProsePreSlots {
 </script>
 
 <script setup lang="ts">
-import { computed, useTemplateRef } from 'vue'
+import { computed, nextTick, ref, useTemplateRef, watch } from 'vue'
 import { VisuallyHidden } from 'reka-ui'
 import { useClipboard } from '@vueuse/core'
 import { useAppConfig } from '#imports'
@@ -62,10 +62,20 @@ const baseRef = useTemplateRef('baseRef')
 // eslint-disable-next-line vue/no-dupe-keys
 const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.prose?.pre || {}) })())
 
-function copyCode() {
+// Spoken by the live region below. It is emptied first so that a second copy
+// within `copiedDuring` is announced again: the text would not change otherwise.
+const announcement = ref('')
+watch(copied, (value) => {
+  if (!value) announcement.value = ''
+})
+
+async function copyCode() {
   const code = props.code ?? baseRef.value?.textContent ?? ''
 
-  copyToClipboard(code)
+  announcement.value = ''
+  await copyToClipboard(code)
+  await nextTick()
+  announcement.value = t('prose.pre.copied')
 }
 </script>
 
@@ -81,7 +91,7 @@ function copyCode() {
       v-if="props.copy"
       color="air-secondary-no-accent"
       size="sm"
-      :aria-label="copied ? t('prose.pre.copied') : t('prose.pre.copy')"
+      :aria-label="t('prose.pre.copy')"
       data-slot="copy"
       :class="b24ui.copy({ class: props.b24ui?.copy })"
       :icon="copied ? icons.copyCheck : icons.copy"
@@ -91,7 +101,7 @@ function copyCode() {
     />
 
     <VisuallyHidden v-if="props.copy" aria-live="polite">
-      {{ copied ? t('prose.pre.copied') : '' }}
+      {{ announcement }}
     </VisuallyHidden>
 
     <pre ref="baseRef" data-slot="base" :class="b24ui.base({ class: [props.b24ui?.base, props.class] })" v-bind="$attrs"><slot /></pre>

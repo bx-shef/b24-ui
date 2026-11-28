@@ -179,6 +179,7 @@ export default defineLocale<Messages>({
       },
       prompt: {
         copy: 'نسخ الموجه',
+        copied: 'تم النسخ',
         openIn: 'فتح في {name}'
       }
     },

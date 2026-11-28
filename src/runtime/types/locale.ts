@@ -181,6 +181,7 @@ export type Messages = {
     }
     prompt: {
       copy: string
+      copied: string
       openIn: string
     }
   }

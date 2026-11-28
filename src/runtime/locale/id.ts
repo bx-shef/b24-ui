@@ -178,6 +178,7 @@ export default defineLocale<Messages>({
       },
       prompt: {
         copy: 'Salin prompt',
+        copied: 'Disalin',
         openIn: 'Buka di {name}'
       }
     },

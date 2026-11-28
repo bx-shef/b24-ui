@@ -41,7 +41,8 @@ export interface ProsePromptSlots {
 </script>
 
 <script setup lang="ts">
-import { computed, useTemplateRef } from 'vue'
+import { computed, nextTick, ref, useTemplateRef, watch } from 'vue'
+import { VisuallyHidden } from 'reka-ui'
 import { useClipboard } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../../composables/useComponentProps'
@@ -82,8 +83,18 @@ function getPromptText() {
   return extractPromptText(bodyRef.value)
 }
 
-function copyPrompt() {
-  copy(getPromptText())
+// Spoken by the live region in the template; emptied first so a repeated copy
+// is announced again (bx-shef/b24-ui#100).
+const announcement = ref('')
+watch(copied, (value) => {
+  if (!value) announcement.value = ''
+})
+
+async function copyPrompt() {
+  announcement.value = ''
+  await copy(getPromptText())
+  await nextTick()
+  announcement.value = t('prose.prompt.copied')
 }
 
 function openInCursor() {
@@ -132,6 +143,9 @@ function openInClaude() {
         :label="t('prose.prompt.copy')"
         @click="copyPrompt"
       />
+      <VisuallyHidden v-if="actions.includes('copy')" aria-live="polite">
+        {{ announcement }}
+      </VisuallyHidden>
 
       <B24Button
         v-if="actions.includes('cursor')"

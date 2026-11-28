@@ -178,6 +178,7 @@ export default defineLocale<Messages>({
       },
       prompt: {
         copy: 'Salin arahan',
+        copied: 'Disalin',
         openIn: 'Buka dalam {name}'
       }
     },
