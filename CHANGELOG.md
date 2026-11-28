@@ -1,5 +1,37 @@
 # Changelog
 
+## [2.16.2](https://github.com/bx-shef/b24-ui/compare/v2.16.1...v2.16.2) (2026-11-28)
+
+
+### Bug Fixes
+
+* **ProsePre:** кнопка копирования сообщает «Скопировано» и доступна с клавиатуры ([#109](https://github.com/bx-shef/b24-ui/issues/109)) ([dfc7ce3](https://github.com/bx-shef/b24-ui/commit/dfc7ce3125ef4577836e5d2c955e183a622ab48e))
+
+
+### Docs
+
+* **ai:** заголовок таблицы на странице «MCP-сервер» ([#107](https://github.com/bx-shef/b24-ui/issues/107)) ([7f8b50b](https://github.com/bx-shef/b24-ui/commit/7f8b50b82dd231338debcfdc23d9ad4459732001))
+* **ai:** страница «MCP-сервер» — подключение, инструменты, иконки bx24 ([#103](https://github.com/bx-shef/b24-ui/issues/103)) ([38bbaf2](https://github.com/bx-shef/b24-ui/commit/38bbaf2bb5af69e083a6f976928a575e99ebc5c4)), closes [#93](https://github.com/bx-shef/b24-ui/issues/93)
+* **footer:** Telegram — t.me/bitrix24apps, как на сайте JS SDK ([#91](https://github.com/bx-shef/b24-ui/issues/91)) ([3ff95dc](https://github.com/bx-shef/b24-ui/commit/3ff95dc94b349014721012e45fcdd35b76e9b203))
+* **release:** правило на теги v* — без запрета создания, право записи — только владелец ([#92](https://github.com/bx-shef/b24-ui/issues/92)) ([9bc9058](https://github.com/bx-shef/b24-ui/commit/9bc9058a3a9e78edcf961747097c08e6b5fc8c68))
+* **site:** карта сайта на своём домене b24-ui.bx-shef.by ([#102](https://github.com/bx-shef/b24-ui/issues/102)) ([d5122a2](https://github.com/bx-shef/b24-ui/commit/d5122a2d807b3c8ccbde0ace7661425f825a2dbf))
+
+
+### Tests
+
+* сторож правообладателей в LICENSE, author и подвале сайта ([#104](https://github.com/bx-shef/b24-ui/issues/104)) ([f09505e](https://github.com/bx-shef/b24-ui/commit/f09505e69b6442587164aa1d8c91886d761624f5))
+
+
+### Chore
+
+* **deps:** happy-dom 21.0.4 — закрыть три GHSA тестового окружения ([#105](https://github.com/bx-shef/b24-ui/issues/105)) ([400c321](https://github.com/bx-shef/b24-ui/commit/400c321eb486bc76ff566d1f15efbbc354065874))
+* **deps:** minimatch 11 и puppeteer 25 вместо исключений в auditConfig ([#106](https://github.com/bx-shef/b24-ui/issues/106)) ([386b10a](https://github.com/bx-shef/b24-ui/commit/386b10ab80be2188f2c5d658b9144399ac2e2474))
+
+
+### CI
+
+* тесты в трёх параллельных частях, покрытие сливается в одну проверку ([#90](https://github.com/bx-shef/b24-ui/issues/90)) ([2b7ee19](https://github.com/bx-shef/b24-ui/commit/2b7ee19d3bb6ddc50244c6062dbbb49caa5b4e55))
+
 ## [2.16.1](https://github.com/bx-shef/b24-ui/compare/v2.16.0...v2.16.1) (2026-11-28)
 
 
