@@ -182,14 +182,18 @@ GitHub `owner/repo` (`git ls-remote ssh://git@github.com/dist-tarball/…`).
 из CI — с provenance и через все проверки `npm-publish.yml`.
 
 1. **Правило на теги — обязательное условие до `NPM_RELEASE=true`**
-   (*Settings → Rules → Rulesets → New tag ruleset*): цель `v*`, *Restrict
-   creations*, *Restrict updates*, *Restrict deletions*; в обход — только
-   владелец и приложение GitHub Actions (теги ставит release-please). Без
-   одобрения окружение пускает любой `v*`, а Trusted Publisher привязан лишь к
-   имени файла и окружению: кто может создать тег `v*` на своём коммите со своей
-   копией `npm-publish.yml` (без `await-ci` и `verify`) и запустить её, тот
-   публикует свой код. Сторожа на таком теге не запускаются. Пока правила нет,
-   `NPM_RELEASE=true` не ставить.
+   (*Settings → Rules → Rulesets → New tag ruleset*, правило `v*`): цель `v*`,
+   *Restrict updates*, *Restrict deletions*, *Block force pushes*; *Restrict
+   creations* — **выключено**: приложение GitHub Actions в список обхода
+   репозитория добавить нельзя, а тег `vX.Y.Z` ставит release-please токеном
+   Actions. Выпущенный тег никто не передвинет и не удалит. Создать новый `v*`
+   может любой с правом записи — пока оно только у владельца (решение владельца
+   2026-11-28), это не дыра. Тот, кто создаст `v*` на своём коммите со своей
+   копией `npm-publish.yml` (без `await-ci` и `verify`) и запустит её, опубликует
+   свой код: Trusted Publisher привязан лишь к имени файла и окружению. Поэтому
+   **право записи никому не выдавать**, пока создание `v*` не закрыто (обход для
+   Actions появится — включить *Restrict creations*, в обход — владелец и
+   GitHub Actions). Пока правила нет, `NPM_RELEASE=true` не ставить.
    Рекомендуется также ruleset на ветку `main` (pull request и проверка `ci`
    обязательны, без прямых пушей и force-push).
 2. **Окружение `npm-publish`** (*Settings → Environments → New environment*):
