@@ -29,7 +29,7 @@ type AppConfigB24UI = {
   prefix?: string
 } & TVConfig<typeof b24ui>
 
-export interface Bitrix24UIOptions extends Omit<ModuleOptions, 'colorMode' | 'content'> {
+export interface Bitrix24UIOptions extends Omit<ModuleOptions, 'colorMode' | 'content' | 'eslint'> {
   /** Whether to generate declaration files for auto-imported components. */
   dts?: boolean
   b24ui?: AppConfigB24UI

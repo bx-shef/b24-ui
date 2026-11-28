@@ -1,7 +1,11 @@
+import { readFile } from 'node:fs/promises'
+import { pathToFileURL } from 'node:url'
+import { join } from 'pathe'
 import type { HookResult, ModuleDependencies } from '@nuxt/schema'
 import type { ColorModeType, ColorModeTypeLight } from './runtime/types'
 import { defu } from 'defu'
-import { createResolver, defineNuxtModule, addComponentsDir, addImports, addImportsDir, addPlugin, addPluginTemplate, hasNuxtModule } from '@nuxt/kit'
+import { createResolver, defineNuxtModule, addComponentsDir, addImports, addImportsDir, addPlugin, addPluginTemplate, findPath, hasNuxtModule, logger, resolvePath, tryResolveModule, directoryToURL } from '@nuxt/kit'
+import type { Bitrix24UIESLintOptions } from './utils/eslint'
 import { addTemplates } from './templates'
 import { publicComposables } from './imports'
 // @memo skep:  resolveColors
@@ -98,6 +102,14 @@ export interface ModuleOptions {
   content?: boolean
 
   /**
+   * Add the `@bxshefby/b24ui-nuxt/eslint` config to the one `@nuxt/eslint` generates, with
+   * your stylesheet as its entry point. Needs `@nuxt/eslint` and `eslint-plugin-better-tailwindcss`.
+   * @defaultValue false
+   * @see https://bitrix24.github.io/b24ui/docs/getting-started/integrations/eslint/nuxt/
+   */
+  eslint?: boolean | Partial<Bitrix24UIESLintOptions>
+
+  /**
    * Experimental features
    */
   experimental?: {
@@ -112,6 +124,21 @@ export interface ModuleOptions {
      */
     componentDetection?: boolean | string[]
   }
+}
+
+/**
+ * Whether the nearest `eslint.config` in these directories, the one ESLint uses, already registers `eslint-plugin-better-tailwindcss`.
+ */
+async function hasOwnESLintSetup(dirs: string[]) {
+  for (const dir of new Set(dirs)) {
+    const path = await findPath(join(dir, 'eslint.config'), { extensions: ['.js', '.mjs', '.cjs', '.ts', '.mts', '.cts'] })
+    if (path) {
+      // An import of the plugin or one of its entries, left out when commented
+      const code = (await readFile(path, 'utf-8')).replace(/\/\*[\s\S]*?\*\/|^\s*\/\/.*$/gm, '')
+      return /["']eslint-plugin-better-tailwindcss(?:\/[^"']*)?["']/.test(code)
+    }
+  }
+  return false
 }
 
 declare module '#app' {
@@ -274,6 +301,44 @@ export default defineNuxtModule<ModuleOptions>({
         exports.map(name => ({ name, from: resolve(`./runtime/composables/${file}`) }))
       )
     )
+
+    if (options.eslint) {
+      const eslintOptions = typeof options.eslint === 'object' ? options.eslint : {}
+      if (!hasNuxtModule('@nuxt/eslint') || !await tryResolveModule('eslint-plugin-better-tailwindcss', directoryToURL(nuxt.options.rootDir))) {
+        logger.warn('Bitrix24 UI `eslint` needs the `@nuxt/eslint` module and `eslint-plugin-better-tailwindcss`.')
+      } else if (await hasOwnESLintSetup([nuxt.options.rootDir, nuxt.options.workspaceDir])) {
+        // A second instance of the plugin makes ESLint fail, so leave the app's config alone
+        logger.warn('Bitrix24 UI `eslint` is skipped: your `eslint.config` already registers `eslint-plugin-better-tailwindcss`, remove it to use this config.')
+      } else {
+        // The stylesheet listed in `css` that imports Tailwind CSS, not the one it may delegate to
+        let entryPoint = eslintOptions.entryPoint && await resolvePath(eslintOptions.entryPoint)
+        for (const entry of entryPoint ? [] : nuxt.options.css) {
+          const path = typeof entry === 'string' && await resolvePath(entry)
+          if (path && /@import\s+["']tailwindcss["']/.test(await readFile(path, 'utf-8').catch(() => ''))) {
+            entryPoint = path
+            break
+          }
+        }
+        if (!entryPoint) {
+          logger.warn('Bitrix24 UI `eslint` needs a stylesheet in `css` that imports Tailwind CSS.')
+        } else {
+          // Through the package export, `./eslint.mjs` next to `src/module.ts` doesn't exist when the module is stubbed
+          const config = await tryResolveModule(`${name}/eslint`, import.meta.url) ?? resolve('./eslint.mjs')
+          // Node ESM requires a file URL for Windows drive paths. The generator uses single-quoted imports.
+          const from = pathToFileURL(config).href.replaceAll('\'', '%27')
+          // Declared by `@nuxt/eslint`, called again on `builder:generateApp` so the order of the modules doesn't matter
+          nuxt.hook('eslint:config:addons' as any, (addons: { name: string, getConfigs: () => unknown }[]) => {
+            addons.push({
+              name: 'b24ui',
+              getConfigs: () => ({
+                imports: [{ from, name: 'default', as: 'b24ui' }],
+                configs: [`...b24ui(${JSON.stringify({ ...eslintOptions, entryPoint })})`]
+              })
+            })
+          })
+        }
+      }
+    }
 
     addTemplates(options, nuxt, resolve)
   }

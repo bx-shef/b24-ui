@@ -28,6 +28,8 @@ const pages = [
   '/docs/getting-started/integrations/content/',
   '/docs/getting-started/integrations/image/',
   '/docs/getting-started/integrations/ssr/',
+  '/docs/getting-started/integrations/eslint/nuxt/',
+  '/docs/getting-started/integrations/eslint/vue/',
   '/docs/getting-started/ai/llms-txt/',
   '/docs/getting-started/ai/skills/',
   // endregion ////
@@ -401,7 +403,8 @@ export default defineNuxtConfig({
     '/docs/getting-started/installation/': { redirect: '/docs/getting-started/installation/nuxt/', prerender: false },
     '/docs/getting-started/integrations/icons/': { redirect: '/docs/getting-started/integrations/icons/nuxt/', prerender: false },
     '/docs/getting-started/integrations/color-mode/': { redirect: '/docs/getting-started/integrations/color-mode/nuxt/', prerender: false },
-    '/docs/getting-started/integrations/i18n/': { redirect: '/docs/getting-started/integrations/i18n/nuxt/', prerender: false }
+    '/docs/getting-started/integrations/i18n/': { redirect: '/docs/getting-started/integrations/i18n/nuxt/', prerender: false },
+    '/docs/getting-started/integrations/eslint/': { redirect: '/docs/getting-started/integrations/eslint/nuxt/', prerender: false }
     // v4 redirects - renamed pages
     // v4 redirects - renamed components
   },

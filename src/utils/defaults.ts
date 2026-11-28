@@ -25,5 +25,6 @@ export const defaultOptions = {
   version,
   prose: true,
   mdc: true,
-  content: false
+  content: false,
+  eslint: false
 }

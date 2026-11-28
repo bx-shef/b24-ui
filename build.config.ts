@@ -4,7 +4,9 @@ export default defineBuildConfig({
   entries: [
     // Vue support
     './src/unplugin',
-    './src/vite'
+    './src/vite',
+    // ESLint config for apps
+    './src/eslint'
   ],
   rollup: {
     replace: {
@@ -20,5 +22,5 @@ export default defineBuildConfig({
       options.addRelativeDeclarationExtensions = false
     }
   },
-  externals: ['#build/b24ui', 'vite']
+  externals: ['#build/b24ui', 'vite', 'eslint', 'eslint-plugin-better-tailwindcss']
 })
