@@ -28,11 +28,12 @@ export default defineEventHandler(async (event) => {
     'typography': 'Typography'
   }
 
-  let md = '# Bitrix24 UI Sitemap\n\n'
-  md += '> Markdown index of every page on https://bitrix24.github.io/b24ui/. Each link points to the raw `.md` source (e.g. `https://bitrix24.github.io/b24ui/raw/docs/components.md`).\n\n'
-
   const config = useRuntimeConfig()
-  const baseUrl = `${config.public.canonicalUrl}${config.public.baseUrl}/raw`
+  const siteUrl = `${config.public.canonicalUrl}${config.public.baseUrl}`
+  const baseUrl = `${siteUrl}/raw`
+
+  let md = '# Bitrix24 UI Sitemap\n\n'
+  md += `> Markdown index of every page on ${siteUrl}/. Each link points to the raw \`.md\` source (e.g. \`${baseUrl}/docs/components.md\`).\n\n`
 
   for (const [key, pages] of Object.entries(sections)) {
     const label = sectionLabels[key] || key.charAt(0).toUpperCase() + key.slice(1).replace(/-/g, ' ')
