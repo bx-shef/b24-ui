@@ -173,10 +173,12 @@ export default defineLocale<Messages>({
         openText: 'Mostrar'
       },
       pre: {
-        copy: 'Copiar código para a área de transferência'
+        copy: 'Copiar código para a área de transferência',
+        copied: 'Copiado'
       },
       prompt: {
         copy: 'Copiar prompt',
+        copied: 'Copiado',
         openIn: 'Abrir em {name}'
       }
     },

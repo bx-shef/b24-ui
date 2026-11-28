@@ -173,10 +173,12 @@ export default defineLocale<Messages>({
         openText: 'Показати'
       },
       pre: {
-        copy: 'Копіювати код у буфер обміну'
+        copy: 'Копіювати код у буфер обміну',
+        copied: 'Скопійовано'
       },
       prompt: {
         copy: 'Копіювати промпт',
+        copied: 'Скопійовано',
         openIn: 'Відкрити в {name}'
       }
     },

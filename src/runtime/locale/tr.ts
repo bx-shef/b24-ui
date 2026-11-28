@@ -173,10 +173,12 @@ export default defineLocale<Messages>({
         openText: 'göster'
       },
       pre: {
-        copy: 'Kodu panoya kopyala'
+        copy: 'Kodu panoya kopyala',
+        copied: 'Kopyalandı'
       },
       prompt: {
         copy: 'Komut istemini kopyala',
+        copied: 'Kopyalandı',
         openIn: '{name} ile aç'
       }
     },

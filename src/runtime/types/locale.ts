@@ -177,9 +177,11 @@ export type Messages = {
     }
     pre: {
       copy: string
+      copied: string
     }
     prompt: {
       copy: string
+      copied: string
       openIn: string
     }
   }

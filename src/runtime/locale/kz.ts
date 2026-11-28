@@ -173,10 +173,12 @@ export default defineLocale<Messages>({
         openText: 'көрсету'
       },
       pre: {
-        copy: 'Кодты алмасу буферіне көшіру'
+        copy: 'Кодты алмасу буферіне көшіру',
+        copied: 'Көшірілді'
       },
       prompt: {
         copy: 'Нұсқауды көшіру',
+        copied: 'Көшірілді',
         openIn: '{name} ішінде ашу'
       }
     },

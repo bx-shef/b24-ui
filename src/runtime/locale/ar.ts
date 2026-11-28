@@ -174,10 +174,12 @@ export default defineLocale<Messages>({
         openText: 'إظهار'
       },
       pre: {
-        copy: 'نسخ الرمز إلى الحافظة'
+        copy: 'نسخ الرمز إلى الحافظة',
+        copied: 'تم النسخ'
       },
       prompt: {
         copy: 'نسخ الموجه',
+        copied: 'تم النسخ',
         openIn: 'فتح في {name}'
       }
     },

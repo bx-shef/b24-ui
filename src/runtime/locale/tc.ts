@@ -173,10 +173,12 @@ export default defineLocale<Messages>({
         openText: '顯示'
       },
       pre: {
-        copy: '複製程式碼至剪貼簿'
+        copy: '複製程式碼至剪貼簿',
+        copied: '已複製'
       },
       prompt: {
         copy: '複製提示詞',
+        copied: '已複製',
         openIn: '在 {name} 中開啟'
       }
     },

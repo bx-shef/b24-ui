@@ -173,10 +173,12 @@ export default defineLocale<Messages>({
         openText: 'Tunjuk'
       },
       pre: {
-        copy: 'Salin kod ke papan klip'
+        copy: 'Salin kod ke papan klip',
+        copied: 'Disalin'
       },
       prompt: {
         copy: 'Salin arahan',
+        copied: 'Disalin',
         openIn: 'Buka dalam {name}'
       }
     },
