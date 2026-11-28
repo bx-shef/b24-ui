@@ -14,13 +14,7 @@ const _useHeader = () => {
   const route = useRoute()
 
   const isNeedChangeTarget = ref(false)
-  const tgLink = computed(() => {
-    return (
-      isNeedChangeTarget.value && (typeof window !== 'undefined' && window.navigator?.language.includes('ru'))
-    )
-      ? 'https://t.me/bitrix24apps'
-      : 'https://t.me/b24_dev'
-  })
+  const tgLink = computed(() => 'https://t.me/bitrix24apps')
 
   const b24DocsLink = computed(() => {
     return (
