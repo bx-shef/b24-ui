@@ -16,6 +16,27 @@ import { markRaw } from 'vue'
 export function patchComputedStyle(): void {
   const original = window.getComputedStyle.bind(window)
 
-  window.getComputedStyle = ((...args: Parameters<typeof original>) =>
-    markRaw(original(...args))) as typeof window.getComputedStyle
+  window.getComputedStyle = ((...args: Parameters<typeof original>) => {
+    const declaration = original(...args)
+    try {
+      return markRaw(declaration)
+    } catch {
+      // happy-dom 21 returns the declaration as a Proxy whose `defineProperty`
+      // trap refuses unknown keys, so `markRaw` cannot set `__v_skip` on it.
+      // Hand back an object Vue will not wrap instead: a frozen view whose
+      // getters read from the real declaration with the right receiver.
+      return rawView(declaration)
+    }
+  }) as typeof window.getComputedStyle
+}
+
+function rawView(declaration: CSSStyleDeclaration): CSSStyleDeclaration {
+  return new Proxy(Object.freeze({}) as CSSStyleDeclaration, {
+    get(_target, key) {
+      if (key === '__v_skip') return true
+      const value = Reflect.get(declaration, key, declaration)
+      return typeof value === 'function' ? value.bind(declaration) : value
+    },
+    has: (_target, key) => key === '__v_skip' || key in declaration
+  })
 }
