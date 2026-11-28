@@ -1,7 +1,7 @@
 {
   "name": "@bxshefby/b24ui-nuxt",
   "description": "Bitrix24 UI Kit for building REST-API web applications with Nuxt & Vue",
-  "version": "2.16.1",
+  "version": "2.16.2",
   "packageManager": "pnpm@12.21.0",
   "repository": {
     "type": "git",
