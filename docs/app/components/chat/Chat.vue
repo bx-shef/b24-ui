@@ -161,6 +161,7 @@ function getToolMessage(state: ToolState, toolName: string, input: Record<string
     'b24-ui-search-composables': `${search}: composables${input.search ? ` по запросу «${input.search}»` : ''}`,
     'b24-ui-search-documentation': `${search}: документация${input.section ? ` (${input.section})` : ''}${input.search ? ` по запросу «${input.search}»` : ''}`,
     'b24-ui-search-icons': `${search}: иконки${input.query ? ` по запросу «${input.query}»` : ''}`,
+    'b24-ui-get-icon': `${read}: иконка ${input.name || ''}`,
     'b24-ui-get-component': `${read}: компонент ${upperName(input.componentName || '')}`,
     'b24-ui-get-component-metadata': `${read}: метаданные компонента ${upperName(input.componentName || '')}`,
     'b24-ui-list-templates': `${search}: шаблоны${input.category ? ` (${input.category})` : ''}`,
@@ -190,7 +191,8 @@ function getToolIcon(part: ToolPart): IconComponent {
     'b24-ui-get-template': FileIcon,
     'b24-ui-get-documentation-page': FileIcon,
     'b24-ui-get-migration-guide': FileIcon,
-    'b24-ui-get-example': FileIcon
+    'b24-ui-get-example': FileIcon,
+    'b24-ui-get-icon': FileIcon
   }
 
   return iconMap[toolName] || SearchIcon

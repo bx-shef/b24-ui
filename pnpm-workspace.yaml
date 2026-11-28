@@ -26,6 +26,7 @@ catalogMode: strict
 # against nuxt ^3.2.0) and `tailwindcss` (demo ^4.3.2 against everyone else's
 # ^4.3.3) — both converged upward here.
 catalog:
+  '@bxshefby/icons-json': ^0.1.0
   '@ai-sdk/deepseek': ^3.0.88
   '@ai-sdk/vue': ^4.0.179
   '@bitrix24/b24icons-nuxt': ^2.0.7
