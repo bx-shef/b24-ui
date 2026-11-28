@@ -471,8 +471,13 @@ pnpm run test:coverage    # the whole suite, instrumented
 
 Off by default. Instrumenting every worker costs about 80s on top of a 240s
 suite, which is worth paying once in CI and not on every local run. CI runs
-this instead of a plain `vitest run`, uploads `coverage/` as an artifact, and
-fails when the run drops below the thresholds in `vitest.config.ts`.
+the same suite instead of a plain `vitest run`, but in three parallel parts
+(`--shard=N/3 --reporter=blob`, the `test` job, thresholds zeroed on the command
+line because a part sees only a third of the suite). The `coverage` job merges
+the three blobs (`vitest run --merge-reports --coverage`), uploads `coverage/`
+as an artifact, and fails when the merged run drops below the thresholds in
+`vitest.config.ts`. The required check `ci` is the last job, green only when
+`checks`, `test` and `coverage` all are.
 
 **It only works as a whole run.** `pnpm run test:coverage --project vue`, or
 with a path filter, still checks the thresholds against the whole of `src/` —
