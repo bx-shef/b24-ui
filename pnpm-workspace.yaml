@@ -286,3 +286,7 @@ allowBuilds:
   unrs-resolver: false
   vue-demi: false
 
+# Свой пакет линейки (bx-shef/b24-icons, публикация из CI с provenance): ждать сутки после выпуска не нужно.
+# Точная версия — при обновлении @bxshefby/icons-json запись меняется вместе с catalog.
+minimumReleaseAgeExclude:
+  - '@bxshefby/icons-json@0.1.0'
