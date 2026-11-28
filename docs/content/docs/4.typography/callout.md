@@ -1,6 +1,6 @@
 ---
 title: ProseCallout
-description: 'Organize critical content for easy scanning with colored panels and intuitive symbols.'
+description: 'Цветные панели и понятные значки выделяют важное, чтобы его легко было заметить.'
 category: components
 navigation.title: Callout
 links:
@@ -12,9 +12,9 @@ links:
     to: https://ui.nuxt.com/docs/typography/callout
 ---
 
-## Usage
+## Использование {#usage}
 
-Use markdown in the default slot of the `callout` component to add eye-catching context to your content.
+Markdown в слоте по умолчанию компонента `callout` добавляет в содержимое заметный блок с контекстом.
 
 ::component-code{slug="callout" prose}
 ---
@@ -23,13 +23,15 @@ props:
 hide:
   - class
 slots:
-  default: This is a `callout` with full **markdown** support.
+  default: Это `callout` с полной поддержкой **markdown**.
 ---
+
+Это `callout` с полной поддержкой **markdown**.
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to display an icon next to the content.
+Пропс `icon` показывает иконку рядом с содержимым.
 
 ::component-code{slug="callout" prose}
 ---
@@ -43,13 +45,15 @@ props:
 hide:
   - class
 slots:
-  default: This is a `callout` with an icon.
+  default: Это `callout` с иконкой.
 ---
+
+Это `callout` с иконкой.
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of the callout.
+Пропс `color` меняет цвет блока.
 
 ::component-code{slug="callout" prose}
 ---
@@ -65,13 +69,15 @@ props:
 hide:
   - class
 slots:
-  default: This is a `callout` with a custom color.
+  default: Это `callout` с другим цветом.
 ---
+
+Это `callout` с другим цветом.
 ::
 
-### Link
+### Ссылка {#link}
 
-You can pass any property from the [`<NuxtLink>`](https://nuxt.com/docs/api/components/nuxt-link) component such as `to` and `target` to make the callout a link.
+Любые свойства компонента [`<NuxtLink>`](https://nuxt.com/docs/api/components/nuxt-link), например `to` и `target`, превращают блок в ссылку.
 
 ::component-code{slug="callout" prose}
 ---
@@ -89,32 +95,34 @@ props:
   color: air-primary
   class: 'w-full my-0'
 slots:
-  default: Learn how to install `@bitrix24/b24ui-nux` in your project.
+  default: Узнайте, как установить `@bxshefby/b24ui-nuxt` в проект.
 ---
+
+Узнайте, как установить `@bxshefby/b24ui-nuxt` в проект.
 ::
 
-## Shortcuts
+## Сокращения {#shortcuts}
 
-You can also use the `note`, `tip`, `warning` and `caution` shortcuts with pre-defined icons and colors.
+Доступны также сокращения `note`, `tip`, `warning` и `caution` с готовыми иконками и цветами.
 
 ::code-preview
 
 :::div{class="flex flex-col gap-4 w-full"}
 
 ::note{class="w-full my-0"}
-Here's some additional information for you.
+Дополнительная информация для вас.
 ::
 
 ::tip{class="w-full my-0"}
-Here's a helpful suggestion.
+Полезный совет.
 ::
 
 ::warning{class="w-full my-0"}
-Be careful with this action as it might have unexpected results.
+Будьте осторожны: действие может привести к неожиданным последствиям.
 ::
 
 ::caution{class="w-full my-0"}
-This action cannot be undone.
+Это действие нельзя отменить.
 ::
 
 :::
@@ -123,19 +131,19 @@ This action cannot be undone.
 
 ```mdc
 ::note
-Here's some additional information.
+Дополнительная информация.
 ::
 
 ::tip
-Here's a helpful suggestion.
+Полезный совет.
 ::
 
 ::warning
-Be careful with this action as it might have unexpected results.
+Будьте осторожны: действие может привести к неожиданным последствиям.
 ::
 
 ::caution
-This action cannot be undone.
+Это действие нельзя отменить.
 ::
 ```
 
@@ -143,14 +151,14 @@ This action cannot be undone.
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props{prose}
 
-### Slots
+### Слоты {#slots}
 
 :component-slots{prose}
 
-## Theme
+## Тема {#theme}
 
 :component-theme{prose}

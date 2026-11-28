@@ -1,4 +1,4 @@
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import { createSharedComposable } from '@vueuse/core'
 import PlayLIcon from '@bitrix24/b24icons-vue/outline/PlayLIcon'
 import DeveloperResourcesIcon from '@bitrix24/b24icons-vue/outline/DeveloperResourcesIcon'
@@ -14,13 +14,7 @@ const _useHeader = () => {
   const route = useRoute()
 
   const isNeedChangeTarget = ref(false)
-  const tgLink = computed(() => {
-    return (
-      isNeedChangeTarget.value && (typeof window !== 'undefined' && window.navigator?.language.includes('ru'))
-    )
-      ? 'https://t.me/bitrix24apps'
-      : 'https://t.me/b24_dev'
-  })
+  const tgLink = computed(() => 'https://t.me/bitrix24apps')
 
   const b24DocsLink = computed(() => {
     return (
@@ -32,42 +26,48 @@ const _useHeader = () => {
 
   const desktopLinks = computed<NavigationMenuItem[]>(() => [
     {
-      label: 'Docs',
+      label: 'Документация',
       to: '/docs/getting-started/',
       active: route.path.startsWith('/docs/getting-started')
     },
     {
-      label: 'Templates',
+      label: 'Шаблоны',
       to: '/templates/'
     },
     {
-      label: 'Resources',
+      label: 'Ресурсы',
       type: 'trigger',
       children: [
         {
-          label: 'B24 JsSdk',
-          description: 'for using Bitrix24 REST API in applications',
+          label: 'Bitrix24 UI',
+          description: 'Vue-компоненты для приложений Битрикс24',
+          icon: FormIcon,
+          to: '/'
+        },
+        {
+          label: 'B24 JS SDK',
+          description: 'для работы с REST API Bitrix24 в приложениях',
           icon: DeveloperResourcesIcon,
-          to: 'https://bitrix24.github.io/b24jssdk/',
+          to: 'https://b24-js-sdk.bx-shef.by/',
           target: '_blank'
         },
         {
           label: 'B24 Icons',
-          description: 'Design your applications in the Bitrix24 style.',
+          description: 'Оформляйте приложения в стиле Bitrix24.',
           icon: BarcodeIcon,
-          to: 'https://bitrix24.github.io/b24icons/',
+          to: 'https://b24-icons.bx-shef.by/',
           target: '_blank'
         },
         {
-          label: 'Community',
-          description: 'Bitrix24 UI on Telegram',
+          label: 'Сообщество',
+          description: 'Bitrix24 UI в Telegram',
           icon: EarthIcon,
           to: tgLink.value,
           target: '_blank'
         },
         {
           label: 'REST API',
-          description: 'Bitrix24 REST API and Marketplace Applications',
+          description: 'REST API Bitrix24 и приложения Маркета',
           icon: Bitrix24Icon,
           to: b24DocsLink.value,
           target: '_blank'
@@ -78,37 +78,49 @@ const _useHeader = () => {
 
   const mobileLinks = computed<NavigationMenuItem[]>(() => [
     {
-      label: 'Get Started',
+      label: 'Начало работы',
       to: '/docs/getting-started/',
       icon: PlayLIcon,
       active: route.path.startsWith('/docs/getting-started')
     },
     {
-      label: 'Components',
+      label: 'Компоненты',
       to: '/docs/components/',
       icon: DeveloperResourcesIcon,
       active: route.path.startsWith('/docs/components')
     },
     {
-      label: 'Composables',
+      label: 'Композаблы',
       to: '/docs/composables/',
       icon: ViewmodeCodeIcon,
       active: route.path.startsWith('/docs/composables')
     },
     {
-      label: 'Typography',
+      label: 'Типографика',
       to: '/docs/typography/',
       icon: FormattingIcon,
       active: route.path.startsWith('/docs/typography')
     },
     {
-      label: 'Templates',
+      label: 'Шаблоны',
       to: '/templates/',
       icon: FormIcon
     },
     {
+      label: 'B24 JS SDK',
+      to: 'https://b24-js-sdk.bx-shef.by/',
+      icon: DeveloperResourcesIcon,
+      target: '_blank'
+    },
+    {
+      label: 'B24 Icons',
+      to: 'https://b24-icons.bx-shef.by/',
+      icon: BarcodeIcon,
+      target: '_blank'
+    },
+    {
       label: 'GitHub',
-      to: 'https://github.com/bitrix24/b24ui',
+      to: 'https://github.com/bx-shef/b24-ui',
       icon: GitHubIcon,
       target: '_blank',
       b24ui: {

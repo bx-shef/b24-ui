@@ -16,6 +16,8 @@ concurrency:
 
 jobs:
   build:
+    # Пропуск, пока у форка не включены GitHub Pages (сайт — свой сервер, deploy/docs). Включить: переменная репозитория PAGES_ENABLED=true.
+    if: vars.PAGES_ENABLED == 'true'
     runs-on: ${{ matrix.os }}
     permissions:
       contents: read
@@ -39,7 +41,7 @@ jobs:
       NUXT_PUBLIC_SITE_URL: https://bitrix24.github.io
       NUXT_PUBLIC_BASE_URL: /b24ui
       NUXT_PUBLIC_CANONICAL_URL: https://bitrix24.github.io
-      NUXT_PUBLIC_GIT_URL: https://github.com/bitrix24/b24ui
+      NUXT_PUBLIC_GIT_URL: https://github.com/bx-shef/b24-ui
 
     steps:
       - name: Checkout
@@ -52,10 +54,10 @@ jobs:
           persist-credentials: false
 
       - name: Install pnpm
-        uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
 
       - name: Install node
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: ${{ matrix.node }}
           cache: pnpm

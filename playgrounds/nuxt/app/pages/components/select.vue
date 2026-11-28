@@ -2,7 +2,7 @@
 /**
  * @see playground/app/pages/components/select-menu.vue
  */
-import type { SelectItem, SelectProps, AvatarProps } from '@bitrix24/b24ui-nuxt'
+import type { SelectItem, SelectProps, AvatarProps } from '@bxshefby/b24ui-nuxt'
 import theme from '#build/b24ui/select'
 import type { IUser } from '~/types'
 import Expand1Icon from '@bitrix24/b24icons-vue/actions/Expand1Icon'
@@ -99,6 +99,8 @@ const { data: users, status } = await useFetch('https://jsonplaceholder.typicode
   },
   lazy: true
 })
+
+const statusKey = ref<string | undefined>(statuses[0]?.value)
 
 function getStatusIcon(value: string) {
   return statuses.find(status => status.value === value)?.icon || UserIcon
@@ -198,6 +200,19 @@ function getUserAvatar(value: string) {
             :size="b24ui.leadingAvatarSize() as AvatarProps['size']"
             :class="b24ui.leadingAvatar()"
           />
+        </template>
+      </B24Select>
+      <B24Select
+        v-model="statusKey"
+        :items="statuses"
+        value-key="value"
+        :b24ui="{ root: 'w-full' }"
+      >
+        <template #leading="{ item, b24ui }">
+          <Component :is="item.icon" v-if="item?.icon" :class="b24ui.leadingIcon()" />
+        </template>
+        <template #default="{ modelValue, item }">
+          {{ item?.label }} ({{ modelValue }})
         </template>
       </B24Select>
     </Matrix>

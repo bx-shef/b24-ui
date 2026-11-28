@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import ConnectionIcon from '@bitrix24/b24icons-vue/actions/ConnectionIcon'
 import Info1Icon from '@bitrix24/b24icons-vue/main/Info1Icon'
 
 const items = [
   {
-    label: 'Sales Pipeline',
+    label: 'Воронка продаж',
     icon: ConnectionIcon
   },
   {
-    label: 'Sales Analytics',
+    label: 'Аналитика продаж',
     badge: '+3'
   },
   {
-    label: 'Resources'
+    label: 'Ресурсы'
   },
   {
-    label: 'Support',
+    label: 'Поддержка',
     icon: Info1Icon,
     slot: 'support' as const
   }

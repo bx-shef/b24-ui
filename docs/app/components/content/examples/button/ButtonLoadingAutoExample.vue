@@ -6,6 +6,6 @@ async function onClick() {
 
 <template>
   <B24Button loading-auto color="air-primary" @click="onClick">
-    Button
+    Кнопка
   </B24Button>
 </template>

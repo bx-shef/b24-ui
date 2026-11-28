@@ -4,7 +4,7 @@ const extraAllowedHosts = (process?.env.NUXT_ALLOWED_HOSTS?.split(',').map((s: s
 
 export default defineNuxtConfig({
   modules: [
-    '@bitrix24/b24ui-nuxt',
+    '@bxshefby/b24ui-nuxt',
     '@bitrix24/b24icons-nuxt'
   ],
 
@@ -42,6 +42,12 @@ export default defineNuxtConfig({
     compatibilityVersion: 5
   },
 
+  experimental: {
+    // `@nuxt/content` still imports Nitro helpers from `#imports`, which compat v5
+    // no longer provides. Remove once nuxt/content#3889 is released.
+    nitroAutoImports: true
+  },
+
   compatibilityDate: '2024-07-09',
 
   vite: {
@@ -60,6 +66,20 @@ export default defineNuxtConfig({
         '@ai-sdk/vue',
         '@comark/vue',
         '@comark/vue/plugins/shiki',
+        '@internationalized/date',
+        '@tanstack/charts',
+        '@tanstack/charts/crosshair',
+        '@tanstack/charts/mark/decorative',
+        '@tanstack/charts/polar',
+        '@tanstack/charts/scales/band',
+        '@tanstack/charts/scales/linear',
+        '@tanstack/charts/scales/ordinal',
+        '@tanstack/charts/scales/point',
+        '@tanstack/charts/vue',
+        '@vueuse/shared',
+        'colortranslator',
+        'motion-v',
+        'zod',
         '@bitrix24/b24icons-vue/outline/HamburgerMenuIcon',
         '@bitrix24/b24icons-vue/main/B24Icon',
         '@bitrix24/b24icons-vue/actions/ArrowToTheLeftIcon',

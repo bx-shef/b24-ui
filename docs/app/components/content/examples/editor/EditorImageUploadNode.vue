@@ -22,7 +22,7 @@ watch(file, async (newFile) => {
       return
     }
 
-    // Simulate upload delay
+    // Имитируем задержку загрузки
     await new Promise(resolve => setTimeout(resolve, 1000))
 
     const pos = props.getPos()
@@ -49,8 +49,8 @@ watch(file, async (newFile) => {
     <B24FileUpload
       v-model="file"
       accept="image/*"
-      label="Upload an image"
-      description="SVG, PNG, JPG or GIF (max. 2MB)"
+      label="Загрузите изображение"
+      description="SVG, PNG, JPG или GIF (не более 2 МБ)"
       :preview="false"
       class="min-h-48"
     >

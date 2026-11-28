@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ButtonProps } from '@bitrix24/b24ui-nuxt'
+import type { ButtonProps } from '@bxshefby/b24ui-nuxt'
 import SearchIcon from '@bitrix24/b24icons-vue/outline/SearchIcon'
 import AiStarsQuestionIcon from '@bitrix24/b24icons-vue/outline/AiStarsQuestionIcon'
 import AiProcessIcon from '@bitrix24/b24icons-vue/outline/AiProcessIcon'

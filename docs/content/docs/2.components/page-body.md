@@ -1,7 +1,11 @@
 ---
 title: PageBody
-description: 'A container for the main content of the page.'
+description: 'Контейнер для основного содержимого страницы.'
 category: page
+keywords:
+  - основное содержимое страницы
+  - обёртка контента
+  - контент страницы
 links:
   - label: GitHub
     iconName: GitHubIcon
@@ -11,11 +15,11 @@ links:
     to: https://ui.nuxt.com/docs/components/page-body
 ---
 
-## Usage
+## Использование {#usage}
 
-The PageBody component wraps your main content and adds some padding for consistent spacing.
+Компонент PageBody оборачивает основное содержимое и добавляет отступы для единообразного ритма.
 
-Use it inside the default slot of the [Page](/docs/components/page/) component, after the [PageHeader](/docs/components/page-header/) component:
+Используйте его в слоте по умолчанию компонента [Page](/docs/components/page/) после компонента [PageHeader](/docs/components/page-header/):
 
 ```vue {5}
 <template>
@@ -27,15 +31,15 @@ Use it inside the default slot of the [Page](/docs/components/page/) component, 
 </template>
 ```
 
-## Examples
+## Примеры {#examples}
 
 ::note
-While these examples use [Nuxt Content](https://content.nuxt.com), the components can be integrated with any content management system.
+В примерах используется [Nuxt Content](https://content.nuxt.com), но компоненты можно подключить к любой системе управления контентом.
 ::
 
-### Within a page
+### На странице {#within-a-page}
 
-Use the PageBody component in a page to display the content of the page:
+Используйте PageBody на странице, чтобы показать её содержимое:
 
 ```vue [pages/\[...slug\\].vue]{21-27}
 <script setup lang="ts">
@@ -74,19 +78,19 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => {
 ```
 
 ::note
-In this example, we use the [`ContentRenderer`](https://content.nuxt.com/docs/components/content-renderer) component from `@nuxt/content` to render the content of the page.
+В этом примере содержимое страницы отрисовывает компонент [`ContentRenderer`](https://content.nuxt.com/docs/components/content-renderer) из `@nuxt/content`.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

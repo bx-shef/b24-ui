@@ -5,7 +5,7 @@
 **Please do not open a public issue.**
 
 Report it privately through GitHub:
-[**Security → Report a vulnerability**](https://github.com/bitrix24/b24ui/security/advisories/new).
+[**Security → Report a vulnerability**](https://github.com/bx-shef/b24-ui/security/advisories/new).
 The thread there is visible only to you and the maintainers until a fix is
 released, and it is where the advisory and any CVE are published from
 afterwards.
@@ -18,7 +18,7 @@ Useful to include, in rough order of how much they help:
 
 - what an attacker can do with it, and to whom;
 - steps to reproduce, or a proof of concept;
-- the version of `@bitrix24/b24ui-nuxt` you saw it in;
+- the version of `@bxshefby/b24ui-nuxt` you saw it in;
 - whether it also reproduces in [Nuxt UI](https://github.com/nuxt/ui). This
   library is a fork, and a vulnerability inherited from upstream has to be
   reported there too — we will coordinate rather than leave it to you.

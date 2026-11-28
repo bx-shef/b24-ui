@@ -8,19 +8,19 @@ const settings = useTemplateRef('settings')
 const tour = useTour([
   {
     target: () => dashboard.value,
-    title: 'Welcome aboard',
-    body: 'The popover re-anchors to each target as you step through the tour.'
+    title: 'Добро пожаловать',
+    body: 'Поповер перепривязывается к каждой цели по мере прохождения тура.'
   },
   {
     target: () => profile.value,
-    title: 'Make it yours',
-    body: 'You own the content and the buttons — no extra theme or locale to maintain.',
+    title: 'Настройте под себя',
+    body: 'Содержимое и кнопки остаются за вами — дополнительные тема и локаль не нужны.',
     side: 'right' as const
   },
   {
     target: () => settings.value,
-    title: 'You\'re all set',
-    body: 'Press Finish to close the tour.'
+    title: 'Всё готово',
+    body: 'Нажмите «Завершить», чтобы закрыть тур.'
   }
 ])
 </script>
@@ -29,33 +29,33 @@ const tour = useTour([
   <div class="w-full space-y-4">
     <div class="flex justify-end">
       <B24Button :icon="MagicWandIcon" @click="tour.start()">
-        Start tour
+        Начать тур
       </B24Button>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
       <div ref="dashboard" class="p-4 rounded-lg border border-default bg-elevated/50">
         <p class="font-medium text-base">
-          Dashboard
+          Дашборд
         </p>
         <p class="text-sm text-muted">
-          Overview of your workspace.
+          Обзор вашего рабочего пространства.
         </p>
       </div>
       <div ref="profile" class="p-4 rounded-lg border border-default bg-elevated/50">
         <p class="font-medium text-base">
-          Profile
+          Профиль
         </p>
         <p class="text-sm text-muted">
-          Manage your account.
+          Управление аккаунтом.
         </p>
       </div>
       <div ref="settings" class="p-4 rounded-lg border border-default bg-elevated/50">
         <p class="font-medium text-base">
-          Settings
+          Настройки
         </p>
         <p class="text-sm text-muted">
-          Configure your preferences.
+          Настройка ваших параметров.
         </p>
       </div>
     </div>
@@ -87,10 +87,10 @@ const tour = useTour([
               :disabled="!tour.hasPrev.value"
               @click="tour.prev()"
             >
-              Back
+              Назад
             </B24Button>
             <B24Button size="sm" @click="tour.next()">
-              {{ tour.hasNext.value ? 'Next' : 'Finish' }}
+              {{ tour.hasNext.value ? 'Далее' : 'Завершить' }}
             </B24Button>
           </div>
         </div>

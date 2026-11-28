@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AccordionItem } from '@bitrix24/b24ui-nuxt'
+import type { AccordionItem } from '@bxshefby/b24ui-nuxt'
 import CollapseIcon from '@bitrix24/b24icons-vue/actions/CollapseIcon'
 import InfoIcon from '@bitrix24/b24icons-vue/button/InfoIcon'
 import Download3Icon from '@bitrix24/b24icons-vue/actions/Download3Icon'

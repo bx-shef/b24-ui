@@ -1,22 +1,22 @@
 <script setup lang="ts">
-import type { EditorMentionMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { EditorMentionMenuItem } from '@bxshefby/b24ui-nuxt'
 
-const value = ref(`Type @ to mention a user.
+const value = ref(`Введите @, чтобы упомянуть пользователя.
 
-You can customize the items with avatars, icons, and descriptions.`)
+Элементы можно настроить: добавить аватары, иконки и описания.`)
 
 const items: EditorMentionMenuItem[] = [
   {
     label: 'bitrix24',
     avatar: { src: 'https://github.com/bitrix24.png', loading: 'lazy' as const },
-    description: 'Bitrix24 profile'
+    description: 'Профиль Bitrix24'
   },
   {
-    label: 'Employee',
+    label: 'Сотрудник',
     avatar: { src: '/b24ui/avatar/employee.png', loading: 'lazy' as const }
   },
   {
-    label: 'Assistant',
+    label: 'Ассистент',
     avatar: { src: '/b24ui/avatar/assistant.png', loading: 'lazy' as const },
     disabled: true
   }
@@ -28,7 +28,7 @@ const items: EditorMentionMenuItem[] = [
     v-slot="{ editor }"
     v-model="value"
     content-type="markdown"
-    placeholder="Type @ to mention..."
+    placeholder="Введите @ для упоминания..."
     class="w-full min-h-19"
   >
     <B24EditorMentionMenu :editor="editor" :items="items" />

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const users = [
   {
-    label: 'Assistant Name',
+    label: 'Имя ассистента',
     suffix: 'assistant',
     to: 'https://github.com/bitrix24',
     target: '_blank',
@@ -21,7 +21,7 @@ const users = [
     }
   },
   {
-    label: 'Employee Name',
+    label: 'Имя сотрудника',
     suffix: 'employee',
     to: 'https://github.com/bitrix24',
     target: '_blank',

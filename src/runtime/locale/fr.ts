@@ -32,11 +32,19 @@ export default defineLocale<Messages>({
       next: 'Suivant',
       prev: 'Précédent'
     },
+    chatAttachment: {
+      uploading: 'Envoi en cours',
+      error: 'Échec de l\'envoi'
+    },
     chatMessages: {
       autoScroll: 'Défiler vers le bas'
     },
     chatPrompt: {
-      placeholder: 'Saisissez votre message ici…'
+      placeholder: 'Saisissez votre message ici…',
+      queue: 'Messages en attente',
+      sendNow: 'Envoyer maintenant',
+      edit: 'Modifier',
+      remove: 'Retirer'
     },
     chatPromptSubmit: {
       label: 'Envoyer',
@@ -132,6 +140,15 @@ export default defineLocale<Messages>({
     drawer: {
       close: 'Fermer'
     },
+    editorEmojiMenu: {
+      label: 'Émojis'
+    },
+    editorMentionMenu: {
+      label: 'Mentions'
+    },
+    editorSuggestionMenu: {
+      label: 'Suggestions'
+    },
     pagination: {
       first: 'Première page',
       last: 'Dernière page',
@@ -145,12 +162,14 @@ export default defineLocale<Messages>({
     prose: {
       codeCollapse: {
         closeText: 'Masquer',
-        name: 'code',
+        label: '{text} {name}',
+        name: 'le code',
         openText: 'Afficher'
       },
       collapsible: {
         closeText: 'Masquer',
-        name: 'propriétés',
+        label: '{text} {name}',
+        name: 'les propriétés',
         openText: 'Afficher'
       },
       pre: {

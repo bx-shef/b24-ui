@@ -1,9 +1,14 @@
 # Releasing
 
 Releases are automated up to two human actions, in this order: **approve the
-release PR's held CI run, then merge it.** The merge is the decision this
-pipeline exists to leave with a person. The approval is not a decision at all —
-it is a click GitHub requires and nothing announces.
+release PR's held CI run, then merge it**. The merge is the decision this
+pipeline exists to leave with a person, and it is the *only* one: **there is no
+approval of the publication** (owner decision, #63, as in bx-shef/b24-js-sdk).
+Merging the release PR tags the commit and `release-please.yml` dispatches
+`npm-publish.yml` on that tag, which publishes `@bxshefby/b24ui-nuxt` to npm.
+Approving the release PR's held `ci` run is a click, not a decision, and the
+publication does not wait for any confirmation. What goes to npm is therefore decided on the release PR, before the merge: read
+its diff and CHANGELOG.
 
 **If the release PR is sitting at `blocked` while its `ci` check is green, that
 is what you are looking at.** See
@@ -25,27 +30,30 @@ them fails loudly. They are listed under
    releases.
 3. **Approve the held CI run, then merge — in that order.** Merging the release
    PR is the release: it tags the commit, publishes the GitHub Release with those
-   notes, and dispatches `npm-publish.yml` against the tag. It will not be
+   notes, and (job `publish` of `release-please.yml`, the only one with
+   `actions: write`) dispatches `npm-publish.yml` against the tag — nothing waits
+   for an approval after the merge. It will not be
    mergeable until you approve its held `ci` run; see
    [Approving the release PR's CI](#approving-the-release-prs-ci). Merge it the
    way every other PR here is merged — squash. release-please keys off the merged
    PR's `merge_commit_sha` from the API, not off the shape of the commit graph,
    so squashing does not orphan anything.
 4. **`npm-publish.yml` publishes** after asserting the commit is merged `main`
-   history and waiting for CI to be green on that exact SHA. Publishing goes
-   through npm trusted publishing (OIDC) — there is no long-lived token in the
-   repository.
+   history and waiting for CI to be green on that exact SHA. It runs only from a
+   `v*` tag, only for `bx-shef/b24-ui` and only with the repository variable
+   `NPM_RELEASE=true`. Publishing goes through npm trusted publishing (OIDC) —
+   there is no long-lived token in the repository.
 
 The npm side of that last step is configured **outside this repository**, in the
 package's Trusted Publisher settings on npmjs.com, and it is pinned to the
-workflow's filename (`npm-publish.yml`) and optionally an environment name.
+workflow's filename (`npm-publish.yml`) and the environment name (`npm-publish`).
 Renaming either breaks publishing with no signal from here — if you rename the
 file or the `npm-publish` environment, update npm to match in the same change.
 
 That binding is also what produces the release's **provenance attestation**.
 npm attaches one by itself when the publish authenticates through OIDC, which
-is why 2.12.0 has one although nothing here asked for it. Check a shipped
-release with `npm view @bitrix24/b24ui-nuxt@<version> dist.attestations`.
+is why `@bitrix24/b24ui-nuxt` 2.12.0, published by the parent project, has one although nothing here asked for it. Check a shipped
+release with `npm view @bxshefby/b24ui-nuxt@<version> dist.attestations`.
 
 The publish passes `--provenance` regardless, and it is worth being precise
 about what that does and does not buy, because the obvious reading is wrong.
@@ -158,6 +166,106 @@ None of these is in version control, and none fails loudly.
   path; it only arms the watchdog's 48-hour threshold, and it fails silently when
   absent. See [What is watched automatically](#what-is-watched-automatically).
 
+## Первый выпуск `@bxshefby/b24ui-nuxt`
+
+Пакет выпускается как `@bxshefby/b24ui-nuxt`, следом за `@bitrix24/b24ui-nuxt`
+2.15.0. Тег и GitHub Release `v2.16.0` есть, но в npm 2.16.0 не попала: шаг
+`publish` передавал npm путь к архиву без `./`, и npm принял его за репозиторий
+GitHub `owner/repo` (`git ls-remote ssh://git@github.com/dist-tarball/…`).
+Перезапуск на `v2.16.0` берёт workflow с тега, а тег правило `v*` двигать не
+даёт, поэтому **первая версия в реестре — 2.16.1**. `bootstrap-sha` — коммит
+`chore(main): release 2.15.0` (`9d98b4a9`): тегов прошлых выпусков в этом
+репозитории нет, и без него журнал первого выпуска повторил бы историю родителя.
+
+Доверенную публикацию (OIDC) npmjs.com настраивает только у пакета, который уже
+есть в реестре. Поэтому руками публикуется **заглушка**, а сама 2.16.0 выходит
+из CI — с provenance и через все проверки `npm-publish.yml`.
+
+1. **Правило на теги — обязательное условие до `NPM_RELEASE=true`**
+   (*Settings → Rules → Rulesets → New tag ruleset*, правило `v*`): цель `v*`,
+   *Restrict updates*, *Restrict deletions*, *Block force pushes*; *Restrict
+   creations* — **выключено**: приложение GitHub Actions в список обхода
+   репозитория добавить нельзя, а тег `vX.Y.Z` ставит release-please токеном
+   Actions. Выпущенный тег никто не передвинет и не удалит. Создать новый `v*`
+   может любой с правом записи — пока оно только у владельца (решение владельца
+   2026-11-28), это не дыра. Тот, кто создаст `v*` на своём коммите со своей
+   копией `npm-publish.yml` (без `await-ci` и `verify`) и запустит её, опубликует
+   свой код: Trusted Publisher привязан лишь к имени файла и окружению. Поэтому
+   **право записи никому не выдавать**, пока создание `v*` не закрыто (обход для
+   Actions появится — включить *Restrict creations*, в обход — владелец и
+   GitHub Actions). Пока правила нет, `NPM_RELEASE=true` не ставить.
+   Рекомендуется также ruleset на ветку `main` (pull request и проверка `ci`
+   обязательны, без прямых пушей и force-push).
+2. **Окружение `npm-publish`** (*Settings → Environments → New environment*):
+   *Deployment branches and tags* → *Selected branches and tags* → добавить
+   `main` (ветка) и `v*` (тег); *Required reviewers* — **нет** (решение
+   владельца: выпуск без одобрения, слияние release PR само публикует пакет).
+   Окружение нужно, потому что к его имени привязан Trusted Publisher.
+3. **Заглушка** — с машины, где выполнен `npm login` под владельцем scope
+   `@bxshefby`, в пустом каталоге:
+
+   ```sh
+   echo '{"name":"@bxshefby/b24ui-nuxt","version":"0.0.0-reserve","description":"Reserved name; use ^2.16.0","license":"MIT","repository":{"type":"git","url":"git+https://github.com/bx-shef/b24-ui.git"}}' > package.json
+   npm publish --access public --tag reserve
+   npm deprecate @bxshefby/b24ui-nuxt@0.0.0-reserve "Заглушка имени — используйте @bxshefby/b24ui-nuxt@^2.16.0"
+   ```
+
+4. **Trusted Publisher.** npmjs.com → пакет `@bxshefby/b24ui-nuxt` → Settings →
+   Trusted Publisher → GitHub Actions:
+   - *Organization or user*: `bx-shef`
+   - *Repository*: `b24-ui`
+   - *Workflow filename*: `npm-publish.yml` (только имя файла)
+   - *Environment name*: `npm-publish`
+   - *Allowed actions*: отметить `npm publish`, `npm dist-tag` не отмечать.
+
+   Ниже, в *Publishing access* — *Require two-factor authentication and
+   disallow bypass 2fa tokens*: доверенной публикации это не мешает. Поля
+   сравниваются с учётом регистра, и npm их при сохранении не проверяет:
+   ошибка видна только на публикации. `repository.url` в `package.json` должен
+   указывать на `bx-shef/b24-ui` — иначе npm откажет в provenance.
+
+   Токен публикации есть только у job `publish` (`id-token: write`, окружение
+   `npm-publish`): он без checkout и без `pnpm install` скачивает готовый
+   tarball из job `build` (там `contents: read`, без `id-token`) и выполняет
+   `npm publish --provenance`. Поля Trusted Publisher от этого не меняются:
+   workflow и окружение те же. В `publish` разрешён только белый список шагов
+   (`.github/scripts/assert-publish-split.py`, тексты шагов сверяются с
+   эталоном), Node закреплён точной версией с npm не ниже 11.5.1; публикует
+   только тег: имя пакета и версия внутри tarball сверяются с
+   `@bxshefby/b24ui-nuxt` и тегом.
+
+   Условие запуска публикации — `github.repository == 'bx-shef/b24-ui' &&
+   vars.NPM_RELEASE == 'true'`, и только тег `v*` (workflow запускается только
+   через `workflow_dispatch`; события `release` и `push` его не запускают, так
+   что вручную созданный GitHub Release ничего не публикует).
+
+   **Принятый остаточный риск (одобрения нет):** содержимое tarball собирает
+   `build`, где выполняется код зависимостей. Целостность публикуемого держится
+   на (а) сверке имени и версии tarball с `@bxshefby/b24ui-nuxt` и тегом,
+   (б) ревью release PR и всего, что влито в `main`, перед слиянием, (в) том,
+   что токен публикации есть только у job `publish` без checkout и install.
+   Ждущего человека между слиянием и npm нет.
+
+   Всё это держится на том, что **право записи в репозиторий — только у
+   владельца**: любой с правом записи и правом создавать теги `v*` может
+   опубликовать свой код (см. п. 1), а `workflow_dispatch` для
+   `release-please.yml` с любой ветки запускает её копию с `contents: write` и
+   `actions: write` (условие `github.ref == 'refs/heads/main'` в job — не защита,
+   копия его уберёт). Права записи не раздавать без ruleset на теги и `main`.
+5. **Settings → Actions → General → Workflow permissions** → *Allow GitHub
+   Actions to create and approve pull requests* (без неё release-please не
+   откроет PR) и **Settings → Secrets and variables → Actions → Variables:**
+   `NPM_RELEASE=true` (включает и release-please, и публикацию).
+   **Settings → Advanced Security** → *Private vulnerability reporting* →
+   Enable (на него ведёт SECURITY.md).
+6. **Выпуск.** release-please открывает PR `chore(main): release X.Y.Z`.
+   Одобрить задержанный `ci` PR и смержить: слияние — единственное действие,
+   тег публикуется сам (имя файла tarball — `bxshefby-b24ui-nuxt-*.tgz`, оно
+   берётся из `pnpm pack`; npm получает его как `./dist-tarball/…` — без `./`
+   npm ищет репозиторий GitHub). Проверка — `npm view @bxshefby/b24ui-nuxt
+   version`, у версии на npmjs.com — значок provenance. `release-as` в
+   `release-please-config.json` нет: версию считают коммиты.
+
 ## How the version is chosen
 
 | commits since the last tag | next version |
@@ -235,14 +343,18 @@ release is still a minor. Reverting unreleased work therefore produces a
 changelog that announces and retracts the same feature — usually fine, but not a
 surprise you want at 2am.
 
+**If `ci` on the tag's SHA was cancelled** (the `ci` concurrency group in `main`
+cancels a run when the next push arrives), `await-ci` fails and the release stays
+unpublished: re-run `ci.yml` on that SHA, then dispatch `npm-publish.yml` on the
+tag again. `release-watchdog` reports a tag that is not on npm.
+
 If CI is red for something that is not a revertable commit — a flaky suite, a
 broken runner image, a playground build that only fails in `npm-publish.yml` —
 there is nothing to revert, and **there is no bypass in the pipeline**. Say it
 plainly, because the alternatives look tempting at 2am and none of them work:
-`process` declares `needs: await-ci`, so a red CI skips the publishing job
-entirely — it never queues, which means the `npm-publish` environment never asks
-anyone to approve anything. Adding required reviewers there does not open a door;
-it only ever closes one.
+`build` declares `needs: await-ci` (and `publish` needs `build`), so a red CI skips the publishing job
+entirely — it never queues. There is no approval step to wave it through, and adding one
+would not open a door; it only ever closes one.
 
 So the options are the honest two. **Fix the failure** — for a flake, re-running
 `ci.yml` on the release commit is usually faster than any workaround, and the
@@ -253,7 +365,8 @@ If neither is acceptable — a crash-class bug, CI broken for reasons nobody can
 fix quickly — the break-glass is a maintainer publishing by hand from a machine
 logged in to npm, running the same sequence `npm-publish.yml` does:
 `pnpm install --frozen-lockfile`, `pnpm run dev:prepare`, `pnpm build`, then
-`pnpm publish --no-git-checks`. `dev:prepare` is not optional — it emits
+`pnpm publish --no-git-checks` (CI does the same in `build` with `pnpm pack`,
+then `publish` uploads that tarball with `npm publish`). `dev:prepare` is not optional — it emits
 `.nuxt/b24ui.static.css`, which `package.json` lists in `files` — and without
 `--no-git-checks` the publish is refused outright from a detached checkout. It
 is deliberately ugly.
@@ -273,7 +386,8 @@ true:
   behind it besides memory;
 - the latest tag exists but that version is not on npm — i.e. the publish never
   completed. Recovery for that one is Actions → **NPM publish** → *Run workflow*
-  with the tag selected as the ref; re-runs are safe, an already-published
+  with the tag (`v*`) selected as the ref — the same `gh workflow run
+  npm-publish.yml --ref <tag>` the release job runs; re-runs are safe, an already-published
   version ends as a green no-op.
 
 The `severity:crash` half of that first line needs the label to exist, and
@@ -287,9 +401,8 @@ threshold: dispatching with `0` reports whatever release PR is currently open.
 
 ## Optional hardening
 
-`npm-publish.yml` declares `environment: npm-publish`. GitHub auto-creates a
-referenced environment **without** protection rules, so by default the job runs
-unprotected and the two actions above — approving the held `ci` run and merging
-the release PR — are the only human ones. Adding required reviewers to that
-environment in Settings → Environments turns on a further approval before
-anything reaches npm, with no code change.
+`npm-publish.yml` declares `environment: npm-publish`, and by decision (#63) the
+environment has **no** required reviewers: only `main` and `v*` may use it.
+Adding reviewers in Settings → Environments would turn the approval back on with
+no code change, but then a publication waits for a person after the merge and
+the tarball (kept 7 days) can expire before it is approved. Not wanted here.

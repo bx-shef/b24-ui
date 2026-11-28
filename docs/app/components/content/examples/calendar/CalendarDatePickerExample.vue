@@ -13,7 +13,7 @@ const modelValue = shallowRef(new CalendarDate(2012, 4, 12))
 <template>
   <B24Popover>
     <B24Button :icon="Calendar1Icon">
-      {{ modelValue ? df.format(modelValue.toDate(getLocalTimeZone())) : 'Select a date' }}
+      {{ modelValue ? df.format(modelValue.toDate(getLocalTimeZone())) : 'Выберите дату' }}
     </B24Button>
 
     <template #content>

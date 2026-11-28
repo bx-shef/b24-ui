@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { ChatMessageProps } from '@bitrix24/b24ui-nuxt'
-import { isPartStreaming } from '@bitrix24/b24ui-nuxt/utils/ai'
+import type { ChatMessageProps } from '@bxshefby/b24ui-nuxt'
+import { isPartStreaming } from '@bxshefby/b24ui-nuxt/utils/ai'
 import { Markdown } from '@comark/vue'
 import shiki from '@comark/vue/plugins/shiki'
 import OpenChatIcon from '@bitrix24/b24icons-vue/outline/OpenChatIcon'
@@ -12,23 +12,23 @@ const messages = ref<ChatMessageProps[]>([
   {
     id: '1',
     role: 'user',
-    parts: [{ type: 'text', text: 'What is Bitrix24 UI?' }]
+    parts: [{ type: 'text', text: 'Что такое Bitrix24 UI?' }]
   },
   {
     id: '2',
     role: 'assistant',
-    parts: [{ type: 'text', text: 'Bitrix24 UI is a Vue component library built on Reka UI, Tailwind CSS, and Tailwind Variants. It provides 130+ accessible components for building modern web apps.' }]
+    parts: [{ type: 'text', text: 'Bitrix24 UI — библиотека Vue-компонентов на основе Reka UI, Tailwind CSS и Tailwind Variants. Содержит 130+ доступных компонентов для создания современных веб-приложений.' }]
   }
 ])
 
-// A static demo: nothing is sent anywhere. Replace this with a call to your own endpoint.
+// Статичная демонстрация: ничего никуда не отправляется. Замените это вызовом своего эндпоинта.
 function onSubmit() {
   const text = input.value.trim()
   if (!text) return
 
   messages.value.push(
     { id: `${Date.now()}-user`, role: 'user', parts: [{ type: 'text', text }] },
-    { id: `${Date.now()}-assistant`, role: 'assistant', parts: [{ type: 'text', text: 'This demo is static, so nothing leaves the page. To get real answers, connect the prompt to your own endpoint — the Chat page shows how.' }] }
+    { id: `${Date.now()}-assistant`, role: 'assistant', parts: [{ type: 'text', text: 'Эта демонстрация статичная, поэтому ничего не отправляется. Чтобы получать настоящие ответы, подключите промпт к своему эндпоинту — как это сделать, показано на странице Chat.' }] }
   )
 
   input.value = ''
@@ -59,7 +59,7 @@ const b24ui = {
         <B24Button
           :icon="OpenChatIcon"
           color="air-tertiary"
-          aria-label="Toggle sidebar"
+          aria-label="Переключить боковое меню"
           @click="open = !open"
         />
       </div>
@@ -72,7 +72,7 @@ const b24ui = {
     <B24Sidebar
       v-model:open="open"
       side="right"
-      title="AI Chat"
+      title="AI-чат"
       close
       :style="{ '--sidebar-width': '20rem' }"
       :b24ui="{ container: 'h-full' }"
@@ -82,23 +82,17 @@ const b24ui = {
           :messages="messages"
           status="ready"
           compact
+          :user="{ b24ui: { text: 'text-sm/6' } }"
           class="px-0"
         >
-          <template #content="{ message }">
-            <template v-for="(part, index) in message.parts" :key="`${message.id}-${part.type}-${index}`">
-              <template v-if="part.type === 'text'">
-                <Markdown
-                  v-if="message.role === 'assistant'"
-                  :value="part.text"
-                  :streaming="isPartStreaming(part)"
-                  :plugins="[shiki()]"
-                  class="*:first:mt-0 *:last:mb-0"
-                />
-                <p v-else-if="message.role === 'user'" class="whitespace-pre-wrap text-sm/6">
-                  {{ part.text }}
-                </p>
-              </template>
-            </template>
+          <template #part="{ part, message, streaming }">
+            <Markdown
+              v-if="part.type === 'text' && message.role === 'assistant'"
+              :value="part.text"
+              :streaming="isPartStreaming(part, streaming)"
+              :plugins="[shiki()]"
+              class="*:first:mt-0 *:last:mb-0"
+            />
           </template>
         </B24ChatMessages>
       </B24Theme>

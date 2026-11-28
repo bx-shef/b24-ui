@@ -65,3 +65,7 @@ __pycache__/
 
 # Coverage reports (pnpm run test:coverage)
 /coverage
+docs/.data.bak
+
+# Vitest blob reports (sharded CI runs)
+.vitest/

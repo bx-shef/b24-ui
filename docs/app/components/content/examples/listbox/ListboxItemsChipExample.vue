@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import type { ListboxItem } from '@bitrix24/b24ui-nuxt'
+import type { ListboxItem } from '@bxshefby/b24ui-nuxt'
 
 const items = ref<ListboxItem[]>([
   {
-    label: 'bug',
+    label: 'Ошибка',
     chip: {
       color: 'air-primary-alert'
     }
   },
   {
-    label: 'feature',
+    label: 'Функция',
     chip: {
       color: 'air-primary-success'
     }
   },
   {
-    label: 'enhancement',
+    label: 'Улучшение',
     chip: {
       color: 'air-primary'
     }

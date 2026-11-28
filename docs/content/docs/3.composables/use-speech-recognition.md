@@ -1,18 +1,18 @@
 ---
 title: useSpeechRecognition
-description: A speech recognition composable using the Web Speech API.
+description: Композабл распознавания речи на основе Web Speech API.
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/composables/useSpeechRecognition.ts
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/textarea
 ---
 
-## Usage
+## Использование {#usage}
 
-The auto-imported composable `useSpeechRecognition` provides speech recognition functionality in the browser using the [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API).
+Автоимпортируемый композабл `useSpeechRecognition` добавляет в браузер распознавание речи на основе [Web Speech API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API).
 
 ```vue
 <script setup lang="ts">
@@ -44,30 +44,30 @@ const {
 
 ## API
 
-### Parameters
+### Параметры {#parameters}
 
 `useSpeechRecognition(options?: SpeechRecognitionOptions, events?: SpeechRecognitionEvents)`{lang="ts-type"}
 
-Creates a speech recognition instance with specified options and event handlers.
+Создаёт экземпляр распознавания речи с заданными параметрами и обработчиками событий.
 
 **options:**
 
 ::field-group
 
   ::field{name="lang" type="string"}
-  Recognition language. Default: `'en-US'`.
+  Язык распознавания. По умолчанию `'en-US'`.
   ::
   
   ::field{name="continuous" type="boolean"}
-  Continuous recognition. If `true`, recognition continues until explicitly stopped. Default: `true`.
+  Непрерывное распознавание. Если `true`, распознавание продолжается, пока его явно не остановят. По умолчанию `true`.
   ::
   
   ::field{name="interimResults" type="boolean"}
-  Show interim results. Default: `true`.
+  Показывать промежуточные результаты. По умолчанию `true`.
   ::
   
   ::field{name="maxAlternatives" type="number"}
-  Maximum number of alternatives for each result. Default: `1`.
+  Максимальное число вариантов для каждого результата. По умолчанию `1`.
   ::
 
 ::
@@ -77,43 +77,43 @@ Creates a speech recognition instance with specified options and event handlers.
 ::field-group
 
   ::field{name="onStart" type="() => void"}
-  Called when recognition starts.
+  Вызывается при начале распознавания.
   ::
   
   ::field{name="onEnd" type="() => void"}
-  Called when recognition ends.
+  Вызывается при завершении распознавания.
   ::
   
   ::field{name="onError" type="(error: string) => void"}
-  Called when a recognition error occurs.
+  Вызывается при ошибке распознавания.
   ::
   
   ::field{name="onResult" type="(result: SpeechRecognitionResult) => void"}
-  Called when a recognition result is received.
+  Вызывается при получении результата распознавания.
   ::
 
 ::
 
-`useSpeechRecognition` returns an object with the following properties:
+`useSpeechRecognition` возвращает объект со следующими свойствами:
 
 ### state
 
 `state: DeepReadonly<Ref<SpeechRecognitionState>>`{lang="ts-type"}
 
-The current speech recognition state.
+Текущее состояние распознавания речи.
 
 ::field-group
 
   ::field{name="isAvailable" type="boolean"}
-  Whether speech recognition is available in the current browser.
+  Доступно ли распознавание речи в текущем браузере.
   ::
   
   ::field{name="isListening" type="boolean"}
-  Whether recognition is currently active.
+  Идёт ли распознавание сейчас.
   ::
   
   ::field{name="lastRecognizedText" type="string"}
-  The last recognized text (accumulated in continuous mode).
+  Последний распознанный текст (в непрерывном режиме накапливается).
   ::
 
 ::
@@ -122,63 +122,63 @@ The current speech recognition state.
 
 `isAvailable: ComputedRef<boolean>`{lang="ts-type"}
 
-A computed property indicating speech recognition availability.
+Вычисляемое свойство: доступно ли распознавание речи.
 
 ### isListening
 
 `isListening: ComputedRef<boolean>`{lang="ts-type"}
 
-A computed property indicating whether recognition is active.
+Вычисляемое свойство: идёт ли распознавание.
 
 ### start()
 
 `start(): Promise<boolean>`{lang="ts-type"}
 
-Starts speech recognition.
+Запускает распознавание речи.
 
-**Returns:** `Promise<boolean>` - `true` if recognition started successfully, otherwise `false`.
+**Возвращает:** `Promise<boolean>`: `true`, если распознавание запустилось, иначе `false`.
 
 ### stop()
 
 `stop(): Promise<boolean>`{lang="ts-type"}
 
-Stops speech recognition.
+Останавливает распознавание речи.
 
-**Returns:** `Promise<boolean>` - `true` if recognition stopped successfully, otherwise `false`.
+**Возвращает:** `Promise<boolean>`: `true`, если распознавание остановилось, иначе `false`.
 
 ### toggle()
 
 `toggle(): Promise<boolean>`{lang="ts-type"}
 
-Toggles the recognition state (start/stop).
+Переключает состояние распознавания (запуск или остановка).
 
-**Returns:** `Promise<boolean>` - `true` if the operation was successful, otherwise `false`.
+**Возвращает:** `Promise<boolean>`: `true`, если операция выполнена, иначе `false`.
 
 ### setLanguage()
 
 `setLanguage(lang: string): boolean`{lang="ts-type"}
 
-Sets the recognition language.
+Задаёт язык распознавания.
 
 ::field-group
 
   ::field{name="lang" type="string" required}
-  Language code in BCP 47 format (e.g., `'ru-RU'`, `'en-US'`).
+  Код языка в формате BCP 47 (например, `'ru-RU'`, `'en-US'`).
   ::
 
 ::
 
-**Returns:** `boolean` - `true` if the language was set successfully, otherwise `false`.
+**Возвращает:** `boolean`: `true`, если язык установлен, иначе `false`.
 
 ### recognizer
 
 `recognizer: SpeechRecognition | undefined`{lang="ts-type"}
 
-Web Speech API Recognition instance for advanced use.
+Экземпляр распознавания Web Speech API для расширенного использования.
 
-## Example
+## Пример {#example}
 
-Recognized text can be added to a [Textarea](/docs/components/textarea/) or [Input](/docs/components/input/) component.
+Распознанный текст можно подставлять в компонент [Textarea](/docs/components/textarea/) или [Input](/docs/components/input/).
 
 ::component-example
 ---

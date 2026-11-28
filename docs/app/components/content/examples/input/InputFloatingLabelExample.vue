@@ -5,7 +5,7 @@ const value = ref('')
 <template>
   <B24Input id="email" v-model="value" placeholder="" :b24ui="{ base: 'peer' }">
     <label for="email" class="pointer-events-none absolute start-0 -top-[10px] text-label text-(length:--ui-font-size-xs)/(--ui-font-line-height-reset) font-(--ui-font-weight-medium) px-1.5 transition-all peer-focus:-top-[10px] peer-focus:text-label peer-focus:text-(length:--ui-font-size-xs)/(--ui-font-line-height-reset) peer-focus:font-(--ui-font-weight-medium) peer-placeholder-shown:text-(length:--ui-font-size-sm)/(--ui-font-line-height-reset) peer-placeholder-shown:text-legend peer-placeholder-shown:top-[10px] peer-placeholder-shown:font-(--ui-font-weight-normal)">
-      <span class="inline-flex bg-(--ui-color-base-white-fixed) px-1">Email address</span>
+      <span class="inline-flex bg-(--ui-color-base-white-fixed) px-1">Адрес email</span>
     </label>
   </B24Input>
 </template>

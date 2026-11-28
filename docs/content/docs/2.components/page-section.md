@@ -1,12 +1,16 @@
 ---
 title: PageSection
-description: 'A responsive section.'
+description: 'Адаптивная секция страницы.'
 category: page
+keywords:
+  - секция страницы
+  - раздел лендинга
+  - блок страницы
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/PageSection.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/page-section
   - label: Nuxt UI
@@ -14,9 +18,9 @@ links:
     to: https://ui.nuxt.com/docs/components/page-section
 ---
 
-## Usage
+## Использование {#usage}
 
-The PageSection component wraps your content in a [Container](/docs/components/container/) while maintaining full-width flexibility making it easy to add background colors, images or patterns. It provides a flexible way to display content with an illustration in the default slot.
+Компонент PageSection оборачивает содержимое в [Container](/docs/components/container/), сохраняя гибкость на всю ширину: фон, изображения и узоры добавляются легко. Он даёт гибкий способ показать содержимое с иллюстрацией в слоте по умолчанию.
 
 ::component-example
 ---
@@ -27,24 +31,24 @@ source: false
 ---
 ::
 
-### Title
+### Заголовок {#title}
 
-Use the `title` prop to set the title of the section.
+Пропс `title` задаёт заголовок секции.
 
 ::component-code
 ---
 props:
-  title: 'Bitrix24. Your ultimate workspace.'
+  title: 'Bitrix24. Ваше рабочее пространство.'
 ---
 ::
 
 ::tip
-The title is rendered as an `h2` by default. Use the `as` prop with an object to change it, for example `:as="{ title: 'h3' }"`{lang="ts-type"}. You can also set the root element this way: `:as="{ root: 'div', title: 'h3' }"`{lang="ts-type"}.
+Заголовок по умолчанию отрисовывается как `h2`. Чтобы изменить тег, передайте в пропс `as` объект, например `:as="{ title: 'h3' }"`{lang="ts-type"}. Корневой элемент задаётся так же: `:as="{ root: 'div', title: 'h3' }"`{lang="ts-type"}.
 ::
 
-### Description
+### Описание {#description}
 
-Use the `description` prop to set the description of the section.
+Пропс `description` задаёт описание секции.
 
 ::component-code
 ---
@@ -52,14 +56,14 @@ prettier: true
 ignore:
   - title
 props:
-  title: 'Bitrix24. Your ultimate workspace.'
-  description: 'An all-in-one free platform to manage your team and run your sales, Bitrix24 is designed to be seamlessly integrated into all your business processes and help you manage them with the highest precision and efficiency.'
+  title: 'Bitrix24. Ваше рабочее пространство.'
+  description: 'Единая бесплатная платформа для управления командой и продажами: Bitrix24 бесшовно встраивается во все ваши бизнес-процессы и помогает управлять ими с максимальной точностью и эффективностью.'
 ---
 ::
 
-### Headline
+### Надзаголовок {#headline}
 
-Use the `headline` prop to set the headline of the section.
+Пропс `headline` задаёт надзаголовок секции.
 
 ::component-code
 ---
@@ -68,15 +72,15 @@ ignore:
   - title
   - description
 props:
-  title: 'Bitrix24. Your ultimate workspace.'
-  description: 'An all-in-one free platform to manage your team and run your sales, Bitrix24 is designed to be seamlessly integrated into all your business processes and help you manage them with the highest precision and efficiency.'
-  headline: 'Features'
+  title: 'Bitrix24. Ваше рабочее пространство.'
+  description: 'Единая бесплатная платформа для управления командой и продажами: Bitrix24 бесшовно встраивается во все ваши бизнес-процессы и помогает управлять ими с максимальной точностью и эффективностью.'
+  headline: 'Возможности'
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to set the icon of the section.
+Пропс `icon` задаёт иконку секции.
 
 ::component-code
 ---
@@ -88,22 +92,22 @@ ignore:
 cast:
   icon: 'RocketIcon'
 props:
-  title: 'Bitrix24. Your ultimate workspace.'
-  description: 'An all-in-one free platform to manage your team and run your sales, Bitrix24 is designed to be seamlessly integrated into all your business processes and help you manage them with the highest precision and efficiency.'
+  title: 'Bitrix24. Ваше рабочее пространство.'
+  description: 'Единая бесплатная платформа для управления командой и продажами: Bitrix24 бесшовно встраивается во все ваши бизнес-процессы и помогает управлять ими с максимальной точностью и эффективностью.'
   icon: 'RocketIcon'
 ---
 ::
 
-### Features
+### Возможности {#features}
 
-Use the `features` prop to display a list of [PageFeature](/docs/components/page-feature/) under the description as an array of objects with the following properties:
+Пропс `features` показывает под описанием список [PageFeature](/docs/components/page-feature/) в виде массива объектов со свойствами:
 
 - `title?: string`{lang="ts-type"}
 - `description?: string`{lang="ts-type"}
 - `icon?: IconComponent`{lang="ts-type"}
 - `orientation?: 'horizontal' | 'vertical'`{lang="ts-type"}
 
-You can pass any property from the [Link](/docs/components/link/#props) component such as `to`, `target`, etc.
+Можно передать любое свойство компонента [Link](/docs/components/link/#props), например `to`, `target` и другие.
 
 ::component-example
 ---
@@ -112,9 +116,9 @@ class: 'p-8'
 ---
 ::
 
-### Links
+### Ссылки {#links}
 
-Use the `links` prop to display a list of [Button](/docs/components/button/) under the description.
+Пропс `links` показывает под описанием список кнопок [Button](/docs/components/button/).
 
 ::component-code
 ---
@@ -128,21 +132,21 @@ ignore:
   - description
   - links
 props:
-  title: 'Bitrix24. Your ultimate workspace.'
-  description: 'An all-in-one free platform to manage your team and run your sales, Bitrix24 is designed to be seamlessly integrated into all your business processes and help you manage them with the highest precision and efficiency.'
+  title: 'Bitrix24. Ваше рабочее пространство.'
+  description: 'Единая бесплатная платформа для управления командой и продажами: Bitrix24 бесшовно встраивается во все ваши бизнес-процессы и помогает управлять ими с максимальной точностью и эффективностью.'
   links:
-    - label: 'Get started'
+    - label: 'Начать'
       to: '/docs/getting-started/'
       color: 'air-secondary-accent-2'
-    - label: 'Explore'
+    - label: 'Изучить'
       to: '/docs/components/'
       color: 'air-primary'
 ---
 ::
 
-### Orientation
+### Ориентация {#orientation}
 
-Use the `orientation` prop to change the orientation with the default slot. Defaults to `vertical`.
+Пропс `orientation` меняет ориентацию слота по умолчанию. По умолчанию `vertical`.
 
 ::component-code
 ---
@@ -163,22 +167,22 @@ ignore:
 cast:
   icon: 'RocketIcon'
 props:
-  title: 'Bitrix24. Your ultimate workspace.'
-  description: 'An all-in-one free platform to manage your team and run your sales, Bitrix24 is designed to be seamlessly integrated into all your business processes and help you manage them with the highest precision and efficiency.'
+  title: 'Bitrix24. Ваше рабочее пространство.'
+  description: 'Единая бесплатная платформа для управления командой и продажами: Bitrix24 бесшовно встраивается во все ваши бизнес-процессы и помогает управлять ими с максимальной точностью и эффективностью.'
   icon: 'RocketIcon'
   orientation: horizontal
   features:
-    - title: 'Online workspace for the whole team'
-      description: 'Through its wide variety of communication and collaboration tools, Bitrix24 enables teams to work efficiently and smoothly wherever they are – at home, in the office, or on the go.'
+    - title: 'Онлайн-офис для всей команды'
+      description: 'Благодаря широкому набору инструментов для общения и совместной работы Bitrix24 позволяет командам работать эффективно и слаженно, где бы они ни были: дома, в офисе или в дороге.'
       to: 'https://www.bitrix24.com/tools/communications/'
-    - title: 'Free CRM software for your business'
-      description: 'Sell more. Sell better. Sell faster with Bitrix24 a single platform to cover all your needs.'
+    - title: 'Бесплатная CRM для вашего бизнеса'
+      description: 'Продавайте больше, лучше и быстрее: Bitrix24 — единая платформа, которая закрывает все ваши потребности.'
       to: 'https://www.bitrix24.com/tools/crm/'
-    - title: 'Free task management software for your business'
-      description: 'Set tasks, manage deadlines, collect reports, track KPIs, and run projects from wherever you are.'
+    - title: 'Бесплатное управление задачами для вашего бизнеса'
+      description: 'Ставьте задачи, следите за сроками, собирайте отчёты, отслеживайте KPI и ведите проекты откуда угодно.'
       to: 'https://www.bitrix24.com/tools/tasks_and_projects/'
   links:
-    - label: 'Explore'
+    - label: 'Изучить'
       to: '/docs/components/'
       color: 'air-primary'
 slots:
@@ -190,9 +194,9 @@ slots:
 :img{src="/b24ui/assets/demo/communications-main.png.webp" width="352" height="647" alt="Illustration" class="w-full rounded-lg" loading="lazy"}
 ::
 
-### Reverse
+### Обратный порядок {#reverse}
 
-Use the `reverse` prop to reverse the orientation of the default slot.
+Пропс `reverse` меняет порядок слота по умолчанию на обратный.
 
 ::component-code
 ---
@@ -214,22 +218,22 @@ cast:
   icon: 'RocketIcon'
 props:
   reverse: true
-  title: 'Bitrix24. Your ultimate workspace.'
-  description: 'An all-in-one free platform to manage your team and run your sales, Bitrix24 is designed to be seamlessly integrated into all your business processes and help you manage them with the highest precision and efficiency.'
+  title: 'Bitrix24. Ваше рабочее пространство.'
+  description: 'Единая бесплатная платформа для управления командой и продажами: Bitrix24 бесшовно встраивается во все ваши бизнес-процессы и помогает управлять ими с максимальной точностью и эффективностью.'
   icon: 'RocketIcon'
   orientation: horizontal
   features:
-    - title: 'Online workspace for the whole team'
-      description: 'Through its wide variety of communication and collaboration tools, Bitrix24 enables teams to work efficiently and smoothly wherever they are – at home, in the office, or on the go.'
+    - title: 'Онлайн-офис для всей команды'
+      description: 'Благодаря широкому набору инструментов для общения и совместной работы Bitrix24 позволяет командам работать эффективно и слаженно, где бы они ни были: дома, в офисе или в дороге.'
       to: 'https://www.bitrix24.com/tools/communications/'
-    - title: 'Free CRM software for your business'
-      description: 'Sell more. Sell better. Sell faster with Bitrix24 a single platform to cover all your needs.'
+    - title: 'Бесплатная CRM для вашего бизнеса'
+      description: 'Продавайте больше, лучше и быстрее: Bitrix24 — единая платформа, которая закрывает все ваши потребности.'
       to: 'https://www.bitrix24.com/tools/crm/'
-    - title: 'Free task management software for your business'
-      description: 'Set tasks, manage deadlines, collect reports, track KPIs, and run projects from wherever you are.'
+    - title: 'Бесплатное управление задачами для вашего бизнеса'
+      description: 'Ставьте задачи, следите за сроками, собирайте отчёты, отслеживайте KPI и ведите проекты откуда угодно.'
       to: 'https://www.bitrix24.com/tools/tasks_and_projects/'
   links:
-    - label: 'Explore'
+    - label: 'Изучить'
       to: '/docs/components/'
       color: 'air-primary'
 slots:
@@ -243,14 +247,14 @@ slots:
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { EditorCustomHandlers, EditorToolbarItem } from '@bitrix24/b24ui-nuxt'
+import type { EditorCustomHandlers, EditorToolbarItem } from '@bxshefby/b24ui-nuxt'
 import type { Editor } from '@tiptap/vue-3'
 import { ImageUpload } from './EditorImageUploadExtension'
 import HeaderIcon from '@bitrix24/b24icons-vue/editor/HeaderIcon'
@@ -10,11 +10,11 @@ import StrikethroughIcon from '@bitrix24/b24icons-vue/outline/StrikethroughIcon'
 import DeveloperResourcesIcon from '@bitrix24/b24icons-vue/outline/DeveloperResourcesIcon'
 import ImageIcon from '@bitrix24/b24icons-vue/outline/ImageIcon'
 
-const value = ref(`# Image Upload
+const value = ref(`# Загрузка изображений
 
-This editor demonstrates how to create a custom TipTap extension with handlers. Click the image button in the toolbar to upload a file — it will show a custom [FileUpload](/docs/components/file-upload) interface before inserting the image.
+Этот редактор показывает, как создать собственное расширение TipTap с обработчиками. Нажмите кнопку изображения на панели инструментов, чтобы загрузить файл: перед вставкой изображения откроется собственный интерфейс [FileUpload](/docs/components/file-upload).
 
-Try uploading an image below:
+Попробуйте загрузить изображение ниже:
 
 `)
 
@@ -32,7 +32,7 @@ const items = [
     {
       kind: 'imageUpload',
       icon: ImageIcon,
-      label: 'Add image'
+      label: 'Добавить изображение'
     }
   ],
   [
@@ -42,19 +42,19 @@ const items = [
       items: [{
         kind: 'heading',
         level: 1,
-        label: 'Heading 1'
+        label: 'Заголовок 1'
       }, {
         kind: 'heading',
         level: 2,
-        label: 'Heading 2'
+        label: 'Заголовок 2'
       }, {
         kind: 'heading',
         level: 3,
-        label: 'Heading 3'
+        label: 'Заголовок 3'
       }, {
         kind: 'heading',
         level: 4,
-        label: 'Heading 4'
+        label: 'Заголовок 4'
       }]
     }
   ],

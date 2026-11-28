@@ -1,12 +1,16 @@
 ---
 title: PageFeature
-description: 'A feature showcase component to present your app's main functionalities.'
+description: 'Компонент для показа основных возможностей вашего приложения.'
 category: page
+keywords:
+  - возможности продукта
+  - преимущества
+  - список фич
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/PageFeature.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/page-feature
   - label: Nuxt UI
@@ -14,27 +18,31 @@ links:
     to: https://ui.nuxt.com/docs/components/page-feature
 ---
 
-## Usage
+## Использование {#usage}
 
-The PageFeature component is used by the [PageSection](/docs/components/page-section/) component to display [features](/docs/components/page-section/#features).
+Компонент PageFeature используется компонентом [PageSection](/docs/components/page-section/) для показа [возможностей](/docs/components/page-section/#features).
 
-### Title
+### Заголовок {#title}
 
-Use the `title` prop to set the title of the feature.
+Пропс `title` задаёт заголовок возможности.
 
 ::component-code
 ---
 hide:
   - class
 props:
-  title: 'Theme'
+  title: 'Тема'
   class: 'w-96'
 ---
 ::
 
-### Description
+::tip
+Заголовок по умолчанию отрисовывается как `div`. Чтобы отрисовать его как заголовок, передайте в пропс `as` объект, например `:as="{ title: 'h3' }"`{lang="ts-type"}. Корневой элемент задаётся так же: `:as="{ root: 'section', title: 'h3' }"`{lang="ts-type"}.
+::
 
-Use the `description` prop to set the description of the feature.
+### Описание {#description}
+
+Пропс `description` задаёт описание возможности.
 
 ::component-code
 ---
@@ -44,15 +52,15 @@ hide:
 ignore:
   - title
 props:
-  title: 'Theme'
-  description: 'Customize Bitrix24 UI.'
+  title: 'Тема'
+  description: 'Настройте Bitrix24 UI.'
   class: 'w-96'
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to set the icon of the feature.
+Пропс `icon` задаёт иконку возможности.
 
 ::component-code
 ---
@@ -66,16 +74,16 @@ ignore:
 cast:
   icon: 'RocketIcon'
 props:
-  title: 'Theme'
-  description: 'Customize Bitrix24 UI.'
+  title: 'Тема'
+  description: 'Настройте Bitrix24 UI.'
   icon: 'RocketIcon'
   class: 'w-96'
 ---
 ::
 
-### Link
+### Ссылка {#link}
 
-You can pass any property from the [`<NuxtLink>`](https://nuxt.com/docs/api/components/nuxt-link) component such as `to`, `target`, `rel`, etc.
+Можно передать любое свойство компонента [`<NuxtLink>`](https://nuxt.com/docs/api/components/nuxt-link), например `to`, `target`, `rel` и другие.
 
 ::component-code
 ---
@@ -90,8 +98,8 @@ ignore:
 cast:
   icon: 'RocketIcon'
 props:
-  title: 'Theme'
-  description: 'Customize Bitrix24 UI.'
+  title: 'Тема'
+  description: 'Настройте Bitrix24 UI.'
   icon: 'RocketIcon'
   to: '/docs/getting-started/theme/design-system/'
   target: _blank
@@ -99,9 +107,9 @@ props:
 ---
 ::
 
-### Orientation
+### Ориентация {#orientation}
 
-Use the `orientation` prop to change the orientation of the feature. Defaults to `horizontal`.
+Пропс `orientation` меняет ориентацию возможности. По умолчанию `horizontal`.
 
 ::component-code
 ---
@@ -116,8 +124,8 @@ cast:
   icon: 'RocketIcon'
 props:
   orientation: 'vertical'
-  title: 'Theme'
-  description: 'Customize Bitrix24 UI.'
+  title: 'Тема'
+  description: 'Настройте Bitrix24 UI.'
   icon: 'RocketIcon'
   class: 'w-96'
 ---
@@ -125,14 +133,14 @@ props:
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

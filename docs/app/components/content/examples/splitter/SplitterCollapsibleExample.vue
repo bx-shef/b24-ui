@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { SplitterItem } from '@bitrix24/b24ui-nuxt'
+import type { SplitterItem } from '@bxshefby/b24ui-nuxt'
 import CloseChatIcon from '@bitrix24/b24icons-vue/outline/CloseChatIcon'
 import OpenChatIcon from '@bitrix24/b24icons-vue/outline/OpenChatIcon'
 
@@ -16,8 +16,8 @@ const items: SplitterItem[] = [
         <div class="flex-1 flex items-center justify-center p-2">
           <B24Button
             :icon="collapsed ? OpenChatIcon : CloseChatIcon"
-            :label="collapsed ? undefined : 'Collapse'"
-            :aria-label="collapsed ? 'Expand' : undefined"
+            :label="collapsed ? undefined : 'Свернуть'"
+            :aria-label="collapsed ? 'Развернуть' : undefined"
             color="air-secondary"
             size="sm"
             @click="collapsed ? expand() : collapse()"
@@ -26,7 +26,7 @@ const items: SplitterItem[] = [
       </template>
 
       <template #main>
-        Main
+        Основная часть
       </template>
     </B24Splitter>
   </div>

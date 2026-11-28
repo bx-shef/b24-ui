@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { h, resolveComponent } from 'vue'
 import { useElementSize } from '@vueuse/core'
-import type { TableColumn } from '@bitrix24/b24ui-nuxt'
+import type { TableColumn } from '@bxshefby/b24ui-nuxt'
 
 const B24Badge = resolveComponent('B24Badge')
 
@@ -32,12 +32,12 @@ const data = ref<Payment[]>(Array.from({ length: 1000 }, (_, i) => {
   }
 }))
 
-// The container owns the scroll; the table virtualizes against it so the header and rows share one scrollbar.
+// Прокруткой управляет контейнер; таблица виртуализируется относительно него, поэтому у шапки и строк одна полоса прокрутки.
 const container = useTemplateRef('container')
 const title = useTemplateRef('title')
 const getScrollElement = () => container.value
 
-// `scrollMargin` is the table's offset within the scroll element (border-box height of the title above it).
+// `scrollMargin` — смещение таблицы внутри прокручиваемого элемента (высота заголовка над ней с учётом границ).
 const { height: titleHeight } = useElementSize(title, undefined, { box: 'border-box' })
 
 const columns: TableColumn<Payment>[] = [{
@@ -46,7 +46,7 @@ const columns: TableColumn<Payment>[] = [{
   cell: ({ row }) => `#${row.getValue('id')}`
 }, {
   accessorKey: 'date',
-  header: 'Date',
+  header: 'Дата',
   cell: ({ row }) => new Date(row.getValue('date')).toLocaleString('en-US', {
     day: 'numeric',
     month: 'short',
@@ -57,16 +57,16 @@ const columns: TableColumn<Payment>[] = [{
   })
 }, {
   accessorKey: 'customer',
-  header: 'Customer'
+  header: 'Клиент'
 }, {
   accessorKey: 'email',
   header: 'Email'
 }, {
   accessorKey: 'method',
-  header: 'Method'
+  header: 'Способ оплаты'
 }, {
   accessorKey: 'status',
-  header: 'Status',
+  header: 'Статус',
   cell: ({ row }) => {
     const color = ({
       paid: 'air-primary-success' as const,
@@ -78,7 +78,7 @@ const columns: TableColumn<Payment>[] = [{
   }
 }, {
   accessorKey: 'amount',
-  header: 'Amount',
+  header: 'Сумма',
   meta: {
     class: {
       th: 'text-end',
@@ -103,15 +103,15 @@ const columns: TableColumn<Payment>[] = [{
     >
       <div>
         <h2 class="text-2xl font-bold">
-          Payments
+          Платежи
         </h2>
         <p class="text-muted">
-          The title stays put while the wide table scrolls both axes under one scrollbar.
+          Заголовок остаётся на месте, пока широкая таблица прокручивается по обеим осям с одной полосой прокрутки.
         </p>
       </div>
       <B24Badge
         color="air-tertiary-no-accent"
-        :label="`${data.length} rows`"
+        :label="`Строк: ${data.length}`"
       />
     </div>
 

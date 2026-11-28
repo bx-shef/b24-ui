@@ -1,16 +1,19 @@
 ---
 title: FooterColumns
-description: 'A set of link columns to organize navigation and information in the footer.'
+description: 'Набор колонок со ссылками для навигации и информации в подвале.'
 category: navigation
 keywords:
   - footer links
   - sitemap
   - columns
+  - колонки подвала
+  - ссылки подвала
+  - карта сайта
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/FooterColumns.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/footer
   - label: Nuxt UI
@@ -18,11 +21,11 @@ links:
     to: https://ui.nuxt.com/docs/components/footer-columns
 ---
 
-## Usage
+## Использование {#usage}
 
-The FooterColumns component renders a list of columns to display in your Footer.
+Компонент FooterColumns отрисовывает список колонок для вашего Footer.
 
-Use it in the `top` slot of the [Footer](/docs/components/footer/) component:
+Используйте его в слоте `top` компонента [Footer](/docs/components/footer/):
 
 ```vue {3-7}
 <template>
@@ -36,21 +39,21 @@ Use it in the `top` slot of the [Footer](/docs/components/footer/) component:
 </template>
 ```
 
-### Columns
+### Колонки {#columns}
 
-Use the `columns` prop as an array of objects with the following properties:
+Пропс `columns` — массив объектов со свойствами:
 
 - `label: string`{lang="ts-type"}
 - `children?: FooterColumnLink[]`{lang="ts-type"}
 
-Each column contains a `children` array of objects that define the links. Each link can have the following properties:
+Каждая колонка содержит массив `children` с объектами-ссылками. У ссылки могут быть свойства:
 
 - `label?: string`{lang="ts-type"}
 - `icon?: IconComponent`{lang="ts-type"}
 - `class?: any`{lang="ts-type"}
 - `b24ui?: { item?: ClassNameValue, link?: ClassNameValue, linkLabel?: ClassNameValue, linkLabelExternalIcon?: ClassNameValue, linkLeadingIcon?: ClassNameValue }`{lang="ts-type"}
 
-You can pass any property from the [Link](/docs/components/link/#props) component such as `to`, `target`, etc.
+Можно передать любое свойство компонента [Link](/docs/components/link/#props), например `to`, `target` и другие.
 
 ::component-example
 ---
@@ -63,19 +66,19 @@ props:
 ::
 
 ::tip
-The column label is rendered as an `h3` by default. Use the `as` prop with an object to change it, for example `:as="{ label: 'h4' }"`{lang="ts-type"}. You can also set the root element this way: `:as="{ root: 'div', label: 'h4' }"`{lang="ts-type"}.
+Подпись колонки по умолчанию отрисовывается как `h3`. Чтобы изменить тег, передайте в пропс `as` объект, например `:as="{ label: 'h4' }"`{lang="ts-type"}. Корневой элемент задаётся так же: `:as="{ root: 'div', label: 'h4' }"`{lang="ts-type"}.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

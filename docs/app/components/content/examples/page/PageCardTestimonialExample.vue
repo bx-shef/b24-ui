@@ -2,14 +2,14 @@
 const testimonial = ref({
   user: {
     name: 'Evan You',
-    description: 'Author of Vue.js and Vite',
+    description: 'Автор Vue.js и Vite',
     avatar: {
       src: 'https://avatars.githubusercontent.com/u/499550?v=4',
       alt: 'Evan You',
       loading: 'lazy' as const
     }
   },
-  quote: '“Nuxt on Cloudflare infra with minimal effort - this is huge!”'
+  quote: '«Nuxt на инфраструктуре Cloudflare с минимальными усилиями — это огромный шаг!»'
 })
 </script>
 

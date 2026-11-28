@@ -1,44 +1,44 @@
 <script lang="ts" setup>
-import type { TimelineItem } from '@bitrix24/b24ui-nuxt'
+import type { TimelineItem } from '@bxshefby/b24ui-nuxt'
 import { useTimeAgo } from '@vueuse/core'
 import RocketIcon from '@bitrix24/b24icons-vue/main/RocketIcon'
 import MoreMIcon from '@bitrix24/b24icons-vue/outline/MoreMIcon'
 
 const items = [{
-  username: 'Employee Name',
+  username: 'Имя сотрудника',
   date: '2025-05-24T14:58:55Z',
-  action: 'opened this',
+  action: 'открыл(а) это',
   avatar: {
     src: '/b24ui/avatar/employee.png',
     loading: 'lazy' as const
   }
 }, {
-  username: 'Employee Name',
+  username: 'Имя сотрудника',
   date: '2025-05-26T19:30:14+02:00',
-  action: 'marked this pull request as ready for review',
+  action: 'отметил(а) этот pull request как готовый к проверке',
   icon: RocketIcon
 }, {
-  username: 'Assistant Name',
+  username: 'Имя ассистента',
   date: '2025-05-27T11:01:20Z',
-  action: 'commented on this',
-  description: 'I\'ve made a few changes, let me know what you think! Basically I updated the design, removed unnecessary divs, used Avatar component for the indicator since it supports icon already.',
+  action: 'прокомментировал(а) это',
+  description: 'Я внёс несколько правок, скажите, что думаете! Обновил дизайн, убрал лишние div и использовал компонент Avatar для индикатора, так как он уже поддерживает иконки.',
   avatar: {
     src: '/b24ui/avatar/assistant.png',
     loading: 'lazy' as const
   }
 }, {
-  username: 'Employee Name',
+  username: 'Имя сотрудника',
   date: '2025-05-27T11:01:20Z',
-  action: 'commented on this',
-  description: 'Looks great! Good job on cleaning it up.',
+  action: 'прокомментировал(а) это',
+  description: 'Отлично! Хорошо, что всё почистили.',
   avatar: {
     src: '/b24ui/avatar/employee.png',
     loading: 'lazy' as const
   }
 }, {
-  username: 'Assistant Name',
+  username: 'Имя ассистента',
   date: '2025-05-27T11:01:20Z',
-  action: 'merged this',
+  action: 'слил(а) это',
   icon: MoreMIcon
 }] satisfies TimelineItem[]
 </script>

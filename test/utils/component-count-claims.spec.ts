@@ -56,9 +56,10 @@ const MAX_UNDERSTATEMENT = 15
  * `130+ components`, and everything anyone has actually written between the two:
  * `130+ accessible, production-ready, Tailwind CSS components`. Bounded to five
  * words so it cannot run across sentences, and it needs the `+` — `100x faster`
- * on the same page is a build-speed claim, not a component count.
+ * on the same page is a build-speed claim, not a component count. The Russian
+ * translation of the docs states the same count as `130+ компонентов`.
  */
-const CLAIM_PATTERN = /(\d+)\+\s*(?:[\w-]+[,\s]+){0,5}components/gi
+const CLAIM_PATTERN = /(\d+)\+\s*(?:[\p{L}\d_-]+[,\s]+){0,5}(?:components|компонент(?:ов|а|ы)?)(?!\p{L})/giu
 
 const claimsIn = (file: string): number[] =>
   [...readFileSync(join(repoRoot, file), 'utf8').matchAll(CLAIM_PATTERN)].map(match => Number(match[1]))

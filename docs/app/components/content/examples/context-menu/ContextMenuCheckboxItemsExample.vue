@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import type { ContextMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { ContextMenuItem } from '@bxshefby/b24ui-nuxt'
 
 const showSidebar = ref(true)
 const showToolbar = ref(false)
 
 const items = computed<ContextMenuItem[]>(() => [
   {
-    label: 'View',
+    label: 'Просмотр',
     type: 'label' as const
   },
   {
-    label: 'Show Sidebar',
+    label: 'Показывать боковое меню',
     type: 'checkbox' as const,
     checked: showSidebar.value,
     onUpdateChecked(checked: boolean) {
@@ -21,7 +21,7 @@ const items = computed<ContextMenuItem[]>(() => [
     }
   },
   {
-    label: 'Show Toolbar',
+    label: 'Показывать панель инструментов',
     type: 'checkbox' as const,
     checked: showToolbar.value,
     onUpdateChecked(checked: boolean) {
@@ -32,7 +32,7 @@ const items = computed<ContextMenuItem[]>(() => [
     type: 'separator' as const
   },
   {
-    label: 'Collapse Pinned Tabs',
+    label: 'Свернуть закреплённые вкладки',
     type: 'checkbox' as const,
     disabled: true
   }
@@ -42,7 +42,7 @@ const items = computed<ContextMenuItem[]>(() => [
 <template>
   <B24ContextMenu :items="items">
     <div class="flex items-center justify-center rounded-md border border-dashed border-(--ui-color-design-outline-na-stroke) text-legend text-(length:--ui-font-size-sm) bg-default aspect-video w-72">
-      Right click here
+      Нажмите правой кнопкой мыши
     </div>
   </B24ContextMenu>
 </template>

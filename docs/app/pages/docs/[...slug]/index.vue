@@ -3,10 +3,11 @@ import type { ContentNavigationItem } from '@nuxt/content'
 import { withTrailingSlash, joinURL } from 'ufo' // withoutTrailingSlash
 import { kebabCase } from 'scule'
 import { useColorMode } from '#b24ui/composables/color-mode/useColorMode'
-import { resolveIcon } from '@bitrix24/b24ui-nuxt/utils'
+import { resolveIcon } from '@bxshefby/b24ui-nuxt/utils'
 import DesignIcon from '@bitrix24/b24icons-vue/outline/DesignIcon'
 import FavoriteIcon from '@bitrix24/b24icons-vue/outline/FavoriteIcon'
 import MoreMIcon from '@bitrix24/b24icons-vue/outline/MoreMIcon'
+import AiStarsIcon from '@bitrix24/b24icons-vue/outline/AiStarsIcon'
 
 // const isDev = import.meta.dev
 
@@ -19,9 +20,13 @@ definePageMeta({
   layout: 'docs'
 })
 
+// Чат «Спросить AI»: кнопка «Объяснить с AI» есть, только когда чат включён на сервере
+const { enabled: chatEnabled, open: chatOpen, ask } = useChat()
+const { track } = useAnalytics()
+
 const { data: page } = await useAsyncData(kebabCase(pageUrl), () => queryCollection('docs').path(pageUrl).first())
 if (!page.value) {
-  throw createError({ status: 404, statusText: 'Page not found', fatal: true })
+  throw createError({ status: 404, statusText: 'Страница не найдена', fatal: true })
 }
 
 // Update the framework if the page has different one
@@ -55,14 +60,14 @@ if (!import.meta.prerender) {
 }
 
 const title = page.value?.seo?.title ? page.value.seo.title : page.value?.navigation?.title ? page.value.navigation.title : page.value?.title
-const prefix = page.value?.path.includes('components/') || page.value?.path.includes('composables/') ? 'Vue ' : ''
-const suffix = page.value?.path.includes('components/') ? 'Component ' : page.value?.path.includes('composables/') ? 'Composable ' : ''
+const prefix = page.value?.path.includes('components/') ? 'Компонент ' : page.value?.path.includes('composables/') ? 'Композабл ' : ''
+const suffix = ''
 const description = page.value?.seo?.description ? page.value.seo.description : page.value?.description
 
 useSeoMeta({
-  titleTemplate: `${prefix}%s ${suffix}- Bitrix24 UI ${page.value?.framework === 'vue' ? ' for Vue' : ''}`,
+  titleTemplate: `${prefix}%s ${suffix}- Bitrix24 UI ${page.value?.framework === 'vue' ? ' для Vue' : ''}`,
   title,
-  ogTitle: `${prefix}${title} ${suffix}- Bitrix24 UI ${page.value?.framework === 'vue' ? ' for Vue' : ''}`,
+  ogTitle: `${prefix}${title} ${suffix}- Bitrix24 UI ${page.value?.framework === 'vue' ? ' для Vue' : ''}`,
   description,
   ogDescription: description
 })
@@ -94,13 +99,13 @@ useCanonical(computed(() => `/raw${path.value}.md`))
 const communityLinks = computed(() => [
   {
     icon: DesignIcon,
-    label: 'Edit this page',
+    label: 'Редактировать страницу',
     to: `${config.public.gitUrl}/edit/main/docs/content/${page?.value?.stem}.md`,
     target: '_blank'
   },
   {
     icon: FavoriteIcon,
-    label: 'Star on GitHub',
+    label: 'Поставить звезду на GitHub',
     to: config.public.gitUrl,
     target: '_blank'
   }
@@ -121,6 +126,11 @@ const cardColorContext = computed(() => {
 onMounted(() => {
   isMounted.value = true
 })
+
+function makeExplain() {
+  track('AI Chat Opened', { source: 'explain' })
+  ask('Прочитай эту страницу документации и коротко перескажи её. Я хочу задать по ней вопросы.')
+}
 </script>
 
 <template>
@@ -128,8 +138,8 @@ onMounted(() => {
     v-if="page"
     :b24ui="{
       root: 'lg:gap-2.5 lg:py-3',
-      center: 'flex flex-col lg:gap-4',
-      right: 'order-first lg:order-last lg:top-[0px] lg:col-span-2'
+      center: `flex flex-col lg:gap-4 ${chatOpen ? 'lg:col-span-10' : ''}`,
+      right: `order-first lg:order-last lg:top-[0px] ${chatOpen ? 'lg:hidden' : 'lg:col-span-2'}`
     }"
   >
     <PageHeader>
@@ -153,6 +163,15 @@ onMounted(() => {
         />
       </template>
       <template #head-links>
+        <B24Button
+          v-if="chatEnabled"
+          :icon="AiStarsIcon"
+          label="Объяснить с AI"
+          color="air-selection"
+          size="sm"
+          @click="makeExplain"
+        />
+
         <PageHeaderLinks />
 
         <B24DropdownMenu
@@ -174,7 +193,7 @@ onMounted(() => {
           :b24ui="{ baseLine: 'gap-1.5' }"
         >
           <template v-if="link.avatar" #leading>
-            <B24Avatar v-bind="link.avatar" loading="lazy" size="2xs" :alt="`${link.label} avatar`" :b24ui="{ image: 'w-4.5 h-3' }" />
+            <B24Avatar v-bind="link.avatar" loading="lazy" size="2xs" :alt="`Аватар: ${link.label}`" :b24ui="{ image: 'w-4.5 h-3' }" />
           </template>
         </B24Button>
       </template>
@@ -198,7 +217,7 @@ onMounted(() => {
       </B24Card>
     </B24PageBody>
 
-    <template v-if="page?.body?.toc?.links?.length" #right>
+    <template v-if="page?.body?.toc?.links?.length && !chatOpen" #right>
       <B24ContentToc
         :links="page.body.toc.links"
         class="sticky top-(--b24ui-header-height) px-3 py-3 pb-0 lg:p-4 lg:top-(--b24ui-header-height) scrollbar-thin scrollbar-transparent bg-(--ui-color-accent-soft-element-violet)/60 dark:bg-(--ui-color-copilot-bg-content-3)/40 lg:bg-transparent dark:lg:bg-transparent backdrop-blur-md lg:ms-0 overflow-y-auto max-h-[calc(100vh-var(--b24ui-header-height))] lg:col-span-2 order-first lg:order-last z-2"

@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import UserGroupIcon from '@bitrix24/b24icons-vue/common-b24/UserGroupIcon'
-import type { DescriptionListItem } from '@bitrix24/b24ui-nuxt'
+import type { DescriptionListItem } from '@bxshefby/b24ui-nuxt'
 
 const items = [
-  { label: 'Account manager', description: 'Sample owner', slot: 'owner' as const },
-  { label: 'Created', description: 'Oct 6, 2024 08:37' },
-  { label: 'Segment', description: 'Enterprise' }
+  { label: 'Менеджер аккаунта', description: 'Пример владельца', slot: 'owner' as const },
+  { label: 'Создано', description: '6 октября 2024 08:37' },
+  { label: 'Сегмент', description: 'Корпоративный' }
 ] satisfies DescriptionListItem[]
 </script>
 
 <template>
   <B24Popover mode="hover" :content="{ side: 'bottom', sideOffset: 8 }" :b24ui="{ content: 'p-0' }">
     <B24Link is-action>
-      ACME Corp.
+      ООО «Акме»
     </B24Link>
 
     <template #content>
@@ -25,15 +25,15 @@ const items = [
           />
           <div class="min-w-0">
             <div class="text-label font-(--ui-font-weight-semi-bold) truncate">
-              ACME Corp.
+              ООО «Акме»
             </div>
             <div class="text-sm text-description truncate">
-              12 contacts
+              12 контактов
             </div>
           </div>
         </div>
 
-        <B24Button block size="sm" color="air-secondary-accent-2" label="Open account" />
+        <B24Button block size="sm" color="air-secondary-accent-2" label="Открыть аккаунт" />
 
         <B24Separator />
 

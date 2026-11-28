@@ -462,6 +462,34 @@
     ]
   },
   {
+    "file": "components/__snapshots__/ChatAttachment-vue.spec.ts.snap",
+    "names": [
+      "ChatAttachment > renders with name correctly 1",
+      "ChatAttachment > renders with size md correctly 1"
+    ]
+  },
+  {
+    "file": "components/__snapshots__/ChatAttachment-vue.spec.ts.snap",
+    "names": [
+      "ChatAttachment > renders with orientation horizontal correctly 1",
+      "ChatAttachment > renders with variant card correctly 1"
+    ]
+  },
+  {
+    "file": "components/__snapshots__/ChatAttachment.spec.ts.snap",
+    "names": [
+      "ChatAttachment > renders with name correctly 1",
+      "ChatAttachment > renders with size md correctly 1"
+    ]
+  },
+  {
+    "file": "components/__snapshots__/ChatAttachment.spec.ts.snap",
+    "names": [
+      "ChatAttachment > renders with orientation horizontal correctly 1",
+      "ChatAttachment > renders with variant card correctly 1"
+    ]
+  },
+  {
     "file": "components/__snapshots__/ChatMessage-vue.spec.ts.snap",
     "names": [
       "ChatMessage > renders with b24ui correctly 1",
@@ -2284,6 +2312,34 @@
     "names": [
       "Toast > renders with title correctly 1",
       "Toast > renders with type correctly 1"
+    ]
+  },
+  {
+    "file": "components/__snapshots__/Toggle-vue.spec.ts.snap",
+    "names": [
+      "Toggle > renders with defaultValue correctly 1",
+      "Toggle > renders with modelValue correctly 1"
+    ]
+  },
+  {
+    "file": "components/__snapshots__/Toggle.spec.ts.snap",
+    "names": [
+      "Toggle > renders with defaultValue correctly 1",
+      "Toggle > renders with modelValue correctly 1"
+    ]
+  },
+  {
+    "file": "components/__snapshots__/ToggleGroup-vue.spec.ts.snap",
+    "names": [
+      "ToggleGroup > renders with defaultValue correctly 1",
+      "ToggleGroup > renders with modelValue correctly 1"
+    ]
+  },
+  {
+    "file": "components/__snapshots__/ToggleGroup.spec.ts.snap",
+    "names": [
+      "ToggleGroup > renders with defaultValue correctly 1",
+      "ToggleGroup > renders with modelValue correctly 1"
     ]
   },
   {

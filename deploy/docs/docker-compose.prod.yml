@@ -1,0 +1,64 @@
+# Продакшн: сайт документации Bitrix24 UI за обратным прокси с TLS (README.md, «Сервер bx-shef» и «Другой сервер»). Требует на хосте:
+#   - docker-сеть proxy-net и обратный прокси nginx-proxy + acme-companion в ней
+#     (если нет — proxy.compose.yml, install.sh ставит его сам);
+#   - .env рядом с этим файлом (шаблон — .env.example);
+#   - общий Watchtower с входом в ghcr (watchtower.compose.yml) — подхватит новый :latest по метке ниже.
+#
+# Наружу сайт выставляет прокси по VIRTUAL_HOST — порта на хосте нет.
+# Образ собирает и публикует GitHub Actions (.github/workflows/docs-image.yml) на каждый push в main,
+# на сервер его ставит общий Watchtower хоста.
+
+name: b24-ui-docs
+
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "5"
+    compress: "true"
+
+services:
+  docs:
+    logging: *default-logging
+    image: ghcr.io/bx-shef/b24-ui-docs:${IMAGE_TAG:-latest}
+    container_name: b24-ui-docs
+    expose:
+      - "3000"
+    environment:
+      # nginx-proxy + acme-companion: по этим переменным прокси найдёт контейнер и выпустит TLS.
+      # ⚠ DNS A-запись DOMAIN должна указывать на сервер ДО подъёма, иначе сертификат не выпустится.
+      VIRTUAL_HOST: ${DOMAIN:?set DOMAIN в .env (домен сайта документации)}
+      VIRTUAL_PORT: 3000
+      LETSENCRYPT_HOST: ${DOMAIN}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL:-}
+      # Адреса сайта (canonical, sitemap, llms.txt) вшиты в образ при сборке и рантаймом не меняются — README.md, «Адреса сайта».
+      # Чат «Спросить AI» (DeepSeek). Ключ — из .env, пусто — чат скрыт. README.md, «Чат «Спросить AI»».
+      NUXT_DEEPSEEK_API_KEY: ${NUXT_DEEPSEEK_API_KEY:-}
+      NUXT_DEEPSEEK_MODEL: ${NUXT_DEEPSEEK_MODEL:-deepseek-chat}
+      # Счётчик Яндекс Метрики: номер из .env, пусто — без счётчика. Действует только на страницы, которые рендерит
+      # сервер; предрендеренные получают номер при сборке образа (build-arg YANDEX_METRIKA_ID). README.md, «Счётчик Яндекс Метрики».
+      NUXT_PUBLIC_YANDEX_METRIKA_ID: ${NUXT_PUBLIC_YANDEX_METRIKA_ID:-}
+    restart: unless-stopped
+    # Сайт публичный (с MCP): без лишних прав и с потолком ресурсов. Замер: ~150 МБ и 11 потоков под нагрузкой.
+    mem_limit: 1g
+    cpus: 1.0
+    pids_limit: 200
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    healthcheck:
+      # 127.0.0.1, а не localhost: в контейнере localhost резолвится и в ::1.
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/llms.txt').then(r => process.exit(r.ok ? 0 : 1), () => process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    networks:
+      - proxy-net
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+networks:
+  proxy-net:
+    external: true

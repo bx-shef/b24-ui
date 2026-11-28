@@ -5,21 +5,21 @@ import FeedbackIcon from '@bitrix24/b24icons-vue/outline/FeedbackIcon'
 import Info1Icon from '@bitrix24/b24icons-vue/main/Info1Icon'
 
 const rows = [
-  { label: 'Active deals', count: 10, amount: '$46,500' },
-  { label: 'Won deals', count: 1, amount: '$10,000' }
+  { label: 'Активные сделки', count: 10, amount: '$46,500' },
+  { label: 'Выигранные сделки', count: 1, amount: '$10,000' }
 ]
 
 const highlight = {
-  label: 'Conversion',
+  label: 'Конверсия',
   count: '10%',
   amount: '17.7%',
-  info: 'Today vs. last 30 days'
+  info: 'Сегодня и последние 30 дней'
 }
 </script>
 
 <template>
   <B24Popover :b24ui="{ content: 'p-0 bg-transparent border-0 shadow-none' }">
-    <B24Button label="Open sales widget" />
+    <B24Button label="Открыть виджет продаж" />
 
     <template #content>
       <B24Card
@@ -33,20 +33,20 @@ const highlight = {
           <div class="flex items-start justify-between gap-4">
             <div class="min-w-0">
               <div class="text-(length:--ui-font-size-2xl)/[normal] font-(--ui-font-weight-semi-bold)">
-                Repeat sales dynamics
+                Динамика повторных продаж
               </div>
               <div class="text-(length:--ui-font-size-md) opacity-90">
-                Total deals created: 10
+                Всего создано сделок: 10
               </div>
               <div class="text-(length:--ui-font-size-md) opacity-90">
-                Today: 10 deals
+                Сегодня: 10 сделок
               </div>
             </div>
 
             <B24Button
               rounded
               color="air-secondary-accent"
-              label="Last 30 days"
+              label="Последние 30 дней"
               :trailing-icon="RepeatIcon"
             />
           </div>
@@ -55,8 +55,8 @@ const highlight = {
         <div class="flex flex-col gap-2">
           <div class="grid grid-cols-[1fr_auto_auto] gap-x-6 px-3 py-1 text-(length:--ui-font-size-sm) opacity-80">
             <span />
-            <span class="text-end min-w-20">Count</span>
-            <span class="text-end min-w-24">Amount</span>
+            <span class="text-end min-w-20">Количество</span>
+            <span class="text-end min-w-24">Сумма</span>
           </div>
 
           <div
@@ -83,8 +83,8 @@ const highlight = {
 
         <template #footer>
           <div class="flex items-center justify-between gap-4">
-            <B24Button color="air-secondary-accent" :icon="SettingsIcon" label="Configure" />
-            <B24Button color="air-secondary-accent" :icon="FeedbackIcon" label="Feedback" />
+            <B24Button color="air-secondary-accent" :icon="SettingsIcon" label="Настроить" />
+            <B24Button color="air-secondary-accent" :icon="FeedbackIcon" label="Обратная связь" />
           </div>
         </template>
       </B24Card>

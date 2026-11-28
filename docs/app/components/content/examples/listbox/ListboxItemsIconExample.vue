@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ListboxItem } from '@bitrix24/b24ui-nuxt'
+import type { ListboxItem } from '@bxshefby/b24ui-nuxt'
 import CircleCheckIcon from '@bitrix24/b24icons-vue/outline/CircleCheckIcon'
 import CirclePlusIcon from '@bitrix24/b24icons-vue/outline/CirclePlusIcon'
 import InfoCircleIcon from '@bitrix24/b24icons-vue/outline/InfoCircleIcon'
@@ -7,22 +7,22 @@ import SyncCircleIcon from '@bitrix24/b24icons-vue/main/SyncCircleIcon'
 
 const items = ref<ListboxItem[]>([
   {
-    label: 'Backlog',
+    label: 'Бэклог',
     icon: InfoCircleIcon,
     value: 'backlog'
   },
   {
-    label: 'Todo',
+    label: 'К выполнению',
     icon: CirclePlusIcon,
     value: 'todo'
   },
   {
-    label: 'In Progress',
+    label: 'В работе',
     icon: SyncCircleIcon,
     value: 'in_progress'
   },
   {
-    label: 'Done',
+    label: 'Готово',
     icon: CircleCheckIcon,
     value: 'done'
   }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AvatarProps, TableColumn } from '@bitrix24/b24ui-nuxt'
+import type { AvatarProps, TableColumn } from '@bxshefby/b24ui-nuxt'
 
 const B24Avatar = resolveComponent('B24Avatar')
 
@@ -17,7 +17,7 @@ const { data, status } = useLazyFetch<User[]>('https://jsonplaceholder.typicode.
   transform: (data) => {
     return data?.map(user => ({
       ...user,
-      avatar: { src: `https://i.pravatar.cc/120?img=${user.id}`, alt: `${user.name} avatar` }
+      avatar: { src: `https://i.pravatar.cc/120?img=${user.id}`, alt: `Аватар ${user.name}` }
     })) || []
   },
   server: false
@@ -28,7 +28,7 @@ const columns: TableColumn<User>[] = [{
   header: 'ID'
 }, {
   accessorKey: 'name',
-  header: 'Name',
+  header: 'Имя',
   cell: ({ row }) => {
     return h('div', { class: 'flex items-center gap-3' }, [
       h(B24Avatar, {
@@ -47,7 +47,7 @@ const columns: TableColumn<User>[] = [{
   header: 'Email'
 }, {
   accessorKey: 'company',
-  header: 'Company',
+  header: 'Компания',
   cell: ({ row }) => row.original.company.name
 }]
 </script>

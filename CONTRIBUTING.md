@@ -23,7 +23,7 @@ commands, conventions, in one file.
 
 ## Reporting a bug
 
-[Open a bug report.](https://github.com/bitrix24/b24ui/issues/new?template=bug-report.yml)
+[Open a bug report.](https://github.com/bx-shef/b24-ui/issues/new?template=bug-report.yml)
 
 The form asks for a reproduction, and it asks because that is what decides
 whether the report can be acted on. A component name and a description of what
@@ -38,7 +38,7 @@ uncertainty is more useful than a question that never gets asked.
 
 ## Suggesting something
 
-[Open a feature request.](https://github.com/bitrix24/b24ui/issues/new?template=feature-request.yml)
+[Open a feature request.](https://github.com/bx-shef/b24-ui/issues/new?template=feature-request.yml)
 
 This library is a fork of [Nuxt UI](https://github.com/nuxt/ui), tracked and
 ported deliberately rather than merged wholesale. If the thing you want exists
@@ -55,7 +55,7 @@ something that is deliberately the way it is.
 
 Then:
 
-- **Node** `^20.19.0 || >=22.12.0`, **pnpm** `12.11.2` (the version is pinned in
+- **Node** `^20.19.0 || >=22.12.0`, **pnpm** `12.21.0` (the version is pinned in
   `package.json`; `corepack enable` picks it up).
 - Run `pnpm run dev:prepare` after installing. Nothing typechecks before it.
 - `pnpm run lint`, `pnpm run typecheck` and `pnpm run test run` all have to
@@ -83,7 +83,7 @@ person, and take the hint when someone asks you to drop it.
 ## Security
 
 **Please do not open a public issue for a vulnerability.** Report it privately
-through [Security → Report a vulnerability](https://github.com/bitrix24/b24ui/security/advisories/new).
+through [Security → Report a vulnerability](https://github.com/bx-shef/b24-ui/security/advisories/new).
 
 [SECURITY.md](SECURITY.md) covers what to include, what counts as a
 vulnerability in a component library, and which versions get fixes.

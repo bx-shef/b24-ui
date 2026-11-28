@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TabsItem } from '@bitrix24/b24ui-nuxt'
+import type { TabsItem } from '@bxshefby/b24ui-nuxt'
 import HomePageIcon from '@bitrix24/b24icons-vue/main/HomePageIcon'
 import ActivityIcon from '@bitrix24/b24icons-vue/main/ActivityIcon'
 import SettingsIcon from '@bitrix24/b24icons-vue/main/SettingsIcon'
@@ -7,19 +7,19 @@ import UserIcon from '@bitrix24/b24icons-vue/common-b24/UserIcon'
 
 const items: TabsItem[] = [
   {
-    label: 'Home',
+    label: 'Главная',
     icon: HomePageIcon
   },
   {
-    label: 'Activity',
+    label: 'Активность',
     icon: ActivityIcon
   },
   {
-    label: 'Settings',
+    label: 'Настройки',
     icon: SettingsIcon
   },
   {
-    label: 'Profile',
+    label: 'Профиль',
     icon: UserIcon
   }
 ]

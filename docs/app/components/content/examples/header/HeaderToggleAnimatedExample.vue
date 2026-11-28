@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { VariantType } from 'motion-v'
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import { motion } from 'motion-v'
 import GitHubIcon from '@bitrix24/b24icons-vue/social/GitHubIcon'
 
@@ -8,12 +8,12 @@ const route = useRoute()
 
 const items = computed<NavigationMenuItem[]>(() => [
   {
-    label: 'Docs',
+    label: 'Документация',
     to: '/docs/getting-started',
     active: route.path.startsWith('/docs/getting-started')
   },
   {
-    label: 'Components',
+    label: 'Компоненты',
     to: '/docs/components',
     active: route.path.startsWith('/docs/components')
   },
@@ -23,7 +23,7 @@ const items = computed<NavigationMenuItem[]>(() => [
     target: '_blank'
   },
   {
-    label: 'Releases',
+    label: 'Релизы',
     to: 'https://github.com/bitrix24/b24ui/releases',
     target: '_blank'
   }
@@ -62,7 +62,7 @@ const variants: { [k: string]: VariantType | ((custom: unknown) => VariantType) 
     <template #right>
       <B24ColorModeButton />
 
-      <B24Tooltip text="Open on GitHub" :kbds="['meta', 'G']">
+      <B24Tooltip text="Открыть на GitHub" :kbds="['meta', 'G']">
         <B24Button
           to="https://github.com/bitrix24/b24ui"
           target="_blank"

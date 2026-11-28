@@ -1,6 +1,6 @@
 ---
 title: ProseCodePreview
-description: 'For clearer docs, pair code snippets with their visual output and source.'
+description: 'Фрагмент кода рядом с результатом: документация становится нагляднее.'
 category: components
 navigation.title: CodePreview
 links:
@@ -12,11 +12,11 @@ links:
     to: https://ui.nuxt.com/docs/typography/code-preview
 ---
 
-## Usage
+## Использование {#usage}
 
-Wrap any content with the `code-preview` component to display a live preview alongside its source code using the `code` slot.
+Компонент `code-preview` показывает любое содержимое с живым предпросмотром, а исходный код выводится через слот `code`.
 
-::code-preview{class="[&>div]:*:my-0 [&>div]:*:w-full" label="Preview"}
+::code-preview{class="[&>div]:*:my-0 [&>div]:*:w-full" label="Предпросмотр"}
 
 ::code-preview{class="[&>div]:*:my-0"}
 `inline code`
@@ -46,14 +46,14 @@ Wrap any content with the `code-preview` component to display a live preview alo
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props{prose}
 
-### Slots
+### Слоты {#slots}
 
 :component-slots{prose}
 
-## Theme
+## Тема {#theme}
 
 :component-theme{prose}

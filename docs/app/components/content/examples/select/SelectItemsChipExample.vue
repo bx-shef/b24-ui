@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import type { SelectItem, ChipProps } from '@bitrix24/b24ui-nuxt'
+import type { SelectItem, ChipProps } from '@bxshefby/b24ui-nuxt'
 
 const items = ref([
   {
-    label: 'bug',
+    label: 'Ошибка',
     value: 'bug',
     chip: {
       color: 'air-primary-alert'
     }
   },
   {
-    label: 'feature',
+    label: 'Функция',
     value: 'feature',
     chip: {
       color: 'air-primary-success'
     }
   },
   {
-    label: 'enhancement',
+    label: 'Улучшение',
     value: 'enhancement',
     chip: {
       color: 'air-primary-copilot'
@@ -26,18 +26,14 @@ const items = ref([
 ] satisfies SelectItem[])
 
 const value = ref(items.value[0]?.value)
-
-function getChip(value: string) {
-  return items.value.find(item => item.value === value)?.chip
-}
 </script>
 
 <template>
   <B24Select v-model="value" :items="items" value-key="value" class="w-48">
-    <template #leading="{ modelValue, b24ui }">
+    <template #leading="{ item, b24ui }">
       <B24Chip
-        v-if="modelValue"
-        v-bind="getChip(modelValue)"
+        v-if="item"
+        v-bind="item.chip"
         inset
         standalone
         :size="(b24ui.itemLeadingChipSize() as ChipProps['size'])"

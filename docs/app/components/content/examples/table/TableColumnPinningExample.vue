@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { h, resolveComponent } from 'vue'
-import type { TableColumn } from '@bitrix24/b24ui-nuxt'
+import type { TableColumn } from '@bxshefby/b24ui-nuxt'
 import type { Column } from '@tanstack/vue-table'
 import PinIcon from '@bitrix24/b24icons-vue/outline/PinIcon'
 import UnpinIcon from '@bitrix24/b24icons-vue/outline/UnpinIcon'
@@ -55,11 +55,11 @@ const columns: TableColumn<Payment>[] = [{
   size: 381
 }, {
   accessorKey: 'date',
-  header: ({ column }) => getHeader(column, 'Date', 'left'),
+  header: ({ column }) => getHeader(column, 'Дата', 'left'),
   size: 172
 }, {
   accessorKey: 'status',
-  header: ({ column }) => getHeader(column, 'Status', 'left'),
+  header: ({ column }) => getHeader(column, 'Статус', 'left'),
   cell: ({ row }) => {
     const color = ({
       paid: 'air-primary-success' as const,
@@ -76,7 +76,7 @@ const columns: TableColumn<Payment>[] = [{
   size: 232
 }, {
   accessorKey: 'amount',
-  header: ({ column }) => getHeader(column, 'Amount', 'right'),
+  header: ({ column }) => getHeader(column, 'Сумма', 'right'),
   meta: {
     class: {
       th: 'text-end',

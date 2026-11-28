@@ -1,11 +1,11 @@
 ---
 title: useToast
-description: 'A composable for showing toast notifications in your app.'
+description: 'Композабл для показа уведомлений (toast) в приложении.'
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/composables/useToast.ts
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/toast
   - label: Nuxt UI
@@ -13,9 +13,9 @@ links:
     to: https://ui.nuxt.com/docs/composables/use-toast
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the auto-imported `useToast` composable to display [Toast](/docs/components/toast/) notifications.
+Автоимпортируемый композабл `useToast` показывает уведомления [Toast](/docs/components/toast/).
 
 ::component-example
 ---
@@ -23,113 +23,113 @@ name: 'use-toast-example'
 ---
 ::
 
-- The `useToast` composable uses Nuxt's `useState` to manage the toast state, ensuring reactivity across your application.
-- A maximum of 5 toasts are displayed at a time by default. When adding a new toast that would exceed this limit, the oldest toast is automatically removed. Change it with the `toaster.max` prop on the [`App`](/docs/components/app#props) component.
-- When removing a toast, there's a 200ms delay before it's actually removed from the state, allowing for exit animations.
+- Состоянием уведомлений `useToast` управляет через `useState` из Nuxt, поэтому оно реактивно во всём приложении.
+- По умолчанию одновременно показывается не больше 5 уведомлений. Если новое уведомление превышает этот предел, самое старое удаляется автоматически. Предел меняется пропсом `toaster.max` компонента [`App`](/docs/components/app#props).
+- Уведомление удаляется из состояния с задержкой 200 мс, чтобы успела отработать анимация исчезновения.
 
 ::warning
-Make sure to wrap your app with the [`App`](/docs/components/app/) component which uses our [`Toaster`](https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Toaster.vue) component which uses the [`ToastProvider`](https://reka-ui.com/docs/components/toast#provider) component from Reka UI.
+Оберните приложение в компонент [`App`](/docs/components/app/): он использует наш компонент [`Toaster`](https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Toaster.vue), а тот — компонент [`ToastProvider`](https://reka-ui.com/docs/components/toast#provider) из Reka UI.
 ::
 
 ::tip{to="/docs/components/toast/"}
-Learn how to customize the appearance and behavior of toasts in the **Toast** component documentation.
+Как настроить внешний вид и поведение уведомлений — в документации компонента **Toast**.
 ::
 
 ## API
 
 `useToast()`{lang="ts-type"}
 
-The `useToast` composable provides methods to manage toast notifications globally.
+Композабл `useToast` даёт методы для глобального управления уведомлениями.
 
 ### add()
 
 `add(toast: Partial<Toast>): Toast`{lang="ts-type"}
 
-Adds a new toast notification.
+Добавляет новое уведомление.
 
-#### Parameters
+#### Параметры {#parameters}
 
 ::field-group
 
   ::field{name="toast" type="Partial<Toast>" required}
-  A partial `Toast` object with the following properties:
+  Частичный объект `Toast` со следующими свойствами:
 
     ::collapsible
 
       ::field-group
         ::field{name="id" type="string | number"}
-        A unique identifier for the toast. If not provided, a unique id is generated. Reusing an existing id merges into that toast instead of adding a new one.
+        Уникальный идентификатор уведомления. Если не указан, генерируется автоматически. Повторное использование существующего id объединяет данные с этим уведомлением вместо добавления нового.
         ::
       
         ::field{name="open" type="boolean"}
-        Whether the toast is open. Defaults to `true`.
+        Открыто ли уведомление. По умолчанию `true`.
         ::
   
         ::field{name="title" type="string | VNode | (() => VNode)"}
-        The title displayed in the toast.
+        Заголовок уведомления.
         ::
   
         ::field{name="description" type="string | VNode | (() => VNode)"}
-        The description displayed in the toast.
+        Описание уведомления.
         ::
   
         ::field{name="icon" type="IconComponent"}
-        The icon displayed in the toast.
+        Иконка уведомления.
         ::
   
         ::field{name="avatar" type="AvatarProps"}
-        The avatar displayed in the toast. See [Avatar](/docs/components/avatar/#props).
+        Аватар уведомления. См. [Avatar](/docs/components/avatar/#props).
         ::
   
         ::field{name="color" type="string"}
-        The color of the toast. Defaults to `air-secondary`.
+        Цвет уведомления. По умолчанию `air-secondary`.
         ::
   
         ::field{name="orientation" type="'horizontal' | 'vertical'"}
-        The orientation between the content and the actions. Defaults to `vertical`.
+        Расположение содержимого и действий относительно друг друга. По умолчанию `vertical`.
         ::
   
         ::field{name="close" type="boolean | Omit<ButtonProps, LinkPropsKeys>"}
-        Customize or hide the close button (with `false` value). Defaults to `true`.
+        Настраивает кнопку закрытия или скрывает её (значение `false`). По умолчанию `true`.
         ::
   
         ::field{name="closeIcon" type="IconComponent"}
-        The icon displayed in the close button.
+        Иконка кнопки закрытия.
         ::
   
         ::field{name="actions" type="ButtonProps[]"}
-        The actions displayed in the toast. See [Button](/docs/components/button/#props).
+        Действия в уведомлении. См. [Button](/docs/components/button/#props).
         ::
   
         ::field{name="progress" type="boolean | Pick<ProgressProps, 'color' | 'b24ui'>"}
-        Customize or hide the progress bar (with `false` value). Defaults to `true`.
+        Настраивает индикатор прогресса или скрывает его (значение `false`). По умолчанию `true`.
         ::
   
         ::field{name="duration" type="number"}
-        The duration in milliseconds before the toast auto-closes. Defaults to `5000`. Set to `0` to keep the toast open until it's manually closed. Can also be set globally on the [`App`](/docs/components/app/) component.
+        Время в миллисекундах до автоматического закрытия уведомления. По умолчанию `5000`. Значение `0` оставляет уведомление открытым, пока его не закроют вручную. Можно задать и глобально в компоненте [`App`](/docs/components/app/).
         ::
   
         ::field{name="onClick" type="(toast: Toast) => void"}
-        A callback function invoked when the toast is clicked.
+        Функция, которая вызывается при клике на уведомление.
         ::
   
         ::field{name="onUpdateOpen" type="(open: boolean) => void"}
-        A callback function invoked when the toast open state changes. Useful to perform an action when the toast closes (expired or dismissed).
+        Функция, которая вызывается при изменении состояния открытости. Удобна, чтобы выполнить действие при закрытии уведомления (по таймеру или вручную).
         ::
 
         ::field{name="type" type="'foreground' | 'background'"}
-        How assistive technologies announce the toast. Use `background` for toasts that aren't the result of a direct user action.
+        Как уведомление озвучивают вспомогательные технологии. `background` подходит для уведомлений, которые не являются результатом прямого действия пользователя.
         ::
 
         ::field{name="as" type="any"}
-        The element or component the toast renders as. Defaults to `li`.
+        Элемент или компонент, которым отрисовывается уведомление. По умолчанию `li`.
         ::
       ::
     ::
   ::
 ::
 
-**Returns:** The complete `Toast` object that was added.
+**Возвращает:** полный добавленный объект `Toast`.
 
 ```vue
 <script setup lang="ts">
@@ -149,17 +149,17 @@ function showToast() {
 
 `update(id: string | number, toast: Omit<Partial<Toast>, 'id'>): void`{lang="ts-type"}
 
-Updates an existing toast notification.
+Обновляет существующее уведомление.
 
-#### Parameters
+#### Параметры {#parameters-1}
 
 ::field-group
   ::field{name="id" type="string | number" required}
-  The unique identifier of the toast to update.
+  Уникальный идентификатор обновляемого уведомления.
   ::
 
   ::field{name="toast" type="Omit<Partial<Toast>, 'id'>" required}
-  A partial `Toast` object with the properties to update. The `id` cannot be changed, the toast is reopened, and `duration` is reset unless you pass it again. The `id` cannot be changed, the toast is reopened, and `duration` is reset unless you pass it again.
+  Частичный объект `Toast` с обновляемыми свойствами. `id` изменить нельзя, уведомление открывается заново, а `duration` сбрасывается, если не передать его снова.
   ::
 ::
 
@@ -176,17 +176,72 @@ function updateToast(id: string | number) {
 </script>
 ```
 
+### promise() :badge{label="Soon" class="align-text-top"}
+
+`promise<T>(promise: Promise<T>, options: ToastPromiseOptions<T>): Promise<T>`{lang="ts-type"}
+
+Показывает уведомление загрузки, пока промис не завершён, и обновляет его, когда промис выполнен или отклонён.
+
+#### Параметры {#parameters-promise}
+
+::field-group
+  ::field{name="promise" type="Promise<T>" required}
+  Отслеживаемый промис.
+  ::
+
+  ::field{name="options" type="ToastPromiseOptions<T>" required}
+  Уведомление для каждого состояния. Состояние — частичный объект `Toast` или строка, которая становится заголовком.
+
+    ::collapsible
+
+      ::field-group
+        ::field{name="loading" type="string | Partial<Toast>"}
+        Уведомление, пока промис не завершён. Показывает иконку `loading` из словаря иконок и остаётся открытым до завершения промиса.
+        ::
+
+        ::field{name="success" type="string | Partial<Toast> | ((data: T) => string | Partial<Toast>)"}
+        Уведомление при выполнении промиса. Функция получает результат промиса. Если не задано, уведомление закрывается.
+        ::
+
+        ::field{name="error" type="string | Partial<Toast> | ((error: unknown) => string | Partial<Toast>)"}
+        Уведомление при отклонении промиса. Функция получает ошибку. Если не задано, уведомление закрывается.
+        ::
+      ::
+    ::
+  ::
+::
+
+::warning
+Не показывайте пользователю внутренние сообщения об ошибках бэкенда: вместо `error: e => e.message` задавайте понятный текст.
+::
+
+**Возвращает:** переданный промис, поэтому его результат можно ждать через `await`.
+
+```vue
+<script setup lang="ts">
+const toast = useToast()
+
+async function save() {
+  await toast.promise($fetch('/api/save', { method: 'POST' }), {
+    loading: 'Saving...',
+    success: { title: 'Saved', color: 'air-primary-success' },
+    error: { title: 'Не удалось сохранить', color: 'air-primary-alert' }
+  })
+}
+</script>
+```
+
 ### remove()
 
 `remove(id: string | number): void`{lang="ts-type"}
 
-Removes a toast notification.
+Удаляет уведомление.
 
-#### Parameters
+#### Параметры {#parameters-2}
 
 ::field-group
   ::field{name="id" type="string | number" required}
-  The unique identifier of the toast to remove.
+  Уникальный идентификатор удаляемого уведомления.
   ::
 ::
 
@@ -204,7 +259,7 @@ function removeToast(id: string | number) {
 
 `clear(): void`{lang="ts-type"}
 
-Removes all toast notifications.
+Удаляет все уведомления.
 
 ```vue
 <script setup lang="ts">
@@ -220,7 +275,7 @@ function clearAllToasts() {
 
 `toasts: Ref<Toast[]>`{lang="ts-type"}
 
-A reactive array containing all current toast notifications.
+Реактивный массив всех текущих уведомлений.
 
 ```vue
 <script setup lang="ts">

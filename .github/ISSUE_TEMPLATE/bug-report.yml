@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Before filing, please check the [open issues](https://github.com/bitrix24/b24ui/issues?q=is%3Aissue) —
+        Before filing, please check the [open issues](https://github.com/bx-shef/b24-ui/issues?q=is%3Aissue) —
         this library is a fork of [Nuxt UI](https://github.com/nuxt/ui) and ports land continuously,
         so a bug reported a week ago may already be fixed on `main`.
 
@@ -62,8 +62,8 @@ body:
   - type: input
     id: version
     attributes:
-      label: "`@bitrix24/b24ui-nuxt` version"
-      description: From your lockfile, not from memory — `pnpm why @bitrix24/b24ui-nuxt` prints it.
+      label: "`@bxshefby/b24ui-nuxt` version"
+      description: From your lockfile, not from memory — `pnpm why @bxshefby/b24ui-nuxt` prints it.
       placeholder: 2.12.0
     validations:
       required: true

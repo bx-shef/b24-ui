@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AvatarProps } from '@bitrix24/b24ui-nuxt'
+import type { AvatarProps } from '@bxshefby/b24ui-nuxt'
 import { refDebounced } from '@vueuse/core'
 import UserIcon from '@bitrix24/b24icons-vue/common-b24/UserIcon'
 import Expand1Icon from '@bitrix24/b24icons-vue/actions/Expand1Icon'
@@ -35,7 +35,7 @@ function onOpen() {
     ignore-filter
     :icon="UserIcon"
     :trailing-icon="Expand1Icon"
-    placeholder="Select user"
+    placeholder="Выберите пользователя"
     @update:open="onOpen"
   >
     <template #leading="{ modelValue, b24ui }">

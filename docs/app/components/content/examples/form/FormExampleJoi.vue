@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Joi from 'joi'
-import type { FormSubmitEvent } from '@bitrix24/b24ui-nuxt'
+import type { FormSubmitEvent } from '@bxshefby/b24ui-nuxt'
 
 const schema = Joi.object({
   email: Joi.string().required(),
@@ -16,7 +16,7 @@ const state = reactive({
 
 const toast = useToast()
 async function onSubmit(event: FormSubmitEvent<typeof state>) {
-  toast.add({ title: 'Success', description: 'The form has been submitted.', color: 'air-primary-success' })
+  toast.add({ title: 'Успешно', description: 'Форма отправлена.', color: 'air-primary-success' })
   console.log(event.data)
 }
 </script>
@@ -27,12 +27,12 @@ async function onSubmit(event: FormSubmitEvent<typeof state>) {
       <B24Input v-model="state.email" />
     </B24FormField>
 
-    <B24FormField label="Password" name="password">
+    <B24FormField label="Пароль" name="password">
       <B24Input v-model="state.password" type="password" />
     </B24FormField>
 
     <B24Button color="air-primary" type="submit">
-      Submit
+      Отправить
     </B24Button>
   </B24Form>
 </template>

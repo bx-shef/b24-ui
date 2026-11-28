@@ -1,86 +1,86 @@
 ---
 name: b24-ui-nuxt
-description: Build UIs with @bitrix24/b24ui-nuxt v2 — 130+ accessible Vue components with Tailwind CSS theming. Use when creating interfaces, building forms, or composing layouts for a Bitrix24 application.
+description: Создание интерфейсов на @bxshefby/b24ui-nuxt v2 — 130+ доступных компонентов Vue с темами на Tailwind CSS. Используйте при создании интерфейсов, форм и раскладок страниц для приложения Bitrix24.
 ---
 
 # Bitrix24 UI
 
-Vue component library built on [Reka UI](https://reka-ui.com/) + [Tailwind CSS](https://tailwindcss.com/) + [Tailwind Variants](https://www.tailwind-variants.org/). Works with Nuxt, Vue (Vite), Laravel (Vite + Inertia), and AdonisJS (Vite + Inertia).
+Библиотека Vue-компонентов на основе [Reka UI](https://reka-ui.com/), [Tailwind CSS](https://tailwindcss.com/) и [Tailwind Variants](https://www.tailwind-variants.org/). Работает с Nuxt, Vue (Vite), Laravel (Vite + Inertia) и AdonisJS (Vite + Inertia).
 
 ## LLMs.txt
 
-When you need to know **what a component accepts** or **how its API works** — props, slots, events, full documentation, examples — use the [Bitrix24 UI documentation](https://bitrix24.github.io/b24ui/llms.txt); if it is not already configured, add it. This skill teaches you **when to use which component** and **how to build well**.
+Когда нужно узнать, **что принимает компонент** или **как устроен его API** — пропсы, слоты, события, полная документация, примеры, — используйте [документацию Bitrix24 UI](https://bitrix24.github.io/b24ui/llms.txt); если она ещё не подключена, подключите. Этот навык подсказывает, **когда какой компонент выбрать** и **как строить хорошо**.
 
-## Core rules (always apply)
+## Основные правила (действуют всегда)
 
-1. **Always wrap the app in `B24App`** — required for toasts, tooltips, and programmatic overlays. Accepts a `locale` prop for i18n.
-2. **Always use semantic colors** — `text-description`, `bg-elevated`, `border-muted`, etc. Never use raw Tailwind palette colors like `text-gray-500`.
-3. **Read generated theme files for slot names** — Nuxt: `.nuxt/b24ui/<component>.ts`, Vue: `node_modules/.b24ui-nuxt/b24ui/<component>.ts`. These show every slot, variant, and default class for any component.
-4. **Override priority** (highest wins): `b24ui` prop / `class` prop → global config → theme defaults.
-5. **Find icons through the [icons guideline](references/guidelines/icons.md)** — it maps a plain-language request to the right import.
+1. **Всегда оборачивайте приложение в `B24App`** — он нужен для уведомлений, подсказок и программных оверлеев. Принимает пропс `locale` для локализации.
+2. **Всегда используйте семантические цвета** — `text-description`, `bg-elevated`, `border-muted` и т. д. Не берите цвета палитры Tailwind напрямую, например `text-gray-500`.
+3. **Имена слотов смотрите в сгенерированных файлах темы** — Nuxt: `.nuxt/b24ui/<component>.ts`, Vue: `node_modules/.b24ui-nuxt/b24ui/<component>.ts`. В них есть все слоты, варианты и классы по умолчанию любого компонента.
+4. **Приоритет переопределений** (побеждает самый высокий): пропс `b24ui` / пропс `class` → глобальная конфигурация → значения темы по умолчанию.
+5. **Иконки ищите по [руководству по иконкам](references/guidelines/icons.md)** — оно сопоставляет запрос обычными словами с нужным импортом.
 
-## How to use this skill
+## Как пользоваться навыком
 
-Based on the task, load the relevant reference files **before writing any code**. Don't load everything — only what's needed.
+В зависимости от задачи загрузите нужные справочные файлы **до написания кода**. Не грузите всё подряд — только необходимое.
 
-### Reference files
+### Справочные файлы
 
-**Guidelines** — design decisions and conventions:
-- [design-system](references/guidelines/design-system.md) — semantic colors, theming, brand customization, variants, the `b24ui` prop
-- [component-selection](references/guidelines/component-selection.md) — decision matrices: when to use Modal vs Slideover, Select vs SelectMenu, Toast vs Alert, etc.
-- [conventions](references/guidelines/conventions.md) — coding patterns, slot naming, items arrays, composables, keyboard shortcuts
-- [forms](references/guidelines/forms.md) — form validation, field layout, error handling, Standard Schema
-- [icons](references/guidelines/icons.md) — import icon and use it
+**Руководства** — проектные решения и соглашения:
+- [design-system](references/guidelines/design-system.md) — семантические цвета, темизация, фирменная настройка, варианты, пропс `b24ui`
+- [component-selection](references/guidelines/component-selection.md) — матрицы выбора: когда Modal, а когда Slideover, Select или SelectMenu, Toast или Alert и т. д.
+- [conventions](references/guidelines/conventions.md) — приёмы кода, именование слотов, массивы `items`, композаблы, горячие клавиши
+- [forms](references/guidelines/forms.md) — валидация форм, раскладка полей, обработка ошибок, Standard Schema
+- [icons](references/guidelines/icons.md) — как импортировать иконку и использовать её
 
-**Layouts** — full page structure patterns:
-- [landing](references/layouts/landing.md) — landing pages
-- [dashboard](references/layouts/dashboard.md) — admin UI with sidebar and panels
+**Раскладки** — готовые структуры страниц:
+- [landing](references/layouts/landing.md) — лендинги
+- [dashboard](references/layouts/dashboard.md) — интерфейс администратора с боковым меню и панелями
 
-**Recipes** — complete patterns for common tasks:
-- [data-tables](references/recipes/data-tables.md) — tables with filters, pagination, sorting, selection
-- [overlays](references/recipes/overlays.md) — modals, slideovers, drawers, command palette, info popovers
-- [navigation](references/recipes/navigation.md) — headers, sidebars, breadcrumbs, tabs
-- [card-pickers](references/recipes/card-pickers.md) — icon-and-description card grids for picking a setting variant or toggling capabilities (`B24PageCardGroup`)
-- [settings](references/recipes/settings.md) — settings layouts: when to use Switch vs Radio vs Checkbox vs PageCardGroup, plus the rich `card` variant recipe with preview image, description and "Learn more" link
-- [detail-panel](references/recipes/detail-panel.md) — entity info sidebars: metadata, togglable settings and grouped content sections beside a main view
-- [task-form](references/recipes/task-form.md) — a single-column task/issue form combining `B24Editor`, assignee fields, a date picker and a wrap row of secondary actions
+**Рецепты** — готовые решения типовых задач:
+- [data-tables](references/recipes/data-tables.md) — таблицы с фильтрами, пагинацией, сортировкой, выбором строк
+- [overlays](references/recipes/overlays.md) — модальные окна, боковые панели, Drawer, командная палитра, информационные поповеры
+- [navigation](references/recipes/navigation.md) — шапки, боковые меню, хлебные крошки, вкладки
+- [card-pickers](references/recipes/card-pickers.md) — сетки карточек с иконкой и описанием для выбора варианта настройки или включения возможностей (`B24PageCardGroup`)
+- [settings](references/recipes/settings.md) — раскладки настроек: когда Switch, Radio, Checkbox или PageCardGroup, а также рецепт расширенного варианта `card` с картинкой предпросмотра, описанием и ссылкой «Подробнее»
+- [detail-panel](references/recipes/detail-panel.md) — боковые панели сведений о сущности: метаданные, переключаемые настройки и сгруппированные разделы рядом с основным видом
+- [task-form](references/recipes/task-form.md) — одноколоночная форма задачи с `B24Editor`, полями исполнителей, выбором даты и переносимым рядом второстепенных действий
 
-**Quick reference:**
-- [components](references/components.md) — categorized component index for finding the right component name
+**Краткий справочник:**
+- [components](references/components.md) — индекс компонентов по категориям, чтобы найти нужное имя компонента
 
-### Routing table
+### Таблица выбора
 
-| Task | Load these references |
+| Задача | Какие файлы загрузить |
 |---|---|
-| Build application for Bitrix24 / a dashboard / admin UI | conventions, component-selection, dashboard |
-| Build a landing page | design-system, conventions, landing |
-| Add a settings page | conventions, forms, settings |
-| Pick one option / toggle several where each option deserves a preview image, multi-line description and an inline "Learn more" link — layout chooser, plan picker with screenshots | conventions, settings |
-| Create a login / signup form | conventions, forms, component-selection |
-| Display data in a table | conventions, component-selection, data-tables |
-| Add a chat interface | conventions, components (§ Chat) |
-| Add a modal, slideover, or drawer | conventions, component-selection, overlays |
-| Build site navigation | conventions, component-selection, navigation |
-| Render markdown | component-selection, components (§ Prose and § Content) |
-| Pick one option (or toggle several) from a small set where each option needs an icon and a sentence — settings variants, capability flags, "what do you want to build?" wizard step | conventions, component-selection, card-pickers |
-| Add a rich text editor | conventions, components (§ Editor) |
-| Build a task / issue form with a rich-text description, assignees and a due date | conventions, forms, task-form |
-| Build an entity info sidebar — channel info, CRM record detail, "about this item" | conventions, component-selection, detail-panel |
-| Find an icon for a button, item or empty state | icons |
-| General UI work | conventions, component-selection |
+| Приложение для Bitrix24 / дашборд / интерфейс администратора | conventions, component-selection, dashboard |
+| Лендинг | design-system, conventions, landing |
+| Страница настроек | conventions, forms, settings |
+| Выбор одного варианта или включение нескольких, когда каждому нужны картинка предпросмотра, многострочное описание и ссылка «Подробнее» — выбор раскладки, выбор тарифа со скриншотами | conventions, settings |
+| Форма входа / регистрации | conventions, forms, component-selection |
+| Вывод данных в таблице | conventions, component-selection, data-tables |
+| Интерфейс чата | conventions, components (§ Chat) |
+| Модальное окно, боковая панель или Drawer | conventions, component-selection, overlays |
+| Навигация по сайту | conventions, component-selection, navigation |
+| Отображение markdown | component-selection, components (§ Prose and § Content) |
+| Выбор одного варианта (или включение нескольких) из небольшого набора, где каждому нужны иконка и одно предложение — варианты настроек, флаги возможностей, шаг мастера «что вы хотите создать?» | conventions, component-selection, card-pickers |
+| Редактор форматированного текста | conventions, components (§ Editor) |
+| Форма задачи с описанием в форматированном тексте, исполнителями и сроком | conventions, forms, task-form |
+| Боковая панель сведений о сущности — информация о канале, карточка записи CRM, «об этом элементе» | conventions, component-selection, detail-panel |
+| Подбор иконки для кнопки, элемента или пустого состояния | icons |
+| Общая работа с интерфейсом | conventions, component-selection |
 
-## Installation
+## Установка
 
 ### Nuxt
 
 ```bash
-pnpm add @bitrix24/b24ui-nuxt @bitrix24/b24icons-vue tailwindcss
+pnpm add @bxshefby/b24ui-nuxt @bitrix24/b24icons-vue tailwindcss
 ```
 
 ```ts
 // nuxt.config.ts
 export default defineNuxtConfig({
-  modules: ['@bitrix24/b24ui-nuxt'],
+  modules: ['@bxshefby/b24ui-nuxt'],
   css: ['~/assets/css/main.css']
 })
 ```
@@ -88,7 +88,7 @@ export default defineNuxtConfig({
 ```css
 /* app/assets/css/main.css */
 @import "tailwindcss";
-@import "@bitrix24/b24ui-nuxt";
+@import "@bxshefby/b24ui-nuxt";
 ```
 
 ```vue
@@ -103,14 +103,14 @@ export default defineNuxtConfig({
 ### Vue (Vite)
 
 ```bash
-pnpm add @bitrix24/b24ui-nuxt @bitrix24/b24icons-vue tailwindcss
+pnpm add @bxshefby/b24ui-nuxt @bitrix24/b24icons-vue tailwindcss
 ```
 
 ```ts
 // vite.config.ts
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import bitrix24UIPluginVite from '@bitrix24/b24ui-nuxt/vite'
+import bitrix24UIPluginVite from '@bxshefby/b24ui-nuxt/vite'
 
 export default defineConfig({
   plugins: [
@@ -125,7 +125,7 @@ export default defineConfig({
 import './assets/main.css'
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
-import b24UiPlugin from '@bitrix24/b24ui-nuxt/vue-plugin'
+import b24UiPlugin from '@bxshefby/b24ui-nuxt/vue-plugin'
 import App from './App.vue'
 
 const app = createApp(App)
@@ -142,7 +142,7 @@ app.mount('#app')
 ```css
 /* src/assets/css/main.css */
 @import "tailwindcss";
-@import "@bitrix24/b24ui-nuxt";
+@import "@bxshefby/b24ui-nuxt";
 ```
 
 ```vue
@@ -154,5 +154,5 @@ app.mount('#app')
 </template>
 ```
 
-> Add `class="isolate"` to your root `<div id="app">` in `index.html`.
-> For Inertia: use `b24ui({ router: 'inertia' })` in `vite.config.ts`.
+> Добавьте `class="isolate"` корневому `<div id="app">` в `index.html`.
+> Для Inertia укажите `b24ui({ router: 'inertia' })` в `vite.config.ts`.

@@ -1,12 +1,16 @@
 ---
 title: Theme
-description: A headless component for theming its child components.
+description: 'Headless-компонент для оформления дочерних компонентов темой.'
 category: layout
+keywords:
+  - тема оформления
+  - стилизация дочерних компонентов
+  - настройка внешнего вида
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Theme.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/theme
   - label: Nuxt UI
@@ -14,36 +18,36 @@ links:
     to: https://ui.nuxt.com/docs/components/theme
 ---
 
-## Usage
+## Использование {#usage}
 
-The Theme component overrides default **slot classes** and **props** of all child components without modifying each one individually. It uses Vue's `provide` / `inject` mechanism under the hood, so the overrides apply at any depth.
+Theme переопределяет **классы слотов** и **пропсы** по умолчанию у всех дочерних компонентов, не меняя каждый по отдельности. Внутри он использует механизм Vue `provide` / `inject`, поэтому переопределения действуют на любой глубине.
 
 ::note
-The Theme component doesn't render any HTML element, it only provides theme overrides to its children.
+Theme не отрисовывает HTML-элементов: он только передаёт дочерним компонентам переопределения темы.
 ::
 
-### Slot classes
+### Классы слотов {#slot-classes}
 
-Use the `b24ui` prop to override slot classes of descendant components. Keys are component names (camelCase) and values are their slot class overrides.
+Пропс `b24ui` переопределяет классы слотов вложенных компонентов. Ключи — имена компонентов (camelCase), значения — переопределения классов их слотов.
 
-Classes are merged onto the component defaults. To **replace** them instead, set the slot to a function — it receives the resolved defaults, so you can keep part of them:
+Классы объединяются с классами компонента по умолчанию. Чтобы их **заменить**, задайте слот функцией: она получает уже вычисленные классы по умолчанию, и часть из них можно оставить:
 
 ```vue
 <template>
   <B24Theme :b24ui="{ button: { label: () => 'text-base font-bold' } }">
-    <B24Button label="Replaced" />
+    <B24Button label="Заменено" />
   </B24Theme>
 </template>
 ```
 
 ::warning
-Slot names go **directly** under the component name here — `{ button: { label: … } }`{lang="ts"}. This is not the theme-object shape used in [global config](/docs/getting-started/theme/components/#global-config), which nests them under `slots`.
+Имена слотов указываются **прямо** под именем компонента — `{ button: { label: … } }`{lang="ts"}. Это не форма объекта темы из [глобальной конфигурации](/docs/getting-started/theme/components/#global-config), где они вложены в `slots`.
 
-TypeScript rejects the wrong one (`TS2353: 'slots' does not exist in type …`), so keep the prop typed. At runtime it is simply ignored — no error, no warning, the defaults stay — which is what you get if the object reaches the prop untyped.
+TypeScript отклоняет неверную форму (`TS2353: 'slots' does not exist in type …`), поэтому пропс нужно типизировать. Во время выполнения лишний ключ просто игнорируется: ни ошибки, ни предупреждения, остаются значения по умолчанию — так бывает, если объект попал в пропс без типа.
 ::
 
 ::note{to="/docs/getting-started/theme/components/#global-config"}
-Theme resolves at the same point as the `b24ui` prop, so a replacer here replaces the resolved classes, variants included. In global config it replaces only the slot's own classes and variants still apply on top.
+Theme применяется в той же точке, что и пропс `b24ui`, поэтому заменяющая функция здесь заменяет вычисленные классы вместе с вариантами. В глобальной конфигурации она заменяет только собственные классы слота, а варианты применяются поверх.
 ::
 
 ::component-example
@@ -52,9 +56,9 @@ name: 'theme-ui-example'
 ---
 ::
 
-### Prop defaults
+### Значения пропсов по умолчанию {#prop-defaults}
 
-Use the `props` prop to override the default value of any prop on descendant components. Each key maps to a partial of that component's props.
+Пропс `props` переопределяет значение по умолчанию любого пропса у вложенных компонентов. Каждый ключ — часть пропсов этого компонента.
 
 ::component-example
 ---
@@ -63,14 +67,14 @@ name: 'theme-props-example'
 ::
 
 ::tip
-Explicit props on a component (e.g. `<B24Button color="air-primary" />`) always win over `<B24Theme :props>`. Theme defaults only apply when the prop wasn't passed explicitly.
+Явно переданные пропсы компонента (например, `<B24Button color="air-primary" />`) всегда важнее `<B24Theme :props>`. Значения темы действуют, только когда пропс не передан явно.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Multiple components
+### Несколько компонентов {#multiple-components}
 
-Use different keys in `b24ui` or `props` to theme multiple component types at once.
+Разные ключи в `b24ui` или `props` оформляют сразу несколько типов компонентов.
 
 ::component-example
 ---
@@ -78,9 +82,9 @@ name: 'theme-multiple-example'
 ---
 ::
 
-### Nested themes
+### Вложенные темы {#nested-themes}
 
-Nest multiple Theme components to compose overrides. The innermost Theme takes precedence, while unoverridden keys are inherited from the outer Theme.
+Вложенные Theme складывают переопределения. Самая внутренняя тема приоритетнее, а ключи, которые она не переопределяет, наследуются от внешней.
 
 ::component-example
 ---
@@ -88,9 +92,9 @@ name: 'theme-nested-example'
 ---
 ::
 
-### Explicit priority
+### Явный приоритет {#explicit-priority}
 
-Explicitly setting any prop (including `b24ui`) on an individual component always takes priority over the Theme component.
+Явно заданный пропс (включая `b24ui`) у отдельного компонента всегда приоритетнее компонента Theme.
 
 ::component-example
 ---
@@ -98,9 +102,9 @@ name: 'theme-priority-example'
 ---
 ::
 
-### Deep propagation
+### Глубокое распространение {#deep-propagation}
 
-The overrides are available to all descendant components regardless of how deeply nested they are.
+Переопределения доступны всем вложенным компонентам, как бы глубоко они ни находились.
 
 ::component-example
 ---
@@ -109,12 +113,12 @@ name: 'theme-deep-example'
 ::
 
 ::note
-In this example, `MyButton` is a custom component that renders a `B24Button` internally. The theme overrides still apply because they propagate through the entire component tree.
+В этом примере `MyButton` — собственный компонент, который внутри отрисовывает `B24Button`. Переопределения темы всё равно действуют, потому что распространяются по всему дереву компонентов.
 ::
 
-### Form components
+### Компоненты форм {#form-components}
 
-Use the Theme component to apply consistent styling across a group of form components.
+Theme задаёт единое оформление для группы компонентов формы.
 
 ::component-example
 ---
@@ -124,12 +128,12 @@ collapse: true
 ::
 
 ::tip
-`<B24FormField>`, `<B24FieldGroup>` and `<B24AvatarGroup>` keep precedence over `<B24Theme :props>` for `size`, `color` and `highlight`. Validation errors also force the `error` color over any theme value.
+`<B24FormField>`, `<B24FieldGroup>` и `<B24AvatarGroup>` сохраняют приоритет над `<B24Theme :props>` для `size`, `color` и `highlight`. Ошибки валидации тоже принудительно задают цвет `error` поверх любого значения темы.
 ::
 
-### Prose components
+### Prose-компоненты {#prose-components}
 
-Use the `prose` namespace to theme typography components. Keys are nested under `prose` (e.g. `prose.p`, `prose.code`).
+Пространство имён `prose` оформляет типографские компоненты. Ключи вложены в `prose` (например, `prose.p`, `prose.code`).
 
 ::component-example
 ---
@@ -138,12 +142,12 @@ collapse: true
 ---
 ::
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots

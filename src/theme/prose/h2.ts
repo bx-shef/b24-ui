@@ -11,7 +11,7 @@ export default {
       'relative mb-2',
       'scroll-mt-[calc(48px+45px+24px+var(--topbar-height))] lg:scroll-mt-[calc(48px+22px+15px+var(--topbar-height))]',
       'text-(length:--ui-font-size-4xl)',
-      '[&>a>code]:text-(length:--ui-font-size-3xl)/7',
+      '[&_code]:text-(length:--ui-font-size-3xl)/7',
       '[&>a]:focus-visible:outline-(--ui-color-accent-main-primary)',
       'hover:[&>a>code]:text-(--ui-color-accent-main-primary-alt-2)',
       'hover:[&>a>code]:bg-(--ui-color-design-selection-bg)',

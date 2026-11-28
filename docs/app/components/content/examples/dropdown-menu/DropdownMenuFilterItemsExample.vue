@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DropdownMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { DropdownMenuItem } from '@bxshefby/b24ui-nuxt'
 import UserIcon from '@bitrix24/b24icons-vue/common-b24/UserIcon'
 import PaymentIcon from '@bitrix24/b24icons-vue/outline/PaymentIcon'
 import Settings3Icon from '@bitrix24/b24icons-vue/actions/Settings3Icon'
@@ -8,21 +8,21 @@ import HamburgerMenuIcon from '@bitrix24/b24icons-vue/outline/HamburgerMenuIcon'
 const items: DropdownMenuItem[][] = [
   [
     {
-      label: 'Profile',
+      label: 'Профиль',
       icon: UserIcon
     }, {
-      label: 'Billing',
+      label: 'Оплата',
       icon: PaymentIcon
     }, {
-      label: 'Settings',
+      label: 'Настройки',
       icon: Settings3Icon
     }
   ],
   [
     {
-      label: 'Team',
+      label: 'Команда',
       filter: {
-        placeholder: 'Search members...'
+        placeholder: 'Найдите участников...'
       },
       children: [
         {
@@ -36,24 +36,24 @@ const items: DropdownMenuItem[][] = [
       ]
     },
     {
-      label: 'Invite users',
+      label: 'Пригласить пользователей',
       children: [
         {
-          label: 'Invite by email'
+          label: 'Пригласить по email'
         },
         {
-          label: 'Invite by link'
+          label: 'Пригласить по ссылке'
         },
         {
-          label: 'Invite by SMS'
+          label: 'Пригласить по SMS'
         },
         {
-          label: 'Invite by WhatsApp'
+          label: 'Пригласить через WhatsApp'
         }
       ]
     },
     {
-      label: 'New team'
+      label: 'Новая команда'
     }
   ]
 ]
@@ -61,6 +61,6 @@ const items: DropdownMenuItem[][] = [
 
 <template>
   <B24DropdownMenu :items="items" :content="{ align: 'start' }" :b24ui="{ content: 'w-48', viewport: 'w-48' }">
-    <B24Button label="Open" :icon="HamburgerMenuIcon" />
+    <B24Button label="Открыть" :icon="HamburgerMenuIcon" />
   </B24DropdownMenu>
 </template>

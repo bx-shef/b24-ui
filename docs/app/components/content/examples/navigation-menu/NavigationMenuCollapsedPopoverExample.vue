@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import ConnectionIcon from '@bitrix24/b24icons-vue/actions/ConnectionIcon'
 import Info1Icon from '@bitrix24/b24icons-vue/main/Info1Icon'
 import MicrophoneOnIcon from '@bitrix24/b24icons-vue/main/MicrophoneOnIcon'
@@ -8,37 +8,37 @@ import Settings5Icon from '@bitrix24/b24icons-vue/editor/Settings5Icon'
 
 const items: NavigationMenuItem[] = [
   {
-    label: 'Sales Pipeline',
+    label: 'Воронка продаж',
     icon: ConnectionIcon,
     children: [
       {
-        label: 'Lead Generation',
-        description: 'Initial contact with potential clients'
+        label: 'Привлечение лидов',
+        description: 'Первичный контакт с потенциальными клиентами'
       },
       {
-        label: 'Lead Qualification',
-        description: 'Client potential assessment'
+        label: 'Квалификация лидов',
+        description: 'Оценка потенциала клиента'
       },
       {
-        label: 'Negotiations',
-        description: 'Deal terms discussion',
+        label: 'Переговоры',
+        description: 'Обсуждение условий сделки',
         icon: MicrophoneOnIcon
       }
     ]
   },
   {
-    label: 'Sales Analytics',
+    label: 'Аналитика продаж',
     icon: CrmMapIcon,
     badge: '+3',
     children: [
       {
-        label: 'Sales Reports',
+        label: 'Отчёты по продажам',
         icon: CrmMapIcon,
         active: true,
         badge: 1
       },
       {
-        label: 'Key Metrics',
+        label: 'Ключевые показатели',
         icon: Settings5Icon,
         badge: {
           label: 2,
@@ -46,23 +46,23 @@ const items: NavigationMenuItem[] = [
         }
       },
       {
-        label: 'CRM Integration'
+        label: 'Интеграция с CRM'
       }
     ]
   },
   {
-    label: 'Resources',
+    label: 'Ресурсы',
     icon: Info1Icon,
     children: [
       {
-        label: 'Support',
+        label: 'Поддержка',
         icon: Info1Icon,
         disabled: true,
         to: 'https://helpdesk.bitrix24.com/',
         target: '_blank'
       },
       {
-        label: 'RestApi Integration'
+        label: 'Интеграция с REST API'
       }
     ]
   }

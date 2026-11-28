@@ -604,7 +604,7 @@ ${slots.default}`
       const removeArrayBrackets = (type: string): string => type.endsWith('[]') ? removeArrayBrackets(type.slice(0, -2)) : type
 
       const types = externalTypes.map(type => removeArrayBrackets(type))
-      code += `import type { ${types.join(', ')} } from '@bitrix24/b24ui-nuxt'
+      code += `import type { ${types.join(', ')} } from '@bxshefby/b24ui-nuxt'
 `
     }
 

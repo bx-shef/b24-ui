@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import HomeIcon from '@bitrix24/b24icons-vue/outline/HomeIcon'
 import MailIcon from '@bitrix24/b24icons-vue/outline/MailIcon'
 import ContactIcon from '@bitrix24/b24icons-vue/outline/ContactIcon'
 
 const items: NavigationMenuItem[] = [
   {
-    label: 'Home',
+    label: 'Главная',
     icon: HomeIcon,
     active: true
   },
   {
-    label: 'Inbox',
+    label: 'Входящие',
     icon: MailIcon
   },
   {
-    label: 'Contacts',
+    label: 'Контакты',
     icon: ContactIcon
   }
 ]
@@ -39,7 +39,7 @@ const items: NavigationMenuItem[] = [
 
     <B24DashboardPanel>
       <template #header>
-        <B24DashboardNavbar title="Dashboard" class="bg-(--ui-color-design-outline-bg-alt) backdrop-blur-md" />
+        <B24DashboardNavbar title="Дашборд" class="bg-(--ui-color-design-outline-bg-alt) backdrop-blur-md" />
       </template>
     </B24DashboardPanel>
   </B24DashboardGroup>

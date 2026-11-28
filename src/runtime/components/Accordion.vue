@@ -79,11 +79,10 @@ export type AccordionSlots<T extends AccordionItem = AccordionItem> = {
 <script setup lang="ts" generic="T extends AccordionItem">
 import { computed } from 'vue'
 import { AccordionRoot, AccordionItem, AccordionHeader, AccordionTrigger, AccordionContent } from 'reka-ui'
-import { reactivePick } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
-import { get } from '../utils'
+import { get, safeIcon } from '../utils'
 import { tv } from '../utils/tv'
 import icons from '../dictionary/icons'
 
@@ -101,7 +100,7 @@ const props = useComponentProps<AccordionProps<T>>('accordion', _props)
 
 const appConfig = useAppConfig() as Accordion['AppConfig']
 
-const rootProps = useForwardProps(reactivePick(props, 'as', 'collapsible', 'defaultValue', 'disabled', 'modelValue', 'unmountOnHide'), emits)
+const rootProps = useForwardProps(props, ['as', 'collapsible', 'defaultValue', 'disabled', 'modelValue', 'unmountOnHide'], emits)
 
 // eslint-disable-next-line vue/no-dupe-keys
 const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.accordion || {}) })({
@@ -124,8 +123,8 @@ const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.accordion 
         <AccordionTrigger data-slot="trigger" :class="b24ui.trigger({ class: [props.b24ui?.trigger, item.b24ui?.trigger], disabled: item.disabled })">
           <slot name="leading" :item="item" :index="index" :open="open" :b24ui="b24ui">
             <Component
-              :is="item.icon"
-              v-if="item.icon"
+              :is="safeIcon(item.icon)"
+              v-if="safeIcon(item.icon)"
               data-slot="leadingIcon"
               :class="b24ui.leadingIcon({ class: [props.b24ui?.leadingIcon, item?.b24ui?.leadingIcon] })"
             />
@@ -141,7 +140,7 @@ const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.accordion 
 
           <slot name="trailing" :item="item" :index="index" :open="open" :b24ui="b24ui">
             <Component
-              :is="item.trailingIcon || props.trailingIcon || icons.chevronDown"
+              :is="safeIcon(item.trailingIcon) || props.trailingIcon || icons.chevronDown"
               data-slot="trailingIcon"
               :class="b24ui.trailingIcon({ class: [props.b24ui?.trailingIcon, item.b24ui?.trailingIcon] })"
             />

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DropdownMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { DropdownMenuItem } from '@bxshefby/b24ui-nuxt'
 import UserIcon from '@bitrix24/b24icons-vue/common-b24/UserIcon'
 import PaymentIcon from '@bitrix24/b24icons-vue/outline/PaymentIcon'
 import Settings3Icon from '@bitrix24/b24icons-vue/actions/Settings3Icon'
@@ -13,14 +13,14 @@ defineShortcuts({
 
 const items: DropdownMenuItem[] = [
   {
-    label: 'Profile',
+    label: 'Профиль',
     icon: UserIcon,
     slot: 'profile' as const
   }, {
-    label: 'Billing',
+    label: 'Оплата',
     icon: PaymentIcon
   }, {
-    label: 'Settings',
+    label: 'Настройки',
     icon: Settings3Icon
   }
 ]
@@ -28,6 +28,6 @@ const items: DropdownMenuItem[] = [
 
 <template>
   <B24DropdownMenu v-model:open="open" :items="items" :b24ui="{ content: 'w-50', viewport: 'w-50' }">
-    <B24Button label="Open" :icon="HamburgerMenuIcon" />
+    <B24Button label="Открыть" :icon="HamburgerMenuIcon" />
   </B24DropdownMenu>
 </template>

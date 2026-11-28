@@ -2,7 +2,10 @@ name: Release Please 🤖
 
 # Keeps a release PR open against main: version bump + CHANGELOG assembled from
 # conventional-commit subjects. Merging it creates the tag and the GitHub
-# Release, then dispatches the publish workflow against that tag.
+# Release; the `publish` job below then dispatches npm-publish.yml against that
+# tag. Merging the release PR is the only human decision: nothing waits for an
+# approval (owner decision, #63). Approving the release PR's held `ci` run is a
+# click, not a decision, and the publication does not wait for any confirmation.
 on:
   push:
     branches: [ main ]
@@ -20,11 +23,26 @@ permissions:
 
 jobs:
   release-please:
+    # Выпуск @bxshefby/b24ui-nuxt включается переменной репозитория NPM_RELEASE=true
+    # (Settings → Secrets and variables → Actions → Variables); см. releasing.md.
+    # Only from main: a workflow_dispatch from another branch would otherwise run
+    # that branch's copy of this file. (A copy can drop the condition, so this is
+    # a convenience; what actually holds is who may push — releasing.md.)
+    if: >-
+      github.repository == 'bx-shef/b24-ui' && vars.NPM_RELEASE == 'true' &&
+      github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    # No `actions: write` here: the third-party release-please-action must not
+    # hold it. The two jobs below carry it instead.
     permissions:
       contents: write
       pull-requests: write
-      actions: write
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+      prs_created: ${{ steps.release.outputs.prs_created }}
+      pr_branch: ${{ fromJSON(steps.release.outputs.pr || '{}').headBranchName }}
     steps:
       - name: Prepare release PR / create release
         id: release
@@ -33,42 +51,60 @@ jobs:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
 
-      # Gives the release PR a `ci` run that actually executes. Its own
-      # pull_request run is created and then held at `action_required`, so
-      # without this the PR carries no CI result at all.
-      #
-      # This does NOT make the PR mergeable: branch protection waits on the held
-      # run, and a human has to approve that one before merging. Documented in
-      # .github/contributing/releasing.md#approving-the-release-prs-ci — keep the
-      # two in sync.
+  # Gives the release PR a `ci` run that actually executes. Its own
+  # pull_request run is created and then held at `action_required`, so
+  # without this the PR carries no CI result at all.
+  #
+  # This does NOT make the PR mergeable: branch protection waits on the held
+  # run, and a human has to approve that one before merging. Documented in
+  # .github/contributing/releasing.md#approving-the-release-prs-ci — keep the
+  # two in sync.
+  ci-release-pr:
+    needs: release-please
+    if: >-
+      github.repository == 'bx-shef/b24-ui' && vars.NPM_RELEASE == 'true' &&
+      needs.release-please.outputs.prs_created == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write
+    steps:
       - name: Run CI on the release PR
-        if: steps.release.outputs.prs_created == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: ${{ needs.release-please.outputs.pr_branch }}
         run: |
-          gh workflow run ci.yml \
-            --repo "${{ github.repository }}" \
-            --ref "${{ fromJSON(steps.release.outputs.pr).headBranchName }}"
+          gh workflow run ci.yml --repo "$GITHUB_REPOSITORY" --ref "$BRANCH"
 
-      # Dispatched, not workflow_call, for two reasons that both broke the
-      # called design:
-      #  - npm trusted publishing matches the token's top-level workflow_ref,
-      #    which for a called workflow is THIS file, not npm-publish.yml — the
-      #    publisher pin would reject the automated path with the manual one
-      #    still working.
-      #  - a called run inherits this run's github.sha (whatever push happened
-      #    to trigger it), while `--ref <tag>` pins the publish to the exact
-      #    tagged commit.
-      # workflow_dispatch is the documented exception to "events fired with
-      # GITHUB_TOKEN start no workflows", so this is also the one reliable way
-      # to chain off a bot-created release. If the dispatch itself fails, the
-      # release exists unpublished — recovery is rerunning exactly this
-      # command by hand.
-      - name: Dispatch publish for ${{ steps.release.outputs.tag_name }}
-        if: steps.release.outputs.release_created == 'true'
+  # `refs/tags/` spelled out: a branch and a tag may share a name.
+  # Dispatched, not workflow_call, for two reasons that both broke the
+  # called design:
+  #  - npm trusted publishing matches the token's top-level workflow_ref,
+  #    which for a called workflow is THIS file, not npm-publish.yml — the
+  #    publisher pin would reject the automated path with the manual one
+  #    still working.
+  #  - a called run inherits this run's github.sha (whatever push happened
+  #    to trigger it), while `--ref <tag>` pins the publish to the exact
+  #    tagged commit, even if the next PR is already merged into main.
+  # A release created with GITHUB_TOKEN does not start `release` workflows, but
+  # workflow_dispatch from that token does (the documented exception). This is a
+  # job of its own so `actions: write` never reaches release-please-action. If
+  # the dispatch fails, the release exists unpublished — recovery is rerunning
+  # exactly this command by hand (releasing.md).
+  publish:
+    needs: release-please
+    if: >-
+      github.repository == 'bx-shef/b24-ui' && vars.NPM_RELEASE == 'true' &&
+      needs.release-please.outputs.release_created == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write
+    steps:
+      - name: Dispatch npm-publish.yml on the release tag
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ needs.release-please.outputs.tag_name }}
         run: |
-          gh workflow run npm-publish.yml \
-            --repo "${{ github.repository }}" \
-            --ref "${{ steps.release.outputs.tag_name }}"
+          [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.]+)?$ ]] || { echo "::error::unexpected tag '$TAG'"; exit 1; }
+          gh workflow run npm-publish.yml --repo "$GITHUB_REPOSITORY" --ref "refs/tags/$TAG"

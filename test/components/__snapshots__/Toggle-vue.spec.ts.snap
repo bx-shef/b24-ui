@@ -1,0 +1,163 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Toggle > renders with activeColor correctly 1`] = `
+"<button type="button" data-slot="base" aria-pressed="true" data-state="on" aria-label="Bold" class="ui-btn font-[family-name:var(--ui-font-family-primary)] select-none cursor-pointer inline-flex items-center relative outline-transparent focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-30 aria-disabled:opacity-30 transition duration-0 ease-linear border-(length:--ui-btn-border-width) text-(--ui-btn-color) bg-(--ui-btn-background) border-(--ui-btn-border-color) hover:text-(--ui-btn-color-hover) hover:bg-(--ui-btn-background-hover) hover:border-(--ui-btn-border-color-hover) focus:text-(--ui-btn-color-hover) focus:bg-(--ui-btn-background-hover) focus:border-(--ui-btn-border-color-hover) active:text-(--ui-btn-color-active) active:bg-(--ui-btn-background-active) active:border-(--ui-btn-border-color-active) disabled:bg-(--ui-btn-background) disabled:border-(--ui-btn-border-color) aria-disabled:bg-(--ui-btn-background) aria-disabled:border-(--ui-btn-border-color) focus-visible:outline-(--ui-btn-background) ring-(--ui-btn-background-hover) focus:outline-none focus-visible:ring-(--ui-btn-background-hover) h-(--ui-btn-height) text-(length:--ui-btn-font-size) leading-(--ui-btn-height) font-(--ui-btn-font-weight) --style-filled-success ui-btn-md rounded-(--ui-btn-radius) normal-case --air w-(--ui-btn-height)">
+  <!--v-if-->
+  <div data-slot="baseLine" class="w-full inline-flex items-center justify-center gap-(--ui-btn-icon-space) h-(--ui-btn-height) ps-[4px] pe-[4px]"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" data-slot="icon" class="text-(--ui-btn-color) shrink-0 size-(--ui-btn-icon-size)">
+      <path fill="currentColor" fill-rule="evenodd" d="M6.422 6.485a1.2 1.2 0 0 1 1.2-1.2h5.252a3.63 3.63 0 0 1 2.628 1.14c.69.724 1.072 1.7 1.072 2.71 0 1.052-.413 1.834-1.067 2.522l-.022.024c.453.183.87.452 1.225.798.739.72 1.112 1.863 1.112 2.806 0 .987-.402 1.93-1.112 2.623a3.82 3.82 0 0 1-2.665 1.077H7.622a1.2 1.2 0 0 1-1.2-1.2zm6.814 6.317h.809c.636 0 1.243.247 1.688.68.415.405.69 1.155.69 1.803 0 .604-.247 1.188-.69 1.62a2.42 2.42 0 0 1-1.688.68H7.822v-4.783zm-.029-1.4c.164-.03.397-.11.643-.239.267-.14.492-.306.629-.456l.01-.01c.468-.493.685-.946.685-1.562 0-.66-.25-1.287-.685-1.744a2.23 2.23 0 0 0-1.615-.706H7.822v4.717z" clip-rule="evenodd"></path>
+    </svg>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+</button>
+<!--v-if-->"
+`;
+
+exports[`Toggle > renders with b24ui correctly 1`] = `
+"<button type="button" data-slot="base" aria-pressed="false" data-state="off" aria-label="Bold" class="ui-btn font-[family-name:var(--ui-font-family-primary)] select-none cursor-pointer inline-flex items-center relative outline-transparent focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-30 aria-disabled:opacity-30 transition duration-0 ease-linear border-(length:--ui-btn-border-width) text-(--ui-btn-color) bg-(--ui-btn-background) border-(--ui-btn-border-color) hover:text-(--ui-btn-color-hover) hover:bg-(--ui-btn-background-hover) hover:border-(--ui-btn-border-color-hover) focus:text-(--ui-btn-color-hover) focus:bg-(--ui-btn-background-hover) focus:border-(--ui-btn-border-color-hover) active:text-(--ui-btn-color-active) active:bg-(--ui-btn-background-active) active:border-(--ui-btn-border-color-active) disabled:bg-(--ui-btn-background) disabled:border-(--ui-btn-border-color) aria-disabled:bg-(--ui-btn-background) aria-disabled:border-(--ui-btn-border-color) focus-visible:outline-(--ui-btn-background) ring-(--ui-btn-background-hover) focus:outline-none focus-visible:ring-(--ui-btn-background-hover) h-(--ui-btn-height) text-(length:--ui-btn-font-size) leading-(--ui-btn-height) font-(--ui-btn-font-weight) --style-outline-no-accent ui-btn-md rounded-(--ui-btn-radius) normal-case --air w-(--ui-btn-height)">
+  <!--v-if-->
+  <div data-slot="baseLine" class="w-full inline-flex items-center justify-center gap-(--ui-btn-icon-space) h-(--ui-btn-height) ps-[4px] pe-[4px]"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" data-slot="icon" class="text-(--ui-btn-color) shrink-0 size-6">
+      <path fill="currentColor" fill-rule="evenodd" d="M6.422 6.485a1.2 1.2 0 0 1 1.2-1.2h5.252a3.63 3.63 0 0 1 2.628 1.14c.69.724 1.072 1.7 1.072 2.71 0 1.052-.413 1.834-1.067 2.522l-.022.024c.453.183.87.452 1.225.798.739.72 1.112 1.863 1.112 2.806 0 .987-.402 1.93-1.112 2.623a3.82 3.82 0 0 1-2.665 1.077H7.622a1.2 1.2 0 0 1-1.2-1.2zm6.814 6.317h.809c.636 0 1.243.247 1.688.68.415.405.69 1.155.69 1.803 0 .604-.247 1.188-.69 1.62a2.42 2.42 0 0 1-1.688.68H7.822v-4.783zm-.029-1.4c.164-.03.397-.11.643-.239.267-.14.492-.306.629-.456l.01-.01c.468-.493.685-.946.685-1.562 0-.66-.25-1.287-.685-1.744a2.23 2.23 0 0 0-1.615-.706H7.822v4.717z" clip-rule="evenodd"></path>
+    </svg>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+</button>
+<!--v-if-->"
+`;
+
+exports[`Toggle > renders with class correctly 1`] = `
+"<button type="button" data-slot="base" aria-pressed="false" data-state="off" aria-label="Bold" class="ui-btn font-[family-name:var(--ui-font-family-primary)] select-none cursor-pointer inline-flex items-center relative outline-transparent focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-30 aria-disabled:opacity-30 transition duration-0 ease-linear border-(length:--ui-btn-border-width) text-(--ui-btn-color) bg-(--ui-btn-background) border-(--ui-btn-border-color) hover:text-(--ui-btn-color-hover) hover:bg-(--ui-btn-background-hover) hover:border-(--ui-btn-border-color-hover) focus:text-(--ui-btn-color-hover) focus:bg-(--ui-btn-background-hover) focus:border-(--ui-btn-border-color-hover) active:text-(--ui-btn-color-active) active:bg-(--ui-btn-background-active) active:border-(--ui-btn-border-color-active) disabled:bg-(--ui-btn-background) disabled:border-(--ui-btn-border-color) aria-disabled:bg-(--ui-btn-background) aria-disabled:border-(--ui-btn-border-color) focus-visible:outline-(--ui-btn-background) ring-(--ui-btn-background-hover) focus:outline-none focus-visible:ring-(--ui-btn-background-hover) h-(--ui-btn-height) text-(length:--ui-btn-font-size) leading-(--ui-btn-height) font-(--ui-btn-font-weight) --style-outline-no-accent ui-btn-md normal-case --air w-(--ui-btn-height) rounded-full">
+  <!--v-if-->
+  <div data-slot="baseLine" class="w-full inline-flex items-center justify-center gap-(--ui-btn-icon-space) h-(--ui-btn-height) ps-[4px] pe-[4px]"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" data-slot="icon" class="text-(--ui-btn-color) shrink-0 size-(--ui-btn-icon-size)">
+      <path fill="currentColor" fill-rule="evenodd" d="M6.422 6.485a1.2 1.2 0 0 1 1.2-1.2h5.252a3.63 3.63 0 0 1 2.628 1.14c.69.724 1.072 1.7 1.072 2.71 0 1.052-.413 1.834-1.067 2.522l-.022.024c.453.183.87.452 1.225.798.739.72 1.112 1.863 1.112 2.806 0 .987-.402 1.93-1.112 2.623a3.82 3.82 0 0 1-2.665 1.077H7.622a1.2 1.2 0 0 1-1.2-1.2zm6.814 6.317h.809c.636 0 1.243.247 1.688.68.415.405.69 1.155.69 1.803 0 .604-.247 1.188-.69 1.62a2.42 2.42 0 0 1-1.688.68H7.822v-4.783zm-.029-1.4c.164-.03.397-.11.643-.239.267-.14.492-.306.629-.456l.01-.01c.468-.493.685-.946.685-1.562 0-.66-.25-1.287-.685-1.744a2.23 2.23 0 0 0-1.615-.706H7.822v4.717z" clip-rule="evenodd"></path>
+    </svg>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+</button>
+<!--v-if-->"
+`;
+
+exports[`Toggle > renders with color correctly 1`] = `
+"<button type="button" data-slot="base" aria-pressed="false" data-state="off" aria-label="Bold" class="ui-btn font-[family-name:var(--ui-font-family-primary)] select-none cursor-pointer inline-flex items-center relative outline-transparent focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-30 aria-disabled:opacity-30 transition duration-0 ease-linear border-(length:--ui-btn-border-width) text-(--ui-btn-color) bg-(--ui-btn-background) border-(--ui-btn-border-color) hover:text-(--ui-btn-color-hover) hover:bg-(--ui-btn-background-hover) hover:border-(--ui-btn-border-color-hover) focus:text-(--ui-btn-color-hover) focus:bg-(--ui-btn-background-hover) focus:border-(--ui-btn-border-color-hover) active:text-(--ui-btn-color-active) active:bg-(--ui-btn-background-active) active:border-(--ui-btn-border-color-active) disabled:bg-(--ui-btn-background) disabled:border-(--ui-btn-border-color) aria-disabled:bg-(--ui-btn-background) aria-disabled:border-(--ui-btn-border-color) focus-visible:outline-(--ui-btn-background) ring-(--ui-btn-background-hover) focus:outline-none focus-visible:ring-(--ui-btn-background-hover) h-(--ui-btn-height) text-(length:--ui-btn-font-size) leading-(--ui-btn-height) font-(--ui-btn-font-weight) --style-filled ui-btn-md rounded-(--ui-btn-radius) normal-case --air w-(--ui-btn-height)">
+  <!--v-if-->
+  <div data-slot="baseLine" class="w-full inline-flex items-center justify-center gap-(--ui-btn-icon-space) h-(--ui-btn-height) ps-[4px] pe-[4px]"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" data-slot="icon" class="text-(--ui-btn-color) shrink-0 size-(--ui-btn-icon-size)">
+      <path fill="currentColor" fill-rule="evenodd" d="M6.422 6.485a1.2 1.2 0 0 1 1.2-1.2h5.252a3.63 3.63 0 0 1 2.628 1.14c.69.724 1.072 1.7 1.072 2.71 0 1.052-.413 1.834-1.067 2.522l-.022.024c.453.183.87.452 1.225.798.739.72 1.112 1.863 1.112 2.806 0 .987-.402 1.93-1.112 2.623a3.82 3.82 0 0 1-2.665 1.077H7.622a1.2 1.2 0 0 1-1.2-1.2zm6.814 6.317h.809c.636 0 1.243.247 1.688.68.415.405.69 1.155.69 1.803 0 .604-.247 1.188-.69 1.62a2.42 2.42 0 0 1-1.688.68H7.822v-4.783zm-.029-1.4c.164-.03.397-.11.643-.239.267-.14.492-.306.629-.456l.01-.01c.468-.493.685-.946.685-1.562 0-.66-.25-1.287-.685-1.744a2.23 2.23 0 0 0-1.615-.706H7.822v4.717z" clip-rule="evenodd"></path>
+    </svg>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+</button>
+<!--v-if-->"
+`;
+
+exports[`Toggle > renders with default slot correctly 1`] = `
+"<button type="button" data-slot="base" aria-pressed="false" data-state="off" class="ui-btn font-[family-name:var(--ui-font-family-primary)] select-none cursor-pointer inline-flex items-center relative outline-transparent focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-30 aria-disabled:opacity-30 transition duration-0 ease-linear border-(length:--ui-btn-border-width) text-(--ui-btn-color) bg-(--ui-btn-background) border-(--ui-btn-border-color) hover:text-(--ui-btn-color-hover) hover:bg-(--ui-btn-background-hover) hover:border-(--ui-btn-border-color-hover) focus:text-(--ui-btn-color-hover) focus:bg-(--ui-btn-background-hover) focus:border-(--ui-btn-border-color-hover) active:text-(--ui-btn-color-active) active:bg-(--ui-btn-background-active) active:border-(--ui-btn-border-color-active) disabled:bg-(--ui-btn-background) disabled:border-(--ui-btn-border-color) aria-disabled:bg-(--ui-btn-background) aria-disabled:border-(--ui-btn-border-color) focus-visible:outline-(--ui-btn-background) ring-(--ui-btn-background-hover) focus:outline-none focus-visible:ring-(--ui-btn-background-hover) h-(--ui-btn-height) text-(length:--ui-btn-font-size) leading-(--ui-btn-height) font-(--ui-btn-font-weight) --style-outline-no-accent ui-btn-md rounded-(--ui-btn-radius) normal-case --air">
+  <!--v-if-->
+  <div data-slot="baseLine" class="w-full inline-flex items-center justify-center gap-(--ui-btn-icon-space) ps-(--ui-btn-padding-left) pe-(--ui-btn-padding-right) h-(--ui-btn-height)">
+    <!--v-if-->Default slot
+    <!--v-if-->
+  </div>
+</button>
+<!--v-if-->"
+`;
+
+exports[`Toggle > renders with defaultValue correctly 1`] = `
+"<button type="button" data-slot="base" aria-pressed="true" data-state="on" aria-label="Bold" class="ui-btn font-[family-name:var(--ui-font-family-primary)] select-none cursor-pointer inline-flex items-center relative outline-transparent focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-30 aria-disabled:opacity-30 transition duration-0 ease-linear border-(length:--ui-btn-border-width) text-(--ui-btn-color) bg-(--ui-btn-background) border-(--ui-btn-border-color) hover:text-(--ui-btn-color-hover) hover:bg-(--ui-btn-background-hover) hover:border-(--ui-btn-border-color-hover) focus:text-(--ui-btn-color-hover) focus:bg-(--ui-btn-background-hover) focus:border-(--ui-btn-border-color-hover) active:text-(--ui-btn-color-active) active:bg-(--ui-btn-background-active) active:border-(--ui-btn-border-color-active) disabled:bg-(--ui-btn-background) disabled:border-(--ui-btn-border-color) aria-disabled:bg-(--ui-btn-background) aria-disabled:border-(--ui-btn-border-color) focus-visible:outline-(--ui-btn-background) ring-(--ui-btn-background-hover) focus:outline-none focus-visible:ring-(--ui-btn-background-hover) h-(--ui-btn-height) text-(length:--ui-btn-font-size) leading-(--ui-btn-height) font-(--ui-btn-font-weight) --style-filled ui-btn-md rounded-(--ui-btn-radius) normal-case --air w-(--ui-btn-height)">
+  <!--v-if-->
+  <div data-slot="baseLine" class="w-full inline-flex items-center justify-center gap-(--ui-btn-icon-space) h-(--ui-btn-height) ps-[4px] pe-[4px]"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" data-slot="icon" class="text-(--ui-btn-color) shrink-0 size-(--ui-btn-icon-size)">
+      <path fill="currentColor" fill-rule="evenodd" d="M6.422 6.485a1.2 1.2 0 0 1 1.2-1.2h5.252a3.63 3.63 0 0 1 2.628 1.14c.69.724 1.072 1.7 1.072 2.71 0 1.052-.413 1.834-1.067 2.522l-.022.024c.453.183.87.452 1.225.798.739.72 1.112 1.863 1.112 2.806 0 .987-.402 1.93-1.112 2.623a3.82 3.82 0 0 1-2.665 1.077H7.622a1.2 1.2 0 0 1-1.2-1.2zm6.814 6.317h.809c.636 0 1.243.247 1.688.68.415.405.69 1.155.69 1.803 0 .604-.247 1.188-.69 1.62a2.42 2.42 0 0 1-1.688.68H7.822v-4.783zm-.029-1.4c.164-.03.397-.11.643-.239.267-.14.492-.306.629-.456l.01-.01c.468-.493.685-.946.685-1.562 0-.66-.25-1.287-.685-1.744a2.23 2.23 0 0 0-1.615-.706H7.822v4.717z" clip-rule="evenodd"></path>
+    </svg>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+</button>
+<!--v-if-->"
+`;
+
+exports[`Toggle > renders with disabled correctly 1`] = `
+"<button type="button" disabled="" data-slot="base" aria-pressed="false" data-state="off" data-disabled="" aria-label="Bold" class="ui-btn font-[family-name:var(--ui-font-family-primary)] select-none cursor-pointer inline-flex items-center relative outline-transparent focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-30 aria-disabled:opacity-30 transition duration-0 ease-linear border-(length:--ui-btn-border-width) text-(--ui-btn-color) bg-(--ui-btn-background) border-(--ui-btn-border-color) hover:text-(--ui-btn-color-hover) hover:bg-(--ui-btn-background-hover) hover:border-(--ui-btn-border-color-hover) focus:text-(--ui-btn-color-hover) focus:bg-(--ui-btn-background-hover) focus:border-(--ui-btn-border-color-hover) active:text-(--ui-btn-color-active) active:bg-(--ui-btn-background-active) active:border-(--ui-btn-border-color-active) disabled:bg-(--ui-btn-background) disabled:border-(--ui-btn-border-color) aria-disabled:bg-(--ui-btn-background) aria-disabled:border-(--ui-btn-border-color) focus-visible:outline-(--ui-btn-background) ring-(--ui-btn-background-hover) focus:outline-none focus-visible:ring-(--ui-btn-background-hover) h-(--ui-btn-height) text-(length:--ui-btn-font-size) leading-(--ui-btn-height) font-(--ui-btn-font-weight) --style-outline-no-accent ui-btn-md rounded-(--ui-btn-radius) normal-case --air w-(--ui-btn-height)">
+  <!--v-if-->
+  <div data-slot="baseLine" class="w-full inline-flex items-center justify-center gap-(--ui-btn-icon-space) h-(--ui-btn-height) ps-[4px] pe-[4px]"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" data-slot="icon" class="text-(--ui-btn-color) shrink-0 size-(--ui-btn-icon-size)">
+      <path fill="currentColor" fill-rule="evenodd" d="M6.422 6.485a1.2 1.2 0 0 1 1.2-1.2h5.252a3.63 3.63 0 0 1 2.628 1.14c.69.724 1.072 1.7 1.072 2.71 0 1.052-.413 1.834-1.067 2.522l-.022.024c.453.183.87.452 1.225.798.739.72 1.112 1.863 1.112 2.806 0 .987-.402 1.93-1.112 2.623a3.82 3.82 0 0 1-2.665 1.077H7.622a1.2 1.2 0 0 1-1.2-1.2zm6.814 6.317h.809c.636 0 1.243.247 1.688.68.415.405.69 1.155.69 1.803 0 .604-.247 1.188-.69 1.62a2.42 2.42 0 0 1-1.688.68H7.822v-4.783zm-.029-1.4c.164-.03.397-.11.643-.239.267-.14.492-.306.629-.456l.01-.01c.468-.493.685-.946.685-1.562 0-.66-.25-1.287-.685-1.744a2.23 2.23 0 0 0-1.615-.706H7.822v4.717z" clip-rule="evenodd"></path>
+    </svg>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+</button>
+<!--v-if-->"
+`;
+
+exports[`Toggle > renders with icon correctly 1`] = `
+"<button type="button" data-slot="base" aria-pressed="false" data-state="off" aria-label="Bold" class="ui-btn font-[family-name:var(--ui-font-family-primary)] select-none cursor-pointer inline-flex items-center relative outline-transparent focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-30 aria-disabled:opacity-30 transition duration-0 ease-linear border-(length:--ui-btn-border-width) text-(--ui-btn-color) bg-(--ui-btn-background) border-(--ui-btn-border-color) hover:text-(--ui-btn-color-hover) hover:bg-(--ui-btn-background-hover) hover:border-(--ui-btn-border-color-hover) focus:text-(--ui-btn-color-hover) focus:bg-(--ui-btn-background-hover) focus:border-(--ui-btn-border-color-hover) active:text-(--ui-btn-color-active) active:bg-(--ui-btn-background-active) active:border-(--ui-btn-border-color-active) disabled:bg-(--ui-btn-background) disabled:border-(--ui-btn-border-color) aria-disabled:bg-(--ui-btn-background) aria-disabled:border-(--ui-btn-border-color) focus-visible:outline-(--ui-btn-background) ring-(--ui-btn-background-hover) focus:outline-none focus-visible:ring-(--ui-btn-background-hover) h-(--ui-btn-height) text-(length:--ui-btn-font-size) leading-(--ui-btn-height) font-(--ui-btn-font-weight) --style-outline-no-accent ui-btn-md rounded-(--ui-btn-radius) normal-case --air w-(--ui-btn-height)">
+  <!--v-if-->
+  <div data-slot="baseLine" class="w-full inline-flex items-center justify-center gap-(--ui-btn-icon-space) h-(--ui-btn-height) ps-[4px] pe-[4px]"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" data-slot="icon" class="text-(--ui-btn-color) shrink-0 size-(--ui-btn-icon-size)">
+      <path fill="currentColor" fill-rule="evenodd" d="M6.422 6.485a1.2 1.2 0 0 1 1.2-1.2h5.252a3.63 3.63 0 0 1 2.628 1.14c.69.724 1.072 1.7 1.072 2.71 0 1.052-.413 1.834-1.067 2.522l-.022.024c.453.183.87.452 1.225.798.739.72 1.112 1.863 1.112 2.806 0 .987-.402 1.93-1.112 2.623a3.82 3.82 0 0 1-2.665 1.077H7.622a1.2 1.2 0 0 1-1.2-1.2zm6.814 6.317h.809c.636 0 1.243.247 1.688.68.415.405.69 1.155.69 1.803 0 .604-.247 1.188-.69 1.62a2.42 2.42 0 0 1-1.688.68H7.822v-4.783zm-.029-1.4c.164-.03.397-.11.643-.239.267-.14.492-.306.629-.456l.01-.01c.468-.493.685-.946.685-1.562 0-.66-.25-1.287-.685-1.744a2.23 2.23 0 0 0-1.615-.706H7.822v4.717z" clip-rule="evenodd"></path>
+    </svg>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+</button>
+<!--v-if-->"
+`;
+
+exports[`Toggle > renders with label correctly 1`] = `
+"<button type="button" data-slot="base" aria-pressed="false" data-state="off" class="ui-btn font-[family-name:var(--ui-font-family-primary)] select-none cursor-pointer inline-flex items-center relative outline-transparent focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-30 aria-disabled:opacity-30 transition duration-0 ease-linear border-(length:--ui-btn-border-width) text-(--ui-btn-color) bg-(--ui-btn-background) border-(--ui-btn-border-color) hover:text-(--ui-btn-color-hover) hover:bg-(--ui-btn-background-hover) hover:border-(--ui-btn-border-color-hover) focus:text-(--ui-btn-color-hover) focus:bg-(--ui-btn-background-hover) focus:border-(--ui-btn-border-color-hover) active:text-(--ui-btn-color-active) active:bg-(--ui-btn-background-active) active:border-(--ui-btn-border-color-active) disabled:bg-(--ui-btn-background) disabled:border-(--ui-btn-border-color) aria-disabled:bg-(--ui-btn-background) aria-disabled:border-(--ui-btn-border-color) focus-visible:outline-(--ui-btn-background) ring-(--ui-btn-background-hover) focus:outline-none focus-visible:ring-(--ui-btn-background-hover) h-(--ui-btn-height) text-(length:--ui-btn-font-size) leading-(--ui-btn-height) font-(--ui-btn-font-weight) --style-outline-no-accent ui-btn-md rounded-(--ui-btn-radius) normal-case --air">
+  <!--v-if-->
+  <div data-slot="baseLine" class="w-full inline-flex items-center justify-center gap-(--ui-btn-icon-space) ps-(--ui-btn-padding-left) pe-(--ui-btn-padding-right) h-(--ui-btn-height)">
+    <!--v-if--><span data-slot="label" class="h-(--ui-btn-height) max-w-full inline-flex flex-row items-center tracking-(--ui-btn-letter-spacing) overflow-visible text-clip"><span data-slot="labelInner" class="truncate inline-block max-w-full mt-(--ui-btn-title-compensation)">Bold</span></span>
+    <!--v-if-->
+  </div>
+</button>
+<!--v-if-->"
+`;
+
+exports[`Toggle > renders with leading slot correctly 1`] = `
+"<button type="button" data-slot="base" aria-pressed="false" data-state="off" aria-label="Bold" class="ui-btn font-[family-name:var(--ui-font-family-primary)] select-none cursor-pointer inline-flex items-center relative outline-transparent focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-30 aria-disabled:opacity-30 transition duration-0 ease-linear border-(length:--ui-btn-border-width) text-(--ui-btn-color) bg-(--ui-btn-background) border-(--ui-btn-border-color) hover:text-(--ui-btn-color-hover) hover:bg-(--ui-btn-background-hover) hover:border-(--ui-btn-border-color-hover) focus:text-(--ui-btn-color-hover) focus:bg-(--ui-btn-background-hover) focus:border-(--ui-btn-border-color-hover) active:text-(--ui-btn-color-active) active:bg-(--ui-btn-background-active) active:border-(--ui-btn-border-color-active) disabled:bg-(--ui-btn-background) disabled:border-(--ui-btn-border-color) aria-disabled:bg-(--ui-btn-background) aria-disabled:border-(--ui-btn-border-color) focus-visible:outline-(--ui-btn-background) ring-(--ui-btn-background-hover) focus:outline-none focus-visible:ring-(--ui-btn-background-hover) h-(--ui-btn-height) text-(length:--ui-btn-font-size) leading-(--ui-btn-height) font-(--ui-btn-font-weight) --style-outline-no-accent ui-btn-md rounded-(--ui-btn-radius) normal-case --air w-(--ui-btn-height)">
+  <!--v-if-->
+  <div data-slot="baseLine" class="w-full inline-flex items-center justify-center gap-(--ui-btn-icon-space) h-(--ui-btn-height) ps-[4px] pe-[4px]">Leading slot
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+</button>
+<!--v-if-->"
+`;
+
+exports[`Toggle > renders with modelValue correctly 1`] = `
+"<button type="button" data-slot="base" aria-pressed="true" data-state="on" aria-label="Bold" class="ui-btn font-[family-name:var(--ui-font-family-primary)] select-none cursor-pointer inline-flex items-center relative outline-transparent focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-30 aria-disabled:opacity-30 transition duration-0 ease-linear border-(length:--ui-btn-border-width) text-(--ui-btn-color) bg-(--ui-btn-background) border-(--ui-btn-border-color) hover:text-(--ui-btn-color-hover) hover:bg-(--ui-btn-background-hover) hover:border-(--ui-btn-border-color-hover) focus:text-(--ui-btn-color-hover) focus:bg-(--ui-btn-background-hover) focus:border-(--ui-btn-border-color-hover) active:text-(--ui-btn-color-active) active:bg-(--ui-btn-background-active) active:border-(--ui-btn-border-color-active) disabled:bg-(--ui-btn-background) disabled:border-(--ui-btn-border-color) aria-disabled:bg-(--ui-btn-background) aria-disabled:border-(--ui-btn-border-color) focus-visible:outline-(--ui-btn-background) ring-(--ui-btn-background-hover) focus:outline-none focus-visible:ring-(--ui-btn-background-hover) h-(--ui-btn-height) text-(length:--ui-btn-font-size) leading-(--ui-btn-height) font-(--ui-btn-font-weight) --style-filled ui-btn-md rounded-(--ui-btn-radius) normal-case --air w-(--ui-btn-height)">
+  <!--v-if-->
+  <div data-slot="baseLine" class="w-full inline-flex items-center justify-center gap-(--ui-btn-icon-space) h-(--ui-btn-height) ps-[4px] pe-[4px]"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" data-slot="icon" class="text-(--ui-btn-color) shrink-0 size-(--ui-btn-icon-size)">
+      <path fill="currentColor" fill-rule="evenodd" d="M6.422 6.485a1.2 1.2 0 0 1 1.2-1.2h5.252a3.63 3.63 0 0 1 2.628 1.14c.69.724 1.072 1.7 1.072 2.71 0 1.052-.413 1.834-1.067 2.522l-.022.024c.453.183.87.452 1.225.798.739.72 1.112 1.863 1.112 2.806 0 .987-.402 1.93-1.112 2.623a3.82 3.82 0 0 1-2.665 1.077H7.622a1.2 1.2 0 0 1-1.2-1.2zm6.814 6.317h.809c.636 0 1.243.247 1.688.68.415.405.69 1.155.69 1.803 0 .604-.247 1.188-.69 1.62a2.42 2.42 0 0 1-1.688.68H7.822v-4.783zm-.029-1.4c.164-.03.397-.11.643-.239.267-.14.492-.306.629-.456l.01-.01c.468-.493.685-.946.685-1.562 0-.66-.25-1.287-.685-1.744a2.23 2.23 0 0 0-1.615-.706H7.822v4.717z" clip-rule="evenodd"></path>
+    </svg>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+</button>
+<!--v-if-->"
+`;
+
+exports[`Toggle > renders with size correctly 1`] = `
+"<button type="button" data-slot="base" aria-pressed="false" data-state="off" aria-label="Bold" class="ui-btn font-[family-name:var(--ui-font-family-primary)] select-none cursor-pointer inline-flex items-center relative outline-transparent focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-30 aria-disabled:opacity-30 transition duration-0 ease-linear border-(length:--ui-btn-border-width) text-(--ui-btn-color) bg-(--ui-btn-background) border-(--ui-btn-border-color) hover:text-(--ui-btn-color-hover) hover:bg-(--ui-btn-background-hover) hover:border-(--ui-btn-border-color-hover) focus:text-(--ui-btn-color-hover) focus:bg-(--ui-btn-background-hover) focus:border-(--ui-btn-border-color-hover) active:text-(--ui-btn-color-active) active:bg-(--ui-btn-background-active) active:border-(--ui-btn-border-color-active) disabled:bg-(--ui-btn-background) disabled:border-(--ui-btn-border-color) aria-disabled:bg-(--ui-btn-background) aria-disabled:border-(--ui-btn-border-color) focus-visible:outline-(--ui-btn-background) ring-(--ui-btn-background-hover) focus:outline-none focus-visible:ring-(--ui-btn-background-hover) h-(--ui-btn-height) text-(length:--ui-btn-font-size) leading-(--ui-btn-height) font-(--ui-btn-font-weight) --style-outline-no-accent ui-btn-xl rounded-(--ui-btn-radius) normal-case --air w-(--ui-btn-height)">
+  <!--v-if-->
+  <div data-slot="baseLine" class="w-full inline-flex items-center justify-center gap-(--ui-btn-icon-space) h-(--ui-btn-height) ps-[4px] pe-[4px]"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" data-slot="icon" class="text-(--ui-btn-color) shrink-0 size-(--ui-btn-icon-size)">
+      <path fill="currentColor" fill-rule="evenodd" d="M6.422 6.485a1.2 1.2 0 0 1 1.2-1.2h5.252a3.63 3.63 0 0 1 2.628 1.14c.69.724 1.072 1.7 1.072 2.71 0 1.052-.413 1.834-1.067 2.522l-.022.024c.453.183.87.452 1.225.798.739.72 1.112 1.863 1.112 2.806 0 .987-.402 1.93-1.112 2.623a3.82 3.82 0 0 1-2.665 1.077H7.622a1.2 1.2 0 0 1-1.2-1.2zm6.814 6.317h.809c.636 0 1.243.247 1.688.68.415.405.69 1.155.69 1.803 0 .604-.247 1.188-.69 1.62a2.42 2.42 0 0 1-1.688.68H7.822v-4.783zm-.029-1.4c.164-.03.397-.11.643-.239.267-.14.492-.306.629-.456l.01-.01c.468-.493.685-.946.685-1.562 0-.66-.25-1.287-.685-1.744a2.23 2.23 0 0 0-1.615-.706H7.822v4.717z" clip-rule="evenodd"></path>
+    </svg>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+</button>
+<!--v-if-->"
+`;
+
+exports[`Toggle > renders with trailing slot correctly 1`] = `
+"<button type="button" data-slot="base" aria-pressed="false" data-state="off" aria-label="Bold" class="ui-btn font-[family-name:var(--ui-font-family-primary)] select-none cursor-pointer inline-flex items-center relative outline-transparent focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-30 aria-disabled:opacity-30 transition duration-0 ease-linear border-(length:--ui-btn-border-width) text-(--ui-btn-color) bg-(--ui-btn-background) border-(--ui-btn-border-color) hover:text-(--ui-btn-color-hover) hover:bg-(--ui-btn-background-hover) hover:border-(--ui-btn-border-color-hover) focus:text-(--ui-btn-color-hover) focus:bg-(--ui-btn-background-hover) focus:border-(--ui-btn-border-color-hover) active:text-(--ui-btn-color-active) active:bg-(--ui-btn-background-active) active:border-(--ui-btn-border-color-active) disabled:bg-(--ui-btn-background) disabled:border-(--ui-btn-border-color) aria-disabled:bg-(--ui-btn-background) aria-disabled:border-(--ui-btn-border-color) focus-visible:outline-(--ui-btn-background) ring-(--ui-btn-background-hover) focus:outline-none focus-visible:ring-(--ui-btn-background-hover) h-(--ui-btn-height) text-(length:--ui-btn-font-size) leading-(--ui-btn-height) font-(--ui-btn-font-weight) --style-outline-no-accent ui-btn-md rounded-(--ui-btn-radius) normal-case --air w-(--ui-btn-height)">
+  <!--v-if-->
+  <div data-slot="baseLine" class="w-full inline-flex items-center justify-center gap-(--ui-btn-icon-space) h-(--ui-btn-height) ps-[4px] pe-[4px]"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" aria-hidden="true" data-slot="icon" class="text-(--ui-btn-color) shrink-0 size-(--ui-btn-icon-size)">
+      <path fill="currentColor" fill-rule="evenodd" d="M6.422 6.485a1.2 1.2 0 0 1 1.2-1.2h5.252a3.63 3.63 0 0 1 2.628 1.14c.69.724 1.072 1.7 1.072 2.71 0 1.052-.413 1.834-1.067 2.522l-.022.024c.453.183.87.452 1.225.798.739.72 1.112 1.863 1.112 2.806 0 .987-.402 1.93-1.112 2.623a3.82 3.82 0 0 1-2.665 1.077H7.622a1.2 1.2 0 0 1-1.2-1.2zm6.814 6.317h.809c.636 0 1.243.247 1.688.68.415.405.69 1.155.69 1.803 0 .604-.247 1.188-.69 1.62a2.42 2.42 0 0 1-1.688.68H7.822v-4.783zm-.029-1.4c.164-.03.397-.11.643-.239.267-.14.492-.306.629-.456l.01-.01c.468-.493.685-.946.685-1.562 0-.66-.25-1.287-.685-1.744a2.23 2.23 0 0 0-1.615-.706H7.822v4.717z" clip-rule="evenodd"></path>
+    </svg>
+    <!--v-if-->Trailing slot
+  </div>
+</button>
+<!--v-if-->"
+`;

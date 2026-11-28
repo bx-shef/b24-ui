@@ -11,10 +11,13 @@
     "typecheck": "nuxt typecheck"
   },
   "dependencies": {
+    "@ai-sdk/deepseek": "catalog:",
+    "@ai-sdk/vue": "catalog:",
     "@comark/vue": "catalog:",
     "@nuxt/content": "catalog:",
     "@nuxt/image": "catalog:",
-    "@bitrix24/b24ui-nuxt": "catalog:",
+    "@bxshefby/b24ui-nuxt": "catalog:",
+    "@bxshefby/icons-json": "catalog:",
     "@nuxtjs/mcp-toolkit": "catalog:",
     "@nuxtjs/mdc": "catalog:",
     "@octokit/rest": "catalog:",
@@ -24,6 +27,7 @@
     "@tiptap/extension-emoji": "catalog:",
     "@tiptap/extension-text-align": "catalog:",
     "@vueuse/integrations": "catalog:",
+    "ai": "catalog:",
     "capture-website": "catalog:",
     "fflate": "catalog:",
     "joi": "catalog:",

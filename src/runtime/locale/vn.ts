@@ -32,11 +32,19 @@ export default defineLocale<Messages>({
       next: 'Tiếp',
       prev: 'Trước'
     },
+    chatAttachment: {
+      uploading: 'Đang tải lên',
+      error: 'Tải lên thất bại'
+    },
     chatMessages: {
       autoScroll: 'Cuộn xuống dưới'
     },
     chatPrompt: {
-      placeholder: 'Nhập tin nhắn của bạn tại đây…'
+      placeholder: 'Nhập tin nhắn của bạn tại đây…',
+      queue: 'Tin nhắn trong hàng đợi',
+      sendNow: 'Gửi ngay',
+      edit: 'Chỉnh sửa',
+      remove: 'Xóa'
     },
     chatPromptSubmit: {
       label: 'Gửi',
@@ -132,6 +140,15 @@ export default defineLocale<Messages>({
     drawer: {
       close: 'Đóng'
     },
+    editorEmojiMenu: {
+      label: 'Biểu tượng cảm xúc'
+    },
+    editorMentionMenu: {
+      label: 'Đề cập'
+    },
+    editorSuggestionMenu: {
+      label: 'Gợi ý'
+    },
     pagination: {
       first: 'Trang đầu tiên',
       last: 'Trang cuối cùng',
@@ -145,11 +162,13 @@ export default defineLocale<Messages>({
     prose: {
       codeCollapse: {
         closeText: 'Ẩn',
+        label: '{text} {name}',
         name: 'mã',
         openText: 'Hiện'
       },
       collapsible: {
         closeText: 'Ẩn',
+        label: '{text} {name}',
         name: 'thuộc tính',
         openText: 'Hiện'
       },
@@ -168,7 +187,7 @@ export default defineLocale<Messages>({
     },
     sidebar: {
       close: 'Đóng',
-      toggle: 'Chuyển đổi'
+      toggle: 'Mở/đóng'
     },
     selectMenu: {
       create: 'Tạo "{label}"',

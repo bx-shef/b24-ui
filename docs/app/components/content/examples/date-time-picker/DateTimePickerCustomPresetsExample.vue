@@ -2,19 +2,19 @@
 import { shallowRef } from 'vue'
 import type { DateValue } from '@internationalized/date'
 import { getLocalTimeZone, today } from '@internationalized/date'
-import type { DateTimePickerPreset } from '@bitrix24/b24ui-nuxt'
+import type { DateTimePickerPreset } from '@bxshefby/b24ui-nuxt'
 
 const value = shallowRef<DateValue | undefined>()
 
-// A function is resolved when the list renders, so "in three days" stays
-// correct however long the page has been open.
+// Функция вычисляется при отрисовке списка, поэтому «через три дня» остаётся
+// верным, сколько бы страница ни была открыта.
 const presets: DateTimePickerPreset[] = [
-  { label: 'In three days', value: () => today(getLocalTimeZone()).add({ days: 3 }) },
-  { label: 'In two weeks', value: () => today(getLocalTimeZone()).add({ weeks: 2 }) },
-  { label: 'Next quarter', value: () => today(getLocalTimeZone()).add({ months: 3 }) }
+  { label: 'Через три дня', value: () => today(getLocalTimeZone()).add({ days: 3 }) },
+  { label: 'Через две недели', value: () => today(getLocalTimeZone()).add({ weeks: 2 }) },
+  { label: 'Следующий квартал', value: () => today(getLocalTimeZone()).add({ months: 3 }) }
 ]
 </script>
 
 <template>
-  <B24DateTimePicker v-model="value" :presets="presets" placeholder="Pick a deadline" />
+  <B24DateTimePicker v-model="value" :presets="presets" placeholder="Выберите крайний срок" />
 </template>

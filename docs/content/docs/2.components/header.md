@@ -1,12 +1,16 @@
 ---
 title: Header
-description: 'A header that adapts its structure and content to different screen sizes.'
+description: 'Шапка, которая подстраивает структуру и содержимое под размер экрана.'
 category: layout
+keywords:
+  - шапка
+  - верхняя часть сайта
+  - шапка сайта
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Header.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/header/
   - label: Nuxt UI
@@ -14,15 +18,15 @@ links:
     to: https://ui.nuxt.com/docs/components/header
 ---
 
-## Usage
+## Использование {#usage}
 
-The Header component renders a `<header>` element.
+Компонент Header отрисовывает элемент `<header>`.
 
 ::tip{to="/docs/getting-started/theme/css-variables/#header"}
-Its height is defined through a `--b24ui-header-height` CSS variable.
+Высота шапки задаётся CSS-переменной `--b24ui-header-height`.
 ::
 
-Use the `left`, `default` and `right` slots to customize the header and the `body` or `content` slots to customize the header menu.
+Слоты `left`, `default` и `right` настраивают шапку, а слоты `body` и `content` — меню шапки.
 
 ::component-example
 ---
@@ -37,12 +41,12 @@ props:
 ::
 
 ::note
-In this example, we use the [NavigationMenu](/docs/components/navigation-menu/) component to render the header links in the center.
+В этом примере ссылки шапки по центру отрисованы компонентом [NavigationMenu](/docs/components/navigation-menu/).
 ::
 
-### Title
+### Заголовок {#title}
 
-Use the `title` prop to change the title of the header. Defaults to `Bitrix24 UI`.
+Пропс `title` меняет заголовок шапки. По умолчанию `Bitrix24 UI`.
 
 ::component-code
 ---
@@ -55,10 +59,10 @@ class: '!px-0 !pt-0'
 ---
 ::
 
-You can also use the `title` slot to add your own logo.
+Слот `title` позволяет добавить собственный логотип.
 
 ::tip{to="#props"}
-You should still add the `title` prop to replace the default `aria-label` of the link.
+Пропс `title` всё равно стоит указать, чтобы заменить `aria-label` ссылки по умолчанию.
 ::
 
 ::component-code
@@ -80,9 +84,9 @@ class: '!px-0 !pt-0'
 :logo{class="h-6 w-auto text-label"}
 ::
 
-### To
+### Ссылка {#to}
 
-Use the `to` prop to change the link of the title. Defaults to `/`.
+Пропс `to` меняет ссылку заголовка. По умолчанию `/`.
 
 ::component-code
 ---
@@ -95,7 +99,7 @@ props:
 ---
 ::
 
-You can also use the `left` slot to override the link entirely.
+Слот `left` позволяет полностью заменить ссылку.
 
 ::component-code
 ---
@@ -120,14 +124,14 @@ slots:
 ::
 ::
 
-### Mode
+### Режим {#mode}
 
-Use the `mode` prop to change the mode of the header menu. Defaults to `slideover`.
+Пропс `mode` меняет режим меню шапки. По умолчанию `slideover`.
 
-Use the `body` slot to fill the menu body (under the header) or the `content` slot to fill the entire menu.
+Слот `body` заполняет тело меню (под шапкой), слот `content` — всё меню целиком.
 
 ::tip{to="#props"}
-You can use the `menu` prop to customize the menu of the header, it will adapt depending on the mode you choose.
+Пропс `menu` настраивает меню шапки; оно подстраивается под выбранный режим.
 ::
 
 ::component-example
@@ -152,11 +156,11 @@ props:
 ---
 ::
 
-### Toggle
+### Переключатель {#toggle}
 
-Use the `toggle` prop to customize the toggle button displayed on mobile.
+Пропс `toggle` настраивает кнопку-переключатель, которая отображается на мобильных.
 
-You can pass any property from the [Button](/docs/components/button/) component to customize it.
+Можно передать любое свойство компонента [Button](/docs/components/button/).
 
 ::component-example
 ---
@@ -172,9 +176,9 @@ props:
 ---
 ::
 
-### Toggle Side
+### Сторона переключателя {#toggle-side}
 
-Use the `toggle-side` prop to change the side of the toggle button. Defaults to `left`.
+Пропс `toggle-side` меняет сторону кнопки-переключателя. По умолчанию `left`.
 
 ::component-example
 ---
@@ -190,11 +194,11 @@ props:
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With animated toggle
+### С анимированным переключателем {#with-animated-toggle}
 
-Use the `#toggle` slot to replace the default toggle button with a custom animated hamburger icon using [Motion Vue](https://motion.dev/docs/vue/motion-component).
+Слот `#toggle` заменяет кнопку-переключатель по умолчанию собственной анимированной иконкой-гамбургером на основе [Motion Vue](https://motion.dev/docs/vue/motion-component).
 
 ::component-example
 ---
@@ -210,13 +214,13 @@ props:
 ::
 
 
-### Within `app.vue`
+### В `app.vue` {#within-appvue}
 
-Use the Header component in your `app.vue` or in a layout:
+Используйте Header в `app.vue` или в раскладке:
 
 ```vue [app.vue]
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import GitHubIcon from '@bitrix24/b24icons-vue/social/GitHubIcon'
 
 const route = useRoute()
@@ -283,18 +287,18 @@ const items = computed<NavigationMenuItem[]>(() => [
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

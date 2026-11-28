@@ -1,12 +1,16 @@
 ---
 title: EditorSuggestionMenu
-description: A slash command menu that displays formatting and action suggestions when typing /.
+description: 'Меню слэш-команд, которое показывает подсказки по форматированию и действиям при вводе /.'
 category: editor
+keywords:
+  - слэш-команды
+  - меню подсказок
+  - вставка блоков
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/EditorSuggestionMenu.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/editor
   - label: Nuxt UI
@@ -14,16 +18,16 @@ links:
     to: https://ui.nuxt.com/docs/components/editor-suggestion-menu
 ---
 
-## Usage
+## Использование {#usage}
 
-The EditorSuggestionMenu component displays a menu of formatting and action suggestions when typing a trigger character in the editor and executes the corresponding [handler](/docs/components/editor/#handlers) when an item is selected.
+Компонент EditorSuggestionMenu показывает меню подсказок по форматированию и действиям, когда в редакторе вводят символ-триггер, и при выборе элемента выполняет соответствующий [обработчик](/docs/components/editor/#handlers).
 
 ::note
-It uses the `useEditorMenu` composable built on top of TipTap's [Suggestion](https://tiptap.dev/docs/editor/api/utilities/suggestion) utility to filter items as you type and support keyboard navigation (arrow keys, enter to select, escape to close).
+Он использует композабл `useEditorMenu` на основе утилиты [Suggestion](https://tiptap.dev/docs/editor/api/utilities/suggestion) из TipTap: элементы фильтруются по мере ввода, а по меню можно перемещаться с клавиатуры (стрелки, Enter для выбора, Escape для закрытия).
 ::
 
 ::caution
-It must be used inside an [Editor](/docs/components/editor/) component's default slot to have access to the editor instance.
+Компонент нужно использовать в слоте по умолчанию компонента [Editor](/docs/components/editor/), чтобы получить доступ к экземпляру редактора.
 ::
 
 ::component-example
@@ -35,9 +39,9 @@ class: 'p-8'
 ---
 ::
 
-### Items
+### Элементы {#items}
 
-Use the `items` prop as an array of objects with the following properties:
+Пропс `items` — массив объектов со свойствами:
 
 - [`kind?: "textAlign" | "heading" | "link" | "image" | "blockquote" | "bulletList" | "orderedList" | "taskList" | "codeBlock" | "horizontalRule" | "paragraph" | "clearFormatting" | "duplicate" | "delete" | "moveUp" | "moveDown" | "suggestion" | "mention" | "emoji"`{lang="ts-type"}](/docs/components/editor/#handlers)
 - `label?: string`{lang="ts-type"}
@@ -56,16 +60,16 @@ class: 'p-8'
 ::
 
 ::note
-You can also pass an array of arrays to the `items` prop to create separated groups of items.
+Чтобы получить отдельные группы элементов, передайте в `items` массив массивов.
 ::
 
 ::tip
-Use `type: 'label'` for section headers and `type: 'separator'` for visual dividers to organize commands into logical groups for better discoverability.
+`type: 'label'` задаёт заголовки разделов, а `type: 'separator'` — визуальные разделители: так команды удобнее собрать в логические группы.
 ::
 
-### Char
+### Символ {#char}
 
-Use the `char` prop to change the trigger character. Defaults to `/`{lang="ts-type"}.
+Пропс `char` меняет символ-триггер. По умолчанию `/`{lang="ts-type"}.
 
 ```vue
 <template>
@@ -75,11 +79,11 @@ Use the `char` prop to change the trigger character. Defaults to `/`{lang="ts-ty
 </template>
 ```
 
-### Suggestion
+### Подсказка {#suggestion}
 
-Use the `suggestion` prop to customize TipTap's [Suggestion matching behavior](https://tiptap.dev/docs/editor/api/utilities/suggestion#settings).
+Пропс `suggestion` настраивает [поведение сопоставления Suggestion](https://tiptap.dev/docs/editor/api/utilities/suggestion#settings) из TipTap.
 
-This is useful when the trigger character should open directly after other characters instead of requiring the default whitespace prefix.
+Это нужно, если меню должно открываться сразу после других символов, а не только после пробела, как по умолчанию.
 
 ```vue
 <template>
@@ -96,9 +100,9 @@ This is useful when the trigger character should open directly after other chara
 </template>
 ```
 
-### Options
+### Параметры {#options}
 
-Use the `options` prop to customize the positioning behavior using [Floating UI options](https://floating-ui.com/docs/computeposition#options).
+Пропс `options` настраивает позиционирование с помощью [параметров Floating UI](https://floating-ui.com/docs/computeposition#options).
 
 ```vue
 <template>
@@ -117,10 +121,10 @@ Use the `options` prop to customize the positioning behavior using [Floating UI 
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-## Theme
+## Тема {#theme}
 
 :component-theme

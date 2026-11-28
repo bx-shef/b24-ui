@@ -1,12 +1,16 @@
 ---
 title: ChatShimmer
-description: Apply a shimmer loading effect to text.
+description: 'Добавляет тексту эффект мерцающей загрузки.'
 category: chat
+keywords:
+  - мерцание текста
+  - эффект загрузки текста
+  - анимация ожидания ответа
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/ChatShimmer.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/chat-shimmer
   - label: Nuxt UI
@@ -14,65 +18,65 @@ links:
     to: https://ui.nuxt.com/docs/components/chat-shimmer
 ---
 
-## Usage
+## Использование {#usage}
 
-The ChatShimmer component renders an element with an animated shimmer gradient over text, commonly used to indicate streaming or loading states in chat interfaces.
+Компонент ChatShimmer отрисовывает элемент с анимированным мерцающим градиентом поверх текста. Обычно так показывают поток ответа или загрузку в чатах.
 
 ::note
-This component is automatically used by the [`ChatTool`](/docs/components/chat-tool/) and [`ChatReasoning`](/docs/components/chat-reasoning/) components when streaming.
+Компоненты [`ChatTool`](/docs/components/chat-tool/) и [`ChatReasoning`](/docs/components/chat-reasoning/) используют его автоматически во время потока.
 ::
 
 ::tip
-The animation is automatically disabled when the user prefers reduced motion, the text is displayed as static muted text instead.
+Если пользователь предпочитает уменьшенную анимацию, анимация отключается, а текст показывается статичным приглушённым цветом.
 ::
 
-### Text
+### Текст {#text}
 
-Use the `text` prop to set the shimmer text.
+Пропс `text` задаёт мерцающий текст.
 
 ::component-code
 ---
 props:
-  text: 'Thinking...'
+  text: 'Думаю...'
 ---
 ::
 
-### Duration
+### Длительность {#duration}
 
-Use the `duration` prop to control the animation speed in seconds.
+Пропс `duration` задаёт скорость анимации в секундах.
 
 ::component-code
 ---
 props:
-  text: 'Thinking...'
+  text: 'Думаю...'
   duration: 4
 ---
 ::
 
-### Spread
+### Ширина блика {#spread}
 
-Use the `spread` prop to control the width of the shimmer highlight. The actual spread is computed as `text.length * spread` in pixels.
+Пропс `spread` задаёт ширину блика. Фактическая ширина в пикселях считается как `text.length * spread`.
 
 ::component-code
 ---
 props:
-  text: 'Thinking...'
+  text: 'Думаю...'
   spread: 5
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
 ::tip{to="/docs/components/chat/"}
-Check the **Chat** overview page for installation instructions, server setup and usage examples.
+Установка, настройка сервера и примеры использования — на обзорной странице **Chat**.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-## Theme
+## Тема {#theme}
 
 :component-theme

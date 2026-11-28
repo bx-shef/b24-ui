@@ -98,13 +98,12 @@ import { computed, ref, inject } from 'vue'
 import { defu } from 'defu'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
-import { useForwardProps } from '../composables/useForwardProps'
 import { useComponentIcons } from '../composables/useComponentIcons'
 import { useFieldGroup } from '../composables/useFieldGroup'
 import { formLoadingInjectionKey } from '../composables/useFormField'
-import { omit, mergeClasses } from '../utils'
+import { mergeClasses } from '../utils'
 import { tv } from '../utils/tv'
-import { pickLinkProps } from '../utils/link'
+import { linkKeys, LinkSlot } from '../utils/link'
 import icons from '../dictionary/icons'
 import B24Avatar from './Avatar.vue'
 import B24Link from './Link.vue'
@@ -128,14 +127,21 @@ const props = useComponentProps('button', _props)
 const appConfig = useAppConfig() as Button['AppConfig']
 const { orientation, size: buttonSize, noSplit } = useFieldGroup<ButtonProps>(_props)
 
-const linkProps = useForwardProps(computed(() => pickLinkProps(props)))
+// Without `to` or `href`, `LinkSlot` stands in for the Link and these are never read
+const isLink = computed(() => !!(props.to ?? props.href))
 
-/**
- * @memo Problem use at Docs (vue): omit not exports
- */
+// Reads only the link props through the `useComponentProps` proxy, `type`,
+// `disabled` and `onClick` are bound separately
 const proxyLinkProps = computed(() => {
-  return omit(linkProps.value, ['type', 'disabled', 'onClick'])
+  const forwarded: Record<string, any> = {}
+  for (const key of linkKeys) {
+    if (key === 'type' || key === 'disabled' || key === 'onClick') continue
+    const value = props[key as keyof typeof props]
+    if (value !== undefined) forwarded[key] = value
+  }
+  return forwarded
 })
+
 const loadingAutoState = ref(false)
 const formLoading = inject<Ref<boolean> | undefined>(formLoadingInjectionKey, undefined)
 
@@ -210,11 +216,12 @@ const b24ui = computed(() => tv({
 </script>
 
 <template>
-  <B24Link
+  <component
+    :is="isLink ? B24Link : LinkSlot"
     v-slot="{ active, ...slotProps }"
     :type="props.type"
     :disabled="props.disabled || isLoading"
-    v-bind="proxyLinkProps"
+    v-bind="isLink ? proxyLinkProps : { as: props.as, active: props.active }"
     custom
   >
     <B24LinkBase
@@ -276,5 +283,5 @@ const b24ui = computed(() => tv({
         </slot>
       </div>
     </B24LinkBase>
-  </B24Link>
+  </component>
 </template>

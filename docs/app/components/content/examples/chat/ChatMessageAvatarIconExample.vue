@@ -11,7 +11,7 @@ import RobotIcon from '@bitrix24/b24icons-vue/outline/RobotIcon'
     :parts="[
       {
         type: 'text',
-        text: 'Bitrix24 UI offers several features for building AI chatbots including the ChatMessage, ChatMessages, and ChatPrompt components. Best practices include using the Chat class from AI SDK, implementing proper message styling with variants, and utilizing the built-in actions for message interactions. The components are fully customizable with theming support and responsive design.'
+        text: 'Bitrix24 UI предлагает несколько возможностей для создания AI-чат-ботов, включая компоненты ChatMessage, ChatMessages и ChatPrompt. Рекомендуется использовать класс Chat из AI SDK, оформлять сообщения с помощью вариантов и применять встроенные действия для работы с сообщениями. Компоненты полностью настраиваются: они поддерживают темы и адаптивный дизайн.'
       }
     ]"
     role="assistant"

@@ -10,7 +10,7 @@ const value = shallowRef<DateValue | undefined>()
   <B24DateTimePicker v-model="value">
     <template #default="{ formatted }">
       <B24Button :icon="Calendar1Icon" color="air-secondary-accent">
-        {{ formatted || 'Choose when' }}
+        {{ formatted || 'Выберите, когда' }}
       </B24Button>
     </template>
   </B24DateTimePicker>

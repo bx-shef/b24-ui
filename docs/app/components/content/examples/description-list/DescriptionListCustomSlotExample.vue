@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DescriptionListItem } from '@bitrix24/b24ui-nuxt'
+import type { DescriptionListItem } from '@bxshefby/b24ui-nuxt'
 import DownloadDoubleIcon from '@bitrix24/b24icons-vue/actions/DownloadDoubleIcon'
 import PersonIcon from '@bitrix24/b24icons-vue/main/PersonIcon'
 import Calendar1Icon from '@bitrix24/b24icons-vue/main/Calendar1Icon'
@@ -9,9 +9,9 @@ const items = ref([
   {
     id: 'amount',
     slot: 'amount',
-    label: 'Amount',
+    label: 'Сумма',
     value: '$10,560.00',
-    description: 'Paid',
+    description: 'Оплачено',
     b24ui: {
       label: 'font-(--ui-font-weight-semi-bold) text-(length:--ui-font-size-md)/(--ui-font-line-height-md)',
       description: 'font-(--ui-font-weight-semi-bold) text-(length:--ui-font-size-lg) block w-full'
@@ -19,26 +19,26 @@ const items = ref([
   },
   {
     id: 'client',
-    label: 'Client',
+    label: 'Клиент',
     avatar: {
       icon: PersonIcon
     },
-    description: 'Employee Name',
+    description: 'Имя сотрудника',
     b24ui: {
       description: 'font-(--ui-font-weight-semi-bold)'
     }
   },
   {
     id: 'date',
-    label: 'Due date',
+    label: 'Срок',
     icon: Calendar1Icon,
     value: new Date('2023-01-31T03:24:00')
   },
   {
     id: 'payment',
-    label: 'Payment method',
+    label: 'Способ оплаты',
     icon: CreditDebitCardIcon,
-    description: 'Paid with MasterCard'
+    description: 'Оплачено через MasterCard'
   }
 ] satisfies (DescriptionListItem & { id: string, value?: Date | string })[])
 </script>
@@ -46,8 +46,8 @@ const items = ref([
 <template>
   <B24Card variant="tinted-success" class="w-full">
     <B24DescriptionList
-      legend="Applicant Information"
-      text="Personal details and application."
+      legend="Информация о кандидате"
+      text="Личные данные и заявка."
       class="light"
       :items="items"
       :b24ui="{
@@ -62,7 +62,7 @@ const items = ref([
       <template #amount="{ index }">
         <dt class="col-start-1 flex flex-nowrap flex-row items-center justify-start gap-1.5 pt-2 sm:py-1 px-4">
           <ProseH4 class="mb-0">
-            Amount
+            Сумма
           </ProseH4>
         </dt>
         <dd class="pb-3 pt-1 sm:py-3 px-4">
@@ -89,7 +89,7 @@ const items = ref([
       <template #footer>
         <B24Button
           color="air-primary"
-          label="Download receipt"
+          label="Скачать чек"
           :icon="DownloadDoubleIcon"
           rounded
         />

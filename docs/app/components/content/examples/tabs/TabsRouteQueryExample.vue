@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TabsItem } from '@bitrix24/b24ui-nuxt'
+import type { TabsItem } from '@bxshefby/b24ui-nuxt'
 import UserIcon from '@bitrix24/b24icons-vue/common-b24/UserIcon'
 import Shield2ContourIcon from '@bitrix24/b24icons-vue/main/Shield2ContourIcon'
 
@@ -8,12 +8,12 @@ const router = useRouter()
 
 const items: TabsItem[] = [
   {
-    label: 'Account',
+    label: 'Аккаунт',
     icon: UserIcon,
     value: 'account'
   },
   {
-    label: 'Password',
+    label: 'Пароль',
     icon: Shield2ContourIcon,
     value: 'password'
   }
@@ -24,7 +24,7 @@ const active = computed({
     return (route.query.tab as string) || 'account'
   },
   set(tab) {
-    // Hash is specified here to prevent the page from scrolling to the top
+    // Хеш указан здесь, чтобы страница не прокручивалась наверх
     router.push({
       path: '/b24ui/docs/components/tabs',
       query: { tab },

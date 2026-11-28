@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { ListboxItem } from '@bitrix24/b24ui-nuxt'
+import type { ListboxItem } from '@bxshefby/b24ui-nuxt'
 import FileIcon from '@bitrix24/b24icons-vue/outline/FileIcon'
 
 const items: ListboxItem[] = Array.from({ length: 1000 }, (_, i) => ({
-  label: `Item ${i + 1}`,
+  label: `Элемент ${i + 1}`,
   icon: FileIcon,
   value: i + 1
 }))

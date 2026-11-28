@@ -1,12 +1,16 @@
 ---
 title: PageCard
-description: 'A pre-styled card component featuring a title, description, and optional link.'
+description: 'Готовая стилизованная карточка с заголовком, описанием и необязательной ссылкой.'
 category: page
+keywords:
+  - карточка страницы
+  - карточка с заголовком
+  - стилизованная карточка
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/PageCard.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/page-card
   - label: Nuxt UI
@@ -14,9 +18,9 @@ links:
     to: https://ui.nuxt.com/docs/components/page-card
 ---
 
-## Usage
+## Использование {#usage}
 
-The PageCard component provides a flexible way to display content in a card with an illustration in the default slot.
+Компонент PageCard — гибкий способ показать содержимое в карточке с иллюстрацией в слоте по умолчанию.
 
 ::component-example
 ---
@@ -26,26 +30,30 @@ class: 'p-8'
 ::
 
 ::tip
-Use the [PageGrid](/docs/components/page-grid/), [PageColumns](/docs/components/page-columns/) or [PageList](/docs/components/page-list/) components to display multiple PageCard.
+Чтобы показать несколько PageCard, используйте компоненты [PageGrid](/docs/components/page-grid/), [PageColumns](/docs/components/page-columns/) или [PageList](/docs/components/page-list/).
 ::
 
-### Title
+### Заголовок {#title}
 
-Use the `title` prop to set the title of the card.
+Пропс `title` задаёт заголовок карточки.
 
 ::component-code
 ---
 hide:
   - class
 props:
-  title: 'Online workspace for the whole team'
+  title: 'Онлайн-офис для всей команды'
   class: 'w-96'
 ---
 ::
 
-### Description
+::tip
+Заголовок по умолчанию отрисовывается как `div`. Чтобы отрисовать его как заголовок, передайте в пропс `as` объект, например `:as="{ title: 'h3' }"`{lang="ts-type"}. Корневой элемент задаётся так же: `:as="{ root: 'section', title: 'h3' }"`{lang="ts-type"}.
+::
 
-Use the `description` prop to set the description of the card.
+### Описание {#description}
+
+Пропс `description` задаёт описание карточки.
 
 ::component-code
 ---
@@ -55,15 +63,15 @@ hide:
 ignore:
   - title
 props:
-  title: 'Online workspace for the whole team'
-  description: 'Through its wide variety of communication and collaboration tools, Bitrix24 enables teams to work efficiently and smoothly wherever they are – at home, in the office, or on the go.'
+  title: 'Онлайн-офис для всей команды'
+  description: 'Благодаря широкому набору инструментов для общения и совместной работы Bitrix24 позволяет командам работать эффективно и слаженно, где бы они ни были: дома, в офисе или в дороге.'
   class: 'w-96'
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to set the [Icon](https://bitrix24.github.io/b24icons/icons/) of the card.
+Пропс `icon` задаёт [иконку](https://bitrix24.github.io/b24icons/icons/) карточки.
 
 ::component-code
 ---
@@ -77,16 +85,16 @@ ignore:
   - title
   - description
 props:
-  title: 'Online workspace for the whole team'
-  description: 'Through its wide variety of communication and collaboration tools, Bitrix24 enables teams to work efficiently and smoothly wherever they are – at home, in the office, or on the go.'
+  title: 'Онлайн-офис для всей команды'
+  description: 'Благодаря широкому набору инструментов для общения и совместной работы Bitrix24 позволяет командам работать эффективно и слаженно, где бы они ни были: дома, в офисе или в дороге.'
   icon: 'RocketIcon'
   class: 'w-96'
 ---
 ::
 
-### Link
+### Ссылка {#link}
 
-You can pass any property from the [`<NuxtLink>`](https://nuxt.com/docs/api/components/nuxt-link) component such as `to`, `target`, `rel`, etc.
+Можно передать любое свойство компонента [`<NuxtLink>`](https://nuxt.com/docs/api/components/nuxt-link), например `to`, `target`, `rel` и другие.
 
 ::component-code
 ---
@@ -102,8 +110,8 @@ ignore:
   - icon
   - target
 props:
-  title: 'Online workspace for the whole team'
-  description: 'Through its wide variety of communication and collaboration tools, Bitrix24 enables teams to work efficiently and smoothly wherever they are – at home, in the office, or on the go.'
+  title: 'Онлайн-офис для всей команды'
+  description: 'Благодаря широкому набору инструментов для общения и совместной работы Bitrix24 позволяет командам работать эффективно и слаженно, где бы они ни были: дома, в офисе или в дороге.'
   icon: 'RocketIcon'
   to: 'https://www.bitrix24.com/tools/communications/'
   target: _blank
@@ -111,9 +119,9 @@ props:
 ---
 ::
 
-### Variant
+### Вариант {#variant}
 
-Use the `variant` prop to change the style of the card.
+Пропс `variant` меняет стиль карточки.
 
 ::component-code
 ---
@@ -130,8 +138,8 @@ ignore:
 cast:
   icon: 'RocketIcon'
 props:
-  title: 'Online workspace for the whole team'
-  description: 'Through its wide variety of communication and collaboration tools, Bitrix24 enables teams to work efficiently and smoothly wherever they are – at home, in the office, or on the go.'
+  title: 'Онлайн-офис для всей команды'
+  description: 'Благодаря широкому набору инструментов для общения и совместной работы Bitrix24 позволяет командам работать эффективно и слаженно, где бы они ни были: дома, в офисе или в дороге.'
   icon: 'RocketIcon'
   to: 'https://www.bitrix24.com/tools/communications/'
   target: _blank
@@ -140,9 +148,9 @@ props:
 ---
 ::
 
-### Orientation
+### Ориентация {#orientation}
 
-Use the `orientation` prop to change the orientation with the default slot. Defaults to `vertical`.
+Пропс `orientation` меняет ориентацию слота по умолчанию. По умолчанию `vertical`.
 
 ::component-code
 ---
@@ -154,8 +162,8 @@ ignore:
 cast:
   icon: 'RocketIcon'
 props:
-  title: 'Online workspace for the whole team'
-  description: 'Through its wide variety of communication and collaboration tools, Bitrix24 enables teams to work efficiently and smoothly wherever they are – at home, in the office, or on the go.'
+  title: 'Онлайн-офис для всей команды'
+  description: 'Благодаря широкому набору инструментов для общения и совместной работы Bitrix24 позволяет командам работать эффективно и слаженно, где бы они ни были: дома, в офисе или в дороге.'
   icon: 'RocketIcon'
   orientation: horizontal
 slots:
@@ -167,9 +175,9 @@ slots:
 :img{src="/b24ui/assets/demo/communications-main.png.webp" alt="Online workspace for the whole team" class="aspect-3/2 object-cover"}
 ::
 
-### Reverse
+### Обратный порядок {#reverse}
 
-Use the `reverse` prop to reverse the orientation of the default slot.
+Пропс `reverse` меняет порядок слота по умолчанию на обратный.
 
 ::component-code
 ---
@@ -181,8 +189,8 @@ ignore:
 cast:
   icon: 'RocketIcon'
 props:
-  title: 'Online workspace for the whole team'
-  description: 'Through its wide variety of communication and collaboration tools, Bitrix24 enables teams to work efficiently and smoothly wherever they are – at home, in the office, or on the go.'
+  title: 'Онлайн-офис для всей команды'
+  description: 'Благодаря широкому набору инструментов для общения и совместной работы Bitrix24 позволяет командам работать эффективно и слаженно, где бы они ни были: дома, в офисе или в дороге.'
   icon: 'RocketIcon'
   orientation: horizontal
   reverse: true
@@ -195,9 +203,9 @@ slots:
 :img{src="/b24ui/assets/demo/communications-main.png.webp" alt="Online workspace for the whole team" class="aspect-3/2 object-cover"}
 ::
 
-### Highlight
+### Выделение {#highlight}
 
-Use the `highlight` and `highlight-color` props to display a highlighted border around the card.
+Пропсы `highlight` и `highlight-color` показывают выделенную рамку вокруг карточки.
 
 ::component-code
 ---
@@ -212,8 +220,8 @@ ignore:
 cast:
   icon: 'RocketIcon'
 props:
-  title: 'Online workspace for the whole team'
-  description: 'Through its wide variety of communication and collaboration tools, Bitrix24 enables teams to work efficiently and smoothly wherever they are – at home, in the office, or on the go.'
+  title: 'Онлайн-офис для всей команды'
+  description: 'Благодаря широкому набору инструментов для общения и совместной работы Bitrix24 позволяет командам работать эффективно и слаженно, где бы они ни были: дома, в офисе или в дороге.'
   icon: 'RocketIcon'
   orientation: horizontal
   highlight: true
@@ -227,11 +235,11 @@ slots:
 :img{src="/b24ui/assets/demo/communications-main.png.webp" alt="Online workspace for the whole team" class="aspect-3/2 object-cover"}
 ::
 
-## Examples
+## Примеры {#examples}
 
-### As a testimonial
+### Как отзыв {#as-a-testimonial}
 
-Use the [User](/docs/components/user/) component in the `header` or `footer` slot to make the card look like a testimonial.
+Компонент [User](/docs/components/user/) в слоте `header` или `footer` делает карточку похожей на отзыв.
 
 ::component-example
 ---
@@ -240,19 +248,19 @@ name: 'page-card-testimonial-example'
 ::
 
 ::tip{to="/docs/components/page-columns/"}
-You can use the `PageColumns` component to display multiple PageCard in a multi-column layout.
+Компонент `PageColumns` показывает несколько PageCard в многоколоночной раскладке.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

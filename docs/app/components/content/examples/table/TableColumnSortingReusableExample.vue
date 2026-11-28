@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { h, resolveComponent } from 'vue'
-import type { TableColumn } from '@bitrix24/b24ui-nuxt'
+import type { TableColumn } from '@bxshefby/b24ui-nuxt'
 import type { Column } from '@tanstack/vue-table'
 import SortIcon from '@bitrix24/b24icons-vue/actions/SortIcon'
 import ChevronTopLIcon from '@bitrix24/b24icons-vue/outline/ChevronTopLIcon'
@@ -57,7 +57,7 @@ const columns: TableColumn<Payment>[] = [{
 }, {
   accessorKey: 'date',
   enableSorting: true,
-  header: ({ column }) => getHeader(column, 'Date'),
+  header: ({ column }) => getHeader(column, 'Дата'),
   cell: ({ row }) => {
     return new Date(row.getValue('date')).toLocaleString('en-US', {
       day: 'numeric',
@@ -71,7 +71,7 @@ const columns: TableColumn<Payment>[] = [{
 }, {
   accessorKey: 'status',
   enableSorting: true,
-  header: ({ column }) => getHeader(column, 'Status'),
+  header: ({ column }) => getHeader(column, 'Статус'),
   cell: ({ row }) => {
     const color = ({
       paid: 'air-primary-success' as const,
@@ -88,7 +88,7 @@ const columns: TableColumn<Payment>[] = [{
 }, {
   accessorKey: 'amount',
   enableSorting: true,
-  header: ({ column }) => getHeader(column, 'Amount'),
+  header: ({ column }) => getHeader(column, 'Сумма'),
   meta: {
     class: {
       th: 'text-end',
@@ -112,7 +112,7 @@ function getHeader(column: Column<Payment>, label: string) {
     label,
     'size': 'sm',
     'class': 'group -mx-2.5 [--ui-btn-height:20px]',
-    'aria-label': `Sort by ${isSorted === 'asc' ? 'descending' : 'ascending'}`,
+    'aria-label': `Сортировка: ${isSorted === 'asc' ? 'по убыванию' : 'по возрастанию'}`,
     'onClick': () => column.toggleSorting(column.getIsSorted() === 'asc')
   }, {
     trailing: () => h(isSorted ? (isSorted === 'asc' ? ChevronTopLIcon : ChevronDownLIcon) : SortIcon, {

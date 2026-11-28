@@ -1,47 +1,47 @@
-# Task Form Layout
+# Раскладка формы задачи
 
-Bitrix24-style task form composed from standard `b24ui` components only — single column, no custom CSS beyond component props.
+Форма задачи в стиле Bitrix24, собранная только из стандартных компонентов `b24ui`: одна колонка, без собственного CSS сверх пропсов компонентов.
 
-## When to use
+## Когда использовать
 
-- Task or issue creation/editing screens in Bitrix24 apps
-- Any form that combines a rich-text description, assignee fields, a date picker, and a wrap row of secondary actions
-- Reference for composing `Editor`, `Card`, `Avatar`, `InputDate`, `Calendar`, `Popover`, and `Button` into a non-trivial form layout without custom CSS
+- Экраны создания и редактирования задач в приложениях Bitrix24
+- Любая форма, где сочетаются описание в форматированном тексте, поля исполнителей, выбор даты и переносимый ряд второстепенных действий
+- Образец сборки `Editor`, `Card`, `Avatar`, `InputDate`, `Calendar`, `Popover` и `Button` в нетривиальную раскладку формы без собственного CSS
 
-## Component tree
+## Дерево компонентов
 
 ```
 div.flex.flex-col.gap-4.p-4.w-full
-├── B24Input (xl, no-border — task title, semi-bold)
-├── B24Card (b24ui.body='p-0') — editor
+├── B24Input (xl, no-border — название задачи, semi-bold)
+├── B24Card (b24ui.body='p-0') — редактор
 │   └── B24Editor (markdown, min-h-48 px-4 py-3)
-│       └── slot: div.flex.items-center.gap-1 (toolbar row)
-│           ├── B24Button (FileUploadIcon, ghost, sm — attach file)
+│       └── slot: div.flex.items-center.gap-1 (строка панели инструментов)
+│           ├── B24Button (FileUploadIcon, ghost, sm — прикрепить файл)
 │           ├── B24EditorToolbar (mention, bulletList, orderedList)
-│           └── B24Button (GoToLIcon, ghost, sm, ms-auto — expand)
-├── B24Card (b24ui.body='p-0') — responsible persons
+│           └── B24Button (GoToLIcon, ghost, sm, ms-auto — развернуть)
+├── B24Card (b24ui.body='p-0') — ответственные
 │   └── div.divide-y
-│       ├── row: Creator — B24Avatar + name
-│       ├── row: Assignee — B24Avatar + name
-│       └── row: Deadline — B24InputDate (sm, no-border, flex-1)
+│       ├── строка: постановщик — B24Avatar и имя
+│       ├── строка: исполнитель — B24Avatar и имя
+│       └── строка: срок — B24InputDate (sm, no-border, flex-1)
 │           └── #trailing: B24Popover(:reference=inputsRef[3].$el)
 │               ├── trigger: B24Button (CalendarIcon)
 │               └── #content: B24Calendar (v-model=deadline)
-├── B24Card — watchers
-│   ├── #header: label + B24Button (PlusLIcon, xs — add watcher)
-│   └── body: B24Avatar × n (air-secondary-* colors)
-├── div.flex.flex-wrap.gap-2 — action buttons
-│   └── B24Button × 17 (sm, active→air-secondary-accent-2, inactive→air-secondary-no-accent)
-└── div.flex.gap-2.justify-end — footer
+├── B24Card — наблюдатели
+│   ├── #header: подпись и B24Button (PlusLIcon, xs — добавить наблюдателя)
+│   └── тело: B24Avatar × n (цвета air-secondary-*)
+├── div.flex.flex-wrap.gap-2 — кнопки действий
+│   └── B24Button × 17 (sm, активна → air-secondary-accent-2, неактивна → air-secondary-no-accent)
+└── div.flex.gap-2.justify-end — подвал
     ├── B24Button (Save, air-primary)
     └── B24Button (Cancel, air-tertiary)
 ```
 
-## Full example
+## Полный пример
 
 ```vue [components/TaskFormWidget.vue]
 <script setup lang="ts">
-import type { EditorToolbarItem, IconComponent } from '@bitrix24/b24ui-nuxt'
+import type { EditorToolbarItem, IconComponent } from '@bxshefby/b24ui-nuxt'
 import { CalendarDate } from '@internationalized/date'
 import FileUploadIcon from '@bitrix24/b24icons-vue/main/FileUploadIcon'
 import GoToLIcon from '@bitrix24/b24icons-vue/outline/GoToLIcon'
@@ -69,18 +69,18 @@ import SettingsIcon from '@bitrix24/b24icons-vue/outline/SettingsIcon'
 
 const title = ref('Design the new task form interface')
 const description = ref('')
-// B24InputDate uses @internationalized/date values (DateValue), not a native Date
+// B24InputDate работает со значениями @internationalized/date (DateValue), а не с нативным Date
 const deadline = shallowRef<CalendarDate | undefined>(new CalendarDate(2026, 6, 30))
 const deadlineInput = useTemplateRef('deadlineInput')
 
-// Static list — no reactive deps, so a plain const (not computed)
+// Статический список — реактивных зависимостей нет, поэтому обычная const (не computed)
 const toolbarItems: EditorToolbarItem[][] = [[
   { kind: 'mention', icon: MentionIcon, tooltip: { text: 'Mention' } },
   { kind: 'bulletList', icon: BulletedListIcon, tooltip: { text: 'Bullet list' } },
   { kind: 'orderedList', icon: NumberedListIcon, tooltip: { text: 'Numbered list' } }
 ]]
 
-// active flag drives button color: air-secondary-accent-2 vs air-secondary-no-accent
+// флаг active задаёт цвет кнопки: air-secondary-accent-2 или air-secondary-no-accent
 const actionButtons: { label: string, icon: IconComponent, active?: boolean }[] = [
   { label: 'Results', icon: CircleCheckIcon, active: true },
   { label: 'Files', icon: FileUploadIcon, active: true },
@@ -202,11 +202,11 @@ const actionButtons: { label: string, icon: IconComponent, active?: boolean }[] 
 </template>
 ```
 
-## Key patterns
+## Ключевые приёмы
 
-### Editor with custom toolbar row
+### Редактор со своей строкой панели инструментов
 
-Place a `div` as the first child of `B24Editor`'s default slot to render a persistent toolbar above the content area. The slot renders before `EditorContent` in the component tree, so the toolbar naturally sits on top. Mix TipTap-aware items (`B24EditorToolbar`) with plain `B24Button` controls (attachment, expand) that are not editor commands.
+Поместите `div` первым дочерним элементом слота по умолчанию у `B24Editor`, чтобы над областью содержимого постоянно была панель инструментов. Слот отрисовывается в дереве компонентов перед `EditorContent`, поэтому панель естественно оказывается сверху. Сочетайте элементы, работающие с TipTap (`B24EditorToolbar`), с обычными кнопками `B24Button` (вложение, развернуть), которые не являются командами редактора.
 
 ```vue
 <B24Editor v-slot="{ editor }" v-model="content">
@@ -220,9 +220,9 @@ Place a `div` as the first child of `B24Editor`'s default slot to render a persi
 </B24Editor>
 ```
 
-### Zero-padding card with divided rows
+### Карточка без отступов со строками-разделителями
 
-Use `b24ui.body = 'p-0'` to remove the card's default padding, then control spacing per-row. Dividers extend edge-to-edge while each row manages its own padding.
+`b24ui.body = 'p-0'` убирает отступы карточки по умолчанию, дальше отступы задаются у каждой строки. Разделители тянутся от края до края, а каждая строка управляет своими отступами.
 
 ```vue
 <B24Card :b24ui="{ body: 'p-0' }">
@@ -233,18 +233,18 @@ Use `b24ui.body = 'p-0'` to remove the card's default padding, then control spac
 </B24Card>
 ```
 
-### Borderless fields inside cards
+### Поля без рамки внутри карточек
 
-`B24Input` and `B24InputDate` both accept a `no-border` prop. Use it for the task title (a clean heading without a box) and for fields embedded inside a `p-0` card so they don't fight the card chrome.
+`B24Input` и `B24InputDate` принимают пропс `no-border`. Используйте его для названия задачи (чистый заголовок без рамки) и для полей внутри карточки с `p-0`, чтобы они не спорили с оформлением карточки.
 
 ```vue
 <B24Input v-model="title" size="xl" no-border />
 <B24InputDate v-model="deadline" size="sm" no-border class="flex-1" />
 ```
 
-### Date picker with dropdown calendar
+### Выбор даты с календарём в выпадающем окне
 
-Attach a `B24Calendar` in the `#trailing` slot of `B24InputDate` inside a `B24Popover`. Both share the same `v-model`. The popover anchors to the last input segment via `inputsRef[3]?.$el` (established pattern, matches `FormExampleEditSection`).
+Поместите `B24Calendar` в слот `#trailing` у `B24InputDate` внутрь `B24Popover`. У обоих общий `v-model`. Поповер привязывается к последнему сегменту поля через `inputsRef[3]?.$el` (устоявшийся приём, как в `FormExampleEditSection`).
 
 ```vue
 <B24InputDate ref="deadlineInput" v-model="deadline" size="sm" no-border>
@@ -259,9 +259,9 @@ Attach a `B24Calendar` in the `#trailing` slot of `B24InputDate` inside a `B24Po
 </B24InputDate>
 ```
 
-### Active/inactive action buttons
+### Активные и неактивные кнопки действий
 
-Add an `active?: boolean` flag to each item. Drive the `color` prop dynamically. Add `aria-pressed` so screen readers can distinguish active items from inactive ones.
+Добавьте каждому элементу флаг `active?: boolean` и задавайте `color` динамически. Добавьте `aria-pressed`, чтобы программы чтения с экрана отличали активные элементы от неактивных.
 
 ```vue
 <B24Button
@@ -275,9 +275,9 @@ Add an `active?: boolean` flag to each item. Drive the `color` prop dynamically.
 />
 ```
 
-### Wrapping action buttons
+### Перенос кнопок действий
 
-A `flex flex-wrap gap-2` container wraps `B24Button` items automatically at any screen width. Type the data array with `IconComponent` so the icon prop is checked at compile time.
+Контейнер `flex flex-wrap gap-2` автоматически переносит `B24Button` при любой ширине экрана. Типизируйте массив данных через `IconComponent`, чтобы пропс иконки проверялся при компиляции.
 
 ```vue
 <div class="flex flex-wrap gap-2">
@@ -292,10 +292,10 @@ A `flex flex-wrap gap-2` container wraps `B24Button` items automatically at any 
 </div>
 ```
 
-## Common mistakes
+## Частые ошибки
 
-- Declaring a static toolbar array as `computed` — it has no reactive dependencies, so a plain `const toolbarItems: EditorToolbarItem[][]` is correct and cheaper
-- Passing a native `Date` to `B24InputDate` — the component uses `@internationalized/date` values (`CalendarDate`/`DateValue`), not native `Date`. Use `shallowRef<CalendarDate | undefined>`
-- Omitting `useTemplateRef` for the deadline input — `B24Popover` needs `:reference` to anchor correctly; without it the popover may appear in an unexpected position
-- Giving `B24Card` a header via both the `title` prop and the `#header` slot at the same time — use only one; prefer `#header` when you need flex layout in the header
-- Forgetting `aria-pressed` on toggle-style action buttons — without it screen readers cannot distinguish active from inactive state
+- Статический массив панели инструментов объявлен как `computed` — реактивных зависимостей у него нет, поэтому правильно и дешевле обычная `const toolbarItems: EditorToolbarItem[][]`.
+- В `B24InputDate` передан нативный `Date` — компонент работает со значениями `@internationalized/date` (`CalendarDate`/`DateValue`), а не с нативным `Date`. Используйте `shallowRef<CalendarDate | undefined>`.
+- Нет `useTemplateRef` для поля срока — `B24Popover` нужен `:reference`, чтобы правильно привязаться; без него поповер может появиться в неожиданном месте.
+- Шапка у `B24Card` задана одновременно пропсом `title` и слотом `#header` — используйте что-то одно; если в шапке нужна flex-раскладка, берите `#header`.
+- Забыт `aria-pressed` у кнопок действий в роли переключателей — без него программы чтения с экрана не отличат активное состояние от неактивного.

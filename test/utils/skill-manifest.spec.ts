@@ -667,11 +667,11 @@ describe('skill package', () => {
     // Scoped to the routing table rather than run over the whole file: any
     // other table added to SKILL.md later would otherwise be validated against
     // this vocabulary and fail for reasons that have nothing to do with routing.
-    const table = body.match(/^### Routing table\n([\s\S]*?)(?=^## )/m)?.[1]
+    const table = body.match(/^### (?:Routing table|Таблица выбора)\n([\s\S]*?)(?=^## )/m)?.[1]
     expect(table).toBeDefined()
 
     const rows = [...table!.matchAll(/^\|(?!\s*-)([^|\n]+)\|([^|\n]+)\|\s*$/gm)]
-      .filter(([, task]) => task!.trim() !== 'Task')
+      .filter(([, task]) => !['Task', 'Задача'].includes(task!.trim()))
 
     // Counted independently of the pattern above, so a regex that silently
     // stops matching *some* rows fails instead of quietly checking fewer of

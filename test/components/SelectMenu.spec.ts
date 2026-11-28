@@ -1,6 +1,7 @@
 import { describe, it, expect, test } from 'vitest'
 import { axe } from 'vitest-axe'
-import { h } from 'vue'
+import type { Component } from 'vue'
+import { defineComponent, h, ref } from 'vue'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
 import { renderEach } from '../component-render'
 import SelectMenu from '../../src/runtime/components/SelectMenu.vue'
@@ -131,6 +132,41 @@ describe('SelectMenu', () => {
     expect(wrapper.find('[data-slot="trailingIcon"]').exists()).toBe(false)
   })
 
+  describe('`item` slot prop', () => {
+    const triggerSlots = ['leading', 'default', 'trailing'] as const
+
+    function renderTriggerSlots(mountProps: Record<string, any>) {
+      const received: Record<string, unknown> = {}
+
+      mount(SelectMenu, {
+        props: { items, ...mountProps },
+        slots: Object.fromEntries(triggerSlots.map(name => [name, (slotProps: any) => {
+          received[name] = slotProps.item
+          return ''
+        }]))
+      })
+
+      return received
+    }
+
+    test.each([
+      ['with valueKey', { valueKey: 'value', modelValue: 'todo' }, items[1]],
+      ['with object modelValue', { modelValue: items[1] }, items[1]],
+      ['with by and a copied object', { by: 'value', modelValue: { ...items[1] } }, items[1]],
+      ['with object modelValue missing from items', { items: [], modelValue: items[1] }, items[1]],
+      ['with valueKey and modelValue missing from items', { items: [], valueKey: 'value', modelValue: 'todo' }, undefined],
+      ['without modelValue', {}, undefined],
+      ['with multiple and valueKey', { multiple: true, valueKey: 'value', modelValue: ['backlog', 'done'] }, [items[0], items[3]]],
+      ['with multiple and no selection', { multiple: true, valueKey: 'value', modelValue: [] }, []]
+    ])('%s', (_, mountProps, expected) => {
+      expect(renderTriggerSlots(mountProps)).toStrictEqual({ leading: expected, default: expected, trailing: expected })
+    })
+
+    test('finds the item inside groups', () => {
+      expect(renderTriggerSlots({ items: [[{ label: 'Status', type: 'label' }, ...items.slice(0, 2)], items.slice(2)], valueKey: 'value', modelValue: 'done' }).default).toStrictEqual(items[3])
+    })
+  })
+
   it('passes accessibility tests', async () => {
     const wrapper = await mountSuspended(SelectMenu, {
       props: {
@@ -220,6 +256,59 @@ describe('SelectMenu', () => {
       input.vm.$emit('update:open', false)
       expect(wrapper.emitted()).toMatchObject({ blur: [[{ type: 'blur' }]] })
     })
+
+    test.each([
+      ['controlled', { modelValue: 'Option 1' }],
+      ['uncontrolled', { defaultValue: 'Option 1' }]
+    ])('resets the search term when selecting the current item %s', async (_, model) => {
+      const wrapper = mount(SelectMenu, { props: { items: ['Option 1', 'Option 2'], ...model, searchTerm: 'Option', resetSearchTermOnBlur: false, defaultOpen: true, portal: false }, attachTo: document.body })
+      await flushPromises()
+      await wrapper.find('[role="option"][data-state="checked"]').trigger('click')
+
+      expect(wrapper.emitted('update:searchTerm')).toEqual([['']])
+      expect(wrapper.emitted('change')).toBeUndefined()
+
+      wrapper.unmount()
+    })
+
+    test('resets the search term when clearing', async () => {
+      const wrapper = mount(SelectMenu, { props: { items: ['Option 1', 'Option 2'], modelValue: 'Option 1', clear: true, searchTerm: 'Option', resetSearchTermOnBlur: false } })
+      await wrapper.find('[data-slot="trailingClear"]').trigger('click')
+
+      expect(wrapper.emitted('update:searchTerm')).toEqual([['']])
+    })
+
+    test.each([
+      ['single', false, 'Option 1'],
+      ['multiple', true, []]
+    ])('resets a controlled search term once when selecting a new item %s', async (_, multiple, initial) => {
+      const searchTerms: string[] = []
+      const Parent = defineComponent(() => {
+        const searchTerm = ref('Option')
+        const modelValue = ref<any>(initial)
+        return () => h(SelectMenu as Component, {
+          'items': ['Option 1', 'Option 2'],
+          multiple,
+          'modelValue': modelValue.value,
+          'onUpdate:modelValue': (value: any) => { modelValue.value = value },
+          'searchTerm': searchTerm.value,
+          'onUpdate:searchTerm': (value: string) => {
+            searchTerms.push(value)
+            searchTerm.value = value
+          },
+          'defaultOpen': true,
+          'portal': false
+        })
+      })
+      const wrapper = mount(Parent, { attachTo: document.body })
+      await flushPromises()
+      await wrapper.findAll('[role="option"]')[1]!.trigger('click')
+      await flushPromises()
+
+      expect(searchTerms).toEqual([''])
+
+      wrapper.unmount()
+    })
   })
 
   describe('search input', () => {
@@ -272,6 +361,24 @@ describe('SelectMenu', () => {
       const wrapper = await openWith({ autofocus: false })
 
       expect(document.activeElement).not.toBe(wrapper.find('input[data-slot="input"]').element)
+      expect(wrapper.find('[data-slot="focusScope"]').element.contains(document.activeElement)).toBe(true)
+
+      wrapper.unmount()
+    })
+
+    test('navigates the items with the keyboard with searchInput autofocus disabled', async () => {
+      const wrapper = await openWith({ autofocus: false })
+
+      const focusScope = wrapper.find('[data-slot="focusScope"]')
+      const options = wrapper.findAll('[role="option"]')
+      expect(options[0]!.attributes('data-highlighted')).toBeDefined()
+
+      await focusScope.trigger('keydown', { key: 'ArrowDown' })
+      expect(options[1]!.attributes('data-highlighted')).toBeDefined()
+
+      await focusScope.trigger('keydown', { key: 'Enter' })
+      await flushPromises()
+      expect(wrapper.emitted('update:modelValue')).toMatchObject([['Option 2']])
 
       wrapper.unmount()
     })

@@ -1,5 +1,5 @@
 import type { ChatMessageSlots } from '../../src/runtime/components/ChatMessage.vue'
-import { defineComponent, h } from 'vue'
+import { createCommentVNode, defineComponent, h } from 'vue'
 import { describe, it, expect } from 'vitest'
 import { TooltipProvider } from 'reka-ui'
 import { axe } from 'vitest-axe'
@@ -37,8 +37,23 @@ describe('ChatMessage', () => {
     ['with leading slot', { props, slots: { leading: () => 'Leading slot' } }],
     ['with files slot', { props: { ...props, parts: [...props.parts, { type: 'file' as const, mediaType: 'text/plain', url: 'https://example.com/test.txt', filename: 'test.txt' }] }, slots: { files: () => 'Files slot' } }],
     ['with content slot', { props, slots: { content: () => 'Content slot' } }],
+    ['with part slot', { props, slots: { part: () => 'Part slot' } }],
     ['with actions slot', { props, slots: { actions: () => 'Actions slot' } }]
   ])
+
+  it('pads a compact message only when its actions block renders', async () => {
+    const selector = '[&:has(>[data-slot=body]>[data-slot=actions]:not(:empty))]:pb-8'
+    const withActions = await mountSuspended(defineComponent({
+      setup() {
+        return () => h(TooltipProvider, () => h(ChatMessage, { ...props, compact: true, actions: [{ icon: Cross30Icon, label: 'Copy' }] }))
+      }
+    }))
+    const container = withActions.find('[data-slot="container"]').classes()
+
+    // Padding comes from the :has() selector only, never as a bare pb-8 on every compact message
+    expect(container).toContain(selector)
+    expect(container).not.toContain('pb-8')
+  })
 
   it('passes accessibility tests', async () => {
     const wrapper = await mountSuspended(ChatMessage, {
@@ -105,5 +120,27 @@ describe('ChatMessage', () => {
     for (const key of ['as', 'icon', 'avatar', 'variant', 'color', 'side', 'actions', 'compact', 'class', 'b24ui']) {
       expect(captured[0]).not.toHaveProperty(key)
     }
+  })
+
+  it('renders the part slot once per part and falls back for parts it does not render', async () => {
+    const parts = [
+      { type: 'reasoning' as const, text: 'Thinking' },
+      { type: 'text' as const, text: 'Hello' }
+    ]
+    const captured: Parameters<Exclude<ChatMessageSlots['part'], undefined>>[0][] = []
+    const wrapper = await mountSuspended(ChatMessage, {
+      props: { ...props, role: 'assistant', parts },
+      slots: {
+        part: (slotProps) => {
+          captured.push(slotProps)
+          return slotProps.part.type === 'reasoning' ? h('span', { class: 'reasoning' }, slotProps.part.text) : createCommentVNode('v-if')
+        }
+      }
+    })
+
+    expect(captured.map(({ part, index }) => [part.type, index])).toEqual([['reasoning', 0], ['text', 1]])
+    expect(captured[0]!.message).toMatchObject({ id: props.id, role: 'assistant', parts })
+    expect(wrapper.find('.reasoning').text()).toBe('Thinking')
+    expect(wrapper.find('[data-slot="content"]').text()).toBe('ThinkingHello')
   })
 })

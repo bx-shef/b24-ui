@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { h, resolveComponent } from 'vue'
-import type { TableColumn } from '@bitrix24/b24ui-nuxt'
+import type { TableColumn } from '@bxshefby/b24ui-nuxt'
 import type { Row } from '@tanstack/vue-table'
 import { useClipboard } from '@vueuse/core'
 import CircleCheckIcon from '@bitrix24/b24icons-vue/outline/CircleCheckIcon'
@@ -82,12 +82,12 @@ const columns: TableColumn<Payment>[] = [
         },
         'arrow': true,
         'items': getRowItems(row),
-        'aria-label': 'Actions dropdown'
+        'aria-label': 'Меню действий'
       }, () => h(B24Button, {
         'icon': MenuIcon,
         'color': 'air-tertiary-no-accent',
         'size': 'sm',
-        'aria-label': 'Actions dropdown'
+        'aria-label': 'Меню действий'
       }))
     }
   },
@@ -98,7 +98,7 @@ const columns: TableColumn<Payment>[] = [
   },
   {
     accessorKey: 'date',
-    header: 'Date',
+    header: 'Дата',
     cell: ({ row }) => {
       return new Date(row.getValue('date')).toLocaleString('en-US', {
         day: 'numeric',
@@ -112,7 +112,7 @@ const columns: TableColumn<Payment>[] = [
   },
   {
     accessorKey: 'status',
-    header: 'Status',
+    header: 'Статус',
     cell: ({ row }) => {
       const color = ({
         paid: 'air-primary-success' as const,
@@ -129,7 +129,7 @@ const columns: TableColumn<Payment>[] = [
   },
   {
     accessorKey: 'amount',
-    header: 'Amount',
+    header: 'Сумма',
     meta: {
       class: {
         th: 'text-end',
@@ -150,15 +150,15 @@ function getRowItems(row: Row<Payment>) {
   return [
     {
       type: 'label',
-      label: 'Actions'
+      label: 'Действия'
     },
     {
-      label: 'Copy payment ID',
+      label: 'Копировать ID платежа',
       onSelect() {
         copy(row.original.id)
 
         toast.add({
-          title: 'Payment ID copied to clipboard!',
+          title: 'ID платежа скопирован в буфер обмена!',
           color: 'air-primary-success',
           icon: CircleCheckIcon
         })
@@ -168,10 +168,10 @@ function getRowItems(row: Row<Payment>) {
       type: 'separator'
     },
     {
-      label: 'View customer'
+      label: 'Просмотреть клиента'
     },
     {
-      label: 'View payment details'
+      label: 'Просмотреть детали платежа'
     }
   ]
 }

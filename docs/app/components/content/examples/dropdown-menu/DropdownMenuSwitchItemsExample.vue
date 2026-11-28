@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DropdownMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { DropdownMenuItem } from '@bxshefby/b24ui-nuxt'
 import HamburgerMenuIcon from '@bitrix24/b24icons-vue/outline/HamburgerMenuIcon'
 import Bookmark2Icon from '@bitrix24/b24icons-vue/outline/Bookmark2Icon'
 import ClockWithArrowIcon from '@bitrix24/b24icons-vue/main/ClockWithArrowIcon'
@@ -11,7 +11,7 @@ const showDownloads = ref(false)
 
 const items = computed(() => [
   {
-    label: 'Show Bookmarks',
+    label: 'Показывать закладки',
     icon: Bookmark2Icon,
     slot: 'switch' as const,
     checked: showBookmarks.value,
@@ -21,7 +21,7 @@ const items = computed(() => [
     }
   },
   {
-    label: 'Show History',
+    label: 'Показывать историю',
     icon: ClockWithArrowIcon,
     slot: 'switch' as const,
     checked: showHistory.value,
@@ -31,7 +31,7 @@ const items = computed(() => [
     }
   },
   {
-    label: 'Show Downloads',
+    label: 'Показывать загрузки',
     icon: CloudDownloadIcon,
     slot: 'switch' as const,
     checked: showDownloads.value,
@@ -45,7 +45,7 @@ const items = computed(() => [
 
 <template>
   <B24DropdownMenu :items="items" :content="{ align: 'start' }" :b24ui="{ content: 'w-48', viewport: 'w-48' }">
-    <B24Button label="Open" :icon="HamburgerMenuIcon" />
+    <B24Button label="Открыть" :icon="HamburgerMenuIcon" />
 
     <template #switch-trailing="{ item }">
       <B24Switch :model-value="item.checked" tabindex="-1" />

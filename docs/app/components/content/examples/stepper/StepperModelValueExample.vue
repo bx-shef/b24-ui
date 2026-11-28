@@ -1,27 +1,27 @@
 <script setup lang="ts">
-import type { StepperItem } from '@bitrix24/b24ui-nuxt'
+import type { StepperItem } from '@bxshefby/b24ui-nuxt'
 import { onMounted, ref } from 'vue'
 import LocationIcon from '@bitrix24/b24icons-vue/outline/LocationIcon'
 import DeliveryIcon from '@bitrix24/b24icons-vue/outline/DeliveryIcon'
 
 const items: StepperItem[] = [
   {
-    title: 'Address',
-    description: 'Add your address here',
+    title: 'Адрес',
+    description: 'Укажите свой адрес',
     icon: LocationIcon
   }, {
-    title: 'Shipping',
-    description: 'Set your preferred shipping method',
+    title: 'Доставка',
+    description: 'Выберите предпочтительный способ доставки',
     icon: DeliveryIcon
   }, {
-    title: 'Checkout',
-    description: 'Confirm your order'
+    title: 'Оформление заказа',
+    description: 'Подтвердите заказ'
   }
 ]
 
 const active = ref(0)
 
-// Note: This is for demonstration purposes only. Don't do this at home.
+// Примечание: только для демонстрации, в реальном проекте так делать не стоит.
 onMounted(() => {
   setInterval(() => {
     active.value = (active.value + 1) % items.length
@@ -33,7 +33,7 @@ onMounted(() => {
   <B24Stepper v-model="active" :items="items" class="w-full">
     <template #content="{ item }">
       <Placeholder class="h-[200px]">
-        This is the {{ item?.title }} step.
+        Это шаг «{{ item?.title }}».
       </Placeholder>
     </template>
   </B24Stepper>

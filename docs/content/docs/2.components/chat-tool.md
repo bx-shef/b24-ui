@@ -1,12 +1,16 @@
 ---
 title: ChatTool
-description: An expandable section that indicates whether an AI tool has been called and its execution state.
+description: 'Раскрывающийся раздел: показывает, вызван ли инструмент AI и в каком он состоянии.'
 category: chat
+keywords:
+  - вызов инструмента
+  - инструмент AI
+  - статус инструмента
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/ChatTool.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/chat-tool
   - label: Nuxt UI
@@ -18,9 +22,9 @@ links:
     to: https://reka-ui.com/docs/components/collapsible
 ---
 
-## Usage
+## Использование {#usage}
 
-The ChatTool component renders a collapsible block that displays AI tool invocation status, such as "Searching components" or "Reading documentation". When a default slot is provided, it becomes collapsible to reveal tool output.
+Компонент ChatTool отрисовывает сворачиваемый блок со статусом вызова инструмента AI, например «Searching components» или «Reading documentation». Если задан слот по умолчанию, блок сворачивается и раскрывает вывод инструмента.
 
 ::component-example
 ---
@@ -30,23 +34,37 @@ name: 'chat-tool-example'
 ---
 ::
 
-### Text
+::tip
+Если результат приходит позже, ставьте `v-if` на сам слот, а не на его содержимое: слот, который ничего не рисует, всё равно делает блок раскрываемым — с пустой панелью.
 
-Use the `text` prop to set the tool status text.
+```vue
+<template>
+  <B24ChatTool :text="getToolName(part)" :streaming="isToolStreaming(part)">
+    <template v-if="part.state === 'output-available'" #default>
+      <pre>{{ part.output }}</pre>
+    </template>
+  </B24ChatTool>
+</template>
+```
+::
+
+### Текст {#text}
+
+Пропс `text` задаёт текст статуса инструмента.
 
 ::component-code
 ---
 hide:
   - class
 props:
-  text: 'Searched components'
+  text: 'Поиск компонентов выполнен'
   class: 'w-60'
 ---
 ::
 
-### Suffix
+### Суффикс {#suffix}
 
-Use the `suffix` prop to display secondary text after the main label.
+Пропс `suffix` показывает дополнительный текст после основной подписи.
 
 ::component-code
 ---
@@ -55,15 +73,15 @@ hide:
 ignore:
   - text
 props:
-  text: 'Reading component'
+  text: 'Чтение компонента'
   suffix: 'Button'
   class: 'w-60'
 ---
 ::
 
-### Streaming
+### Поток {#streaming}
 
-Use the `streaming` prop to indicate the tool is actively running. The text displays a shimmer animation.
+Пропс `streaming` показывает, что инструмент сейчас работает. Текст мерцает.
 
 ::component-code
 ---
@@ -73,18 +91,18 @@ ignore:
   - text
 props:
   streaming: true
-  text: 'Searching components...'
+  text: 'Ищем компоненты...'
   class: 'w-60'
 ---
 ::
 
 ::tip
-Use the `isToolStreaming` utility from `@bitrix24/b24ui-nuxt/utils/ai` to determine if a tool part is still running.
+Утилита `isToolStreaming` из `@bxshefby/b24ui-nuxt/utils/ai` определяет, выполняется ли ещё часть с вызовом инструмента. Передайте ей слот-пропс `streaming` компонента [ChatMessages](/docs/components/chat-messages/#slots), чтобы она остановилась вместе с чатом.
 ::
 
-### Shimmer
+### Мерцание {#shimmer}
 
-When streaming, the trigger label uses the [`ChatShimmer`](/docs/components/chat-shimmer/) component. Use the `shimmer` prop to customize its `duration` and `spread`.
+Во время потока подпись триггера использует компонент [`ChatShimmer`](/docs/components/chat-shimmer/). Пропс `shimmer` настраивает его `duration` и `spread`.
 
 ::component-code
 ---
@@ -95,7 +113,7 @@ ignore:
   - text
 props:
   streaming: true
-  text: 'Searching components...'
+  text: 'Ищем компоненты...'
   shimmer:
     duration: 2
     spread: 2
@@ -103,9 +121,9 @@ props:
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to display an [Icon](https://bitrix24.github.io/b24icons/icons/) component next to the trigger.
+Пропс `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/) рядом с триггером.
 
 ::component-code
 ---
@@ -118,14 +136,14 @@ cast:
   icon: 'RocketIcon'
 props:
   icon: 'RocketIcon'
-  text: 'Searched components'
+  text: 'Поиск компонентов выполнен'
   class: 'w-60'
 ---
 ::
 
-### Loading
+### Загрузка {#loading}
 
-Use the `loading` prop to show a loading indicator. Use the `loading-icon` prop to customize the loading icon.
+Пропс `loading` показывает индикатор загрузки, а пропс `loading-icon` задаёт его иконку.
 
 ::component-code
 ---
@@ -135,16 +153,16 @@ ignore:
   - text
 props:
   loading: true
-  text: 'Searching components...'
+  text: 'Ищем компоненты...'
   class: 'w-60'
 ---
 ::
 
-### Loading Icon
+### Иконка загрузки {#loading-icon}
 
-Use `use-clock` or `use-wait` props to show different loading icons.
+Пропсы `use-clock` и `use-wait` показывают разные иконки загрузки.
 
-Use the `loading-icon` prop to customize the loading icon.
+Пропс `loading-icon` задаёт иконку загрузки.
 
 ::component-code
 ---
@@ -159,7 +177,7 @@ cast:
 props:
   loading: true
   loadingIcon: 'RocketIcon'
-  text: 'Searching components...'
+  text: 'Ищем компоненты...'
   class: 'w-60'
 ---
 ::
@@ -174,17 +192,56 @@ props:
   loading: true
   useWait: true
   useClock: false
-  text: 'Searching components...'
+  text: 'Ищем компоненты...'
   class: 'w-60'
 ---
 ::
 
-### Chevron
+### Ошибка {#error}
 
-Use the `chevron` prop to change the position of the chevron icon.
+Пропс `error` показывает, что вызов инструмента завершился ошибкой, например когда состояние части — `output-error`.
+
+::component-code
+---
+hide:
+  - class
+ignore:
+  - text
+props:
+  error: true
+  text: 'Не удалось найти компоненты'
+  class: 'w-60'
+---
+::
+
+### Иконка ошибки {#error-icon}
+
+Пропс `error-icon` задаёт [иконку](https://bitrix24.github.io/b24icons/icons/) ошибки.
+
+::component-code
+---
+hide:
+  - class
+  - errorIcon
+ignore:
+  - text
+  - errorIcon
+cast:
+  errorIcon: 'RocketIcon'
+props:
+  error: true
+  errorIcon: 'RocketIcon'
+  text: 'Не удалось найти компоненты'
+  class: 'w-60'
+---
+::
+
+### Шеврон {#chevron}
+
+Пропс `chevron` меняет положение иконки-шеврона.
 
 ::note
-When `chevron` is set to `leading` with an `icon`, the icon swaps with the chevron on hover and when open.
+Если у `chevron` значение `leading` и задан `icon`, иконка заменяется шевроном при наведении и в раскрытом состоянии.
 ::
 
 ::component-code
@@ -200,18 +257,18 @@ cast:
 props:
   chevron: leading
   icon: 'RocketIcon'
-  text: 'Searched components'
+  text: 'Поиск компонентов выполнен'
   class: 'w-60'
 slots:
   default: |
 
-    Tool output content
+    Вывод инструмента
 ---
 ::
 
-### Chevron Icon
+### Иконка шеврона {#chevron-icon}
 
-Use the `chevron-icon` prop to customize the chevron [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `chevron-icon` задаёт [иконку](https://bitrix24.github.io/b24icons/icons/) шеврона.
 
 ::component-code
 ---
@@ -225,18 +282,18 @@ cast:
   chevronIcon: 'RocketIcon'
 props:
   chevronIcon: 'RocketIcon'
-  text: 'Searched components'
+  text: 'Поиск компонентов выполнен'
   class: 'w-60'
 slots:
   default: |
 
-    Tool output content
+    Вывод инструмента
 ---
 ::
 
-### Variant
+### Вариант {#variant}
 
-Use the `variant` prop to change the visual style. Defaults to `inline`.
+Пропс `variant` меняет внешний вид. По умолчанию — `inline`.
 
 ::component-code
 ---
@@ -250,20 +307,20 @@ cast:
   icon: 'RocketIcon'
 props:
   variant: card
-  text: 'Searched components'
+  text: 'Поиск компонентов выполнен'
   icon: 'RocketIcon'
   chevron: trailing
   class: 'w-60'
 slots:
   default: |
 
-    Tool output content
+    Вывод инструмента
 ---
 ::
 
-### Actions
+### Действия {#actions}
 
-Use the `actions` prop to display a list of [Button](/docs/components/button/) below the trigger, useful for tools that require a user confirmation before running.
+Пропс `actions` показывает под триггером список [кнопок](/docs/components/button/). Это удобно для инструментов, которым перед запуском нужно подтверждение пользователя.
 
 ::component-code
 ---
@@ -279,10 +336,10 @@ cast:
   icon: 'RocketIcon'
 props:
   actions:
-    - label: 'Approve'
-    - label: 'Deny'
+    - label: 'Разрешить'
+    - label: 'Отклонить'
       color: air-secondary
-  text: 'Run terminal command'
+  text: 'Выполнить команду в терминале'
   variant: card
   icon: 'RocketIcon'
   class: 'w-60'
@@ -293,26 +350,169 @@ slots:
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
 ::tip{to="/docs/components/chat/"}
-Check the **Chat** overview page for installation instructions, server setup and usage examples.
+Установка, настройка сервера и примеры использования — на обзорной странице **Chat**.
 ::
+
+### С веб-поиском {#with-web-search}
+
+Некоторые провайдеры предлагают встроенные инструменты веб-поиска: [Anthropic](https://ai-sdk.dev/providers/ai-sdk-providers/anthropic#web-search-tool), [Google](https://ai-sdk.dev/providers/ai-sdk-providers/google#google-search), [OpenAI](https://ai-sdk.dev/providers/ai-sdk-providers/openai#web-search-tool). Их вызовы приходят на клиент как части-инструменты, поэтому отрисовываются компонентом ChatTool, как любой другой инструмент.
+
+Каждый инструмент берётся из пакета своего провайдера, поэтому установите нужный: `@ai-sdk/anthropic`, `@ai-sdk/google` или `@ai-sdk/openai`.
+
+::code-group
+
+```ts [Anthropic]
+import { defineEventHandler, readBody } from 'nuxt/server'
+import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
+import { anthropic } from '@ai-sdk/anthropic'
+
+export default defineEventHandler(async (event) => {
+  const { messages } = await readBody(event)
+
+  const result = streamText({
+    model: 'anthropic/claude-sonnet-5.5',
+    instructions: 'You are a helpful assistant.',
+    messages: await convertToModelMessages(messages),
+    tools: {
+      web_search: anthropic.tools.webSearch_20260209({})
+    }
+  })
+
+  const stream = toUIMessageStream({ stream: result.stream })
+  return createUIMessageStreamResponse({ stream })
+})
+```
+
+```ts [Google]
+import { defineEventHandler, readBody } from 'nuxt/server'
+import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
+import { google } from '@ai-sdk/google'
+
+export default defineEventHandler(async (event) => {
+  const { messages } = await readBody(event)
+
+  const result = streamText({
+    model: 'google/gemini-3-flash',
+    instructions: 'You are a helpful assistant.',
+    messages: await convertToModelMessages(messages),
+    tools: {
+      google_search: google.tools.googleSearch({})
+    }
+  })
+
+  const stream = toUIMessageStream({ stream: result.stream })
+  return createUIMessageStreamResponse({ stream })
+})
+```
+
+```ts [OpenAI]
+import { defineEventHandler, readBody } from 'nuxt/server'
+import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
+import { openai } from '@ai-sdk/openai'
+
+export default defineEventHandler(async (event) => {
+  const { messages } = await readBody(event)
+
+  const result = streamText({
+    model: 'openai/gpt-5.6-luna',
+    instructions: 'You are a helpful assistant.',
+    messages: await convertToModelMessages(messages),
+    tools: {
+      web_search: openai.tools.webSearch({})
+    }
+  })
+
+  const stream = toUIMessageStream({ stream: result.stream })
+  return createUIMessageStreamResponse({ stream })
+})
+```
+
+::
+
+### С инструментами MCP {#with-mcp-tools}
+
+Пакет `@ai-sdk/mcp` даёт чат-боту инструменты сервера [Model Context Protocol (MCP)](https://ai-sdk.dev/docs/ai-sdk-core/mcp-tools): например, поиск по документации или собственные задачи перед ответом.
+
+Установите пакет MCP:
+
+::code-group{sync="pm"}
+
+```bash [pnpm]
+pnpm add @ai-sdk/mcp
+```
+
+```bash [yarn]
+yarn add @ai-sdk/mcp
+```
+
+```bash [npm]
+npm install @ai-sdk/mcp
+```
+
+```bash [bun]
+bun add @ai-sdk/mcp
+```
+
+::
+
+Затем передайте инструменты MCP в `streamText` в серверном обработчике:
+
+```ts [server/api/chat.post.ts]
+import { defineEventHandler, readBody } from 'nuxt/server'
+import { streamText, convertToModelMessages, isStepCount, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
+import { createMCPClient } from '@ai-sdk/mcp'
+
+export default defineEventHandler(async (event) => {
+  const { messages } = await readBody(event)
+
+  const httpClient = await createMCPClient({
+    transport: { type: 'http', url: 'https://your-app.com/mcp' }
+  })
+  try {
+    const tools = await httpClient.tools()
+
+    const result = streamText({
+      model: 'anthropic/claude-sonnet-5.5',
+      maxOutputTokens: 10000,
+      instructions: 'You are a helpful assistant. Use your tools to search for relevant information before answering questions.',
+      messages: await convertToModelMessages(messages),
+      stopWhen: isStepCount(6),
+      tools
+    })
+
+    const stream = toUIMessageStream({
+      stream: result.stream,
+      // Вызывается, когда поток закончился: завершился, упал или был остановлен
+      onEnd: async () => {
+        await httpClient.close()
+      }
+    })
+    return createUIMessageStreamResponse({ stream })
+  } catch (error) {
+    // Закрываем клиент MCP, если подготовка упала до начала потока
+    await httpClient.close()
+    throw error
+  }
+})
+```
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

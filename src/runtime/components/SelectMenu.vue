@@ -13,7 +13,7 @@ import type { InputProps } from './Input.vue'
 import type { LinkPropsKeys } from './Link.vue'
 import type { ModelModifiers, ApplyModifiers } from '../types/input'
 import type { ButtonHTMLAttributes } from '../types/html'
-import type { AcceptableValue, ArrayOrNested, GetItemKeys, GetItemValue, GetModelValue, NestedItem, EmitsToProps } from '../types/utils'
+import type { AcceptableValue, ArrayOrNested, GetItemKeys, GetItemValue, GetModelValue, GetSelectedItem, NestedItem, EmitsToProps } from '../types/utils'
 import type { ComponentConfig } from '../types/tv'
 
 type SelectMenu = ComponentConfig<typeof theme, AppConfig, 'selectMenu'>
@@ -223,6 +223,19 @@ export interface SelectMenuEmits<
 
 type SlotProps<T extends SelectMenuItem> = (props: { item: T, index: number, b24ui: SelectMenu['b24ui'] }) => VNode[]
 
+type TriggerSlotProps<
+  A extends ArrayOrNested<SelectMenuItem>,
+  VK extends GetItemKeys<A> | undefined,
+  M extends boolean,
+  Mod extends Omit<ModelModifiers, 'lazy'>,
+  C extends boolean | object
+> = (props: {
+  modelValue: ApplyModifiers<GetModelValue<A, VK, M, ExcludeItem>, Mod> | IsClearUsed<M, C>
+  item: GetSelectedItem<A, M, ExcludeItem>
+  open: boolean
+  b24ui: SelectMenu['b24ui']
+}) => VNode[]
+
 export interface SelectMenuSlots<
   A extends ArrayOrNested<SelectMenuItem> = ArrayOrNested<SelectMenuItem>,
   VK extends GetItemKeys<A> | undefined = undefined,
@@ -231,21 +244,9 @@ export interface SelectMenuSlots<
   C extends boolean | object = false,
   T extends NestedItem<A> = NestedItem<A>
 > {
-  'leading'?(props: {
-    modelValue: ApplyModifiers<GetModelValue<A, VK, M, ExcludeItem>, Mod> | IsClearUsed<M, C>
-    open: boolean
-    b24ui: SelectMenu['b24ui']
-  }): VNode[]
-  'default'?(props: {
-    modelValue: ApplyModifiers<GetModelValue<A, VK, M, ExcludeItem>, Mod> | IsClearUsed<M, C>
-    open: boolean
-    b24ui: SelectMenu['b24ui']
-  }): VNode[]
-  'trailing'?(props: {
-    modelValue: ApplyModifiers<GetModelValue<A, VK, M, ExcludeItem>, Mod> | IsClearUsed<M, C>
-    open: boolean
-    b24ui: SelectMenu['b24ui']
-  }): VNode[]
+  'leading'?: TriggerSlotProps<A, VK, M, Mod, C>
+  'default'?: TriggerSlotProps<A, VK, M, Mod, C>
+  'trailing'?: TriggerSlotProps<A, VK, M, Mod, C>
   'empty'?(props: { searchTerm: string }): VNode[]
   'item'?: SlotProps<T>
   'item-leading'?: SlotProps<T>
@@ -263,7 +264,7 @@ import { useTemplateRef, useId, computed, ref, onMounted, toRef, toRaw, watch, n
 // @memo we use Primitive
 import { Primitive, ComboboxRoot, ComboboxArrow, ComboboxAnchor, ComboboxInput, ComboboxTrigger, ComboboxCancel, ComboboxPortal, ComboboxContent, ComboboxEmpty, ComboboxGroup, ComboboxVirtualizer, ComboboxLabel, ComboboxSeparator, ComboboxItem, ComboboxItemIndicator, FocusScope } from 'reka-ui'
 import { defu } from 'defu'
-import { reactivePick, createReusableTemplate } from '@vueuse/core'
+import { createReusableTemplate } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
@@ -273,7 +274,7 @@ import { useFormField } from '../composables/useFormField'
 import { useFilter } from '../composables/useFilter'
 import { useLocale } from '../composables/useLocale'
 import { usePortal } from '../composables/usePortal'
-import { compare, get, getDisplayValue, isArrayOfArray, looseToNumber } from '../utils'
+import { compare, get, getDisplayValue, getSelectedItem, isArrayOfArray, looseToNumber, omitUnsafeAttrs, safeIcon } from '../utils'
 import { getEstimateSize } from '../utils/virtualizer'
 import { tv } from '../utils/tv'
 import icons from '../dictionary/icons'
@@ -306,7 +307,7 @@ const searchTerm = defineModel<string>('searchTerm', { default: '' })
 const { t } = useLocale()
 const appConfig = useAppConfig() as SelectMenu['AppConfig']
 const { filterGroups } = useFilter()
-const rootProps = useForwardProps(reactivePick(props, 'modelValue', 'defaultValue', 'open', 'defaultOpen', 'required', 'multiple', 'resetSearchTermOnBlur', 'resetSearchTermOnSelect', 'resetModelValueOnClear', 'highlightOnHover', 'loop', 'by'), emits)
+const rootProps = useForwardProps(props, ['modelValue', 'defaultValue', 'open', 'defaultOpen', 'required', 'multiple', 'resetSearchTermOnBlur', 'resetSearchTermOnSelect', 'resetModelValueOnClear', 'highlightOnHover', 'loop', 'by'], emits)
 const portalProps = usePortal(toRef(() => props.portal))
 const contentProps = toRef(() => defu(props.content, { side: 'bottom', sideOffset: 8, collisionPadding: 8, position: 'popper' }) as ComboboxContentProps)
 const arrowProps = toRef(() => defu(typeof props.arrow === 'boolean' ? {} : props.arrow, { width: 20, height: 10 }) as ComboboxArrowProps)
@@ -400,6 +401,18 @@ function displayValue(value: GetItemValue<T, VK, ExcludeItem> | GetItemValue<T, 
   })
 }
 
+function resolveSelectedItem(slot: 'leading' | 'default' | 'trailing', value: unknown) {
+  if (!slots[slot]) {
+    return undefined as GetSelectedItem<T, M, ExcludeItem>
+  }
+
+  return getSelectedItem(items.value, value, {
+    valueKey: props.valueKey,
+    by: props.by,
+    multiple: props.multiple
+  }) as GetSelectedItem<T, M, ExcludeItem>
+}
+
 const groups = computed<SelectMenuItem[][]>(() =>
   props.items?.length
     ? isArrayOfArray(props.items)
@@ -482,10 +495,6 @@ function onUpdate(value: any) {
   emits('change', event)
   emitFormChange()
   emitFormInput()
-
-  if (props.resetSearchTermOnSelect) {
-    searchTerm.value = ''
-  }
 }
 
 const isOpen = ref(false)
@@ -538,16 +547,19 @@ function onCreate(e: Event) {
 }
 
 function onSelect(e: Event, item: SelectMenuItem) {
-  if (!isSelectItem(item)) {
-    return
+  if (isSelectItem(item)) {
+    if (item.disabled) {
+      e.preventDefault()
+      return
+    }
+
+    item.onSelect?.(e)
   }
 
-  if (item.disabled) {
-    e.preventDefault()
-    return
+  // Reset on select rather than on update, since selecting the current item updates nothing.
+  if (!e.defaultPrevented && props.resetSearchTermOnSelect) {
+    searchTerm.value = ''
   }
-
-  item.onSelect?.(e)
 }
 
 function isSelectItem(item: SelectMenuItem): item is Exclude<SelectMenuItem, SelectMenuValue> {
@@ -566,17 +578,39 @@ function onClear() {
     return
   }
 
+  if (props.resetSearchTermOnSelect) {
+    searchTerm.value = ''
+  }
+
   emits('clear')
 }
 
+const focusScopeRef = useTemplateRef('focusScopeRef')
+
 function onMountAutoFocus(event: Event) {
-  // Prevent the `FocusScope` from focusing the search input on open when its autofocus is disabled.
+  // Focus the scope instead of the search input on open when its autofocus is disabled,
+  // so the focus still moves inside the menu without opening the virtual keyboard on touch devices.
   if (searchInputProps.value.autofocus === false) {
     event.preventDefault()
+    const el = focusScopeRef.value?.$el as HTMLElement | undefined
+    el?.focus({ preventScroll: true })
   }
 }
 
-const focusScopeRef = useTemplateRef('focusScopeRef')
+// The listbox only navigates from the search input while it's rendered, so forward the keys to it when the focus is on the scope itself.
+function onFocusScopeKeydown(event: KeyboardEvent) {
+  if (event.target !== event.currentTarget) {
+    return
+  }
+
+  const input = (event.currentTarget as HTMLElement).querySelector<HTMLElement>('input[data-slot="input"]')
+  if (!input) {
+    return
+  }
+
+  event.preventDefault()
+  input.dispatchEvent(new KeyboardEvent('keydown', { key: event.key, shiftKey: event.shiftKey, bubbles: true, cancelable: true }))
+}
 
 // The `FocusScope` uses `loop` instead of `trapped`: a trapped scope pulls focus back while the menu is closing,
 // so focusing another element on select never lands. Pull it back here instead, only while the menu is open,
@@ -722,8 +756,8 @@ defineExpose({
 
           <slot name="item-trailing" :item="(item as NestedItem<T>)" :index="index" :b24ui="b24ui">
             <Component
-              :is="item.icon"
-              v-if="isSelectItem(item) && item.icon"
+              :is="safeIcon(item.icon)"
+              v-if="isSelectItem(item) && safeIcon(item.icon)"
               data-slot="itemLeadingIcon"
               :class="b24ui.itemLeadingIcon({ class: [props.b24ui?.itemLeadingIcon, item.b24ui?.itemLeadingIcon], colorItem: item?.color })"
             />
@@ -761,7 +795,7 @@ defineExpose({
           data-slot="base"
           :class="b24ui.base({ class: [props.b24ui?.base, props.class] })"
           tabindex="0"
-          v-bind="{ 'aria-label': undefined, ...$attrs, ...ariaAttrs }"
+          v-bind="{ 'aria-label': undefined, ...omitUnsafeAttrs($attrs), ...ariaAttrs }"
           :aria-controls="listboxId"
           @keydown.down="onTriggerKeydown"
           @keydown.up="onTriggerKeydown"
@@ -775,7 +809,7 @@ defineExpose({
             size="xs"
           />
           <span v-if="isLeading || !!props.avatar || !!slots.leading" data-slot="leading" :class="b24ui.leading({ class: props.b24ui?.leading })">
-            <slot name="leading" :model-value="(modelValue as ApplyModifiers<GetModelValue<T, VK, M, ExcludeItem>, Mod>)" :open="open" :b24ui="b24ui">
+            <slot name="leading" :model-value="(modelValue as ApplyModifiers<GetModelValue<T, VK, M, ExcludeItem>, Mod>)" :item="resolveSelectedItem('leading', modelValue)" :open="open" :b24ui="b24ui">
               <Component
                 :is="leadingIconName"
                 v-if="isLeading && leadingIconName"
@@ -792,7 +826,7 @@ defineExpose({
             </slot>
           </span>
 
-          <slot :model-value="(modelValue as ApplyModifiers<GetModelValue<T, VK, M, ExcludeItem>, Mod>)" :open="open" :b24ui="b24ui">
+          <slot :model-value="(modelValue as ApplyModifiers<GetModelValue<T, VK, M, ExcludeItem>, Mod>)" :item="resolveSelectedItem('default', modelValue)" :open="open" :b24ui="b24ui">
             <template v-for="displayedModelValue in [displayValue(modelValue as GetModelValue<T, VK, M, ExcludeItem>)]" :key="displayedModelValue">
               <span
                 v-if="displayedModelValue !== undefined && displayedModelValue !== null"
@@ -812,7 +846,7 @@ defineExpose({
           </slot>
 
           <span v-if="isTrailing || !!slots.trailing || !!props.clear" data-slot="trailing" :class="b24ui.trailing({ class: props.b24ui?.trailing })">
-            <slot name="trailing" :model-value="(modelValue as ApplyModifiers<GetModelValue<T, VK, M, ExcludeItem>, Mod>)" :open="open" :b24ui="b24ui">
+            <slot name="trailing" :model-value="(modelValue as ApplyModifiers<GetModelValue<T, VK, M, ExcludeItem>, Mod>)" :item="resolveSelectedItem('trailing', modelValue)" :open="open" :b24ui="b24ui">
               <ComboboxCancel v-if="!!props.clear && !disabled && !isModelValueEmpty(modelValue as ApplyModifiers<GetModelValue<T, VK, M, ExcludeItem>, Mod>)" as-child>
                 <B24Button
                   as="span"
@@ -856,6 +890,7 @@ defineExpose({
               :class="b24ui.focusScope({ class: props.b24ui?.focusScope })"
               @mount-auto-focus="onMountAutoFocus"
               @unmount-auto-focus="onUnmountAutoFocus"
+              @keydown.down.up.home.end="onFocusScopeKeydown"
             >
               <slot name="content-top" />
 

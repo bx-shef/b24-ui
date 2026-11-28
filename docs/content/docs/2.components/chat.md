@@ -1,7 +1,11 @@
 ---
 title: Chat
-description: Develop AI-powered chat interfaces with streaming responses, reasoning capabilities, and tool calling.
+description: 'Разработка чат-интерфейсов на основе AI: потоковые ответы, рассуждения и вызов инструментов.'
 category: chat
+keywords:
+  - AI-чат
+  - чат-интерфейс
+  - потоковый ответ
 index: true
 links:
   - label: AI SDK
@@ -13,26 +17,27 @@ links:
     to: https://ui.nuxt.com/docs/components/chat
 ---
 
-Bitrix24 UI provides a set of components designed to build AI-powered chat interfaces. They integrate seamlessly with the [Vercel AI SDK](https://ai-sdk.dev/) for streaming responses, reasoning, tool calling, and more.
+Bitrix24 UI даёт набор компонентов для чат-интерфейсов на основе AI. Они работают с [Vercel AI SDK](https://ai-sdk.dev/): потоковые ответы, рассуждения, вызов инструментов и не только.
 
-## Components
+## Компоненты {#components}
 
-| Component | Description |
+| Компонент | Описание |
 | --- | --- |
-| [ChatMessages](/docs/components/chat-messages/) | Scrollable message list with auto-scroll and loading indicator. |
-| [ChatMessage](/docs/components/chat-message/) | Individual message bubble with avatar, actions, and slots. |
-| [ChatPrompt](/docs/components/chat-prompt/) | Enhanced textarea for submitting prompts. |
-| [ChatPromptSubmit](/docs/components/chat-prompt-submit/) | Submit button with automatic status handling. |
-| [ChatReasoning](/docs/components/chat-reasoning/) | Collapsible block for AI reasoning / thinking process. |
-| [ChatTool](/docs/components/chat-tool/) | Collapsible block for AI tool invocation status. |
-| [ChatShimmer](/docs/components/chat-shimmer/) | Text shimmer animation for streaming states. |
-| [ChatPalette](/docs/components/chat-palette/) | Layout wrapper for embedding chat in modals or drawers. |
+| [ChatAttachment](/docs/components/chat-attachment/) | Файл, прикреплённый к запросу или сообщению, с состояниями загрузки. |
+| [ChatMessages](/docs/components/chat-messages/) | Прокручиваемый список сообщений с автопрокруткой и индикатором загрузки. |
+| [ChatMessage](/docs/components/chat-message/) | Отдельное сообщение с аватаром, действиями и слотами. |
+| [ChatPrompt](/docs/components/chat-prompt/) | Улучшенное многострочное поле для отправки запросов. |
+| [ChatPromptSubmit](/docs/components/chat-prompt-submit/) | Кнопка отправки, которая сама учитывает статус. |
+| [ChatReasoning](/docs/components/chat-reasoning/) | Сворачиваемый блок с рассуждениями AI. |
+| [ChatTool](/docs/components/chat-tool/) | Сворачиваемый блок со статусом вызова инструмента AI. |
+| [ChatShimmer](/docs/components/chat-shimmer/) | Мерцание текста для состояний потока. |
+| [ChatPalette](/docs/components/chat-palette/) | Обёртка-раскладка для чата в модальных окнах и шторках. |
 
-## Installation
+## Установка {#installation}
 
-The Chat components are designed to be used with the [Vercel AI SDK](https://ai-sdk.dev/), specifically the [`useChat`](https://ai-sdk.dev/docs/reference/ai-sdk-ui/use-chat) composable for managing chat state and streaming responses. The examples on this page target AI SDK v7.
+Компоненты Chat рассчитаны на работу с [Vercel AI SDK](https://ai-sdk.dev/), точнее — с композаблом [`useChat`](https://ai-sdk.dev/docs/reference/ai-sdk-ui/use-chat), который управляет состоянием чата и потоковыми ответами. Примеры на этой странице написаны для AI SDK v7.
 
-Install the required dependencies:
+Установите нужные зависимости:
 
 ::code-group{sync="pm"}
 
@@ -54,11 +59,12 @@ bun add ai @ai-sdk/vue
 
 ::
 
-## Server Setup
+## Настройка сервера {#server-setup}
 
-Create a server API endpoint to handle chat requests using [`streamText`](https://ai-sdk.dev/docs/reference/ai-sdk-core/stream-text). You can use the [Vercel AI Gateway](https://vercel.com/ai-gateway) to access AI models through a centralized endpoint:
+Создайте серверный API-эндпоинт, который обрабатывает запросы чата через [`streamText`](https://ai-sdk.dev/docs/reference/ai-sdk-core/stream-text). Доступ к моделям AI через единую точку входа даёт [Vercel AI Gateway](https://vercel.com/ai-gateway):
 
 ```ts [server/api/chat.post.ts]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 
 export default defineEventHandler(async (event) => {
@@ -76,11 +82,12 @@ export default defineEventHandler(async (event) => {
 })
 ```
 
-### Reasoning
+### Рассуждения {#reasoning}
 
-To enable [reasoning](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot#reasoning), configure `providerOptions` for your provider ([Anthropic](https://ai-sdk.dev/providers/ai-sdk-providers/anthropic#reasoning), [Google](https://ai-sdk.dev/providers/ai-sdk-providers/google-generative-ai#thinking), [OpenAI](https://ai-sdk.dev/providers/ai-sdk-providers/openai#reasoning)):
+Чтобы включить [рассуждения](https://ai-sdk.dev/docs/ai-sdk-ui/chatbot#reasoning), настройте `providerOptions` для своего провайдера ([Anthropic](https://ai-sdk.dev/providers/ai-sdk-providers/anthropic#reasoning), [Google](https://ai-sdk.dev/providers/ai-sdk-providers/google-generative-ai#thinking), [OpenAI](https://ai-sdk.dev/providers/ai-sdk-providers/openai#reasoning)):
 
 ```ts [server/api/chat.post.ts]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 
 export default defineEventHandler(async (event) => {
@@ -116,13 +123,14 @@ export default defineEventHandler(async (event) => {
 })
 ```
 
-### Web Search
+### Поиск в интернете {#web-search}
 
-Some providers offer built-in web search tools: [Anthropic](https://ai-sdk.dev/providers/ai-sdk-providers/anthropic#web-search-tool), [Google](https://ai-sdk.dev/providers/ai-sdk-providers/google#google-search), [OpenAI](https://ai-sdk.dev/providers/ai-sdk-providers/openai#web-search-tool).
+У некоторых провайдеров есть встроенные инструменты поиска в интернете: [Anthropic](https://ai-sdk.dev/providers/ai-sdk-providers/anthropic#web-search-tool), [Google](https://ai-sdk.dev/providers/ai-sdk-providers/google#google-search), [OpenAI](https://ai-sdk.dev/providers/ai-sdk-providers/openai#web-search-tool).
 
 ::code-group
 
 ```ts [Anthropic]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 import { anthropic } from '@ai-sdk/anthropic'
 
@@ -144,6 +152,7 @@ export default defineEventHandler(async (event) => {
 ```
 
 ```ts [Google]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 import { google } from '@ai-sdk/google'
 
@@ -165,6 +174,7 @@ export default defineEventHandler(async (event) => {
 ```
 
 ```ts [OpenAI]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 import { openai } from '@ai-sdk/openai'
 
@@ -172,7 +182,7 @@ export default defineEventHandler(async (event) => {
   const { messages } = await readBody(event)
 
   const result = streamText({
-    model: 'openai/gpt-5-nano',
+    model: 'openai/gpt-5.6-luna',
     instructions: 'You are a helpful assistant.',
     messages: await convertToModelMessages(messages),
     tools: {
@@ -187,11 +197,11 @@ export default defineEventHandler(async (event) => {
 
 ::
 
-### Tool Calling with MCP
+### Вызов инструментов через MCP {#tool-calling-with-mcp}
 
-Empower your chatbot with advanced tool-calling features using the [Model Context Protocol (MCP)](https://ai-sdk.dev/docs/ai-sdk-core/mcp-tools) from `@ai-sdk/mcp`. MCP enables your AI to perform dynamic actions, such as searching your documentation or executing custom tasks, to provide more relevant and accurate responses.
+Расширьте возможности чат-бота вызовом инструментов через [Model Context Protocol (MCP)](https://ai-sdk.dev/docs/ai-sdk-core/mcp-tools) из `@ai-sdk/mcp`. MCP позволяет AI выполнять динамические действия, например искать по документации или запускать собственные задачи, чтобы отвечать точнее и по делу.
 
-To get started, install the MCP package:
+Для начала установите пакет MCP:
 
 :::code-group
 
@@ -209,9 +219,10 @@ yarn add @ai-sdk/mcp
 
 :::
 
-Then, configure your server endpoint to use MCP tools:
+Затем настройте серверный эндпоинт на использование инструментов MCP:
 
 ```ts [server/api/chat.post.ts]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, isStepCount, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 import { createMCPClient } from '@ai-sdk/mcp'
 
@@ -243,7 +254,7 @@ export default defineEventHandler(async (event) => {
     const stream = toUIMessageStream({ stream: result.stream })
     return createUIMessageStreamResponse({ stream })
   } catch (error) {
-    // Close the MCP client if setup fails before streaming starts
+    // Закрываем клиент MCP, если настройка не удалась до начала потока
     await httpClient.close()
     throw error
   }
@@ -252,9 +263,9 @@ export default defineEventHandler(async (event) => {
 
 ::tip
 
-You can use the [DeepSeek Provider](https://ai-sdk.dev/providers/ai-sdk-providers/deepseek) to access AI model through a centralized endpoint:
+Доступ к модели AI через единую точку входа можно получить и через [провайдер DeepSeek](https://ai-sdk.dev/providers/ai-sdk-providers/deepseek):
 
-Install the required dependencies:
+Установите нужные зависимости:
 
 ::code-group{sync="pm"}
 
@@ -276,9 +287,10 @@ bun add ai @ai-sdk/deepseek @ai-sdk/vue
 
 ::
 
-Create a server API endpoint:
+Создайте серверный API-эндпоинт:
 
 ```ts [server/api/chat.post.ts]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 import { createDeepSeek } from '@ai-sdk/deepseek'
 
@@ -290,7 +302,7 @@ export default defineEventHandler(async (event) => {
   })
 
   const result = streamText({
-    model: deepseek('deepseek-reasoner'), // or 'deepseek-chat'
+    model: deepseek('deepseek-reasoner'), // или 'deepseek-chat'
     maxOutputTokens: 10000,
     instructions: 'You are a helpful assistant.',
     messages: await convertToModelMessages(messages)
@@ -301,9 +313,10 @@ export default defineEventHandler(async (event) => {
 })
 ```
 
-**Reasoning**
+**Рассуждения**
 
 ```ts [server/api/chat.post.ts]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 import { createDeepSeek } from '@ai-sdk/deepseek'
 
@@ -315,7 +328,7 @@ export default defineEventHandler(async (event) => {
   })
 
   const result = streamText({
-    model: deepseek('deepseek-reasoner'), // or 'deepseek-chat'
+    model: deepseek('deepseek-reasoner'), // или 'deepseek-chat'
     maxOutputTokens: 10000,
     instructions: 'You are a helpful assistant.',
     messages: await convertToModelMessages(messages),
@@ -332,9 +345,10 @@ export default defineEventHandler(async (event) => {
 })
 ```
 
-**Tool Calling (MCP)**
+**Вызов инструментов (MCP)**
 
 ```ts [server/api/chat.post.ts]
+import { defineEventHandler, readBody } from 'nuxt/server'
 import { streamText, convertToModelMessages, isStepCount, smoothStream, toUIMessageStream, createUIMessageStreamResponse } from 'ai'
 import { createMCPClient } from '@ai-sdk/mcp'
 import { createDeepSeek } from '@ai-sdk/deepseek'
@@ -357,7 +371,7 @@ export default defineEventHandler(async (event) => {
     const tools = await httpClient.tools()
 
     const result = streamText({
-      model: deepseek('deepseek-reasoner'), // or 'deepseek-chat'
+      model: deepseek('deepseek-reasoner'), // или 'deepseek-chat'
       maxOutputTokens: 10000,
       instructions: 'You are a helpful assistant. Use your tools to search for relevant information before answering questions.',
       messages: await convertToModelMessages(messages),
@@ -376,7 +390,7 @@ export default defineEventHandler(async (event) => {
     const stream = toUIMessageStream({ stream: result.stream })
     return createUIMessageStreamResponse({ stream })
   } catch (error) {
-    // Close the MCP client if setup fails before streaming starts
+    // Закрываем клиент MCP, если настройка не удалась до начала потока
     await httpClient.close()
     throw error
   }
@@ -385,15 +399,15 @@ export default defineEventHandler(async (event) => {
 
 ::
 
-## Client Setup
+## Настройка клиента {#client-setup}
 
-Use the `useChat` composable from `@ai-sdk/vue` to manage chat state and connect to your server endpoint:
+Композабл `useChat` из `@ai-sdk/vue` управляет состоянием чата и подключается к вашему серверному эндпоинту:
 
 ```vue
 <script setup lang="ts">
 import { isReasoningUIPart, isTextUIPart, isToolUIPart, getToolName } from 'ai'
 import { useChat } from '@ai-sdk/vue'
-import { isPartStreaming, isToolStreaming } from '@bitrix24/b24ui-nuxt/utils/ai'
+import { isPartStreaming, isToolStreaming } from '@bxshefby/b24ui-nuxt/utils/ai'
 
 const input = ref('')
 
@@ -415,46 +429,38 @@ function onSubmit() {
     :messages="messages"
     :status="status"
   >
-    <template #content="{ message }">
-      <template
-        v-for="(part, index) in message.parts"
-        :key="`${message.id}-${part.type}-${index}`"
+    <template #part="{ part, index, message, streaming }">
+      <B24ChatReasoning
+        v-if="isReasoningUIPart(part)"
+        :text="part.text"
+        :streaming="isPartStreaming(part, streaming)"
       >
-        <B24ChatReasoning
-          v-if="isReasoningUIPart(part)"
-          :text="part.text"
-          :streaming="isPartStreaming(part)"
-        >
-          <MDC
-            :value="part.text"
-            :cache-key="`reasoning-${message.id}-${index}`"
-            class="*:first:mt-0 *:last:mb-0"
-          />
-        </B24ChatReasoning>
-
-        <B24ChatTool
-          v-else-if="isToolUIPart(part)"
-          :text="getToolName(part)"
-          :streaming="isToolStreaming(part)"
+        <MDC
+          :value="part.text"
+          :cache-key="`reasoning-${message.id}-${index}`"
+          class="*:first:mt-0 *:last:mb-0"
         />
+      </B24ChatReasoning>
 
-        <template v-else-if="isTextUIPart(part)">
-          <MDC
-            v-if="message.role === 'assistant'"
-            :value="part.text"
-            :cache-key="`${message.id}-${index}`"
-            class="*:first:mt-0 *:last:mb-0"
-          />
-          <p v-else-if="message.role === 'user'" class="whitespace-pre-wrap">
-            {{ part.text }}
-          </p>
-        </template>
-      </template>
+      <B24ChatTool
+        v-else-if="isToolUIPart(part)"
+        :text="getToolName(part)"
+        :streaming="isToolStreaming(part, streaming)"
+        :error="part.state === 'output-error'"
+      />
+
+      <MDC
+        v-else-if="isTextUIPart(part) && message.role === 'assistant'"
+        :value="part.text"
+        :cache-key="`${message.id}-${index}`"
+        class="*:first:mt-0 *:last:mb-0"
+      />
     </template>
   </B24ChatMessages>
 
   <B24ChatPrompt
     v-model="input"
+    :status="status"
     :error="error"
     @submit="onSubmit"
   >
@@ -468,5 +474,15 @@ function onSubmit() {
 ```
 
 ::note
-In this example, we use the `MDC` component from [`@nuxtjs/mdc`](https://github.com/nuxt-modules/mdc) to render messages as Markdown. As Bitrix24 UI provides pre-styled prose components, your content will be automatically styled.
+В этом примере компонент `MDC` из [`@nuxtjs/mdc`](https://github.com/nuxt-modules/mdc) отрисовывает сообщения как Markdown. Bitrix24 UI поставляет готовые стилизованные prose-компоненты, поэтому содержимое оформляется автоматически.
+::
+
+::note
+Слот `#part` вызывается для каждой части сообщения с `part`, её `index` и `message`. Часть, которую слот не отрисовал (как текст пользователя выше), выводится по умолчанию. Чтобы отрисовать сообщение целиком самостоятельно, используйте слот `#content`.
+::
+
+### Сообщения в очереди {#queued-messages} :badge{label="Soon" class="align-text-top"}
+
+::tip{to="/docs/components/chat-prompt/#with-queued-messages"}
+Привяжите `v-model:queue` к ChatPrompt, чтобы сохранять сообщения, отправленные во время ответа; рецепт с AI SDK — в примере **С очередью сообщений**.
 ::

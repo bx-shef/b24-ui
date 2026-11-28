@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as z from 'zod'
-import type { FormSubmitEvent } from '@bitrix24/b24ui-nuxt'
+import type { FormSubmitEvent } from '@bxshefby/b24ui-nuxt'
 import theme from '#build/b24ui/file-upload'
 import ImageIcon from '@bitrix24/b24icons-vue/outline/ImageIcon'
 import UploadIcon from '@bitrix24/b24icons-vue/outline/UploadIcon'

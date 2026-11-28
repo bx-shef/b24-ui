@@ -1,7 +1,11 @@
 ---
 title: PageList
-description: 'A vertical list layout for stacking content items.'
+description: 'Вертикальный список для расположения элементов содержимого друг под другом.'
 category: page
+keywords:
+  - вертикальный список
+  - список элементов страницы
+  - лента элементов
 links:
   - label: GitHub
     iconName: GitHubIcon
@@ -11,9 +15,9 @@ links:
     to: https://ui.nuxt.com/docs/components/page-list
 ---
 
-## Usage
+## Использование {#usage}
 
-The PageList component provides a flexible way to display content in a vertical list layout. It's perfect for creating stacked lists of [PageCard](/docs/components/page-card/) components or any other elements, with optional dividers between items.
+Компонент PageList — гибкий способ показать содержимое вертикальным списком. Он подходит для стопки компонентов [PageCard](/docs/components/page-card/) и любых других элементов, с необязательными разделителями между ними.
 
 ::component-example
 ---
@@ -24,9 +28,9 @@ props:
 ---
 ::
 
-### Divide
+### Разделитель {#divide}
 
-Use the `divide` prop to add a divider between each child element.
+Пропс `divide` добавляет разделитель между всеми дочерними элементами.
 
 ::component-example
 ---
@@ -39,14 +43,14 @@ props:
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

@@ -51,9 +51,11 @@ export interface EditorSuggestionMenuProps<T extends EditorSuggestionMenuItem = 
 </script>
 
 <script setup lang="ts" generic="T extends EditorSuggestionMenuItem">
+import { safeIcon } from '../utils'
 import { computed, h, inject, onMounted, onBeforeUnmount, nextTick, toRef } from 'vue'
 import { useAppConfig } from '#imports'
 import { useEditorMenu } from '../composables/useEditorMenu'
+import { useLocale } from '../composables/useLocale'
 import { createHandlers } from '../utils/editor'
 import { tv } from '../utils/tv'
 
@@ -65,6 +67,7 @@ const props = withDefaults(defineProps<EditorSuggestionMenuProps<T>>(), {
 })
 
 const appConfig = useAppConfig() as EditorSuggestionMenu['AppConfig']
+const { t } = useLocale()
 
 const handlers = inject('editorHandlers', computed(() => createHandlers()))
 
@@ -91,6 +94,7 @@ onMounted(async () => {
     options: props.options,
     suggestion: props.suggestion,
     appendTo: props.appendTo,
+    label: toRef(() => t('editorSuggestionMenu.label')),
     b24ui,
     onSelect: (editor, range, item) => {
       // Skip if it's a label (non-interactive)
@@ -112,9 +116,11 @@ onMounted(async () => {
       }
 
       // Render regular item
+      const icon = safeIcon(item.icon)
+
       return [
-        item.icon
-          ? h(item.icon, { class: styles.value.itemLeadingIcon() })
+        icon
+          ? h(icon, { class: styles.value.itemLeadingIcon() })
           : null,
         h('span', { class: styles.value.itemWrapper() }, [
           h('span', { class: styles.value.itemLabel() }, item.label),

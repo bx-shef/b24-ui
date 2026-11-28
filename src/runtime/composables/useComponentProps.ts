@@ -3,7 +3,7 @@ import { computed, getCurrentInstance } from 'vue'
 import defu from 'defu'
 import { createContext } from 'reka-ui'
 import { useAppConfig } from '#imports'
-import { get } from '../utils'
+import { get, isUnsafeAs, isUnsafeIcon } from '../utils'
 
 export type ThemeContext = {
   defaults: ComputedRef<Record<string, Record<string, any> | undefined>>
@@ -44,12 +44,18 @@ export function injectThemeContext(fallback: ThemeContext = defaultThemeContext)
  */
 export { provideThemeContext }
 
-function camelCase(str: string): string {
-  return str.replace(/-(\w)/g, (_, c: string) => c.toUpperCase())
-}
+const propNameCache = new Map<string, [string, string]>()
 
-function kebabCase(str: string): string {
-  return str.replace(/[A-Z]/g, c => `-${c.toLowerCase()}`)
+function propNames(prop: string): [string, string] {
+  let names = propNameCache.get(prop)
+  if (!names) {
+    names = [
+      prop.replace(/-(\w)/g, (_, c: string) => c.toUpperCase()),
+      prop.replace(/[A-Z]/g, c => `-${c.toLowerCase()}`)
+    ]
+    propNameCache.set(prop, names)
+  }
+  return names
 }
 
 /**
@@ -59,8 +65,29 @@ function kebabCase(str: string): string {
  */
 function propIsDefined(vnode: VNode | null | undefined, prop: string): boolean {
   if (!vnode || !vnode.props) return false
-  return vnode.props[camelCase(prop)] !== undefined
-    || vnode.props[kebabCase(prop)] !== undefined
+  const [camel, kebab] = propNames(prop)
+  return vnode.props[camel] !== undefined
+    || vnode.props[kebab] !== undefined
+}
+
+const ICON_PROP = /icon$/i
+
+/**
+ * Whether `value` must never be handed out for `prop`: an `as` that Vue would compile or render
+ * as markup, or an icon (`icon`, `trailingIcon`, `selectedIcon`, …) that `isUnsafeIcon` rejects (a string, an unsafe component object).
+ */
+function isUnsafeValue(prop: string, value: unknown): boolean {
+  if (prop === 'as') return isUnsafeAs(value)
+  return ICON_PROP.test(prop) && isUnsafeIcon(value)
+}
+
+/**
+ * Object props forwarded to a Reka part (`content`, `avatar`, …) carry their own `as`.
+ * Drops it when it's a component Vue would compile from a `template` string.
+ */
+function withoutUnsafeAs<T>(value: T): T {
+  if (!value || typeof value !== 'object' || Array.isArray(value) || !isUnsafeAs((value as any).as)) return value
+  return { ...value, as: undefined }
 }
 
 /**
@@ -80,6 +107,7 @@ export function useComponentProps<T extends object>(name: string, props: T): T {
   const vm = getCurrentInstance()
   const { defaults } = injectThemeContext()
   const appConfig = useAppConfig() as { b24ui?: Record<string, any> }
+  const isNested = name.includes('.')
 
   return new Proxy(props, {
     get(target, prop, receiver) {
@@ -102,7 +130,7 @@ export function useComponentProps<T extends object>(name: string, props: T): T {
       // Support dotted-path names (e.g. `prose.p`, `prose.code`) so prose
       // components can pull from the same nested `ThemeContext.defaults` shape
       // that `normalizeUi` produces in `<B24Theme>`.
-      const themeEntry = name.includes('.') ? get(defaults.value, name) : defaults.value[name]
+      const themeEntry = isNested ? get(defaults.value, name) : defaults.value[name]
 
       if (prop === 'b24ui') {
         const themeUi = themeEntry?.b24ui
@@ -120,19 +148,28 @@ export function useComponentProps<T extends object>(name: string, props: T): T {
         return [themeClass, raw]
       }
 
-      if (vm && propIsDefined(vm.vnode, prop)) return raw
+      // Never hand out an `as` component Vue would compile from a `template` string, nor an icon
+      // that is an unsafe component object (`template`, `__v_raw`, forged VNode), so `:as` / `:icon`
+      // bound in untrusted markdown can't run code on render. Such a value is treated as unset and
+      // falls back to the defaults below. (Upstream guards icons in `UIcon`; b24ui has no such
+      // component, so the guard lives here and in `safeIcon` for icons read from items.)
+      const unsafe = isUnsafeValue(prop, raw)
 
+      if (!unsafe && vm && propIsDefined(vm.vnode, prop)) return withoutUnsafeAs(raw)
+
+      // `<UTheme :props>` and `app.config` defaults can carry untrusted data too
+      // (a shared theme link), so the same check applies to them.
       const themeValue = themeEntry?.[prop]
-      if (themeValue !== undefined) return themeValue
+      if (themeValue !== undefined && !isUnsafeValue(prop, themeValue)) return withoutUnsafeAs(themeValue)
 
       // A global `app.config.b24ui.<name>.defaultVariants` value takes priority over
       // the component's `withDefaults` fallback. This keeps `defaultVariants`
       // working uniformly for every variant, including props a component pins in
       // `withDefaults` (e.g. `orientation`, kept defined so `:data-orientation`
       // always renders a value).
-      const appConfigEntry = name.includes('.') ? get(appConfig.b24ui ?? {}, name) : appConfig.b24ui?.[name]
+      const appConfigEntry = isNested ? get(appConfig.b24ui ?? {}, name) : appConfig.b24ui?.[name]
       const appConfigValue = appConfigEntry?.defaultVariants?.[prop]
-      if (appConfigValue !== undefined) return appConfigValue
+      if (appConfigValue !== undefined && !isUnsafeValue(prop, appConfigValue)) return withoutUnsafeAs(appConfigValue)
 
       // Only fall back to `raw` when `withDefaults` set an explicit default for
       // this prop. Otherwise Vue's runtime would auto-cast unset Boolean props
@@ -141,7 +178,8 @@ export function useComponentProps<T extends object>(name: string, props: T): T {
       // props are forwarded downstream.
       const propDef = (vm?.type as any)?.props?.[prop]
       if (propDef && Object.prototype.hasOwnProperty.call(propDef, 'default')) {
-        return raw
+        if (unsafe) return typeof propDef.default === 'function' ? propDef.default(target) : propDef.default
+        return withoutUnsafeAs(raw)
       }
 
       return undefined

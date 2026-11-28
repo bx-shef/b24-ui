@@ -32,11 +32,19 @@ export default defineLocale<Messages>({
       next: 'Далі',
       prev: 'Назад'
     },
+    chatAttachment: {
+      uploading: 'Завантаження',
+      error: 'Не вдалося завантажити'
+    },
     chatMessages: {
       autoScroll: 'Прокрутити вниз'
     },
     chatPrompt: {
-      placeholder: 'Введіть ваше повідомлення…'
+      placeholder: 'Введіть ваше повідомлення…',
+      queue: 'Повідомлення в черзі',
+      sendNow: 'Надіслати зараз',
+      edit: 'Редагувати',
+      remove: 'Видалити'
     },
     chatPromptSubmit: {
       label: 'Надіслати',
@@ -132,6 +140,15 @@ export default defineLocale<Messages>({
     drawer: {
       close: 'Закрити'
     },
+    editorEmojiMenu: {
+      label: 'Емодзі'
+    },
+    editorMentionMenu: {
+      label: 'Згадки'
+    },
+    editorSuggestionMenu: {
+      label: 'Пропозиції'
+    },
     pagination: {
       first: 'Перша сторінка',
       last: 'Остання сторінка',
@@ -145,11 +162,13 @@ export default defineLocale<Messages>({
     prose: {
       codeCollapse: {
         closeText: 'Приховати',
+        label: '{text} {name}',
         name: 'код',
         openText: 'Показати'
       },
       collapsible: {
         closeText: 'Приховати',
+        label: '{text} {name}',
         name: 'властивості',
         openText: 'Показати'
       },

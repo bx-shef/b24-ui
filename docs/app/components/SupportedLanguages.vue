@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import * as locales from '@bitrix24/b24ui-nuxt/locale'
+import * as locales from '@bxshefby/b24ui-nuxt/locale'
 
 const props = withDefaults(defineProps<{
   default?: string
@@ -61,7 +61,7 @@ const localeList = computed(() => {
 <template>
   <div>
     <ProseP>
-      By default, the <ProseCode>{{ props.default }}</ProseCode> locale is used.
+      По умолчанию используется локаль <ProseCode>{{ props.default }}</ProseCode>.
     </ProseP>
     <div class="grid gap-6 grid-cols-2 md:grid-cols-3">
       <div v-for="locale in localeList" :key="locale.code">
@@ -72,7 +72,7 @@ const localeList = computed(() => {
 
           <div>
             <ProseH6 class="mb-1">{{ locale.name }}</ProseH6>
-            <ProseP small class="mt-1">Code: <ProseCode class="text-xs">{{ locale.code }}</ProseCode> | Locale: <ProseCode class="text-xs">{{ locale.locale }}</ProseCode></ProseP>
+            <ProseP small class="mt-1">Код: <ProseCode class="text-xs">{{ locale.code }}</ProseCode> | Локаль: <ProseCode class="text-xs">{{ locale.locale }}</ProseCode></ProseP>
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ import BusinesProcessStagesIcon from '@bitrix24/b24icons-vue/outline/BusinesProc
 
 const openListItem = ref(false)
 
-// Manage loading state
+// Управляем состоянием загрузки
 const handleAction = async () => {
   await new Promise(resolve => setTimeout(resolve, 2_000))
 }
@@ -15,8 +15,8 @@ const handleAction = async () => {
 <template>
   <B24Slideover
     ref="currentSlideoverRef"
-    title="Some list"
-    description="Some description"
+    title="Какой-то список"
+    description="Какое-то описание"
     :use-light-content="false"
     :b24ui="{
       content: [
@@ -35,7 +35,7 @@ const handleAction = async () => {
       body: 'scrollbar-thin pt-0'
     }"
   >
-    <B24Button label="Some list" color="air-boost" />
+    <B24Button label="Какой-то список" color="air-boost" />
     <template #body>
       <B24Card class="base-mode" :b24ui="{ body: '!px-0 !py-0' }">
         <B24TableWrapper
@@ -43,17 +43,17 @@ const handleAction = async () => {
           class="overflow-x-auto w-full"
         >
           <table>
-            <!-- head -->
+            <!-- шапка -->
             <thead>
               <tr>
                 <th>#</th>
-                <th>Company</th>
-                <th>Status</th>
-                <th>Amount (USD)</th>
+                <th>Компания</th>
+                <th>Статус</th>
+                <th>Сумма (USD)</th>
               </tr>
             </thead>
             <tbody>
-              <!-- row 1 -->
+              <!-- строка 1 -->
               <tr>
                 <th>1</th>
                 <td>
@@ -61,10 +61,10 @@ const handleAction = async () => {
                     Tech Innovators Inc.
                   </B24Link>
                 </td>
-                <td><B24Badge label="Proposal Sent" use-link use-close /></td>
+                <td><B24Badge label="Предложение отправлено" use-link use-close /></td>
                 <td>50,000</td>
               </tr>
-              <!-- row 2 -->
+              <!-- строка 2 -->
               <tr>
                 <th>2</th>
                 <td>
@@ -72,10 +72,10 @@ const handleAction = async () => {
                     Global Solutions Ltd.
                   </B24Link>
                 </td>
-                <td><B24Badge label="Negotiation" use-link inverted use-close /></td>
+                <td><B24Badge label="Переговоры" use-link inverted use-close /></td>
                 <td>120,000</td>
               </tr>
-              <!-- row 3 -->
+              <!-- строка 3 -->
               <tr>
                 <th>3</th>
                 <td>
@@ -83,10 +83,10 @@ const handleAction = async () => {
                     Future Enterprises
                   </B24Link>
                 </td>
-                <td><B24Chip standalone color="air-primary-warning" text="Contract Signed" size="lg" :trailing-icon="TrendUpIcon" /></td>
+                <td><B24Chip standalone color="air-primary-warning" text="Договор подписан" size="lg" :trailing-icon="TrendUpIcon" /></td>
                 <td>200,000</td>
               </tr>
-              <!-- row 4 -->
+              <!-- строка 4 -->
               <tr>
                 <th>4</th>
                 <td>
@@ -97,7 +97,7 @@ const handleAction = async () => {
                 <td>
                   <B24Chip
                     standalone
-                    text="Initial Contact"
+                    text="Первичный контакт"
                     color="air-primary-alert"
                     size="lg"
                     inverted
@@ -106,7 +106,7 @@ const handleAction = async () => {
                 </td>
                 <td>15,000</td>
               </tr>
-              <!-- row 5 -->
+              <!-- строка 5 -->
               <tr>
                 <th>5</th>
                 <td>
@@ -117,7 +117,7 @@ const handleAction = async () => {
                 <td>
                   <B24Chip
                     standalone
-                    text="Important"
+                    text="Важно"
                     size="lg"
                     color="air-primary-alert"
                     :b24ui="{ base: 'style-filled-boost' }"
@@ -125,7 +125,7 @@ const handleAction = async () => {
                 </td>
                 <td>300,000</td>
               </tr>
-              <!-- row 6 -->
+              <!-- строка 6 -->
               <tr>
                 <th>6</th>
                 <td>
@@ -133,10 +133,10 @@ const handleAction = async () => {
                     Apex Dynamics
                   </B24Link>
                 </td>
-                <td><B24Badge label="Discovery Call" use-link use-close /></td>
+                <td><B24Badge label="Первичный звонок" use-link use-close /></td>
                 <td>35,000</td>
               </tr>
-              <!-- row 7 -->
+              <!-- строка 7 -->
               <tr>
                 <th>7</th>
                 <td>
@@ -144,10 +144,10 @@ const handleAction = async () => {
                     Vertex Systems
                   </B24Link>
                 </td>
-                <td><B24Badge label="Proposal Sent" use-link inverted use-close /></td>
+                <td><B24Badge label="Предложение отправлено" use-link inverted use-close /></td>
                 <td>82,000</td>
               </tr>
-              <!-- row 8 -->
+              <!-- строка 8 -->
               <tr>
                 <th>8</th>
                 <td>
@@ -155,10 +155,10 @@ const handleAction = async () => {
                     NovaSphere LLC
                   </B24Link>
                 </td>
-                <td><B24Chip standalone color="air-primary-success" text="Closed Won" size="lg" :trailing-icon="TrendUpIcon" /></td>
+                <td><B24Chip standalone color="air-primary-success" text="Закрыто успешно" size="lg" :trailing-icon="TrendUpIcon" /></td>
                 <td>450,000</td>
               </tr>
-              <!-- row 9 -->
+              <!-- строка 9 -->
               <tr>
                 <th>9</th>
                 <td>
@@ -169,7 +169,7 @@ const handleAction = async () => {
                 <td>
                   <B24Chip
                     standalone
-                    text="Contract Review"
+                    text="Проверка договора"
                     color="air-primary-warning"
                     size="lg"
                     inverted
@@ -178,7 +178,7 @@ const handleAction = async () => {
                 </td>
                 <td>175,000</td>
               </tr>
-              <!-- row 10 -->
+              <!-- строка 10 -->
               <tr>
                 <th>10</th>
                 <td>
@@ -186,10 +186,10 @@ const handleAction = async () => {
                     Crestline Partners
                   </B24Link>
                 </td>
-                <td><B24Badge label="Negotiation" use-link use-close /></td>
+                <td><B24Badge label="Переговоры" use-link use-close /></td>
                 <td>95,000</td>
               </tr>
-              <!-- row 11 -->
+              <!-- строка 11 -->
               <tr>
                 <th>11</th>
                 <td>
@@ -200,7 +200,7 @@ const handleAction = async () => {
                 <td>
                   <B24Chip
                     standalone
-                    text="Urgent"
+                    text="Срочно"
                     size="lg"
                     color="air-primary-alert"
                     :b24ui="{ base: 'style-filled-boost' }"
@@ -208,7 +208,7 @@ const handleAction = async () => {
                 </td>
                 <td>60,000</td>
               </tr>
-              <!-- row 12 -->
+              <!-- строка 12 -->
               <tr>
                 <th>12</th>
                 <td>
@@ -216,10 +216,10 @@ const handleAction = async () => {
                     BlueWave Technologies
                   </B24Link>
                 </td>
-                <td><B24Badge label="Proposal Sent" use-link inverted use-close /></td>
+                <td><B24Badge label="Предложение отправлено" use-link inverted use-close /></td>
                 <td>110,000</td>
               </tr>
-              <!-- row 13 -->
+              <!-- строка 13 -->
               <tr>
                 <th>13</th>
                 <td>
@@ -227,10 +227,10 @@ const handleAction = async () => {
                     Aspire Group
                   </B24Link>
                 </td>
-                <td><B24Chip standalone color="air-primary-success" text="Closed Won" size="lg" :trailing-icon="TrendUpIcon" /></td>
+                <td><B24Chip standalone color="air-primary-success" text="Закрыто успешно" size="lg" :trailing-icon="TrendUpIcon" /></td>
                 <td>525,000</td>
               </tr>
-              <!-- row 14 -->
+              <!-- строка 14 -->
               <tr>
                 <th>14</th>
                 <td>
@@ -241,7 +241,7 @@ const handleAction = async () => {
                 <td>
                   <B24Chip
                     standalone
-                    text="Initial Contact"
+                    text="Первичный контакт"
                     color="air-primary-alert"
                     size="lg"
                     inverted
@@ -250,7 +250,7 @@ const handleAction = async () => {
                 </td>
                 <td>28,000</td>
               </tr>
-              <!-- row 15 -->
+              <!-- строка 15 -->
               <tr>
                 <th>15</th>
                 <td>
@@ -258,7 +258,7 @@ const handleAction = async () => {
                     Zenith Technologies
                   </B24Link>
                 </td>
-                <td><B24Badge label="Discovery Call" use-link use-close /></td>
+                <td><B24Badge label="Первичный звонок" use-link use-close /></td>
                 <td>42,000</td>
               </tr>
             </tbody>
@@ -281,7 +281,7 @@ const handleAction = async () => {
       <B24Button
         size="lg"
         color="air-primary"
-        label="Reload"
+        label="Перезагрузить"
         loading-auto
         @click="handleAction"
       />
@@ -289,7 +289,7 @@ const handleAction = async () => {
         <B24Button
           size="sm"
           color="air-tertiary"
-          label="Cancel"
+          label="Отмена"
           :normal-case="false"
         />
       </B24ModalDialogClose>
@@ -297,16 +297,16 @@ const handleAction = async () => {
   </B24Slideover>
   <B24Slideover
     v-model:open="openListItem"
-    :close="{ label: 'Item' }"
-    title="Item"
-    description="Some description"
+    :close="{ label: 'Элемент' }"
+    title="Элемент"
+    description="Какое-то описание"
     :b24ui="{ content: 'sm:max-w-[965px] sm:top-[375px] sm:max-h-[calc(100%-375px)]' }"
   >
     <template #header>
       <B24Card class="base-mode" :b24ui="{ root: 'w-full', body: 'flex flex-row items-center justify-between gap-[20px]' }">
         <B24Avatar
           :icon="BusinesProcessStagesIcon"
-          alt="Workflows"
+          alt="Рабочие процессы"
           size="2xl"
           :b24ui="{
             root: 'bg-(--ui-color-primary)',
@@ -315,10 +315,10 @@ const handleAction = async () => {
         />
         <div class="flex-1">
           <ProseH1 class="leading-[29px] font-(--ui-font-weight-light)">
-            Workflows
+            Рабочие процессы
           </ProseH1>
           <ProseP small accent="less">
-            Automate your workflows, control every stage and manage workflows from your mobile.
+            Автоматизируйте рабочие процессы, контролируйте каждый этап и управляйте процессами с телефона.
           </ProseP>
         </div>
       </B24Card>
@@ -328,10 +328,10 @@ const handleAction = async () => {
     </template>
     <template #footer>
       <B24ModalDialogClose>
-        <B24Button size="lg" color="air-primary" label="Continue" />
+        <B24Button size="lg" color="air-primary" label="Продолжить" />
       </B24ModalDialogClose>
       <B24ModalDialogClose>
-        <B24Button size="sm" color="air-tertiary" label="Cancel" :normal-case="false" />
+        <B24Button size="sm" color="air-tertiary" label="Отмена" :normal-case="false" />
       </B24ModalDialogClose>
     </template>
   </B24Slideover>

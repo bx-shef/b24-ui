@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { InputMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { InputMenuItem } from '@bxshefby/b24ui-nuxt'
 
 const items = ref([
   {
-    label: 'Assistant',
+    label: 'Ассистент',
     value: 'assistant',
     avatar: {
       src: '/b24ui/avatar/assistant.png',
@@ -12,7 +12,7 @@ const items = ref([
     }
   },
   {
-    label: 'Employee',
+    label: 'Сотрудник',
     value: 'employee',
     avatar: {
       src: '/b24ui/avatar/employee.png',

@@ -1,17 +1,20 @@
 ---
 title: FieldGroup
-description: Organize several button-like elements into a group.
+description: 'Объединяет несколько элементов, похожих на кнопки, в группу.'
 category: element
 keywords:
   - segmented control
   - toggle group
   - button group
   - input group
+  - группа полей
+  - сегментированный переключатель
+  - объединение кнопок
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/FieldGroup.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/field-group
   - label: Nuxt UI
@@ -19,9 +22,9 @@ links:
     to: https://ui.nuxt.com/docs/components/field-group
 ---
 
-## Usage
+## Использование {#usage}
 
-Wrap multiple [Button](/docs/components/button/) within a FieldGroup to group them together.
+Оберните несколько [Button](/docs/components/button/) в FieldGroup, чтобы сгруппировать их.
 
 ::component-code
 ---
@@ -29,16 +32,16 @@ prettier: true
 slots:
   default: |
 
-    <B24Button color="air-primary-copilot" label="Button" />
-    <B24Button color="air-primary-copilot" label="Button" />
+    <B24Button color="air-primary-copilot" label="Кнопка" />
+    <B24Button color="air-primary-copilot" label="Кнопка" />
 ---
-:b24-button{color="air-primary-copilot" label="Button"}
-:b24-button{color="air-primary-copilot" label="Button"}
+:b24-button{color="air-primary-copilot" label="Кнопка"}
+:b24-button{color="air-primary-copilot" label="Кнопка"}
 ::
 
-### No split
+### Без разделителя {#no-split}
 
-If you use elements with different colors, use the `no-split` property to disable the display of the separator.
+Если элементы имеют разные цвета, свойство `no-split` отключает разделитель.
 
 ::component-code
 ---
@@ -50,18 +53,18 @@ props:
 slots:
   default: |
 
-    <B24Button color="air-primary-copilot" label="Button" />
-    <B24Button color="air-primary-success" label="Button" />
-    <B24Button color="air-primary-alert" label="Button" />
+    <B24Button color="air-primary-copilot" label="Кнопка" />
+    <B24Button color="air-primary-success" label="Кнопка" />
+    <B24Button color="air-primary-alert" label="Кнопка" />
 ---
-:b24-button{color="air-primary-copilot" label="Button"}
-:b24-button{color="air-primary-success" label="Button"}
-:b24-button{color="air-primary-alert" label="Button"}
+:b24-button{color="air-primary-copilot" label="Кнопка"}
+:b24-button{color="air-primary-success" label="Кнопка"}
+:b24-button{color="air-primary-alert" label="Кнопка"}
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of all the buttons.
+Пропс `size` меняет размер всех кнопок.
 
 ::component-code
 ---
@@ -71,16 +74,16 @@ props:
 slots:
   default: |
 
-    <B24Button color="air-primary-copilot" label="Button" />
-    <B24Button color="air-primary-copilot" label="Button" />
+    <B24Button color="air-primary-copilot" label="Кнопка" />
+    <B24Button color="air-primary-copilot" label="Кнопка" />
 ---
-:b24-button{color="air-primary-copilot" label="Button"}
-:b24-button{color="air-primary-copilot" label="Button"}
+:b24-button{color="air-primary-copilot" label="Кнопка"}
+:b24-button{color="air-primary-copilot" label="Кнопка"}
 ::
 
-### Orientation
+### Ориентация {#orientation}
 
-Use the `orientation` prop to change the orientation of the buttons. Defaults to `horizontal`.
+Пропс `orientation` меняет ориентацию кнопок. По умолчанию `horizontal`.
 
 ::component-code
 ---
@@ -90,18 +93,18 @@ props:
 slots:
   default: |
 
-    <B24Button color="air-primary-copilot" label="Button" />
-    <B24Button color="air-primary-copilot" label="Button" />
+    <B24Button color="air-primary-copilot" label="Кнопка" />
+    <B24Button color="air-primary-copilot" label="Кнопка" />
 ---
-:b24-button{color="air-primary-copilot" label="Button"}
-:b24-button{color="air-primary-copilot" label="Button"}
+:b24-button{color="air-primary-copilot" label="Кнопка"}
+:b24-button{color="air-primary-copilot" label="Кнопка"}
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With input
+### С полем ввода {#with-input}
 
-You can use components like [Input](/docs/components/input/), [InputMenu](/docs/components/input-menu/), [Select](/docs/components/select/) [SelectMenu](/docs/components/select-menu/), etc. within a field group.
+В FieldGroup можно использовать компоненты вроде [Input](/docs/components/input/), [InputMenu](/docs/components/input-menu/), [Select](/docs/components/select/), [SelectMenu](/docs/components/select-menu/) и другие.
 
 ::component-code
 ---
@@ -109,42 +112,42 @@ prettier: true
 slots:
   default: |
 
-    <B24Input placeholder="Enter token" />
+    <B24Input placeholder="Введите токен" />
 
-    <B24Button label="Button" />
+    <B24Button label="Кнопка" />
 ---
-:b24-input{placeholder="Enter token"}
-:b24-button{label="Button"}
+:b24-input{placeholder="Введите токен"}
+:b24-button{label="Кнопка"}
 ::
 
-### With tooltip
+### С подсказкой {#with-tooltip}
 
-You can use a [Tooltip](/docs/components/tooltip/) within a field group.
+В FieldGroup можно использовать [Tooltip](/docs/components/tooltip/).
 
 :component-example{name="field-group-tooltip-example"}
 
-### With dropdown menu
+### С выпадающим меню {#with-dropdown-menu}
 
-You can use a [DropdownMenu](/docs/components/dropdown-menu/) within a field group.
+В FieldGroup можно использовать [DropdownMenu](/docs/components/dropdown-menu/).
 
 :component-example{name="field-group-dropdown-example"}
 
-### With badge
+### С бейджем {#with-badge}
 
-You can use a [Badge](/docs/components/badge/) within a field group.
+В FieldGroup можно использовать [Badge](/docs/components/badge/).
 
 :component-example{name="field-group-badge-example"}
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

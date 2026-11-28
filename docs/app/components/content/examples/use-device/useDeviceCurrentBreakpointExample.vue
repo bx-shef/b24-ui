@@ -18,22 +18,22 @@ const variantByScreen = computed(() => {
   <div>
     <B24Card :variant="variantByScreen">
       <div v-if="screen.current === 'xs'">
-        Extra small screen (&lt; 640px)
+        Очень маленький экран (&lt; 640px)
       </div>
       <div v-else-if="screen.current === 'sm'">
-        Small screen (640px – 767px)
+        Маленький экран (640px – 767px)
       </div>
       <div v-else-if="screen.current === 'md'">
-        Medium screen (768px – 1023px)
+        Средний экран (768px – 1023px)
       </div>
       <div v-else-if="screen.current === 'lg'">
-        Large screen (1024px – 1279px)
+        Большой экран (1024px – 1279px)
       </div>
       <div v-else-if="screen.current === 'xl'">
-        Extra large screen (1280px – 1535px)
+        Очень большой экран (1280px – 1535px)
       </div>
       <div v-else>
-        2XL screen (&ge; 1536px)
+        Экран 2XL (&ge; 1536px)
       </div>
     </B24Card>
   </div>

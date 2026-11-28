@@ -219,6 +219,12 @@ export interface CommandPaletteProps<G extends CommandPaletteGroup<T> = CommandP
    */
   preserveGroupOrder?: boolean
   /**
+   * When `true`, items will not be filtered which is useful for custom filtering (useAsyncData, useFetch, etc.).
+   * Applies to every group, unless the group sets its own `ignoreFilter` field.
+   * @defaultValue false
+   */
+  ignoreFilter?: boolean
+  /**
    * Delay (in milliseconds) before the search term is passed to Fuse (debounced).
    * Useful when indexing large datasets where fuzzy search becomes the bottleneck — the input stays responsive while Fuse and the result pipeline only re-run after typing settles.
    * Set to `0` (the default) to disable.
@@ -258,13 +264,13 @@ export type CommandPaletteSlots<T extends CommandPaletteItem = CommandPaletteIte
 import { computed, ref, useTemplateRef, toRef, watch, nextTick } from 'vue'
 import { ListboxRoot, ListboxFilter, ListboxContent, ListboxGroup, ListboxGroupLabel, ListboxVirtualizer, ListboxItem, ListboxItemIndicator } from 'reka-ui'
 import { defu } from 'defu'
-import { reactivePick, createReusableTemplate, refDebounced, refThrottled } from '@vueuse/core'
+import { createReusableTemplate, refDebounced, refThrottled } from '@vueuse/core'
 import { useFuse } from '@vueuse/integrations/useFuse'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
 import { useLocale } from '../composables/useLocale'
-import { omit, get } from '../utils'
+import { omit, get, safeIcon } from '../utils'
 import { highlight } from '../utils/search'
 import { pickLinkProps } from '../utils/link'
 import { getEstimateSize } from '../utils/virtualizer'
@@ -301,7 +307,7 @@ const searchTerm = defineModel<string>('searchTerm', { default: '' })
 const { t } = useLocale()
 const appConfig = useAppConfig() as CommandPalette['AppConfig']
 
-const rootProps = useForwardProps(reactivePick(props, 'as', 'disabled', 'multiple', 'modelValue', 'defaultValue', 'highlightOnHover', 'loop', 'by'), emits)
+const rootProps = useForwardProps(props, ['as', 'disabled', 'multiple', 'modelValue', 'defaultValue', 'highlightOnHover', 'loop', 'by'], emits)
 const virtualizerProps = toRef(() => {
   if (!props.virtualize) return false
 
@@ -352,12 +358,16 @@ const placeholder = computed(() => history.value[history.value.length - 1]?.plac
 // eslint-disable-next-line vue/no-dupe-keys
 const groups = computed(() => history.value?.length ? [history.value[history.value.length - 1] as G] : props.groups)
 
+function isFilterIgnored(group: G) {
+  return group.ignoreFilter ?? props.ignoreFilter
+}
+
 const items = computed(() => groups.value?.filter((group) => {
   if (!group.id) {
-    console.warn(`[@bitrix24/b24ui-nuxt] CommandPalette group is missing an \`id\` property`)
+    console.warn(`[@bxshefby/b24ui-nuxt] CommandPalette group is missing an \`id\` property`)
     return false
   }
-  if (group.ignoreFilter) {
+  if (isFilterIgnored(group)) {
     return false
   }
   return true
@@ -415,7 +425,7 @@ const filteredGroups = computed(() => {
         continue
       }
 
-      const items = group.ignoreFilter ? group.items : groupsById[group.id]
+      const items = isFilterIgnored(group) ? group.items : groupsById[group.id]
       if (!items?.length) {
         continue
       }
@@ -445,7 +455,7 @@ const filteredGroups = computed(() => {
   const result = [...fuseGroups]
 
   for (const group of currentGroups || []) {
-    if (!group.ignoreFilter || !group.items?.length) {
+    if (!isFilterIgnored(group) || !group.items?.length) {
       continue
     }
 
@@ -504,7 +514,9 @@ function navigate(item: T) {
     label: item.label,
     slot: item.slot,
     placeholder: item.placeholder,
-    items: item.children
+    items: item.children,
+    // Children come from the item itself so the `ignoreFilter` prop doesn't apply to them
+    ignoreFilter: false
   } as any)
 
   searchTerm.value = ''
@@ -575,8 +587,8 @@ function onSelect(e: Event, item: T) {
                 :class="b24ui.itemLeadingIcon({ class: [props.b24ui?.itemLeadingIcon, item.b24ui?.itemLeadingIcon], loading: true })"
               />
               <Component
-                :is="item.icon"
-                v-else-if="item.icon"
+                :is="safeIcon(item.icon)"
+                v-else-if="safeIcon(item.icon)"
                 data-slot="itemLeadingIcon"
                 :class="b24ui.itemLeadingIcon({ class: [props.b24ui?.itemLeadingIcon, item.b24ui?.itemLeadingIcon], active: active || item.active })"
               />
@@ -688,8 +700,8 @@ function onSelect(e: Event, item: T) {
                 </span>
 
                 <Component
-                  :is="group.highlightedIcon"
-                  v-else-if="group?.highlightedIcon"
+                  :is="safeIcon(group?.highlightedIcon)"
+                  v-else-if="safeIcon(group?.highlightedIcon)"
                   data-slot="itemTrailingHighlightedIcon"
                   :class="b24ui.itemTrailingHighlightedIcon({ class: [props.b24ui?.itemTrailingHighlightedIcon, item.b24ui?.itemTrailingHighlightedIcon] })"
                 />

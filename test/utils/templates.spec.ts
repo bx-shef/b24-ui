@@ -1,27 +1,14 @@
 import { readFileSync } from 'node:fs'
 import { join, resolve } from 'node:path'
 import { globSync } from 'tinyglobby'
-import { describe, it, expect, vi } from 'vitest'
-import type { Nuxt } from '@nuxt/schema'
+import { describe, it, expect } from 'vitest'
+import { createHooks } from 'hookable'
+import { nuxtCtx, runWithNuxtContext } from '@nuxt/kit'
+import type { Nuxt, NuxtTemplate } from '@nuxt/schema'
 import type { ModuleOptions } from '../../src/module'
-import { CSS_TEMPLATE_FILENAME, getTemplates, isCssTemplate, prefixedClasses, watchForComponentDetection } from '../../src/templates'
+import { CSS_TEMPLATE_FILENAME, addTemplates, getTemplates, prefixedClasses } from '../../src/templates'
 import { COMPONENT_DETECTION_EXTENSIONS } from '../../src/utils/components'
 
-/**
- * The `experimental.componentDetection` dev watcher refreshes the generated CSS
- * template by filtering `updateTemplates` on a filename. That filename was
- * spelled twice — `b24ui.css` where the template is registered, upstream
- * nuxt/ui's `ui.css` in the watcher — and the halves drifted, so the watcher
- * silently updated nothing and components first used mid-session shipped
- * unstyled until the dev server restarted.
- *
- * Nothing about that is observable from the outside: `updateTemplates` with a
- * filter that matches zero templates is a successful call. So the two ends are
- * joined here — the predicate the watcher really hands to `updateTemplates`,
- * run against the templates the module really registers. Asserting
- * `isCssTemplate` against `getTemplates()` alone is not enough: that stays
- * green if the call site goes back to a hardcoded literal.
- */
 describe('getTemplates', () => {
   const options = {} as ModuleOptions
 
@@ -32,78 +19,115 @@ describe('getTemplates', () => {
   })
 
   it('writes that template to disk, which is what makes it importable as `#build/b24ui.css`', () => {
-    const cssTemplate = getTemplates(options).find(isCssTemplate)
+    const cssTemplate = getTemplates(options).find(template => template.filename === CSS_TEMPLATE_FILENAME)
 
     expect(cssTemplate?.write).toBe(true)
   })
-})
 
-describe('watchForComponentDetection', () => {
-  /** Captures the `builder:watch` handler the way Nuxt's hook system would. */
-  function fakeNuxt() {
-    const handlers: Array<(event: string, path: string) => unknown> = []
-    const nuxt = {
-      hook: (name: string, fn: (event: string, path: string) => unknown) => {
-        if (name === 'builder:watch') {
-          handlers.push(fn)
-        }
-      }
-    } as unknown as Nuxt
-
-    return { nuxt, fire: (path: string) => Promise.all(handlers.map(fn => fn('change', path))) }
-  }
-
-  it('passes a filter that selects exactly one real template', async () => {
-    const update = vi.fn()
-    const { nuxt, fire } = fakeNuxt()
-
-    watchForComponentDetection(nuxt, update)
-    await fire('app/components/Thing.vue')
-
-    expect(update).toHaveBeenCalledTimes(1)
-
-    // The whole bug: this filter used to match nothing. Run it against what the
-    // module actually registers rather than against a literal.
-    const { filter } = update.mock.calls[0]![0] as { filter: (t: { filename?: string }) => boolean }
-    const matched = getTemplates({} as ModuleOptions).filter(filter)
-
-    expect(matched.map(template => template.filename)).toEqual([CSS_TEMPLATE_FILENAME])
-  })
-
-  it('ignores changes to files that cannot affect component detection', async () => {
-    const update = vi.fn()
-    const { nuxt, fire } = fakeNuxt()
-
-    watchForComponentDetection(nuxt, update)
-    await fire('content/index.md')
-    await fire('app/assets/css/main.css')
-
-    expect(update).not.toHaveBeenCalled()
-  })
-
-  it('reacts to every source extension component detection scans', async () => {
-    const update = vi.fn()
-    const { nuxt, fire } = fakeNuxt()
-
-    // Driven off the shared list rather than a literal: the watcher and the
-    // scan glob are two halves of one decision, and an extension added to one
-    // and not the other means a file that changes the answer never triggers a
-    // refresh — no error, no signal. Upstream keeps a literal in each and had
-    // to edit both when `.mts`/`.mjs`/`.cjs` were added.
-    expect(COMPONENT_DETECTION_EXTENSIONS.length).toBeGreaterThan(4)
-
-    watchForComponentDetection(nuxt, update)
-    for (const extension of COMPONENT_DETECTION_EXTENSIONS) {
-      await fire(`a.${extension}`)
+  it('skips prose themes with `prose: false`', () => {
+    const hasProse = (overrides: Partial<ModuleOptions>) => {
+      return getTemplates({ ...overrides } as ModuleOptions).some(template => template.filename === 'b24ui/prose/index.ts')
     }
 
-    expect(update).toHaveBeenCalledTimes(COMPONENT_DETECTION_EXTENSIONS.length)
+    expect(hasProse({ content: true })).toBe(true)
+    expect(hasProse({ content: true, prose: false })).toBe(false)
+  })
+})
+
+function createNuxt(): Nuxt {
+  const hooks = createHooks()
+  return {
+    hooks,
+    hook: hooks.hook,
+    callHook: hooks.callHook,
+    options: {
+      dev: true,
+      rootDir: '/app',
+      srcDir: '/app/app',
+      buildDir: '/app/.nuxt',
+      alias: {},
+      appConfig: {},
+      app: {},
+      modules: [],
+      _installedModules: [],
+      _layers: [{ cwd: '/app', config: { rootDir: '/app', srcDir: '/app/app' } }],
+      build: { templates: [] },
+      vite: {}
+    }
+  } as unknown as Nuxt
+}
+
+// The templates Nuxt recompiles when an existing file is saved, following the `dependsOn`
+// contract: a template that declares nothing is always recompiled.
+function recompiledOn(templates: NuxtTemplate[], nuxt: Nuxt, path: string) {
+  return templates.filter(({ dependsOn, options }) => {
+    if (typeof dependsOn === 'function') {
+      return dependsOn({ event: 'change', path }, { nuxt, app: {} as any, options: options ?? {} })
+    }
+    return !dependsOn || dependsOn.length > 0
+  }).map(template => template.filename)
+}
+
+/**
+ * The `experimental.componentDetection` CSS template used to be refreshed by a
+ * `builder:watch` hook filtering `updateTemplates` on a filename — spelled
+ * `b24ui.css` where the template was registered and `ui.css` in the watcher, so
+ * the refresh silently matched nothing. Nuxt now asks each template whether a
+ * change concerns it (`dependsOn`), so the filename is declared once, on the
+ * template itself. The cases below run the predicate Nuxt really calls against
+ * the templates the module really registers.
+ */
+describe('regeneration on file changes', () => {
+  it('recompiles no template without component detection', () => {
+    const nuxt = createNuxt()
+    const templates = runWithNuxtContext(nuxt, () => getTemplates({} as ModuleOptions, nuxt, () => '/b24ui/runtime/components'))
+
+    expect(recompiledOn(templates, nuxt, '/app/app/pages/index.vue')).toEqual([])
+  })
+
+  it(`recompiles only \`${CSS_TEMPLATE_FILENAME}\` when a scanned file changes with component detection`, () => {
+    const nuxt = createNuxt()
+    const templates = runWithNuxtContext(nuxt, () => getTemplates({ experimental: { componentDetection: true } } as ModuleOptions, nuxt, () => '/b24ui/runtime/components'))
+
+    expect(recompiledOn(templates, nuxt, '/app/app/pages/index.vue')).toEqual([CSS_TEMPLATE_FILENAME])
+    expect(recompiledOn(templates, nuxt, '/app/app/composables/useThing.ts')).toEqual([CSS_TEMPLATE_FILENAME])
+    expect(recompiledOn(templates, nuxt, '/app/server/api/thing.ts')).toEqual([])
+    expect(recompiledOn(templates, nuxt, '/app/app/assets/main.css')).toEqual([])
+  })
+
+  it('reacts to every source extension component detection scans', () => {
+    const nuxt = createNuxt()
+    const templates = runWithNuxtContext(nuxt, () => getTemplates({ experimental: { componentDetection: true } } as ModuleOptions, nuxt, () => '/b24ui/runtime/components'))
+
+    // Driven off the shared list rather than a literal: the dependency and the
+    // scan glob are two halves of one decision, and an extension added to one
+    // and not the other means a file that changes the answer never triggers a
+    // refresh — no error, no signal.
+    expect(COMPONENT_DETECTION_EXTENSIONS.length).toBeGreaterThan(4)
+
+    for (const extension of COMPONENT_DETECTION_EXTENSIONS) {
+      expect(recompiledOn(templates, nuxt, `/app/app/a.${extension}`)).toEqual([CSS_TEMPLATE_FILENAME])
+    }
+  })
+
+  it('leaves regeneration to Nuxt when a file changes', async () => {
+    const nuxt = createNuxt()
+    const requests: unknown[] = []
+    nuxt.hook('builder:generateApp', options => void requests.push(options))
+    nuxtCtx.set(nuxt)
+    try {
+      addTemplates({ experimental: { componentDetection: true } } as ModuleOptions, nuxt, () => '/b24ui/runtime/components')
+      await nuxt.callHook('builder:watch', 'change', 'pages/index.vue')
+    } finally {
+      nuxtCtx.unset()
+    }
+
+    expect(requests).toEqual([])
   })
 
   it('shares that list with the scan glob instead of repeating it', () => {
-    // The assertion above only proves the watcher matches the constant. If the
-    // glob went back to a literal the two could drift apart again with every
-    // test still green.
+    // If the glob went back to a literal the two could drift apart again with
+    // every test above still green.
     const source = readFileSync(resolve(process.cwd(), 'src/utils/components.ts'), 'utf-8')
 
     expect(source).toMatch(/globSync\(\[`\*\*\/\*\.\{\$\{COMPONENT_DETECTION_EXTENSIONS\.join\(','\)\}\}`\]/)
@@ -124,13 +148,13 @@ describe('prefixedClasses', () => {
   })
 
   it(`adds them to \`${CSS_TEMPLATE_FILENAME}\` with \`theme.prefix\``, async () => {
-    const cssTemplate = getTemplates({ theme: { prefix: 'tw' } } as ModuleOptions).find(isCssTemplate)
+    const cssTemplate = getTemplates({ theme: { prefix: 'tw' } } as ModuleOptions).find(template => template.filename === CSS_TEMPLATE_FILENAME)
 
     expect(await cssTemplate!.getContents!({} as any)).toContain(`@source inline("${prefixedClasses.map(cls => `tw:${cls}`).join(' ')}");`)
   })
 
   it('adds nothing without `theme.prefix`', async () => {
-    const cssTemplate = getTemplates({} as ModuleOptions).find(isCssTemplate)
+    const cssTemplate = getTemplates({} as ModuleOptions).find(template => template.filename === CSS_TEMPLATE_FILENAME)
 
     expect(await cssTemplate!.getContents!({} as any)).not.toContain(':peer')
   })

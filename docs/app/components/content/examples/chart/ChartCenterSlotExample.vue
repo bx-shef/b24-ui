@@ -14,11 +14,11 @@ const data = [
     index="browser"
     :categories="['visitors']"
     legend
-    aria-label="Visitors by browser"
+    aria-label="Посетители по браузерам"
   >
     <template #center>
       <span class="text-(length:--ui-font-size-4xl) font-(--ui-font-weight-semi-bold) text-legend">835</span>
-      <span class="text-(length:--ui-font-size-xs) text-description">Visitors</span>
+      <span class="text-(length:--ui-font-size-xs) text-description">Посетителей</span>
     </template>
   </B24Chart>
 </template>

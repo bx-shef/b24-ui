@@ -52,6 +52,7 @@ export interface ContentSurroundSlots<T extends ContentSurroundLink = ContentSur
 </script>
 
 <script setup lang="ts" generic="T extends ContentSurroundLink">
+import { safeIcon } from '../../utils'
 import { computed } from 'vue'
 import { Primitive } from 'reka-ui'
 import { createReusableTemplate } from '@vueuse/core'
@@ -105,7 +106,7 @@ const nextIcon = computed(() => props.nextIcon || (dir.value === 'rtl' ? icons.a
         <div data-slot="linkLeading" :class="b24ui.linkLeading({ class: [props.b24ui?.linkLeading, link.b24ui?.linkLeading] })">
           <slot name="link-leading" :link="(link as T)" :b24ui="b24ui">
             <Component
-              :is="link.icon || icon"
+              :is="safeIcon(link.icon) || icon"
               data-slot="linkLeadingIcon"
               :class="b24ui.linkLeadingIcon({ class: [props.b24ui?.linkLeadingIcon, link.b24ui?.linkLeadingIcon], direction })"
             />

@@ -1,16 +1,19 @@
 ---
 title: Table
-description: A responsive data table component.
+description: 'Адаптивная таблица данных.'
 category: data
 keywords:
   - data table
   - datagrid
   - data grid
+  - таблица
+  - таблица данных
+  - грид
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Table.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/table
   - label: Nuxt UI
@@ -23,11 +26,11 @@ links:
     to: https://tanstack.com/table/v8
 ---
 
-## Usage
+## Использование {#usage}
 
-The Table component is built on top of [TanStack Table v8](https://tanstack.com/table/v8) and is powered by the [useVueTable](https://tanstack.com/table/v8/docs/framework/vue/vue-table#usevuetable) composable to provide a flexible and fully type-safe API.
+Table построен на [TanStack Table v8](https://tanstack.com/table/v8) и работает на композабле [useVueTable](https://tanstack.com/table/v8/docs/framework/vue/vue-table#usevuetable), что даёт гибкий и полностью типобезопасный API.
 
-It renders your data as rows and columns and supports sorting, filtering, pagination, row selection, expansion, grouping, pinning and virtualization, so you can build everything from a simple data table to a fully featured data grid.
+Он отрисовывает данные в виде строк и столбцов и поддерживает сортировку, фильтрацию, постраничный вывод, выбор строк, раскрытие, группировку, закрепление и виртуализацию: от простой таблицы данных до полноценной сетки.
 
 ::component-example
 ---
@@ -38,13 +41,13 @@ class: '!p-0'
 ---
 ::
 
-::callout{to="https://github.com/bitrix24/b24ui/blob/main/docs/app/components/content/examples/table/TableExample.vue" aria-label="View source code"}
-This example demonstrates the most common use case of the `Table` component. Check out the source code on GitHub.
+::callout{to="https://github.com/bitrix24/b24ui/blob/main/docs/app/components/content/examples/table/TableExample.vue" aria-label="Посмотреть исходный код"}
+В этом примере показан самый частый случай использования `Table`. Исходный код доступен на GitHub.
 ::
 
-### Data
+### Данные {#data}
 
-Use the `data` prop as an array of objects, the columns will be generated based on the keys of the objects.
+Пропс `data` — массив объектов; столбцы создаются по ключам объектов.
 
 ::component-code
 ---
@@ -87,30 +90,30 @@ props:
 ---
 ::
 
-### Columns
+### Столбцы {#columns}
 
-Use the `columns` prop as an array of [ColumnDef](https://tanstack.com/table/v8/docs/api/core/column-def) objects with properties like:
+Пропс `columns` — массив объектов [ColumnDef](https://tanstack.com/table/v8/docs/api/core/column-def) со свойствами, например:
 
-- `accessorKey`: [The key of the row object to use when extracting the value for the column.]{class="text-description"}
-- `header`: [The header to display for the column. If a string is passed, it can be used as a default for the column ID. If a function is passed, it will be passed a props object for the header and should return the rendered header value (the exact type depends on the adapter being used).]{class="text-description"}
-- [`footer`](#with-column-footer): [The footer to display for the column. Works exactly like header, but is displayed under the table.]{class="text-description"}
-- `cell`: [The cell to display each row for the column. If a function is passed, it will be passed a props object for the cell and should return the rendered cell value (the exact type depends on the adapter being used).]{class="text-description"}
-- `meta`: [Extra properties for the column.]{class="text-description"}
+- `accessorKey`: [ключ объекта строки, по которому извлекается значение столбца.]{class="text-description"}
+- `header`: [заголовок столбца. Если передана строка, она может служить идентификатором столбца по умолчанию. Если передана функция, она получает объект пропсов заголовка и должна вернуть отрисованное значение (точный тип зависит от используемого адаптера).]{class="text-description"}
+- [`footer`](#with-column-footer): [подвал столбца. Работает так же, как заголовок, но отображается под таблицей.]{class="text-description"}
+- `cell`: [ячейка столбца для каждой строки. Если передана функция, она получает объект пропсов ячейки и должна вернуть отрисованное значение (точный тип зависит от используемого адаптера).]{class="text-description"}
+- `meta`: [дополнительные свойства столбца.]{class="text-description"}
   - `class`:
-    - `td`: [The classes to apply to the `td` element.]{class="text-description"}
-    - `th`: [The classes to apply to the `th` element.]{class="text-description"}
+    - `td`: [классы для элемента `td`.]{class="text-description"}
+    - `th`: [классы для элемента `th`.]{class="text-description"}
   - `style`:
-    - `td`: [The style to apply to the `td` element.]{class="text-description"}
-    - `th`: [The style to apply to the `th` element.]{class="text-description"}
+    - `td`: [стили для элемента `td`.]{class="text-description"}
+    - `th`: [стили для элемента `th`.]{class="text-description"}
   - [`colspan`](#with-column-span):
-    - `td`: [The colspan attribute to apply to the `td` element.]{class="text-description"}
+    - `td`: [атрибут colspan для элемента `td`.]{class="text-description"}
   - [`rowspan`](#with-column-span):
-    - `td`: [The rowspan attribute to apply to the `td` element.]{class="text-description"}
+    - `td`: [атрибут rowspan для элемента `td`.]{class="text-description"}
 
-In order to render components or other HTML elements, you will need to use the Vue [`h` function](https://vuejs.org/api/render-function.html#h) inside the `header` and `cell` props. This is different from other components that use slots but allows for more flexibility.
+Чтобы отрисовать компоненты или другие HTML-элементы, используйте внутри пропсов `header` и `cell` [функцию `h`](https://vuejs.org/api/render-function.html#h) из Vue. Здесь это отличается от других компонентов, где используются слоты, зато даёт больше гибкости.
 
-::tip{to="#with-slots" aria-label="Table columns with slots"}
-You can also use slots to customize the header and data cells of the table.
+::tip{to="#with-slots" aria-label="Столбцы таблицы со слотами"}
+Заголовки и ячейки данных можно настраивать и слотами.
 ::
 
 ::component-example
@@ -126,17 +129,17 @@ highlights:
 ::
 
 ::note
-When rendering components with `h`, you can either use the `resolveComponent` function or import from `#components`.
+При отрисовке компонентов через `h` используйте функцию `resolveComponent` или импорт из `#components`.
 ::
 
-### Meta
+### Метаданные {#meta}
 
-Use the `meta` prop as an object ([TableMeta](https://tanstack.com/table/v8/docs/api/core/table#meta)) to pass properties like:
+Пропс `meta` — объект ([TableMeta](https://tanstack.com/table/v8/docs/api/core/table#meta)) со свойствами, например:
 
 - `class`:
-  - `tr`: [The classes to apply to the `tr` element.]{class="text-description"}
+  - `tr`: [классы для элемента `tr`.]{class="text-description"}
 - `style`:
-  - `tr`: [The style to apply to the `tr` element.]{class="text-description"}
+  - `tr`: [стили для элемента `tr`.]{class="text-description"}
 
 ::component-example
 ---
@@ -150,9 +153,9 @@ highlights:
 ---
 ::
 
-### Loading
+### Загрузка {#loading}
 
-Use the `loading` prop to display a loading state, the `loading-color` prop to change its color and the `loading-animation` prop to change its animation.
+Пропс `loading` показывает состояние загрузки, `loading-color` меняет его цвет, а `loading-animation` — анимацию.
 
 ::component-code
 ---
@@ -199,12 +202,14 @@ props:
 ::
 
 ::tip
-The loading animation is automatically disabled when the user prefers reduced motion, the bar is displayed as a full width pulse instead.
+Если пользователь предпочитает уменьшенное движение, анимация загрузки отключается, и полоса показывается как пульсация на всю ширину.
 ::
 
-### Sticky
+Пока таблица загружается и в ней нет данных, пустое состояние скрыто. Чтобы показать на его месте своё содержимое, используйте слот `#loading`.
 
-Use the `sticky` prop to make the header or footer sticky.
+### Липкие шапка и подвал {#sticky}
+
+Пропс `sticky` делает шапку или подвал липкими.
 
 ::component-code
 ---
@@ -262,11 +267,11 @@ props:
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With row actions
+### С действиями строки {#with-row-actions}
 
-You can add a new column that renders a [DropdownMenu](/docs/components/dropdown-menu/) component inside the `cell` to render row actions.
+Новый столбец с компонентом [DropdownMenu](/docs/components/dropdown-menu/) внутри `cell` показывает действия строки.
 
 ::component-example
 ---
@@ -280,12 +285,12 @@ class: '!p-0'
 ---
 ::
 
-### With expandable rows
+### С раскрываемыми строками {#with-expandable-rows}
 
-You can add a new column that renders a [Button](/docs/components/button/) component inside the `cell` to toggle the expandable state of a row using the TanStack Table [Expanding APIs](https://tanstack.com/table/v8/docs/api/features/expanding).
+Новый столбец с компонентом [Button](/docs/components/button/) внутри `cell` переключает раскрытие строки через [Expanding API](https://tanstack.com/table/v8/docs/api/features/expanding) TanStack Table.
 
 ::caution
-You need to define the `#expanded` slot to render the expanded content which will receive the row as a parameter.
+Слот `#expanded` отрисовывает раскрытое содержимое и получает строку параметром.
 ::
 
 ::component-example
@@ -301,24 +306,24 @@ class: '!p-0'
 ::
 
 ::tip
-You can use the `expanded` prop to control the expandable state of the rows (can be bound with `v-model`).
+Пропс `expanded` управляет раскрытием строк (его можно привязать через `v-model`).
 ::
 
 ::note
-You could also add this action to the [`DropdownMenu`](/docs/components/dropdown-menu/) component inside the `actions` column.
+То же действие можно добавить в [`DropdownMenu`](/docs/components/dropdown-menu/) внутри столбца `actions`.
 ::
 
-### With grouped rows
+### С группировкой строк {#with-grouped-rows}
 
-You can group rows based on a given column value and show/hide sub rows via some button added to the cell using the TanStack Table [Grouping APIs](https://tanstack.com/table/v8/docs/api/features/grouping).
+Строки можно группировать по значению заданного столбца и показывать или скрывать вложенные строки кнопкой в ячейке, используя [Grouping API](https://tanstack.com/table/v8/docs/api/features/grouping) TanStack Table.
 
-#### Important parts
+#### Важное {#important-parts}
 
-* Add `grouping` prop with an array of column ids you want to group by.
-* Add `grouping-options` prop. It must include `getGroupedRowModel`, you can import it from `@tanstack/vue-table` or implement your own.
-* Expand rows via `row.toggleExpanded()` method on any cell of the row. Keep in mind, it also toggles `#expanded` slot.
-* Use `aggregateFn` on column definition to define how to aggregate the rows.
-* `agregatedCell` renderer on column definition only works if there is no `cell` renderer.
+* Добавьте пропс `grouping` с массивом идентификаторов столбцов, по которым нужно группировать.
+* Добавьте пропс `grouping-options`. В нём должен быть `getGroupedRowModel`: его можно импортировать из `@tanstack/vue-table` или написать свой.
+* Раскрывайте строки методом `row.toggleExpanded()` в любой ячейке строки. Учтите, что он переключает и слот `#expanded`.
+* Опция `aggregateFn` в определении столбца задаёт способ агрегации строк.
+* Отрисовщик `agregatedCell` в определении столбца работает, только если нет отрисовщика `cell`.
 
 ::component-example
 ---
@@ -332,9 +337,9 @@ class: '!p-0'
 ---
 ::
 
-### With row pinning
+### С закреплением строк {#with-row-pinning}
 
-You can add a column that renders a [Button](/docs/components/button/) component inside the `cell` to toggle the pinning state of a row using the TanStack Table [Row Pinning APIs](https://tanstack.com/table/v8/docs/api/features/row-pinning). Pinned rows will stay at the top or bottom of the table regardless of sorting or filtering.
+Столбец с компонентом [Button](/docs/components/button/) внутри `cell` переключает закрепление строки через [Row Pinning API](https://tanstack.com/table/v8/docs/api/features/row-pinning) TanStack Table. Закреплённые строки остаются вверху или внизу таблицы независимо от сортировки и фильтрации.
 
 ::component-example
 ---
@@ -353,12 +358,12 @@ class: '!p-0'
 ::
 
 ::tip
-You can use the `row-pinning` prop to control the pinning state of the rows (can be bound with `v-model`).
+Пропс `row-pinning` управляет закреплением строк (его можно привязать через `v-model`).
 ::
 
-### With row selection
+### С выбором строк {#with-row-selection}
 
-You can add a new column that renders a [Checkbox](/docs/components/checkbox/) component inside the `header` and `cell` to select rows using the TanStack Table [Row Selection APIs](https://tanstack.com/table/v8/docs/api/features/row-selection).
+Новый столбец с компонентом [Checkbox](/docs/components/checkbox/) внутри `header` и `cell` выбирает строки через [Row Selection API](https://tanstack.com/table/v8/docs/api/features/row-selection) TanStack Table.
 
 ::component-example
 ---
@@ -374,15 +379,15 @@ class: '!p-0'
 ::
 
 ::tip
-You can use the `row-selection` prop to control the selection state of the rows (can be bound with `v-model`).
+Пропс `row-selection` управляет выбором строк (его можно привязать через `v-model`).
 ::
 
-### With row select event
+### С событием выбора строки {#with-row-select-event}
 
-You can add a `@select` listener to make rows clickable with or without a checkbox column.
+Слушатель `@select` делает строки кликабельными, с колонкой чекбоксов или без неё.
 
 ::note
-The handler function receives the `Event` and `TableRow` instance as the first and second arguments respectively.
+Функция-обработчик получает `Event` первым аргументом и экземпляр `TableRow` вторым.
 ::
 
 ::component-example
@@ -399,15 +404,15 @@ class: '!p-0'
 ::
 
 ::tip
-You can use this to navigate to a page, open a modal or even to select the row manually.
+Так можно перейти на страницу, открыть модальное окно или даже выбрать строку вручную.
 ::
 
-### With row context menu event
+### С событием контекстного меню строки {#with-row-context-menu-event}
 
-You can add a `@contextmenu` listener to make rows right clickable and wrap the Table in a [ContextMenu](/docs/components/context-menu/) component to display row actions for example.
+Слушатель `@contextmenu` делает строки кликабельными правой кнопкой; если обернуть Table в компонент [ContextMenu](/docs/components/context-menu/), он покажет, например, действия строки.
 
 ::note
-The handler function receives the `Event` and `TableRow` instance as the first and second arguments respectively.
+Функция-обработчик получает `Event` первым аргументом и экземпляр `TableRow` вторым.
 ::
 
 ::component-example
@@ -422,12 +427,12 @@ class: '!p-0'
 ---
 ::
 
-### With row hover event
+### С событием наведения на строку {#with-row-hover-event}
 
-You can add a `@hover` listener to make rows hoverable and use a [Popover](/docs/components/popover/) or a [Tooltip](/docs/components/tooltip/) component to display row details for example.
+Слушатель `@hover` реагирует на наведение на строки; компонент [Popover](/docs/components/popover/) или [Tooltip](/docs/components/tooltip/) может показать, например, сведения о строке.
 
 ::note
-The handler function receives the `Event` and `TableRow` instance as the first and second arguments respectively.
+Функция-обработчик получает `Event` первым аргументом и экземпляр `TableRow` вторым.
 ::
 
 ::component-example
@@ -444,12 +449,12 @@ class: '!p-0'
 ::
 
 ::note
-This example is similar as the Popover [with following cursor example](/docs/components/popover/#with-following-cursor) and uses a [`refDebounced`](https://vueuse.org/shared/refDebounced/#refdebounced) to prevent the Popover from opening and closing too quickly when moving the cursor from one row to another.
+Пример похож на [пример Popover с привязкой к курсору](/docs/components/popover/#with-following-cursor) и использует [`refDebounced`](https://vueuse.org/shared/refDebounced/#refdebounced), чтобы Popover не открывался и не закрывался слишком быстро при переходе курсора от строки к строке.
 ::
 
-### With column footer
+### С подвалом столбца {#with-column-footer}
 
-You can add a `footer` property to the column definition to render a footer for the column.
+Свойство `footer` в определении столбца отрисовывает подвал столбца.
 
 ::component-example
 ---
@@ -463,12 +468,12 @@ class: '!p-0'
 ---
 ::
 
-### With column span
+### С объединением ячеек {#with-column-span}
 
-You can use the `colspan` and `rowspan` properties in the column `meta` to merge cells. These properties accept a static value or a function that receives the cell and returns the span value.
+Свойства `colspan` и `rowspan` в `meta` столбца объединяют ячейки. Они принимают статическое значение или функцию, которая получает ячейку и возвращает значение объединения.
 
 ::note
-When using `rowspan`, cells that are "absorbed" by a previous row's span need to be visually hidden. Use the `class` meta with a function that returns `'hidden'` for those cells.
+При использовании `rowspan` ячейки, «поглощённые» объединением предыдущей строки, нужно визуально скрыть. Для этого задайте в `class` метаданных функцию, которая возвращает `'hidden'` для таких ячеек.
 ::
 
 ::component-example
@@ -480,11 +485,11 @@ class: '!p-0'
 ---
 ::
 
-### With column sorting
+### С сортировкой столбцов {#with-column-sorting}
 
-You can update a column `header` to render a [Button](/docs/components/button/) component inside the `header` to toggle the sorting state using the TanStack Table [Sorting APIs](https://tanstack.com/table/v8/docs/api/features/sorting).
+Заголовок `header` столбца можно заменить компонентом [Button](/docs/components/button/), который переключает сортировку через [Sorting API](https://tanstack.com/table/v8/docs/api/features/sorting) TanStack Table.
 
-Set `enableSorting: true` on those columns as well. This puts `aria-sort` on the `<th>` so screen readers can read the current sort state of the column: `none`, `ascending` or `descending`. The `Button` stays the control that changes it.
+Задайте таким столбцам и `enableSorting: true`. Тогда на `<th>` ставится `aria-sort`, и скринридеры читают текущее состояние сортировки столбца: `none`, `ascending` или `descending`. Менять его по-прежнему будет кнопка `Button`.
 
 ::component-example
 ---
@@ -499,23 +504,14 @@ class: '!p-0'
 ::
 
 ::tip
-You can use the `sorting` prop to control the sorting state of the columns (can be bound with `v-model`).
+Пропс `sorting` управляет сортировкой столбцов (его можно привязать через `v-model`).
 ::
 
 ::note
-The `<th>` of a sortable column carries `aria-sort` on its own — `ascending`,
-`descending`, or `none` when the column sorts but is not currently sorted — so
-your header button does not need to add it. A column is sortable for this
-purpose only when it sets `enableSorting: true`: an ordinary accessor column
-that renders no sort control, a column that opts out with
-`enableSorting: false`, and a display column with no accessor all get no
-`aria-sort` at all, which is what tells assistive technology they are not
-sortable rather than merely unsorted. When several columns are sorted at once
-the direction goes to the first one, since `aria-sort` describes a single
-column.
+У `<th>` сортируемого столбца атрибут `aria-sort` выставляется сам — `ascending`, `descending` или `none`, если столбец сортируется, но сейчас не отсортирован, — поэтому кнопке в заголовке добавлять его не нужно. Столбец считается сортируемым для этой цели, только когда у него задано `enableSorting: true`: обычный столбец с аксессором, который не рисует элемент сортировки, столбец с `enableSorting: false` и отображаемый столбец без аксессора вообще не получают `aria-sort` — по этому признаку вспомогательные технологии понимают, что они не сортируются, а не просто не отсортированы. Если отсортировано сразу несколько столбцов, направление получает первый, потому что `aria-sort` описывает один столбец.
 ::
 
-You can also create a reusable component to make any column header sortable.
+Можно создать и переиспользуемый компонент, который делает сортируемым заголовок любого столбца.
 
 ::component-example
 ---
@@ -530,15 +526,15 @@ class: '!p-0'
 ::
 
 ::note
-In this example, we use a function to define the column header but you can also create an actual component.
+В этом примере заголовок столбца задаётся функцией, но можно создать и полноценный компонент.
 ::
 
-### With column pinning
+### С закреплением столбцов {#with-column-pinning}
 
-You can update a column `header` to render a [Button](/docs/components/button) component inside the `header` to toggle the pinning state using the TanStack Table [Column Pinning APIs](https://tanstack.com/table/v8/docs/api/features/column-pinning).
+Заголовок `header` столбца можно заменить компонентом [Button](/docs/components/button), который переключает закрепление через [Column Pinning API](https://tanstack.com/table/v8/docs/api/features/column-pinning) TanStack Table.
 
 ::note
-A pinned column will become sticky on the left or right side of the table. When using column pinning, you should define explicit `size` values for your columns to ensure proper column width handling, especially with multiple pinned columns.
+Закреплённый столбец становится липким у левого или правого края таблицы. При закреплении столбцов задавайте столбцам явные значения `size`, чтобы ширина обрабатывалась корректно, особенно при нескольких закреплённых столбцах.
 ::
 
 ::component-example
@@ -555,12 +551,12 @@ class: '!p-0 overflow-clip'
 ::
 
 ::tip
-You can use the `column-pinning` prop to control the pinning state of the columns (can be bound with `v-model`).
+Пропс `column-pinning` управляет закреплением столбцов (его можно привязать через `v-model`).
 ::
 
-### With column visibility
+### С видимостью столбцов {#with-column-visibility}
 
-You can use a [DropdownMenu](/docs/components/dropdown-menu/) component to toggle the visibility of the columns using the TanStack Table [Column Visibility APIs](https://tanstack.com/table/v8/docs/api/features/column-visibility).
+Компонент [DropdownMenu](/docs/components/dropdown-menu/) переключает видимость столбцов через [Column Visibility API](https://tanstack.com/table/v8/docs/api/features/column-visibility) TanStack Table.
 
 ::component-example
 ---
@@ -576,12 +572,12 @@ class: '!p-0'
 ::
 
 ::tip
-You can use the `column-visibility` prop to control the visibility state of the columns (can be bound with `v-model`).
+Пропс `column-visibility` управляет видимостью столбцов (его можно привязать через `v-model`).
 ::
 
-### With column filters
+### С фильтрами столбцов {#with-column-filters}
 
-You can use an [Input](/docs/components/input/) component to filter per column the rows using the TanStack Table [Column Filtering APIs](https://tanstack.com/table/v8/docs/api/features/column-filtering).
+Компонент [Input](/docs/components/input/) фильтрует строки по каждому столбцу через [Column Filtering API](https://tanstack.com/table/v8/docs/api/features/column-filtering) TanStack Table.
 
 ::component-example
 ---
@@ -597,12 +593,12 @@ class: '!p-0'
 ::
 
 ::tip
-You can use the `column-filters` prop to control the filters state of the columns (can be bound with `v-model`).
+Пропс `column-filters` управляет фильтрами столбцов (его можно привязать через `v-model`).
 ::
 
-### With global filter
+### С глобальным фильтром {#with-global-filter}
 
-You can use an [Input](/docs/components/input/) component to filter the rows using the TanStack Table [Global Filtering APIs](https://tanstack.com/table/v8/docs/api/features/global-filtering).
+Компонент [Input](/docs/components/input/) фильтрует строки через [Global Filtering API](https://tanstack.com/table/v8/docs/api/features/global-filtering) TanStack Table.
 
 ::component-example
 ---
@@ -617,14 +613,14 @@ highlights:
 ::
 
 ::tip
-You can use the `global-filter` prop to control the global filter state (can be bound with `v-model`).
+Пропс `global-filter` управляет глобальным фильтром (его можно привязать через `v-model`).
 ::
 
-### With pagination
+### С постраничным выводом {#with-pagination}
 
-You can use a [Pagination](/docs/components/pagination/) component to control the pagination state using the [Pagination APIs](https://tanstack.com/table/v8/docs/api/features/pagination).
+Компонент [Pagination](/docs/components/pagination/) управляет постраничным выводом через [Pagination API](https://tanstack.com/table/v8/docs/api/features/pagination).
 
-There are different pagination approaches as explained in [Pagination Guide](https://tanstack.com/table/v8/docs/guide/pagination#pagination-guide). In this example, we use client-side pagination so we need to manually pass `getPaginationRowModel()`{lang="ts-type"} function.
+Подходы к постраничному выводу разобраны в [руководстве по пагинации](https://tanstack.com/table/v8/docs/guide/pagination#pagination-guide). В этом примере используется клиентская пагинация, поэтому функцию `getPaginationRowModel()`{lang="ts-type"} нужно передать вручную.
 
 ::component-example
 ---
@@ -640,12 +636,12 @@ highlights:
 ::
 
 ::tip
-You can use the `pagination` prop to control the pagination state (can be bound with `v-model`).
+Пропс `pagination` управляет состоянием постраничного вывода (его можно привязать через `v-model`).
 ::
 
-### With fetched data
+### С загружаемыми данными {#with-fetched-data}
 
-You can fetch data from an API and use them in the Table.
+Данные можно загружать из API и использовать в Table.
 
 ::component-example
 ---
@@ -660,12 +656,12 @@ class: '!p-0'
 ::
 
 ::note
-This example uses `useLazyFetch` with `server: false` to fetch data on the client without blocking the initial render. The loading state checks for both `pending` and `idle` status to display a loading indicator before and during the fetch.
+В примере `useLazyFetch` вызывается с `server: false`, поэтому данные загружаются на клиенте и не блокируют первую отрисовку. Состояние загрузки проверяет и `pending`, и `idle`, чтобы индикатор показывался и до запроса, и во время него.
 ::
 
-### With infinite scroll
+### С бесконечной прокруткой {#with-infinite-scroll}
 
-If you use server-side pagination, you can use the [`useInfiniteScroll`](https://vueuse.org/core/useInfiniteScroll/#useinfinitescroll) composable to load more data as the user scrolls.
+При серверной пагинации композабл [`useInfiniteScroll`](https://vueuse.org/core/useInfiniteScroll/#useinfinitescroll) подгружает данные по мере прокрутки.
 
 ::component-example
 ---
@@ -681,15 +677,15 @@ class: '!p-0'
 ::
 
 ::note
-This example uses `useLazyFetch` with `server: false` to fetch data on the client without blocking the initial render. The loading state checks for both `pending` and `idle` status to display a loading indicator before and during the fetch. Additional pages are loaded as the user scrolls.
+В примере `useLazyFetch` вызывается с `server: false`, поэтому данные загружаются на клиенте и не блокируют первую отрисовку. Состояние загрузки проверяет и `pending`, и `idle`, чтобы индикатор показывался и до запроса, и во время него. Новые страницы подгружаются по мере прокрутки.
 ::
 
-### With drag and drop
+### С перетаскиванием {#with-drag-and-drop}
 
-You can use the [`useSortable`](https://vueuse.org/integrations/useSortable/) composable from [`@vueuse/integrations`](https://vueuse.org/integrations/README.html) to enable drag and drop functionality on the Table. This integration wraps [Sortable.js](https://sortablejs.github.io/Sortable/) to provide a seamless drag and drop experience.
+Композабл [`useSortable`](https://vueuse.org/integrations/useSortable/) из [`@vueuse/integrations`](https://vueuse.org/integrations/README.html) включает в Table перетаскивание. Интеграция оборачивает [Sortable.js](https://sortablejs.github.io/Sortable/) и даёт удобное перетаскивание.
 
 ::note
-Since the table ref doesn't expose the tbody element, add a unique class to it via the `:b24ui` prop to target it with `useSortable` (e.g. `:b24ui="{ tbody: 'my-table-tbody' }"`).
+Ref таблицы не открывает элемент tbody, поэтому задайте ему уникальный класс через пропс `:b24ui` и используйте его в `useSortable` (например, `:b24ui="{ tbody: 'my-table-tbody' }"`).
 ::
 
 ::component-example
@@ -704,12 +700,12 @@ class: '!p-0'
 ---
 ::
 
-### With virtualization
+### С виртуализацией {#with-virtualization}
 
-Use the `virtualize` prop to enable virtualization for large datasets as a boolean or an object with options like `{ estimateSize: 65, overscan: 12 }`. You can also pass other [TanStack Virtual options](https://tanstack.com/virtual/latest/docs/api/virtualizer#optional-options) to customize the virtualization behavior.
+Пропс `virtualize` включает виртуализацию для больших наборов данных: булево значение или объект с параметрами вроде `{ estimateSize: 65, overscan: 12 }`. Другие [параметры TanStack Virtual](https://tanstack.com/virtual/v3/docs/api/virtualizer#optional-options) тоже можно передать, чтобы настроить поведение виртуализации.
 
 ::warning
-Row pinning is not supported when virtualization is enabled.
+Закрепление строк при включённой виртуализации не поддерживается.
 ::
 
 ::component-example
@@ -723,16 +719,16 @@ class: '!p-0'
 ::
 
 ::note
-A height constraint is required on the table for virtualization to work properly (e.g. `class="h-[400px]"`).
+Для работы виртуализации у таблицы нужно ограничить высоту (например, `class="h-[400px]"`).
 ::
 
 ::tip
-Rows are measured as they render, so `estimateSize` only needs to be a close guess. Rows can have variable heights, and you can pass a custom `measureElement` to control how each one is measured (the height of its expanded row is added to it).
+Строки измеряются при отрисовке, поэтому `estimateSize` может быть лишь близкой оценкой. Высота строк может различаться; свою функцию `measureElement` можно передать, чтобы управлять измерением каждой строки (высота раскрытой строки добавляется к ней).
 ::
 
-### With external scroll element :badge{label="New" class="align-text-top"}
+### С внешним элементом прокрутки :badge{label="New" class="align-text-top"} {#with-external-scroll-element}
 
-Pass a `getScrollElement` function in the `virtualize` prop to virtualize against an ancestor scroll container instead of the table's own root. Set `scrollMargin` to the table's offset from the scroll element's start (e.g. the height of the content above it), so a header and the table body share a single scrollbar.
+Передайте в пропс `virtualize` функцию `getScrollElement`, чтобы виртуализировать относительно прокручиваемого предка, а не корня самой таблицы. `scrollMargin` задаёт смещение таблицы от начала элемента прокрутки (например, высоту содержимого над ней), чтобы шапка и тело таблицы делили одну полосу прокрутки.
 
 ::component-example
 ---
@@ -745,13 +741,13 @@ class: '!p-0'
 ::
 
 ::note
-In this mode the table root's `overflow` is `visible` and the external container owns scrolling on both axes, so give it `overflow-auto` (not just `overflow-y-auto`) to keep wide tables horizontally scrollable. A `sticky` header then anchors to that container.
+В этом режиме `overflow` корня таблицы равен `visible`, а прокруткой по обеим осям управляет внешний контейнер, поэтому задайте ему `overflow-auto` (а не только `overflow-y-auto`), чтобы широкие таблицы прокручивались и по горизонтали. Липкая шапка (`sticky`) тогда крепится к этому контейнеру.
 ::
 
-### With tree data
+### С древовидными данными {#with-tree-data}
 
-You can use the `get-sub-rows` prop to display hierarchical (tree) data in the table.
-For example, if your data objects have a `children` array, set `:get-sub-rows="row => row.children"` to enable expandable rows.
+Пропс `get-sub-rows` показывает иерархические (древовидные) данные в таблице.
+Например, если у объектов данных есть массив `children`, задайте `:get-sub-rows="row => row.children"`, чтобы включить раскрываемые строки.
 
 ::component-example
 ---
@@ -764,13 +760,13 @@ class: '!p-0'
 ---
 ::
 
-### With slots
+### Со слотами {#with-slots}
 
-You can use slots to customize the header and data cells of the table.
+Слоты настраивают заголовки и ячейки данных таблицы.
 
-Use the `#<column>-header` slot to customize the header of a column. You will have access to the `column`, `header` and `table` properties in the slot scope.
+Слот `#<column>-header` настраивает заголовок столбца. В области видимости слота доступны `column`, `header` и `table`.
 
-Use the `#<column>-cell` slot to customize the cell of a column. You will have access to the `cell`, `column`, `getValue`, `renderValue`, `row`, and `table` properties in the slot scope.
+Слот `#<column>-cell` настраивает ячейку столбца. В области видимости слота доступны `cell`, `column`, `getValue`, `renderValue`, `row` и `table`.
 
 ::component-example
 ---
@@ -781,23 +777,23 @@ class: '!p-0'
 ---
 ::
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table#attributes" target="_blank"}
-This component also supports all native `<table>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<table>`.
 ::
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Expose
+### Доступ через ref {#expose}
 
-You can access the typed component instance using [`useTemplateRef`](https://vuejs.org/api/composition-api-helpers.html#usetemplateref).
+Типизированный экземпляр компонента доступен через [`useTemplateRef`](https://vuejs.org/api/composition-api-helpers.html#usetemplateref).
 
 ```vue
 <script setup lang="ts">
@@ -809,13 +805,13 @@ const table = useTemplateRef('table')
 </template>
 ```
 
-This will give you access to the following:
+Он даёт доступ к следующему:
 
-| Name | Type |
+| Имя | Тип |
 | ---- | ---- |
 | `tableRef`{lang="ts-type"} | `Ref<HTMLTableElement \| null>`{lang="ts-type"} |
 | `tableApi`{lang="ts-type"} | [`Table`{lang="ts-type"}](https://tanstack.com/table/v8/docs/api/core/table#table-api) |
 
-## Theme
+## Тема {#theme}
 
 :component-theme

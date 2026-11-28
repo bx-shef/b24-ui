@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DropdownMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { DropdownMenuItem } from '@bxshefby/b24ui-nuxt'
 import HamburgerMenuIcon from '@bitrix24/b24icons-vue/outline/HamburgerMenuIcon'
 
 const items: DropdownMenuItem[] = [
@@ -34,6 +34,6 @@ const items: DropdownMenuItem[] = [
     :content="{ align: 'start' }"
     :b24ui="{ content: 'w-64', viewport: 'w-64' }"
   >
-    <B24Button label="Open" :icon="HamburgerMenuIcon" />
+    <B24Button label="Открыть" :icon="HamburgerMenuIcon" />
   </B24DropdownMenu>
 </template>

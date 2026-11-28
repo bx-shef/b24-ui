@@ -71,7 +71,7 @@ const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.prose?.col
           :class="b24ui.triggerIcon({ class: props.b24ui?.triggerIcon })"
         />
         <span data-slot="triggerLabel" :class="b24ui.triggerLabel({ class: props.b24ui?.triggerLabel })">
-          {{ open ? (props.closeText || t('prose.collapsible.closeText')) : (props.openText || t('prose.collapsible.openText')) }} {{ props.name || t('prose.collapsible.name') }}
+          {{ t('prose.collapsible.label', { text: open ? (props.closeText || t('prose.collapsible.closeText')) : (props.openText || t('prose.collapsible.openText')), name: props.name || t('prose.collapsible.name') }) }}
         </span>
       </button>
     </template>

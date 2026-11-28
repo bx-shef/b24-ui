@@ -1,16 +1,19 @@
 ---
 title: Card
-description: Render the content within a card component comprising a header, body, and footer section.
+description: 'Карточка с заголовком, основной частью и подвалом.'
 category: element
 keywords:
   - panel
   - box
   - container
+  - карточка
+  - панель
+  - блок
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Card.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/card
   - label: Nuxt UI
@@ -18,9 +21,9 @@ links:
     to: https://ui.nuxt.com/docs/components/card
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `header`, `default` and `footer` slots to add content to the Card.
+Слоты `header`, `default` и `footer` добавляют содержимое в Card.
 
 ::component-code
 ---
@@ -53,9 +56,9 @@ slots:
 :placeholder{class="h-8"}
 ::
 
-### Title
+### Заголовок {#title}
 
-Use the `title` prop to set the title of the Card's header.
+Пропс `title` задаёт заголовок в шапке Card.
 
 ::component-code
 ---
@@ -63,7 +66,7 @@ prettier: true
 ignore:
   - class
 props:
-  title: 'Card with title'
+  title: 'Карточка с заголовком'
   class: 'w-full'
 slots:
   default: |
@@ -75,9 +78,13 @@ slots:
 :placeholder{class="h-32"}
 ::
 
-### Description
+::tip
+По умолчанию заголовок отрисовывается как `div`. Чтобы получить заголовок-тег, передайте в пропс `as` объект, например `:as="{ title: 'h3' }"`{lang="ts-type"}. Так же задаётся и корневой элемент: `:as="{ root: 'section', title: 'h3' }"`{lang="ts-type"}.
+::
 
-Use the `description` prop to set the description of the Card's header.
+### Описание {#description}
+
+Пропс `description` задаёт описание в шапке Card.
 
 ::component-code
 ---
@@ -86,7 +93,7 @@ ignore:
   - title
   - class
 props:
-  title: 'Card with description'
+  title: 'Карточка с описанием'
   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
   class: 'w-full'
 slots:
@@ -99,9 +106,9 @@ slots:
 :placeholder{class="h-32"}
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to control the padding of the header, body and footer.
+Пропс `size` задаёт отступы шапки, основной части и подвала.
 
 ::component-code
 ---
@@ -141,9 +148,9 @@ slots:
 :placeholder{class="h-8"}
 ::
 
-### Variant
+### Вариант {#variant}
 
-Use the `variant` prop to change the variant of the Card.
+Пропс `variant` меняет вариант Card.
 
 ::component-code
 ---
@@ -177,11 +184,11 @@ slots:
 :placeholder{class="h-8"}
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Sales dynamics widget
+### Виджет динамики продаж {#sales-dynamics-widget}
 
-Real-world example: a CRM dashboard widget assembled from `Card` (with the `filled-copilot` variant for the purple accent), `Button`, `Tooltip` and a small CSS grid for the metrics rows. The highlighted "Conversion" row is just a translucent overlay with `bg-white/15` over the same card.
+Пример из практики: виджет дашборда CRM, собранный из `Card` (вариант `filled-copilot` для фиолетового акцента), `Button`, `Tooltip` и небольшой CSS-сетки для строк с метриками. Выделенная строка «Conversion» — это просто полупрозрачная подложка `bg-white/15` поверх той же карточки.
 
 ::component-example
 ---
@@ -192,26 +199,26 @@ name: 'card-sales-dynamics-example'
 
 ::prompt
 ---
-description: Render a CRM dashboard widget with a few metrics and a highlighted KPI row.
+description: Отрисовать виджет дашборда CRM с несколькими метриками и выделенной строкой KPI.
 actions:
   - copy
   - cursor
   - windsurf
 class: 'w-full my-0'
 ---
-On a CRM dashboard, render a "Repeat sales dynamics" widget summarising deal volume and value. The card carries a copilot accent and a highlighted row at the bottom for the conversion KPI.
+На дашборде CRM отрисуйте виджет «Repeat sales dynamics» со сводкой по числу и сумме сделок. У карточки акцент copilot, а внизу — выделенная строка с KPI конверсии.
 
-Requirements:
-- Use `B24Card` with `variant="filled-copilot"`. The `#header` slot holds the title, two-line description and a top-right pill `B24Button` (`rounded`, `color="air-tertiary-no-accent"`, `:trailing-icon="RepeatIcon"`) that switches the date range
-- The body is a small CSS grid with three columns (`1fr_auto_auto`) — first row carries the column headers ("Count" / "Amount"), then one row per metric. Each row sits on `bg-white/5 rounded-xl` so it reads as a row over the copilot fill
-- Render the highlighted KPI row with `bg-white/15 ring-1 ring-white/20` for contrast. Pair the label with a small `Info1Icon` inside a `B24Tooltip` for the description
-- The `#footer` slot holds two `air-tertiary-no-accent` buttons aligned to opposite sides (`Configure` left, `Feedback` right) with leading icons (`SettingsIcon`, `FeedbackIcon`)
-- Drive the values from `rows: { label, count, amount }[]` and an optional `highlight: { label, count, amount, info }`. Keep amounts pre-formatted strings to avoid coupling with a money formatter
+Требования:
+- Используйте `B24Card` с `variant="filled-copilot"`. В слоте `#header` — заголовок, описание в две строки и кнопка-таблетка `B24Button` справа вверху (`rounded`, `color="air-tertiary-no-accent"`, `:trailing-icon="RepeatIcon"`), которая переключает период
+- Основная часть — небольшая CSS-сетка из трёх колонок (`1fr_auto_auto`): в первой строке заголовки колонок («Count» / «Amount»), затем по строке на метрику. Каждая строка лежит на `bg-white/5 rounded-xl`, чтобы читаться как строка поверх заливки copilot
+- Выделенную строку KPI отрисуйте с `bg-white/15 ring-1 ring-white/20` для контраста. Рядом с подписью поставьте небольшую `Info1Icon` внутри `B24Tooltip` с описанием
+- В слоте `#footer` две кнопки `air-tertiary-no-accent` по разным краям (`Configure` слева, `Feedback` справа) с иконками слева (`SettingsIcon`, `FeedbackIcon`)
+- Значения берите из `rows: { label, count, amount }[]` и необязательного `highlight: { label, count, amount, info }`. Суммы храните готовыми строками, чтобы не зависеть от форматирования денег
 ::
 
-### Channel detail panel
+### Панель сведений о канале {#channel-detail-panel}
 
-Composed entity sidebar built entirely from standard components: `Card` (with `divide-y` body for automatic section dividers), a square `Avatar`, an `AvatarGroup` with overflow counter, `Switch` toggle rows, `Badge` counters and `Empty` section placeholders. Use it as a starting point for chat channel info panels or CRM record details.
+Боковая панель сущности целиком из стандартных компонентов: `Card` (основная часть с `divide-y` даёт разделители секций автоматически), квадратный `Avatar`, `AvatarGroup` со счётчиком остатка, строки с `Switch`, счётчики `Badge` и заглушки секций `Empty`. Подойдёт как основа для панели сведений о чате или карточки записи CRM.
 
 ::component-example
 ---
@@ -220,45 +227,45 @@ name: 'card-channel-panel-example'
 ---
 ::
 
-Generate this layout with your AI assistant. The prompt asks the assistant to confirm the entity type and which sections you need before writing any code:
+Эту раскладку можно сгенерировать с помощью AI-ассистента. Промпт просит ассистента до написания кода уточнить тип сущности и нужные секции:
 
 ::prompt
 ---
-description: Build a Bitrix24-style entity detail sidebar from standard components.
+description: Собрать боковую панель сведений о сущности в стиле Битрикс24 из стандартных компонентов.
 actions:
   - copy
   - cursor
   - windsurf
 class: 'w-full my-0'
 ---
-You are a Bitrix24 UI expert. Help me build an entity detail sidebar (info panel) using only standard `@bitrix24/b24ui-nuxt` components, with minimal custom styling.
+Вы — эксперт по Bitrix24 UI. Помогите собрать боковую панель сведений о сущности (информационную панель) только из стандартных компонентов `@bxshefby/b24ui-nuxt` с минимумом собственных стилей.
 
-Before writing any code, ask me clarifying questions and wait for my answers:
-- What entity is this panel for (chat channel, CRM contact/deal, project, something else)?
-- Which header info should it show (avatar shape, title, subtitle, member group)?
-- Which toggle settings do I need (e.g. notifications, auto-delete) and their default state?
-- Which info rows and counters should appear (and which need a badge)?
-- Which content sections do I need (e.g. Media & Files, Tasks, Meetings) and what is their empty state?
+Перед написанием кода задайте уточняющие вопросы и дождитесь ответов:
+- Для какой сущности панель (канал чата, контакт или сделка CRM, проект, что-то другое)?
+- Что показывать в шапке (форма аватара, заголовок, подзаголовок, группа участников)?
+- Какие переключатели нужны (например, уведомления, автоудаление) и в каком состоянии они по умолчанию?
+- Какие строки сведений и счётчики нужны (и для каких нужен бейдж)?
+- Какие секции содержимого нужны (например, «Медиа и файлы», «Задачи», «Встречи») и как они выглядят пустыми?
 
-Once I confirm, build it with these conventions:
-- Wrap everything in a `B24Card` with `class="w-full max-w-xs overflow-hidden"` and `:b24ui="{ body: 'p-0 flex flex-col gap-0 divide-y divide-default' }"` so each child section is auto-divided
-- Square the channel avatar with `B24Avatar :b24ui="{ root: 'rounded-xl' }"`; show members with `B24AvatarGroup :max="N"` plus one extra child to render the `+1` counter
-- For toggle rows, put the icon outside and use `B24Switch` with the `label` prop for accessibility, reversing layout via `:b24ui="{ root: 'flex-1 flex-row-reverse justify-between items-center', wrapper: 'ms-0' }"`
-- Use `B24Badge ... square` for numeric counters on info rows
-- Use `B24Empty` for section empty states, flattened with `:b24ui="{ root: 'ring-0 rounded-none py-3' }"`
-- Use semantic text tokens (`text-label`, `text-description`, `text-dimmed`) and `<h3>` for section headings
+Когда я подтвержу, собирайте по таким правилам:
+- Оберните всё в `B24Card` с `class="w-full max-w-xs overflow-hidden"` и `:b24ui="{ body: 'p-0 flex flex-col gap-0 divide-y divide-default' }"`, чтобы секции разделялись автоматически
+- Аватар канала сделайте квадратным: `B24Avatar :b24ui="{ root: 'rounded-xl' }"`; участников показывайте через `B24AvatarGroup :max="N"` с одним лишним дочерним элементом, чтобы получился счётчик `+1`
+- В строках-переключателях иконку вынесите наружу, а `B24Switch` используйте с пропсом `label` ради доступности и переверните раскладку через `:b24ui="{ root: 'flex-1 flex-row-reverse justify-between items-center', wrapper: 'ms-0' }"`
+- Числовые счётчики в строках сведений — `B24Badge ... square`
+- Пустые секции — `B24Empty`, «выровненный» через `:b24ui="{ root: 'ring-0 rounded-none py-3' }"`
+- Используйте семантические токены текста (`text-label`, `text-description`, `text-dimmed`) и `<h3>` для заголовков секций
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

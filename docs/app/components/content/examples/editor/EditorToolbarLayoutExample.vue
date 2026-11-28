@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { EditorToolbarItem } from '@bitrix24/b24ui-nuxt'
+import type { EditorToolbarItem } from '@bxshefby/b24ui-nuxt'
 import BoldIcon from '@bitrix24/b24icons-vue/outline/BoldIcon'
 import ItalicIcon from '@bitrix24/b24icons-vue/outline/ItalicIcon'
 import DeveloperResourcesIcon from '@bitrix24/b24icons-vue/outline/DeveloperResourcesIcon'
@@ -8,9 +8,9 @@ defineProps<{
   layout: 'fixed' | 'bubble' | 'floating'
 }>()
 
-const value = ref(`Switch between layouts to see the different toolbar modes.
+const value = ref(`Переключайте раскладки, чтобы увидеть разные режимы панели инструментов.
 
-The **fixed** layout displays the toolbar above the editor. The **bubble** layout shows the toolbar when you select text. The **floating** layout appears on empty lines.`)
+Раскладка **fixed** показывает панель инструментов над редактором. Раскладка **bubble** показывает панель при выделении текста. Раскладка **floating** появляется на пустых строках.`)
 
 const items: EditorToolbarItem[][] = [
   [

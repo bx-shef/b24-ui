@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ToasterProps } from '@bitrix24/b24ui-nuxt'
+import type { ToasterProps } from '@bxshefby/b24ui-nuxt'
 
 const appConfig = useAppConfig()
 </script>

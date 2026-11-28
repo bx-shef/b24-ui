@@ -1,6 +1,6 @@
 ---
 title: ProseField
-description: Provide clear and comprehensive documentation for the API configurable elements.
+description: 'Подробная документация настраиваемых элементов API.'
 category: components
 navigation.title: Field
 links:
@@ -12,20 +12,20 @@ links:
     to: https://ui.nuxt.com/docs/typography/field
 ---
 
-## Usage
+## Использование {#usage}
 
-A field, prop or parameter to display in your content.
+Поле, пропс или параметр для показа в содержимом.
 
 ::code-preview
 ::field{name="name" type="string" required class="w-full"}
-The `description` can be set as prop or in the default slot with full **markdown** support.
+`description` можно задать пропсом или в слоте по умолчанию — с полной поддержкой **markdown**.
 ::
 
 #code
 
 ```mdc
 ::field{name="name" type="string" required}
-The `description` can be set as prop or in the default slot with full **markdown** support.
+`description` можно задать пропсом или в слоте по умолчанию — с полной поддержкой **markdown**.
 ::
 ```
 
@@ -33,14 +33,14 @@ The `description` can be set as prop or in the default slot with full **markdown
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props{prose}
 
-### Slots
+### Слоты {#slots}
 
 :component-slots{prose}
 
-## Theme
+## Тема {#theme}
 
 :component-theme{prose}

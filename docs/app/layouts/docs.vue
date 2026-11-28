@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ContentNavigationItem } from '@nuxt/content'
-import { useFilter } from '@bitrix24/b24ui-nuxt/composables'
+import { useFilter } from '@bxshefby/b24ui-nuxt/composables'
 
 const navigation = inject<Ref<ContentNavigationItem[]>>('navigation')
 
@@ -57,7 +57,7 @@ defineShortcuts({
         <template #left>
           <B24PageAside class="scrollbar-thin scrollbar-transparent border-(--ui-color-divider-accent) border-e-1">
             <div v-if="isSearchActive" class="py-3">
-              <B24Input ref="input" v-model="searchTerm" placeholder="Filter..." class="group">
+              <B24Input ref="input" v-model="searchTerm" placeholder="Фильтр…" class="group">
                 <template #trailing>
                   <B24Kbd value="/" />
                 </template>

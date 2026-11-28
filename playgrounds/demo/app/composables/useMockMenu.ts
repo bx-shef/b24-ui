@@ -1,4 +1,4 @@
-import type { NavigationMenuItem, DropdownMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem, DropdownMenuItem } from '@bxshefby/b24ui-nuxt'
 import { computed, ref } from 'vue'
 import { createSharedComposable } from '@vueuse/core'
 import PersonIcon from '@bitrix24/b24icons-vue/main/PersonIcon'

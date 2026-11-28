@@ -1,7 +1,11 @@
 ---
 title: ContentSurround
-description: ' A pair of "Previous" and "Next" buttons for sequential page navigation.'
+description: 'Пара кнопок «Назад» и «Вперёд» для последовательной навигации по страницам.'
 category: content
+keywords:
+  - предыдущая и следующая страница
+  - кнопки назад и вперёд
+  - соседние страницы
 framework: nuxt
 links:
   - label: GitHub
@@ -13,12 +17,12 @@ links:
 ---
 
 ::warning{to="/docs/getting-started/integrations/content/"}
-This component is only available when the `@nuxt/content` module is installed.
+Компонент доступен, только если установлен модуль `@nuxt/content`.
 ::
 
-## Usage
+## Использование {#usage}
 
-Use the `surround` prop with the `surround`{lang="ts-type"} value you get when fetching a page surround.
+Пропс `surround` принимает значение `surround`{lang="ts-type"}, которое возвращается при получении соседних страниц.
 
 ::component-example
 ---
@@ -28,9 +32,9 @@ props:
 ---
 ::
 
-### Prev / Next
+### Назад / Вперёд {#prev-next}
 
-Use the `prev-icon` and `next-icon` props to customize the buttons [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропсы `prev-icon` и `next-icon` задают [иконки](https://bitrix24.github.io/b24icons/icons/) кнопок.
 
 ::component-code{prefix="content"}
 ---
@@ -54,19 +58,19 @@ props:
   - title: ContentSearchButton
     path: /docs/components/content-search-button/
     stem: 3.components/content-search-button
-    description: A pre-styled Button to open the ContentSearch modal.
+    description: Готовая кнопка Button, которая открывает модальное окно ContentSearch.
   - title: ContentToc
     path: /docs/components/content-toc/
     stem: 3.components/content-toc
-    description: A sticky Table of Contents with customizable slots.
+    description: Закреплённое оглавление с настраиваемыми слотами.
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Within a page
+### На странице {#within-a-page}
 
-Use the ContentSurround component in a page to display the prev and next links:
+Компонент ContentSurround на странице показывает ссылки на предыдущую и следующую страницы:
 
 ```vue [pages/\[...slug\\].vue]{23}
 <script setup lang="ts">
@@ -74,7 +78,7 @@ const route = useRoute()
 
 const { data: page } = await useAsyncData(route.path, () => queryCollection('docs').path(route.path).first())
 if (!page.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+  throw createError({ status: 404, statusText: 'Page not found', fatal: true })
 }
 </script>
 
@@ -99,14 +103,14 @@ if (!page.value) {
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

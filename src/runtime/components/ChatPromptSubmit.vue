@@ -66,13 +66,14 @@ export interface ChatPromptSubmitEmits {
 </script>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { useForwardProps } from 'reka-ui'
+import { computed, inject } from 'vue'
 import { reactiveOmit } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
+import { useForwardProps } from '../composables/useForwardProps'
 import { useLocale } from '../composables/useLocale'
 import { transformUI } from '../utils'
+import { chatPromptQueueingInjectionKey } from '../utils/chat'
 import { tv } from '../utils/tv'
 import icons from '../dictionary/icons'
 import B24Button from './Button.vue'
@@ -97,7 +98,11 @@ const appConfig = useAppConfig() as ChatPromptSubmit['AppConfig']
 // @memo we not use `variant`, `streamingVariant`, `submittedVariant`, `errorVariant`
 const buttonProps = useForwardProps(reactiveOmit(props, 'icon', 'color', 'status', 'disabled', 'streamingIcon', 'streamingColor', 'submittedIcon', 'submittedColor', 'errorIcon', 'errorColor', 'class', 'b24ui'))
 
-const disabled = computed(() => props.status === 'ready' ? props.disabled : false)
+// Inside a `UChatPrompt` that would queue what is typed, the button submits it instead of stopping the response
+const queueing = inject(chatPromptQueueingInjectionKey, undefined)
+const currentStatus = computed(() => queueing?.value ? 'ready' : props.status)
+
+const disabled = computed(() => currentStatus.value === 'ready' ? props.disabled : false)
 
 const statusButtonProps = computed(() => ({
   ready: {
@@ -126,14 +131,14 @@ const statusButtonProps = computed(() => ({
       emits('reload', e)
     }
   }
-} satisfies { [key: string]: ButtonProps })[props.status])
+} satisfies { [key: string]: ButtonProps })[currentStatus.value])
 
 const ariaLabel = computed(() => ({
   ready: t('chatPromptSubmit.label'),
   submitted: t('chatPromptSubmit.stop'),
   streaming: t('chatPromptSubmit.stop'),
   error: t('chatPromptSubmit.reload')
-})[props.status])
+})[currentStatus.value])
 
 // eslint-disable-next-line vue/no-dupe-keys
 const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.chatPromptSubmit || {}) })())

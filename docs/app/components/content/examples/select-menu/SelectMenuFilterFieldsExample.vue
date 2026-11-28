@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { AvatarProps } from '@bitrix24/b24ui-nuxt'
+import type { AvatarProps } from '@bxshefby/b24ui-nuxt'
 import UserIcon from '@bitrix24/b24icons-vue/common-b24/UserIcon'
 import Expand1Icon from '@bitrix24/b24icons-vue/actions/Expand1Icon'
 
@@ -30,7 +30,7 @@ function onOpen() {
     :filter-fields="['label', 'email']"
     :icon="UserIcon"
     :trailing-icon="Expand1Icon"
-    placeholder="Select user"
+    placeholder="Выберите пользователя"
     class="w-80"
     :b24ui="{ content: 'w-80', viewport: 'w-80' }"
     @update:open="onOpen"

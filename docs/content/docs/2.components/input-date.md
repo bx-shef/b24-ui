@@ -1,16 +1,19 @@
 ---
 title: InputDate
-description: 'A date selection input field.'
+description: 'Поле ввода для выбора даты.'
 category: form
 keywords:
   - date picker
   - datepicker
   - calendar input
+  - ввод даты
+  - поле даты
+  - дата по маске
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/InputDate.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/input-date
   - label: Nuxt UI
@@ -22,9 +25,9 @@ links:
     to: https://reka-ui.com/docs/components/date-field
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `v-model` directive to control the selected date.
+Директива `v-model` управляет выбранной датой.
 
 ::component-code
 ---
@@ -39,7 +42,7 @@ props:
 ---
 ::
 
-Use the `default-value` prop to set the initial value when you do not need to control its state.
+Пропс `default-value` задаёт начальное значение, когда управлять состоянием не нужно.
 
 ::component-code
 ---
@@ -57,18 +60,18 @@ props:
 ::framework-only
 #nuxt
 :::note{to="/docs/getting-started/integrations/i18n/nuxt/#locale"}
-This component uses the `@internationalized/date` package for locale-aware formatting. The date format is determined by the `locale` prop of the App component.
+Компонент использует пакет `@internationalized/date` для форматирования с учётом локали. Формат даты определяется пропсом `locale` компонента App.
 :::
 
 #vue
 :::note{to="/docs/getting-started/integrations/i18n/vue/#locale"}
-This component uses the `@internationalized/date` package for locale-aware formatting. The date format is determined by the `locale` prop of the App component.
+Компонент использует пакет `@internationalized/date` для форматирования с учётом локали. Формат даты определяется пропсом `locale` компонента App.
 :::
 ::
 
-### Range
+### Диапазон {#range}
 
-Use the `range` prop to select a range of dates.
+Пропс `range` позволяет выбрать диапазон дат.
 
 ::component-code
 ---
@@ -89,9 +92,9 @@ props:
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of the InputDate.
+Пропс `color` меняет цвет InputDate.
 
 ::component-code
 ---
@@ -101,21 +104,21 @@ props:
 ---
 ::
 
-### Tag
+### Тег {#tag}
 
-Use the `tag` property to display a [Badge](/docs/components/badge/) on top of the InputDate.
+Свойство `tag` показывает [Badge](/docs/components/badge/) поверх InputDate.
 
 ::component-code
 ---
 prettier: true
 props:
-  tag: note
+  tag: заметка
   color: 'air-primary'
   highlight: true
 ---
 ::
 
-Use the `tagColor` property to set the color for Badge.
+Свойство `tagColor` задаёт цвет Badge.
 
 ::component-code
 ---
@@ -139,16 +142,16 @@ items:
     - air-tertiary
     - air-selection
 props:
-  tag: note
+  tag: заметка
   tagColor: air-secondary-alert
   color: 'air-primary'
   highlight: true
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the InputDate.
+Пропс `size` меняет размер InputDate.
 
 ::component-code
 ---
@@ -157,9 +160,9 @@ props:
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to show an [Icon](https://bitrix24.github.io/b24icons/icons/) inside the InputDate.
+Пропс `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/) внутри InputDate.
 
 ::component-code
 ---
@@ -172,9 +175,9 @@ props:
 ---
 ::
 
-### Separator Icon
+### Иконка разделителя {#separator-icon}
 
-Use the `separator-icon` prop to change the [Icon](https://bitrix24.github.io/b24icons/icons/) of the range separator.
+Пропс `separator-icon` меняет [иконку](https://bitrix24.github.io/b24icons/icons/) разделителя диапазона.
 
 ::component-code
 ---
@@ -189,9 +192,9 @@ props:
 ---
 ::
 
-### Avatar
+### Аватар {#avatar}
 
-Use the `avatar` prop to show an [Avatar](/docs/components/avatar/) inside the InputDate.
+Пропс `avatar` показывает [Avatar](/docs/components/avatar/) внутри InputDate.
 
 ::component-code
 ---
@@ -207,9 +210,9 @@ props:
 ---
 ::
 
-### Loading
+### Загрузка {#loading}
 
-Use the `loading` prop to show a loading icon on the InputDate.
+Пропс `loading` показывает иконку загрузки в InputDate.
 
 ::component-code
 ---
@@ -219,9 +222,9 @@ props:
 ---
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the InputDate.
+Пропс `disabled` отключает InputDate.
 
 ::component-code
 ---
@@ -230,9 +233,9 @@ props:
 ---
 ::
 
-### No padding
+### Без отступов {#no-padding}
 
-Use the `noPadding` prop to removes padding from the InputDate.
+Пропс `noPadding` убирает отступы у InputDate.
 
 ::component-code
 ---
@@ -244,12 +247,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-### No border
+### Без границы {#no-border}
 
-Use the `noBorder` prop to removes all borders (rings) from the InputDate.
+Пропс `noBorder` убирает у InputDate все границы (кольца).
 
 ::component-code
 ---
@@ -261,12 +264,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to indicate that there is no focus state.
+Пропс `highlight` здесь показывает, что состояния фокуса нет.
 ::
 
-### Underline
+### Подчёркивание {#underline}
 
-Use the `underline` prop to removes all borders (rings) except the bottom one from the InputDate.
+Пропс `underline` убирает у InputDate все границы (кольца), кроме нижней.
 
 ::component-code
 ---
@@ -278,12 +281,12 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-### Rounded
+### Скругление {#rounded}
 
-Use the `rounded` prop to round the InputDate.
+Пропс `rounded` скругляет InputDate.
 
 ::component-code
 ---
@@ -295,14 +298,14 @@ props:
 ::
 
 ::note
-The `highlight` prop is used here to show the focus state.
+Пропс `highlight` здесь показывает состояние фокуса.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### With unavailable dates
+### С недоступными датами {#with-unavailable-dates}
 
-Use the `is-date-unavailable` prop with a function to mark specific dates as unavailable.
+Пропс `is-date-unavailable` принимает функцию, которая помечает отдельные даты как недоступные.
 
 ::component-example
 ---
@@ -310,9 +313,9 @@ name: 'input-date-unavailable-dates-example'
 ---
 ::
 
-### With min/max dates
+### С минимальной и максимальной датой {#with-minmax-dates}
 
-Use the `min-value` and `max-value` props to limit the dates.
+Пропсы `min-value` и `max-value` ограничивают выбор дат.
 
 ::component-example
 ---
@@ -320,9 +323,9 @@ name: 'input-date-min-max-dates-example'
 ---
 ::
 
-### As a date picker
+### Как выбор даты {#as-a-date-picker}
 
-Use a [Calendar](/docs/components/calendar/) and a [Popover](/docs/components/popover/) component to create a date picker.
+Компоненты [Calendar](/docs/components/calendar/) и [Popover](/docs/components/popover/) позволяют собрать выбор даты.
 
 ::component-example
 ---
@@ -330,9 +333,9 @@ name: 'input-date-date-picker-example'
 ---
 ::
 
-### As a date range picker
+### Как выбор диапазона дат {#as-a-date-range-picker}
 
-Use a [Calendar](/docs/components/calendar/) and a [Popover](/docs/components/popover/) component to create a date range picker.
+Компоненты [Calendar](/docs/components/calendar/) и [Popover](/docs/components/popover/) позволяют собрать выбор диапазона дат.
 
 ::component-example
 ---
@@ -342,18 +345,18 @@ name: 'input-date-date-range-picker-example'
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

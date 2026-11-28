@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DropdownMenuItem, NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { DropdownMenuItem, NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import HomeIcon from '@bitrix24/b24icons-vue/outline/HomeIcon'
 import MailIcon from '@bitrix24/b24icons-vue/outline/MailIcon'
 import PaymentIcon from '@bitrix24/b24icons-vue/outline/PaymentIcon'
@@ -18,11 +18,29 @@ import CloseChatIcon from '@bitrix24/b24icons-vue/outline/CloseChatIcon'
 
 const open = ref(true)
 
-const colorMode = useColorMode()
+// Тема примера локальная: общий выбор посетителя (colorMode.preference, localStorage сайта) не пишем.
+// На странице примера её ведёт страница (exampleThemeKey), в документации — класс на <html> без хранилища.
+const appConfig = useAppConfig()
+const pageTheme = inject(exampleThemeKey, null)
+const currentTheme = ref<'light' | 'dark'>('light')
+onMounted(() => {
+  currentTheme.value = document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+})
+function setTheme(mode: 'light' | 'dark') {
+  currentTheme.value = mode
+  const cls = mode === 'light' ? (appConfig.colorModeTypeLight as string) : 'dark'
+  if (pageTheme) {
+    pageTheme.value = cls
+    return
+  }
+  const root = document.documentElement
+  root.classList.remove('light', 'edge-light', 'dark', 'edge-dark')
+  root.classList.add(cls)
+}
 
 const teams = ref([
   {
-    label: 'Assistant Name',
+    label: 'Имя ассистента',
     avatar: {
       src: '/b24ui/avatar/assistant.png',
       alt: 'assistant',
@@ -38,7 +56,7 @@ const teams = ref([
     }
   },
   {
-    label: 'Employee Name',
+    label: 'Имя сотрудника',
     avatar: {
       src: '/b24ui/avatar/employee.png',
       alt: 'employee',
@@ -65,7 +83,7 @@ const teamsItems = computed<DropdownMenuItem[][]>(() => {
       }
     })),
     [
-      { label: 'Create team', icon: CirclePlusIcon }
+      { label: 'Создать команду', icon: CirclePlusIcon }
     ]
   ]
 })
@@ -73,34 +91,34 @@ const teamsItems = computed<DropdownMenuItem[][]>(() => {
 function getItems(state: 'collapsed' | 'expanded') {
   return [
     {
-      label: 'Inbox',
+      label: 'Входящие',
       icon: MailIcon,
       badge: '4'
     },
     {
-      label: 'Issues',
+      label: 'Задачи',
       icon: CollabIcon
     },
     {
-      label: 'Actions',
+      label: 'Действия',
       icon: PulseCircleIcon
     },
     {
-      label: 'Settings',
+      label: 'Настройки',
       icon: SettingsIcon,
       defaultOpen: true,
       children: state === 'expanded'
         ? [
             {
-              label: 'General',
+              label: 'Общие',
               icon: HomeIcon
             },
             {
-              label: 'Team',
+              label: 'Команда',
               icon: ThreePersonsIcon
             },
             {
-              label: 'Billing',
+              label: 'Оплата',
               icon: PaymentIcon
             }
           ]
@@ -121,32 +139,32 @@ const userItems = computed<DropdownMenuItem[][]>(() => (
   [
     [
       {
-        label: 'Profile',
+        label: 'Профиль',
         icon: UserIcon
       },
       {
-        label: 'Billing',
+        label: 'Оплата',
         icon: PaymentIcon
       },
       {
-        label: 'Settings',
+        label: 'Настройки',
         icon: SettingsIcon,
         to: '/templates/'
       }
     ],
     [
       {
-        label: 'Appearance',
+        label: 'Внешний вид',
         icon: ContrastIcon,
         children: [
           {
-            label: 'Light',
+            label: 'Светлая',
             icon: SunIcon,
             type: 'checkbox',
-            checked: colorMode.value === 'light',
+            checked: currentTheme.value === 'light',
             onUpdateChecked(checked: boolean) {
               if (checked) {
-                colorMode.preference = 'light'
+                setTheme('light')
               }
             },
             onSelect(e: Event) {
@@ -154,13 +172,13 @@ const userItems = computed<DropdownMenuItem[][]>(() => (
             }
           },
           {
-            label: 'Dark',
+            label: 'Тёмная',
             icon: MoonIcon,
             type: 'checkbox',
-            checked: colorMode.value === 'dark',
+            checked: currentTheme.value === 'dark',
             onUpdateChecked(checked: boolean) {
               if (checked) {
-                colorMode.preference = 'dark'
+                setTheme('dark')
               }
             },
             onSelect(e: Event) {
@@ -178,7 +196,7 @@ const userItems = computed<DropdownMenuItem[][]>(() => (
         target: '_blank'
       },
       {
-        label: 'Log out',
+        label: 'Выйти',
         icon: LogOutIcon
       }
     ]
@@ -247,7 +265,7 @@ defineShortcuts(extractShortcuts(teamsItems.value))
       <div class="h-(--b24ui-header-height) shrink-0 flex items-center px-4 border-b border-default">
         <B24Button
           :icon="CloseChatIcon"
-          aria-label="Toggle sidebar"
+          aria-label="Переключить боковое меню"
           size="md"
           color="air-tertiary"
           @click="open = !open"

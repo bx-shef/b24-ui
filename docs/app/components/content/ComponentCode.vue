@@ -1,6 +1,8 @@
 <!-- eslint-disable no-useless-escape -->
 <script setup lang="ts">
-// import type { ChipProps } from '@bitrix24/b24ui-nuxt'
+// Оверлеи из превью — в контейнер с base-mode (bx-shef/b24-ui#57)
+providePreviewPortal()
+// import type { ChipProps } from '@bxshefby/b24ui-nuxt'
 import json5 from 'json5'
 import { upperFirst, camelCase, kebabCase } from 'scule'
 import { hash } from 'ohash'
@@ -416,7 +418,7 @@ ${props.slots.default}`
       const removeArrayBrackets = (type: string): string => type.endsWith('[]') ? removeArrayBrackets(type.slice(0, -2)) : type
 
       const types = props.externalTypes.map(type => removeArrayBrackets(type))
-      code += `import type { ${types.join(', ')} } from '@bitrix24/b24ui-nuxt'
+      code += `import type { ${types.join(', ')} } from '@bxshefby/b24ui-nuxt'
 `
     }
 
@@ -621,7 +623,7 @@ const { data: ast } = useAsyncData(codeKey, async () => {
         v-if="component"
         ref="componentContainer"
         style="background-position: 10px 10px"
-        class="flex justify-center border border-b-0 border-muted relative p-4 z-1"
+        class="vsk-preview base-mode flex justify-center border border-b-0 border-muted relative p-4 z-1"
         :class="[
           !options.length && 'rounded-t-md',
           props.class,

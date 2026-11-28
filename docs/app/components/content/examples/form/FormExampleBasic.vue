@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { FormError, FormSubmitEvent } from '@bitrix24/b24ui-nuxt'
+import type { FormError, FormSubmitEvent } from '@bxshefby/b24ui-nuxt'
 
 const state = reactive({
   email: undefined,
@@ -10,14 +10,14 @@ type Schema = typeof state
 
 function validate(state: Partial<Schema>): FormError[] {
   const errors = []
-  if (!state.email) errors.push({ name: 'email', message: 'Required' })
-  if (!state.password) errors.push({ name: 'password', message: 'Required' })
+  if (!state.email) errors.push({ name: 'email', message: 'Обязательное поле' })
+  if (!state.password) errors.push({ name: 'password', message: 'Обязательное поле' })
   return errors
 }
 
 const toast = useToast()
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  toast.add({ title: 'Success', description: 'The form has been submitted.', color: 'air-primary-success' })
+  toast.add({ title: 'Успешно', description: 'Форма отправлена.', color: 'air-primary-success' })
   console.log(event.data)
 }
 </script>
@@ -28,12 +28,12 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       <B24Input v-model="state.email" />
     </B24FormField>
 
-    <B24FormField label="Password" name="password">
+    <B24FormField label="Пароль" name="password">
       <B24Input v-model="state.password" type="password" />
     </B24FormField>
 
     <B24Button color="air-primary" type="submit">
-      Submit
+      Отправить
     </B24Button>
   </B24Form>
 </template>

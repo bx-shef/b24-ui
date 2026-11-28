@@ -1,6 +1,6 @@
 ---
 title: ProseAccordion
-description: 'Add interactive toggles for a more structured content presentation.'
+description: 'Интерактивные переключатели для структурированной подачи содержимого.'
 category: components
 navigation.title: Accordion
 links:
@@ -12,9 +12,9 @@ links:
     to: https://ui.nuxt.com/docs/typography/accordion
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `accordion` and `accordion-item` components to display an [Accordion](/docs/components/accordion/) in your content.
+Компоненты `accordion` и `accordion-item` показывают [Accordion](/docs/components/accordion/) в содержимом.
 
 ::code-preview{class="[&>div]:*:my-0"}
 
@@ -24,16 +24,16 @@ defaultValue:
   - '1'
 ---
 
-::accordion-item{label="Is Bitrix24 UI free to use?"}
-Yes! Bitrix24 UI is completely free and open source under the MIT license. All 130+ components are available to everyone.
+::accordion-item{label="Можно ли использовать Bitrix24 UI бесплатно?"}
+Да! Bitrix24 UI полностью бесплатна и распространяется с открытым исходным кодом по лицензии MIT. Все 130+ компонентов доступны каждому.
 ::
 
-::accordion-item{label="Can I use Bitrix24 UI with Vue without Nuxt?"}
-Yes! While optimized for Nuxt, Bitrix24 UI works perfectly with standalone Vue projects via our Vite plugin. You can follow the [installation guide](/docs/getting-started/installation/vue/) to get started.
+::accordion-item{label="Можно ли использовать Bitrix24 UI с Vue без Nuxt?"}
+Да! Хотя библиотека оптимизирована для Nuxt, с отдельными проектами на Vue она отлично работает через наш плагин Vite. Начните с [руководства по установке](/docs/getting-started/installation/vue/).
 ::
 
-::accordion-item{label="Is Bitrix24 UI production-ready?"}
-Yes! Bitrix24 UI is used in production by thousands of applications with extensive tests, regular updates, and active maintenance.
+::accordion-item{label="Готова ли Bitrix24 UI к использованию в продакшене?"}
+Да! Bitrix24 UI используют в продакшене тысячи приложений: библиотека покрыта тестами, регулярно обновляется и активно поддерживается.
 ::
 
 :::
@@ -47,16 +47,16 @@ defaultValue:
   - '1'
 ---
 
-::accordion-item{label="Is Bitrix24 UI free to use?"}
-Yes! Bitrix24 UI is completely free and open source under the MIT license. All 130+ components are available to everyone.
+::accordion-item{label="Можно ли использовать Bitrix24 UI бесплатно?"}
+Да! Bitrix24 UI полностью бесплатна и распространяется с открытым исходным кодом по лицензии MIT. Все 130+ компонентов доступны каждому.
 ::
 
-::accordion-item{label="Can I use Bitrix24 UI with Vue without Nuxt?"}
-Yes! While optimized for Nuxt, Bitrix24 UI works perfectly with standalone Vue projects via our Vite plugin. You can follow the [installation guide](/docs/getting-started/installation/vue/) to get started.
+::accordion-item{label="Можно ли использовать Bitrix24 UI с Vue без Nuxt?"}
+Да! Хотя библиотека оптимизирована для Nuxt, с отдельными проектами на Vue она отлично работает через наш плагин Vite. Начните с [руководства по установке](/docs/getting-started/installation/vue/).
 ::
 
-::accordion-item{label="Is Bitrix24 UI production-ready?"}
-Yes! Bitrix24 UI is used in production by thousands of applications with extensive tests, regular updates, and active maintenance.
+::accordion-item{label="Готова ли Bitrix24 UI к использованию в продакшене?"}
+Да! Bitrix24 UI используют в продакшене тысячи приложений: библиотека покрыта тестами, регулярно обновляется и активно поддерживается.
 ::
 
 ::
@@ -66,15 +66,15 @@ Yes! Bitrix24 UI is used in production by thousands of applications with extensi
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props{prose}
 
-### Slots
+### Слоты {#slots}
 
 :component-slots{prose}
 
-## Theme
+## Тема {#theme}
 
 ::component-theme{prose}
 ---

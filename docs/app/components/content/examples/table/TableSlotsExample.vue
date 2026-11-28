@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TableColumn, DropdownMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { TableColumn, DropdownMenuItem } from '@bxshefby/b24ui-nuxt'
 import { useClipboard } from '@vueuse/core'
 import CircleCheckIcon from '@bitrix24/b24icons-vue/outline/CircleCheckIcon'
 import MenuIcon from '@bitrix24/b24icons-vue/main/MenuIcon'
@@ -19,44 +19,44 @@ const data = ref<User[]>([
   {
     id: 1,
     name: 'Lindsay Walton',
-    position: 'Front-end Developer',
+    position: 'Frontend-разработчик',
     email: 'lindsay.walton@example.com',
-    role: 'Member'
+    role: 'Участник'
   },
   {
     id: 2,
     name: 'Courtney Henry',
-    position: 'Designer',
+    position: 'Дизайнер',
     email: 'courtney.henry@example.com',
-    role: 'Admin'
+    role: 'Администратор'
   },
   {
     id: 3,
     name: 'Tom Cook',
-    position: 'Director of Product',
+    position: 'Директор по продукту',
     email: 'tom.cook@example.com',
-    role: 'Member'
+    role: 'Участник'
   },
   {
     id: 4,
     name: 'Whitney Francis',
-    position: 'Copywriter',
+    position: 'Копирайтер',
     email: 'whitney.francis@example.com',
-    role: 'Admin'
+    role: 'Администратор'
   },
   {
     id: 5,
     name: 'Leonard Krasner',
-    position: 'Senior Designer',
+    position: 'Старший дизайнер',
     email: 'leonard.krasner@example.com',
-    role: 'Owner'
+    role: 'Владелец'
   },
   {
     id: 6,
     name: 'Floyd Miles',
-    position: 'Principal Designer',
+    position: 'Ведущий дизайнер',
     email: 'floyd.miles@example.com',
-    role: 'Member'
+    role: 'Участник'
   }
 ])
 
@@ -78,7 +78,7 @@ const columns: TableColumn<User>[] = [
   },
   {
     accessorKey: 'name',
-    header: 'Name'
+    header: 'Имя'
   },
   {
     accessorKey: 'email',
@@ -86,28 +86,28 @@ const columns: TableColumn<User>[] = [
   },
   {
     accessorKey: 'role',
-    header: 'Role'
+    header: 'Роль'
   }
 ]
 
 function getDropdownActions(user: User): DropdownMenuItem[][] {
   return [
     [{
-      label: 'Copy user Id',
+      label: 'Копировать ID пользователя',
       onSelect: () => {
         copy(user.id.toString())
 
         toast.add({
-          title: 'Payment ID copied to clipboard!',
+          title: 'ID платежа скопирован в буфер обмена!',
           color: 'air-primary-success',
           icon: CircleCheckIcon
         })
       }
     }],
     [{
-      label: 'Edit'
+      label: 'Изменить'
     }, {
-      label: 'Delete',
+      label: 'Удалить',
       color: 'air-primary-alert'
     }]
   ]
@@ -118,7 +118,7 @@ function getDropdownActions(user: User): DropdownMenuItem[][] {
   <B24Table :data="data" :columns="columns" class="flex-1">
     <template #name-cell="{ row }">
       <div class="flex items-center gap-3">
-        <B24Avatar :src="`https://i.pravatar.cc/120?img=${row.original.id}`" size="lg" loading="lazy" :alt="`${row.original.name} avatar`" />
+        <B24Avatar :src="`https://i.pravatar.cc/120?img=${row.original.id}`" size="lg" loading="lazy" :alt="`Аватар ${row.original.name}`" />
         <div>
           <p class="font-(--ui-font-weight-medium)">
             {{ row.original.name }}
@@ -131,7 +131,7 @@ function getDropdownActions(user: User): DropdownMenuItem[][] {
     </template>
     <template #action-cell="{ row }">
       <B24DropdownMenu :items="getDropdownActions(row.original)" arrow :content="{ align: 'center', side: 'right', sideOffset: -2 }">
-        <B24Button color="air-tertiary-no-accent" size="sm" :icon="MenuIcon" aria-label="Actions" />
+        <B24Button color="air-tertiary-no-accent" size="sm" :icon="MenuIcon" aria-label="Действия" />
       </B24DropdownMenu>
     </template>
   </B24Table>

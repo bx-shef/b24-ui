@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
   modules: [
-    '@bitrix24/b24ui-nuxt',
+    '@bxshefby/b24ui-nuxt',
     '@bitrix24/b24icons-nuxt'
   ],
 
@@ -62,6 +62,20 @@ export default defineNuxtConfig({
         '@ai-sdk/vue',
         '@comark/vue',
         '@comark/vue/plugins/shiki',
+        '@internationalized/date',
+        '@tanstack/charts',
+        '@tanstack/charts/crosshair',
+        '@tanstack/charts/mark/decorative',
+        '@tanstack/charts/polar',
+        '@tanstack/charts/scales/band',
+        '@tanstack/charts/scales/linear',
+        '@tanstack/charts/scales/ordinal',
+        '@tanstack/charts/scales/point',
+        '@tanstack/charts/vue',
+        '@vueuse/shared',
+        'colortranslator',
+        'motion-v',
+        'zod',
         '@bitrix24/b24icons-vue/outline/HamburgerMenuIcon',
         '@bitrix24/b24icons-vue/main/B24Icon',
         '@bitrix24/b24icons-vue/actions/ArrowToTheLeftIcon',

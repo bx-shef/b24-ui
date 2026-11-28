@@ -1,13 +1,13 @@
-# Forms
+# Формы
 
-## Basic pattern
+## Базовый шаблон
 
-Bitrix24 UI forms use `B24Form` + `B24FormField` + Standard Schema validation (Zod, Valibot, Yup, or Joi).
+Формы Bitrix24 UI строятся из `B24Form`, `B24FormField` и валидации по Standard Schema (Zod, Valibot, Yup или Joi).
 
 ```vue
 <script setup lang="ts">
 import * as z from 'zod'
-import type { FormSubmitEvent } from '@bitrix24/b24ui-nuxt'
+import type { FormSubmitEvent } from '@bxshefby/b24ui-nuxt'
 
 const schema = z.object({
   email: z.email('Invalid email'),
@@ -18,7 +18,7 @@ type Schema = z.output<typeof schema>
 const state = reactive<Partial<Schema>>({ email: '', password: '' })
 
 function onSubmit(event: FormSubmitEvent<Schema>) {
-  // B24Form validates before emitting @submit — access validated data via event.data
+  // B24Form проверяет данные до события @submit — проверенные данные в event.data
 }
 </script>
 
@@ -37,37 +37,32 @@ function onSubmit(event: FormSubmitEvent<Schema>) {
 </template>
 ```
 
-## Key rules
+## Ключевые правила
 
-- Always use `B24FormField` around inputs — it connects validation errors via the `name` prop
-- The `name` prop on `B24FormField` must match the schema field name exactly
-- Use `reactive<Partial<Schema>>({})` for state — `Partial` allows empty initial values
-- `@submit` only fires when validation passes
-- For nested objects, use dot notation: `name="address.city"`
+- Всегда оборачивайте поля в `B24FormField` — он связывает ошибки валидации через пропс `name`.
+- Пропс `name` у `B24FormField` должен точно совпадать с именем поля в схеме.
+- Состояние создавайте как `reactive<Partial<Schema>>({})` — `Partial` допускает пустые начальные значения.
+- `@submit` срабатывает только при успешной валидации.
+- Для вложенных объектов используйте точку: `name="address.city"`.
 
-## B24FormField props
+## Пропсы B24FormField
 
-| Prop | Purpose |
+| Пропс | Назначение |
 |---|---|
-| `name` | Links to schema field for validation errors |
-| `label` | Visible label text |
-| `description` | Explanatory text under the label, above the control |
-| `hint` | Right-aligned hint next to the label — **needs a `label`**, see below |
-| `help` | Text under the control; hidden while an error is showing |
-| `error` | Error text under the control; `false` disables the block entirely |
-| `required` | Shows required indicator |
-| `size` | Inherits to child input |
+| `name` | Связывает с полем схемы для ошибок валидации |
+| `label` | Видимый текст подписи |
+| `description` | Пояснение под подписью, над полем |
+| `hint` | Подсказка справа от подписи — **нужна `label`**, см. ниже |
+| `help` | Текст под полем; скрыт, пока показана ошибка |
+| `error` | Текст ошибки под полем; `false` полностью отключает блок |
+| `required` | Показывает индикатор обязательности |
+| `size` | Передаётся вложенному полю ввода |
 
-## Rich labels
+## Расширенные подписи
 
-All five of `label`, `description`, `hint`, `help` and `error` have a matching
-slot for when a string is not enough. `#label` replaces the content inside the
-`<label>` element; the other four replace the content of their own block.
+У каждого из пяти пропсов — `label`, `description`, `hint`, `help` и `error` — есть одноимённый слот на случай, когда строки мало. `#label` заменяет содержимое внутри элемента `<label>`, остальные четыре — содержимое своего блока.
 
-Anything in `#label` joins the control's accessible name — mark decorative
-content `aria-hidden="true"`, and keep links and buttons out of it, since a
-`<label>` toggles its control when activated. A link inside `#description` is
-fine: that block sits outside the `<label>`.
+Всё, что лежит в `#label`, входит в доступное имя поля: декоративное содержимое помечайте `aria-hidden="true"`, а ссылки и кнопки туда не кладите — `<label>` при нажатии переключает своё поле. Ссылка внутри `#description` допустима: этот блок находится вне `<label>`.
 
 ```vue
 <B24FormField label="Email" name="email">
@@ -80,50 +75,35 @@ fine: that block sits outside the `<label>`.
 </B24FormField>
 ```
 
-Each slot receives the prop it replaces, so a wrapper decorates the value
-rather than restating it — which matters when the text comes from a schema or
-a translation.
+Каждый слот получает пропс, который заменяет, поэтому обёртка украшает значение, а не повторяет его — это важно, когда текст приходит из схемы или перевода.
 
-## What is announced is what was drawn
+## Озвучивается то, что нарисовано
 
-Every block renders from `props.x || !!slots.x`, and `aria-describedby` follows
-the same rule: it names the blocks that ended up in the document, and only
-those.
+Каждый блок отрисовывается по условию `props.x || !!slots.x`, и `aria-describedby` подчиняется тому же правилу: в нём названы блоки, которые попали в документ, и только они.
 
-| what you pass | block on screen | named in `aria-describedby` |
+| что передано | блок на экране | назван в `aria-describedby` |
 |---|---|---|
-| `description` prop | yes | yes |
-| `#description` slot, no prop | yes | yes |
-| `hint` prop, no `label` | no | no |
-| `error` and `help` together | error only | error only |
+| пропс `description` | да | да |
+| слот `#description`, без пропса | да | да |
+| пропс `hint`, без `label` | нет | нет |
+| `error` и `help` вместе | только ошибка | только ошибка |
 
-Passing the prop alongside the slot is still the better habit — the slot
-receives it, so a wrapper decorates the value instead of restating it — but it
-is no longer what makes the block announced.
+Передавать пропс вместе со слотом по-прежнему хорошая привычка — слот получает его, и обёртка украшает значение, а не повторяет, — но блок озвучивается уже не поэтому.
 
-Two conditions hide a block you asked for. `hint` renders inside the label row,
-which is only drawn when there is a label, so a `hint` on a field with no
-`label` renders nothing at all. And `help` is the `v-else-if` of the error
-branch, so a rendered error takes its place. In both cases nothing is drawn and
-nothing is announced.
+Блок, который вы запросили, скрывают два условия. `hint` рисуется внутри строки подписи, а она есть только при наличии подписи, поэтому `hint` у поля без `label` не отрисуется вовсе. А `help` — это `v-else-if` ветки ошибки, поэтому отрисованная ошибка занимает его место. В обоих случаях ничего не рисуется и ничего не озвучивается.
 
-`#error` needs care for a different reason. The error block renders whenever an
-`#error` slot exists, with or without an error, so supplying `#error` hides
-`help` entirely — while the control keeps `aria-invalid="false"`, because that
-attribute reports the field's error state and there is none.
+`#error` требует осторожности по другой причине. Блок ошибки рисуется всякий раз, когда есть слот `#error`, с ошибкой или без, поэтому слот `#error` полностью скрывает `help`, а у поля остаётся `aria-invalid="false"`: этот атрибут отражает состояние ошибки поля, а её нет.
 
-This is a deliberate divergence from `nuxt/ui`, which still builds the
-attribute from the props alone; fixed in b24ui#497.
+Это намеренное отличие от `nuxt/ui`, который по-прежнему строит атрибут только из пропсов; исправлено в b24ui#497.
 
-Bind `error` to the message — or to `false` when there is none — and let the
-slot supply markup only:
+Привяжите `error` к сообщению — или к `false`, когда его нет, — а слот пусть отвечает только за разметку:
 
 ```vue
 <B24FormField
   label="Email"
   name="email"
   :error="message"
-  help="We'll only use it to sign you in."
+  help="Используем только для входа."
 >
   <template #error="{ error }">
     <WarningIcon class="size-4" aria-hidden="true" /> {{ error }}
@@ -133,14 +113,11 @@ slot supply markup only:
 </B24FormField>
 ```
 
-Inside a `B24Form` the error comes from the schema and is a string or
-`undefined` — and `undefined` is not `false`, so an `#error` slot still renders
-permanently there. On form-driven fields, use the `error` prop and style the
-block through `b24ui.error`.
+Внутри `B24Form` ошибка приходит из схемы и бывает строкой или `undefined`, а `undefined` — это не `false`, поэтому слот `#error` там всё равно отрисовывается постоянно. В полях, которыми управляет форма, используйте пропс `error` и оформляйте блок через `b24ui.error`.
 
-## Field layout patterns
+## Раскладка полей
 
-### Vertical stack (default)
+### Вертикальный стек (по умолчанию)
 
 ```vue
 <B24Form :schema="schema" :state="state" class="space-y-4">
@@ -153,7 +130,7 @@ block through `b24ui.error`.
 </B24Form>
 ```
 
-### Inline fields with B24FieldGroup
+### Поля в строке через B24FieldGroup
 
 ```vue
 <B24FieldGroup>
@@ -166,7 +143,7 @@ block through `b24ui.error`.
 </B24FieldGroup>
 ```
 
-### Grid layout
+### Сетка
 
 ```vue
 <B24Form :schema="schema" :state="state" class="grid grid-cols-2 gap-4">
@@ -182,7 +159,7 @@ block through `b24ui.error`.
 </B24Form>
 ```
 
-## Common field patterns
+## Типовые поля
 
 ### Select
 
@@ -200,7 +177,7 @@ block through `b24ui.error`.
 </B24FormField>
 ```
 
-### Radio group
+### Группа переключателей
 
 ```vue
 <B24FormField name="plan" label="Plan">
@@ -230,33 +207,33 @@ block through `b24ui.error`.
 </B24FormField>
 ```
 
-### File upload
+### Загрузка файла
 
 ```vue
 <B24FormField name="avatar" label="Avatar">
   <B24FileUpload v-model="state.avatar" accept="image/*" />
 </B24FormField>
 
-<!-- Or as a drop area -->
+<!-- Или как область для перетаскивания -->
 <B24FormField name="documents" label="Documents">
   <B24FileUpload v-model="state.documents" multiple variant="area" />
 </B24FormField>
 ```
 
-### Date
+### Дата
 
 ```vue
 <B24FormField name="date" label="Date">
   <B24InputDate v-model="state.date" />
 </B24FormField>
 
-<!-- Date range -->
+<!-- Диапазон дат -->
 <B24FormField name="dateRange" label="Date range">
   <B24InputDate v-model="state.dateRange" range />
 </B24FormField>
 ```
 
-## Programmatic validation
+## Программная валидация
 
 ```vue
 <script setup lang="ts">
@@ -265,7 +242,7 @@ const form = useTemplateRef('form')
 async function validateAndSubmit() {
   const result = await form.value?.validate({ silent: true })
   if (result) {
-    // valid — submit
+    // данные верны — отправляем
   }
 }
 
@@ -286,38 +263,34 @@ function resetErrors() {
 
 <template>
   <B24Form ref="form" :schema="schema" :state="state" @submit="onSubmit">
-    <!-- fields -->
+    <!-- поля -->
   </B24Form>
 </template>
 ```
 
-By default, `validate()` throws a `FormValidationException` when validation
-fails — `Form.vue` returns `false` only under `silent`, and otherwise throws. So
-`const result = await validate(); if (result)` never reaches its branch on a
-failure: pass `{ silent: true }` when you want a boolean back rather than an
-exception. Use `clear()` to remove validation errors.
+По умолчанию `validate()` при неудачной проверке бросает `FormValidationException`: `Form.vue` возвращает `false` только при `silent`, иначе бросает исключение. Поэтому `const result = await validate(); if (result)` при ошибке до своей ветки не дойдёт: передайте `{ silent: true }`, если нужен булев результат вместо исключения. Ошибки валидации убирает `clear()`.
 
-## Record-edit form pattern
+## Форма редактирования записи
 
-For record-editing UIs (UF placements, slider edit panels, CRM-like detail panes) the standard composition is: a titled section bar, vertical-label fields, optional two-column rows, and nested sub-sections grouping related fields with their own border. **No new component is needed** — `B24Form` + `B24FormField` + a small `<div>` for the inner section is enough.
+Для интерфейсов редактирования записей (UF-встройки, панели редактирования в слайдере, карточки в стиле CRM) обычная композиция такая: полоса заголовка раздела, поля с подписью сверху, при необходимости двухколоночные строки и вложенные подразделы, группирующие связанные поля в собственной рамке. **Новый компонент не нужен** — хватает `B24Form`, `B24FormField` и небольшого `<div>` для внутреннего раздела.
 
-Key structural rules:
+Ключевые правила структуры:
 
-- One outer `B24Form` with `:schema` for the whole record.
-- Header bar = `<div class="flex items-center justify-between gap-2">` with the heading on the left (let it `min-w-0 truncate`) and a single icon-only action on the right. `B24Button` has **no `variant` prop** — pick a `color`; for a quiet header action use `color="air-tertiary-no-accent"` and always give it an `aria-label`. Keep the Cancel/Save pair only in the footer (no second "Cancel" in the header — duplicate accessible name).
-- Inner sub-section (e.g. "Client") = label `<span>` above + a `<div role="group" aria-labelledby="...">` bordered container (`rounded-md border border-(--ui-color-design-outline-stroke) p-3 sm:p-4 space-y-4`) containing nested `B24FormField`s. `role`/`aria-labelledby` associate the label with the group (there is no dedicated fieldset primitive).
-- Two-column rows (e.g. amount + currency) = `<div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-2">` so the secondary input drops below on narrow viewports.
-- `B24InputDate` binds an `@internationalized/date` value, **not** a native `Date` — type that schema field loosely (`z.any().optional()`), never `z.date()`. For a picker, drop a `B24Calendar` into the input's `#trailing` `B24Popover` (anchored to `inputsRef`) and bind both to the same `v-model`.
-- On `B24Select`, `class` targets the trigger and `b24ui.root` the wrapper, so a full-width select needs both; on `B24Input`/`B24InputNumber`, `class` already targets the root, so `class="w-full"` alone is enough.
-- Footer actions (Cancel / Save) stick to the bottom with `<div class="flex flex-wrap justify-end gap-2 pt-2">`.
+- Одна внешняя `B24Form` с `:schema` на всю запись.
+- Полоса заголовка — `<div class="flex items-center justify-between gap-2">`: слева заголовок (с `min-w-0 truncate`), справа единственное действие в виде иконки. У `B24Button` **нет пропса `variant`** — выбирайте `color`; для ненавязчивого действия в шапке берите `color="air-tertiary-no-accent"` и всегда задавайте `aria-label`. Пару «Отмена»/«Сохранить» держите только в подвале (второй «Отмены» в шапке не нужно — получится дублирующееся доступное имя).
+- Внутренний подраздел (например, «Клиент») — `<span>` с подписью сверху и контейнер с рамкой `<div role="group" aria-labelledby="...">` (`rounded-md border border-(--ui-color-design-outline-stroke) p-3 sm:p-4 space-y-4`) с вложенными `B24FormField`. `role` и `aria-labelledby` связывают подпись с группой (отдельного компонента fieldset нет).
+- Двухколоночные строки (например, сумма и валюта) — `<div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-2">`: на узком экране второе поле уходит вниз.
+- `B24InputDate` работает со значением `@internationalized/date`, **а не** с нативным `Date`: поле схемы типизируйте свободно (`z.any().optional()`), никогда `z.date()`. Для выбора из календаря поместите `B24Calendar` в `B24Popover` в слоте `#trailing` поля (привязка к `inputsRef`) и свяжите оба с одним `v-model`.
+- У `B24Select` `class` относится к триггеру, а `b24ui.root` — к обёртке, поэтому select на всю ширину требует обоих; у `B24Input` и `B24InputNumber` `class` уже относится к корню, и одного `class="w-full"` достаточно.
+- Действия подвала («Отмена» / «Сохранить») идут внизу в `<div class="flex flex-wrap justify-end gap-2 pt-2">`.
 
-Skeleton:
+Каркас:
 
 ```vue
 <script setup lang="ts">
-// ...schema, reactive `state`, `onSubmit` and `onCancel` as in the full example
-const clientGroupId = useId() // unique id linking the "Client" group label to its container
-const scheduledAtInput = useTemplateRef('scheduledAtInput') // anchors the date popover
+// ...schema, реактивный `state`, `onSubmit` и `onCancel` — как в полном примере
+const clientGroupId = useId() // уникальный id, связывающий подпись группы «Client» с её контейнером
+const scheduledAtInput = useTemplateRef('scheduledAtInput') // привязка поповера даты
 </script>
 
 <template>
@@ -334,12 +307,12 @@ const scheduledAtInput = useTemplateRef('scheduledAtInput') // anchors the date 
   <B24FormField label="Amount and currency" name="amount">
     <div class="grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-2">
       <B24InputNumber v-model="state.amount" :min="0" class="w-full" />
-      <!-- currencies is `as const` for z.enum, so spread into a mutable array for the items prop -->
+      <!-- currencies объявлен `as const` для z.enum, поэтому для пропса items раскрываем его в изменяемый массив -->
       <B24Select v-model="state.currency" :items="[...currencies]" class="w-full sm:w-32" :b24ui="{ root: 'w-full sm:w-32' }" />
     </div>
   </B24FormField>
 
-  <!-- Nested sub-section: label outside + bordered container. clientGroupId = useId() so the label/group link stays unique if the form is rendered more than once. -->
+  <!-- Вложенный подраздел: подпись снаружи и контейнер с рамкой. clientGroupId = useId(), чтобы связь подписи и группы оставалась уникальной, если форма отрисована несколько раз. -->
   <div class="space-y-1.5">
     <span :id="clientGroupId" class="block text-(length:--ui-font-size-sm) text-legend">Client</span>
     <div role="group" :aria-labelledby="clientGroupId" class="rounded-md border border-(--ui-color-design-outline-stroke) p-3 sm:p-4 space-y-4">
@@ -353,7 +326,7 @@ const scheduledAtInput = useTemplateRef('scheduledAtInput') // anchors the date 
     </div>
   </div>
 
-  <!-- Remaining fields below the Client group -->
+  <!-- Остальные поля под группой Client -->
   <B24FormField label="Salutation" name="salutation">
     <B24Select v-model="state.salutation" :items="salutations" class="w-full" :b24ui="{ root: 'w-full' }" />
   </B24FormField>
@@ -367,7 +340,7 @@ const scheduledAtInput = useTemplateRef('scheduledAtInput') // anchors the date 
     <B24Select v-model="state.serviceType" :items="serviceTypes" placeholder="Choose a service" class="w-full" :b24ui="{ root: 'w-full' }" />
   </B24FormField>
   <B24FormField label="Scheduled date" name="scheduledAt">
-    <!-- v-model is an @internationalized/date value, not a native Date -->
+    <!-- v-model — значение @internationalized/date, а не нативный Date -->
     <B24InputDate ref="scheduledAtInput" v-model="state.scheduledAt" class="w-full">
       <template #trailing>
         <B24Popover :reference="scheduledAtInput?.inputsRef[3]?.$el">
@@ -388,11 +361,11 @@ const scheduledAtInput = useTemplateRef('scheduledAtInput') // anchors the date 
 </template>
 ```
 
-Full working example: [docs/components/form#record-edit-section](https://bitrix24.github.io/b24ui/docs/components/form#record-edit-section).
+Полный рабочий пример: [docs/components/form#record-edit-section](https://bitrix24.github.io/b24ui/docs/components/form#record-edit-section).
 
-## Form in a modal
+## Форма в модальном окне
 
-Use `#footer="{ close }"` scoped slot for cancel/submit actions. Wrap the modal body in `B24Form` with a `type="submit"` button in the footer so validation runs on submit.
+Для кнопок отмены и отправки используйте слот `#footer="{ close }"`. Оберните тело модального окна в `B24Form`, а в подвале разместите кнопку `type="submit"`, чтобы валидация запускалась при отправке.
 
 ```vue
 <B24Modal v-model:open="isOpen" title="Edit profile" description="Update your information." :b24ui="{ footer: 'justify-end' }">

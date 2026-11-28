@@ -95,11 +95,10 @@ export type TabsSlots<T extends TabsItem = TabsItem> = {
 <script setup lang="ts" generic="T extends TabsItem">
 import { ref, computed } from 'vue'
 import { TabsRoot, TabsList, TabsIndicator, TabsTrigger, TabsContent } from 'reka-ui'
-import { reactivePick } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
-import { get } from '../utils'
+import { get, safeIcon } from '../utils'
 import { tv } from '../utils/tv'
 import B24Avatar from './Avatar.vue'
 import B24Badge from './Badge.vue'
@@ -119,7 +118,7 @@ const props = useComponentProps<TabsProps<T>>('tabs', _props)
 
 const appConfig = useAppConfig() as Tabs['AppConfig']
 
-const rootProps = useForwardProps(reactivePick(props, 'as', 'unmountOnHide'), emits)
+const rootProps = useForwardProps(props, ['as', 'unmountOnHide'], emits)
 
 // eslint-disable-next-line vue/no-dupe-keys
 const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.tabs || {}) })({
@@ -166,8 +165,8 @@ defineExpose({
       >
         <slot name="leading" :item="item" :index="index" :b24ui="b24ui">
           <Component
-            :is="item.icon"
-            v-if="item.icon"
+            :is="safeIcon(item.icon)"
+            v-if="safeIcon(item.icon)"
             data-slot="leadingIcon"
             :class="b24ui.leadingIcon({ class: [props.b24ui?.leadingIcon, item.b24ui?.leadingIcon] })"
           />

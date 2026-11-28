@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import { useLocalStorage } from '@vueuse/core'
 import HomeIcon from '@bitrix24/b24icons-vue/outline/HomeIcon'
 import MailIcon from '@bitrix24/b24icons-vue/outline/MailIcon'
@@ -14,17 +14,17 @@ defineShortcuts({
 
 const items: NavigationMenuItem[] = [
   {
-    label: 'Home',
+    label: 'Главная',
     icon: HomeIcon,
     active: true
   },
   {
-    label: 'Inbox',
+    label: 'Входящие',
     icon: MailIcon,
     badge: '4'
   },
   {
-    label: 'Contacts',
+    label: 'Контакты',
     icon: ContactIcon
   }
 ]
@@ -32,7 +32,7 @@ const items: NavigationMenuItem[] = [
 
 <template>
   <div class="flex flex-1">
-    <B24Sidebar v-model:open="open" title="Navigation" collapsible="icon">
+    <B24Sidebar v-model:open="open" title="Навигация" collapsible="icon">
       <B24NavigationMenu
         :items="items"
         orientation="vertical"
@@ -45,7 +45,7 @@ const items: NavigationMenuItem[] = [
         <B24Button
           :icon="OpenChatIcon"
           color="air-tertiary"
-          aria-label="Toggle sidebar"
+          aria-label="Переключить боковое меню"
           @click="open = !open"
         />
       </div>

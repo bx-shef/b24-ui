@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DropdownMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { DropdownMenuItem } from '@bxshefby/b24ui-nuxt'
 import UserIcon from '@bitrix24/b24icons-vue/common-b24/UserIcon'
 import PaymentIcon from '@bitrix24/b24icons-vue/outline/PaymentIcon'
 import Settings3Icon from '@bitrix24/b24icons-vue/actions/Settings3Icon'
@@ -8,14 +8,14 @@ import CloudWithCheckIcon from '@bitrix24/b24icons-vue/outline/CloudWithCheckIco
 
 const items = [
   {
-    label: 'Profile',
+    label: 'Профиль',
     icon: UserIcon,
     slot: 'profile' as const
   }, {
-    label: 'Billing',
+    label: 'Оплата',
     icon: PaymentIcon
   }, {
-    label: 'Settings',
+    label: 'Настройки',
     icon: Settings3Icon
   }
 ] satisfies DropdownMenuItem[]
@@ -23,7 +23,7 @@ const items = [
 
 <template>
   <B24DropdownMenu :items="items" :b24ui="{ content: 'w-48', viewport: 'w-48' }">
-    <B24Button label="Open" :icon="HamburgerMenuIcon" />
+    <B24Button label="Открыть" :icon="HamburgerMenuIcon" />
 
     <template #profile-trailing>
       <CloudWithCheckIcon class="shrink-0 size-5 text-(--ui-color-accent-main-primary)" />

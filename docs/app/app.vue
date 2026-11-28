@@ -1,10 +1,40 @@
 <script setup lang="ts">
 import type { ContentNavigationItem } from '@nuxt/content'
-import type { ToasterProps } from '@bitrix24/b24ui-nuxt'
+import type { ToasterProps } from '@bxshefby/b24ui-nuxt'
+import { ru } from '@bxshefby/b24ui-nuxt/locale'
 
 const route = useRoute()
 const appConfig = useAppConfig()
 const { style, link } = useTheme()
+const base = useRuntimeConfig().app.baseURL.replace(/\/$/, '')
+
+const { enabled: chatEnabled, open: chatOpen } = useChat()
+// Панель чата (AI SDK и её интерфейс) монтируется при первом открытии: обычный просмотр документации
+// не скачивает её код. Состояние «открыто» хранится, поэтому оставленная открытой панель монтируется при загрузке.
+const chatSeen = ref(false)
+watch(chatOpen, (value) => {
+  if (value) chatSeen.value = true
+}, { immediate: true })
+
+// ⌘I живёт здесь, а не в Chat.vue: панель появляется только после открытия, и привязка внутри неё не существовала бы
+// на свежей загрузке, где палитра поиска уже показывает это сочетание.
+const { open: searchOpen } = useContentSearch()
+
+defineShortcuts({
+  meta_i: {
+    handler: () => {
+      if (!chatEnabled.value) return
+
+      if (searchOpen.value) {
+        searchOpen.value = false
+        chatOpen.value = true
+      } else {
+        chatOpen.value = !chatOpen.value
+      }
+    },
+    usingInput: true
+  }
+})
 
 const { data: navigation } = await useFetch<ContentNavigationItem[]>('/api/navigation.json')
 
@@ -12,7 +42,12 @@ useHead({
   meta: [
     { name: 'viewport', content: 'width=device-width, initial-scale=1' }
   ],
-  link,
+  link: [
+    ...link.value,
+    { rel: 'icon', type: 'image/svg+xml', href: `${base}/favicon.svg` },
+    { rel: 'icon', type: 'image/png', sizes: '32x32', href: `${base}/favicon-32.png` },
+    { rel: 'apple-touch-icon', href: `${base}/apple-touch-icon.png` }
+  ],
   style
 })
 
@@ -34,7 +69,7 @@ provide('navigation', rootNavigation)
 </script>
 
 <template>
-  <B24App :toaster="appConfig.toaster as ToasterProps">
+  <B24App :locale="ru" :toaster="appConfig.toaster as ToasterProps">
     <NuxtLoadingIndicator color="var(--ui-color-design-filled-warning-bg)" :height="3" />
 
     <div class="flex">
@@ -63,10 +98,15 @@ provide('navigation', rootNavigation)
 
       <template v-if="!route.path.startsWith('/examples')">
         <ClientOnly>
+          <LazyChat v-if="chatEnabled && chatSeen" />
+
           <Search :navigation="navigationByFramework" />
         </ClientOnly>
       </template>
     </div>
+
+    <!-- Оверлеи из превью примеров: base-mode — токены библиотеки, а не «Василька» (bx-shef/b24-ui#57) -->
+    <div id="vsk-preview-portal" class="base-mode" />
   </B24App>
 </template>
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { BreadcrumbItem } from '@bitrix24/b24ui-nuxt'
+import type { BreadcrumbItem } from '@bxshefby/b24ui-nuxt'
 import MoreLIcon from '@bitrix24/b24icons-vue/outline/MoreLIcon'
 import HomeIcon from '@bitrix24/b24icons-vue/outline/HomeIcon'
 import ProductIcon from '@bitrix24/b24icons-vue/outline/ProductIcon'
@@ -7,7 +7,7 @@ import LinkIcon from '@bitrix24/b24icons-vue/outline/LinkIcon'
 
 const items = [
   {
-    label: 'Home',
+    label: 'Главная',
     to: '/',
     icon: HomeIcon
   },
@@ -16,11 +16,11 @@ const items = [
     icon: MoreLIcon,
     children: [
       {
-        label: 'Documentation',
+        label: 'Документация',
         to: '/docs'
       },
       {
-        label: 'Themes'
+        label: 'Темы'
       },
       {
         label: 'GitHub'
@@ -28,7 +28,7 @@ const items = [
     ]
   },
   {
-    label: 'Components',
+    label: 'Компоненты',
     to: '/docs/components',
     icon: ProductIcon
   },

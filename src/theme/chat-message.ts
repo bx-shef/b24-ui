@@ -14,7 +14,7 @@ export default {
     leadingIcon: 'shrink-0 text-(--ui-color-design-plain-content-icon-secondary)',
     leadingAvatar: 'shrink-0',
     leadingAvatarSize: '',
-    files: 'flex items-center gap-1.5',
+    files: 'flex flex-wrap items-center gap-1.5',
     content: [
       'relative text-pretty wrap-break-word *:first:mt-0 *:last:mb-0',
       'bg-[var(--b24ui-background,var(--b24ui-default-background))]',
@@ -22,8 +22,9 @@ export default {
       'border-[length:var(--b24ui-border-width,var(--b24ui-default-border-width))]',
       'text-[color:var(--b24ui-color,var(--b24ui-default-color))]'
     ].join(' '),
+    text: 'whitespace-pre-wrap',
     actions: [
-      '[@media(hover:hover)]:opacity-0 group-hover/message:opacity-100 absolute bottom-0 flex items-center',
+      '[@media(hover:hover)]:opacity-0 group-hover/message:opacity-100 focus-within:opacity-100 absolute bottom-0 flex items-center',
       'transition-opacity'
     ].join(' ')
   },
@@ -88,7 +89,7 @@ export default {
       right: {
         container: 'justify-end ms-auto max-w-[75%]',
         header: 'justify-end',
-        actions: 'right-0'
+        actions: 'end-0'
       }
     },
     leading: {
@@ -119,7 +120,7 @@ export default {
       compact: true,
       actions: true,
       class: {
-        container: 'pb-8'
+        container: '[&:has(>[data-slot=body]>[data-slot=actions]:not(:empty))]:pb-8'
       }
     },
     {

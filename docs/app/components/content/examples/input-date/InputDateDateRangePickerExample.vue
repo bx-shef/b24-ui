@@ -18,7 +18,7 @@ const modelValue = shallowRef({
           color="air-tertiary-no-accent"
           size="sm"
           :icon="CalendarIcon"
-          aria-label="Select a date range"
+          aria-label="Выберите период"
           class="px-0"
         />
 

@@ -10,9 +10,9 @@ import DotsIcon from '@bitrix24/b24icons-vue/button/DotsIcon'
         loading: 'lazy' as const
       }"
     >
-      <span>Typically, instructions on how to add a SAML application and add the ACS URL and SP Entity ID can be found in the Microsoft Azure technical documentation. </span>
+      <span>Как правило, инструкции по добавлению SAML-приложения и указанию ACS URL и SP Entity ID есть в технической документации Microsoft Azure. </span>
       <B24Link to="https://github.com/bitrix24/b24ui/" target="_blank" is-action>
-        Read more
+        Подробнее
       </B24Link>
     </B24Advice>
     <B24Advice
@@ -24,12 +24,12 @@ import DotsIcon from '@bitrix24/b24icons-vue/button/DotsIcon'
     >
       <div class="flex flex-col items-start justify-between gap-1.5">
         <div class="font-(--ui-font-weight-bold)">
-          Reference information
+          Справочная информация
         </div>
-        <div>Typically, instructions on how to add a SAML application and add the ACS URL and SP Entity ID can be found in the Microsoft Azure technical documentation.</div>
+        <div>Как правило, инструкции по добавлению SAML-приложения и указанию ACS URL и SP Entity ID есть в технической документации Microsoft Azure.</div>
         <div class="mt-2 flex flex-row flex-wrap items-start justify-between gap-2">
-          <B24Button size="xs" color="air-primary" label="Some Action 1" />
-          <B24Button size="xs" color="air-secondary-accent-2" label="Some Action 2" />
+          <B24Button size="xs" color="air-primary" label="Действие 1" />
+          <B24Button size="xs" color="air-secondary-accent-2" label="Действие 2" />
           <B24Button size="xs" color="air-tertiary" :icon="DotsIcon" />
         </div>
       </div>

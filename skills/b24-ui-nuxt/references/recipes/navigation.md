@@ -1,10 +1,10 @@
-# Navigation
+# Навигация
 
-Patterns for headers, sidebars, breadcrumbs, and tab navigation.
+Приёмы для шапок, боковых меню, хлебных крошек и вкладок.
 
-## Header with mobile menu
+## Шапка с мобильным меню
 
-`B24Header` default slot is desktop nav, `#body` is the mobile menu. Without `#body`, mobile users have no navigation.
+Слот по умолчанию `B24Header` — навигация для десктопа, `#body` — мобильное меню. Без `#body` у мобильных пользователей нет навигации.
 
 ```vue
 <B24Header>
@@ -25,14 +25,14 @@ Patterns for headers, sidebars, breadcrumbs, and tab navigation.
 </B24Header>
 ```
 
-## Sidebar navigation (dashboard)
+## Навигация в боковом меню (дашборд)
 
-See [dashboard layout](../layouts/dashboard.md) for the full sidebar pattern with `B24DashboardSidebar` + `B24NavigationMenu`. Key points:
-- Pass `:collapsed="collapsed"` to `B24NavigationMenu` inside collapsible sidebars
-- Use `NavigationMenuItem[][]` (nested arrays) for separate nav groups
-- Use `#footer` slot for user menu with `B24DropdownMenu`
+Полный пример бокового меню с `B24DashboardSidebar` и `B24NavigationMenu` — в [раскладке дашборда](../layouts/dashboard.md). Главное:
+- внутри сворачиваемых боковых меню передавайте `:collapsed="collapsed"` в `B24NavigationMenu`;
+- для отдельных групп навигации используйте `NavigationMenuItem[][]` (вложенные массивы);
+- меню пользователя с `B24DropdownMenu` помещайте в слот `#footer`.
 
-## Tab navigation (within a page)
+## Вкладки (внутри страницы)
 
 ```vue
 <script setup lang="ts">
@@ -51,13 +51,13 @@ const items = [{
 <template>
   <B24Tabs :items="items">
     <template #overview>
-      <!-- Overview content -->
+      <!-- Содержимое «Обзора» -->
     </template>
     <template #activity>
-      <!-- Activity feed -->
+      <!-- Лента активности -->
     </template>
     <template #members>
-      <!-- Members list -->
+      <!-- Список участников -->
     </template>
   </B24Tabs>
 </template>

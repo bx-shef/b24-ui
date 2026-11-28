@@ -127,6 +127,7 @@ describe('CommandPalette', () => {
     ['with defaultValue', { props: { ...props, defaultValue: groups[2]?.items[0] } }],
     ['with searchTerm', { props: { ...props, searchTerm: 'f' } }],
     ['with searchTerm and preserveGroupOrder', { props: { ...props, searchTerm: 'f', preserveGroupOrder: true } }],
+    ['with ignoreFilter', { props: { ...props, searchTerm: 'f', ignoreFilter: true } }],
     ['with valueKey', { props: { ...props, valueKey: 'label', defaultValue: 'Add new file' } }],
     ['with by', { props: { ...props, by: 'label', defaultValue: groups[0]?.items[0] } }],
     ['with labelKey', { props: { ...props, labelKey: 'icon' } }],
@@ -353,6 +354,52 @@ describe('CommandPalette', () => {
     })
 
     expect(await axe(wrapper.element)).toHaveNoViolations()
+  })
+
+  it('does not filter any group when ignoreFilter is set', async () => {
+    const wrapper = await mountSuspended(CommandPalette, { props: { ...props, searchTerm: 'zzz', ignoreFilter: true } })
+
+    const labels = wrapper.findAll('[data-slot="itemLabelBase"]').map(label => label.text())
+    expect(labels).toEqual(groups.flatMap(group => group.items.map(item => item.label)))
+    expect(wrapper.find('[data-slot="empty"]').exists()).toBe(false)
+  })
+
+  it('filters a group that sets ignoreFilter to false when ignoreFilter is set', async () => {
+    const wrapper = await mountSuspended(CommandPalette, {
+      props: {
+        groups: groups.map(group => group.id === 'actions' ? { ...group, ignoreFilter: false } : group),
+        searchTerm: 'folder',
+        ignoreFilter: true
+      }
+    })
+
+    const labels = wrapper.findAll('[data-slot="itemLabelBase"]').map(label => label.text())
+    expect(labels).toEqual(['Add new folder', 'bug', 'feature', 'enhancement', 'bitrix24'])
+  })
+
+  it('filters children of an item when ignoreFilter is set', async () => {
+    const wrapper = await mountSuspended(CommandPalette, {
+      props: {
+        groups: [{ id: 'fruits', items: [{ label: 'Fruits', children: [{ label: 'apple' }, { label: 'banana' }] }, { label: 'Vegetables' }] }],
+        ignoreFilter: true
+      }
+    })
+    const input = wrapper.find('input')
+    const labels = async (searchTerm: string) => {
+      await input.setValue(searchTerm)
+      await new Promise(resolve => setTimeout(resolve, 30))
+      return wrapper.findAll('[data-slot="itemLabelBase"]').map(label => label.text())
+    }
+
+    expect(await labels('apple')).toEqual(['Fruits', 'Vegetables'])
+
+    await input.setValue('')
+    await wrapper.find('[data-slot="item"]').trigger('click')
+    expect(await labels('apple')).toEqual(['apple'])
+
+    await input.setValue('')
+    await input.trigger('keydown', { key: 'Backspace' })
+    expect(await labels('apple')).toEqual(['Fruits', 'Vegetables'])
   })
 
   // Results arriving after mount (e.g. `useLazyFetch({ server: false })`) must

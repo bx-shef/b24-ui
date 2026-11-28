@@ -1,15 +1,18 @@
 ---
 title: RadioGroup
-description: A collection of radio buttons to pick a single choice from several options.
+description: 'Набор переключателей для выбора одного варианта из нескольких.'
 category: form
 keywords:
   - radio buttons
   - single choice
+  - группа переключателей
+  - радиокнопки
+  - выбор одного варианта
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/RadioGroup.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/radio-group
   - label: Nuxt UI
@@ -21,31 +24,9 @@ links:
     to: https://reka-ui.com/docs/components/radio-group
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `v-model` directive to control the value of the RadioGroup or the `default-value` prop to set the initial value when you do not need to control its state.
-
-::component-code
----
-prettier: true
-ignore:
-  - modelValue
-  - items
-external:
-  - items
-  - modelValue
-props:
-  modelValue: 'System'
-  items:
-    - 'System'
-    - 'Light'
-    - 'Dark'
----
-::
-
-### Items
-
-Use the `items` prop as an array of strings or numbers:
+Директива `v-model` управляет значением RadioGroup, а пропс `default-value` задаёт начальное значение, когда управлять состоянием не нужно.
 
 ::component-code
 ---
@@ -57,15 +38,37 @@ external:
   - items
   - modelValue
 props:
-  modelValue: 'System'
+  modelValue: 'Системная'
   items:
-    - 'System'
-    - 'Light'
-    - 'Dark'
+    - 'Системная'
+    - 'Светлая'
+    - 'Тёмная'
 ---
 ::
 
-You can also pass an array of objects with the following properties:
+### Элементы {#items}
+
+Пропс `items` — массив строк или чисел:
+
+::component-code
+---
+prettier: true
+ignore:
+  - modelValue
+  - items
+external:
+  - items
+  - modelValue
+props:
+  modelValue: 'Системная'
+  items:
+    - 'Системная'
+    - 'Светлая'
+    - 'Тёмная'
+---
+::
+
+Можно передать и массив объектов со свойствами:
 
 - `label?: string`{lang="ts-type"}
 - `description?: string`{lang="ts-type"}
@@ -88,25 +91,25 @@ externalTypes:
 props:
   modelValue: 'system'
   items:
-    - label: 'System'
-      description: 'This is the first option.'
+    - label: 'Системная'
+      description: 'Это первый вариант.'
       value: 'system'
-    - label: 'Light'
-      description: 'This is the second option.'
+    - label: 'Светлая'
+      description: 'Это второй вариант.'
       value: 'light'
-    - label: 'Dark'
-      description: 'This is the third option.'
+    - label: 'Тёмная'
+      description: 'Это третий вариант.'
       value: 'dark'
 ---
 ::
 
 ::caution
-When using objects, you need to reference the `value` property of the object in the `v-model` directive or the `default-value` prop.
+При использовании объектов в директиве `v-model` или пропсе `default-value` нужно указывать свойство `value` объекта.
 ::
 
-### Value Key
+### Ключ значения {#value-key}
 
-You can change the property that is used to set the value by using the `value-key` prop. Defaults to `value`.
+Свойство, из которого берётся значение, меняется пропсом `value-key`. По умолчанию `value`.
 
 ::component-code
 ---
@@ -123,21 +126,21 @@ props:
   modelValue: 'light'
   valueKey: 'id'
   items:
-    - label: 'System'
-      description: 'This is the first option.'
+    - label: 'Системная'
+      description: 'Это первый вариант.'
       id: 'system'
-    - label: 'Light'
-      description: 'This is the second option.'
+    - label: 'Светлая'
+      description: 'Это второй вариант.'
       id: 'light'
-    - label: 'Dark'
-      description: 'This is the third option.'
+    - label: 'Тёмная'
+      description: 'Это третий вариант.'
       id: 'dark'
 ---
 ::
 
-### Legend
+### Легенда {#legend}
 
-Use the `legend` prop to set the legend of the RadioGroup.
+Пропс `legend` задаёт легенду RadioGroup.
 
 ::component-code
 ---
@@ -148,18 +151,18 @@ ignore:
 external:
   - items
 props:
-  legend: 'Theme'
-  defaultValue: 'System'
+  legend: 'Тема'
+  defaultValue: 'Системная'
   items:
-    - 'System'
-    - 'Light'
-    - 'Dark'
+    - 'Системная'
+    - 'Светлая'
+    - 'Тёмная'
 ---
 ::
 
-### Color
+### Цвет {#color}
 
-Use the `color` prop to change the color of the RadioGroup.
+Пропс `color` меняет цвет RadioGroup.
 
 ::component-code
 ---
@@ -171,18 +174,18 @@ external:
   - items
 props:
   color: air-primary-copilot
-  defaultValue: 'System'
+  defaultValue: 'Системная'
   items:
-    - 'System'
-    - 'Light'
-    - 'Dark'
+    - 'Системная'
+    - 'Светлая'
+    - 'Тёмная'
 ---
 ::
 
 
-### Variant
+### Вариант {#variant}
 
-Use the `variant` prop to change the variant of the RadioGroup.
+Пропс `variant` меняет вариант RadioGroup.
 
 ::component-code
 ---
@@ -201,19 +204,19 @@ props:
   items:
     - label: 'Pro'
       value: 'pro'
-      description: 'Tailored for indie hackers, freelancers and solo founders.'
-    - label: 'Startup'
+      description: 'Для независимых разработчиков, фрилансеров и одиночных основателей.'
+    - label: 'Стартап'
       value: 'startup'
-      description: 'Best suited for small teams, startups and agencies.'
-    - label: 'Enterprise'
+      description: 'Подходит небольшим командам, стартапам и агентствам.'
+    - label: 'Корпоративный'
       value: 'enterprise'
-      description: 'Ideal for larger teams and organizations.'
+      description: 'Для крупных команд и организаций.'
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the RadioGroup.
+Пропс `size` меняет размер RadioGroup.
 
 ::component-code
 ---
@@ -226,17 +229,17 @@ external:
 props:
   size: 'lg'
   variant: 'list'
-  defaultValue: 'System'
+  defaultValue: 'Системная'
   items:
-    - 'System'
-    - 'Light'
-    - 'Dark'
+    - 'Системная'
+    - 'Светлая'
+    - 'Тёмная'
 ---
 ::
 
-### Orientation
+### Ориентация {#orientation}
 
-Use the `orientation` prop to change the orientation of the RadioGroup. Defaults to `vertical`.
+Пропс `orientation` меняет ориентацию RadioGroup. По умолчанию `vertical`.
 
 ::component-code
 ---
@@ -249,20 +252,20 @@ external:
 props:
   orientation: 'horizontal'
   variant: 'list'
-  defaultValue: 'System'
+  defaultValue: 'Системная'
   items:
-    - 'System'
-    - 'Light'
-    - 'Dark'
+    - 'Системная'
+    - 'Светлая'
+    - 'Тёмная'
 ---
 ::
 
-### Indicator
+### Индикатор {#indicator}
 
-Use the `indicator` prop to change the position or hide the indicator. Defaults to `start`.
+Пропс `indicator` меняет положение индикатора или скрывает его. По умолчанию `start`.
 
 ::note
-An item's `icon` is only displayed when `indicator` is `hidden`, above the label, since a radio has no icon inside its indicator.
+`icon` элемента показывается только при `indicator`, равном `hidden`, и стоит над подписью: внутри индикатора у переключателя иконки нет.
 ::
 
 ::component-example
@@ -283,17 +286,17 @@ external:
 props:
   indicator: 'end'
   variant: 'card'
-  defaultValue: 'System'
+  defaultValue: 'Системная'
   items:
-    - 'System'
-    - 'Light'
-    - 'Dark'
+    - 'Системная'
+    - 'Светлая'
+    - 'Тёмная'
 ---
 ::
 
-### Disabled
+### Отключение {#disabled}
 
-Use the `disabled` prop to disable the RadioGroup.
+Пропс `disabled` отключает RadioGroup.
 
 ::component-code
 ---
@@ -311,19 +314,19 @@ items:
 props:
   disabled: true
   variant: 'list'
-  defaultValue: 'System'
+  defaultValue: 'Системная'
   items:
-    - 'System'
-    - 'Light'
-    - 'Dark'
+    - 'Системная'
+    - 'Светлая'
+    - 'Тёмная'
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Settings layout
+### Раскладка настроек {#settings-layout}
 
-Use the `card` variant together with the `#label` slot to render a settings-style picker where each option has a title, description, a "Learn more" link and a preview image. The label slot renders inside a `<span>`, so any phrasing-content layout (flex, link, image) works.
+Вариант `card` вместе со слотом `#label` даёт выбор в стиле настроек: у каждого варианта есть заголовок, описание, ссылка «Learn more» и картинка предпросмотра. Слот подписи отрисовывается внутри `<span>`, поэтому подойдёт любая раскладка из фразового содержимого (flex, ссылка, изображение).
 
 ::component-example
 ---
@@ -334,54 +337,54 @@ name: 'radio-group-settings-example'
 
 ::prompt
 ---
-description: Build a rich radio-card settings picker (preview + description + link).
+description: Собрать расширенный выбор настроек на карточках с переключателями (предпросмотр, описание, ссылка).
 actions:
   - copy
   - cursor
   - windsurf
 class: 'w-full my-0'
 ---
-Build a settings picker as `B24RadioGroup` with `variant="card"`. Each option renders a title, a multi-line description, an inline "Learn more" link and a preview image on the right side, laid out via the `#label` slot.
+Соберите выбор настроек на `B24RadioGroup` с `variant="card"`. У каждого варианта — заголовок, многострочное описание, встроенная ссылка «Learn more» и картинка предпросмотра справа; всё раскладывается через слот `#label`.
 
-Before generating the code, ask me for the missing details — do not guess:
-- How many options there are and what their `value` / `title` / description text should be
-- The URL behind each "Learn more" link (and whether all options share one or each has its own)
-- Where the preview asset comes from: real image, `<Placeholder>` while artwork is in flight, or omit entirely
-- Whether selection must be persisted (`v-model` target — local `ref`, Pinia store, query param, server)
-- Which size (`sm` / `md` / `lg`) and `color` token fit the surrounding page
-- Whether the picker is inside a `B24Form` (then it should be wrapped in `B24FormField` with a label)
+Прежде чем генерировать код, спросите недостающие сведения, не угадывайте:
+- сколько вариантов и какими должны быть их `value`, `title` и описание;
+- какой адрес у каждой ссылки «Learn more» (один на всех или у каждого свой);
+- откуда берётся предпросмотр: настоящая картинка, `<Placeholder>` до готовности графики или его нет вовсе;
+- нужно ли сохранять выбор (куда привязан `v-model`: локальный `ref`, хранилище Pinia, query-параметр, сервер);
+- какие `size` (`sm` / `md` / `lg`) и токен `color` подходят странице;
+- находится ли выбор внутри `B24Form` (тогда его нужно обернуть в `B24FormField` с подписью).
 
-Requirements once details are confirmed:
-- Declare a local `interface` for the item shape (`value`, `title`, `text`, `href`, optional `preview`) and type the array with it — do NOT use `RadioGroupItem[]` (that widens user fields to `any`)
-- Inside the `#label` slot use `<span>` wrappers only (no `<div>` / `<p>` — the slot is rendered as `<span>` for the `card` variant)
-- Apply semantic utilities (`text-description`, `text-(length:--ui-font-size-md)`, …) — never raw Tailwind palette colors
-- Hide the preview below the `sm` breakpoint (`hidden sm:flex`)
-- Add `@click.stop` to the inline `B24Link` so the link doesn't toggle the radio
-- If `item.href` may come from an untrusted source, validate it (reject `javascript:` / `data:` / open-redirect URLs) before binding
+Требования после подтверждения деталей:
+- Объявите локальный `interface` для формы элемента (`value`, `title`, `text`, `href`, необязательный `preview`) и типизируйте им массив — НЕ используйте `RadioGroupItem[]` (он расширяет пользовательские поля до `any`)
+- Внутри слота `#label` используйте только обёртки `<span>` (без `<div>` и `<p>`: в варианте `card` слот отрисовывается как `<span>`)
+- Применяйте семантические утилиты (`text-description`, `text-(length:--ui-font-size-md)` и т. п.), а не «сырые» цвета палитры Tailwind
+- Скрывайте предпросмотр ниже контрольной точки `sm` (`hidden sm:flex`)
+- Добавьте `@click.stop` встроенному `B24Link`, чтобы щелчок по ссылке не переключал переключатель
+- Если `item.href` может прийти из ненадёжного источника, проверьте его перед привязкой (отклоняйте `javascript:`, `data:` и адреса открытого редиректа)
 ::
 
 ::tip
-Stop the click from toggling the radio when the user follows the inline link by adding `@click.stop` to it.
+Чтобы щелчок по встроенной ссылке не переключал переключатель, добавьте ей `@click.stop`.
 ::
 
 ::note
-Same recipe works for multi-select — see [CheckboxGroup → Settings layout](/docs/components/checkbox-group#settings-layout). For icon-and-description grids (no preview image), reach for [`B24PageCardGroup`](/docs/components/page-card-group) instead.
+Тот же приём работает и для выбора нескольких вариантов — см. [CheckboxGroup → Раскладка настроек](/docs/components/checkbox-group#settings-layout). Для сеток «иконка + описание» (без картинки предпросмотра) используйте [`B24PageCardGroup`](/docs/components/page-card-group).
 ::
 
-## API
+## API {#api}
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

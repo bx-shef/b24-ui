@@ -7,5 +7,5 @@ const value = shallowRef<DateValue>(new CalendarDateTime(2024, 10, 6, 14, 30))
 </script>
 
 <template>
-  <B24DateTimePicker v-model="value" placeholder="Pick a date and time" />
+  <B24DateTimePicker v-model="value" placeholder="Выберите дату и время" />
 </template>

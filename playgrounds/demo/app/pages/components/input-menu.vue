@@ -2,7 +2,7 @@
 /**
  * @see playground/app/pages/components/select-menu.vue
  */
-import type { InputMenuItem, InputMenuProps } from '@bitrix24/b24ui-nuxt'
+import type { InputMenuItem, InputMenuProps } from '@bxshefby/b24ui-nuxt'
 import theme from '#build/b24ui/input-menu'
 import Expand1Icon from '@bitrix24/b24icons-vue/actions/Expand1Icon'
 import Search2Icon from '@bitrix24/b24icons-vue/main/Search2Icon'

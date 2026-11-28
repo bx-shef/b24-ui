@@ -1,5 +1,5 @@
 <template>
-  <B24DashboardNavbar title="Inbox" class="bg-(--ui-color-design-outline-bg-alt) backdrop-blur-md">
+  <B24DashboardNavbar title="Входящие" class="bg-(--ui-color-design-outline-bg-alt) backdrop-blur-md">
     <template #leading>
       <B24DashboardSidebarCollapse />
     </template>
@@ -10,8 +10,8 @@
 
     <template #right>
       <B24FieldGroup>
-        <B24Button label="All" />
-        <B24Button label="Unread" />
+        <B24Button label="Все" />
+        <B24Button label="Непрочитанные" />
       </B24FieldGroup>
     </template>
   </B24DashboardNavbar>

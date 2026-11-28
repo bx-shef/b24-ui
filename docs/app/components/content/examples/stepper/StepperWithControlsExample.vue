@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { StepperItem } from '@bitrix24/b24ui-nuxt'
+import type { StepperItem } from '@bxshefby/b24ui-nuxt'
 import ArrowLeftLIcon from '@bitrix24/b24icons-vue/outline/ArrowLeftLIcon'
 import ArrowRightLIcon from '@bitrix24/b24icons-vue/outline/ArrowRightLIcon'
 import LocationIcon from '@bitrix24/b24icons-vue/outline/LocationIcon'
@@ -7,16 +7,16 @@ import DeliveryIcon from '@bitrix24/b24icons-vue/outline/DeliveryIcon'
 
 const items: StepperItem[] = [
   {
-    title: 'Address',
-    description: 'Add your address here',
+    title: 'Адрес',
+    description: 'Укажите свой адрес',
     icon: LocationIcon
   }, {
-    title: 'Shipping',
-    description: 'Set your preferred shipping method',
+    title: 'Доставка',
+    description: 'Выберите предпочтительный способ доставки',
     icon: DeliveryIcon
   }, {
-    title: 'Checkout',
-    description: 'Confirm your order'
+    title: 'Оформление заказа',
+    description: 'Подтвердите заказ'
   }
 ]
 
@@ -36,7 +36,7 @@ const stepper = useTemplateRef('stepper')
     <div class="flex gap-2 justify-between mt-4">
       <B24Button
         :disabled="!stepper?.hasPrev"
-        label="Prev"
+        label="Назад"
         @click="stepper?.prev()"
       >
         <template #leading>
@@ -46,7 +46,7 @@ const stepper = useTemplateRef('stepper')
 
       <B24Button
         :disabled="!stepper?.hasNext"
-        label="Next"
+        label="Далее"
         @click="stepper?.next()"
       >
         <template #trailing>

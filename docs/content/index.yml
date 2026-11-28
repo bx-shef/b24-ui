@@ -1,20 +1,20 @@
 title: '@bitrix24/b24ui'
-description: for REST API web-application development
+description: для разработки веб-приложений на REST API
 hero:
   title: '@bitrix24/b24ui'
-  description: for REST API web-application development
+  description: для разработки веб-приложений на REST API
   links:
-    - label: Get started
+    - label: Начать
       to: /docs/getting-started/installation/nuxt/
       class: 'nuxt-only'
       color: 'air-secondary-accent-2'
       iconName: 'PlayLIcon'
-    - label: Get started
+    - label: Начать
       to: /docs/getting-started/installation/vue/
       class: 'vue-only'
       color: 'air-secondary-accent-2'
       iconName: 'PlayLIcon'
-    - label: Explore components
+    - label: Смотреть компоненты
       to: /docs/components/
       color: 'air-primary'
       iconName: 'EncloseTextInCodeTagIcon'

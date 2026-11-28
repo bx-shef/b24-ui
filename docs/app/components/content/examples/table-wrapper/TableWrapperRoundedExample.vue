@@ -4,49 +4,49 @@
     rounded
   >
     <table>
-      <!-- head -->
+      <!-- шапка -->
       <thead>
         <tr>
           <th>#</th>
-          <th>Company</th>
-          <th>Deal Stage</th>
-          <th>Amount</th>
+          <th>Компания</th>
+          <th>Стадия сделки</th>
+          <th>Сумма</th>
         </tr>
       </thead>
       <tbody>
-        <!-- row 1 -->
+        <!-- строка 1 -->
         <tr>
           <th>1</th>
           <td>Tech Innovators Inc.</td>
-          <td>Proposal Sent</td>
+          <td>Предложение отправлено</td>
           <td>50,000</td>
         </tr>
-        <!-- row 2 -->
+        <!-- строка 2 -->
         <tr>
           <th>2</th>
           <td>Global Solutions Ltd.</td>
-          <td>Negotiation</td>
+          <td>Переговоры</td>
           <td>120,000</td>
         </tr>
-        <!-- row 3 -->
+        <!-- строка 3 -->
         <tr>
           <th>3</th>
           <td>Future Enterprises</td>
-          <td>Contract Signed</td>
+          <td>Договор подписан</td>
           <td>200,000</td>
         </tr>
-        <!-- row 4 -->
+        <!-- строка 4 -->
         <tr>
           <th>4</th>
           <td>Bright Ideas Co.</td>
-          <td>Initial Contact</td>
+          <td>Первичный контакт</td>
           <td>15,000</td>
         </tr>
-        <!-- row 5 -->
+        <!-- строка 5 -->
         <tr>
           <th>5</th>
           <td>NextGen Technologies</td>
-          <td>Closing</td>
+          <td>Закрытие</td>
           <td>300,000</td>
         </tr>
       </tbody>

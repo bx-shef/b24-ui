@@ -1,6 +1,6 @@
 ---
 title: ProseCodeCollapse
-description: 'Add toggle functionality for lengthy code sections to optimize layout.'
+description: 'Сворачиваемые длинные блоки кода экономят место на странице.'
 category: components
 navigation.title: CodeCollapse
 links:
@@ -12,9 +12,9 @@ links:
     to: https://ui.nuxt.com/docs/typography/code-collapse
 ---
 
-## Usage
+## Использование {#usage}
 
-Wrap your code-block with a `code-collapse` component to display a collapsible code block.
+Компонент `code-collapse` превращает блок кода в сворачиваемый.
 
 ::code-preview{class="[&>div]:*:my-0 [&>div]:*:w-full"}
 
@@ -22,7 +22,7 @@ Wrap your code-block with a `code-collapse` component to display a collapsible c
 
 ```css [app/assets/css/main.css]
 @import "tailwindcss";
-@import "@bitrix24/b24ui-nuxt";
+@import "@bxshefby/b24ui-nuxt";
 
 @theme static {
   --font-sans: 'Public Sans', sans-serif;
@@ -42,7 +42,7 @@ Wrap your code-block with a `code-collapse` component to display a collapsible c
 
 ```css [app/assets/css/main.css]
 @import "tailwindcss";
-@import "@bitrix24/b24ui-nuxt";
+@import "@bxshefby/b24ui-nuxt";
 
 @theme static {
   --font-sans: 'Public Sans', sans-serif;
@@ -60,14 +60,14 @@ Wrap your code-block with a `code-collapse` component to display a collapsible c
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props{prose}
 
-### Slots
+### Слоты {#slots}
 
 :component-slots{prose}
 
-## Theme
+## Тема {#theme}
 
 :component-theme{prose}

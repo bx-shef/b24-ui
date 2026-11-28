@@ -1,19 +1,23 @@
 ---
 title: Countdown
-description: Countdown with options control.
+description: 'Обратный отсчёт с настраиваемыми параметрами.'
 category: element
+keywords:
+  - обратный отсчёт
+  - таймер
+  - отсчёт времени
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Countdown.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/countdown
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `seconds` prop to set the number of seconds to Countdown.
+Пропс `seconds` задаёт число секунд для Countdown.
 
 ::component-code
 ---
@@ -23,9 +27,9 @@ props:
 ---
 ::
 
-### Show minutes
+### Показ минут {#show-minutes}
 
-Use the `show-minutes` property to show or hide the minutes in the Countdown. Default value: `true`.
+Свойство `show-minutes` показывает или скрывает минуты в Countdown. По умолчанию `true`.
 
 ::component-code
 ---
@@ -36,9 +40,9 @@ props:
 ---
 ::
 
-### Size
+### Размер {#size}
 
-Use the `size` prop to change the size of the Countdown.
+Пропс `size` меняет размер Countdown.
 
 ::component-code
 ---
@@ -49,9 +53,9 @@ props:
 ---
 ::
 
-### Use Circle
+### Круг {#use-circle}
 
-Use the `useCircle` property to display a `circle` around the Countdown.
+Свойство `useCircle` рисует вокруг Countdown круг (`circle`).
 
 ::component-code
 ---
@@ -63,9 +67,9 @@ props:
 ---
 ::
 
-### Icon
+### Иконка {#icon}
 
-Use the `icon` prop to show an [Icon](https://bitrix24.github.io/b24icons/icons/).
+Пропс `icon` показывает [иконку](https://bitrix24.github.io/b24icons/icons/).
 
 ::component-code
 ---
@@ -81,9 +85,9 @@ props:
 ---
 ::
 
-### Avatar
+### Аватар {#avatar}
 
-Use the `avatar` prop to show an [Avatar](/docs/components/avatar/).
+Пропс `avatar` показывает [аватар](/docs/components/avatar/).
 
 ::component-code
 ---
@@ -102,11 +106,11 @@ props:
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Information displayed
+### Отображаемая информация {#information-displayed}
 
-You can manage information using the default slot.
+Слот по умолчанию позволяет управлять отображаемой информацией.
 
 ::component-example
 ---
@@ -115,9 +119,9 @@ collapse: true
 ---
 ::
 
-### With interval
+### С интервалом {#with-interval}
 
-You can control the countdown interval using the `interval` prop.
+Интервал отсчёта задаёт пропс `interval`.
 
 ::component-example
 ---
@@ -126,9 +130,9 @@ collapse: true
 ---
 ::
 
-### Handling countdown emits
+### Обработка событий отсчёта {#handling-countdown-emits}
 
-Use emit `start`, `end`, `abort`, `progress` to respond to countdown events.
+События `start`, `end`, `abort` и `progress` позволяют реагировать на изменения отсчёта.
 
 ::component-example
 ---
@@ -139,18 +143,18 @@ collapse: true
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

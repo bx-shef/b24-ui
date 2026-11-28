@@ -1,7 +1,11 @@
 ---
 title: PageAside
-description: 'A sticky navigation aside.'
+description: 'Липкая боковая навигация.'
 category: page
+keywords:
+  - боковая навигация страницы
+  - липкое боковое меню
+  - правая колонка
 links:
   - label: GitHub
     iconName: GitHubIcon
@@ -11,15 +15,15 @@ links:
     to: https://ui.nuxt.com/docs/components/page-aside
 ---
 
-## Usage
+## Использование {#usage}
 
-The PageAside component is a sticky `<aside>` element that is only displayed starting from the [`lg` breakpoint](https://tailwindcss.com/docs/breakpoints).
+Компонент PageAside — липкий элемент `<aside>`, который отображается только начиная с [контрольной точки `lg`](https://tailwindcss.com/docs/breakpoints).
 
 ::tip{to="/docs/getting-started/theme/css-variables/#header"}
-The PageAside component uses the `--b24ui-header-height` CSS variable to position itself correctly below the `Header`.
+Компонент PageAside использует CSS-переменную `--b24ui-header-height`, чтобы расположиться точно под `Header`.
 ::
 
-Use it inside the `left` or `right` slot of the [Page](/docs/components/page/) component:
+Используйте его в слоте `left` или `right` компонента [Page](/docs/components/page/):
 
 ```vue {4}
 <template>
@@ -31,15 +35,15 @@ Use it inside the `left` or `right` slot of the [Page](/docs/components/page/) c
 </template>
 ```
 
-## Examples
+## Примеры {#examples}
 
-### Within a layout
+### В раскладке {#within-a-layout}
 
-Use the PageAside component in a layout to display the navigation:
+Используйте PageAside в раскладке, чтобы показать навигацию:
 
 ```vue [layouts/docs.vue]{10-16}
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 
 const navigation = inject<Ref<NavigationMenuItem[]>>('navigation')
 </script>
@@ -63,19 +67,19 @@ const navigation = inject<Ref<NavigationMenuItem[]>>('navigation')
 ```
 
 ::note
-In this example, we use the [`NavigationMenu`](/docs/components/navigation-menu/) component to display the navigation injected in `app.vue`.
+В этом примере навигацию, переданную в `app.vue`, показывает компонент [`NavigationMenu`](/docs/components/navigation-menu/).
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

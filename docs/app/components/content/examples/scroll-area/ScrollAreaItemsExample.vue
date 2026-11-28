@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const items = Array.from({ length: 30 }, (_, i) => ({
   id: i + 1,
-  title: `Item ${i + 1}`,
-  description: `Description for item ${i + 1}`
+  title: `Элемент ${i + 1}`,
+  description: `Описание элемента ${i + 1}`
 }))
 </script>
 

@@ -6,12 +6,12 @@ const open = ref(false)
 
 <template>
   <B24Drawer v-model:open="open" :dismissible="false" :modal="false" :handle="false">
-    <B24Button label="Open" use-dropdown :b24ui="{ trailingIcon: 'rotate-180' }" />
+    <B24Button label="Открыть" use-dropdown :b24ui="{ trailingIcon: 'rotate-180' }" />
 
     <template #body>
       <div class="flex items-center justify-between gap-4 mb-4">
         <ProseH2 class="mb-0">
-          Drawer non-dismissible
+          Drawer без закрытия по действию вне окна
         </ProseH2>
 
         <B24Button color="air-tertiary" :icon="Cross50Icon" @click="open = false" />

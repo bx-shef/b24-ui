@@ -1,7 +1,11 @@
 ---
 title: ColorModeAvatar
-description: 'An Avatar that automatically switches its image based on the current theme (light/dark).'
+description: 'Avatar, который сам меняет изображение в зависимости от текущей темы (светлая или тёмная).'
 category: color-mode
+keywords:
+  - аватар по теме
+  - аватар для тёмной темы
+  - смена изображения по теме
 links:
   - label: GitHub
     iconName: GitHubIcon
@@ -9,7 +13,7 @@ links:
   - label: Avatar
     to: /docs/components/avatar/
     iconName: Bitrix24Icon
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/color-mode
   - label: Nuxt UI
@@ -17,11 +21,11 @@ links:
     to: https://ui.nuxt.com/docs/components/color-mode-avatar
 ---
 
-## Usage
+## Использование {#usage}
 
-The ColorModeAvatar component extends the [Avatar](/docs/components/avatar/) component, so you can pass any property such as `size`, `icon`, etc.
+Компонент ColorModeAvatar расширяет компонент [Avatar](/docs/components/avatar/), поэтому ему можно передать любое свойство: `size`, `icon` и другие.
 
-Use the `light` and `dark` props to define the source for light and dark mode.
+Пропсы `light` и `dark` задают источники изображения для светлой и тёмной темы.
 
 ::component-code{prefix="color-mode"}
 ---
@@ -35,15 +39,15 @@ props:
 ::
 
 ::note
-Switch between light and dark mode: :b24-color-mode-select{size="sm"} to see the different images
+Переключайте светлую и тёмную тему, чтобы увидеть разные изображения: :b24-color-mode-select{size="sm"}
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes" target="_blank"}
-This component also supports all native `<img>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<img>`.
 ::

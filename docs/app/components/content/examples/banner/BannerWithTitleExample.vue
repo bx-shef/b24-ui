@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { BannerProps } from '@bitrix24/b24ui-nuxt'
+import type { BannerProps } from '@bxshefby/b24ui-nuxt'
 import CircleCrossIcon from '@bitrix24/b24icons-vue/outline/CircleCrossIcon'
 
 const { id = 'example' } = defineProps<{
@@ -25,7 +25,7 @@ onBeforeMount(() => {
 <template>
   <B24Banner
     :id="id"
-    :title="title || 'The subscription trial has ended. Subscribe to continue using all apps.'"
+    :title="title || 'Пробный период подписки закончился. Оформите подписку, чтобы продолжить пользоваться всеми приложениями.'"
     :color="color"
     class="edge-light"
     :close-icon="CircleCrossIcon"

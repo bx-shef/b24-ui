@@ -18,78 +18,78 @@ const toast = useToast()
 
 const groups = [{
   id: 'actions',
-  label: 'Actions',
+  label: 'Действия',
   items: [
     {
-      label: 'Create new',
+      label: 'Создать',
       icon: CirclePlusIcon,
       children: [
         {
-          label: 'New file',
+          label: 'Новый файл',
           icon: FileUploadIcon,
-          suffix: 'Create a new file in the current directory',
+          suffix: 'Создать новый файл в текущей папке',
           onSelect(e: Event) {
             e.preventDefault()
-            toast.add({ title: 'New file created!' })
+            toast.add({ title: 'Новый файл создан!' })
           },
           kbds: ['meta', 'I']
         },
         {
-          label: 'New folder',
+          label: 'Новая папка',
           icon: FolderPlusIcon,
-          suffix: 'Create a new folder in the current directory',
+          suffix: 'Создать новую папку в текущей папке',
           onSelect(e: Event) {
             e.preventDefault()
-            toast.add({ title: 'New folder created!' })
+            toast.add({ title: 'Новая папка создана!' })
           },
           kbds: ['meta', 'F']
         },
         {
-          label: 'New project',
+          label: 'Новый проект',
           icon: AddProductIcon,
-          suffix: 'Create a new project from a template',
+          suffix: 'Создать новый проект из шаблона',
           onSelect(e: Event) {
             e.preventDefault()
-            toast.add({ title: 'New project created!' })
+            toast.add({ title: 'Новый проект создан!' })
           },
           kbds: ['meta', 'P']
         }
       ]
     },
     {
-      label: 'Share',
+      label: 'Поделиться',
       icon: ShareIcon,
       children: [
         {
-          label: 'Copy link',
+          label: 'Копировать ссылку',
           icon: LinkIcon,
-          suffix: 'Copy a link to the current item',
+          suffix: 'Скопировать ссылку на текущий элемент',
           onSelect(e: Event) {
             e.preventDefault()
-            toast.add({ title: 'Link copied to clipboard!' })
+            toast.add({ title: 'Ссылка скопирована в буфер обмена!' })
           },
           kbds: ['meta', 'L']
         },
         {
-          label: 'Share via email',
+          label: 'Поделиться по email',
           icon: MailSendIcon,
-          suffix: 'Share the current item via email',
+          suffix: 'Поделиться текущим элементом по email',
           onSelect(e: Event) {
             e.preventDefault()
-            toast.add({ title: 'Share via email dialog opened!' })
+            toast.add({ title: 'Диалог отправки по email открыт!' })
           }
         },
         {
-          label: 'Share on social',
+          label: 'Поделиться в соцсетях',
           icon: Share2Icon,
-          suffix: 'Share the current item on social media',
+          suffix: 'Поделиться текущим элементом в соцсетях',
           children: [
             {
               label: 'Twitter',
               icon: TwitterIcon,
               onSelect(e: Event) {
                 e.preventDefault()
-                toast.add({ title: 'Shared on Twitter!' })
+                toast.add({ title: 'Отправлено в Twitter!' })
               }
             },
             {
@@ -97,7 +97,7 @@ const groups = [{
               icon: TelegramIcon,
               onSelect(e: Event) {
                 e.preventDefault()
-                toast.add({ title: 'Shared on Telegram!' })
+                toast.add({ title: 'Отправлено в Telegram!' })
               }
             }
           ]
@@ -105,34 +105,34 @@ const groups = [{
       ]
     },
     {
-      label: 'Settings',
+      label: 'Настройки',
       icon: SettingsLIcon,
       children: [
         {
-          label: 'General',
+          label: 'Общие',
           icon: Filter1Icon,
-          suffix: 'Configure general settings',
+          suffix: 'Настроить общие параметры',
           onSelect(e: Event) {
             e.preventDefault()
-            toast.add({ title: 'General settings opened!' })
+            toast.add({ title: 'Общие настройки открыты!' })
           }
         },
         {
-          label: 'Appearance',
+          label: 'Внешний вид',
           icon: PaletteIcon,
-          suffix: 'Customize the appearance',
+          suffix: 'Настроить внешний вид',
           onSelect(e: Event) {
             e.preventDefault()
-            toast.add({ title: 'Appearance settings opened!' })
+            toast.add({ title: 'Настройки внешнего вида открыты!' })
           }
         },
         {
-          label: 'Security',
+          label: 'Безопасность',
           icon: ShieldIcon,
-          suffix: 'Manage security settings',
+          suffix: 'Управление настройками безопасности',
           onSelect(e: Event) {
             e.preventDefault()
-            toast.add({ title: 'Security settings opened!' })
+            toast.add({ title: 'Настройки безопасности открыты!' })
           }
         }
       ]

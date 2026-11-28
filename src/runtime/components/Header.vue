@@ -172,6 +172,7 @@ function toggleOpen() {
         color="air-tertiary"
         size="md"
         :aria-label="open ? t('header.close') : t('header.open')"
+        :aria-expanded="open"
         :icon="open ? icons.close : icons.menu"
         v-bind="(typeof props.toggle === 'object' ? props.toggle : {})"
         data-slot="toggle"

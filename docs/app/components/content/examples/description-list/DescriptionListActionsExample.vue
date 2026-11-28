@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DescriptionListItem, ButtonProps } from '@bitrix24/b24ui-nuxt'
+import type { DescriptionListItem, ButtonProps } from '@bxshefby/b24ui-nuxt'
 import SignIcon from '@bitrix24/b24icons-vue/main/SignIcon'
 import DotsIcon from '@bitrix24/b24icons-vue/button/DotsIcon'
 
@@ -8,72 +8,72 @@ const action = (color: string): ButtonProps[] => [
     icon: DotsIcon,
     color: color as any,
     onClick() {
-      console.log('Action clicked')
+      console.log('Действие нажато')
     }
   }
 ]
 
 const multipleActions = (color: string): ButtonProps[] => [
   {
-    label: 'Action',
+    label: 'Действие',
     color: color as any,
     onClick() {
-      console.log('Action clicked')
+      console.log('Действие нажато')
     }
   },
   {
-    label: 'Another action',
+    label: 'Другое действие',
     color: color as any,
     onClick() {
-      console.log('Another action clicked')
+      console.log('Другое действие нажато')
     }
   },
   {
-    label: 'One more action',
+    label: 'Ещё одно действие',
     color: color as any,
     onClick() {
-      console.log('One more action clicked')
+      console.log('Ещё одно действие нажато')
     }
   },
   {
-    label: 'And one more',
+    label: 'И ещё одно',
     color: color as any,
     icon: SignIcon,
     onClick() {
-      console.log('And one more clicked')
+      console.log('И ещё одно нажато')
     }
   },
   {
-    label: 'Last one',
+    label: 'Последнее',
     color: color as any,
     icon: DotsIcon,
     onClick() {
-      console.log('Last one clicked')
+      console.log('Последнее нажато')
     }
   }
 ]
 
 const items = ref([
   {
-    label: 'Line 1.1',
-    description: 'Description 1.1',
+    label: 'Строка 1.1',
+    description: 'Описание 1.1',
     actions: action('air-secondary-no-accent'),
     orientation: 'horizontal' as DescriptionListItem['orientation']
   },
   {
-    label: 'Line 1.2',
-    description: 'Description 1.2',
+    label: 'Строка 1.2',
+    description: 'Описание 1.2',
     actions: action('air-primary'),
     orientation: 'horizontal' as DescriptionListItem['orientation']
   },
   {
-    label: 'Line 1.3',
-    description: 'Description 1.3',
+    label: 'Строка 1.3',
+    description: 'Описание 1.3',
     actions: action('air-tertiary-no-accent'),
     orientation: 'horizontal' as DescriptionListItem['orientation']
   },
   {
-    description: 'Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.',
+    description: 'Длинное описание строки: оно показывает, как текст переносится внутри списка описаний и остаётся читаемым, даже когда занимает несколько строк подряд.',
     actions: multipleActions('default'),
     orientation: 'vertical' as DescriptionListItem['orientation']
   }
@@ -82,8 +82,8 @@ const items = ref([
 
 <template>
   <B24DescriptionList
-    legend="Applicant Information"
-    text="Personal details and application."
+    legend="Информация о кандидате"
+    text="Личные данные и заявка."
     :items="items"
   />
 </template>

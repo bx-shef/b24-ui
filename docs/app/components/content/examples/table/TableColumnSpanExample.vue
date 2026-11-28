@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TableColumn } from '@bitrix24/b24ui-nuxt'
+import type { TableColumn } from '@bxshefby/b24ui-nuxt'
 import type { Cell } from '@tanstack/vue-table'
 
 type Product = {
@@ -10,11 +10,11 @@ type Product = {
 }
 
 const data = ref<Product[]>([
-  { category: 'Electronics', name: 'Laptop', price: 999, stock: 45 },
-  { category: 'Electronics', name: 'Phone', price: 699, stock: 120 },
-  { category: 'Electronics', name: 'Tablet', price: 499, stock: 78 },
-  { category: 'Clothing', name: 'T-Shirt', price: 29, stock: 200 },
-  { category: 'Clothing', name: 'Jeans', price: 59, stock: 150 }
+  { category: 'Электроника', name: 'Ноутбук', price: 999, stock: 45 },
+  { category: 'Электроника', name: 'Телефон', price: 699, stock: 120 },
+  { category: 'Электроника', name: 'Планшет', price: 499, stock: 78 },
+  { category: 'Одежда', name: 'Футболка', price: 29, stock: 200 },
+  { category: 'Одежда', name: 'Джинсы', price: 59, stock: 150 }
 ])
 
 function getCategoryRowSpan(cell: Cell<Product, unknown>) {
@@ -49,7 +49,7 @@ function getCategoryClass(cell: Cell<Product, unknown>) {
 
 const columns: TableColumn<Product>[] = [{
   accessorKey: 'category',
-  header: 'Category',
+  header: 'Категория',
   meta: {
     rowspan: {
       td: getCategoryRowSpan
@@ -60,10 +60,10 @@ const columns: TableColumn<Product>[] = [{
   }
 }, {
   accessorKey: 'name',
-  header: 'Name'
+  header: 'Имя'
 }, {
   accessorKey: 'price',
-  header: 'Price',
+  header: 'Цена',
   meta: {
     class: {
       th: 'text-end',
@@ -78,7 +78,7 @@ const columns: TableColumn<Product>[] = [{
   }
 }, {
   accessorKey: 'stock',
-  header: 'Stock',
+  header: 'Остаток',
   meta: {
     class: {
       th: 'text-end',

@@ -32,11 +32,19 @@ export default defineLocale<Messages>({
       next: 'Sonraki',
       prev: 'Önceki'
     },
+    chatAttachment: {
+      uploading: 'Yükleniyor',
+      error: 'Yükleme başarısız'
+    },
     chatMessages: {
       autoScroll: 'Aşağı kaydır'
     },
     chatPrompt: {
-      placeholder: 'Mesajınızı buraya yazın…'
+      placeholder: 'Mesajınızı buraya yazın…',
+      queue: 'Sıradaki mesajlar',
+      sendNow: 'Şimdi gönder',
+      edit: 'Düzenle',
+      remove: 'Kaldır'
     },
     chatPromptSubmit: {
       label: 'Gönder',
@@ -132,6 +140,15 @@ export default defineLocale<Messages>({
     drawer: {
       close: 'Kapat'
     },
+    editorEmojiMenu: {
+      label: 'Emojiler'
+    },
+    editorMentionMenu: {
+      label: 'Bahsetmeler'
+    },
+    editorSuggestionMenu: {
+      label: 'Öneriler'
+    },
     pagination: {
       first: 'İlk sayfa',
       last: 'Son sayfa',
@@ -144,14 +161,16 @@ export default defineLocale<Messages>({
     },
     prose: {
       codeCollapse: {
-        closeText: 'Gizle',
-        name: 'kod',
-        openText: 'Göster'
+        closeText: 'gizle',
+        label: '{name} {text}',
+        name: 'Kodu',
+        openText: 'göster'
       },
       collapsible: {
-        closeText: 'Gizle',
-        name: 'özellikler',
-        openText: 'Göster'
+        closeText: 'gizle',
+        label: '{name} {text}',
+        name: 'Özellikleri',
+        openText: 'göster'
       },
       pre: {
         copy: 'Kodu panoya kopyala'

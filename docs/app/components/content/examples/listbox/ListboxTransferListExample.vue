@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import type { ListboxItem } from '@bitrix24/b24ui-nuxt'
+import type { ListboxItem } from '@bxshefby/b24ui-nuxt'
 import Location1Icon from '@bitrix24/b24icons-vue/main/Location1Icon'
 import ChevronLeftLIcon from '@bitrix24/b24icons-vue/outline/ChevronLeftLIcon'
 import ChevronRightLIcon from '@bitrix24/b24icons-vue/outline/ChevronRightLIcon'
 
 const items: ListboxItem[] = [
-  { label: 'France', icon: Location1Icon, value: 'FR' },
-  { label: 'Germany', icon: Location1Icon, value: 'DE' },
-  { label: 'Italy', icon: Location1Icon, value: 'IT' },
-  { label: 'Spain', icon: Location1Icon, value: 'ES' },
-  { label: 'Netherlands', icon: Location1Icon, value: 'NL' },
-  { label: 'Poland', icon: Location1Icon, value: 'PL' },
-  { label: 'Belgium', icon: Location1Icon, value: 'BE' },
-  { label: 'Portugal', icon: Location1Icon, value: 'PT' }
+  { label: 'Франция', icon: Location1Icon, value: 'FR' },
+  { label: 'Германия', icon: Location1Icon, value: 'DE' },
+  { label: 'Италия', icon: Location1Icon, value: 'IT' },
+  { label: 'Испания', icon: Location1Icon, value: 'ES' },
+  { label: 'Нидерланды', icon: Location1Icon, value: 'NL' },
+  { label: 'Польша', icon: Location1Icon, value: 'PL' },
+  { label: 'Бельгия', icon: Location1Icon, value: 'BE' },
+  { label: 'Португалия', icon: Location1Icon, value: 'PT' }
 ]
 
 const targetItems = ref<ListboxItem[]>([])
@@ -35,7 +35,7 @@ function removeSelected() {
 <template>
   <div class="flex items-stretch gap-4 w-full">
     <div class="flex flex-col flex-1 gap-1">
-      <span class="text-sm font-medium">Available</span>
+      <span class="text-sm font-medium">Доступные</span>
 
       <B24Listbox
         v-model="sourceSelection"
@@ -60,7 +60,7 @@ function removeSelected() {
     </div>
 
     <div class="flex flex-col flex-1 gap-1">
-      <span class="text-sm font-medium text-legend">Selected</span>
+      <span class="text-sm font-medium text-legend">Выбранные</span>
 
       <B24Listbox
         v-model="targetSelection"

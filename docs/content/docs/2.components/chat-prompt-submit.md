@@ -1,7 +1,11 @@
 ---
 title: ChatPromptSubmit
-description: 'A chat prompt submission button with automatic status handling.'
+description: 'Кнопка отправки запроса в чате: сама учитывает статус.'
 category: chat
+keywords:
+  - отправка запроса
+  - кнопка отправки в чате
+  - остановка ответа
 links:
   - label: Button
     iconName: Bitrix24Icon
@@ -14,11 +18,11 @@ links:
     to: https://ui.nuxt.com/docs/components/chat-prompt-submit
 ---
 
-## Usage
+## Использование {#usage}
 
-The ChatPromptSubmit component is used inside the [ChatPrompt](/docs/components/chat-prompt/) component to submit the prompt. It automatically handles the different `status` values to control the chat.
+Компонент ChatPromptSubmit используется внутри [ChatPrompt](/docs/components/chat-prompt/) для отправки запроса. Он сам обрабатывает разные значения `status` и управляет чатом.
 
-It extends the [Button](/docs/components/button/) component, so you can pass any property such as `color`, `size`, etc.
+Он расширяет компонент [Button](/docs/components/button/), поэтому ему можно передать любое свойство: `color`, `size` и другие.
 
 ::code-preview
 
@@ -38,12 +42,12 @@ It extends the [Button](/docs/components/button/) component, so you can pass any
 ::
 
 ::note
-You can also use it inside the `footer` slot of the [`ChatPrompt`](/docs/components/chat-prompt/) component.
+Его можно разместить и в слоте `footer` компонента [`ChatPrompt`](/docs/components/chat-prompt/).
 ::
 
-### Ready
+### Готов {#ready}
 
-When its status is `ready`{lang="ts-type"}, use the `color` and `icon` props to customize the Button. Defaults to:
+При статусе `ready`{lang="ts-type"} пропсы `color` и `icon` настраивают кнопку. По умолчанию:
 
 - `color="primary"`{lang="ts-type"}
 - `icon="ArrowTopLIcon"`{lang="ts-type"}
@@ -73,15 +77,15 @@ props:
 ---
 ::
 
-### Submitted
+### Отправлено {#submitted}
 
-When its status is `submitted`{lang="ts-type"}, use the `submitted-color` and `submitted-icon` props to customize the Button. Defaults to:
+При статусе `submitted`{lang="ts-type"} пропсы `submitted-color` и `submitted-icon` настраивают кнопку. По умолчанию:
 
 - `submittedColor="air-secondary-no-accent"`{lang="ts-type"}
 - `submittedIcon="StopLIcon"`{lang="ts-type"}
 
 ::note
-The `stop` event is emitted when the user clicks on the Button.
+По нажатию на кнопку возникает событие `stop`.
 ::
 
 ::component-code
@@ -112,15 +116,15 @@ props:
 ---
 ::
 
-### Streaming
+### Поток ответа {#streaming}
 
-When its status is `streaming`{lang="ts-type"}, use the `streaming-color` and `streaming-icon` props to customize the Button. Defaults to:
+При статусе `streaming`{lang="ts-type"} пропсы `streaming-color` и `streaming-icon` настраивают кнопку. По умолчанию:
 
 - `streamingColor="air-secondary-accent-2"`{lang="ts-type"}
 - `streamingIcon="StopLIcon"`{lang="ts-type"}
 
 ::note
-The `stop` event is emitted when the user clicks on the Button.
+По нажатию на кнопку возникает событие `stop`.
 ::
 
 ::component-code
@@ -151,15 +155,15 @@ props:
 ---
 ::
 
-### Error
+### Ошибка {#error}
 
-When its status is `error`{lang="ts-type"}, use the `error-color` and `error-icon` props to customize the Button. Defaults to:
+При статусе `error`{lang="ts-type"} пропсы `error-color` и `error-icon` настраивают кнопку. По умолчанию:
 
 - `errorColor="air-primary-alert"`{lang="ts-type"}
 - `errorIcon="RefreshIcon"`{lang="ts-type"}
 
 ::note
-The `reload` event is emitted when the user clicks on the Button.
+По нажатию на кнопку возникает событие `reload`.
 ::
 
 ::component-code
@@ -190,30 +194,30 @@ props:
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
 ::tip{to="/docs/components/chat/"}
-Check the **Chat** overview page for installation instructions, server setup and usage examples.
+Установка, настройка сервера и примеры использования — на обзорной странице **Chat**.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes" target="_blank"}
-This component also supports all native `<button>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<button>`.
 ::
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-### Emits
+### События {#emits}
 
 :component-emits
 
-## Theme
+## Тема {#theme}
 
 :component-theme

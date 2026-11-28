@@ -1,25 +1,25 @@
 <script setup lang="ts">
-import type { DescriptionListItem } from '@bitrix24/b24ui-nuxt'
+import type { DescriptionListItem } from '@bxshefby/b24ui-nuxt'
 
 const items = ref([
   {
-    label: 'Line 1.1',
-    description: 'Description 1.1',
+    label: 'Строка 1.1',
+    description: 'Описание 1.1',
     avatar: {
       src: '/b24ui/avatar/employee.png',
       loading: 'lazy' as const
     }
   },
   {
-    label: 'Line 1.2',
-    description: 'Description 1.2',
+    label: 'Строка 1.2',
+    description: 'Описание 1.2',
     avatar: {
       src: '/b24ui/avatar/assistant.png',
       loading: 'lazy' as const
     }
   },
   {
-    description: 'Description 1.3',
+    description: 'Описание 1.3',
     avatar: {
       src: 'https://github.com/bitrix24.png',
       loading: 'lazy' as const
@@ -30,8 +30,8 @@ const items = ref([
 
 <template>
   <B24DescriptionList
-    legend="Applicant Information"
-    text="Personal details and application."
+    legend="Информация о кандидате"
+    text="Личные данные и заявка."
     :items="items"
   />
 </template>

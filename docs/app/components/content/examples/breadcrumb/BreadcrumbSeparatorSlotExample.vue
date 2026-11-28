@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import type { BreadcrumbItem } from '@bitrix24/b24ui-nuxt'
+import type { BreadcrumbItem } from '@bxshefby/b24ui-nuxt'
 
 const items: BreadcrumbItem[] = [
   {
-    label: 'Docs',
+    label: 'Документация',
     to: '/docs'
   },
   {
-    label: 'Components',
+    label: 'Компоненты',
     to: '/docs/components'
   },
   {

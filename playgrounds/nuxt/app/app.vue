@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Direction, ToasterProps } from '@bitrix24/b24ui-nuxt'
+import type { Direction, ToasterProps } from '@bxshefby/b24ui-nuxt'
 import HamburgerMenuIcon from '@bitrix24/b24icons-vue/outline/HamburgerMenuIcon'
 
 const route = useRoute()

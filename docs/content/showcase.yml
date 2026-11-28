@@ -1,9 +1,9 @@
-title: Showcase
-description: Check out some of the amazing projects built with Bitrix24 UI.
+title: Витрина
+description: Посмотрите на проекты, созданные на Bitrix24 UI.
 navigation: false
 hero:
-  title: Showcase
-  description: Discover our selection of projects built with Bitrix24 UI.
+  title: Витрина
+  description: Подборка проектов, созданных на Bitrix24 UI.
 items:
   - name: SomeCase
     url: https://www.bitrix24.com/tools/crm/

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DropdownMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { DropdownMenuItem } from '@bxshefby/b24ui-nuxt'
 import HamburgerMenuIcon from '@bitrix24/b24icons-vue/outline/HamburgerMenuIcon'
 import OpenedEyeIcon from '@bitrix24/b24icons-vue/main/OpenedEyeIcon'
 import TrashBinIcon from '@bitrix24/b24icons-vue/main/TrashBinIcon'
@@ -9,21 +9,21 @@ import PencilDrawIcon from '@bitrix24/b24icons-vue/actions/PencilDrawIcon'
 const items: DropdownMenuItem[][] = [
   [
     {
-      label: 'View',
+      label: 'Просмотр',
       icon: OpenedEyeIcon
     },
     {
-      label: 'Copy',
+      label: 'Копировать',
       icon: CopyPlatesIcon
     },
     {
-      label: 'Edit',
+      label: 'Изменить',
       icon: PencilDrawIcon
     }
   ],
   [
     {
-      label: 'Delete',
+      label: 'Удалить',
       color: 'air-primary-alert' as const,
       icon: TrashBinIcon
     }
@@ -34,7 +34,7 @@ const items: DropdownMenuItem[][] = [
 <template>
   <B24DropdownMenu :items="items" :b24ui="{ content: 'w-(--reka-dropdown-menu-trigger-width)', viewport: 'min-w-(--reka-dropdown-menu-trigger-width) w-(--reka-dropdown-menu-trigger-width)' }">
     <B24Button
-      label="Open"
+      label="Открыть"
       class="w-46"
       block
       :icon="HamburgerMenuIcon"

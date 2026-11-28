@@ -33,11 +33,19 @@ export default defineLocale<Messages>({
       next: 'التالي',
       prev: 'السابق'
     },
+    chatAttachment: {
+      uploading: 'جارٍ الرفع',
+      error: 'فشل الرفع'
+    },
     chatMessages: {
       autoScroll: 'التمرير إلى الأسفل'
     },
     chatPrompt: {
-      placeholder: 'أدخل رسالتك هنا…'
+      placeholder: 'أدخل رسالتك هنا…',
+      queue: 'الرسائل في قائمة الانتظار',
+      sendNow: 'إرسال الآن',
+      edit: 'تعديل',
+      remove: 'إزالة'
     },
     chatPromptSubmit: {
       label: 'إرسال',
@@ -133,6 +141,15 @@ export default defineLocale<Messages>({
     drawer: {
       close: 'إغلاق'
     },
+    editorEmojiMenu: {
+      label: 'الرموز التعبيرية'
+    },
+    editorMentionMenu: {
+      label: 'الإشارات'
+    },
+    editorSuggestionMenu: {
+      label: 'الاقتراحات'
+    },
     pagination: {
       first: 'الصفحة الأولى',
       last: 'الصفحة الأخيرة',
@@ -146,12 +163,14 @@ export default defineLocale<Messages>({
     prose: {
       codeCollapse: {
         closeText: 'إخفاء',
-        name: 'رمز',
+        label: '{text} {name}',
+        name: 'الرمز',
         openText: 'إظهار'
       },
       collapsible: {
         closeText: 'إخفاء',
-        name: 'خصائص',
+        label: '{text} {name}',
+        name: 'الخصائص',
         openText: 'إظهار'
       },
       pre: {

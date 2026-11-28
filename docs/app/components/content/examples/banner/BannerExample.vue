@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { BannerProps } from '@bitrix24/b24ui-nuxt'
+import type { BannerProps } from '@bxshefby/b24ui-nuxt'
 import CircleCrossIcon from '@bitrix24/b24icons-vue/outline/CircleCrossIcon'
 
 const { id = 'example' } = defineProps<{
@@ -25,7 +25,7 @@ onBeforeMount(() => {
 <template>
   <B24Banner
     :id="id"
-    :title="title || 'This is a closable banner'"
+    :title="title || 'Это баннер, который можно закрыть'"
     :color="color"
     class="light"
     :close-icon="closeIcon ? CircleCrossIcon : undefined"

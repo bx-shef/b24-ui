@@ -1,7 +1,11 @@
 ---
 title: DashboardResizeHandle
-description: 'A resize handle for sidebars or panels.'
+description: 'Ручка изменения размера для боковых меню и панелей.'
 category: dashboard
+keywords:
+  - ручка изменения размера
+  - граница панели
+  - растягивание панели
 links:
   - label: GitHub
     iconName: GitHubIcon
@@ -11,17 +15,17 @@ links:
     to: https://ui.nuxt.com/docs/components/dashboard-resize-handle
 ---
 
-## Usage
+## Использование {#usage}
 
-The DashboardResizeHandle component is used by the [DashboardSidebar](/docs/components/dashboard-sidebar/) and [DashboardPanel](/docs/components/dashboard-panel/) components.
+Компонент DashboardResizeHandle используют [DashboardSidebar](/docs/components/dashboard-sidebar/) и [DashboardPanel](/docs/components/dashboard-panel/).
 
-It is automatically displayed when the `resizable` prop is set, **you don't have to add it manually**.
+Он показывается автоматически, если задан пропс `resizable`, **добавлять его вручную не нужно**.
 
-## Examples
+## Примеры {#examples}
 
-### Within `resize-handle` slot
+### В слоте `resize-handle` {#within-resize-handle-slot}
 
-Even though this component is automatically displayed when the `resizable` prop is set, you can use the `resize-handle` slot of the [DashboardSidebar](/docs/components/dashboard-sidebar/) and [DashboardPanel](/docs/components/dashboard-panel/) components to customize the handle.
+Хотя компонент показывается автоматически при пропсе `resizable`, слот `resize-handle` компонентов [DashboardSidebar](/docs/components/dashboard-sidebar/) и [DashboardPanel](/docs/components/dashboard-panel/) позволяет настроить ручку.
 
 ::code-group
 
@@ -68,19 +72,19 @@ definePageMeta({
 ::
 
 ::note
-In this example, we add an `after` pseudo-element to display a vertical line on hover.
+В этом примере псевдоэлемент `after` рисует вертикальную линию при наведении.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

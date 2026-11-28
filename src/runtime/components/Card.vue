@@ -11,7 +11,7 @@ export interface CardProps {
    * The element or component this component should render as.
    * @defaultValue 'div'
    */
-  as?: any
+  as?: any | { root?: any, title?: any }
   title?: string
   description?: string
   /**
@@ -40,6 +40,7 @@ import { computed } from 'vue'
 import { Primitive } from 'reka-ui'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
+import { resolveAs } from '../utils'
 import { tv } from '../utils/tv'
 
 const _props = defineProps<CardProps>()
@@ -50,6 +51,9 @@ const props = useComponentProps('card', _props)
 const appConfig = useAppConfig() as Card['AppConfig']
 
 // eslint-disable-next-line vue/no-dupe-keys
+const as = computed(() => resolveAs(props.as, { root: 'div', title: 'div' }))
+
+// eslint-disable-next-line vue/no-dupe-keys
 const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.card || {}) })({
   variant: props.variant,
   size: props.size
@@ -57,14 +61,14 @@ const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.card || {}
 </script>
 
 <template>
-  <Primitive :as="props.as" data-slot="root" :class="b24ui.root({ class: [props.b24ui?.root, props.class] })">
+  <Primitive :as="as.root" data-slot="root" :class="b24ui.root({ class: [props.b24ui?.root, props.class] })">
     <div v-if="!!slots.header || (props.title || !!slots.title) || (props.description || !!slots.description)" data-slot="header" :class="b24ui.header({ class: props.b24ui?.header })">
       <slot name="header">
-        <div v-if="props.title || !!slots.title" data-slot="title" :class="b24ui.title({ class: props.b24ui?.title })">
+        <Primitive v-if="props.title || !!slots.title" :as="as.title" data-slot="title" :class="b24ui.title({ class: props.b24ui?.title })">
           <slot name="title">
             {{ props.title }}
           </slot>
-        </div>
+        </Primitive>
 
         <div v-if="props.description || !!slots.description" data-slot="description" :class="b24ui.description({ class: props.b24ui?.description })">
           <slot name="description">

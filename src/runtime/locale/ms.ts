@@ -32,11 +32,19 @@ export default defineLocale<Messages>({
       next: 'Seterusnya',
       prev: 'Sebelumnya'
     },
+    chatAttachment: {
+      uploading: 'Memuat naik',
+      error: 'Gagal memuat naik'
+    },
     chatMessages: {
       autoScroll: 'Tatal ke bawah'
     },
     chatPrompt: {
-      placeholder: 'Taip mesej anda di sini…'
+      placeholder: 'Taip mesej anda di sini…',
+      queue: 'Mesej dalam baris gilir',
+      sendNow: 'Hantar sekarang',
+      edit: 'Sunting',
+      remove: 'Alih keluar'
     },
     chatPromptSubmit: {
       label: 'Hantar',
@@ -132,6 +140,15 @@ export default defineLocale<Messages>({
     drawer: {
       close: 'Tutup'
     },
+    editorEmojiMenu: {
+      label: 'Emoji'
+    },
+    editorMentionMenu: {
+      label: 'Sebutan'
+    },
+    editorSuggestionMenu: {
+      label: 'Cadangan'
+    },
     pagination: {
       first: 'Halaman pertama',
       last: 'Halaman terakhir',
@@ -145,11 +162,13 @@ export default defineLocale<Messages>({
     prose: {
       codeCollapse: {
         closeText: 'Sembunyi',
+        label: '{text} {name}',
         name: 'kod',
         openText: 'Tunjuk'
       },
       collapsible: {
         closeText: 'Sembunyi',
+        label: '{text} {name}',
         name: 'sifat',
         openText: 'Tunjuk'
       },

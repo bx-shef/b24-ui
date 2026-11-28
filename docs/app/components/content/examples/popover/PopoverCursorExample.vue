@@ -31,7 +31,7 @@ const reference = computed(() => ({
         anchor.y = ev.clientY
       }"
     >
-      Hover me
+      Наведите на меня
     </div>
 
     <template #content>

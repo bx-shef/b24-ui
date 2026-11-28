@@ -1,0 +1,213 @@
+name: Docs image 🐳
+
+# Сайт документации (docs/, Nuxt-сервер) как Docker-образ ghcr.io/bx-shef/b24-ui-docs.
+# push в main — проверка (audit зависимостей, сборка, дымовая проверка), затем отдельная задача publish:
+# публикация latest + sha, только из main и только при заданном домене; на сервере образ подхватывает
+# Watchtower (deploy/docs/README.md). PR — только проверка, если затронуто то, что в образе.
+# Публикацию не обгоняет CI: audit зависимостей (тот же, что в ci.yml) идёт здесь же, до сборки.
+# GitHub Pages (deploy.yml) не заменяет: его выключают отдельным решением владельца (bx-shef/b24-ui#9).
+#
+# Адрес сайта вшивается в статику при сборке: переменная репозитория DOCS_SITE_URL (Settings → Variables)
+# или поле site_url при ручном запуске; пусто — плейсхолдер https://docs.example.com.
+# Номер счётчика Яндекс Метрики вшивается так же: переменная репозитория YANDEX_METRIKA_ID (только цифры), пусто — без счётчика.
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    # Всё, кроме Markdown, и кроме служебных файлов GitHub; тексты документации (docs/content) и сам workflow
+    # — обратно в список (порядок важен: позднее правило перекрывает раннее).
+    paths:
+      - '**'
+      - '!**/*.md'
+      - '!.github/**'
+      - 'docs/content/**'
+      - '.github/workflows/docs-image.yml'
+  workflow_dispatch:
+    inputs:
+      site_url:
+        description: Адрес сайта для сборки (https://домен, без слэша на конце); пусто — переменная DOCS_SITE_URL
+        type: string
+        required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docs-image-${{ github.ref }}
+  # отменяем только проверки PR: публикацию из main вытеснять нельзя
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+# Значения — из переменных репозитория или из секретов с тем же именем (так их заводит соседний сайт
+# bx-shef/b24-js-sdk); переменная главнее. Оба значения публичные: адрес и номер счётчика видны на сайте.
+env:
+  SITE_URL: ${{ inputs.site_url || vars.DOCS_SITE_URL || secrets.DOCS_SITE_URL || 'https://docs.example.com' }}
+  YANDEX_METRIKA_ID: ${{ vars.YANDEX_METRIKA_ID || secrets.YANDEX_METRIKA_ID }}
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    # `if` задачи не видит секретов — решение «есть настоящий домен» передаём выходом
+    outputs:
+      site_ready: ${{ steps.site.outputs.ready }}
+    steps:
+      # Адрес из переменной или секрета приводим к виду https://домен: без пробелов и слэша на конце, строчными,
+      # без схемы — добавляем https:// (в секрет часто кладут просто домен)
+      - name: Привести адрес сайта к виду https://домен
+        run: |
+          u=$(printf '%s' "$SITE_URL" | tr -d '[:space:]' | tr '[:upper:]' '[:lower:]')
+          u=${u%/}
+          [[ "$u" == http://* ]] && u="https://${u#http://}"
+          [[ "$u" == https://* ]] || u="https://$u"
+          echo "SITE_URL=$u" >> "$GITHUB_ENV"
+
+      - name: Адрес сайта — только https://домен
+        id: site
+        run: |
+          # Значение из секрета в логе скрыто (***) — поэтому подсказка говорит, что именно не так, не печатая адрес
+          if ! [[ "$SITE_URL" =~ ^https://[a-z0-9.-]+$ ]]; then
+            hint=""
+            [[ "$SITE_URL" == https://* ]] || hint+=" нет https://;"
+            [[ "$SITE_URL" == */ ]] && hint+=" слэш на конце;"
+            [[ "$SITE_URL" =~ [A-Z] ]] && hint+=" заглавные буквы;"
+            [[ "$SITE_URL" =~ [[:space:]] ]] && hint+=" пробел или перевод строки;"
+            [[ "${SITE_URL#https://}" == */* ]] && hint+=" путь после домена;"
+            [[ "$SITE_URL" =~ :[0-9]+$ ]] && hint+=" порт;"
+            echo "::error::DOCS_SITE_URL: нужен вид https://домен — без слэша на конце, пути и порта, строчными.${hint}"
+            exit 1
+          fi
+          [[ "$YANDEX_METRIKA_ID" =~ ^[0-9]*$ ]] || { echo "YANDEX_METRIKA_ID: только цифры или пусто"; exit 1; }
+          if [[ "$SITE_URL" == "https://docs.example.com" ]]; then echo "ready=false" >> "$GITHUB_OUTPUT"; else echo "ready=true" >> "$GITHUB_OUTPUT"; fi
+          echo "Счётчик Метрики: $([[ -n "$YANDEX_METRIKA_ID" ]] && echo задан || echo нет)"
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
+
+      - name: Install node
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24
+
+      # Как в ci.yml: образ с известной уязвимостью high/critical не публикуем. Так публикация не зависит
+      # от того, успел ли закончиться ci на том же коммите.
+      - name: Audit dependencies
+        run: pnpm audit --audit-level high --ignore-registry-errors
+
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+
+      - name: Собрать образ
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        with:
+          context: .
+          file: deploy/docs/Dockerfile
+          load: true
+          tags: b24-ui-docs:ci
+          build-args: |
+            SITE_URL=${{ env.SITE_URL }}
+            YANDEX_METRIKA_ID=${{ env.YANDEX_METRIKA_ID }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Дымовая проверка
+        shell: bash
+        run: |
+          docker run -d --name docs -p 127.0.0.1:3000:3000 b24-ui-docs:ci
+          for i in $(seq 1 60); do curl -fs localhost:3000/llms.txt >/dev/null && break; sleep 1; done
+          check() { got=$(curl -s -o /dev/null -w '%{http_code}' "${@:2}"); echo "$1 → $got  ${*:2}"; [ "$got" = "$1" ]; }
+          check 200 localhost:3000/
+          check 200 localhost:3000/llms.txt
+          check 200 localhost:3000/sitemap.xml
+          check 200 localhost:3000/docs/getting-started/
+          check 200 localhost:3000/raw/docs/getting-started.md
+          check 200 localhost:3000/__nuxt_content/docs/sql_dump.txt
+          mcp() { curl -s -w '\n%{http_code}' -X POST localhost:3000/mcp/ \
+            -H 'content-type: application/json' -H 'accept: application/json, text/event-stream' -d "$1"; }
+          # MCP: список инструментов (ответ — в переменную: grep -q закрыл бы трубу раньше curl, а pipefail это ловит)
+          out=$(mcp '{"jsonrpc":"2.0","id":1,"method":"tools/list"}')
+          grep -q '"tools":\[{"name":"' <<<"$out" || { echo "/mcp/ tools/list: нет tools: ${out:0:300}"; exit 1; }
+          echo "/mcp/ tools/list → tools"
+          # MCP: контентные инструменты ходят в SQLite-базу @nuxt/content (в образе она в /data, пишет node)
+          for call in \
+            '{"name":"b24-ui-search-components","arguments":{"query":"button"}}|components' \
+            '{"name":"b24-ui-get-documentation-page","arguments":{"path":"/docs/getting-started/"}}|Bitrix24 UI'; do
+            out=$(mcp "{\"jsonrpc\":\"2.0\",\"id\":2,\"method\":\"tools/call\",\"params\":${call%%|*}}")
+            if grep -q '"isError":true' <<<"$out" || ! grep -q '^200$' <<<"${out##*$'\n'}" || ! grep -qF -- "${call##*|}" <<<"$out"; then
+              echo "/mcp/ tools/call ${call%%|*}: ошибка или нет данных: ${out:0:400}"; docker logs docs 2>&1 | tail -20; exit 1
+            fi
+            echo "/mcp/ tools/call → данные: ${call%%|*}"
+          done
+          # адрес сайта из сборки дошёл до статики
+          llms=$(curl -fs localhost:3000/llms.txt)
+          grep -qF "$SITE_URL" <<<"$llms" || { echo "llms.txt: нет адреса $SITE_URL"; exit 1; }
+          # healthcheck образа — node fetch внутри контейнера
+          docker exec docs node -e "fetch('http://127.0.0.1:3000/llms.txt').then(r => process.exit(r.ok ? 0 : 1))"
+          # работает не от root
+          [ "$(docker exec docs id -un)" = node ]
+
+      - name: Лог контейнера при сбое
+        if: failure()
+        run: docker logs docs || true
+
+  # Публикация — отдельная задача: право писать пакеты есть только у неё. Только из main и только с настоящим
+  # доменом (адрес вшит в статику при сборке). Слои берёт из кэша задачи check — пересборки нет.
+  publish:
+    needs: check
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && needs.check.outputs.site_ready == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      # Адрес из переменной или секрета приводим к виду https://домен: без пробелов и слэша на конце, строчными,
+      # без схемы — добавляем https:// (в секрет часто кладут просто домен)
+      - name: Привести адрес сайта к виду https://домен
+        run: |
+          u=$(printf '%s' "$SITE_URL" | tr -d '[:space:]' | tr '[:upper:]' '[:lower:]')
+          u=${u%/}
+          [[ "$u" == http://* ]] && u="https://${u#http://}"
+          [[ "$u" == https://* ]] || u="https://$u"
+          echo "SITE_URL=$u" >> "$GITHUB_ENV"
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: docker/setup-buildx-action@f87e5991a6d7451dcb8d9637bfbc97413f497069 # v4.4.1
+
+      - name: Вход в GHCR
+        uses: docker/login-action@8aa5831fb8d48d8f76594c7ddde61ae58019f550 # v4.8.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Метки образа
+        id: meta
+        uses: docker/metadata-action@dc802804100637a589fabce1cb79ff13a1411302 # v6.2.0
+        with:
+          images: ghcr.io/bx-shef/b24-ui-docs
+          tags: |
+            type=raw,value=latest
+            type=sha,prefix=sha-
+
+      - name: Опубликовать
+        uses: docker/build-push-action@c3c9e263c25d99ce0380d002d59b67737d91b0dc # v7.4.0
+        with:
+          context: .
+          file: deploy/docs/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            SITE_URL=${{ env.SITE_URL }}
+            YANDEX_METRIKA_ID=${{ env.YANDEX_METRIKA_ID }}
+          cache-from: type=gha

@@ -32,11 +32,19 @@ export default defineLocale<Messages>({
       next: 'Successivo',
       prev: 'Precedente'
     },
+    chatAttachment: {
+      uploading: 'Caricamento',
+      error: 'Caricamento non riuscito'
+    },
     chatMessages: {
       autoScroll: 'Scorri in fondo'
     },
     chatPrompt: {
-      placeholder: 'Scrivi il tuo messaggio qui…'
+      placeholder: 'Scrivi il tuo messaggio qui…',
+      queue: 'Messaggi in coda',
+      sendNow: 'Invia ora',
+      edit: 'Modifica',
+      remove: 'Rimuovi'
     },
     chatPromptSubmit: {
       label: 'Invia',
@@ -132,6 +140,15 @@ export default defineLocale<Messages>({
     drawer: {
       close: 'Chiudi'
     },
+    editorEmojiMenu: {
+      label: 'Emoji'
+    },
+    editorMentionMenu: {
+      label: 'Menzioni'
+    },
+    editorSuggestionMenu: {
+      label: 'Suggerimenti'
+    },
     pagination: {
       first: 'Prima pagina',
       last: 'Ultima pagina',
@@ -145,11 +162,13 @@ export default defineLocale<Messages>({
     prose: {
       codeCollapse: {
         closeText: 'Nascondi',
+        label: '{text} {name}',
         name: 'codice',
         openText: 'Mostra'
       },
       collapsible: {
         closeText: 'Nascondi',
+        label: '{text} {name}',
         name: 'proprietà',
         openText: 'Mostra'
       },

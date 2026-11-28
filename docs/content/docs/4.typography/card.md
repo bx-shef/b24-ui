@@ -1,6 +1,6 @@
 ---
 title: ProseCard
-description: 'Develop prominent content areas with integrated navigation options.'
+description: 'Заметные блоки содержимого со встроенной навигацией.'
 category: components
 navigation.title: Card
 links:
@@ -12,11 +12,11 @@ links:
     to: https://ui.nuxt.com/docs/typography/card
 ---
 
-## Usage
+## Использование {#usage}
 
-Use markdown in the default slot of the `card` component to highlight your content.
+Markdown в слоте по умолчанию компонента `card` выделяет содержимое.
 
-Use the `title`, `icon` and `color` props to customize it. You can also pass any property from the [`<NuxtLink>`](https://nuxt.com/docs/api/components/nuxt-link) component.
+Пропсы `title`, `icon` и `color` настраивают карточку. Также можно передать любые свойства компонента [`<NuxtLink>`](https://nuxt.com/docs/api/components/nuxt-link).
 
 ::component-code{slug="card" prose}
 ---
@@ -39,14 +39,14 @@ Best suited for small teams, startups and agencies with up to 5 developers.
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props{prose}
 
-### Slots
+### Слоты {#slots}
 
 :component-slots{prose}
 
-## Theme
+## Тема {#theme}
 
 :component-theme{prose}

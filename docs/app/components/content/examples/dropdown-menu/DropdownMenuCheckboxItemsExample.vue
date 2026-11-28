@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DropdownMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { DropdownMenuItem } from '@bxshefby/b24ui-nuxt'
 import HamburgerMenuIcon from '@bitrix24/b24icons-vue/outline/HamburgerMenuIcon'
 import CloudDownloadIcon from '@bitrix24/b24icons-vue/outline/CloudDownloadIcon'
 import ClockWithArrowIcon from '@bitrix24/b24icons-vue/main/ClockWithArrowIcon'
@@ -12,12 +12,12 @@ const showDownloads = ref(false)
 
 const items = computed(() => [
   {
-    label: 'Interface',
+    label: 'Интерфейс',
     icon: WindowScreenIcon,
     type: 'label' as const
   },
   {
-    label: 'Show Bookmarks',
+    label: 'Показывать закладки',
     icon: Bookmark2Icon,
     type: 'checkbox' as const,
     checked: showBookmarks.value,
@@ -29,7 +29,7 @@ const items = computed(() => [
     }
   },
   {
-    label: 'Show History',
+    label: 'Показывать историю',
     icon: ClockWithArrowIcon,
     type: 'checkbox' as const,
     checked: showHistory.value,
@@ -41,7 +41,7 @@ const items = computed(() => [
     type: 'separator' as const
   },
   {
-    label: 'Show Downloads',
+    label: 'Показывать загрузки',
     icon: CloudDownloadIcon,
     type: 'checkbox' as const,
     checked: showDownloads.value,
@@ -54,6 +54,6 @@ const items = computed(() => [
 
 <template>
   <B24DropdownMenu :items="items" :content="{ align: 'start' }" :b24ui="{ content: 'w-48', viewport: 'w-48' }">
-    <B24Button label="Open" :icon="HamburgerMenuIcon" />
+    <B24Button label="Открыть" :icon="HamburgerMenuIcon" />
   </B24DropdownMenu>
 </template>

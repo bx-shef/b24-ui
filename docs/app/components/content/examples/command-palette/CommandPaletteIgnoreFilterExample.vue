@@ -15,7 +15,7 @@ const { data: users, status } = useLazyFetch('https://jsonplaceholder.typicode.c
 
 const groups = computed(() => [{
   id: 'users',
-  label: searchTerm.value ? `Users matching “${searchTerm.value}”...` : 'Users',
+  label: searchTerm.value ? `Пользователи по запросу «${searchTerm.value}»...` : 'Пользователи',
   items: users.value || [],
   ignoreFilter: true
 }])

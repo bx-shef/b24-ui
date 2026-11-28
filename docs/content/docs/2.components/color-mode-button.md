@@ -1,7 +1,11 @@
 ---
 title: ColorModeButton
-description: 'A button to toggle between light and dark themes.'
+description: 'Кнопка переключения между светлой и тёмной темой.'
 category: color-mode
+keywords:
+  - переключатель темы
+  - кнопка тёмной темы
+  - светлая и тёмная тема
 links:
   - label: GitHub
     iconName: GitHubIcon
@@ -9,7 +13,7 @@ links:
   - label: Button
     to: /docs/components/button/
     iconName: Bitrix24Icon
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/color-mode
   - label: Nuxt UI
@@ -17,26 +21,26 @@ links:
     to: https://ui.nuxt.com/docs/components/color-mode-button
 ---
 
-## Usage
+## Использование {#usage}
 
-The ColorModeButton component extends the [Button](/docs/components/button/) component, so you can pass any property such as `color`, `size`, etc.
+Компонент ColorModeButton расширяет компонент [Button](/docs/components/button/), поэтому ему можно передать любое свойство: `color`, `size` и другие.
 
 :component-code{prefix="color-mode"}
 
 ::note
-The button defaults to `color="air-tertiary-no-accent"`.
+По умолчанию у кнопки `color="air-tertiary-no-accent"`.
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
 ::callout{color="air-secondary-accent-2" icon-name="MdnWebDocIcon" to="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attributes" target="_blank"}
-This component also supports all native `<button>` HTML attributes.
+Компонент поддерживает и все нативные HTML-атрибуты `<button>`.
 ::
 
-### Slots
+### Слоты {#slots}
 
 :component-slots

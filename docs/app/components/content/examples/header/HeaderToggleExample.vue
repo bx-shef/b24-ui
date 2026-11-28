@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import GitHubIcon from '@bitrix24/b24icons-vue/social/GitHubIcon'
 import Bitrix24Icon from '@bitrix24/b24icons-vue/common-service/Bitrix24Icon'
 import PlayLIcon from '@bitrix24/b24icons-vue/outline/PlayLIcon'
@@ -9,13 +9,13 @@ const route = useRoute()
 
 const items = computed<NavigationMenuItem[]>(() => [
   {
-    label: 'Docs',
+    label: 'Документация',
     to: '/docs/getting-started',
     icon: PlayLIcon,
     active: route.path.startsWith('/docs/getting-started')
   },
   {
-    label: 'Components',
+    label: 'Компоненты',
     to: '/docs/components',
     icon: DeveloperResourcesIcon,
     active: route.path.startsWith('/docs/components')
@@ -27,7 +27,7 @@ const items = computed<NavigationMenuItem[]>(() => [
     target: '_blank'
   },
   {
-    label: 'Releases',
+    label: 'Релизы',
     to: 'https://github.com/bitrix24/b24ui/releases',
     icon: GitHubIcon,
     target: '_blank'
@@ -51,7 +51,7 @@ const items = computed<NavigationMenuItem[]>(() => [
     <template #right>
       <B24ColorModeButton />
 
-      <B24Tooltip text="Open on GitHub" :kbds="['meta', 'G']">
+      <B24Tooltip text="Открыть на GitHub" :kbds="['meta', 'G']">
         <B24Button
           to="https://github.com/bitrix24/b24ui"
           target="_blank"

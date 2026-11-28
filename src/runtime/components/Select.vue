@@ -11,7 +11,7 @@ import type { ChipProps } from './Chip.vue'
 import type { InputProps } from './Input.vue'
 import type { ModelModifiers, ApplyModifiers } from '../types/input'
 import type { ButtonHTMLAttributes } from '../types/html'
-import type { AcceptableValue, ArrayOrNested, GetItemKeys, GetModelValue, NestedItem, EmitsToProps } from '../types/utils'
+import type { AcceptableValue, ArrayOrNested, GetItemKeys, GetModelValue, GetSelectedItem, NestedItem, EmitsToProps } from '../types/utils'
 import type { ComponentConfig } from '../types/tv'
 
 type Select = ComponentConfig<typeof theme, AppConfig, 'select'>
@@ -155,6 +155,18 @@ export interface SelectEmits<
 
 type SlotProps<T extends SelectItem> = (props: { item: T, index: number, b24ui: Select['b24ui'] }) => VNode[]
 
+type TriggerSlotProps<
+  A extends ArrayOrNested<SelectItem>,
+  VK extends GetItemKeys<A> | undefined,
+  M extends boolean,
+  Mod extends Omit<ModelModifiers, 'lazy'>
+> = (props: {
+  modelValue: ApplyModifiers<GetModelValue<A, VK, M, ExcludeItem>, Mod>
+  item: GetSelectedItem<A, M, ExcludeItem>
+  open: boolean
+  b24ui: Select['b24ui']
+}) => VNode[]
+
 export interface SelectSlots<
   A extends ArrayOrNested<SelectItem> = ArrayOrNested<SelectItem>,
   VK extends GetItemKeys<A> | undefined = undefined,
@@ -162,9 +174,9 @@ export interface SelectSlots<
   Mod extends Omit<ModelModifiers, 'lazy'> = Omit<ModelModifiers, 'lazy'>,
   T extends NestedItem<A> = NestedItem<A>
 > {
-  'leading'?(props: { modelValue: ApplyModifiers<GetModelValue<A, VK, M, ExcludeItem>, Mod>, open: boolean, b24ui: Select['b24ui'] }): VNode[]
-  'default'?(props: { modelValue: ApplyModifiers<GetModelValue<A, VK, M, ExcludeItem>, Mod>, open: boolean, b24ui: Select['b24ui'] }): VNode[]
-  'trailing'?(props: { modelValue: ApplyModifiers<GetModelValue<A, VK, M, ExcludeItem>, Mod>, open: boolean, b24ui: Select['b24ui'] }): VNode[]
+  'leading'?: TriggerSlotProps<A, VK, M, Mod>
+  'default'?: TriggerSlotProps<A, VK, M, Mod>
+  'trailing'?: TriggerSlotProps<A, VK, M, Mod>
   'item'?: SlotProps<T>
   'item-leading'?: SlotProps<T>
   'item-label'?(props: { item: T, index: number }): VNode[]
@@ -180,7 +192,6 @@ import { useTemplateRef, computed, onMounted, toRef } from 'vue'
 // @memo we use Primitive
 import { Primitive, SelectRoot, SelectArrow, SelectTrigger, SelectPortal, SelectContent, SelectViewport, SelectValue as RSelectValue, SelectLabel, SelectGroup, SelectItem as RSelectItem, SelectItemIndicator, SelectItemText, SelectSeparator } from 'reka-ui'
 import { defu } from 'defu'
-import { reactivePick } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
@@ -188,7 +199,7 @@ import { useFieldGroup, FieldGroupReset } from '../composables/useFieldGroup'
 import { useComponentIcons } from '../composables/useComponentIcons'
 import { useFormField } from '../composables/useFormField'
 import { usePortal } from '../composables/usePortal'
-import { get, getDisplayValue, isArrayOfArray, looseToNumber } from '../utils'
+import { get, getDisplayValue, getSelectedItem, isArrayOfArray, looseToNumber, omitUnsafeAttrs, safeIcon } from '../utils'
 import { tv } from '../utils/tv'
 import icons from '../dictionary/icons'
 import B24Badge from './Badge.vue'
@@ -211,7 +222,7 @@ const props = useComponentProps<SelectProps<T, VK, M, Mod>>('select', _props)
 
 const appConfig = useAppConfig() as Select['AppConfig']
 
-const rootProps = useForwardProps(reactivePick(props, 'open', 'defaultOpen', 'disabled', 'autocomplete', 'required', 'multiple', 'nullableValue'), emits)
+const rootProps = useForwardProps(props, ['open', 'defaultOpen', 'disabled', 'autocomplete', 'required', 'multiple', 'nullableValue'], emits)
 const portalProps = usePortal(toRef(() => props.portal))
 
 const position = computed(() => props.content?.position ?? appConfig.b24ui?.select?.defaultVariants?.position ?? theme.defaultVariants?.position)
@@ -291,6 +302,17 @@ function displayValue(value: ApplyModifiers<GetModelValue<T, VK, M, ExcludeItem>
     labelKey: props.labelKey,
     valueKey: props.valueKey
   })
+}
+
+function resolveSelectedItem(slot: 'leading' | 'default' | 'trailing', value: unknown) {
+  if (!slots[slot]) {
+    return undefined as GetSelectedItem<T, M, ExcludeItem>
+  }
+
+  return getSelectedItem(items.value, value, {
+    valueKey: props.valueKey,
+    multiple: props.multiple
+  }) as GetSelectedItem<T, M, ExcludeItem>
 }
 
 const triggerRef = useTemplateRef('triggerRef')
@@ -397,7 +419,7 @@ defineExpose({
         ref="triggerRef"
         data-slot="base"
         :class="b24ui.base({ class: [props.b24ui?.base, props.class] })"
-        v-bind="{ ...$attrs, ...ariaAttrs }"
+        v-bind="{ ...omitUnsafeAttrs($attrs), ...ariaAttrs }"
         @click="onTriggerClick(open)"
       >
         <B24Badge
@@ -409,7 +431,7 @@ defineExpose({
           size="xs"
         />
         <span v-if="isLeading || !!props.avatar || !!slots.leading" data-slot="leading" :class="b24ui.leading({ class: props.b24ui?.leading })">
-          <slot name="leading" :model-value="(modelValue as ApplyModifiers<GetModelValue<T, VK, M, ExcludeItem>, Mod>)" :open="open" :b24ui="b24ui">
+          <slot name="leading" :model-value="(modelValue as ApplyModifiers<GetModelValue<T, VK, M, ExcludeItem>, Mod>)" :item="resolveSelectedItem('leading', modelValue)" :open="open" :b24ui="b24ui">
             <Component
               :is="leadingIconName"
               v-if="isLeading && leadingIconName"
@@ -431,14 +453,14 @@ defineExpose({
             :data-slot="displayedModelValue != null ? 'value' : 'placeholder'"
             :class="displayedModelValue != null ? b24ui.value({ class: props.b24ui?.value }) : b24ui.placeholder({ class: props.b24ui?.placeholder })"
           >
-            <slot :model-value="(modelValue as ApplyModifiers<GetModelValue<T, VK, M, ExcludeItem>, Mod>)" :open="open" :b24ui="b24ui">
+            <slot :model-value="(modelValue as ApplyModifiers<GetModelValue<T, VK, M, ExcludeItem>, Mod>)" :item="resolveSelectedItem('default', modelValue)" :open="open" :b24ui="b24ui">
               {{ displayedModelValue ?? (props.placeholder ?? '&nbsp;') }}
             </slot>
           </RSelectValue>
         </template>
 
         <span v-if="isTrailing || !!slots.trailing" data-slot="trailing" :class="b24ui.trailing({ class: props.b24ui?.trailing })">
-          <slot name="trailing" :model-value="(modelValue as ApplyModifiers<GetModelValue<T, VK, M, ExcludeItem>, Mod>)" :open="open" :b24ui="b24ui">
+          <slot name="trailing" :model-value="(modelValue as ApplyModifiers<GetModelValue<T, VK, M, ExcludeItem>, Mod>)" :item="resolveSelectedItem('trailing', modelValue)" :open="open" :b24ui="b24ui">
             <Component
               :is="trailingIconName"
               v-if="trailingIconName"
@@ -521,8 +543,8 @@ defineExpose({
 
                         <slot name="item-trailing" :item="(item as NestedItem<T>)" :index="index" :b24ui="b24ui">
                           <Component
-                            :is="item.icon"
-                            v-if="isSelectItem(item) && item.icon"
+                            :is="safeIcon(item.icon)"
+                            v-if="isSelectItem(item) && safeIcon(item.icon)"
                             data-slot="itemLeadingIcon"
                             :class="b24ui.itemLeadingIcon({ class: [props.b24ui?.itemLeadingIcon, item.b24ui?.itemLeadingIcon], colorItem: item?.color })"
                           />

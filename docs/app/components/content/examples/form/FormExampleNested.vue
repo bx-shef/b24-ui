@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as z from 'zod'
-import type { FormSubmitEvent } from '@bitrix24/b24ui-nuxt'
+import type { FormSubmitEvent } from '@bxshefby/b24ui-nuxt'
 
 const schema = z.object({
   name: z.string().min(2),
@@ -19,7 +19,7 @@ const state = reactive<Partial<Schema & NestedSchema>>({ })
 
 const toast = useToast()
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  toast.add({ title: 'Success', description: 'The form has been submitted.', color: 'air-primary-success' })
+  toast.add({ title: 'Успешно', description: 'Форма отправлена.', color: 'air-primary-success' })
   console.log(event.data)
 }
 </script>
@@ -32,12 +32,12 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     class="gap-4 flex flex-col w-60"
     @submit="onSubmit"
   >
-    <B24FormField label="Name" name="name">
+    <B24FormField label="Имя" name="name">
       <B24Input v-model="state.name" placeholder="John Lennon" />
     </B24FormField>
 
     <div>
-      <B24Checkbox v-model="state.news" name="news" label="Register to our newsletter" @update:model-value="state.email = undefined" />
+      <B24Checkbox v-model="state.news" name="news" label="Подписаться на нашу рассылку" @update:model-value="state.email = undefined" />
     </div>
 
     <B24Form v-if="state.news" :schema="nestedSchema" nested>
@@ -48,7 +48,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 
     <div>
       <B24Button color="air-primary" type="submit">
-        Submit
+        Отправить
       </B24Button>
     </div>
   </B24Form>

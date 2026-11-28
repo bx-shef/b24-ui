@@ -1,4 +1,4 @@
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import type { Surround } from '../types'
 import { normalizePath, upperName } from '../utils'
 import ItemIcon from '@bitrix24/b24icons-vue/crm/ItemIcon'
@@ -22,6 +22,7 @@ const components = [
   'card',
   // 'carousel',
   'chart',
+  'chat-attachment',
   'chat-message',
   'chat-reasoning',
   'chat-shimmer',
@@ -100,6 +101,8 @@ const components = [
   'theme',
   'timeline',
   'toast',
+  'toggle',
+  'toggle-group',
   'tooltip',
   // 'tree',
   'user'

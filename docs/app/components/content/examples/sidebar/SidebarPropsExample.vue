@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { NavigationMenuItem, SidebarProps } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem, SidebarProps } from '@bxshefby/b24ui-nuxt'
 import HomeIcon from '@bitrix24/b24icons-vue/outline/HomeIcon'
 import MailIcon from '@bitrix24/b24icons-vue/outline/MailIcon'
 import ContactIcon from '@bitrix24/b24icons-vue/outline/ContactIcon'
@@ -8,24 +8,24 @@ import OpenChatIcon from '@bitrix24/b24icons-vue/outline/OpenChatIcon'
 import Bitrix24Icon from '@bitrix24/b24icons-vue/common-b24/Bitrix24Icon'
 import B24Icon from '@bitrix24/b24icons-vue/main/B24Icon'
 
-// Ignore the props for the example
+// В примере пропсы игнорируем
 defineProps<Pick<SidebarProps, 'variant' | 'collapsible' | 'side'>>()
 
 const open = ref(true)
 
 const items: NavigationMenuItem[] = [
   {
-    label: 'Home',
+    label: 'Главная',
     icon: HomeIcon,
     active: true
   },
   {
-    label: 'Inbox',
+    label: 'Входящие',
     icon: MailIcon,
     badge: '4'
   },
   {
-    label: 'Contacts',
+    label: 'Контакты',
     icon: ContactIcon
   }
 ]
@@ -71,7 +71,7 @@ const items: NavigationMenuItem[] = [
         <B24Button
           :icon="side === 'right' ? OpenChatIcon : CloseChatIcon"
           color="air-tertiary"
-          aria-label="Toggle sidebar"
+          aria-label="Переключить боковое меню"
           @click="open = !open"
         />
       </div>

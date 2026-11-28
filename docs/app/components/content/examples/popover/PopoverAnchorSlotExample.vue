@@ -9,7 +9,7 @@ const open = ref(false)
     :b24ui="{ content: 'w-(--reka-popover-trigger-width) p-4' }"
   >
     <template #anchor>
-      <B24Input placeholder="Focus to open" @focus="open = true" @blur="open = false" />
+      <B24Input placeholder="Фокус открывает список" @focus="open = true" @blur="open = false" />
     </template>
 
     <template #content>

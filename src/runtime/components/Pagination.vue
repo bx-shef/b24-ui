@@ -95,7 +95,6 @@ export interface PaginationSlots {
 <script setup lang="ts">
 import { computed } from 'vue'
 import { PaginationRoot, PaginationList, PaginationListItem, PaginationFirst, PaginationPrev, PaginationEllipsis, PaginationNext, PaginationLast } from 'reka-ui'
-import { reactivePick } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../composables/useComponentProps'
 import { useForwardProps } from '../composables/useForwardProps'
@@ -121,7 +120,7 @@ const props = useComponentProps('pagination', _props)
 const { dir, t } = useLocale()
 const appConfig = useAppConfig() as Pagination['AppConfig']
 
-const rootProps = useForwardProps(reactivePick(props, 'as', 'defaultPage', 'disabled', 'itemsPerPage', 'page', 'showEdges', 'siblingCount', 'total'), emits)
+const rootProps = useForwardProps(props, ['as', 'defaultPage', 'disabled', 'itemsPerPage', 'page', 'showEdges', 'siblingCount', 'total'], emits)
 
 // eslint-disable-next-line vue/no-dupe-keys
 const firstIcon = computed(() => props.firstIcon || (dir.value === 'rtl' ? icons.chevronDoubleRight : icons.chevronDoubleLeft))

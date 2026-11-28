@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import HomeIcon from '@bitrix24/b24icons-vue/outline/HomeIcon'
 import PlayIcon from '@bitrix24/b24icons-vue/common-service/PlayIcon'
 import CompassIcon from '@bitrix24/b24icons-vue/main/CompassIcon'
@@ -7,20 +7,20 @@ import BookmarkIcon from '@bitrix24/b24icons-vue/outline/BookmarkIcon'
 
 const items: NavigationMenuItem[] = [
   {
-    label: 'Home',
+    label: 'Главная',
     icon: HomeIcon,
     active: true
   },
   {
-    label: 'Samples',
+    label: 'Примеры',
     icon: PlayIcon
   },
   {
-    label: 'Explore',
+    label: 'Обзор',
     icon: CompassIcon
   },
   {
-    label: 'Library',
+    label: 'Библиотека',
     icon: BookmarkIcon
   }
 ]

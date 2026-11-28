@@ -42,6 +42,7 @@ import { computed } from 'vue'
 import { Primitive } from 'reka-ui'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../../composables/useComponentProps'
+import { isUnsafeAs } from '../../utils'
 import { tv } from '../../utils/tv'
 
 const _props = defineProps<ProseFieldProps>()
@@ -56,7 +57,7 @@ const b24ui = computed(() => tv({ extend: theme, ...(appConfig.b24ui?.prose?.fie
 </script>
 
 <template>
-  <Primitive :as="props.as" data-slot="root" :class="b24ui.root({ class: [props.b24ui?.root, props.class] })">
+  <Primitive :as="typeof props.as === 'string' && !isUnsafeAs(props.as) ? props.as : undefined" data-slot="root" :class="b24ui.root({ class: [props.b24ui?.root, props.class] })">
     <div data-slot="container" :class="b24ui.container({ class: props.b24ui?.container })">
       <span v-if="props.name" data-slot="name" :class="b24ui.name({ class: props.b24ui?.name })">
         {{ props.name }}

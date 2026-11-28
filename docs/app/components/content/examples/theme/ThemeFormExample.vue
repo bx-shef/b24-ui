@@ -1,24 +1,24 @@
 <script setup lang="ts">
 import * as z from 'zod'
-import type { FormSubmitEvent } from '@bitrix24/b24ui-nuxt'
+import type { FormSubmitEvent } from '@bxshefby/b24ui-nuxt'
 
 const schema = z.object({
-  name: z.string().min(2, 'Too short'),
-  email: z.email('Invalid email'),
+  name: z.string().min(2, 'Слишком короткое значение'),
+  email: z.email('Некорректный email'),
   bio: z.string().optional()
 })
 
 type Schema = z.output<typeof schema>
 
 const state = reactive<Partial<Schema>>({
-  name: 'John Doe',
+  name: 'Иван Иванов',
   email: 'john@example.com',
   bio: undefined
 })
 
 const toast = useToast()
 async function onSubmit(event: FormSubmitEvent<Schema>) {
-  toast.add({ title: 'Saved', description: 'Your profile has been updated.', color: 'air-primary-success' })
+  toast.add({ title: 'Сохранено', description: 'Профиль обновлён.', color: 'air-primary-success' })
   console.log(event.data)
 }
 </script>
@@ -37,21 +37,21 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
     }"
   >
     <B24Form :schema="schema" :state="state" class="space-y-4 w-full" @submit="onSubmit">
-      <B24FormField label="Name" name="name" description="Your public display name.">
+      <B24FormField label="Имя" name="name" description="Ваше отображаемое имя.">
         <B24Input v-model="state.name" />
       </B24FormField>
 
-      <B24FormField label="Email" name="email" description="Used for notifications.">
+      <B24FormField label="Email" name="email" description="Используется для уведомлений.">
         <B24Input v-model="state.email" type="email" />
       </B24FormField>
 
-      <B24FormField label="Bio" name="bio" description="A short description about yourself.">
-        <B24Textarea v-model="state.bio" placeholder="Tell us about yourself" />
+      <B24FormField label="О себе" name="bio" description="Коротко о себе.">
+        <B24Textarea v-model="state.bio" placeholder="Расскажите о себе" />
       </B24FormField>
 
       <div class="flex justify-end">
         <B24Button type="submit">
-          Save changes
+          Сохранить изменения
         </B24Button>
       </div>
     </B24Form>

@@ -1,6 +1,6 @@
 ---
 title: ProsePrompt
-description: 'Show pre‑built AI prompts with one‑click copying and IDE integration.'
+description: 'Готовые AI-промпты с копированием в один клик и интеграцией с IDE.'
 category: components
 navigation.title: Prompt
 links:
@@ -12,13 +12,13 @@ links:
     to: https://ui.nuxt.com/docs/typography/prompt
 ---
 
-## Usage
+## Использование {#usage}
 
-Use the `prompt` component to display a pre-built AI prompt that users can copy to their clipboard or open directly in their IDE.
+Компонент `prompt` показывает готовый AI-промпт, который пользователь может скопировать в буфер обмена или открыть прямо в IDE.
 
 ### Prompt :badge{label="2.15+" class="align-text-top"}
 
-Use the `prompt` prop to set the text that gets copied. The `description` prop is shown as the visible label.
+Пропс `prompt` задаёт копируемый текст, а пропс `description` — видимую подпись.
 
 ::component-code{slug="prompt" prose}
 ---
@@ -42,12 +42,12 @@ props:
 ::
 
 ::note
-The prompt can also be written in the default slot. Its rendered text is then copied, with block elements turned into line breaks; use the `prompt` prop to copy the text exactly as written.
+Промпт можно записать и в слоте по умолчанию. Тогда копируется его отрисованный текст, а блочные элементы превращаются в переносы строк; чтобы скопировать текст в точности как написан, используйте пропс `prompt`.
 ::
 
-### Actions
+### Действия {#actions}
 
-Use the `actions` prop to display additional buttons. The `copy` button is always displayed. The available actions are `cursor`, `windsurf` and `claude`.
+Пропс `actions` показывает дополнительные кнопки. Кнопка `copy` показывается всегда. Доступные действия: `cursor`, `windsurf` и `claude`.
 
 ::component-code{slug="prompt" prose}
 ---
@@ -66,7 +66,7 @@ props:
     Add a color mode toggle to my Nuxt app.
 
     Requirements:
-    - Use `useColorMode` from `'@bitrix24/b24ui-nuxt/composables` to manage the current mode
+    - Use `useColorMode` from `'@bxshefby/b24ui-nuxt/composables` to manage the current mode
     - Render a `B24Button` with `color="air-tertiary"` that cycles between `light`, `dark`, and `system` on click
     - Update the button icon dynamically: `SunIconAir` for light, `MoonIconAir` for dark, `ScreenIcon` for system
     - Add a tooltip using `B24Tooltip` that shows the current active mode
@@ -75,14 +75,14 @@ props:
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props{prose}
 
-### Slots
+### Слоты {#slots}
 
 :component-slots{prose}
 
-## Theme
+## Тема {#theme}
 
 :component-theme{prose}

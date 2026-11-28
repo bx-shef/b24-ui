@@ -1,12 +1,16 @@
 ---
 title: PageHeader
-description: 'A responsive page header.'
+description: 'Адаптивная шапка страницы.'
 category: page
+keywords:
+  - заголовок страницы
+  - шапка страницы
+  - заголовок раздела
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/PageHeader.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/page-header
   - label: Nuxt UI
@@ -14,11 +18,11 @@ links:
     to: https://ui.nuxt.com/docs/components/page-header
 ---
 
-## Usage
+## Использование {#usage}
 
-The PageHeader component displays a header for your page.
+Компонент PageHeader показывает шапку страницы.
 
-Use it inside the default slot of the [Page](/docs/components/page/) component, before the [PageBody](/docs/components/page-body/) component:
+Используйте его в слоте по умолчанию компонента [Page](/docs/components/page/) перед компонентом [PageBody](/docs/components/page-body/):
 
 ```vue {3}
 <template>
@@ -30,9 +34,9 @@ Use it inside the default slot of the [Page](/docs/components/page/) component, 
 </template>
 ```
 
-### Title
+### Заголовок {#title}
 
-Use the `title` prop to display a title in the header.
+Пропс `title` показывает заголовок в шапке.
 
 ::component-code
 ---
@@ -45,12 +49,12 @@ props:
 ::
 
 ::tip
-The title is rendered as an `h1` by default. Use the `as` prop with an object to change it, for example `:as="{ title: 'h2' }"`{lang="ts-type"}. You can also set the root element this way: `:as="{ root: 'section', title: 'h2' }"`{lang="ts-type"}.
+Заголовок по умолчанию отрисовывается как `h1`. Чтобы изменить тег, передайте в пропс `as` объект, например `:as="{ title: 'h2' }"`{lang="ts-type"}. Корневой элемент задаётся так же: `:as="{ root: 'section', title: 'h2' }"`{lang="ts-type"}.
 ::
 
-### Description
+### Описание {#description}
 
-Use the `description` prop to display a description in the header.
+Пропс `description` показывает описание в шапке.
 
 ::component-code
 ---
@@ -61,14 +65,14 @@ hide:
   - class
 props:
   title: 'PageHeader'
-  description: 'A responsive page header with title, description and actions.'
+  description: 'Адаптивная шапка страницы с заголовком, описанием и действиями.'
   class: 'w-full'
 ---
 ::
 
-### Headline
+### Надзаголовок {#headline}
 
-Use the `headline` prop to display a headline in the header.
+Пропс `headline` показывает надзаголовок в шапке.
 
 ::component-code
 ---
@@ -80,15 +84,15 @@ hide:
   - class
 props:
   title: 'PageHeader'
-  description: 'A responsive page header with title, description and actions.'
-  headline: 'Components'
+  description: 'Адаптивная шапка страницы с заголовком, описанием и действиями.'
+  headline: 'Компоненты'
   class: 'w-full'
 ---
 ::
 
-### Links
+### Ссылки {#links}
 
-Use the `links` prop to display a list of [Button](/docs/components/button/) in the header.
+Пропс `links` показывает в шапке список кнопок [Button](/docs/components/button/).
 
 ::component-code
 ---
@@ -106,8 +110,8 @@ hide:
   - class
 props:
   title: 'PageHeader'
-  description: 'A responsive page header with title, description and actions.'
-  headline: 'Components'
+  description: 'Адаптивная шапка страницы с заголовком, описанием и действиями.'
+  headline: 'Компоненты'
   links:
     - label: 'GitHub'
       to: 'https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/PageHeader.vue'
@@ -116,15 +120,15 @@ props:
 ---
 ::
 
-## Examples
+## Примеры {#examples}
 
 ::note
-While these examples use [Nuxt Content](https://content.nuxt.com), the components can be integrated with any content management system.
+В примерах используется [Nuxt Content](https://content.nuxt.com), но компоненты можно подключить к любой системе управления контентом.
 ::
 
-### Within a page
+### На странице {#within-a-page}
 
-Use the PageHeader component in a page to display the header of the page:
+Используйте PageHeader на странице, чтобы показать её шапку:
 
 ```vue [pages/\[...slug\\].vue]{19-24}
 <script setup lang="ts">
@@ -169,14 +173,14 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () => {
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

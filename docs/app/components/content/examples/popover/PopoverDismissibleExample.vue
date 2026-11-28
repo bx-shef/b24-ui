@@ -4,12 +4,12 @@ import Cross50Icon from '@bitrix24/b24icons-vue/actions/Cross50Icon'
 
 <template>
   <B24Popover :dismissible="false" :b24ui="{ content: 'p-4' }">
-    <B24Button label="Open" />
+    <B24Button label="Открыть" />
 
     <template #content="{ close }">
       <div class="flex items-center gap-4 mb-4">
         <h2 class="text-legend font-(--ui-font-weight-semi-bold)">
-          Popover non-dismissible
+          Popover без закрытия по действию вне окна
         </h2>
 
         <B24Button color="air-tertiary" :icon="Cross50Icon" @click="close" />

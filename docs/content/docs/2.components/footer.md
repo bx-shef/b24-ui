@@ -1,12 +1,16 @@
 ---
 title: Footer
-description: 'A responsive footer for displaying copyright, links, and additional information.'
+description: 'Адаптивный подвал для копирайта, ссылок и дополнительной информации.'
 category: layout
+keywords:
+  - подвал
+  - нижняя часть страницы
+  - копирайт
 links:
   - label: GitHub
     iconName: GitHubIcon
     to: https://github.com/bitrix24/b24ui/blob/main/src/runtime/components/Footer.vue
-  - label: Demo
+  - label: Демо
     iconName: DemonstrationOnIcon
     to: https://bitrix24.github.io/b24ui/demo/components/footer
   - label: Nuxt UI
@@ -14,11 +18,11 @@ links:
     to: https://ui.nuxt.com/docs/components/footer
 ---
 
-## Usage
+## Использование {#usage}
 
-The Footer component renders a `<footer>` element.
+Компонент Footer отрисовывает элемент `<footer>`.
 
-Use the `left`, `default` and `right` slots to customize the footer.
+Слоты `left`, `default` и `right` настраивают содержимое подвала.
 
 ::component-example
 ---
@@ -32,22 +36,22 @@ props:
 ::
 
 ::note
-In this example, we use the [NavigationMenu](/docs/components/navigation-menu/) component to render the footer links in the center.
+В этом примере ссылки подвала по центру отрисованы компонентом [NavigationMenu](/docs/components/navigation-menu/).
 ::
 
 ::tip{to="/docs/components/footer-columns/"}
-You can use the `FooterColumns` component to display a list of links inside the `top` slot.
+Список ссылок внутри слота `top` можно вывести компонентом `FooterColumns`.
 ::
 
-## Examples
+## Примеры {#examples}
 
-### Within `app.vue`
+### В `app.vue` {#within-appvue}
 
-Use the Footer component in your `app.vue` or in a layout:
+Используйте Footer в `app.vue` или в раскладке:
 
 ```vue [app.vue]
 <script setup lang="ts">
-import type { NavigationMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem } from '@bxshefby/b24ui-nuxt'
 import GitHubIcon from '@bitrix24/b24icons-vue/social/GitHubIcon'
 import Bitrix24Icon from '@bitrix24/b24icons-vue/common-b24/Bitrix24Icon'
 
@@ -107,19 +111,19 @@ const items: NavigationMenuItem[] = [
 ```
 
 ::note
-In this example, we use the [Separator](/docs/components/separator/) component to add a border above the footer.
+В этом примере рамку над подвалом добавляет компонент [Separator](/docs/components/separator/).
 ::
 
 ## API
 
-### Props
+### Пропсы {#props}
 
 :component-props
 
-### Slots
+### Слоты {#slots}
 
 :component-slots
 
-## Theme
+## Тема {#theme}
 
 :component-theme

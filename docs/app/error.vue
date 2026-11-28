@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { NuxtError } from '#app'
 import type { ContentNavigationItem } from '@nuxt/content'
+import { ru } from '@bxshefby/b24ui-nuxt/locale'
 
 const props = defineProps<{
   error: NuxtError
@@ -34,7 +35,7 @@ provide('navigation', rootNavigation)
 </script>
 
 <template>
-  <B24App>
+  <B24App :locale="ru">
     <NuxtLoadingIndicator color="var(--ui-color-accent-main-primary)" :height="2" />
 
     <div class="flex">

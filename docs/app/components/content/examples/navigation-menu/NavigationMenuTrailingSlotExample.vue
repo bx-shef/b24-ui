@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { NavigationMenuItem, DropdownMenuItem } from '@bitrix24/b24ui-nuxt'
+import type { NavigationMenuItem, DropdownMenuItem } from '@bxshefby/b24ui-nuxt'
 import FolderIcon from '@bitrix24/b24icons-vue/outline/FolderIcon'
 import BookOpenIcon from '@bitrix24/b24icons-vue/crm/BookOpenIcon'
 import Share1Icon from '@bitrix24/b24icons-vue/main/Share1Icon'
@@ -10,32 +10,32 @@ import MoreMIcon from '@bitrix24/b24icons-vue/outline/MoreMIcon'
 const items: NavigationMenuItem[][] = [
   [
     {
-      label: 'Personal',
+      label: 'Личное',
       type: 'label',
       slot: 'personal-label' as const
     },
     {
-      label: 'Design System',
+      label: 'Дизайн-система',
       icon: FolderIcon,
       active: true
     },
     {
-      label: 'Travel',
+      label: 'Путешествия',
       icon: FolderIcon
     }
   ],
   [
     {
-      label: 'Teams',
+      label: 'Команды',
       type: 'label',
       slot: 'teams-label' as const
     },
     {
-      label: 'Engineering',
+      label: 'Разработка',
       icon: FolderIcon
     },
     {
-      label: 'Marketing',
+      label: 'Маркетинг',
       icon: FolderIcon
     }
   ]
@@ -43,11 +43,11 @@ const items: NavigationMenuItem[][] = [
 
 const dropdownItems: DropdownMenuItem[][] = [
   [
-    { label: 'View Project', icon: BookOpenIcon },
-    { label: 'Share Project', icon: Share1Icon }
+    { label: 'Просмотреть проект', icon: BookOpenIcon },
+    { label: 'Поделиться проектом', icon: Share1Icon }
   ],
   [
-    { label: 'Delete Project', icon: TrashcanIcon, color: 'air-primary-alert' }
+    { label: 'Удалить проект', icon: TrashcanIcon, color: 'air-primary-alert' }
   ]
 ]
 </script>
