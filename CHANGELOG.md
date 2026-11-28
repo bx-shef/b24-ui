@@ -1,5 +1,96 @@
 # Changelog
 
+## [2.16.1](https://github.com/bx-shef/b24-ui/compare/v2.16.0...v2.16.1) (2026-11-28)
+
+
+### Bug Fixes
+
+* **release:** npm publish — путь к архиву с ./ ([#96](https://github.com/bx-shef/b24-ui/issues/96)) ([a89e2ea](https://github.com/bx-shef/b24-ui/commit/a89e2ea3d51bfbc54aa4d4d0f7b31139bc956a52))
+
+## [2.16.0](https://github.com/bx-shef/b24-ui/compare/v2.15.0...v2.16.0) (2026-11-28)
+
+
+### Features
+
+* **ChatAttachment:** новый компонент и перенос 11 коммитов nuxt/ui (nuxt/ui@8a34bc1) ([#21](https://github.com/bx-shef/b24-ui/issues/21)) ([aae3a48](https://github.com/bx-shef/b24-ui/commit/aae3a48434dda55f790bbef6931ccd6bf0223642))
+* **deploy:** скрипт установки сайта на сервер bx-shef (b24-ui.bx-shef.by) ([#74](https://github.com/bx-shef/b24-ui/issues/74)) ([7240b9e](https://github.com/bx-shef/b24-ui/commit/7240b9e21909ff03eabf875cd1cdc650b2c3f782))
+* **docs:** оформление сайта в стиле «Василёк» ([#20](https://github.com/bx-shef/b24-ui/issues/20)) ([bcb8729](https://github.com/bx-shef/b24-ui/commit/bcb872997708217b458a2f923603bd7ce84ed8f0))
+* **docs:** светлая тема сайта в стиле «Василёк» ([#56](https://github.com/bx-shef/b24-ui/issues/56)) ([25f1e1d](https://github.com/bx-shef/b24-ui/commit/25f1e1d3b92a462a8a218d719aa390c67d8f1441))
+* **docs:** счётчик Яндекс Метрики на сайте документации ([#47](https://github.com/bx-shef/b24-ui/issues/47)) ([68fdca6](https://github.com/bx-shef/b24-ui/commit/68fdca68b99d1a2b0618ba20e2fe50466df4f559))
+* **docs:** чат «Спросить AI» на DeepSeek ([#34](https://github.com/bx-shef/b24-ui/issues/34)) ([8351f14](https://github.com/bx-shef/b24-ui/commit/8351f143b877f309a8fe2c8e6d6f0d6948263009))
+* **docs:** чат «Спросить AI» предлагает запрос на разработку и открывает форму ([#48](https://github.com/bx-shef/b24-ui/issues/48)) ([8f68c0e](https://github.com/bx-shef/b24-ui/commit/8f68c0eae54026e20495530129900517213dc110))
+* **mcp:** b24-ui-search-icons по коллекции bx24 и инструмент b24-ui-get-icon ([#85](https://github.com/bx-shef/b24-ui/issues/85)) ([c62a06d](https://github.com/bx-shef/b24-ui/commit/c62a06d3e4c924a43c3fb32748c94f3157c32a28))
+* **release:** пакет @bxshefby/b24ui-nuxt, первый выпуск 2.16.0 ([#58](https://github.com/bx-shef/b24-ui/issues/58)) ([189642c](https://github.com/bx-shef/b24-ui/commit/189642c434929ef63b81fcf8ea2faaac7bc68abb))
+* **Toggle/ToggleGroup:** новые компоненты и перенос 8 коммитов nuxt/ui (nuxt/ui@e161570) ([#31](https://github.com/bx-shef/b24-ui/issues/31)) ([5b48ec6](https://github.com/bx-shef/b24-ui/commit/5b48ec601282d99146863338b3ba8ebf3c0ecd43))
+
+
+### Bug Fixes
+
+* **components:** защита от небезопасных компонентов и перенос 15 коммитов nuxt/ui (nuxt/ui@aa54cd8) ([#36](https://github.com/bx-shef/b24-ui/issues/36)) ([4b34d76](https://github.com/bx-shef/b24-ui/commit/4b34d766d62c869fa22ecd44d92327fc5932d402))
+* **components:** иконки из недоверенных данных проходят isUnsafeComponent ([#37](https://github.com/bx-shef/b24-ui/issues/37)) ([85874ca](https://github.com/bx-shef/b24-ui/commit/85874ca8b4c3faee8ff1c60b801e40c9e78e6e85))
+* **deploy:** разные входящий и исходящий адреса сервера — не ошибка DNS ([#78](https://github.com/bx-shef/b24-ui/issues/78)) ([7855c17](https://github.com/bx-shef/b24-ui/commit/7855c17aa5d7cd953b685ae5717ca7f16ab071fb))
+* **deps:** исправленные версии уязвимых зависимостей и pnpm audit в CI ([#11](https://github.com/bx-shef/b24-ui/issues/11)) ([4c0e3cc](https://github.com/bx-shef/b24-ui/commit/4c0e3ccc9c992819fb941b28089930c311483968))
+* **docs:** Метрика — только после согласия на cookie, поиск без текста запроса ([#54](https://github.com/bx-shef/b24-ui/issues/54)) ([a9ba37b](https://github.com/bx-shef/b24-ui/commit/a9ba37be8a638350e71deb16c5431ea0bd5ed5e9))
+* **PageColumns:** зазор без margin — колонки в Safari не пропадают ([#49](https://github.com/bx-shef/b24-ui/issues/49)) ([929c0c3](https://github.com/bx-shef/b24-ui/commit/929c0c3ae0328ad102f106bfecc262ec4d8586e7))
+* **types:** app.config.b24ui снова проверяется по типам ([#64](https://github.com/bx-shef/b24-ui/issues/64)) ([3e563e1](https://github.com/bx-shef/b24-ui/commit/3e563e134e8e2ad247bda4393dd6f760cc3d8c95)), closes [#60](https://github.com/bx-shef/b24-ui/issues/60)
+
+
+### Performance
+
+* **components:** перенос 6 коммитов nuxt/ui (nuxt/ui@d2cb6ed) ([#30](https://github.com/bx-shef/b24-ui/issues/30)) ([c826b95](https://github.com/bx-shef/b24-ui/commit/c826b9582da6326e15b412861a5f9a1ffea97fc5))
+
+
+### Docs
+
+* **contributing:** промпты проверки сайта документации через браузер ([#80](https://github.com/bx-shef/b24-ui/issues/80)) ([5db1c2e](https://github.com/bx-shef/b24-ui/commit/5db1c2efe8878d8dc96971b18f410a75b12e7800))
+* **examples:** PageColumns — отзывы на русском вместо китайского ([#55](https://github.com/bx-shef/b24-ui/issues/55)) ([141ed44](https://github.com/bx-shef/b24-ui/commit/141ed44b45f49869a1be53438b06d2c3674ac7de))
+* **examples:** перевод примеров на русский, часть 2 ([#42](https://github.com/bx-shef/b24-ui/issues/42)) ([e0c4bf9](https://github.com/bx-shef/b24-ui/commit/e0c4bf902dd5963e3b322549f928bfb2d536c8a0))
+* **i18n:** llms.txt по-русски и поиск MCP по кириллице ([#43](https://github.com/bx-shef/b24-ui/issues/43)) ([71eef87](https://github.com/bx-shef/b24-ui/commit/71eef87c15c6ccf16b122a78e58fbe9cb49924b4))
+* **i18n:** перевод компонентов, часть 1 (accordion — color-mode) ([#19](https://github.com/bx-shef/b24-ui/issues/19)) ([f48dc33](https://github.com/bx-shef/b24-ui/commit/f48dc33986b46826160632749e04e17a66482e8a))
+* **i18n:** перевод компонентов, часть 2 (color-picker — field-group) ([#22](https://github.com/bx-shef/b24-ui/issues/22)) ([8f4700e](https://github.com/bx-shef/b24-ui/commit/8f4700ef285c661644ea793e44497f015608725e))
+* **i18n:** перевод компонентов, часть 3 (file-upload — page) ([#23](https://github.com/bx-shef/b24-ui/issues/23)) ([eb07d6a](https://github.com/bx-shef/b24-ui/commit/eb07d6a24c0dd42cec572e112805bfa93a9cc435))
+* **i18n:** перевод компонентов, часть 4 (pagination — user) ([#26](https://github.com/bx-shef/b24-ui/issues/26)) ([0d2b691](https://github.com/bx-shef/b24-ui/commit/0d2b691ad5aea94df2fb7b3a2707ffe289acf4f2))
+* **i18n:** перевод раздела «Начало работы» и якоря заголовков ([#15](https://github.com/bx-shef/b24-ui/issues/15)) ([78919af](https://github.com/bx-shef/b24-ui/commit/78919af95a88011b94fe75183d61cc615560a955))
+* **i18n:** перевод разделов «Композаблы» и «Типографика» ([#17](https://github.com/bx-shef/b24-ui/issues/17)) ([508582b](https://github.com/bx-shef/b24-ui/commit/508582b971b53a6d605625a02fee12cd80f30255))
+* **i18n:** примеры компонентов на русском, часть 1 (accordion — collapsible) ([#38](https://github.com/bx-shef/b24-ui/issues/38)) ([3cecfd9](https://github.com/bx-shef/b24-ui/commit/3cecfd964926a3896c15e7fb06b39c3d7f1127fc))
+* **i18n:** русские keywords у всех компонентов и /raw/index.md по-русски ([#45](https://github.com/bx-shef/b24-ui/issues/45)) ([01ff20e](https://github.com/bx-shef/b24-ui/commit/01ff20e7cb1765a865f11b0fd08c4998e743dc0c))
+* **i18n:** скилл, интерфейс сайта, главная и README на русском ([#27](https://github.com/bx-shef/b24-ui/issues/27)) ([fb67808](https://github.com/bx-shef/b24-ui/commit/fb67808c32dab517459a66270b79036ea8b4e95a))
+* **license:** add the Nuxt and ООО БэИксШефБай copyright lines, footer attribution ([#83](https://github.com/bx-shef/b24-ui/issues/83)) ([c9194ea](https://github.com/bx-shef/b24-ui/commit/c9194eac1c0c7a4b3d78f1bbcf570215c31baed4))
+* **nav:** «Ресурсы» ведут на сайты семейства bx-shef ([#86](https://github.com/bx-shef/b24-ui/issues/86)) ([a053de8](https://github.com/bx-shef/b24-ui/commit/a053de860059aacc861e66e74682f095eac3d13b))
+* **readme:** README по правилам оформления линейки ([#82](https://github.com/bx-shef/b24-ui/issues/82)) ([11e06db](https://github.com/bx-shef/b24-ui/commit/11e06db94ed8000968dc437982bd898b05838acd))
+* **site:** картинка для превью ссылок (og:image) ([#70](https://github.com/bx-shef/b24-ui/issues/70)) ([5aab223](https://github.com/bx-shef/b24-ui/commit/5aab223256091a0313eab54c857ed3665e0c6dde))
+* **site:** примеры — в цветах библиотеки, ?theme= не меняет тему сайта ([#65](https://github.com/bx-shef/b24-ui/issues/65)) ([38ff98d](https://github.com/bx-shef/b24-ui/commit/38ff98dbd71a8ed3cfbdd6426f0d972826887c60))
+
+
+### Chore
+
+* **deps:** Nuxt ^4.7.0 — сайт документации снова собирается (nuxt/ui@f3f08c3) ([#66](https://github.com/bx-shef/b24-ui/issues/66)) ([1a626ea](https://github.com/bx-shef/b24-ui/commit/1a626ead6c24d106374dc381eea9f56a3242abba))
+* **sync:** перенос 10 коммитов nuxt/ui (nuxt/ui@64207da) ([#40](https://github.com/bx-shef/b24-ui/issues/40)) ([e418988](https://github.com/bx-shef/b24-ui/commit/e4189882151a936d80afa1d5faf80746e72a5f24))
+* **sync:** перенос 11 коммитов nuxt/ui (nuxt/ui@1d0c49e) ([#16](https://github.com/bx-shef/b24-ui/issues/16)) ([7201097](https://github.com/bx-shef/b24-ui/commit/72010970f2596d513dd5f6699417d1a70c7633a4))
+* **sync:** перенос 11 коммитов nuxt/ui (nuxt/ui@671713e) ([#3](https://github.com/bx-shef/b24-ui/issues/3)) ([07781ad](https://github.com/bx-shef/b24-ui/commit/07781adc73034345eebb4e02ab18077ea5ec5a40))
+* **sync:** перенос 15 коммитов nuxt/ui (nuxt/ui@e5577af) ([#28](https://github.com/bx-shef/b24-ui/issues/28)) ([3dfc161](https://github.com/bx-shef/b24-ui/commit/3dfc1611323437298fa0c2b3c3848d6a6d5fb886))
+* **sync:** перенос 15 коммитов nuxt/ui (nuxt/ui@f15f5a9) ([#39](https://github.com/bx-shef/b24-ui/issues/39)) ([168cc29](https://github.com/bx-shef/b24-ui/commit/168cc29436b628dfce25884a96378a4e2e61a883))
+* **sync:** перенос 15 коммитов nuxt/ui после 4629ed4e (nuxt/ui@4629ed4) ([#2](https://github.com/bx-shef/b24-ui/issues/2)) ([96677a5](https://github.com/bx-shef/b24-ui/commit/96677a55427934b87c5c1c82afcceaadb5002374))
+* **sync:** перенос 18 коммитов nuxt/ui (nuxt/ui@468dce9) ([#14](https://github.com/bx-shef/b24-ui/issues/14)) ([3100414](https://github.com/bx-shef/b24-ui/commit/3100414f329844c0f5beb036024a96c04c5f6a7f))
+* **sync:** перенос 4 коммитов nuxt/ui (nuxt/ui@657697d) ([#51](https://github.com/bx-shef/b24-ui/issues/51)) ([352f040](https://github.com/bx-shef/b24-ui/commit/352f0400c401f6f02591272ef06813174e875fa6))
+* **sync:** перенос 9 коммитов nuxt/ui (nuxt/ui@6f1cdd8) ([#24](https://github.com/bx-shef/b24-ui/issues/24)) ([8a59b01](https://github.com/bx-shef/b24-ui/commit/8a59b0141b3beaecd8f36f81a78c41c802b80cb1))
+* **sync:** сверка реестра по [#40](https://github.com/bx-shef/b24-ui/issues/40) ([#41](https://github.com/bx-shef/b24-ui/issues/41)) ([d1d6cc9](https://github.com/bx-shef/b24-ui/commit/d1d6cc9eb32c3c5af667f7a8ec668288bfed0fef))
+* **sync:** сверка реестра по [#51](https://github.com/bx-shef/b24-ui/issues/51) ([#52](https://github.com/bx-shef/b24-ui/issues/52)) ([59f08c1](https://github.com/bx-shef/b24-ui/commit/59f08c102b8079603f623eef28fdf86d35a43f23))
+* **sync:** сверка реестра по [#66](https://github.com/bx-shef/b24-ui/issues/66) (f3f08c3 — port) ([#67](https://github.com/bx-shef/b24-ui/issues/67)) ([8cd2ff9](https://github.com/bx-shef/b24-ui/commit/8cd2ff9f57dc5d809680f62195d1ed4873f23a75))
+
+
+### CI
+
+* add dependency review for pull requests ([#81](https://github.com/bx-shef/b24-ui/issues/81)) ([3cd51df](https://github.com/bx-shef/b24-ui/commit/3cd51df00cf08f18b667bdae7dc19b6be4def0f9))
+* Bump the github-actions group across 1 directory with 6 updates ([#46](https://github.com/bx-shef/b24-ui/issues/46)) ([5ef0402](https://github.com/bx-shef/b24-ui/commit/5ef0402ed6d5db0adb5316d97aee501dc0abd414))
+* **dependabot:** give npm security updates a conventional title ([#77](https://github.com/bx-shef/b24-ui/issues/77)) ([af0d601](https://github.com/bx-shef/b24-ui/commit/af0d601e2c6a6e90f0389e3ee6eeffa77c06f7de))
+* **docs:** адрес сайта и номер Метрики — из переменной или секрета ([#73](https://github.com/bx-shef/b24-ui/issues/73)) ([86bf6ca](https://github.com/bx-shef/b24-ui/commit/86bf6ca66601b6c332f1e34e9e29cc0dd085da8e))
+* **docs:** дымовая проверка MCP не зависит от языка страницы ([#18](https://github.com/bx-shef/b24-ui/issues/18)) ([14ef982](https://github.com/bx-shef/b24-ui/commit/14ef982cced7c3bb2b9f78da4808c5571c616e61))
+* **docs:** образ сайта документации и деплой на свой сервер ([#13](https://github.com/bx-shef/b24-ui/issues/13)) ([6cc52dd](https://github.com/bx-shef/b24-ui/commit/6cc52ddaa48e807782bf0b7678dec995584ce252))
+* **release:** выпуск без одобрения — слияние release PR публикует пакет ([#72](https://github.com/bx-shef/b24-ui/issues/72)) ([2007a79](https://github.com/bx-shef/b24-ui/commit/2007a79e01b9c7ca32627d35d985b6f81adb81db))
+* **release:** разделить публикацию в npm на build и publish ([#62](https://github.com/bx-shef/b24-ui/issues/62)) ([1266ea0](https://github.com/bx-shef/b24-ui/commit/1266ea08c234d1394642b899723acd543fea2181))
+* нерабочие публикация и выпуск — пропуск, а не падение ([#44](https://github.com/bx-shef/b24-ui/issues/44)) ([83bc2eb](https://github.com/bx-shef/b24-ui/commit/83bc2eb06c2c73e2b9ca67b876df0da1aab5a639))
+
 ## [2.15.0](https://github.com/bitrix24/b24ui/compare/v2.14.0...v2.15.0) (2026-10-16)
 
 
