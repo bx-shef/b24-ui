@@ -282,7 +282,11 @@ jobs:
       # `--provenance` is redundant today and deliberate anyway: it moves the
       # attestation from being a property of a setting on npmjs.com to being a
       # property of this file. releasing.md has the reasoning.
+      #
+      # `./` is load-bearing: npm reads a bare `dir/file.tgz` as the GitHub
+      # shorthand `owner/repo` and runs `git ls-remote ssh://git@github.com/
+      # dist-tarball/…` — the 2.16.0 publish failed exactly so.
       - name: 'Publish 🚀'
         id: publish
         shell: bash
-        run: npm publish "dist-tarball/$TARBALL" --provenance --access public
+        run: npm publish "./dist-tarball/$TARBALL" --provenance --access public
