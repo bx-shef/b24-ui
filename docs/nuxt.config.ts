@@ -258,6 +258,8 @@ const prodUrl = process?.env.NUXT_PUBLIC_SITE_URL ?? ''
 const baseUrl = process?.env.NUXT_PUBLIC_BASE_URL ?? ''
 const canonicalUrl = process?.env.NUXT_PUBLIC_CANONICAL_URL ?? ''
 const gitUrl = process?.env.NUXT_PUBLIC_GIT_URL ?? ''
+// Превью ссылок: абсолютный адрес (мессенджеры не разворачивают относительный); исходник — docs/og/og.html
+const ogImageUrl = `${prodUrl}${baseUrl}/og-image.jpg`
 
 export default defineNuxtConfig({
   modules: [
@@ -282,6 +284,14 @@ export default defineNuxtConfig({
     baseURL: `${baseUrl}/`,
     buildAssetsDir: '/_nuxt/',
     head: {
+      meta: [
+        { property: 'og:image', content: ogImageUrl },
+        { property: 'og:image:width', content: '1200' },
+        { property: 'og:image:height', content: '630' },
+        { property: 'og:image:alt', content: 'Bitrix24 UI — Vue-компоненты для приложений Битрикс24' },
+        { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:image', content: ogImageUrl }
+      ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: `${baseUrl}/favicon.ico?v=2` }
       ],
@@ -292,7 +302,7 @@ export default defineNuxtConfig({
       // (ключ vueuse-color-scheme; нет выбора — системная тема). Сохранённый раньше edge-dark
       // (прежняя тема по умолчанию) переписывается в dark до инициализации useColorMode.
       script: [{
-        innerHTML: '(function(){try{var k="vueuse-color-scheme",s=localStorage.getItem(k);if(s==="edge-dark"){s="dark";localStorage.setItem(k,s)}var m=s&&s!=="auto"?s:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"edge-light");if(m==="light")m="edge-light";document.documentElement.classList.add(m)}catch(e){document.documentElement.classList.add("edge-light")}})()',
+        innerHTML: '(function(){try{var k="vueuse-color-scheme",s=localStorage.getItem(k);if(s==="edge-dark"){s="dark";localStorage.setItem(k,s)}var m=s&&s!=="auto"?s:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"edge-light");var t=location.pathname.indexOf("/examples/")>=0?new URLSearchParams(location.search).get("theme"):null;if(t)m=t==="light"?"edge-light":"dark";if(m==="light")m="edge-light";document.documentElement.classList.add(m)}catch(e){document.documentElement.classList.add("edge-light")}})()',
         tagPosition: 'head'
       }]
     },
@@ -447,6 +457,14 @@ export default defineNuxtConfig({
     server: {
       // Fix: "Blocked request. This host is not allowed" when using tunnels like ngrok
       allowedHosts: [...extraAllowedHosts]
+    },
+    // `@nuxtjs/mdc` (parseMarkdown, MDCRenderer) is part of the SSR bundle, and Vite
+    // inlines the CommonJS `yaml` it imports. Since Nuxt 4.7 the inlined copy keeps a
+    // bare `require("process")` with no `__require` shim, so the prerender fails with
+    // `require is not defined in ES module scope` (156 routes, 500). Leaving `yaml`
+    // external lets Nitro bundle it with its own CommonJS handling instead.
+    ssr: {
+      external: ['yaml']
     },
     optimizeDeps: {
       include: [

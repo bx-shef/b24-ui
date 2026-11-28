@@ -77,6 +77,8 @@ describe('module setup()', () => {
     expect(b24ui?.prefix).toBe('smoke')
     // Reached by `tv()` at render time to build twMerge's config; a `prefix`
     // that lands in one place and not the other is a live bug.
-    expect(b24ui?.tv?.twMergeConfig?.prefix).toBe('smoke')
+    // `tailwind-variants` types `twMergeConfig` as a tailwind-merge config union that
+    // `DeepRequired` flattens without `prefix`, hence the narrow cast.
+    expect((b24ui?.tv?.twMergeConfig as { prefix?: string } | undefined)?.prefix).toBe('smoke')
   })
 })

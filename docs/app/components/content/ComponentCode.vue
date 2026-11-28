@@ -1,5 +1,7 @@
 <!-- eslint-disable no-useless-escape -->
 <script setup lang="ts">
+// Оверлеи из превью — в контейнер с base-mode (bx-shef/b24-ui#57)
+providePreviewPortal()
 // import type { ChipProps } from '@bxshefby/b24ui-nuxt'
 import json5 from 'json5'
 import { upperFirst, camelCase, kebabCase } from 'scule'
@@ -621,7 +623,7 @@ const { data: ast } = useAsyncData(codeKey, async () => {
         v-if="component"
         ref="componentContainer"
         style="background-position: 10px 10px"
-        class="flex justify-center border border-b-0 border-muted relative p-4 z-1"
+        class="vsk-preview base-mode flex justify-center border border-b-0 border-muted relative p-4 z-1"
         :class="[
           !options.length && 'rounded-t-md',
           props.class,

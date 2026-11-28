@@ -1,11 +1,12 @@
 name: NPM publish 🚀
 
+# Only workflow_dispatch, and only from a `v*` tag (conditions below): the
+# automated path is release-please.yml dispatching this workflow with
+# --ref <tag>, so the run's sha is the tagged commit and the OIDC token's
+# workflow_ref stays this file — which is what npm trusted publishing pins. The
+# manual recovery path is the same dispatch with the tag chosen as the ref.
+# There is no `release` trigger: a hand-made release must not publish.
 on:
-  release:
-    types: [ published ]
-  # Also the automated path: release-please.yml dispatches this workflow with
-  # --ref <tag>, so the run's sha is the tagged commit and the OIDC token's
-  # workflow_ref stays this file — which is what npm trusted publishing pins.
   workflow_dispatch:
 
 permissions:
@@ -13,8 +14,10 @@ permissions:
 
 jobs:
   await-ci:
-    # Пропуск, пока не выбрано имя своего пакета npm (#9). Включить: NPM_RELEASE=true.
-    if: vars.NPM_RELEASE == 'true'
+    # Только этот репозиторий, только включённый выпуск (NPM_RELEASE=true), только тег v*.
+    if: >-
+      github.repository == 'bx-shef/b24-ui' && vars.NPM_RELEASE == 'true' &&
+      startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -125,7 +128,7 @@ jobs:
       #  - a re-run for an already-published version (release recreated to fix
       #    notes, manual dispatch after the bot published) — skip, not
       #    EPUBLISHCONFLICT;
-      #  - a stale run approved out of order while a newer version already
+      #  - a stale run re-run out of order while a newer version already
       #    shipped — publishing it would move the `latest` dist-tag backwards,
       #    so refuse and leave a clear message instead.
       # `skip` is an output of this job: `publish` is skipped by it.
@@ -193,11 +196,17 @@ jobs:
   # fails if an `id-token: write` job gains a checkout, an install or a build.
   publish:
     needs: build
-    if: needs.build.outputs.skip == 'false'
+    if: >-
+      github.repository == 'bx-shef/b24-ui' && vars.NPM_RELEASE == 'true' &&
+      needs.build.outputs.skip == 'false'
     runs-on: ubuntu-latest
-    # Gate the one job that holds the publishing token behind a reviewer. The
-    # `npm-publish` environment must exist in repo settings with required
-    # reviewers configured — without it this runs unprotected, as before.
+    # No reviewers (owner decision, #63): merging the release PR is the approval.
+    # The `npm-publish` environment still exists because the npm Trusted
+    # Publisher is bound to its name; in Settings → Environments it allows only
+    # `main` and `v*` (Deployment branches and tags → Selected), with no
+    # Required reviewers. Which commit may reach npm is decided by `await-ci`
+    # (on main, CI green), by `verify` (a tag, name and version from the tarball
+    # match) and by the ref policy of the environment.
     environment: npm-publish
     permissions:
       contents: read
