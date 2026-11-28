@@ -173,7 +173,8 @@ export default defineLocale<Messages>({
         openText: 'einblenden'
       },
       pre: {
-        copy: 'Code in die Zwischenablage kopieren'
+        copy: 'Code in die Zwischenablage kopieren',
+        copied: 'Kopiert'
       },
       prompt: {
         copy: 'Prompt kopieren',

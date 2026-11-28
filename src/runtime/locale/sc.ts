@@ -173,7 +173,8 @@ export default defineLocale<Messages>({
         openText: '显示'
       },
       pre: {
-        copy: '复制代码到剪贴板'
+        copy: '复制代码到剪贴板',
+        copied: '已复制'
       },
       prompt: {
         copy: '复制提示词',

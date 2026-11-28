@@ -173,7 +173,8 @@ export default defineLocale<Messages>({
         openText: 'दिखाएँ'
       },
       pre: {
-        copy: 'कोड क्लिपबोर्ड पर कॉपी करें'
+        copy: 'कोड क्लिपबोर्ड पर कॉपी करें',
+        copied: 'कॉपी किया गया'
       },
       prompt: {
         copy: 'प्रॉम्प्ट कॉपी करें',

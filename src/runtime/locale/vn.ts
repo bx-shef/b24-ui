@@ -173,7 +173,8 @@ export default defineLocale<Messages>({
         openText: 'Hiện'
       },
       pre: {
-        copy: 'Sao chép mã vào bộ nhớ tạm'
+        copy: 'Sao chép mã vào bộ nhớ tạm',
+        copied: 'Đã sao chép'
       },
       prompt: {
         copy: 'Sao chép prompt',

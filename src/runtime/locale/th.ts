@@ -173,7 +173,8 @@ export default defineLocale<Messages>({
         openText: 'แสดง'
       },
       pre: {
-        copy: 'คัดลอกโค้ดไปยังคลิปบอร์ด'
+        copy: 'คัดลอกโค้ดไปยังคลิปบอร์ด',
+        copied: 'คัดลอกแล้ว'
       },
       prompt: {
         copy: 'คัดลอกพรอมต์',

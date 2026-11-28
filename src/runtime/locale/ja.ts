@@ -173,7 +173,8 @@ export default defineLocale<Messages>({
         openText: '表示'
       },
       pre: {
-        copy: 'コードをクリップボードにコピー'
+        copy: 'コードをクリップボードにコピー',
+        copied: 'コピーしました'
       },
       prompt: {
         copy: 'プロンプトをコピー',

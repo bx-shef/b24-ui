@@ -35,6 +35,7 @@ export interface ProsePreSlots {
 
 <script setup lang="ts">
 import { computed, useTemplateRef } from 'vue'
+import { VisuallyHidden } from 'reka-ui'
 import { useClipboard } from '@vueuse/core'
 import { useAppConfig } from '#imports'
 import { useComponentProps } from '../../composables/useComponentProps'
@@ -80,15 +81,18 @@ function copyCode() {
       v-if="props.copy"
       color="air-secondary-no-accent"
       size="sm"
-      :aria-label="t('prose.pre.copy')"
+      :aria-label="copied ? t('prose.pre.copied') : t('prose.pre.copy')"
       data-slot="copy"
       :class="b24ui.copy({ class: props.b24ui?.copy })"
-      tabindex="-1"
       :icon="copied ? icons.copyCheck : icons.copy"
       :b24ui="{ leadingIcon: [copied ? 'text-(--ui-color-accent-main-success)' : 'text-(--ui-btn-color)'] }"
       v-bind="(typeof props.copy === 'object' ? props.copy : {})"
       @click="copyCode"
     />
+
+    <VisuallyHidden v-if="props.copy" aria-live="polite">
+      {{ copied ? t('prose.pre.copied') : '' }}
+    </VisuallyHidden>
 
     <pre ref="baseRef" data-slot="base" :class="b24ui.base({ class: [props.b24ui?.base, props.class] })" v-bind="$attrs"><slot /></pre>
   </div>
