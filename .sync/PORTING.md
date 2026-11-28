@@ -747,6 +747,17 @@ material. Reproduce its *intent* in b24ui by editing files under `src/` only.
   bring `space-y-*` or the `*:` child rules back. Guarded by
   `test/components/PageColumns.spec.ts`.
 
+- **Copyright notices: three holders, author and footer stay.** `LICENSE`
+  carries exactly these holder lines, in this order: `Copyright (c) 2023 Nuxt`,
+  `Copyright (c) 2024 Bitrix24`, `Copyright (c) 2026 ООО «БэИксШефБай»`. The Nuxt
+  line is required by MIT (the code grew out of nuxt/ui), so a port that copies
+  upstream's `LICENSE` must keep all three; a change of year or wording proposed
+  by upstream is the owner's decision. The root `package.json` keeps
+  `"author": "ООО «БэИксШефБай»"`, and the site footer
+  (`docs/app/components/Footer.vue`) keeps `© 2026 ООО «БэИксШефБай»` and the line
+  «Основано на Bitrix24 UI и Nuxt UI». Guarded by
+  `test/utils/license-notices.spec.ts` (bx-shef/b24-ui#84).
+
 ## 3. Examples (before → after)
 
 **Prop rename + icon swap** (upstream adds a `trailingIcon`):
@@ -1093,3 +1104,4 @@ same bug facing the other way and needs reading rather than diffing.
 - 2026-09-24 — maintainer decision: the AI chat is removed from the docs site and both Nuxt playgrounds. Replaced the §2 **AI provider packages are fork-only and must move with `ai`** invariant (2026-08-18) with **This fork has no AI chat**: the providers it guarded — `@ai-sdk/deepseek`, `@ai-sdk/mcp` — are gone along with `@ai-sdk/vue`, and no manifest outside the root declares any AI SDK package, so there is no longer a provider-spec coupling to keep in step. `ai` stays as a root `devDependency` only because `src/` imports its types. Removing the old bullet also repaired a layout fault it had introduced: it had been inserted between the `reka-ui` / `vaul-vue` bullet and that bullet's own continuation paragraph ("Both sit at the same versions upstream does…"), so the continuation rendered under the AI bullet. Two further facts found while removing it: `NUXT_PUBLIC_USE_AI`, set in `ci.yml` and `deploy.yml`, had already had no effect — `runtimeConfig.public.useAI` was commented out, so the "Ask AI" search group and the Editor's AI menu items were never enabled; and upstream's docs-chat and AI-completion commits are now `n/a` here by absence, per the new bullet. Last reviewed: 2026-09-24.
 - 2026-11-24 — maintainer decision (bx-shef/b24-ui#7): the docs-site AI chat is back, on DeepSeek. Replaced the §2 **This fork has no AI chat** invariant (2026-09-24) with **The docs site has an AI chat on DeepSeek; the playgrounds do not**: provider, key and no-key behaviour, which upstream pieces are not ported (gateway, theme tools), the fork's own rate limit and history sanitising, and the `ai` / `@ai-sdk/deepseek` coupling. Upstream's docs-chat commits are no longer `n/a`; they port by idea. Last reviewed: 2026-11-24.
 - 2026-11-24 — fix of #35: added the §2 **Icons pass `isUnsafeIcon`** invariant (strings dropped, `v-if` by `safeIcon`; Toast `title`/`description` by `isUnsafeContent`). The `Icon` component where upstream (`aa54cd89`, `499b5b3`) puts the guard does not exist here, so a faithful port leaves `:icon='{"template":…}'` from untrusted markdown open; the guard is in `useComponentProps` (props ending in `icon`) and `safeIcon()` (icons read from items). Last reviewed: 2026-11-24.
+- 2026-11-28 — bx-shef/b24-ui#84: added the §2 **Copyright notices: three holders, author and footer stay** invariant. PR #83 put the Nuxt line back into `LICENSE`, set `author` and the footer; `LICENSE` and `package.json` are touched by ports and `Footer.vue` by site ports, so without a rule and a test a faithful port could drop them silently. Guard: `test/utils/license-notices.spec.ts`.
