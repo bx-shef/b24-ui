@@ -82,8 +82,10 @@ if ! certs_ok && [ "${SKIP_DNS_CHECK:-}" != 1 ]; then
   ip_srv=$(curl -fsS --max-time 5 https://api.ipify.org 2>/dev/null || true)
   if [ -z "$ip_dns" ]; then
     echo "!! DNS: $D не резолвится — создайте A-запись на ${ip_srv:-этот сервер} и запустите скрипт снова (или SKIP_DNS_CHECK=1)"; exit 1
-  elif [ -n "$ip_srv" ] && [ "$ip_dns" != "$ip_srv" ]; then
-    echo "!! DNS: $D → $ip_dns, а этот сервер — $ip_srv. Поправьте A-запись (или SKIP_DNS_CHECK=1, если адрес сервера определился неверно)"; exit 1
+  elif [ -n "$ip_srv" ] && [ "$ip_dns" != "$ip_srv" ] && ! hostname -I 2>/dev/null | tr ' ' '\n' | grep -qxF "$ip_dns"; then
+    # У сервера bx-shef входящий адрес (A-записи сайтов) и исходящий (его видит ipify) — разные: это не ошибка.
+    # Неверную запись всё равно поймает certbot ниже, и скрипт уберёт свои блоки.
+    echo "?? DNS: $D → $ip_dns, исходящий адрес сервера — $ip_srv. Если у сервера несколько адресов, это нормально; продолжаю"
   fi
   echo "DNS: $D → $ip_dns"
 fi

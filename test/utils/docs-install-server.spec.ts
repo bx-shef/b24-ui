@@ -202,6 +202,15 @@ describe('docs install-server.sh: behaviour on stubs', () => {
     expect(readFileSync(sb.confPath, 'utf-8')).not.toContain('foreign.example')
   })
 
+  it('goes on with a warning when DNS points to another address of the server (inbound ≠ outbound)', () => {
+    const sb = sandbox(BASE_CONF, 'DOMAINS="a b"\n')
+    writeFileSync(join(sb.root, 'bin', 'getent'), '#!/bin/bash\necho "5.6.7.8 STREAM x"\n')
+    const r = sb.run()
+    expect(r.status, r.stdout + r.stderr).toBe(0)
+    expect(r.stdout).toContain('?? DNS')
+    expect(readFileSync(sb.confPath, 'utf-8')).toContain('# >>> b24-ui-docs b24-ui.bx-shef.by 443')
+  })
+
   it('refuses an unexpected renew-certs.sh format before touching anything', () => {
     for (const renew of ['DOMAINS="a"\nDOMAINS="b"\n', 'DOMAINS=(a b)\n', '# нет списка\n']) {
       const sb = sandbox(BASE_CONF, renew)
