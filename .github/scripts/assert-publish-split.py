@@ -56,7 +56,7 @@ if [ "v$version" != "$REF_NAME" ]; then
   exit 1
 fi'''
 
-RUN_PUBLISH = r'''npm publish "dist-tarball/$TARBALL" --provenance --access public'''
+RUN_PUBLISH = r'''npm publish "./dist-tarball/$TARBALL" --provenance --access public'''
 
 # Step keys other than these (`if`, `env`, `working-directory`,
 # `continue-on-error`, `timeout-minutes`...) change what or whether a step runs.

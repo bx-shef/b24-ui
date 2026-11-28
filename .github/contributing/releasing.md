@@ -168,11 +168,14 @@ None of these is in version control, and none fails loudly.
 
 ## Первый выпуск `@bxshefby/b24ui-nuxt`
 
-Пакет выпускается как `@bxshefby/b24ui-nuxt`; первая версия — **2.16.0**, следом
-за `@bitrix24/b24ui-nuxt` 2.15.0. Версию задаёт `"release-as": "2.16.0"` в
-`release-please-config.json`; `bootstrap-sha` — коммит `chore(main): release
-2.15.0` (`9d98b4a9`): тегов прошлых выпусков в этом репозитории нет, и без него
-журнал 2.16.0 повторил бы историю родителя.
+Пакет выпускается как `@bxshefby/b24ui-nuxt`, следом за `@bitrix24/b24ui-nuxt`
+2.15.0. Тег и GitHub Release `v2.16.0` есть, но в npm 2.16.0 не попала: шаг
+`publish` передавал npm путь к архиву без `./`, и npm принял его за репозиторий
+GitHub `owner/repo` (`git ls-remote ssh://git@github.com/dist-tarball/…`).
+Перезапуск на `v2.16.0` берёт workflow с тега, а тег правило `v*` двигать не
+даёт, поэтому **первая версия в реестре — 2.16.1**. `bootstrap-sha` — коммит
+`chore(main): release 2.15.0` (`9d98b4a9`): тегов прошлых выпусков в этом
+репозитории нет, и без него журнал первого выпуска повторил бы историю родителя.
 
 Доверенную публикацию (OIDC) npmjs.com настраивает только у пакета, который уже
 есть в реестре. Поэтому руками публикуется **заглушка**, а сама 2.16.0 выходит
@@ -251,16 +254,13 @@ None of these is in version control, and none fails loudly.
    `NPM_RELEASE=true` (включает и release-please, и публикацию).
    **Settings → Advanced Security** → *Private vulnerability reporting* →
    Enable (на него ведёт SECURITY.md).
-6. **Выпуск 2.16.0.** release-please открывает PR `chore(main): release
-   2.16.0`. Перед слиянием поправить руками журнал изменений первого выпуска:
-   ссылки на коммиты родителя ведут в этот репозиторий, а `@3`, `@latest` и
-   подобное превращаются в ссылки на пользователей GitHub. Затем одобрить
-   задержанный `ci` PR и смержить: слияние — единственное действие, `v2.16.0`
-   публикуется само (имя файла tarball — `bxshefby-b24ui-nuxt-*.tgz`, оно
-   берётся из `pnpm pack`). Проверка — `npm view @bxshefby/b24ui-nuxt@2.16.0 version`, у версии на
-   npmjs.com — значок provenance.
-7. **Убрать `release-as`** из `release-please-config.json` отдельным PR сразу
-   после выпуска 2.16.0: дальше версию снова считают коммиты.
+6. **Выпуск.** release-please открывает PR `chore(main): release X.Y.Z`.
+   Одобрить задержанный `ci` PR и смержить: слияние — единственное действие,
+   тег публикуется сам (имя файла tarball — `bxshefby-b24ui-nuxt-*.tgz`, оно
+   берётся из `pnpm pack`; npm получает его как `./dist-tarball/…` — без `./`
+   npm ищет репозиторий GitHub). Проверка — `npm view @bxshefby/b24ui-nuxt
+   version`, у версии на npmjs.com — значок provenance. `release-as` в
+   `release-please-config.json` нет: версию считают коммиты.
 
 ## How the version is chosen
 
