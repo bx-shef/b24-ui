@@ -311,7 +311,8 @@ jobs:
           NEEDS: ${{ toJSON(needs) }}
         run: |
           echo "$NEEDS" | jq -r 'to_entries[] | "\(.key): \(.value.result)"'
-          if echo "$NEEDS" | jq -e '[.[].result] | all(. == "success") | not' >/dev/null; then
+          # Fail closed: any jq error is a failure too, not a silent pass.
+          echo "$NEEDS" | jq -e '[.[].result] | length > 0 and all(. == "success")' >/dev/null || {
             echo "::error::a job ci depends on did not succeed"
             exit 1
-          fi
+          }
